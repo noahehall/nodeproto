@@ -1,0 +1,19 @@
+{
+  "name": "nodeproto",
+  "version": "0",
+  "description": "full stack node starter kit for prototyping applications",
+  "keywords": ["nirv", "nodeproto", "starter", "prototype", "fullstack", "api"],
+  "homepage": "https://github.com/noahehall/nodeproto",
+  "bugs": "https://github.com/noahehall/nodeproto/issues",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "author": "noahehall (https://twitter.com/noahedwardhall",
+  "main": "main.mjs",
+  "type": "module",
+  "scripts": {
+    "about": "npm run-script",
+    "boot": "node main.mjs"
+  },
+  "dependencies": {
+    "koa": "^2.13.1"
+  }
+}
