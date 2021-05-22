@@ -7,12 +7,14 @@
 ## setup
 ### vscode
   - [editorconfig](https://editorconfig.org/)
-  - 
+  -
 
-### git 
+### git
   - [gitignore](https://git-scm.com/docs/gitignore)
   - [gitattributes](https://git-scm.com/docs/gitattributes)
 
+### npm
+  - [npmrc](https://docs.npmjs.com/cli/v7/configuring-npm/npmrc)
 ### node
   - [nvm](https://github.com/nvm-sh/nvm)
 
