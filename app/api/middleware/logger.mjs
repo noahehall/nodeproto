@@ -1,14 +1,22 @@
 'use strict';
 
-import { resGet } from '../shared.mjs';
+import { resGet, isFaviconRequest } from '../shared.mjs';
 
-const log = msg => console.log(`asyncLogger: ${msg}`);
+const log = msg => console.log(`\n\nasyncLogger: ${msg}`);
 
-export default async (ctx, next) => {
-  await next();
+// TODO
+// find a real logging middleware;
+export default function logger (config, app) {
+  return async (ctx, next) => {
 
-  const rt = resGet(ctx, 'X-Response-Time');
+    if (isFaviconRequest(ctx.path)) return;
 
-  log(`${ctx.method}: ${ctx.url} ${rt}ms`);
+    await next();
+
+    const rt = resGet(ctx, 'X-Response-Time');
+
+    log(`${ctx.method}: ${ctx.url} ${rt}ms\nBody: \n${ctx.body}`
+    );
+  }
 }
 

@@ -1,9 +1,16 @@
 'use strict';
 
-export default async (ctx, next) => {
-  const start = Date.now();
+// TODO
+// see how everyone else from koa is doing this
+// vs our koa.introduction.copypasta
+export default function responseTime(config, app) {
 
-  await next();
+  return async (ctx, next) => {
+    const start = Date.now();
 
-  ctx.set('X-Response-Time', Date.now() - start);
+    await next();
+
+    if (!ctx.response.headerSent)
+      ctx.response.append('X-Response-Time', Date.now() - start);
+  }
 };

@@ -1,0 +1,20 @@
+'use strict';
+
+/**
+ * @see https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ETag
+ *
+ */
+import { eTag as tinyETag } from '@tinyhttp/etag';
+
+// TODO(noah)
+// +ensure this is last
+// +to check modifications to body?
+export default function eTag (config, app) {
+
+  return async (ctx, next) => {
+    next();
+
+    if (!ctx.response.headerSent && ctx.method !== 'POST')
+      ctx.response.append('ETag', tinyETag(ctx.body))
+  }
+}
