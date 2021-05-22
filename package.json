@@ -9,9 +9,13 @@
   "author": "noahehall (https://twitter.com/noahedwardhall",
   "main": "main.mjs",
   "type": "module",
+  "config": {
+    "appPort": "3000",
+    "NODE_ENV": "development"
+  },
   "scripts": {
     "about": "npm run-script",
-    "boot": "node main.mjs"
+    "dev": "node main.mjs"
   },
   "dependencies": {
     "koa": "^2.13.1"
