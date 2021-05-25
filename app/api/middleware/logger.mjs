@@ -1,11 +1,13 @@
 'use strict';
 
+// TODO
+// find a real logging middleware;
+
+
 import { resGet, isFaviconRequest } from '../shared.mjs';
 
 const log = msg => console.log(`\n\nasyncLogger: ${msg}`);
 
-// TODO
-// find a real logging middleware;
 export default function logger (config, app) {
   return async (ctx, next) => {
 

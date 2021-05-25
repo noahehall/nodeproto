@@ -14,7 +14,7 @@ export default function eTag (config, app) {
   return async (ctx, next) => {
     next();
 
-    if (!ctx.response.headerSent && ctx.method !== 'POST')
+    if (!ctx.response.headerSent && ctx.method === 'GET')
       ctx.response.append('ETag', tinyETag(ctx.body))
   }
 }

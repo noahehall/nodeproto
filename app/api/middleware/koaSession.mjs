@@ -6,7 +6,8 @@ import session from 'koa-session';
 
 // fear the copypasta
 // https://github.com/koajs/session#example
-
+// TODO(noah)
+// +review these options as autoCommit fks shit up
 const CONFIG = {
   key: 'koa.sess', /** (string) cookie key (default is koa.sess) */
   /** (number || 'session') maxAge in ms (default is 1 days) */

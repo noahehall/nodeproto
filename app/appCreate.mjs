@@ -2,6 +2,7 @@
 
 import Koa from 'koa';
 import { getEnv } from './api/shared.mjs';
+import koaQs from 'koa-qs';
 
 export default (overrides = {}) => {
 
@@ -18,5 +19,6 @@ export default (overrides = {}) => {
   // todo(noah) move to sep fn
   app.context.appPort = getEnv('appPort');
 
-  return app;
+  // @see https://github.com/koajs/qs#whats-different
+  return koaQs(app, 'strict');
 }

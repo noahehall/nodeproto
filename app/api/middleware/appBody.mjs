@@ -8,6 +8,11 @@ export default function appBody (app) {
 
     ctx.body = 'Hello Wurl';
 
+    // TODO
+    // babel wheres my .? operator
+    let n = ctx.session.views || 0;
+    ctx.session.views = ++n;
+
     next();
 
     // koabody
@@ -18,10 +23,6 @@ export default function appBody (app) {
     // ignore favicon
     // https://github.com/koajs/session#example
     if (!isFaviconRequest(ctx.path)) {
-      // TODO
-      // babel wheres my .? operator
-      let n = ctx.session.views || 0;
-      ctx.session.views = ++n;
       ctx.body += '\n' + ctx.session.views + ' views';
     }
   };

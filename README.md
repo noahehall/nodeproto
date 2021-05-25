@@ -29,14 +29,30 @@
   - [koa](https://koajs.com/#introduction)
 
 ##### testing out
-  - [koa-openapi](https://github.com/kogosoftwarellc/open-api/blob/master/packages/koa-openapi/test/sample-projects/basic-usage/app.js)
-  - [koa-body](https://github.com/koajs/koa-body/blob/9b00b40adbfc40a5f5f73efbc88108adf66bcf8b/index.js#L75)
-  - [koa-compose](https://github.com/koajs/compose/blob/25568a36509fefc58914bc2a7600f787b16aa0df/index.js#L19)
-  - [koa-router](https://github.com/koajs/router/tree/master/lib)
-  - [koa-jwt](https://github.com/koajs/jwt#example)
-  - [koa-session](https://github.com/koajs/session#example)
-  - [tinyhttp/etag](https://github.com/talentlessguy/tinyhttp/blob/348e95e8cee63c0f03eea46495f26d863315e1f0/packages/etag/src/index.ts#L27)
-  - [koa-helmet](https://github.com/venables/koa-helmet)
+  - misc
+    - [koa-body](https://github.com/koajs/koa-body/blob/9b00b40adbfc40a5f5f73efbc88108adf66bcf8b/index.js#L75)
+    - [koa-compose](https://github.com/koajs/compose/blob/25568a36509fefc58914bc2a7600f787b16aa0df/index.js#L19)
+
+  - caching
+    - [tinyhttp/etag](https://github.com/talentlessguy/tinyhttp/blob/348e95e8cee63c0f03eea46495f26d863315e1f0/packages/etag/src/index.ts#L27)
+
+  - security
+    - [koa-jwt](https://github.com/koajs/jwt#example)
+    - [koa-session](https://github.com/koajs/session#example)
+    - [koa-helmet](https://github.com/venables/koa-helmet)
+    - [@koa/cors](https://github.com/koajs/cors)
+    - [koa-ratelimit](https://github.com/koajs/ratelimit)
+
+
+  - openapi
+    - [koa-oas3 by atlassian](https://github.com/atlassian/koa-oas3)
+    - [koa-openapi-validator beta thing](https://github.com/cdimascio/express-openapi-validator/tree/lerna-fastify/packages/koa-openapi-validator)
+
+  - routing
+    - [koa-tree-router](https://github.com/steambap/koa-tree-router)
+    - [joi-routing](https://github.com/koajs/joi-router)
+    - [koa-router](https://github.com/koajs/router/tree/master/lib)
+
 
 #### to review
   - [jshttp](https://github.com/jshttp/http-assert)
