@@ -5,7 +5,7 @@
 
 
 ### TODOs
-  - force explicit module versions
+  - [routing issue](https://github.com/steambap/koa-tree-router/issues/19)
 ## setup
 ### vscode
   - [editorconfig](https://editorconfig.org/)
@@ -33,6 +33,9 @@
     - [koa-body](https://github.com/koajs/koa-body/blob/9b00b40adbfc40a5f5f73efbc88108adf66bcf8b/index.js#L75)
     - [koa-compose](https://github.com/koajs/compose/blob/25568a36509fefc58914bc2a7600f787b16aa0df/index.js#L19)
 
+  - file serving
+    - [koajs/favicon](https://github.com/koajs/favicon)
+
   - caching
     - [tinyhttp/etag](https://github.com/talentlessguy/tinyhttp/blob/348e95e8cee63c0f03eea46495f26d863315e1f0/packages/etag/src/index.ts#L27)
 
@@ -42,7 +45,7 @@
     - [koa-helmet](https://github.com/venables/koa-helmet)
     - [@koa/cors](https://github.com/koajs/cors)
     - [koa-ratelimit](https://github.com/koajs/ratelimit)
-
+    - [koa-sslify](https://github.com/turboMaCk/koa-sslify)
 
   - openapi
     - [koa-oas3 by atlassian](https://github.com/atlassian/koa-oas3)
@@ -59,7 +62,7 @@
     - low-level js http-related modules
     - koa relies heavily on this groups open source projects
   - [st static files + etc](https://github.com/isaacs/st#readme)
-  -
+  - [koajs/mount](https://github.com/koajs/mount)
 
 
 ### not so bad

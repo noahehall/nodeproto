@@ -1,5 +1,7 @@
 'use strict';
 
+// TODO(noah)
+// +body should be set by the router, not this shit
 import { isFaviconRequest } from "../shared.mjs";
 // TODO
 // how is the koa community doing this?

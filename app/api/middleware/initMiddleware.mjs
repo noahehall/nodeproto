@@ -23,6 +23,6 @@ export default function initMiddleware (app) {
   app.use(koaBody());
   app.use(koaCsrf(undefined, app));
   app.use(eTag());
-  app.use(appBody(app));
+  // app.use(appBody(app));
   app.use(koaCharset());
 }

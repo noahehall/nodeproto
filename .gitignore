@@ -1,6 +1,7 @@
 # Don't check auto-generated stuff into git
 coverage
 build
+dist
 node_modules
 stats.json
 .tags*
@@ -20,3 +21,4 @@ git.sublime*
 
 # other shit
 examples/cookies.txt
+
