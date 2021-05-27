@@ -5,7 +5,8 @@
 
 
 ### TODOs
-  - [routing issue](https://github.com/steambap/koa-tree-router/issues/19)
+  - [run npm via script to provide some default node options for all pkgjson scripts](https://nodejs.org/api/cli.html)
+  - error handling
 ## setup
 ### vscode
   - [editorconfig](https://editorconfig.org/)
@@ -15,10 +16,10 @@
   - [gitignore](https://git-scm.com/docs/gitignore)
   - [gitattributes](https://git-scm.com/docs/gitattributes)
 
-### npm
+### pkg managers
   - [npmrc](https://docs.npmjs.com/cli/v7/configuring-npm/npmrc)
   - [package json](https://docs.npmjs.com/cli/v7/configuring-npm/package-json)
-  -
+  - [unpkg](https://unpkg.com/)
 ### node
   - [nvm](https://github.com/nvm-sh/nvm)
   - [http server listen callback](http://nodejs.org/api/http.html#http_server_listen_port_hostname_backlog_callback)
@@ -27,6 +28,8 @@
 ### modules
 #### good
   - [koa](https://koajs.com/#introduction)
+  - [esbuild](https://esbuild.github.io)
+    - [always review this first b4 isntalling babel plugins](https://esbuild.github.io/content-types/#javascript)
 
 ##### testing out
   - misc
@@ -50,6 +53,7 @@
   - openapi
     - [koa-oas3 by atlassian](https://github.com/atlassian/koa-oas3)
     - [koa-openapi-validator beta thing](https://github.com/cdimascio/express-openapi-validator/tree/lerna-fastify/packages/koa-openapi-validator)
+    - [swagger ui](https://github.com/swagger-api/swagger-ui)
 
   - routing
     - [koa-tree-router](https://github.com/steambap/koa-tree-router)

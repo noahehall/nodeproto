@@ -2,6 +2,7 @@
 // TODO
 // [add redis](https://github.com/koajs/session#external-session-stores)
 
+import compose from 'koa-compose';
 import session from 'koa-session';
 
 // fear the copypasta
@@ -24,6 +25,16 @@ const CONFIG = {
   sameSite: null, /** (string) session cookie sameSite options (default null, don't set it) */
 };
 
-export default function koaSession (conf = CONFIG, app) {
-  return session(conf, app);
+export const sessionHandler = async (ctx, next) => {
+  const { session: { views = 0 }} = ctx;
+  ctx.session.views = views + 1;
+
+  next();
+}
+export default function koaSession ({ useHandler = true, ...conf } = {}, app) {
+  const s = session({ ...CONFIG, ...conf }, app);
+
+  return useHandler
+    ? compose([s, sessionHandler])
+    : s;
 }

@@ -6,10 +6,7 @@ import createApp from './appCreate.mjs';
 import initAppRouter from './appRouter.mjs';
 
 
-const app = createApp();
-
-initMiddleware(app);
-initAppRouter(app);
+const app = initAppRouter(initMiddleware(createApp()));
 
 export default function App() {
   return http.createServer(app.callback());

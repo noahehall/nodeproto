@@ -1,8 +1,19 @@
 'use strict';
 
-// TODO: babel
-// export default from 'koa-body';
+/**
+ * for handling multipart form bodies
+ */
+import body from 'koa-body';
+import bodyParser from 'koa-bodyparser';
 
-import koaBody from 'koa-body';
+// handles forms
+export function koaBody (conf, app) {
+  return body()
+};
 
-export default koaBody;
+// doesnt handle forms
+// required (temporarily) for koa-oas3
+// default app body parser
+export function koaBodyParser (conf = {}, app) {
+  return bodyParser();
+}

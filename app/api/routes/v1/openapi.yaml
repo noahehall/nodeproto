@@ -1,0 +1,10 @@
+nodeproto:
+  openapi: 3
+  info:
+    title: 'nodeproto: build prototypes, fast.'
+    version: 0.1
+    license:
+      name: MIT
+  paths: {}
+  servers:
+    - uri: 'http://localhost:3000/v1'
