@@ -10,7 +10,7 @@ const defaults = {
   keys: ['some secret hurr'],
 };
 
-export default (overrides = {}) => {
+export default async function createApp (overrides = {}) {
   const app = Object.assign(new Koa(), defaults, overrides);
 
   // @see https://github.com/koajs/qs#whats-different

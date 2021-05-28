@@ -4,6 +4,12 @@
   - I started from scratch so you dont have to
 
 
+## Open Api 3
+  - [v1 Baggage Check Package Checker](localhost:3000/v1)
+    - `npm run start:native`
+    - load: localhost:3000/v1
+
+
 ### TODOs
   - [run npm via script to provide some default node options for all pkgjson scripts](https://nodejs.org/api/cli.html)
   - error handling

@@ -30,11 +30,12 @@
     "predev": "rm -rf dist/*",
     "dev": "node --experimental-import-meta-resolve --enable-source-maps --experimental-json-modules -r dotenv/config lib/esbuild.config.mjs",
     "start": "npm run dev",
-    "start:raw": "node -r dotenv/config main.mjs"
+    "start:native": "node --experimental-import-meta-resolve --enable-source-maps --experimental-json-modules -r dotenv/config main.mjs"
   },
   "dependencies": {
     "@koa/cors": "3.1.0",
     "@tinyhttp/etag": "1.3.0",
+    "import-meta-resolve": "1.1.1",
     "js-yaml": "3.14.1",
     "koa": "2.13.1",
     "koa-body": "4.2.0",

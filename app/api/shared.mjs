@@ -1,5 +1,21 @@
 'use strict';
 
+import path from 'path';
+
+const parentUri = () => import.meta?.url ?? module.filename;
+
+/**
+ *
+ * @param specifier find abs to this THING on disk
+ * @param parent abs location of function making the call
+ * @returns
+ */
+export const resolve = async (specifier, parent = parentUri()) => {
+  // console.log('\n\n wtf', specifier, parent)
+  return import.meta?.resolve
+    ? (await import.meta.resolve(specifier, parent)).replace('file://', '')
+    : path.resolve(specifier, parent)
+}
 /**
  *
  * @param t thing
@@ -45,3 +61,4 @@ export const getEnv = (
 export const isFaviconRequest = p => (
   p === '/favicon.ico'
 );
+

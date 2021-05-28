@@ -8,6 +8,6 @@ import initAppRouter from './appRouter.mjs';
 
 const app = initAppRouter(initMiddleware(createApp()));
 
-export default function App() {
-  return http.createServer(app.callback());
+export default async function asyncApp() {
+  return http.createServer((await app).callback());
 }
