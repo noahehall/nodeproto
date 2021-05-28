@@ -11,7 +11,7 @@ const parentUri = () => import.meta?.url ?? module.filename;
  * @returns
  */
 export const resolve = async (specifier, parent = parentUri()) => {
-  // console.log('\n\n wtf', specifier, parent)
+  console.log('\n\n specifier parent', specifier, parent);
   return import.meta?.resolve
     ? (await import.meta.resolve(specifier, parent)).replace('file://', '')
     : path.resolve(specifier, parent)

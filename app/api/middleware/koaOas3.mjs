@@ -13,6 +13,8 @@ const CONFIG = {
   // validatePaths: array of paths
   // swaggerUiBundleBasePath: uhhh
   // errorHandler: custom error handler fn
+  // endpoint: '/v1.json', // dynamically set via routepath
+  // uiEndpoint: '/v1.html', // dynamically set via routepath
   requestBodyHandler: {
     'application/json': bodyParser({
       extendTypes: {
@@ -33,29 +35,45 @@ const CONFIG = {
       enableTypes: ['form']
     }),
   },
-  // enableUi: true,
-  endpoint: '/v1.json',
-  uiEndpoint: '/v1.html',
+  enableUi: true,
   // validateResponse: false,
   // qsParseOptions: { comma: true },
 };
 
 export const oas3Handler = async (config, app) => {
   const oasMw = await oas(config);
-  // console.log(oasMw())
   app.use(oasMw);
 };
 
-export default function koaOas3 ({file, spec, ...config} = {}, app) {
+export default function koaOas3 (
+  {
+    file,
+    spec,
+    routepath,
+    ...config
+  } = {},
+  app
+) {
+  if (!routepath)
+    throw `String(routepath) required to load openApi UI`;
   if (!file && !spec)
     throw `atleast file|spec required in koaOas3`;
 
+  console.log('\n\n file path', file)
   // @see https://github.com/nodeca/js-yaml
   const useSpec = spec || yaml.load(
     fs.readFileSync(file, 'utf8')
   );
-  console.log('\n\n use spec', useSpec)
-  const oas3Config = Object.assign({ spec: useSpec }, CONFIG, config);
+
+  const oas3Config = Object.assign(
+    {
+      spec: useSpec,
+      endpoint: `${routepath}.json`,
+      uiEndpoint: `${routepath}.html`,
+    },
+    CONFIG,
+    config
+  );
 
   oas3Handler(oas3Config, app);
 

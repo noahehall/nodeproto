@@ -63,6 +63,7 @@
     "esbuild": "0.12.4",
     "esbuild-plugin-babel": "0.2.3",
     "esbuild-plugin-manifest": "0.4.3",
+    "esbuild-plugin-yaml": "0.0.1",
     "husky": "6.0.0",
     "multi-tape": "1.6.1",
     "openapi-to-postmanv2": "2.7.0",
