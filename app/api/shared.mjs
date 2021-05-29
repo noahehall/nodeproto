@@ -14,7 +14,7 @@ export const resolve = async (specifier, parent = parentUri()) => {
   console.log('\n\n specifier parent', specifier, parent);
   return import.meta?.resolve
     ? (await import.meta.resolve(specifier, parent)).replace('file://', '')
-    : path.resolve(specifier, parent)
+    : path.join(path.dirname(parent), specifier)
 }
 /**
  *
