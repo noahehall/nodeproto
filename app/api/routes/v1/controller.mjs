@@ -11,7 +11,6 @@ import * as demo from './demo/index.mjs';
 import koaOas3 from '../../middleware/koaOas3.mjs';
 
 
-// console.log('\n\n wtf is yaml', v1yaml);
 export default async function v1Controller (v1RouterGroup, app) {
   try {
     /**

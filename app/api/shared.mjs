@@ -6,12 +6,11 @@ const parentUri = () => import.meta?.url ?? module.filename;
 
 /**
  *
- * @param specifier find abs to this THING on disk
- * @param parent abs location of function making the call
+ * @param specifier filename
+ * @param parent abs path
  * @returns
  */
 export const resolve = async (specifier, parent = parentUri()) => {
-  console.log('\n\n specifier parent', specifier, parent);
   return import.meta?.resolve
     ? (await import.meta.resolve(specifier, parent)).replace('file://', '')
     : path.join(path.dirname(parent), specifier)

@@ -13,6 +13,7 @@
 ### TODOs
   - [run npm via script to provide some default node options for all pkgjson scripts](https://nodejs.org/api/cli.html)
   - error handling
+  - review installed dependencies
 ## setup
 ### vscode
   - [editorconfig](https://editorconfig.org/)
@@ -44,6 +45,10 @@
 
   - file serving
     - [koajs/favicon](https://github.com/koajs/favicon)
+
+  - monitoring
+    - [cls-rtracer](https://github.com/puzpuzpuz/cls-rtracer)
+
 
   - caching
     - [tinyhttp/etag](https://github.com/talentlessguy/tinyhttp/blob/348e95e8cee63c0f03eea46495f26d863315e1f0/packages/etag/src/index.ts#L27)

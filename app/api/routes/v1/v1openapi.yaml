@@ -4,4 +4,16 @@ info:
   version: 0.0.1
   license:
     name: MIT
-paths: {}
+paths:
+  /v1/demo/pkgcheck:
+    get:
+      summary: analyze package dependencies
+      responses:
+        "200":
+          description: success
+  /v1/demo/lob:
+    get:
+      summary: use the LOB api to send @noahedwardhall money
+      responses:
+        "200":
+          description: success

@@ -59,7 +59,6 @@ export default function koaOas3 (
   if (!file && !spec)
     throw `atleast file|spec required in koaOas3`;
 
-  console.log('\n\n file path', file)
   // @see https://github.com/nodeca/js-yaml
   const useSpec = spec || yaml.load(
     fs.readFileSync(file, 'utf8')
