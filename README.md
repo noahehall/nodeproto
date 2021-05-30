@@ -3,7 +3,8 @@
 ## TLDR
   - I started from scratch so you dont have to
 
-## scripts
+## stable scripts
+  - `npm test` run all tests in lib/app directories
   - `npm start` dev, hot reload. transpile app with esbuild to node LTS
   - `npm run start:native` dev. latest node.
   - `npm run about` see ALL available scripts
@@ -44,6 +45,11 @@
 
   - [esbuild](https://esbuild.github.io)
     - [always review this first b4 intalling babel plugins](https://esbuild.github.io/content-types/#javascript)
+
+  - testing
+    - [tape](https://github.com/substack/tape)
+    - [multi-tape](https://github.com/mattiash/node-multi-tape)
+    - [sinon](https://sinonjs.org/)
 
 ##### testing out
   - testing

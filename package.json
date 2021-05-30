@@ -8,7 +8,10 @@
     "starter",
     "prototype",
     "fullstack",
-    "api"
+    "api",
+    "koa",
+    "openapi",
+    "swagger"
   ],
   "homepage": "https://github.com/noahehall/nodeproto",
   "bugs": "https://github.com/noahehall/nodeproto/issues",
@@ -25,7 +28,7 @@
     "doc": "./doc"
   },
   "scripts": {
-    "logenv": "npm run env",
+    "test": "multi-tape {app,lib}/**/*.test.mjs | tap-spec",
     "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh",
     "predev": "rm -rf dist/*",
     "dev": "node --experimental-import-meta-resolve --enable-source-maps --experimental-json-modules -r dotenv/config lib/esbuild.config.mjs",
@@ -68,8 +71,9 @@
     "husky": "6.0.0",
     "jsdoc-to-markdown": "7.0.1",
     "multi-tape": "1.6.1",
+    "nyc": "15.1.0",
+    "sinon": "11.1.1",
     "tap-spec": "2.2.2",
-    "tape": "5.2.2",
-    "tape-promise": "4.0.0"
+    "tape": "5.2.2"
   }
 }
