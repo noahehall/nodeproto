@@ -53,11 +53,8 @@
 
 ##### testing out
   - testing
-    - [tape](https://github.com/dwyl/learn-tape)
-
 
   - misc
-
 
   - file serving
     - [koajs/favicon](https://github.com/koajs/favicon)
