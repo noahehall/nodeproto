@@ -26,6 +26,7 @@
 ### pkg managers
   - [npmrc](https://docs.npmjs.com/cli/v7/configuring-npm/npmrc)
   - [package json](https://docs.npmjs.com/cli/v7/configuring-npm/package-json)
+    - [dependency types](https://classic.yarnpkg.com/en/docs/dependency-types/)
   - [unpkg](https://unpkg.com/)
 ### node
   - [nvm](https://github.com/nvm-sh/nvm)

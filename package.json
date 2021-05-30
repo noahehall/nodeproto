@@ -66,6 +66,7 @@
     "esbuild-plugin-manifest": "0.4.3",
     "esbuild-plugin-yaml": "0.0.1",
     "husky": "6.0.0",
+    "jsdoc-to-markdown": "7.0.1",
     "multi-tape": "1.6.1",
     "openapi-to-postmanv2": "2.7.0",
     "tap-spec": "2.2.2",
