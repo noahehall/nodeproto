@@ -9,6 +9,7 @@
   - [esbuild toplevel await not supported with cjs output format](https://github.com/evanw/esbuild/issues/253)
   - [jsdoc-to-markdown](https://github.com/jsdoc2md/jsdoc-to-markdown/issues/249)
   - [koa-oas3 supporting openapi 3.1](https://github.com/atlassian/koa-oas3/issues/81)
+  - [moderate severity: npm audit of openapi to postman](https://github.com/postmanlabs/openapi-to-postman/issues/376)
 
 # done
   - [installation of esbuild-manifest-plugin](https://github.com/jfortunato/esbuild-plugin-manifest/issues/5)

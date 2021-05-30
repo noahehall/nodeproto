@@ -6,22 +6,12 @@
 
 # spkgcheck: tale dependency checker
   - product api card
-    - name: **pkgcheck*: the baggage check package checker
-    - description check any npm package for staleness based on:
-      - the packages last commit date (1)
-      - the packages dependency's:
-        - last commit date (2)
-        - installed version
-        - latest version
-          - if mismatch with installed version, then is it a peer/direct dependency? (3)
-            - peer > direct as it allows the consumer to choose version (usually within a supported range)
-      - compare multiple npm packages based on relative score (4)
-        - apply weights to the critieria to customize rank
-
+    - name: **pkgcheck*: package dependency analyzer
+    - description: [see openapi description](./v1openapi.yaml)
     - pain points
       - cumbersome
       - hella fkn steps to do manually
-      - time trap
+      - time sink
         - especially for JS engineers when there are 1000 apps that do 90% the same shit
 
     - potential & viability
@@ -58,19 +48,7 @@
             - be real bro
 
   - prototype
-    - resources
-      - /v1/packages[/:id(s)]/
-      - actions
-        - GET
-      - query params
-        - sort=
-          - updated (yes)
-          - peerdeps (no)
-            - useless as you need to know WHICH dependency is important enough to be a peer dependency
-        - filter=
-          - updatedSince=Date
-        - pagination=
-          - e.g. a package with 100 dependencies
+    - [see openapi description](./v1openapi.yaml)
 
 # lob API
   - [openapi v3](https://github.com/lob/lob-openapi)

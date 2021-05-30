@@ -68,7 +68,6 @@
     "husky": "6.0.0",
     "jsdoc-to-markdown": "7.0.1",
     "multi-tape": "1.6.1",
-    "openapi-to-postmanv2": "2.7.0",
     "tap-spec": "2.2.2",
     "tape": "5.2.2",
     "tape-promise": "4.0.0"
