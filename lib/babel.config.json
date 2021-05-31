@@ -1,5 +1,7 @@
 {
-  "presets": [],
+  "presets": [
+    "@babel/env", "@babel/preset-react"
+  ],
   "plugins": [
     "tailcall-optimization"
   ]

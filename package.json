@@ -28,18 +28,19 @@
     "doc": "./doc"
   },
   "scripts": {
+    "hint": "hint http://localhost:3000",
     "test": "multi-tape {app,lib}/**/*.test.mjs | tap-spec",
-    "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh",
+    "about": "npm list && npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh",
     "predev": "rm -rf dist/*",
-    "dev": "node --experimental-import-meta-resolve --enable-source-maps --experimental-json-modules -r dotenv/config lib/esbuild.config.mjs",
+    "dev": "node --trace-warnings --experimental-import-meta-resolve --enable-source-maps --experimental-json-modules -r dotenv/config lib/esbuild.config.mjs",
     "start": "npm run dev",
-    "start:native": "node --experimental-import-meta-resolve --enable-source-maps --experimental-json-modules -r dotenv/config main.mjs"
+    "start:native": "node --trace-warnings --experimental-import-meta-resolve --enable-source-maps --experimental-json-modules -r dotenv/config main.mjs"
   },
   "dependencies": {
     "@koa/cors": "3.1.0",
+    "@messageformat/react": "1.0.0",
     "@tinyhttp/etag": "1.3.0",
     "cls-rtracer": "2.6.0",
-    "import-meta-resolve": "1.1.1",
     "js-yaml": "3.14.1",
     "koa": "2.13.1",
     "koa-body": "4.2.0",
@@ -55,25 +56,31 @@
     "koa-ratelimit": "5.0.0",
     "koa-session": "6.2.0",
     "koa-sslify": "5.0.0",
-    "koa-tree-router": "github:noahehall/koa-tree-router"
+    "koa-tree-router": "github:noahehall/koa-tree-router",
+    "modernizr": "3.11.7",
+    "normalize.css": "8.0.1",
+    "react": "17.0.2"
   },
   "devDependencies": {
+    "@babel/core": "7.14.3",
     "@babel/plugin-proposal-export-default-from": "7.12.13",
     "@babel/plugin-proposal-throw-expressions": "7.12.13",
-    "@offen/esbuild-plugin-jsonschema": "1.0.0",
+    "@babel/preset-env": "7.14.4",
+    "@babel/preset-react": "7.13.13",
     "babel-plugin-tailcall-optimization": "2.0.0",
     "core-js": "3.13.0",
+    "create-hintrc": "3.0.11",
     "dotenv": "10.0.0",
     "esbuild": "0.12.4",
-    "esbuild-plugin-babel": "0.2.3",
     "esbuild-plugin-manifest": "0.4.3",
-    "esbuild-plugin-yaml": "0.0.1",
+    "hint": "6.1.3",
     "husky": "6.0.0",
     "jsdoc-to-markdown": "7.0.1",
     "multi-tape": "1.6.1",
-    "nyc": "15.1.0",
     "sinon": "11.1.1",
     "tap-spec": "2.2.2",
-    "tape": "5.2.2"
+    "tape": "5.2.2",
+    "webpack": "5.38.1",
+    "webpack-cli": "4.7.0"
   }
 }

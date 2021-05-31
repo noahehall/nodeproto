@@ -21,6 +21,10 @@
   - [run npm via script to provide some default node options for all pkgjson scripts](https://nodejs.org/api/cli.html)
   - error handling
   - review installed dependencies
+  - [finish setting up webhint](https://github.com/webhintio/hint/blob/main/packages/hint/docs/user-guide/hints/index.md)
+  - [switch to intern test framework](https://github.com/theintern/intern)
+  - [setup globalize](https://github.com/globalizejs/globalize/tree/master/examples/node-npm)
+  - [setup react + amp](https://medium.com/@rtymchyk/react-amp-modern-approach-e45de3fe84c7)
 
 ## dependencies
 ### dotfiles
@@ -29,6 +33,7 @@
   - [gitattributes](https://git-scm.com/docs/gitattributes)
   - [npmrc](https://docs.npmjs.com/cli/v7/configuring-npm/npmrc)
   - [nvmrc](https://github.com/nvm-sh/nvm)
+  - [hintrc](https://github.com/webhintio/hint/blob/main/packages/hint/docs/user-guide/configuring-webhint/summary.md)
 
 
 ### modules
@@ -45,11 +50,21 @@
 
   - [esbuild](https://esbuild.github.io)
     - [always review this first b4 intalling babel plugins](https://esbuild.github.io/content-types/#javascript)
+  - frontend
+    - [messageformat](https://github.com//messageformat)
+    - [react](https://reactjs.org)
+
+  - css
+    - [normalize.css](https://github.com/necolas/normalize.css/)
+    - [modernizr](https://github.com/Modernizr/Modernizr)
 
   - testing
     - [tape](https://github.com/substack/tape)
     - [multi-tape](https://github.com/mattiash/node-multi-tape)
     - [sinon](https://sinonjs.org/)
+
+  - linting
+    - [webhint/hint](https://github.com/webhintio/hint)
 
 ##### testing out
   - testing
