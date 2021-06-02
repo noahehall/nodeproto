@@ -9,11 +9,17 @@
     - every cmd comes with a `npm run DO:THIS:HELP` to see the help
   - the scripts
     - `npm run lerna:help` see lerna help
-    - `npm run lerna:bootstrap` install dependencies in each package + hoisting common ones
-    - `npm run lerna:start` run the start script in each package for development
-    - `npm run lerna:test` run the test script in each package
+    - `npm run bootstrap` install dependencies in each package + hoisting common ones
+    - `npm run start` run the start script in each package for development
+    - `npm run test` run the test script in each package
 
-
+## adding packages
+  - `npm run add NPMPACKAGE packages/PKG`
+    - e.g. `npm run add webpack-bundle-analyzer packages/client -- -D`
+      - will install webpack-bundle-analyzer into packages/client
+    - issues
+      - you can only add ONE package at a time, i know wtf!
+      - `--save-exact` isnt working, will figure this out later
 
 ## dependencies
 ### dotfiles
@@ -28,7 +34,7 @@
 ### modules
 #### stable
   - pkg management
-    - [lerna](https://github.com/lerna/lerna)
+    - [lerna](https://github.com/lerna/lerna/tree/main/commands)
     - [npm](npmjs.com/)
 
   - backend
@@ -74,6 +80,9 @@
 
   - monitoring
     - [cls-rtracer](https://github.com/puzpuzpuz/cls-rtracer)
+
+  - webpack
+    - [esbuild-loader](https://github.com/privatenumber/esbuild-loader)
 
 
   - caching

@@ -1,2 +1,4 @@
-# see package.json.config
-# create a root/.env with the appropriate values
+# see each package/package.json.config
+# create a pkg/.env with the appropriate values
+# by default each pkg should use the pkg.config values setup for dev environments
+# override pkg.config values with .env values of the same name

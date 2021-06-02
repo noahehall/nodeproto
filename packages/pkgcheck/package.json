@@ -3,5 +3,8 @@
   "version": "0.0.0",
   "description": "demo pkgcheck api",
   "main": "main.mjs",
-  "scripts": {}
+  "scripts": {},
+  "dependencies": {
+    "webpack-bundle-analyzer": "^4.4.2"
+  }
 }

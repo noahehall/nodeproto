@@ -9,7 +9,7 @@
     },
     "bootstrap": {
       "ignore": ["components-starting-with-this-*"],
-      "npmClientArgs": ["--no-package-lock --save-exact"],
+      "npmClientArgs": ["--no-package-lock", "--save-exact"],
       "scope": []
     }
   },
