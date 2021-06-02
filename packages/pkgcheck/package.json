@@ -1,0 +1,7 @@
+{
+  "name": "@nodeproto/pkgcheck",
+  "version": "0.0.0",
+  "description": "demo pkgcheck api",
+  "main": "main.mjs",
+  "scripts": {}
+}

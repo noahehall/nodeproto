@@ -5,9 +5,12 @@
   "keywords": [
     "nirv",
     "@nodeproto",
+    "nodeproto",
     "starter",
     "prototype",
     "fullstack",
+    "microservice",
+    "micro service",
     "api",
     "koa",
     "openapi",
@@ -22,16 +25,22 @@
   "license": "SEE LICENSE IN LICENSE.md",
   "author": "noahehall (https://twitter.com/noahedwardhall",
   "directories": {
-    "bin": "./bin",
-    "doc": "./doc"
+    "doc": "./doc",
+    "packages": "./packages"
   },
   "scripts": {
-    "lerna:help": "lerna --help",
+    "about": "npm list && npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh",
+    "lerna:about": "lerna run about",
+    "lerna:about:help": "echo 'see available scripts & pkgs installed in each microservice'",
     "lerna:bootstrap": "lerna bootstrap --hoist --force-local",
     "lerna:bootstrap:help": "lerna bootstrap --help",
-    "lerna:start": "lerna run start",
-    "lerna:start:help": "lerna start --help",
-    "lerna": "lerna"
+    "lerna:run:help": "lerna run --help",
+    "lerna:start": "lerna run start --parallel",
+    "lerna:start:help": "npm run lerna:run:help",
+    "lerna:test": "lerna run test",
+    "lerna:test:help": "npm run lerna:run:help",
+    "lerna": "lerna",
+    "lerna:help": "lerna --help"
   },
   "dependencies": {},
   "devDependencies": {

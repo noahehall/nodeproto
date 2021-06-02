@@ -1,4 +1,5 @@
-# nodeproto
+# @nodeproto
+  - lerna monorepo for rapidly prototyping complex applications and microservices
 
 ## TLDR
   - I started from scratch so you dont have to
@@ -8,7 +9,9 @@
     - every cmd comes with a `npm run DO:THIS:HELP` to see the help
   - the scripts
     - `npm run lerna:help` see lerna help
-    - `npm run lerna:bootstrap` bootstrap the monorepo + hoist
+    - `npm run lerna:bootstrap` install dependencies in each package + hoisting common ones
+    - `npm run lerna:start` run the start script in each package for development
+    - `npm run lerna:test` run the test script in each package
 
 
 
@@ -28,18 +31,23 @@
     - [lerna](https://github.com/lerna/lerna)
     - [npm](npmjs.com/)
 
-  - [koa](https://koajs.com/#introduction)
-    - [koa-body](https://github.com/koajs/koa-body/blob/9b00b40adbfc40a5f5f73efbc88108adf66bcf8b/index.js#L75)
-    - [koa-compose](https://github.com/koajs/compose/blob/25568a36509fefc58914bc2a7600f787b16aa0df/index.js#L19)
-    - [koa-jwt](https://github.com/koajs/jwt#example)
-    - [koa-session](https://github.com/koajs/session#example)
-    - [koa-helmet](https://github.com/venables/koa-helmet)
-    - [@koa/cors](https://github.com/koajs/cors)
-    - [koa-ratelimit](https://github.com/koajs/ratelimit)
-    - [koa-oas3](https://github.com/atlassian/koa-oas3)
+  - backend
+    - [koa](https://koajs.com/#introduction)
+      - [koa-body](https://github.com/koajs/koa-body/blob/9b00b40adbfc40a5f5f73efbc88108adf66bcf8b/index.js#L75)
+      - [koa-compose](https://github.com/koajs/compose/blob/25568a36509fefc58914bc2a7600f787b16aa0df/index.js#L19)
+      - [koa-jwt](https://github.com/koajs/jwt#example)
+      - [koa-session](https://github.com/koajs/session#example)
+      - [koa-helmet](https://github.com/venables/koa-helmet)
+      - [@koa/cors](https://github.com/koajs/cors)
+      - [koa-ratelimit](https://github.com/koajs/ratelimit)
+      - [koa-oas3](https://github.com/atlassian/koa-oas3)
 
-  - [esbuild](https://esbuild.github.io)
-    - [always review this first b4 intalling babel plugins](https://esbuild.github.io/content-types/#javascript)
+  - bundling
+    - [esbuild for backend](https://esbuild.github.io)
+      - [always review this first b4 intalling babel plugins](https://esbuild.github.io/content-types/#javascript)
+    - [webpack 5 + esbuild for frontend](https://webpack.js.org/)
+      - frontend requires complex bundling to support the widerange of environment i prefer to build for.
+      - thus we use both webpack 5 + esbuild
   - frontend
     - [messageformat](https://github.com//messageformat)
     - [react](https://reactjs.org)
