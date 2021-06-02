@@ -4,27 +4,13 @@
   - I started from scratch so you dont have to
 
 ## stable scripts
-  - `npm test` run all tests in lib/app directories
-  - `npm start` dev, hot reload. transpile app with esbuild to node LTS
-  - `npm run start:native` dev. latest node.
-  - `npm run about` see ALL available scripts
-  - `npm run logenv` see env vars available to app
-
-## Demo app
-### Open Api 3
-  - [Package Checker v1](/app/api/routes/v1/README.md)
-    - run `npm start`
-    - [open localhost:3000/v1](http://localhost:3000/v1)
+  - in general
+    - every cmd comes with a `npm run DO:THIS:HELP` to see the help
+  - the scripts
+    - `npm run lerna:help` see lerna help
+    - `npm run lerna:bootstrap` bootstrap the monorepo + hoist
 
 
-### TODOs
-  - [run npm via script to provide some default node options for all pkgjson scripts](https://nodejs.org/api/cli.html)
-  - error handling
-  - review installed dependencies
-  - [finish setting up webhint](https://github.com/webhintio/hint/blob/main/packages/hint/docs/user-guide/hints/index.md)
-  - [switch to intern test framework](https://github.com/theintern/intern)
-  - [setup globalize](https://github.com/globalizejs/globalize/tree/master/examples/node-npm)
-  - [setup react + amp](https://medium.com/@rtymchyk/react-amp-modern-approach-e45de3fe84c7)
 
 ## dependencies
 ### dotfiles
@@ -38,6 +24,10 @@
 
 ### modules
 #### stable
+  - pkg management
+    - [lerna](https://github.com/lerna/lerna)
+    - [npm](npmjs.com/)
+
   - [koa](https://koajs.com/#introduction)
     - [koa-body](https://github.com/koajs/koa-body/blob/9b00b40adbfc40a5f5f73efbc88108adf66bcf8b/index.js#L75)
     - [koa-compose](https://github.com/koajs/compose/blob/25568a36509fefc58914bc2a7600f787b16aa0df/index.js#L19)

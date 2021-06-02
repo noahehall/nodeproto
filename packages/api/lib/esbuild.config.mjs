@@ -71,7 +71,7 @@ const esbuildConfig = {
   define: buildEnv,
   entryNames: '[name]-[hash]',
   entryPoints: [appId],
-  external: Object.keys(process.binding('natives')), // @see https://stackoverflow.com/questions/35725976/how-to-obtain-a-list-of-all-available-node-js-modules
+  // external: Object.keys(process.binding('natives')), // @see https://stackoverflow.com/questions/35725976/how-to-obtain-a-list-of-all-available-node-js-modules
   metafile: true,
   minify: false,
   outdir,
@@ -101,6 +101,7 @@ const esbuildConfig = {
   // format: 'iie',
   // outfile: 'dist/out.cjs',
 };
+
 
 esbuild.build(esbuildConfig).then(result => {
   buildLog(result);
