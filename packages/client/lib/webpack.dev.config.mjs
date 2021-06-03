@@ -10,7 +10,6 @@ import ScriptExtHtmlWebpackPlugin from 'script-ext-html-webpack-plugin';
 import webpack from 'webpack';
 import webpackBaseConfig from './webpack.base.config.mjs';
 
-
 // syncs pkgjson.config with .env values
 const pkgJson = envproto.syncConfig(pkgJsonOG);
 
@@ -23,6 +22,7 @@ export default webpackBaseConfig({
   pkgJson,
 
   plugins: [
+
     new webpack.HotModuleReplacementPlugin(),
 
     new HtmlWebpackPlugin({

@@ -44,10 +44,10 @@ export default function (api) {
     ],
     // 'lodash',
     '@babel/plugin-transform-runtime',
-    '@babel/plugin-transform-react-jsx-source',
     '@babel/plugin-proposal-class-properties',
     '@babel/plugin-proposal-export-default-from',
     '@babel/plugin-proposal-nullish-coalescing-operator',
+    '@babel/plugin-proposal-optional-catch-binding',
     '@babel/plugin-proposal-optional-chaining',
     '@babel/plugin-proposal-private-methods',
     '@babel/plugin-proposal-throw-expressions',
@@ -55,7 +55,7 @@ export default function (api) {
     '@babel/plugin-transform-modules-commonjs',
     '@babel/plugin-transform-react-constant-elements',
     '@babel/plugin-transform-react-inline-elements',
-    '@babel/plugin-proposal-optional-catch-binding',
+    '@babel/plugin-transform-react-jsx-source',
     '@babel/syntax-export-extensions',
   ];
 

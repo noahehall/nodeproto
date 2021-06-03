@@ -7,12 +7,12 @@ import ReactDOM from 'react-dom';
 
 const render = (Comp) => {
   ReactDOM.render(
-    // <React.StrictMode>
-    <ErrorBoundary>
-      <Comp />
-    </ErrorBoundary>,
-    // </React.StrictMode>,
-    document.getElementById('root'),
+    <React.StrictMode>
+      <ErrorBoundary>
+        <Comp />
+      </ErrorBoundary>
+    </React.StrictMode>,
+    document.getElementById(process.env.REACT_APP_ID),
   );
 };
 

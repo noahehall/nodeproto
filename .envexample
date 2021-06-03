@@ -1,4 +1,3 @@
-# see each package/package.json.config
-# create a pkg/.env with the appropriate values
-# by default each pkg should use the pkg.config values setup for dev environments
-# override pkg.config values with .env values of the same name
+# see each package/package.json.config for the default env of each microservice
+# create a pkg/.env to override the default env values
+# each pkg.json.config values are injected into the .env at build/run time

@@ -15,6 +15,7 @@ const msg = 'error in pack: ';
  */
 export default function pack ({
   // defaults
+  env = envproto.buildEnv(),
   babelConfig = {},
   context = process.cwd(),
   entryPush = [],
@@ -45,15 +46,27 @@ export default function pack ({
   devtool = ifProd ? 'cheap-source-map' : 'eval-cheap-module-source-map',
 
   // other plugins
-  defineEnv = new webpack.DefinePlugin(envproto.buildEnv()),
+  // defineEnv = new webpack.DefinePlugin(env),
 
   // loaders
   // should always be last to use defaults and dependents
+  stringReplaceLoader = {
+    // test: /\.(html|m?js)$/,
+    loader: 'string-replace-loader',
+    options: {
+      multiple: Object.entries(env).map(([search, replace]) => ({ search, replace }))
+    }
+
+  },
+
   jsLoader = {
     test: /\.m?js$/,
     type: "javascript/auto",
     include: [pathSrc],
-    use: { loader: 'babel-loader', options: babelConfig },
+    use: [
+      { loader: 'babel-loader', options: babelConfig },
+      stringReplaceLoader,
+    ]
   },
 
   cssInternalLoader = {
@@ -106,12 +119,6 @@ export default function pack ({
     },
   },
 
-  htmlLoader = {},
-  // doesnt work with esm? dunno
-  //   test: /\.html$/,
-  //   use: 'html-loader',
-  // },
-
   // overrides top level properties
   ...overrides
 } = {}) {
@@ -124,7 +131,7 @@ export default function pack ({
     externals: [], // [ ...peerDeps, ...deps ].concat(target === 'web' ? [] : externals(externalsConfig)),
     mode,
     optimization,
-    plugins: [defineEnv].concat(plugins).filter(x => x),
+    plugins: [].concat(plugins).filter(x => x),
     target,
 
     resolve: { extensions, mainFields },
@@ -143,7 +150,6 @@ export default function pack ({
       fontLoader,
       svgLoader,
       imageLoader,
-      htmlLoader,
       videoLoader,
     ].filter(x => x)},
 
