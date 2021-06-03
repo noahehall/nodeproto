@@ -106,7 +106,7 @@ export const filesToCopy = options => {
 
 const name = 'popCopyPlugin';
 
-export default function popCopy (config) {
+export function popCopy (config) {
   popCopy.options = config;
   popCopy.onStarted = false;
 

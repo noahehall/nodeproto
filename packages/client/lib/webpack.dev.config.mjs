@@ -1,18 +1,27 @@
 'use strict';
 
+import { envproto } from '@nodeproto/lib';
+import babelConfig from './babel.config.mjs';
 import CircularDependencyPlugin from 'circular-dependency-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import path from 'path';
-import pkgJson from '../package.json';
+import pkgJsonOG from '../package.json';
 import ScriptExtHtmlWebpackPlugin from 'script-ext-html-webpack-plugin';
 import webpack from 'webpack';
 import webpackBaseConfig from './webpack.base.config.mjs';
-import babelConfig from './babel.config.mjs';
+
+
+// syncs pkgjson.config with .env values
+const pkgJson = envproto.syncConfig(pkgJsonOG);
+
+const context = process.cwd();
+const pathDist = path.resolve(context, pkgJson.directories.dist);
 
 export default webpackBaseConfig({
   babelConfig: babelConfig(),
+  context,
   pkgJson,
-  // entryUnshift: ['webpack-hot-middleware/client?reload=false'],
+
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
 
@@ -26,7 +35,7 @@ export default webpackBaseConfig({
     }),
   ],
   devServer: {
-    contentBase: path.resolve(process.cwd(), pkgJson.directories.dist),
+    contentBase: pathDist,
     hot: true,
   },
 });

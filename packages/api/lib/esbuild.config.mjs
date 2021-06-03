@@ -1,22 +1,12 @@
 'use strict';
 
+import { envproto, esproto } from '@nodeproto/lib';
 import dotenv from 'dotenv';
 import esbuild from 'esbuild';
 import fs from 'fs';
 import manifestPlugin from 'esbuild-plugin-manifest';
 import path from 'path';
-import pkgJson from '../package.json';
-import popCopy from './esbuild/plugins/popCopy.mjs';
 import util from 'util';
-
-// load env
-// todo: review when pkjson.config gets complex
-const parsed = dotenv.config().parsed;
-const buildEnv = Object.entries(parsed)
-  .reduce(
-    (a, [k, v]) => (a[`process.env.${k}`] = '"' + parsed[k] + '"') && a,
-    {}
-  );
 
 
 const readFile = util.promisify(fs.readFile);
@@ -68,7 +58,7 @@ const manifestPluginConfig = {
 const esbuildConfig = {
   assetNames: 'assets/[name]-[hash]',
   bundle: true,
-  define: buildEnv,
+  define: envproto.buildEnv(),
   entryNames: '[name]-[hash]',
   entryPoints: [appId],
   // external: Object.keys(process.binding('natives')), // @see https://stackoverflow.com/questions/35725976/how-to-obtain-a-list-of-all-available-node-js-modules
@@ -82,7 +72,7 @@ const esbuildConfig = {
   target: ['node14.17.0'], // LTS
   write: true,
   plugins: [
-    popCopy(popCopyConfig),
+    esproto.popCopy(popCopyConfig),
     manifestPlugin(manifestPluginConfig),
   ],
   watch: {

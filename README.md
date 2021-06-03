@@ -4,7 +4,8 @@
 ## TLDR
   - I started from scratch so you dont have to
 
-## stable scripts
+## common tasks
+### stable scripts
   - in general
     - every cmd comes with a `npm run DO:THIS:HELP` to see the help
   - the scripts
@@ -14,13 +15,20 @@
     - `npm run test` run the test script in each package
     - `npm run lerna:run RUNSCRIPT` run an arbitrary script in all packages with the matching RUNSCRIPT name
 
-## adding packages
+### adding packages
   - `npm run add NPMPACKAGE packages/PKG`
     - e.g. `npm run add webpack-bundle-analyzer packages/client -- -D`
       - will install webpack-bundle-analyzer into packages/client
     - issues
       - you can only add ONE package at a time, i know wtf!
       - `--save-exact` isnt working, will figure this out later
+
+
+### environment variables
+  - each *package/package.json* should contain a `config` section with the default (and *public*) environment variables
+    - *do not* create an `.env.example` - use the `package/package.json.config` section
+  - create a `package/.env` file with environment variables you want to use in each microservice, referencing the name and values in the `package/package.json.config`
+
 
 ## dependencies
 ### dotfiles

@@ -1,14 +1,12 @@
 'use strict';
 
 
-import koaWebpack from 'koa-webpack';
 import Koa from 'koa';
 import webpackDevConfig from '../lib/webpack.dev.config.mjs';
 import webpack from 'webpack';
 import http from 'http';
 
 
-console.log('\n\n webpack config', webpackDevConfig);
 const compiler = webpack(webpackDevConfig);
 const middleware = await koaWebpack({ compiler });
 const app = new Koa();

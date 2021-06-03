@@ -24,6 +24,7 @@
     "predev": "rm -rf dist/*",
     "dev": "node --trace-warnings --experimental-import-meta-resolve --enable-source-maps --experimental-json-modules -r dotenv/config lib/esbuild.config.mjs",
     "start": "npm run dev",
+    "start:api": "npm start",
     "start:native": "node --trace-warnings --experimental-import-meta-resolve --enable-source-maps --experimental-json-modules -r dotenv/config main.mjs"
   },
   "dependencies": {
@@ -48,6 +49,7 @@
     "koa-tree-router": "github:noahehall/koa-tree-router"
   },
   "devDependencies": {
+    "@nodeproto/lib": "0.0.0",
     "create-hintrc": "3.0.11",
     "dotenv": "10.0.0",
     "esbuild": "0.12.4",

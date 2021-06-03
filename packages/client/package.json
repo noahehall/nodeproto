@@ -23,7 +23,8 @@
     "prebuild": "rm -rf dist/*",
     "build": "NODE_OPTIONS=\"--trace-warnings --experimental-import-meta-resolve --enable-source-maps --experimental-json-modules -r dotenv/config\" webpack --config ./lib/webpack.dev.config.mjs",
     "prestart": "npm run prebuild",
-    "start": "NODE_OPTIONS=\"--trace-warnings --experimental-import-meta-resolve --enable-source-maps --experimental-json-modules -r dotenv/config\" ./node_modules/.bin/webpack serve --config ./lib/webpack.dev.config.mjs --mode development"
+    "start": "NODE_OPTIONS=\"--trace-warnings --experimental-import-meta-resolve --enable-source-maps --experimental-json-modules -r dotenv/config\" ./node_modules/.bin/webpack serve --config ./lib/webpack.dev.config.mjs --mode development",
+    "start:client": "npm start"
   },
   "dependencies": {
     "@messageformat/react": "1.0.0",
@@ -59,6 +60,7 @@
     "@babel/plugin-transform-runtime": "7.14.3",
     "@babel/preset-env": "7.14.4",
     "@babel/preset-react": "7.13.13",
+    "@nodeproto/lib": "0.0.0",
     "babel-loader": "8.2.2",
     "babel-plugin-styled-components": "1.12.0",
     "babel-plugin-tailcall-optimization": "2.0.0",
@@ -82,11 +84,11 @@
     "tap-spec": "2.2.2",
     "tape": "5.2.2",
     "url-loader": "4.1.1",
-    "webpack": "5.38.1",
     "webpack-cli": "4.7.0",
     "webpack-dev-server": "3.11.2",
     "webpack-hot-middleware": "2.25.0",
     "webpack-node-externals": "3.0.0",
+    "webpack": "5.38.1",
     "workbox-webpack-plugin": "6.1.5"
   }
 }

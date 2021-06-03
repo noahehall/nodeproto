@@ -1,5 +1,6 @@
 'use strict';
 
+import { envproto } from '@nodeproto/lib';
 import { InjectManifest } from 'workbox-webpack-plugin';
 import externals from 'webpack-node-externals';
 import path from 'path';
@@ -42,6 +43,9 @@ export default function pack ({
 
   // dependent3
   devtool = ifProd ? 'cheap-source-map' : 'eval-cheap-module-source-map',
+
+  // other plugins
+  defineEnv = new webpack.DefinePlugin(envproto.buildEnv()),
 
   // loaders
   // should always be last to use defaults and dependents
@@ -120,7 +124,7 @@ export default function pack ({
     externals: [], // [ ...peerDeps, ...deps ].concat(target === 'web' ? [] : externals(externalsConfig)),
     mode,
     optimization,
-    plugins,
+    plugins: [defineEnv].concat(plugins).filter(x => x),
     target,
 
     resolve: { extensions, mainFields },
@@ -141,7 +145,7 @@ export default function pack ({
       imageLoader,
       htmlLoader,
       videoLoader,
-    ]},
+    ].filter(x => x)},
 
     ...overrides,
   }

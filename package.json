@@ -35,7 +35,7 @@
     "packages": "./packages"
   },
   "scripts": {
-    "about": "npm list && npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh",
+    "about": "npm list && npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh && lerna info",
     "add:help": "lerna add --help",
     "add": "lerna add",
     "bootstrap:help": "lerna bootstrap --help",
