@@ -1,20 +1,5 @@
 'use strict';
 
-import path from 'path';
-
-const parentUri = () => import.meta?.url ?? module.filename;
-
-/**
- *
- * @param specifier filename
- * @param parent abs path
- * @returns
- */
-export const resolve = async (specifier, parent = parentUri()) => {
-  return import.meta?.resolve
-    ? (await import.meta.resolve(specifier, parent)).replace('file://', '')
-    : path.join(path.dirname(parent), specifier)
-}
 /**
  *
  * @param t thing

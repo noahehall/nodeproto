@@ -63,13 +63,13 @@ export const filesToCopy = options => {
   try {
     options.forEach(({ outdir, endingWith, indir, recurse, ...opts }) => {
       if (
-        !endingWith instanceof RegExp
+        !(endingWith instanceof RegExp)
         || (!indir || !indir.startsWith('/'))
         || (!outdir || !outdir.startsWith('/'))
       )
         return console.warn(
         `${msg} invalid params`,
-        {outdir, endingWith, indir, endingWith}
+        {outdir, endingWith, indir, recurse, opts}
       );
 
       const sourcedirs = fs.readdirSync(indir, { encoding: 'utf8', withFileTypes: true }) ?? [];

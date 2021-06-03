@@ -6,3 +6,4 @@
   - [http server listen callback](http://nodejs.org/api/http.html#http_server_listen_port_hostname_backlog_callback)
   - [dependency types](https://classic.yarnpkg.com/en/docs/dependency-types/)
   - [advanced-react-webpack-babel-setup](https://github.com/rwieruch/advanced-react-webpack-babel-setup)
+  - [configuring https for nodejs](https://medium.com/swlh/learning-configuring-https-for-node-js-5097e44320e3)
