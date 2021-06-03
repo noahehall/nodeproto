@@ -46,14 +46,13 @@
     "lerna:about": "lerna run about",
     "lerna:help": "lerna --help",
     "lerna:run:help": "lerna run --help",
-    "lerna:run": "lerna run",
+    "lerna:run": "lerna run --stream",
     "lerna": "lerna",
     "start:help": "npm run lerna:run:help",
     "start": "lerna run start --parallel",
     "test:help": "npm run lerna:run:help",
     "test": "lerna run test"
   },
-  "dependencies": {},
   "devDependencies": {
     "lerna": "4.0.0"
   }

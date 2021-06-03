@@ -47,3 +47,5 @@ s
     - stale ioredis dep
   - [koajs/etag](https://github.com/koajs/etag/blob/master/package.json)
     - stale dep etag (2018)
+  - [koa-webpack](https://github.com/shellscape/koa-webpack)
+    - didnt work with lerna|esm|who the fk knows

@@ -19,7 +19,8 @@ export default function (api) {
         useBuiltIns: 'usage',
         // enable
         corejs,
-
+        debug: true,
+        modules: 'commonjs',
       }
     ],
     '@babel/preset-react',
@@ -42,6 +43,8 @@ export default function (api) {
       }
     ],
     // 'lodash',
+    '@babel/plugin-transform-runtime',
+    '@babel/plugin-transform-react-jsx-source',
     '@babel/plugin-proposal-class-properties',
     '@babel/plugin-proposal-export-default-from',
     '@babel/plugin-proposal-nullish-coalescing-operator',
@@ -55,6 +58,7 @@ export default function (api) {
     '@babel/plugin-proposal-optional-catch-binding',
     '@babel/syntax-export-extensions',
   ];
+
   return {
     presets,
     plugins

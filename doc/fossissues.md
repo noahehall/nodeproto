@@ -11,6 +11,9 @@
   - [koa-oas3 supporting openapi 3.1](https://github.com/atlassian/koa-oas3/issues/81)
   - [moderate severity: npm audit of openapi to postman](https://github.com/postmanlabs/openapi-to-postman/issues/376)
   - [hella fkn security issues with webhint](https://github.com/webhintio/hint/issues/4594)
+  - [unable to import koa-webpack in lerna monorepo](https://github.com/shellscape/koa-webpack/issues/127)
+    - [second issue following the rules of our overlords](https://github.com/shellscape/koa-webpack/issues/128)
+    - doesnt support webpack5
 
 # done
   - [installation of esbuild-manifest-plugin](https://github.com/jfortunato/esbuild-plugin-manifest/issues/5)

@@ -4,7 +4,7 @@
   "main": "./main.mjs",
   "type": "module",
   "config": {
-    "APP_PORT": "3000",
+    "API_PORT": "3000",
     "NODE_ENV": "development"
   },
   "directories": {

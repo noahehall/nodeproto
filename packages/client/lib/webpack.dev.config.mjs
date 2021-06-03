@@ -9,12 +9,10 @@ import webpack from 'webpack';
 import webpackBaseConfig from './webpack.base.config.mjs';
 import babelConfig from './babel.config.mjs';
 
-console.log('\n\n config', babelConfig)
-
 export default webpackBaseConfig({
   babelConfig: babelConfig(),
   pkgJson,
-  entryUnshift: ['webpack-hot-middleware/client?reload=false'],
+  // entryUnshift: ['webpack-hot-middleware/client?reload=false'],
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
 
@@ -27,4 +25,8 @@ export default webpackBaseConfig({
       module: /(workers|sw)/,
     }),
   ],
+  devServer: {
+    contentBase: path.resolve(process.cwd(), pkgJson.directories.dist),
+    hot: true,
+  },
 });

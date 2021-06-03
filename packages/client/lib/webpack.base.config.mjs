@@ -7,6 +7,11 @@ import webpack from 'webpack';
 
 const msg = 'error in pack: ';
 
+/**
+ *
+ * @param options everything is configursble
+ * @returns webpack configuration object
+ */
 export default function pack ({
   // defaults
   babelConfig = {},
@@ -25,7 +30,7 @@ export default function pack ({
 
   // dependent1
   deps = Object.keys(pkgJson.dependencies || {}),
-  entry = [pkgJson.main],
+  entry = [pkgJson.config.REACT_APP_FILE],
   mode = pkgJson.config.NODE_ENV,
   pathDist = path.resolve(context, pkgJson.directories.dist),
   pathSrc = path.resolve(context, pkgJson.directories.app),
@@ -42,6 +47,7 @@ export default function pack ({
   // should always be last to use defaults and dependents
   jsLoader = {
     test: /\.m?js$/,
+    type: "javascript/auto",
     include: [pathSrc],
     use: { loader: 'babel-loader', options: babelConfig },
   },
@@ -111,7 +117,7 @@ export default function pack ({
     context,
     devtool,
     entry: [...entryUnshift, ...entry, ...entryPush],
-    externals: [ ...peerDeps, ...deps, externals(externalsConfig) ],
+    externals: [], // [ ...peerDeps, ...deps ].concat(target === 'web' ? [] : externals(externalsConfig)),
     mode,
     optimization,
     plugins,

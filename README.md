@@ -10,8 +10,9 @@
   - the scripts
     - `npm run lerna:help` see lerna help
     - `npm run bootstrap` install dependencies in each package + hoisting common ones
-    - `npm run start` run the start script in each package for development
+    - `npm start` run the start script in each package for development
     - `npm run test` run the test script in each package
+    - `npm run lerna:run RUNSCRIPT` run an arbitrary script in all packages with the matching RUNSCRIPT name
 
 ## adding packages
   - `npm run add NPMPACKAGE packages/PKG`
@@ -48,12 +49,14 @@
       - [koa-ratelimit](https://github.com/koajs/ratelimit)
       - [koa-oas3](https://github.com/atlassian/koa-oas3)
 
+
   - bundling
-    - [esbuild for backend](https://esbuild.github.io)
+    - [esbuild for apis](https://esbuild.github.io)
       - [always review this first b4 intalling babel plugins](https://esbuild.github.io/content-types/#javascript)
-    - [webpack 5 + esbuild for frontend](https://webpack.js.org/)
-      - frontend requires complex bundling to support the widerange of environment i prefer to build for.
+    - [webpack 5 + esbuild for client](https://webpack.js.org/)
+      - frontend requires complex bundling to support a wide range of environments.
       - thus we use both webpack 5 + esbuild
+
   - frontend
     - [messageformat](https://github.com//messageformat)
     - [react](https://reactjs.org)

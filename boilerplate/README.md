@@ -1,1 +1,1 @@
-copy paste api|client child directories for scaffolding a new microservice
+copypasta api|client child directories for scaffolding a new microservice

@@ -1,3 +1,3 @@
 'use strict';
 
-import './app/app.mjs';
+import './bff/server.mjs';

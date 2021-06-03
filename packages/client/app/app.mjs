@@ -1,14 +1,5 @@
 'use strict';
-/**
-  todo:(noah)
-    clean this shit up
- */
 
-
-// import '!file-loader?name=[name].[ext]!./images/favicon.ico';
-// TODO
-// maybe enable in prod?
-// import 'nirvClient/workers';
 import App from './components/screens/App';
 import ErrorBoundary from './components/ErrorBoundary';
 import React from 'react';
@@ -21,12 +12,13 @@ const render = (Comp) => {
       <Comp />
     </ErrorBoundary>,
     // </React.StrictMode>,
-    document.getElementById('app'),
+    document.getElementById('root'),
   );
 };
 
 console.log('rendering app');
 render(App);
-if (module.hot) module.hot.accept('./components/screens/App', () => {
-  render(require('./components/screens/App').default)
-})
+module.hot.accept();
+// if (module.hot) module.hot.accept('./components/screens/App', () => {
+//   render(require('./components/screens/App').default)
+// })

@@ -2,8 +2,8 @@
 import App from './app/app.mjs';
 
 export const runApp = async () => (await App()).listen(
-  process.env.APP_PORT,
-  console.log(`app started: ${process.env.APP_PORT}`)
+  process.env.API_PORT,
+  console.log(`app started: ${process.env.API_PORT}`)
 );
 
 // assumption: running without transpiling to cjs
