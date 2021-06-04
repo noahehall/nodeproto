@@ -10,6 +10,7 @@ import { fsproto } from '../index.mjs';
 import path from 'path';
 import pem from 'pem';
 
+
 export const getDevCert = async ({
   selfSigned = true,
   days = 7,
@@ -22,10 +23,11 @@ export const getDevCert = async ({
   ...opts
 } = {}) => {
   // where to save dev certs
-  if (!tmpDir) process.env.PEMJS_TMPDIR = path.normalize(path.dirname(fsproto.parentUri().replace('file:','')) + '/../envproto/certs');
+  if (!tmpDir) process.env.PEMJS_TMPDIR = path.dirname(fsproto.parentUri(import.meta)) + '/certs';
+
 
   // get cert and key with name DOMAIN.serviceKey & DOMAIN.certificate
-  let certificate, clientKey, csr, serviceKey;
+  let certificate, clientKey, csr, serviceKey, msgs = [];
   const names = {
     certificate: process.env.PEMJS_TMPDIR + '/' + `${domain}.certificate`,
     clientKey: process.env.PEMJS_TMPDIR + '/' + `${domain}.clientKey`,
@@ -46,7 +48,6 @@ export const getDevCert = async ({
       { filename: names.serviceKey },
     ]));
 
-
     if (!certificate || !serviceKey || !csr || !clientKey) throw 'couldnt read dev keys';
 
 
@@ -60,7 +61,7 @@ export const getDevCert = async ({
       csr,
       serviceKey,
     };
-  } catch (e) {}
+  } catch (e) { msgs.push(e.message); }
 
    try {
     ({
@@ -74,14 +75,21 @@ export const getDevCert = async ({
       commonName,
     }));
 
-    const filesSaved = await fsproto.writeFiles([
+    if (certificate instanceof Error) {
+      console.info('\n\n could not create certs', certificate);
+
+      return {};
+    }
+
+    else if (!certificate || !serviceKey || !csr || !clientKey) throw '@noahedwardhall needs to fix @nodeproto/lib/envproto';
+
+    return fsproto.writeFiles([
       { filename: names.certificate, data: certificate },
       { filename: names.clientKey, data: clientKey },
       { filename: names.csr, data: csr },
       { filename: names.serviceKey, data: serviceKey },
-    ]);
-    return  { certificate, clientKey, csr, serviceKey };
+    ]).then(() => ({ certificate, clientKey, csr, serviceKey }));
   } catch (e) {
-    console.error('\n\n could not retrieve, create, or save new|old dev certs', e)
+    console.error('\n\n could not retrieve, create, or save new|old dev certs', msgs.concat(e.message), e)
   }
 }

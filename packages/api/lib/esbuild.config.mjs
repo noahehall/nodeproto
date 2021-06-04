@@ -9,10 +9,6 @@ import path from 'path';
 import util from 'util';
 
 
-envproto.getDevCert().then(x => {
-  console.log('\n\n got dev certs', Object.keys(x));
-})
-
 const readFile = util.promisify(fs.readFile);
 const appInputFilename = 'main';
 const appExtension = '.mjs';

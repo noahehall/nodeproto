@@ -12,9 +12,9 @@ import esMain from 'es-main';
  * @param importMeta import.meta
  * @returns bool true if file was run directly
  */
-export const isMain = (mod, importMeta) => {
+export const isMain = (requireMain, importMeta) => {
   if (typeof require !== 'undefined') {
-    return require.main == mod;
+    return requireMain == module;
   }
   else {
     if (!(typeof importMeta)) throw 'must pass in import.meta';
@@ -32,7 +32,16 @@ export const readFiles = async (files = []) => {
     )));
   }
 
-export const writeFile = util.promisify(fs.writeFile);
+export const mkdir = util.promisify(fs.mkdir);
+export const writeFile = async (...opts) => {
+  try {
+    await mkdir(path.dirname(opts[0]));
+  } catch (e) {}
+  finally {
+    return util.promisify(fs.writeFile).apply(fs, opts);
+  }
+}
+
 export const writeFiles = async (files = []) => {
   return !files.length
     ? []
@@ -42,11 +51,11 @@ export const writeFiles = async (files = []) => {
           data,
           { encoding, ...opts }
         )
-      ));
+      )).catch(e => [e]);
 };
 
 
-export const parentUri = () => import.meta?.url ?? module.filename;
+export const parentUri = (importMeta = import.meta) => (importMeta?.url ?? module.filename).replace('file://', '');
 // directory where the code is being run
 export const cwd = path.resolve('', path.dirname(parentUri()));
 /**
