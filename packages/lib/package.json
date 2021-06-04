@@ -4,6 +4,7 @@
   "main": "./index.mjs",
   "dependencies": {
     "dotenv": "10.0.0",
+    "es-main": "^1.0.2",
     "pem": "1.14.4"
   }
 }

@@ -5,6 +5,7 @@
   "main": "main.mjs",
   "scripts": {},
   "dependencies": {
+    "es-main": "^1.0.2",
     "webpack-bundle-analyzer": "^4.4.2"
   }
 }

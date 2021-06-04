@@ -58,12 +58,13 @@
       - [koa-oas3](https://github.com/atlassian/koa-oas3)
 
 
-  - bundling
+  - tooling
     - [esbuild for apis](https://esbuild.github.io)
       - [always review this first b4 intalling babel plugins](https://esbuild.github.io/content-types/#javascript)
     - [webpack 5 + esbuild for client](https://webpack.js.org/)
       - frontend requires complex bundling to support a wide range of environments.
       - thus we use both webpack 5 + esbuild
+    - [es-main](https://github.com/tschaub/es-main/blob/main/test.js)
 
   - frontend
     - [messageformat](https://github.com//messageformat)

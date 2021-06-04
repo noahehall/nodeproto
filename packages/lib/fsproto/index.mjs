@@ -3,7 +3,25 @@
 import fs from 'fs';
 import path from 'path';
 import util from 'util';
+import esMain from 'es-main';
 
+/**
+ * determine if some file was invoked on CLI
+ *
+ * @param mod module
+ * @param importMeta import.meta
+ * @returns bool true if file was run directly
+ */
+export const isMain = (mod, importMeta) => {
+  if (typeof require !== 'undefined') {
+    return require.main == mod;
+  }
+  else {
+    if (!(typeof importMeta)) throw 'must pass in import.meta';
+
+    return esMain(importMeta)
+  }
+}
 
 export const readFile = util.promisify(fs.readFile);
 export const readFiles = async (files = []) => {
