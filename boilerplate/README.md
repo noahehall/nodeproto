@@ -1,1 +1,1 @@
-copypasta api|client child directories for scaffolding a new microservice
+copypasta api|client|docker child directories for scaffolding a new service

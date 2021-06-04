@@ -12,7 +12,7 @@
     - `npm run lerna:help` see lerna help
     - `npm run bootstrap` install dependencies in each package + hoisting common ones
     - `npm start` run the start script in each package for development
-    - `npm run test` run the test script in each package
+    - `npm test` run the test script in each package
     - `npm run lerna:run RUNSCRIPT` run an arbitrary script in all packages with the matching RUNSCRIPT name
 
 ### adding packages
@@ -29,6 +29,8 @@
     - *do not* create an `.env.example` - use the `package/package.json.config` section
   - create a `package/.env` file with environment variables you want to use in each microservice, referencing the name and values in the `package/package.json.config`
 
+### enabling SSL
+  - self-signed certificates auto created on dev
 
 ## dependencies
 ### dotfiles
@@ -57,6 +59,8 @@
       - [koa-ratelimit](https://github.com/koajs/ratelimit)
       - [koa-oas3](https://github.com/atlassian/koa-oas3)
 
+  - dev
+    - [pem](https://github.com/Dexus/pem/blob/master/test/pem.spec.js)
 
   - tooling
     - [esbuild for apis](https://esbuild.github.io)

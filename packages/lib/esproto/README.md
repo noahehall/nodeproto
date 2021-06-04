@@ -1,1 +1,1 @@
-# esproto: esbuild management by @nodeproto
+# esproto: esbuild plugins by @nodeproto
