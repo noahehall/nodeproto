@@ -1,10 +1,22 @@
 # @nodeproto
-  - lerna monorepo for rapidly prototyping complex applications and microservices
+  - lerna monorepo for rapidly prototyping end-to-end, complex, and secure applications and microservices
 
-## TLDR
-  - I started from scratch so you dont have to
+### tech stack: baremetal+virtual
+  - [haproxy](https://www.haproxy.org/)
+  - [react](reactjs.org/)
+  - [nodejs.org/](nodejs.org/)
+  - [openapi](openapis.org/)
+  - [lerna](https://lerna.js.org/)
+  - TODO
+    - consul
+    - prometheus
+    - gafana
+    - docker + buildkit
+
 
 ## common tasks
+  - if something doesnt work [please check our todo list](./doc/todos.md)
+    - likely we've listened a work around, if not, create a github issue
 ### stable scripts
   - in general
     - every cmd comes with a `npm run DO:THIS:HELP` to see the help
@@ -40,6 +52,7 @@
   - [npmrc](https://docs.npmjs.com/cli/v7/configuring-npm/npmrc)
   - [nvmrc](https://github.com/nvm-sh/nvm)
   - [hintrc](https://github.com/webhintio/hint/blob/main/packages/hint/docs/user-guide/configuring-webhint/summary.md)
+
 
 
 ### modules
