@@ -1,5 +1,5 @@
 # long list of todos in one place
-
+## TODOS
   - add YEOMAN for scaffolding new microservices
   - move esbuild popcopy plugin to packages/@nodeproto/esbuild-popcopy-plugin
   - [run npm via script to provide some default node options for all pkgjson scripts](https://nodejs.org/api/cli.html)
@@ -14,6 +14,13 @@
       - e.g. id='root' should id='process.env.REACT_APP_ID'
   - need a bash script to find a replace things
     - e.g. when changing API_PORT to API_HTTP_PORT would be great to do this from a script instead of an editor
+  - remove dotenv from all packages except @nodeprot/lib
+    - require @nodeproto/lib/envproto on the cmd line and it should accept a package.json path argument and use it to update the env
+    - think about a `--upsert config` argument that allows us to use the pkg.json.config values even if they are missing from .env
+      - currently you have to set `config.KEY=` in `.env` to upsert the values, but this isnt DRY
+
+
+## DONE
   - defaults from pkg.json.config not being used
     - you shouldnt have to set identical vars in pkg.json.env if the value is set in pkg.json.config
     - have load .env via a .js file to upsert values both ways

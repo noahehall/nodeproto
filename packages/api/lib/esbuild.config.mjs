@@ -1,13 +1,12 @@
 'use strict';
 
 import { envproto, esproto } from '@nodeproto/lib';
-import dotenv from 'dotenv';
 import esbuild from 'esbuild';
 import fs from 'fs';
 import manifestPlugin from 'esbuild-plugin-manifest';
 import path from 'path';
 import util from 'util';
-
+import pkgJson from '../package.json';
 
 const readFile = util.promisify(fs.readFile);
 const appInputFilename = 'main';
@@ -54,11 +53,14 @@ const manifestPluginConfig = {
   filename: manifestFilename,
 };
 
+// const env = envproto.syncEnv(pkgJson);
+
+// console.log('\n\n got env', env);
 
 const esbuildConfig = {
   assetNames: 'assets/[name]-[hash]',
   bundle: true,
-  define: envproto.buildEnv(),
+  define: envproto.syncEnv(pkgJson).processEnv,
   entryNames: '[name]-[hash]',
   entryPoints: [appId],
   // external: Object.keys(process.binding('natives')), // @see https://stackoverflow.com/questions/35725976/how-to-obtain-a-list-of-all-available-node-js-modules

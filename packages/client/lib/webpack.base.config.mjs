@@ -1,12 +1,14 @@
-'use strict';
+'use strict'
 
-import { envproto } from '@nodeproto/lib';
-import { InjectManifest } from 'workbox-webpack-plugin';
-import externals from 'webpack-node-externals';
-import path from 'path';
-import webpack from 'webpack';
+/* eslint-disable comma-dangle */
 
-const msg = 'error in pack: ';
+// import { InjectManifest } from 'workbox-webpack-plugin'
+// import externals from 'webpack-node-externals'
+// import webpack from 'webpack'
+import { envproto } from '@nodeproto/lib'
+import path from 'path'
+
+const msg = 'error in pack: '
 
 /**
  *
@@ -15,28 +17,27 @@ const msg = 'error in pack: ';
  */
 export default function pack ({
   // defaults
-  env = envproto.buildEnv(),
   babelConfig = {},
   context = process.cwd(),
   entryPush = [],
   entryUnshift = [],
+  env,
   extensions = ['.mjs', '.js', '.jsx', '.json'],
   externalsConfig = { modulesFromFile: true },
   mainFields = ['module', 'browser', 'main'],
   optimization = {},
   output = { filename: '[name].js', chunkFilename: '[name].chunk.js' },
-  pkgJson = {},
   plugins = [],
   publicPath = '/',
   target = 'web',
 
   // dependent1
-  deps = Object.keys(pkgJson.dependencies || {}),
-  entry = [pkgJson.config.REACT_APP_FILE],
-  mode = pkgJson.config.NODE_ENV,
-  pathDist = path.resolve(context, pkgJson.directories.dist),
-  pathSrc = path.resolve(context, pkgJson.directories.app),
-  peerDeps = Object.keys(pkgJson.peerDependencies || {}),
+  deps = Object.keys(env.dependencies || {}),
+  entry = [env.config.REACT_APP_FILE],
+  mode = env.config.NODE_ENV,
+  pathDist = path.resolve(context, env.directories.dist),
+  pathSrc = path.resolve(context, env.directories.app),
+  peerDeps = Object.keys(env.peerDependencies || {}),
 
   // dependent2
   ifDev = mode === 'development',
@@ -54,14 +55,14 @@ export default function pack ({
     // test: /\.(html|m?js)$/,
     loader: 'string-replace-loader',
     options: {
-      multiple: Object.entries(env).map(([search, replace]) => ({ search, replace }))
+      multiple: Object.entries(env.processEnv).map(([search, replace]) => ({ search, replace }))
     }
 
   },
 
   jsLoader = {
     test: /\.m?js$/,
-    type: "javascript/auto",
+    type: 'javascript/auto',
     include: [pathSrc],
     use: [
       { loader: 'babel-loader', options: babelConfig },

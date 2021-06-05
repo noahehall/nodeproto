@@ -1,7 +1,9 @@
 {
   "name": "@nodeproto/gateway",
   "version": "0.0.0",
-  "devDependencies": {
-    "standard": "^16.0.3"
-  }
+  "config": {
+    "GATEWAY_CHROOT_DIR": "./var/lib/haproxy",
+    "GATEWAY_STATS_SOCK": "./run/haproxy/admin.sock"
+  },
+  "devDependencies": {}
 }
