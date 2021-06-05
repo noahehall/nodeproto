@@ -24,14 +24,15 @@
     "build": "NODE_OPTIONS=\"--trace-warnings --experimental-import-meta-resolve --enable-source-maps --experimental-json-modules -r dotenv/config\" webpack --config ./lib/webpack.dev.config.mjs",
     "prestart": "npm run prebuild",
     "start": "NODE_OPTIONS=\"--trace-warnings --experimental-import-meta-resolve --enable-source-maps --experimental-json-modules -r dotenv/config\" ./node_modules/.bin/webpack serve --config ./lib/webpack.dev.config.mjs --mode development",
-    "start:client": "npm start"
+    "start:client": "npm start",
+    "standard": "standard"
   },
   "dependencies": {
     "@messageformat/react": "1.0.0",
     "@reach/router": "1.3.4",
     "animate.css": "4.1.1",
     "clsx": "1.1.1",
-    "es-main": "^1.0.2",
+    "es-main": "1.0.2",
     "history": "5.0.0",
     "koa": "2.13.1",
     "modernizr": "3.11.7",
@@ -81,6 +82,7 @@
     "react-hot-loader": "4.13.0",
     "script-ext-html-webpack-plugin": "2.1.5",
     "sinon": "11.1.1",
+    "standard": "16.0.3",
     "string-replace-loader": "3.0.2",
     "style-loader": "2.0.0",
     "svg-url-loader": "7.1.1",
