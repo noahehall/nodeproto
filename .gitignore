@@ -19,6 +19,7 @@ npm-debug.log
 **/.parcel-cache/**
 *parcel*
 git.sublime*
+
 # other shit
 examples/cookies.txt
-
+packages/gateway/usr/bin/haproxy
