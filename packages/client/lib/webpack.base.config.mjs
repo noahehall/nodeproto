@@ -5,10 +5,12 @@
 // import { InjectManifest } from 'workbox-webpack-plugin'
 // import externals from 'webpack-node-externals'
 // import webpack from 'webpack'
-import { envproto } from '@nodeproto/lib'
 import path from 'path'
 
 const msg = 'error in pack: '
+const throwMsg = msg => {
+  throw msg;
+}
 
 /**
  *
@@ -21,7 +23,7 @@ export default function pack ({
   context = process.cwd(),
   entryPush = [],
   entryUnshift = [],
-  env,
+  env = throwMsg('env is required in webpack.base.config.mjs, e.g. envproto.synEnvAndConfig(pkgJson)'),
   extensions = ['.mjs', '.js', '.jsx', '.json'],
   externalsConfig = { modulesFromFile: true },
   mainFields = ['module', 'browser', 'main'],
