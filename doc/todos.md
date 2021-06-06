@@ -1,6 +1,6 @@
 # long list of todos in one place
 ## TODOS
-  - add YEOMAN for scaffolding new microservices
+  - add [YEOMAN for scaffolding new microservices](https://yeoman.io/)
   - move esbuild popcopy plugin to packages/@nodeproto/esbuild-popcopy-plugin
   - [run npm via script to provide some default node options for all pkgjson scripts](https://nodejs.org/api/cli.html)
   - error handling
@@ -18,6 +18,7 @@
     - require @nodeproto/lib/envproto on the cmd line and it should accept a package.json path argument and use it to update the env
     - think about a `--upsert config` argument that allows us to use the pkg.json.config values even if they are missing from .env
       - currently you have to set `config.KEY=` in `.env` to upsert the values, but this isnt DRY
+  - ensure we are using appropriate [pkgjson fields](https://docs.npmjs.com/cli/v7/configuring-npm/package-json)
 
 
 ## DONE

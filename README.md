@@ -13,12 +13,18 @@
 ### stable scripts
   - in general
     - every cmd comes with a `npm run DO:THIS:HELP` to see the help
+
   - the scripts
-    - `npm run lerna:help` see lerna help
-    - `npm run bootstrap` install dependencies in each package + hoisting common ones
-    - `npm start` run the start script in each package for development
-    - `npm test` run the test script in each package
-    - `npm run lerna:run RUNSCRIPT` run an arbitrary script in all packages with the matching RUNSCRIPT name
+    - dev scripts: open browser to **localhost:7777**
+      - `npm start` run the start script in each package for development
+      - `npm run lerna:run start:client` see above; starts packages/client @ **localhost:7777*
+      - `npm run lerna:run start:pkgcheck` see above; starts packages/pkgcheck @ **localhost:7777/v1**
+
+    - other scripts
+      - `npm run lerna:help` see lerna help
+      - `npm run bootstrap` install dependencies in each package + hoisting common ones
+      - `npm test` run the test script in each package
+      - `npm run lerna:run RUNSCRIPT` run an arbitrary script in all packages with the matching RUNSCRIPT name
 
 ### adding packages
   - `npm run add NPMPACKAGE packages/PKG`

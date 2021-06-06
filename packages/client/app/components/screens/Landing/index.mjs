@@ -28,6 +28,7 @@ export const LandingScreen = (props) => {
         />
       </Helmet>
       <div>@nodeproto: build prototypes, fast.</div>
+      <a href="/v1">view our package check API</a>
     </Article>
   );
 }

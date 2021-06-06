@@ -5,11 +5,11 @@ import App from './app/app.mjs';
 import http from 'http';
 import https from 'https';
 
-const port = process.env.API_HTTP_PORT;
-const sport = process.env.API_HTTPS_PORT;
+const port = process.env.PKGCHECK_HTTP_PORT;
+const sport = process.env.PKGCHECK_HTTPS_PORT;
 
 export const runApp = async () => {
-  if (!port && !sport) throw 'API_HTTP_PORT or API_HTTPS_PORT must be set in env';
+  if (!port && !sport) throw 'PKGCHECK_HTTP_PORT or PKGHECK_HTTPS_PORT must be set in env';
 
   if (port)
     http.createServer((await App).callback()).listen(

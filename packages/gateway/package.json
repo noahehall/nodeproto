@@ -2,8 +2,15 @@
   "name": "@nodeproto/gateway",
   "version": "0.0.0",
   "config": {
+    "GATEWAY_USER": "haproxy",
+    "GATEWAY_GROUP": "haproxy",
     "GATEWAY_CHROOT_DIR": "./var/lib/haproxy",
     "GATEWAY_STATS_SOCK": "./run/haproxy/admin.sock"
+  },
+  "scripts": {
+    "start": "sudo usr/bin/startdefault.sh",
+    "start:client": "npm start",
+    "start:pkgcheck": "npm start"
   },
   "devDependencies": {}
 }

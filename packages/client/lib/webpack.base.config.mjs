@@ -8,9 +8,7 @@
 import path from 'path'
 
 const msg = 'error in pack: '
-const throwMsg = msg => {
-  throw msg;
-}
+const throwMsg = msg => { throw msg }
 
 /**
  *
