@@ -23,3 +23,5 @@ git.sublime*
 # other shit
 examples/cookies.txt
 packages/gateway/usr/bin/haproxy
+.yarn/cache
+.yarn/unplugged

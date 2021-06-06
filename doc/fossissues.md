@@ -14,6 +14,10 @@
   - [unable to import koa-webpack in lerna monorepo](https://github.com/shellscape/koa-webpack/issues/127)
     - [second issue following the rules of our overlords](https://github.com/shellscape/koa-webpack/issues/128)
     - doesnt support webpack5
+  - stale deps in reach/router
+    - [update create-react-context](https://github.com/jamiebuilds/create-react-context/pull/34)
+    - [update reach/router](https://github.com/reach/router/pull/473/files)
+    - [update enzyme to json](https://github.com/adriantoine/enzyme-to-json/pull/186)
 
 # done
   - [installation of esbuild-manifest-plugin](https://github.com/jfortunato/esbuild-plugin-manifest/issues/5)

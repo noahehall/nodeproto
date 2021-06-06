@@ -14,5 +14,6 @@
   - [Package Checker v1](/app/api/routes/v1/README.md)
     - run `npm start`
     - [open localhost:3000/v1](http://localhost:3000/v1)
+    - should work similar to `npm show PKG`
 
 

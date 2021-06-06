@@ -17,5 +17,5 @@
     "start:client": "npm start",
     "start:pkgcheck": "npm start"
   },
-  "devDependencies": {}
+  "dependencies": {}
 }

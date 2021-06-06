@@ -8,7 +8,6 @@ import babelConfig from './babel.config.mjs'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import path from 'path'
 import pkgJson from '../package.json'
-import ScriptExtHtmlWebpackPlugin from 'script-ext-html-webpack-plugin'
 import webpack from 'webpack'
 import webpackBaseConfig from './webpack.base.config.mjs'
 
@@ -31,9 +30,9 @@ export default webpackBaseConfig({
       template: env.config.HTML_INDEX,
     }),
 
-    new ScriptExtHtmlWebpackPlugin({
-      module: /(workers|sw)/,
-    }),
+    // new ScriptExtHtmlWebpackPlugin({
+    //   module: /(workers|sw)/,
+    // }),
   ],
   devServer: {
     contentBase: pathDist,

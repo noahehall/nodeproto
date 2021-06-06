@@ -19,6 +19,9 @@
     - think about a `--upsert config` argument that allows us to use the pkg.json.config values even if they are missing from .env
       - currently you have to set `config.KEY=` in `.env` to upsert the values, but this isnt DRY
   - ensure we are using appropriate [pkgjson fields](https://docs.npmjs.com/cli/v7/configuring-npm/package-json)
+  - finish setting up haproxy
+    - ssl termination
+    - integration with @nodeprot/lib/envproto.getdevserts thing
 
 
 ## DONE
