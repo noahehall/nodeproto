@@ -9,6 +9,7 @@
   },
   "scripts": {
     "start": "sudo usr/bin/startdefault.sh",
+    "start:gateway": "npm start",
     "start:client": "npm start",
     "start:pkgcheck": "npm start"
   },

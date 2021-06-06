@@ -15,9 +15,14 @@
     - every cmd comes with a `npm run DO:THIS:HELP` to see the help
 
   - the scripts
-    - dev scripts: open browser to **localhost:7777**
+    - dev scripts: open browser to.**localhost:7777**
+      - **NOTE**
+        - we *START* as root, but dont *RUN* as root when using **packages/gateway**
+          - thus: you need enter your root pw
+          - e.g. *npm run lerna:run start:gateway* then type in your password
+
       - `npm start` run the start script in each package for development
-      - `npm run lerna:run start:client` see above; starts packages/client @ **localhost:7777*
+      - `npm run lerna:run start:client` see above; starts packages/client @ **localhost:7777**
       - `npm run lerna:run start:pkgcheck` see above; starts packages/pkgcheck @ **localhost:7777/v1**
 
     - other scripts
