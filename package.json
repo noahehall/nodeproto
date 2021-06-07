@@ -40,9 +40,11 @@
     "packages": "./packages"
   },
   "scripts": {
+    "lerna:exec": "lerna exec --parallel",
+    "rem": "npm run lerna:exec npm uninstall",
     "about": "npm list && npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh && lerna info",
     "add:help": "lerna add --help",
-    "add": "lerna add",
+    "add": "lerna add --no-bootstrap",
     "bootstrap:help": "lerna bootstrap --help",
     "bootstrap": "lerna bootstrap --hoist --force-local",
     "clean: help": "lerna clean --help",

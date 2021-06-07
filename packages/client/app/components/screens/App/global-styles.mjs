@@ -28,20 +28,12 @@ export default createGlobalStyle`
   // vars
     :root {
       /* everything relative to these sizes!*/
-      --fontsize-normal: 32px;
+      /* --fontsize-normal: 32px;
       --spacing-normal: 1.15rem;
       --lineheight-normal: 1.5rem;
-      --lineheight-big: 2rem;
+      --lineheight-big: 2rem; */
 
-      /* zindex layers */
-      --layer-1: 1;
-      --layer-2: 200;
-      --layer-3: 3000;
-      --layer-4: 40000;
-      --layer-5: 500000;
-      --layer-6: 6000000;
-
-      --fontsize-big: calc(1.5 * var(--fontsize-normal));
+      /* --fontsize-big: calc(1.5 * var(--fontsize-normal));
       --fontsize-bigger: calc(1.8 * var(--fontsize-normal));
       --fontsize-biggest: calc(2.1 * var(--fontsize-normal));
       --fontsize-small: calc(.7 * var(--fontsize-normal));
@@ -60,10 +52,18 @@ export default createGlobalStyle`
       --spacing-smaller: calc(0.6 * var(--spacing-normal));
       --spacing-tiniest: calc(0.2 * var(--spacing-normal));
       --spacing-tiny: calc(0.4 * var(--spacing-normal));
-      --spacing-records: 75vh;
+      --spacing-records: 75vh; */
 
-      --appmenu-open-width: 33vw;
-      --right-content-width: 90%;
+
+      /* zindex layers */
+      --layer-1: 1;
+      --layer-2: 200;
+      --layer-3: 3000;
+      --layer-4: 40000;
+      --layer-5: 500000;
+      --layer-6: 6000000;
+
+
 
       --color-bg-default: black;
       --color-default: antiquewhite;
@@ -94,30 +94,28 @@ export default createGlobalStyle`
 
     @media (max-width: 700px) {
       :root {
-        --flex-panel-nav: 1 0 auto;
-        --flexflow-column: row nowrap;
+        /* --flexflow-column: row nowrap;
         --flexflow-row: column nowrap;
         --fontsize-normal: 12px;
-        --justity-content-column: space-between;
+        --justity-content-column: space-between; */
       }
     }
 
     @media (min-width: 701px) {
       :root {
-        --fontsize-normal: 16px;
+        /* --fontsize-normal: 16px; */
       }
     }
 
     @media (min-width: 1300px) {
       :root {
-        --appmenu-open-width: 20vw;
-        --dashboard-columns: repeat(3, 1fr);
+
       }
     }
 
   // hierarchy
     html {
-      font-size: var(--fontsize-normal);
+      /* font-size: var(--fontsize-normal); */
       font-family: Fabriga, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
       color: var(--color-default);
 
@@ -125,11 +123,6 @@ export default createGlobalStyle`
         * {
           color: inherit;
           background-color: var(--color-bg-default);
-          margin: 0;
-          padding: 0;
-          vertical-align: top;
-          box-sizing: border-box;
-          line-height: var(--lineheight-normal);
         }
 
         small {
@@ -139,27 +132,15 @@ export default createGlobalStyle`
           text-align: center;
         }
 
-        div, section, aside, article {
-          overflow-y: overlay;
-          overflow-x: hidden;
-        }
 
         img {
           width: 100%;
-          margin: 0 auto;
-          display: block;
         }
 
         form, .form {
-          display: flex;
-          flex-flow: nowrap column;
-          overflow: hidden;
         }
 
         .button-group {
-          display: flex;
-          flex-flow: row nowrap;
-          overflow: hidden;
         }
 
         a, button, .button {
@@ -180,32 +161,19 @@ export default createGlobalStyle`
             background-color: transparent;
           }
           svg + span {
-            margin-left: 0.5em;
-
           }
         }
 
 
         button, input, select, label {
           color: var(--color-blue);
-          border: none;
           cursor: pointer;
-          outline: inherit;
 
           &[type="checkbox"] {
             cursor: pointer;
           }
         }
 
-        label {
-          span {
-            display: flex;
-
-            button {
-              margin-left: var(--spacing-smaller);
-            }
-          }
-        }
 
         button, .button {
           span {
@@ -215,10 +183,8 @@ export default createGlobalStyle`
 
         input {
           background-color: var(--color-bg-default);
-          border: 1px solid var(--color-red-dark);
           color: var(--color-white2);
           padding-left: var(--spacing-smaller);
-          line-height: var(--lineheight-normal);\
         }
 
         input, textarea, .input, .textarea {
@@ -233,9 +199,6 @@ export default createGlobalStyle`
           padding-left: var(--spacing-smaller);
         }
 
-        span {
-          overflow: hidden;
-        }
 
         [disabled] {
           cursor: not-allowed !important;
@@ -244,7 +207,6 @@ export default createGlobalStyle`
 
         input:disabled {
           background-color: transparent !important;
-          background1: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAIklEQVQIW2NkQAKrVq36zwjjgzhhYWGMYAEYB8RmROaABADeOQ8CXl/xfgAAAABJRU5ErkJggg==) repeat !important;
         }
 
         .icon {
@@ -258,13 +220,8 @@ export default createGlobalStyle`
         }
 
         .button {
-          border-width: 1px;
           cursor: pointer;
           justify-content: center;
-          padding-bottom: calc(0.5em - 1px);
-          padding-left: 1em;
-          padding-right: 1em;
-          padding-top: calc(0.5em - 1px);
           text-align: center;
           white-space: nowrap;
         }
@@ -307,7 +264,6 @@ export default createGlobalStyle`
         }
 
         .label, .button, .input, .textarea, .select, .select select {
-          line-height: var(--lineheight-normal);
           padding-bottom: initial;
           padding-top: initial;
           resize: none;
@@ -381,7 +337,6 @@ export default createGlobalStyle`
           align-self: center;
           display: flex;
           flex-flow: row wrap;
-          overflow: hidden;
 
           button {
             text-transform: uppercase;
@@ -413,29 +368,10 @@ export default createGlobalStyle`
           }
         }
 
-        #app {
-          overflow: visible;
-
+        #root {
           #outer-container {
-            display: flex;
-            flex-flow: wrap column;
-            margin: 0 auto;
-            height: 100%;
-            padding: 0;
-            overflow: visible;
-
             #inner-container {
-              overflow: visible;
-
               #app-wrapper {
-                height: 100%;
-                overflow: visible;
-                padding: 10px;
-
-                .slide-container {
-                  background-color: transparent;
-                }
-
                 .off {
                   * {
                     color: var(--color-red-dark);
@@ -470,48 +406,4 @@ export default createGlobalStyle`
   /********************
    * OVERRIDES
    *******************/
-
-  /*https://alligator.io/css/collapsible/ */
-  .collapsible.wrapper {
-    overflow: hidden;
-
-    > .toggle.checkbox {
-      display: none;
-    }
-
-    > .toggle.label {
-      align-items: center;
-      cursor: pointer;
-      display: flex;
-      text-align: left;
-      text-transform: uppercase;
-      transition: all 0.25s ease-out;
-
-      &::before {
-        border-bottom: 5px solid transparent;
-        border-left: 5px solid currentColor;
-        border-top: 5px solid transparent;
-        content: ' ';
-        display: inline-block;
-        margin-right: .7rem;
-        transform: translateY(-2px);
-        transition: transform .2s ease-out;
-        vertical-align: middle;
-      }
-    }
-
-    > .content {
-      max-height: 0px;
-      overflow: hidden;
-      transition: max-height .25s ease-in-out;
-    }
-
-    .toggle:checked + .toggle.label + .content {
-      max-height: 100vh;
-    }
-
-    .toggle:checked + .toggle.label::before {
-      transform: rotate(90deg) translateX(-3px);
-    }
-  }
-`;
+`

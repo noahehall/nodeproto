@@ -4,7 +4,8 @@
 
 | tech stach |
 | :----------: |
-| <img src="https://webpack.js.org/site-logo.1fcab817090e78435061.svg" width="100" align="left" /><img src="https://www.openapis.org/wp-content/uploads/sites/3/2018/02/OpenAPI_Logo_Pantone-1.png" width="100" align="left" /><img src="https://cdn.haproxy.com/wp-content/uploads/2017/10/haproxy-weblogo.png" width="100" align="left" /><img src="https://nodejs.org/static/images/logo.svg" width="100" align="left" /><img src="https://github.com/evanw/esbuild/raw/master/images/wordmark.svg" width="100" align="left" /><img src="https://avatars.githubusercontent.com/u/5429470?s=200&v=4" width="90" align="left" /><img src="https://hero35.com/stacks/react.svg" width="100" align="left" /><img src="https://raw.githubusercontent.com/koajs/koa/master/docs/logo.png" width="100" align="left" /><img src="https://user-images.githubusercontent.com/645641/79596653-38f81200-80e1-11ea-98cd-1c6a3bb5de51.png" width="100" align="left" /><img src="https://cdn.rawgit.com/standard/standard/master/badge.svg" width="100" align="left" /> |
+| <img src="https://webpack.js.org/site-logo.1fcab817090e78435061.svg" width="100" align="left" /><img src="https://www.openapis.org/wp-content/uploads/sites/3/2018/02/OpenAPI_Logo_Pantone-1.png" width="100" align="left" /><img src="https://cdn.haproxy.com/wp-content/uploads/2017/10/haproxy-weblogo.png" width="100" align="left" /><img src="https://nodejs.org/static/images/logo.svg" width="100" align="left" /><img src="https://github.com/evanw/esbuild/raw/master/images/wordmark.svg" width="100" align="left" /><img src="https://avatars.githubusercontent.com/u/5429470?s=200&v=4" width="100" align="left" /><img src="https://hero35.com/stacks/react.svg" width="100" align="left" /><img src="https://raw.githubusercontent.com/koajs/koa/master/docs/logo.png" width="100" align="left" /><img src="https://user-images.githubusercontent.com/645641/79596653-38f81200-80e1-11ea-98cd-1c6a3bb5de51.png" width="100" align="left" /><img src="https://cdn.rawgit.com/standard/standard/master/badge.svg" width="100" align="left" /><img src="https://camo.githubusercontent.com/32657601b349b558831f32c553cb2c7734cb5ae89a2e8340afa314ea3b2116a0/68747470733a2f2f6d696c6c696772616d2e696f2f696d616765732f7468756d626e61696c2e706e67" width="100" align="left" />|
+
 
 ## getting started
   1. `npm install`
@@ -97,13 +98,27 @@
       - thus we use both webpack 5 + esbuild
     - [es-main](https://github.com/tschaub/es-main/blob/main/test.js)
 
-  - frontend
-    - [messageformat](https://github.com//messageformat)
+
+  - UI
     - [react](https://reactjs.org)
+    - [react-icons](https://react-icons.github.io/react-icons/)
+
+  - text & internationalization
+    - [messageformat](https://github.com//messageformat)
+
+  - feature detection
+    - [modernizr]
 
   - css
     - [normalize.css](https://github.com/necolas/normalize.css/)
-    - [modernizr](https://github.com/Modernizr/Modernizr)
+    - [milligram](https://milligram.io/)
+    - [styled-components](https://styled-components.com/docs)
+
+  - micro interactions & animations
+    - [animate.css](https://animate.style/)
+
+  - accessbility
+    - [reakit](https://reakit.io/)
 
   - testing
     - [tape](https://github.com/substack/tape)

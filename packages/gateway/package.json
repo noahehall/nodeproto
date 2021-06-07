@@ -16,6 +16,5 @@
     "start:gateway": "npm start",
     "start:client": "npm start",
     "start:pkgcheck": "npm start"
-  },
-  "dependencies": {}
+  }
 }

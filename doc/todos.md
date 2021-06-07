@@ -22,6 +22,7 @@
   - finish setting up haproxy
     - ssl termination
     - integration with @nodeprot/lib/envproto.getdevserts thing
+  - [pick our default detections @ modernizr](https://modernizr.com/download?setclasses)
 
 
 ## DONE
