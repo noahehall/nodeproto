@@ -5,6 +5,7 @@
 import clsx from 'clsx'
 import React from 'react'
 import styled from 'styled-components'
+import ErrorBoundary from '../../ErrorBoundary.mjs'
 import {
   unstable_useGridState as useGridState,
   unstable_Grid as Grid,
@@ -16,7 +17,7 @@ const StyledGrid = styled(Grid)`
   flex-flow: nowrap column; */
 `
 
-export function ScreenGrid ({
+export function ScreenGridNative ({
   isFor = 'Nirv',
   className,
 
@@ -30,3 +31,5 @@ export function ScreenGrid ({
     </StyledGrid>
   )
 }
+
+export const ScreenGrid = props => <ErrorBoundary><ScreenGridNative {...props} /></ErrorBoundary>

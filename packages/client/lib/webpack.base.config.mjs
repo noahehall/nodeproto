@@ -129,7 +129,7 @@ export default function pack ({
   return {
     context,
     devtool,
-    entry: [...entryUnshift, ...entry, ...entryPush],
+    entry: [...entryUnshift, ...entry, ...entryPush].filter(e => e),
     externals: [], // [ ...peerDeps, ...deps ].concat(target === 'web' ? [] : externals(externalsConfig)),
     mode,
     optimization,
