@@ -131,3 +131,5 @@
   - linting
     - [webhint/hint](https://github.com/webhintio/hint)
     - [standard](https://standardjs.com/#table-of-contents)
+    - [eslint](https://eslint.org/docs/user-guide/configuring/)
+      - standard + react
