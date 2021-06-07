@@ -23,7 +23,7 @@
     - ssl termination
     - integration with @nodeprot/lib/envproto.getdevserts thing
   - [pick our default detections @ modernizr](https://modernizr.com/download?setclasses)
-
+  - [think babel-eslint is canceling out standard-js rules](https://github.com/babel/eslint-plugin-babel)
 
 ## DONE
   - defaults from pkg.json.config not being used

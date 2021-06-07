@@ -3,9 +3,9 @@
 /* eslint-disable comma-dangle */
 
 import clsx from 'clsx'
+import ErrorBoundary from '../Errors/ErrorBoundary.mjs'
 import React from 'react'
 import styled from 'styled-components'
-import ErrorBoundary from '../../ErrorBoundary.mjs'
 import {
   unstable_useGridState as useGridState,
   unstable_Grid as Grid,
@@ -33,3 +33,5 @@ export function ScreenGridNative ({
 }
 
 export const ScreenGrid = props => <ErrorBoundary><ScreenGridNative {...props} /></ErrorBoundary>
+
+if (module?.hot?.accept) module.hot.accept()

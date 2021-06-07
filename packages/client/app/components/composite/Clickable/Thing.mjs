@@ -20,3 +20,5 @@ export const Anchor = ({
     </StyledAnchor>
   )
 }
+
+if (module?.hot?.accept) module.hot.accept()

@@ -21,6 +21,7 @@
     "linux"
   ],
   "scripts": {
+    "lighthouse": "NODE_OPTIONS=\"--trace-deprecation\" lighthouse http://localhost:7777 --output-path ./doc/lighthouse/localhost.html",
     "prebuild": "rm -rf dist/*",
     "build": "NODE_OPTIONS=\"--trace-warnings --experimental-import-meta-resolve --enable-source-maps --experimental-json-modules -r dotenv/config\" webpack --config ./lib/webpack.dev.config.mjs",
     "start:reactdevtools": "node_modules/.bin/react-devtools",
@@ -90,6 +91,7 @@
     "html-webpack-plugin": "5.3.1",
     "husky": "6.0.0",
     "jsdoc-to-markdown": "7.0.1",
+    "lighthouse": "^8.0.0",
     "multi-tape": "1.6.1",
     "react-devtools": "^4.13.5",
     "react-hot-loader": "4.13.0",

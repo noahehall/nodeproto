@@ -16,3 +16,5 @@ export const DisplayError = ({
     <JsonPretty data={errorInfo} theme={JSONPrettyMonTheme} />
   </section>
 )
+
+if (module?.hot?.accept) module.hot.accept()

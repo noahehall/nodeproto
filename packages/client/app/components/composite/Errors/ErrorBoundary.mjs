@@ -4,7 +4,7 @@
 import React from 'react';
 import JsonPretty from 'react-json-pretty';
 import JSONPrettyMonTheme from 'react-json-pretty/dist/monikai';
-import { DisplayError } from './composite/Errors/DisplayError.mjs';
+import { DisplayError } from './DisplayError.mjs';
 
 export default class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -28,3 +28,5 @@ export default class ErrorBoundary extends React.Component {
     )
   }
 }
+
+if (module?.hot?.accept) module.hot.accept()

@@ -29,14 +29,19 @@
           - run *packages/gateway/usr/bin/addhaproxyusergroup.sh* to create this user and group
           - uncomment *user haproxy* and *group haproxy* in *packages/gateway/etc/haproxy/haproxy.cfg*
 
-      - `npm start` run the start script in each package for development
-      - `npm run lerna:run start:client` see above; starts packages/client @ **localhost:7777**
-      - `npm run lerna:run start:pkgcheck` see above; starts packages/pkgcheck @ **localhost:7777/v1**
+      - starting apps
+        - `npm start` run the start script in each package for development
+        - `npm run lerna:run start:client` see above; starts packages/client @ **localhost:7777**
+        - `npm run lerna:run start:pkgcheck` see above; starts packages/pkgcheck @ **localhost:7777/v1**
+
+      - linting & tests
+        - `npm test` run the test script in each package
+        - `npm run lerna:run lighthouse` run and save lighthouse report to `./doc/lighthouse/localhost.html` in *packages/client*
+          - *packages/client* must be running on *localhost:7777*
 
     - other scripts
       - `npm run lerna:help` see lerna help
       - `npm run bootstrap` install dependencies in each package + hoisting common ones
-      - `npm test` run the test script in each package
       - `npm run lerna:run RUNSCRIPT` run an arbitrary script in all packages with the matching RUNSCRIPT name
 
 ### adding packages
@@ -113,6 +118,7 @@
     - [eslint](https://eslint.org/docs/user-guide/configuring/)
       - react as we need to support react linting
       - standard (minus comma-dangle) + react
+    - [lighthouse](https://github.com/GoogleChrome/lighthouse#cli-options)
 
   - UI
     - [react](https://reactjs.org)

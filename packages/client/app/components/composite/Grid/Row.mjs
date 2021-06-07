@@ -26,3 +26,5 @@ export function ScreenRow ({
     </StyledRow>
   )
 }
+
+if (module?.hot?.accept) module.hot.accept()

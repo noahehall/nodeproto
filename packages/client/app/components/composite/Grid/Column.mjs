@@ -25,3 +25,5 @@ export function ScreenColumn ({
     </StyledCell>
   )
 }
+
+if (module?.hot?.accept) module.hot.accept()
