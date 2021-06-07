@@ -90,7 +90,7 @@
       - [koa-ratelimit](https://github.com/koajs/ratelimit)
       - [koa-oas3](https://github.com/atlassian/koa-oas3)
 
-  - dev
+  - SSL/TLS
     - [pem](https://github.com/Dexus/pem/blob/master/test/pem.spec.js)
 
   - tooling
@@ -100,11 +100,27 @@
       - frontend requires complex bundling to support a wide range of environments.
       - thus we use both webpack 5 + esbuild
     - [es-main](https://github.com/tschaub/es-main/blob/main/test.js)
+    - [concurrently](https://github.com/kimmobrunfeldt/concurrently)
 
+  - testing
+    - [tape](https://github.com/substack/tape)
+    - [multi-tape](https://github.com/mattiash/node-multi-tape)
+    - [sinon](https://sinonjs.org/)
+
+  - linting
+    - [webhint/hint](https://github.com/webhintio/hint)
+    - [standard](https://standardjs.com/#table-of-contents)
+    - [eslint](https://eslint.org/docs/user-guide/configuring/)
+      - react as we need to support react linting
+      - standard (minus comma-dangle) + react
 
   - UI
     - [react](https://reactjs.org)
     - [react-icons](https://react-icons.github.io/react-icons/)
+    - [clsx](https://github.com/lukeed/clsx)
+    - [react-helmet](https://github.com/nfl/react-helmet)
+    - [react-devtools](https://www.npmjs.com/package/react-devtools)]
+
 
   - text & internationalization
     - [messageformat](https://github.com//messageformat)
@@ -122,14 +138,3 @@
 
   - accessbility
     - [reakit](https://reakit.io/)
-
-  - testing
-    - [tape](https://github.com/substack/tape)
-    - [multi-tape](https://github.com/mattiash/node-multi-tape)
-    - [sinon](https://sinonjs.org/)
-
-  - linting
-    - [webhint/hint](https://github.com/webhintio/hint)
-    - [standard](https://standardjs.com/#table-of-contents)
-    - [eslint](https://eslint.org/docs/user-guide/configuring/)
-      - standard + react

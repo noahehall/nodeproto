@@ -2,26 +2,26 @@
 
 /* eslint-disable comma-dangle */
 
+import clsx from 'clsx'
 import React from 'react'
+import styled from 'styled-components'
 import {
   unstable_GridRow as GridRow,
   unstable_useGridState as useGridState,
 } from 'reakit/Grid'
-import styled from 'styled-components'
-
 const StyledRow = styled(GridRow)`
 
 `
 
 export function ScreenRow ({
-  className = 'screen-row',
+  className,
 
   ...props
 }) {
-  const grid = useGridState();
+  const grid = useGridState()
 
   return (
-    <StyledRow {...grid} className={`row ${className}`}>
+    <StyledRow {...grid} className={clsx('row', className)} >
       {props.children}
     </StyledRow>
   )

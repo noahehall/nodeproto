@@ -14,5 +14,8 @@ parserOptions:
 plugins:
   - react
 rules:
-  comma-dangle: 'off'
+  comma-dangle: 'off' # big fan
   react/prop-types: 'off' # not a fan
+  react/display-name: 'error'
+  react-hooks/rules-of-hooks: 'error'
+  react-hooks/exhaustive-deps: 'warn'

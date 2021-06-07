@@ -26,7 +26,8 @@ export default function pack ({
   externalsConfig = { modulesFromFile: true },
   mainFields = ['browser', 'main', 'module'],
   optimization = {},
-  output = { filename: '[name].js', chunkFilename: '[name].chunk.js' },
+  output = {},
+  outputDefault = { filename: '[name].js', chunkFilename: '[name].chunk.js' },
   plugins = [],
   publicPath = '/',
   target = 'web',
@@ -141,7 +142,8 @@ export default function pack ({
         path: pathDist,
         publicPath,
       },
-      output
+      outputDefault,
+      output,
     ),
 
     module: { rules: [

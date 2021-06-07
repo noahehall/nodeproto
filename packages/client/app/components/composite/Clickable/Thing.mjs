@@ -3,19 +3,19 @@
 import { Clickable } from 'reakit/Clickable'
 import React from 'react'
 import styled from 'styled-components'
-
+import clsx from 'clsx'
 const StyledAnchor = styled(Clickable)`
 
 `
 
 export const Anchor = ({
-  className = 'anchor',
+  className,
   text = 'link text',
 
   ...props
 }) => {
   return (
-    <StyledAnchor {...props} className={className} forwardedAs='a'>
+    <StyledAnchor {...props} className={clsx(className)} forwardedAs='a'>
       {text}
     </StyledAnchor>
   )

@@ -23,8 +23,9 @@
   "scripts": {
     "prebuild": "rm -rf dist/*",
     "build": "NODE_OPTIONS=\"--trace-warnings --experimental-import-meta-resolve --enable-source-maps --experimental-json-modules -r dotenv/config\" webpack --config ./lib/webpack.dev.config.mjs",
+    "start:reactdevtools": "node_modules/.bin/react-devtools",
     "prestart": "npm run prebuild",
-    "start": "NODE_OPTIONS=\"--trace-warnings --experimental-import-meta-resolve --enable-source-maps --experimental-json-modules -r dotenv/config\" ./node_modules/.bin/webpack serve --config ./lib/webpack.dev.config.mjs --mode development",
+    "start": "NODE_OPTIONS=\"--trace-warnings --experimental-import-meta-resolve --enable-source-maps --experimental-json-modules -r dotenv/config\" ./node_modules/.bin/concurrently \"./node_modules/.bin/webpack serve --config ./lib/webpack.dev.config.mjs --mode development\"  npm:start:reactdevtools",
     "start:client": "npm start"
   },
   "dependencies": {
@@ -69,6 +70,7 @@
     "babel-plugin-styled-components": "1.12.0",
     "babel-plugin-tailcall-optimization": "2.0.0",
     "circular-dependency-plugin": "5.2.2",
+    "concurrently": "^6.2.0",
     "core-js": "3.13.0",
     "create-hintrc": "3.0.11",
     "css-loader": "5.2.6",
@@ -88,6 +90,7 @@
     "husky": "6.0.0",
     "jsdoc-to-markdown": "7.0.1",
     "multi-tape": "1.6.1",
+    "react-devtools": "^4.13.5",
     "react-hot-loader": "4.13.0",
     "sinon": "11.1.1",
     "string-replace-loader": "3.0.2",

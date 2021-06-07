@@ -1,27 +1,26 @@
 'use strict'
 
-/* eslint-disable comma-dangle */
-
 import React from 'react'
+import styled from 'styled-components'
+import clsx from 'clsx'
 import {
   unstable_GridCell as GridCell,
   unstable_useGridState as useGridState,
 } from 'reakit/Grid'
-import styled from 'styled-components'
 
 const StyledCell = styled(GridCell)`
 
 `
 
 export function ScreenColumn ({
-  className = 'screen-column',
+  className,
 
   ...props
 }) {
-  const grid = useGridState();
+  const grid = useGridState()
 
   return (
-    <StyledCell {...grid} className={`column ${className}`}>
+    <StyledCell {...grid} className={clsx('column', className)} >
       {props.children}
     </StyledCell>
   )

@@ -17,7 +17,9 @@ const context = process.cwd()
 const pathDist = path.resolve(context, env.directories.dist)
 
 export default webpackBaseConfig({
+  entryUnshift: ['react-devtools'],
   env,
+  // output: { globalObject: 'this' },
   babelConfig: babelConfig(),
   context,
 

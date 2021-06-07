@@ -2,12 +2,13 @@
 
 /* eslint-disable comma-dangle */
 
+import clsx from 'clsx'
+import React from 'react'
+import styled from 'styled-components'
 import {
   unstable_useGridState as useGridState,
   unstable_Grid as Grid,
 } from 'reakit/Grid'
-import styled from 'styled-components'
-import React from 'react'
 
 
 const StyledGrid = styled(Grid)`
@@ -17,14 +18,14 @@ const StyledGrid = styled(Grid)`
 
 export function ScreenGrid ({
   isFor = 'Nirv',
-  className = 'screen-grid',
+  className,
 
   ...props
 }) {
   const grid = useGridState()
 
   return (
-    <StyledGrid {...grid} aria-label={`${isFor} grid`} className={`container ${className}`}>
+    <StyledGrid {...grid} aria-label={`${isFor} grid`} className={clsx('container', className)} >
       {props.children}
     </StyledGrid>
   )
