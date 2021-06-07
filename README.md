@@ -76,7 +76,10 @@
     - [lerna](https://github.com/lerna/lerna/tree/main/commands)
     - [npm](npmjs.com/)
 
-  - backend
+  - gateway
+    - [haproxy](https://cbonte.github.io/haproxy-dconv/2.4/management.html)
+
+  - api layer
     - [koa](https://koajs.com/#introduction)
       - [koa-body](https://github.com/koajs/koa-body/blob/9b00b40adbfc40a5f5f73efbc88108adf66bcf8b/index.js#L75)
       - [koa-compose](https://github.com/koajs/compose/blob/25568a36509fefc58914bc2a7600f787b16aa0df/index.js#L19)
@@ -107,7 +110,7 @@
     - [messageformat](https://github.com//messageformat)
 
   - feature detection
-    - [modernizr]
+    - [modernizr](https://modernizr.com/download?setclasses)
 
   - css
     - [normalize.css](https://github.com/necolas/normalize.css/)
@@ -128,33 +131,3 @@
   - linting
     - [webhint/hint](https://github.com/webhintio/hint)
     - [standard](https://standardjs.com/#table-of-contents)
-
-##### testing out
-  - testing
-
-  - misc
-
-  - file serving
-    - [koajs/favicon](https://github.com/koajs/favicon)
-
-  - monitoring
-    - [cls-rtracer](https://github.com/puzpuzpuz/cls-rtracer)
-
-  - webpack
-    - [esbuild-loader](https://github.com/privatenumber/esbuild-loader)
-
-
-  - caching
-    - [tinyhttp/etag](https://github.com/talentlessguy/tinyhttp/blob/348e95e8cee63c0f03eea46495f26d863315e1f0/packages/etag/src/index.ts#L27)
-
-  - security
-    - [koa-sslify](https://github.com/turboMaCk/koa-sslify)
-
-  - routing
-    - [koa-tree-router](https://github.com/steambap/koa-tree-router)
-    - [joi-routing](https://github.com/koajs/joi-router)
-    - [koa-router](https://github.com/koajs/router/tree/master/lib)
-
-
-
-

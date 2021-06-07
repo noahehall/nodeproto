@@ -26,7 +26,7 @@ export default function LandingScreen (props) {
       </Helmet>
       <ScreenRow>
         <ScreenColumn>
-          <h1>@nodeproto: build prototypes, fast.</h1>
+          <h1 className='animate__animated animate__backInUp'>@nodeproto: build prototypes, fast.</h1>
         </ScreenColumn>
       </ScreenRow>
       <ScreenRow>
