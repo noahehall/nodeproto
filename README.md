@@ -9,10 +9,11 @@
 
 ## getting started
   1. `npm install`
-  2. `npm start`
+  2. `npm run bootstrap`
+  3. `npm start`
     - ensure user:group haproxy:haproxy exists on your system
     - if not, run `packages/gateway/usr/bin/addhaproxyusergroup.sh`
-  3. open `localhost:7777`
+  4. open `localhost:7777`
 
 ## common tasks
   - if something doesnt work [please check our todo list](./doc/todos.md)
