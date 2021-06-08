@@ -21,7 +21,7 @@ export default function LandingScreen (props) {
         <title>NIRV</title>
         <meta
           name='description'
-          content='NIRV - FUCK YOUR RULES'
+          content='@nodeproto: build prototypes, fast!'
         />
       </Helmet>
       <ScreenRow>
