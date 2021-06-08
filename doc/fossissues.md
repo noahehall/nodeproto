@@ -19,6 +19,9 @@
     - [update reach/router](https://github.com/reach/router/pull/473/files)
     - [update enzyme to json](https://github.com/adriantoine/enzyme-to-json/pull/186)
   - [reakit is doing their best, lets help them out!](https://github.com/reakit/reakit/issues/876)
+  - [cant install siteimprove/alfa-react](https://github.com/Siteimprove/alfa/issues/828)
+
+
 
 # done
   - [installation of esbuild-manifest-plugin](https://github.com/jfortunato/esbuild-plugin-manifest/issues/5)

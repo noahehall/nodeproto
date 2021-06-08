@@ -49,6 +49,7 @@
     "bootstrap": "lerna bootstrap --hoist --force-local",
     "clean: help": "lerna clean --help",
     "clean": "lerna clean",
+    "lighthouse": "npm run lerna:run lighthouse",
     "lerna:about:help": "echo 'see available scripts & pkgs installed in each microservice'",
     "lerna:about": "lerna run about",
     "lerna:help": "lerna --help",

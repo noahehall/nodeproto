@@ -36,8 +36,9 @@
 
       - linting & tests
         - `npm test` run the test script in each package
-        - `npm run lerna:run lighthouse` run and save lighthouse report to `./doc/lighthouse/localhost.html` in *packages/client*
+        - `npm run lighthouse` run and save lighthouse report to `packages/client/doc/lighthouse/localhost.html`
           - *packages/client* must be running on *localhost:7777*
+            - e.g. issue `npm run lerna:run start:client` in a separate terminal
 
     - other scripts
       - `npm run lerna:help` see lerna help

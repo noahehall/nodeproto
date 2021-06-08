@@ -24,6 +24,8 @@
     - integration with @nodeprot/lib/envproto.getdevserts thing
   - [pick our default detections @ modernizr](https://modernizr.com/download?setclasses)
   - [think babel-eslint is canceling out standard-js rules](https://github.com/babel/eslint-plugin-babel)
+  - [see if theres any merit to this](https://www.npmjs.com/package/accessibility-checker)
+  - [checkout the merits of this](https://github.com/Siteimprove/alfa)
 
 ## DONE
   - defaults from pkg.json.config not being used
