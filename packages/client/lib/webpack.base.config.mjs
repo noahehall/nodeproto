@@ -24,7 +24,7 @@ export default function pack ({
   env = throwMsg('env is required in webpack.base.config.mjs, e.g. envproto.synEnvAndConfig(pkgJson)'),
   extensions = ['.mjs', '.js', '.jsx', '.json'],
   externalsConfig = { modulesFromFile: true },
-  mainFields = ['browser', 'main', 'module'],
+  mainFields = ['module', 'browser', 'main'],
   optimization = {},
   output = {},
   outputDefault = { filename: '[name].js', chunkFilename: '[name].chunk.js' },

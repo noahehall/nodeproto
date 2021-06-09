@@ -7,6 +7,7 @@
   "name": "nodeproto",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
   "keywords": [
     "@nirv",
     "@nodeproto",
@@ -44,7 +45,7 @@
     "rem": "npm run lerna:exec npm uninstall",
     "about": "npm list && npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh && lerna info",
     "add:help": "lerna add --help",
-    "add": "lerna add --no-bootstrap",
+    "add": "lerna add",
     "bootstrap:help": "lerna bootstrap --help",
     "bootstrap": "lerna bootstrap --hoist --force-local",
     "clean: help": "lerna clean --help",

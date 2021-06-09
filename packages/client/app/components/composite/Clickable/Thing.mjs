@@ -1,12 +1,27 @@
 'use strict'
 
 import { Clickable } from 'reakit/Clickable'
+import { useButton } from 'react-aria';
+import clsx from 'clsx'
 import React from 'react'
 import styled from 'styled-components'
-import clsx from 'clsx'
+
+console.log('\n\n useButton', useButton)
 const StyledAnchor = styled(Clickable)`
 
 `
+
+
+export const Button = (props) => {
+  const ref = React.useRef();
+  const {buttonProps} = useButton(props, ref);
+
+  return (
+    <button {...buttonProps} ref={ref}>
+      {props.children}
+    </button>
+  );
+}
 
 export const Anchor = ({
   className,
@@ -17,6 +32,7 @@ export const Anchor = ({
   return (
     <StyledAnchor {...props} className={clsx(className)} forwardedAs='a'>
       {text}
+      <button>testing rect-aria</button>
     </StyledAnchor>
   )
 }

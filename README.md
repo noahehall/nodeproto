@@ -146,11 +146,14 @@
 
   - accessbility
     - we use both reakit + react-aria as they compliment each other and keep us from writing primitives
+      - be sure to checkout both as:
+        - doubt this list will stay up to date
+        - we have an accurate representation of everything each provide
     - [reakit](https://reakit.io/)
     - [react-aria](https://react-spectrum.adobe.com/react-aria/)
     - [react-stately](https://react-spectrum.adobe.com/react-stately/getting-started.html)
 
-| COMPONENT | REACT-ARIA | REAKIT |
+| COMPONENT | [REACT-ARIA](https://react-spectrum.adobe.com/react-aria/getting-started.html) | [REAKIT](https://reakit.io/docs) |
 | :-------: | :-------: | :-------: |
 BREADCRUMBS | Y | N |
 BUTTON | Y | Y |
