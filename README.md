@@ -145,10 +145,12 @@
     - [animate.css](https://animate.style/)
 
   - accessbility
+    - we use both reakit + react-aria as they compliment each other and keep us from writing primitives
     - [reakit](https://reakit.io/)
     - [react-aria](https://react-spectrum.adobe.com/react-aria/)
     - [react-stately](https://react-spectrum.adobe.com/react-stately/getting-started.html)
-  | COMPONENT | REACT-ARIA | REAKIT |
+
+| COMPONENT | REACT-ARIA | REAKIT |
 | :-------: | :-------: | :-------: |
 BREADCRUMBS | Y | N |
 BUTTON | Y | Y |
