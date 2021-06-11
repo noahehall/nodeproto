@@ -1,0 +1,21 @@
+{
+  "name": "@nodeproto/gateway",
+  "version": "0.0.0",
+  "bin": [
+    "usr/bin"
+  ],
+  "config": {
+    "GATEWAY_USER": "haproxy",
+    "GATEWAY_GROUP": "haproxy",
+    "GATEWAY_CHROOT_DIR": "./var/lib/haproxy",
+    "GATEWAY_STATS_SOCK": "./run/haproxy/admin.sock"
+  },
+  "scripts": {
+    "build": "",
+    "linkandsetowner": "usr/bin/linkandsetowner.sh",
+    "start": "usr/bin/startdefault.sh",
+    "start:gateway": "npm start",
+    "start:client": "npm start",
+    "start:pkgcheck": "npm start"
+  }
+}

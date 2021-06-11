@@ -20,6 +20,8 @@
     - [update enzyme to json](https://github.com/adriantoine/enzyme-to-json/pull/186)
   - [reakit is doing their best, lets help them out!](https://github.com/reakit/reakit/issues/876)
   - [cant install siteimprove/alfa-react](https://github.com/Siteimprove/alfa/issues/828)
+  - [webpack-dev-middleware enable use of other bffs](https://github.com/webpack/webpack-dev-middleware/issues/945)
+  - [webpack-hot-middleware enable use of other bffs](https://github.com/webpack-contrib/webpack-hot-middleware/issues/408)
 
 
 

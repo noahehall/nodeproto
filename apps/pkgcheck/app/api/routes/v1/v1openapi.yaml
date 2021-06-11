@@ -1,0 +1,145 @@
+openapi: 3.0.3
+info:
+  title: 'nodeproto: build prototypes, fast.'
+  version: 0.0.1
+  license:
+    name: MIT
+servers:
+  - url: "{protocol}://localhost:3000/{version}"
+    description: development server
+    variables:
+      protocol:
+        enum: [http] # TODO:, https]
+        default: http
+      version:
+        enum: [v1]
+        default: v1
+components:
+  schemas:
+    depList:
+      description: list of dependency objects
+      type: array
+      items:
+        type: object
+        properties:
+          pkg:
+            type: string
+          installed:
+            type: string
+          available:
+            type: string
+          lastCommitDate:
+            type: string
+    dep:
+      title: dep
+      description: dependency object
+      type: object
+      properties:
+        pkg:
+          type: string
+        lastCommitDate:
+          type: string
+        installed:
+          type: string
+        available:
+          type: string
+        deps:
+          $ref: "#/components/schemas/depList"
+        devDeps:
+          $ref: "#/components/schemas/depList"
+        peerDeps:
+          $ref: "#/components/schemas/depList"
+        optDeps:
+          $ref: "#/components/schemas/depList"
+        bunDeps:
+          $ref: "#/components/schemas/depList"
+
+paths:
+  /demo/pkgcheck:
+    get:
+      operationId: pkgcheck
+      summary: analyze package dependencies
+      description: |
+        The PKG CHECK api provides a proxy for staleness and innovation.
+        1. last commit date: how innovative?
+        2. the package's dependencies:
+            - last commit date: how innovative?
+            - installed vs available version: how up to date?
+        3. unsolved issues:
+            - total unsolved: is it being maintained?
+      parameters:
+        - name: id
+          in: query
+          description: id of package
+          example: nodeproto
+          required: true
+          schema:
+            type: string
+          style: form
+        - name: v
+          in: query
+          description: version of package; else we retrieve latest
+          example: 1.0.0
+          required: false
+          schema:
+            type: string
+
+      responses:
+        "200":
+          description: package and package dependency statistics
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/dep"
+              example:
+                pkg: nodeproto
+                lastCommitDate: Sat May 29 2021
+                installed: 1.0.0
+                available: 1.0.1
+                deps:
+                  - pkg: koa
+                    lastCommitDate: 2020
+                    installed: 2.0.0
+                    available: 2.0.0
+                    deps: []
+                devDeps:
+                  - pkg: koa
+                    lastCommitDate: 2020
+                    installed: 2.0.0
+                    available: 2.0.0
+                    deps: []
+                peerDeps:
+                  - pkg: koa
+                    lastCommitDate: 2020
+                    installed: 2.0.0
+                    available: 2.0.0
+                    deps: []
+                optDeps:
+                  - pkg: koa
+                    lastCommitDate: 2020
+                    installed: 2.0.0
+                    available: 2.0.0
+                    deps: []
+                bunDeps:
+                  - pkg: koa
+                    lastCommitDate: 2020
+                    installed: 2.0.0
+                    available: 2.0.0
+                    deps: []
+        "404":
+          # valid in an API context
+          # the endpoint is valid, but we just couldnt find the resource
+          # @see https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+          description: could not find package for supplied id & version
+        "429":
+          # rate limited: @see https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+          description: slow the fk down
+        "500":
+          # @see https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
+          description: we fked up
+  /demo/lob:
+    get:
+      summary: use the LOB api to send @noahedwardhall happy birthday cards
+      responses:
+        "200":
+          description: success

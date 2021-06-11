@@ -1,0 +1,490 @@
+// DO NOT ADD COMMENTS IN THIS FILE.  They will be lost when the Rush tool resaves it.
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/rush/v5/approved-packages.schema.json",
+  "packages": [
+    {
+      "name": "@babel/core",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "@babel/eslint-parser",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "@babel/eslint-plugin",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "@babel/plugin-proposal-class-properties",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "@babel/plugin-proposal-decorators",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "@babel/plugin-proposal-export-default-from",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "@babel/plugin-proposal-nullish-coalescing-operator",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "@babel/plugin-proposal-optional-catch-binding",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "@babel/plugin-proposal-optional-chaining",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "@babel/plugin-proposal-private-methods",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "@babel/plugin-proposal-throw-expressions",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "@babel/plugin-syntax-dynamic-import",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "@babel/plugin-transform-modules-commonjs",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "@babel/plugin-transform-react-constant-elements",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "@babel/plugin-transform-react-inline-elements",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "@babel/plugin-transform-react-jsx-source",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "@babel/plugin-transform-runtime",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "@babel/preset-env",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "@babel/preset-react",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "@babel/runtime",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "@babel/runtime-corejs3",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "@babel/traverse",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "@koa/cors",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "@messageformat/react",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "@nodeproto/lib",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "@nodeproto/utils",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "@nodeproto/wrapper",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "@reach/router",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "@tinyhttp/etag",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "@trevthedev/shell-harness",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "animate.css",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "babel-loader",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "babel-plugin-styled-components",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "babel-plugin-tailcall-optimization",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "circular-dependency-plugin",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "cls-rtracer",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "clsx",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "concurrently",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "core-js",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "create-hintrc",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "css-loader",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "dotenv",
+      "allowedCategories": [ "libraries", "production" ]
+    },
+    {
+      "name": "dotenv-webpack",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "env-cmd",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "es-main",
+      "allowedCategories": [ "libraries", "production" ]
+    },
+    {
+      "name": "esbuild",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "esbuild-plugin-manifest",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "eslint",
+      "allowedCategories": [ "libraries", "production" ]
+    },
+    {
+      "name": "eslint-config-standard",
+      "allowedCategories": [ "libraries", "production" ]
+    },
+    {
+      "name": "eslint-plugin-import",
+      "allowedCategories": [ "libraries", "production" ]
+    },
+    {
+      "name": "eslint-plugin-node",
+      "allowedCategories": [ "libraries", "production" ]
+    },
+    {
+      "name": "eslint-plugin-promise",
+      "allowedCategories": [ "libraries", "production" ]
+    },
+    {
+      "name": "eslint-plugin-react",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "eslint-plugin-react-hooks",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "file-loader",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "glob",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "hint",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "history",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "html-loader",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "html-webpack-plugin",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "husky",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "immutability-helper",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "js-yaml",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "jsdoc-to-markdown",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "koa",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "koa-body",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "koa-bodyparser",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "koa-charset",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "koa-compose",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "koa-csrf",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "koa-helmet",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "koa-jwt",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "koa-oas3",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "koa-passport",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "koa-qs",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "koa-ratelimit",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "koa-session",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "koa-sslify",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "koa-tree-router",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "lighthouse",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "milligram",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "mkdirp",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "modernizr",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "multi-tape",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "node-env-run",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "normalize.css",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "pem",
+      "allowedCategories": [ "libraries", "production" ]
+    },
+    {
+      "name": "purple-tape",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "react",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "react-aria",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "react-devtools",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "react-dom",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "react-helmet",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "react-hot-loader",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "react-icons",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "react-is",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "react-json-pretty",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "react-stately",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "reakit",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "redrun",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "rimraf",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "semver",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "sinon",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "source-map-support",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "string-replace-loader",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "style-loader",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "styled-components",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "svg-url-loader",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "tap-spec",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "tape",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "too",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "url-loader",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "webpack",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "webpack-cli",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "webpack-dev-middleware",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "webpack-dev-middleware-2",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "webpack-dev-server",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "webpack-hot-middleware",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "webpack-hot-middleware-2",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "webpack-node-externals",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "workbox-webpack-plugin",
+      "allowedCategories": [ "production" ]
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "name": "@nodeproto/utils",
+  "version": "0.0.0",
+  "type": "module",
+  "directories": {
+    "dist": "./dist",
+    "fstest": "./fstest",
+    "envproto": "./envproto",
+    "esproto": "./esproto",
+    "fsproto": "./fsproto",
+    "lib": "./lib"
+  },
+  "config": {
+    "NODE_ENV": "development"
+  },
+  "main": "./dist/index.cjs",
+  "exports": {
+    "./index": "./index.mjs",
+    ".": {
+      "import": "./index.mjs",
+      "require": "./dist/index.cjs",
+      "default": "./index.mjs"
+    }
+  },
+  "dependencies": {
+    "dotenv": "10.0.0",
+    "es-main": "1.0.2",
+    "pem": "1.14.4",
+    "mkdirp": "1.0.4",
+    "env-cmd": "10.1.0"
+  },
+  "devDependencies": {
+    "esbuild": "0.12.8",
+    "esbuild-plugin-manifest": "0.4.3",
+    "eslint": "7.28.0",
+    "eslint-config-standard": "16.0.3",
+    "eslint-plugin-import": "2.23.4",
+    "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-promise": "5.1.0",
+    "rimraf": "3.0.2",
+    "tap-spec": "2.2.2",
+    "sinon": "11.1.1",
+    "purple-tape": "3.9.2",
+    "multi-tape": "1.6.1"
+  },
+  "scripts": {
+    "test": "env-cmd multi-tape --conditions=test  \"**/*.test.+(c|m)js\" | tap-spec",
+    "prebuild": "rimraf dist",
+    "prepublishOnly": "npm run build",
+    "build": "env-cmd node --conditions=build lib/esbuild.config.mjs"
+  }
+}

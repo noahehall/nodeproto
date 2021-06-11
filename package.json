@@ -36,11 +36,19 @@
     "linux"
   ],
   "directories": {
-    "boilerplate": "./boilerplate",
-    "doc": "./doc",
-    "packages": "./packages"
+    "apps": "./apps",
+    "common": "./common",
+    "libraries": "./libraries",
+    "tools": "./tools"
+  },
+  "config": {
+    "NODE_OPTIONS": "--trace-uncaught --trace-warnings --experimental-import-meta-resolve --enable-source-maps --experimental-json-modules --preserve-symlinks-main --preserve-symlinks"
   },
   "scripts": {
+    "list": "rush list",
+    "update": "rush update --recheck",
+    "update:f": "rushx update --full",
+    "update:fp": "rushx update --purge",
     "lerna:exec": "lerna exec --parallel",
     "rem": "npm run lerna:exec npm uninstall",
     "about": "npm list && npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh && lerna info",
@@ -62,7 +70,5 @@
     "test:help": "npm run lerna:run:help",
     "test": "lerna run test"
   },
-  "devDependencies": {
-    "lerna": "4.0.0"
-  }
+  "devDependencies": {}
 }

@@ -80,8 +80,10 @@
 ### modules
 #### stable
   - pkg management
-    - [lerna](https://github.com/lerna/lerna/tree/main/commands)
-    - [npm](npmjs.com/)
+    - [rush](https://rushjs.io/pages/commands)
+      - move elseware
+        - rush add -p rimraf --exact --dev -m
+    - [pnpm]([npmjs.com/](https://github.com/pnpm/pnpm))
 
   - gateway
     - [haproxy](https://cbonte.github.io/haproxy-dconv/2.4/management.html)
@@ -110,7 +112,7 @@
     - [concurrently](https://github.com/kimmobrunfeldt/concurrently)
 
   - testing
-    - [tape](https://github.com/substack/tape)
+    - [purple-tape](https://github.com/mattiash/purple-tape/blob/master/lib/test.ts)
     - [multi-tape](https://github.com/mattiash/node-multi-tape)
     - [sinon](https://sinonjs.org/)
 
