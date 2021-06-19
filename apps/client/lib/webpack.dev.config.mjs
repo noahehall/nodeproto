@@ -1,6 +1,3 @@
-
-/* eslint-disable comma-dangle */
-
 // import CircularDependencyPlugin from 'circular-dependency-plugin'
 import { envproto } from '@nodeproto/utils'
 import HtmlWebpackPlugin from 'html-webpack-plugin'

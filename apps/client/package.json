@@ -82,7 +82,7 @@
     "eslint-plugin-promise": "5.1.0",
     "eslint-plugin-react-hooks": "4.2.0",
     "eslint-plugin-react": "7.24.0",
-    "eslint": "7.28.0",
+    "eslint": "7.29",
     "file-loader": "6.2.0",
     "html-loader": "2.1.2",
     "html-webpack-plugin": "5.3.1",

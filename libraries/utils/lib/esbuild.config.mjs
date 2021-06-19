@@ -15,8 +15,7 @@ const appExtension = '.mjs';
 const appId = appInputFilename + appExtension;
 const manifestFilename = 'manifest.json';
 const outdir = path.resolve('dist');
-const manifestUri = outdir + '/' + manifestFilename;
-
+const manifestUri = `${outdir}/${manifestFilename}`;
 
 const manifestPluginConfig = {
   hash: false,
@@ -25,11 +24,16 @@ const manifestPluginConfig = {
   filename: manifestFilename,
 };
 
-
-const buildLog = ({ errors, warnings, ...result}) => {
-  console.info('\n\n finished build\n', Object.keys(result.metafile.outputs))
+const buildLog = ({ errors, warnings, ...result }) => {
+  console.info(
+    '\n\n finished build\n',
+    Object.keys(result.metafile.outputs)
+  )
   if (!errors.length && !warnings.length) return;
-  console.warn('\n\n build notifications', { errors, warnings });
+  console.warn(
+    '\n\n build notifications',
+    { errors, warnings }
+  );
 };
 
 const esbuildConfig = {
@@ -43,21 +47,22 @@ const esbuildConfig = {
   metafile: true,
   minify: false,
   outdir,
-  outExtension: {'.js': '.cjs'},
+  outExtension: { '.js': '.cjs' },
   platform: 'node',
-  resolveExtensions: ['.mjs', '.js', '.cjs', '.json'],
+  resolveExtensions: [
+    '.mjs',
+    '.js',
+    '.cjs',
+    '.json'
+  ],
   sourcemap: true,
   target: ['node14.17.0'], // LTS
   write: true,
-  plugins: [
-    manifestPlugin(manifestPluginConfig),
-  ],
+  plugins: [manifestPlugin(manifestPluginConfig), ],
   // format: 'iie',
   // outfile: 'dist/out.cjs',
 };
 
-
 esbuild.build(esbuildConfig).then(result => {
   buildLog(result);
 })
-

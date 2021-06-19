@@ -1,4 +1,3 @@
-'use strict';
 
 /**
  *
@@ -14,7 +13,10 @@ const ctxGet = (t, r) => r.get(t);
  * @param t thing
  * @returns ctxGet(thing, ctx.response)
  */
-export const resGet = (c, t) => ctxGet(t, c.response);
+export const resGet = (c, t) => ctxGet(
+  t,
+  c.response
+);
 
 /**
  *  returns request header field
@@ -22,7 +24,10 @@ export const resGet = (c, t) => ctxGet(t, c.response);
  * @param t thing
  * @returns ctxGet(thing, ctx.request)
  */
-export const reqGet = (c, t) => ctxGet(t, c.request);
+export const reqGet = (c, t) => ctxGet(
+  t,
+  c.request
+);
 
 /**
  * TODO: change to envGet
@@ -35,7 +40,7 @@ export const getEnv = (
   t,
   d = process.env[`npm_package_config_${t}`],
   e = process.env
-) => t in e ? e[t] : d;
+) => (t in e ? e[t] : d);
 
 /**
  * check is ctx.path === '/favicon.ico'
@@ -45,4 +50,3 @@ export const getEnv = (
 export const isFaviconRequest = p => (
   p === '/favicon.ico'
 );
-

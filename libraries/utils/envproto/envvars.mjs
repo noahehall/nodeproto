@@ -1,4 +1,3 @@
-'use strict'
 
 /* eslint-disable comma-dangle */
 
@@ -9,8 +8,9 @@
 import dotenv from 'dotenv'
 
 // load env
-const parsed = dotenv.config().parsed
-const wrapValue = v => ('"' + v + '"')
+const { parsed } = dotenv.config()
+const wrapValue = v => (`"${v}"`)
+
 /**
  * injects .env variables into an object
  * + suitable for adding .env vars  to a webpack|esbuild define plugin config as process.env.THING:VALUE
@@ -20,7 +20,10 @@ const wrapValue = v => ('"' + v + '"')
  */
 export const buildEnv = (env = parsed) => Object.entries(env)
   .reduce(
-    (a, [k, v]) => (a[`process.env.${k}`] = wrapValue(env[k])) && a,
+    (a, [
+      k,
+      v
+    ]) => (a[`process.env.${k}`] = wrapValue(env[k])) && a,
     {}
   )
 
@@ -43,6 +46,7 @@ export const syncEnv = ({ config = {}, ...opts } = {}) => {
 
   return { parsed, processEnv: buildEnv() }
 }
+
 /**
  * upserts env into opts.config
  * + matching keys in opts.config will be overwritten with values from env
@@ -52,7 +56,7 @@ export const syncEnv = ({ config = {}, ...opts } = {}) => {
  */
 export const syncConfig = ({ config = {}, ...opts } = {}) => ({
   ...opts,
-  config: Object.assign({}, config, parsed)
+  config: { ...config, ...parsed }
 })
 
 /**
@@ -60,11 +64,8 @@ export const syncConfig = ({ config = {}, ...opts } = {}) => ({
  * @param param0 container for a config, e.g. a package.json
  * @returns { config, processEnv, parsed, ...opts } with updated values
  */
-export const syncEnvAndConfig = ({ config = {}, ...opts }) => {
+export const syncEnvAndConfig = ({ config = {}, ...opts }) => ({
 
-  return Object.assign(
-    {},
-    syncEnv({ config }), // must come first!
-    syncConfig({ config, ...opts }),
-  )
-}
+  ...syncEnv({ config }), // must come first!
+  ...syncConfig({ config, ...opts }),
+})

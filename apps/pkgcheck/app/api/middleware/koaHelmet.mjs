@@ -1,4 +1,3 @@
-'use strict';
 
 import koaHelmet from 'koa-helmet';
 

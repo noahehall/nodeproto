@@ -1,5 +1,3 @@
-'use strict';
-
 
 import { koaBodyParser } from './koaBody.mjs';
 import eTag from './eTag.mjs';
@@ -18,17 +16,22 @@ export default async function initMiddleware (asyncApp) {
     app.use(
       logger(),
       responseTime(),
-      koaSession(undefined, app),
+      koaSession(
+        undefined,
+        app
+      ),
       koaHelmet(),
       koaCors(),
-      koaCsrf(undefined, app),
+      koaCsrf(
+        undefined,
+        app
+      ),
       koaRatelimit(),
       eTag(),
       koaBodyParser(),
       // koaCharset(), // todo
     );
 
-
     return asyncApp;
   });
-};
+}

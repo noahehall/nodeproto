@@ -1,0 +1,44 @@
+env: # @see https://eslint.org/docs/user-guide/configuring/language-options
+  es2021: true
+  node: true
+parser: '@babel/eslint-parser'
+parserOptions: # @see https://www.npmjs.com/package/@babel/eslint-parser
+  requireConfigFile: false
+  sourceType: module
+extends:
+  - eslint:all
+  - standard
+  - plugin:import/recommended
+  - plugin:node/recommended
+  - plugin:promise/recommended
+plugins:
+  - '@babel'
+rules:
+  # great rules here
+  no-multiple-empty-lines: 'error'
+  no-throw-literal: 'error'
+  prefer-named-capture-group: 'off' # performance
+  prefer-object-spread: 'error'
+  sort-imports: 'error' # I hate serching a list for shit
+  sort-keys: 'error' # i hate searchig a list for shit
+  max-lines-per-function:
+    - error
+    - skipBlankLines: true
+      skipComments: true
+
+  # dumb fkn rules here
+  arrow-parens: 'off'
+  capitalized-comments: 'off'
+  comma-dangle: 'off' # love trailing commas
+  id-length: 'off' # we support junior devs without hampering others
+  line-comment-position: 'off'
+  multiline-comment-style: 'off'
+  no-inline-comments: 'off'
+  no-ternary: 'off'
+  semi: 'off' # love ending semi - read this https://eslint.org/docs/rules/semi
+
+  # doesnt seem to work right - but would be great if it did
+  node/no-unpublished-import: 'off'
+
+
+

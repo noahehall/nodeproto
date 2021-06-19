@@ -1,4 +1,4 @@
-'use strict';
+
 /**
  *
  * TODO: https://github.com/steambap/koa-tree-router/issues/19
@@ -10,7 +10,6 @@ import { fsproto } from '@nodeproto/utils';
 import * as demo from './demo/index.mjs';
 import koaOas3 from '../../middleware/koaOas3.mjs';
 
-
 export default async function v1Controller (v1RouterGroup, app) {
   try {
     /**
@@ -19,15 +18,26 @@ export default async function v1Controller (v1RouterGroup, app) {
     // @see https://nodejs.org/api/esm.html#esm_import_meta_resolve_specifier_parent
     const openApiUri = await fsproto.resolve('./v1openapi.yaml');
 
-    v1RouterGroup.get('/', koaOas3({ file: openApiUri, routepath: '/v1' }, app));
-    v1RouterGroup.get('/demo/pkgcheck', demo.pkgCheckHandler.getPkg);
+    v1RouterGroup.get(
+      '/',
+      koaOas3(
+        { file: openApiUri, routepath: '/v1' },
+        app
+      )
+    );
+    v1RouterGroup.get(
+      '/demo/pkgcheck',
+      demo.pkgCheckHandler.getPkg
+    );
     // @see https://github.com/steambap/koa-tree-router/issues/19
     // todo(noah):
     // fix this by friday night
     // v1RouterGroup.get('/demo/*notfound', demo.pkgCheckHandler.notFound);
-
   } catch (e) {
     // handle gracefully
-    console.error('v1Controller erroor:', e)
+    console.error(
+      'v1Controller erroor:',
+      e
+    )
   }
 }

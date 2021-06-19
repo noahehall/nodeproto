@@ -211,7 +211,6 @@
     "reviewCategories": [
       // Some example categories:
       "production", // projects that ship to production
-      "tools", // non-shipping projects that are part of the developer toolchain
       "libraries" // experiments that should mostly be ignored by the review process
     ],
 

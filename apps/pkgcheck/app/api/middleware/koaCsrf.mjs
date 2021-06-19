@@ -1,7 +1,5 @@
-'use strict';
 
 import CSRF from 'koa-csrf';
-
 
 // @see https://github.com/koajs/csrf#usage
 // TODO(noah)
@@ -11,7 +9,11 @@ import CSRF from 'koa-csrf';
 const CONFIG = {
   invalidTokenMessage: 'Invalid CSRF token',
   invalidTokenStatusCode: 403,
-  excludedMethods: [ 'GET', 'HEAD', 'OPTIONS' ],
+  excludedMethods: [
+    'GET',
+    'HEAD',
+    'OPTIONS'
+  ],
   disableQuery: false,
 }
 

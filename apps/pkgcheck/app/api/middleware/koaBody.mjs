@@ -1,4 +1,3 @@
-'use strict';
 
 /**
  * for handling multipart form bodies
@@ -9,7 +8,7 @@ import bodyParser from 'koa-bodyparser';
 // handles forms
 export function koaBody (conf, app) {
   return body()
-};
+}
 
 // doesnt handle forms
 // required (temporarily) for koa-oas3

@@ -1,12 +1,9 @@
-
-/* eslint-disable comma-dangle */
-
 // import { InjectManifest } from 'workbox-webpack-plugin'
 // import externals from 'webpack-node-externals'
 // import webpack from 'webpack'
 import path from 'path'
 import { builtinModules } from 'module';
-import babelConfig from './babel.config.cjs'
+import babelConfigDefault from './babel.config.cjs'
 
 const msg = 'error in pack: '
 const throwMsg = msg => { throw msg }
@@ -18,7 +15,7 @@ const throwMsg = msg => { throw msg }
  */
 export default function pack ({
   // defaults
-  babelConfig = babelConfig(),
+  babelConfig = babelConfigDefault(),
   context = process.cwd(),
   entryPush = [],
   entryUnshift = [],

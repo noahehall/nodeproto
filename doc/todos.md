@@ -141,6 +141,12 @@
             '--report-directory',
 
       ```
+  - babeloptions cant find babel.config.cjs but eslint works so fk it
+    - might be vscode
+      ```sh
+          Parsing error: Cannot find module './lib/babel.config.cjs'
+          Require stack:
+      ```
 
 ## DONE
   - defaults from pkg.json.config not being used

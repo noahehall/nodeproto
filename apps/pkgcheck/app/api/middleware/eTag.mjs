@@ -1,4 +1,3 @@
-'use strict';
 
 /**
  * @see https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ETag
@@ -15,11 +14,16 @@ export default function eTag (config, app) {
 
     next();
 
-    if (!ctx.response.body || ctx.response.headerSent)
-      return;
+    if (!ctx.response.body || ctx.response.headerSent) return;
 
-    console.log('\n\n setting etag', tinyETag(ctx.response.body));
+    console.log(
+      '\n\n setting etag',
+      tinyETag(ctx.response.body)
+    );
 
-    ctx.response.append('ETag', tinyETag(ctx.response.body))
+    ctx.response.append(
+      'ETag',
+      tinyETag(ctx.response.body)
+    )
   }
 }

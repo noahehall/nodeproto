@@ -1,4 +1,3 @@
-'use strict';
 
 import Koa from 'koa';
 import { getEnv } from './api/shared.mjs';
@@ -11,8 +10,15 @@ const defaults = {
 };
 
 export default async function createApp (overrides = {}) {
-  const app = Object.assign(new Koa(), defaults, overrides);
+  const app = Object.assign(
+    new Koa(),
+    defaults,
+    overrides
+  );
 
   // @see https://github.com/koajs/qs#whats-different
-  return koaQs(app, 'strict');
+  return koaQs(
+    app,
+    'strict'
+  );
 }

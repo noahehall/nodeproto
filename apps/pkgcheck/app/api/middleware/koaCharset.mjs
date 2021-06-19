@@ -1,4 +1,3 @@
-'use strict';
 
 import charset from 'koa-charset';
 import compose from 'koa-compose';
@@ -8,6 +7,8 @@ export const charsetHandler = async (ctx, next) => {
 }
 
 export default function koaCharset () {
-
-  return compose([charset, charsetHandler]);
-};
+  return compose([
+    charset,
+    charsetHandler
+  ]);
+}

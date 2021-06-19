@@ -20,20 +20,25 @@ import path from 'path';
 // @see https://esbuild.github.io/plugins/#caching-your-plugin
 export const cache = new Map();
 
-
 // fileShouldCopy(path) => lastModified in MS or undefined
 export const fileShouldCopy = async sourcepath => {
   let fd;
   try {
-    fd = await fs.promises.open(sourcepath,'r');
+    fd = await fs.promises.open(
+      sourcepath,
+      'r'
+    );
     if (!fd) return;
 
-    const mtimeMs = (await fd.stat()).mtimeMs;
+    const { mtimeMs } = await fd.stat();
     const cacheMs = cache.get(sourcepath)?.ms;
     fd.close();
     return (!cacheMs || (cacheMs < mtimeMs)) && mtimeMs
   } catch (e) {
-    console.warn('error accessing file, removing from cache\n', {sourcepath, e});
+    console.warn(
+      'error accessing file, removing from cache\n',
+      { sourcepath, e }
+    );
     fd?.close();
     cache.delete(sourcepath);
 
@@ -46,45 +51,65 @@ export const fileCopy = async (newCacheMs, sourcepath, outdir) => {
   try {
     if (newCacheMs) {
       const outpath = `${outdir}/${path.basename(sourcepath)}`;
-      cache.set(sourcepath, { ms: newCacheMs, outpath });
+      cache.set(
+        sourcepath,
+        { ms: newCacheMs, outpath }
+      );
 
-      await fs.promises.mkdir(outdir, { recursive: true  })
-      await fs.promises.copyFile(sourcepath, outpath); // dont catch let it throw
-
+      await fs.promises.mkdir(
+        outdir,
+        { recursive: true }
+      )
+      await fs.promises.copyFile(
+        sourcepath,
+        outpath
+      ); // dont catch let it throw
     }
   } catch (e) {
     cache.delete(sourcepath);
-    console.warn('\n\n error copying file into outdir', {sourcepath, e});
+    console.warn(
+      '\n\n error copying file into outdir',
+      { sourcepath, e }
+    );
   }
 };
-
 
 // searches for files to copy
 // sets filepaths as keys in cache
 export const filesToCopy = options => {
   const msg = 'not copying files:';
 
-  if (!options.length) return console.warn(`${msg} options empty`, options);
+  if (!options.length) {
+    return console.warn(
+`${msg} options empty`,
+options
+    );
+  }
 
   options.forEach(async ({ outdir, endingWith, indir, recurse, ...opts }) => {
     try {
       if (
-        !(endingWith instanceof RegExp)
-        || (!indir || !indir.startsWith('/'))
-        || (!outdir || !outdir.startsWith('/'))
-      )
+        !(endingWith instanceof RegExp) ||
+        (!indir || !indir.startsWith('/')) ||
+        (!outdir || !outdir.startsWith('/'))
+      ) {
         return console.warn(
         `${msg} invalid params`,
-        {outdir, endingWith, indir, recurse, opts}
-      );
+        { outdir, endingWith, indir, recurse, opts }
+        );
+      }
 
-      const sourcedirs = await fs.promises.readdir(indir, { encoding: 'utf8', withFileTypes: true }) ?? [];
+      const sourcedirs = await fs.promises.readdir(
+        indir,
+        { encoding: 'utf8', withFileTypes: true }
+      ) ?? [];
 
       sourcedirs.forEach(dirEnt => {
         // check all child-dirs
         // need to check dirEnt[symbol] type === 2
         // because duh files without extensions
-        if (!dirEnt.name.includes('.') && recurse) filesToCopy([
+        if (!dirEnt.name.includes('.') && recurse) {
+          filesToCopy([
             {
               outdir,
               endingWith,
@@ -93,22 +118,27 @@ export const filesToCopy = options => {
               ...opts
             }
           ]);
-        else {
+        } else {
           // check if filename endsWith regex
           if (endingWith.test(dirEnt.name)) {
             // check if files should be copied
             const sourcepath = `${indir}/${dirEnt.name}`;
             const outpath = `${outdir}/${dirEnt.name}`;
-            cache.set(sourcepath, { ms: null, outpath })
+            cache.set(
+              sourcepath,
+              { ms: null, outpath }
+            )
           }
         }
       });
     } catch (e) {
-      console.error('\n\n error in popcopy', e);
+      console.error(
+        '\n\n error in popcopy',
+        e
+      );
     }
   });
 };
-
 
 const name = 'popCopyPlugin';
 
@@ -142,7 +172,7 @@ export function popCopy (config) {
       filesToCopy(options);
 
       build.onResolve(
-        {filter: /^popcopy$/},
+        { filter: /^popcopy$/ },
         () => ({})
       );
       // @see https://esbuild.github.io/plugins/#start-callbacks
@@ -152,23 +182,34 @@ export function popCopy (config) {
 
         // STEP 2
         // loop cache and copy files if necessary
-        if (cache.size) for (const [sourcepath, { ms, outpath }] of cache) {
-          try {
-            const newCacheMs = await fileShouldCopy(sourcepath);
-            if (newCacheMs) await fileCopy(newCacheMs, sourcepath, path.dirname(outpath));
-          } catch (e) {
-            console.warn('popCopy.onStart error', e);
+        if (cache.size) {
+          for (const [
+            sourcepath,
+            { ms, outpath }
+          ] of cache) {
+            try {
+              const newCacheMs = await fileShouldCopy(sourcepath);
+              if (newCacheMs) {
+                await fileCopy(
+                  newCacheMs,
+                  sourcepath,
+                  path.dirname(outpath)
+                );
+              }
+            } catch (e) {
+              console.warn(
+                'popCopy.onStart error',
+                e
+              );
+            }
           }
         }
-
-        return;
       });
 
       // @see https://esbuild.github.io/plugins/#end-callbacks
       build.onEnd(result => {
         popCopy.onStarted = false;
-        return;
       });
     },
   };
-};
+}

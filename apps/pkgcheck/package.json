@@ -28,6 +28,8 @@
   ],
   "scripts": {
     "hint": "hint http://localhost:3000",
+    "eslint": "eslint \"{app,lib}/**/*.+(m|c)js\"",
+    "eslint:fix": "npm run eslint -- --fix",
     "test": "env-cmd multi-tape --conditions=test \"{app,lib}/**/*.test.mjs\" | tap-spec",
     "about": "npm list && npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh",
     "rm:dist": "rimraf dist",
@@ -63,10 +65,12 @@
     "env-cmd": "10.1.0"
   },
   "devDependencies": {
+    "@babel/eslint-parser": "7.14.5",
+    "@babel/eslint-plugin": "7.13.16",
     "dotenv": "10.0.0",
     "esbuild": "0.12.8",
     "esbuild-plugin-manifest": "0.4.3",
-    "eslint": "7.28.0",
+    "eslint": "7.29",
     "eslint-config-standard": "16.0.3",
     "eslint-plugin-import": "2.23.4",
     "eslint-plugin-node": "11.1.0",
@@ -77,6 +81,7 @@
     "sinon": "11.1.1",
     "tap-spec": "2.2.2",
     "tape": "5.2.2",
-    "rimraf": "3.0.2"
+    "rimraf": "3.0.2",
+    "@babel/core": "7.14.3"
   }
 }

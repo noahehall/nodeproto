@@ -1,4 +1,3 @@
-'use strict';
 
 import cors from '@koa/cors';
 

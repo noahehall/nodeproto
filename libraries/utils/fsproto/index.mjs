@@ -16,43 +16,40 @@ export const isMain = (requireMain, importMeta) => {
   if (typeof require !== 'undefined') {
     return requireMain == module;
   }
-  else {
-    if (!(typeof importMeta)) throw 'must pass in import.meta';
 
-    return esMain(importMeta)
-  }
+  if (!(typeof importMeta)) throw 'must pass in import.meta';
+
+  return esMain(importMeta)
 }
 
-export const readFile = fs.promises.readFile;
-export const readFiles = async (files = []) => {
-  return !files.length
+export const { readFile } = fs.promises;
+export const readFiles = async (files = []) => (!files.length
   ? []
-  : Promise.all(files.map(({filename, encoding = 'utf8'}) => (
-      readFile(filename, encoding)
-    )));
-  }
+  : Promise.all(files.map(({ filename, encoding = 'utf8' }) => (
+    readFile(
+      filename,
+      encoding
+    )
+  ))))
 
 export const writeFile = async (...opts) => {
   try {
     await mkdirp(path.dirname(opts[0]));
-  } catch (e) {}
-  finally {
-    return fs.promises.writeFile.apply(fs, opts);
+  } catch (e) {} finally {
+    return fs.promises.writeFile.apply(
+      fs,
+      opts
+    );
   }
 }
 
-export const writeFiles = async (files = []) => {
-  return !files.length
-    ? []
-    : Promise.all(files.map(
-      ({filename, data, encoding ='utf8', ...opts}) => writeFile(
-          filename,
-          data,
-          { encoding, ...opts }
-        )
-      )).catch(e => [e]);
-};
-
+export const writeFiles = async (files = []) => (!files.length
+  ? []
+  : Promise.all(files.map(({ filename, data, encoding = 'utf8', ...opts }) => writeFile(
+    filename,
+    data,
+    { encoding, ...opts }
+  ))).catch(e => [e]));
 
 export const parentUri = (importMeta = import.meta) => (
   importMeta?.url
@@ -67,8 +64,12 @@ export const parentUri = (importMeta = import.meta) => (
  * @param parent absolute path of the parent
  * @returns
  */
-export const resolve = async (fileToImport, parent = parentUri()) => {
-  return import.meta?.resolve
-    ? await import.meta.resolve(fileToImport, parent)
-    : path.join(path.dirname(parent), fileToImport)
-};
+export const resolve = async (fileToImport, parent = parentUri()) => (import.meta?.resolve
+  ? await import.meta.resolve(
+    fileToImport,
+    parent
+  )
+  : path.join(
+    path.dirname(parent),
+    fileToImport
+  ));

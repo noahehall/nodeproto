@@ -1,6 +1,5 @@
-'use strict';
-// import path && fs for use in setup
 
+// import path && fs for use in setup
 
 /**
  * namespace: containers for virtual modules that dont correspond to physical files
@@ -33,7 +32,6 @@
  * + svelte plugin: https://esbuild.github.io/plugins/#svelte-plugin
  */
 
-
 // cache mapping { filepath: { input, output} }
 // for us to return the previous output if the input hasnt change
 // ALWAYS use the filepath as key
@@ -56,13 +54,12 @@ export const PLUGIN_NAME = {
     // use the body of the setup fn
     // code here runs ONCE
 
-
     // @see https://esbuild.github.io/plugins/#resolve-arguments
     build.onResolve(
       { filter: REGEX, namespace: poop },
       async args => {
-          // dynamic path resolution
-          // for any files in any asset dirs
+        // dynamic path resolution
+        // for any files in any asset dirs
       }
     );
 
@@ -70,12 +67,12 @@ export const PLUGIN_NAME = {
     build.onLoad(
       { filter: REGEX },
       // @see https://esbuild.github.io/plugins/#load-arguments
-      async args => {
-        // business logic
+      async args =>
+      // business logic
 
         // @see https://esbuild.github.io/plugins/#load-results
-        return { contents: FILE_CONTENTS, loader: 'json|js|etc'}
-      }
+        ({ contents: FILE_CONTENTS, loader: 'json|js|etc' })
+
     );
 
     // @see https://esbuild.github.io/plugins/#start-callbacks

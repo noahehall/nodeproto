@@ -18,10 +18,10 @@ const corejs = {
   proposals: true,
 };
 
+const isProd = process.env.NODE_ENV === 'production';
+
 module.exports = function (api) {
-  const isProd = api.cache(() => process.env.NODE_ENV === 'production');
-  // const isProd = process.env.NODE_ENV === 'production';
-  const useDebug = isProd;
+  api?.cache(() => nodeEnvIsProd);
 
   // @see https://babeljs.io/docs/en/assumptions
   const assumptions = {

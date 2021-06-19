@@ -1,4 +1,3 @@
-'use strict';
 
 /**
  * shit related to ssl certs
@@ -8,7 +7,6 @@
 import * as fsproto from '../fsproto/index.mjs'
 import path from 'path';
 import pem from 'pem';
-
 
 export const getDevCert = async ({
   selfSigned = true,
@@ -22,16 +20,16 @@ export const getDevCert = async ({
   ...opts
 } = {}) => {
   // where to save dev certs
-  if (!tmpDir) process.env.PEMJS_TMPDIR = path.dirname(fsproto.parentUri(import.meta)) + '/certs';
-
+  if (!tmpDir) process.env.PEMJS_TMPDIR = `${path.dirname(fsproto.parentUri(import.meta))}/certs`;
 
   // get cert and key with name DOMAIN.serviceKey & DOMAIN.certificate
-  let certificate, clientKey, csr, serviceKey, msgs = [];
+  let certificate; let clientKey; let csr; let serviceKey; const
+    msgs = [];
   const names = {
-    certificate: process.env.PEMJS_TMPDIR + '/' + `${domain}.certificate`,
-    clientKey: process.env.PEMJS_TMPDIR + '/' + `${domain}.clientKey`,
-    csr: process.env.PEMJS_TMPDIR + '/' + `${domain}.csr`,
-    serviceKey: process.env.PEMJS_TMPDIR + '/' + `${domain}.serviceKey`,
+    certificate: `${process.env.PEMJS_TMPDIR}/` + `${domain}.certificate`,
+    clientKey: `${process.env.PEMJS_TMPDIR}/` + `${domain}.clientKey`,
+    csr: `${process.env.PEMJS_TMPDIR}/` + `${domain}.csr`,
+    serviceKey: `${process.env.PEMJS_TMPDIR}/` + `${domain}.serviceKey`,
   };
 
   try {
@@ -49,7 +47,6 @@ export const getDevCert = async ({
 
     if (!certificate || !serviceKey || !csr || !clientKey) throw 'couldnt read dev keys';
 
-
     const certValid = await pem.promisified.checkCertificate(certificate);
 
     if (!certValid) throw 'need to create new dev cert';
@@ -62,7 +59,7 @@ export const getDevCert = async ({
     };
   } catch (e) { msgs.push(e.message); }
 
-   try {
+  try {
     ({
       certificate,
       clientKey,
@@ -75,12 +72,13 @@ export const getDevCert = async ({
     }));
 
     if (certificate instanceof Error) {
-      console.info('\n\n could not create certs', certificate);
+      console.info(
+        '\n\n could not create certs',
+        certificate
+      );
 
       return {};
-    }
-
-    else if (!certificate || !serviceKey || !csr || !clientKey) throw '@noahedwardhall needs to fix @nodeproto/lib/envproto';
+    } else if (!certificate || !serviceKey || !csr || !clientKey) throw '@noahedwardhall needs to fix @nodeproto/lib/envproto';
 
     return fsproto.writeFiles([
       { filename: names.certificate, data: certificate },
@@ -89,6 +87,10 @@ export const getDevCert = async ({
       { filename: names.serviceKey, data: serviceKey },
     ]).then(() => ({ certificate, clientKey, csr, serviceKey }));
   } catch (e) {
-    console.error('\n\n could not retrieve, create, or save new|old dev certs', msgs.concat(e.message), e)
+    console.error(
+      '\n\n could not retrieve, create, or save new|old dev certs',
+      msgs.concat(e.message),
+      e
+    )
   }
 }
