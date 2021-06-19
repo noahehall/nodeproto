@@ -27,7 +27,6 @@
     "linux"
   ],
   "scripts": {
-    "hint": "hint http://localhost:3000",
     "eslint": "eslint \"{app,lib}/**/*.+(m|c)js\"",
     "eslint:fix": "npm run eslint -- --fix",
     "test": "env-cmd multi-tape --conditions=test \"{app,lib}/**/*.test.mjs\" | tap-spec",

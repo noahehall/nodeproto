@@ -147,6 +147,7 @@
           Parsing error: Cannot find module './lib/babel.config.cjs'
           Require stack:
       ```
+  - need to move eslint and babelrc shit to library/utils and extend from them inside other pkgs
 
 ## DONE
   - defaults from pkg.json.config not being used

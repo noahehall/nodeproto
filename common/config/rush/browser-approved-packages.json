@@ -111,6 +111,10 @@
       "allowedCategories": [ "production" ]
     },
     {
+      "name": "@opentelemetry/api",
+      "allowedCategories": [ "production" ]
+    },
+    {
       "name": "@reach/router",
       "allowedCategories": [ "production" ]
     },

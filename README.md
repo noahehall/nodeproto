@@ -39,6 +39,8 @@
 
       - linting & tests
         - `rushx test` inside an *{apps, libraries}/PKG* will run the test script for htat particular pkg
+        - `rushx hint` requires chromium, setup for *apps/client*. saves report to *apps/client/hint-report/*
+        - `rushx lighthouse` requires chromium. setupfor *apps/client*. saves report to *apps/client/doc/lighthouse*
 
 ### TODO scripts
         - `npm run lighthouse` run and save lighthouse report to `packages/client/doc/lighthouse/localhost.html`

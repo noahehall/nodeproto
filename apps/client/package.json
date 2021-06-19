@@ -24,9 +24,10 @@
     "linux"
   ],
   "scripts": {
+    "hint": "hint http://localhost:8080",
     "eslint": "eslint \"{app,bff,lib}/**/*.+(m|c)js\"",
     "eslint:fix": "npm run eslint -- --fix",
-    "lighthouse": "lighthouse http://localhost:7777 --output-path ./doc/lighthouse/localhost.html",
+    "lighthouse": "lighthouse http://localhost:8080 --output-path ./doc/lighthouse/localhost.html",
     "prebuild": "rm -rf dist/*",
     "build": "",
     "start:reactdevtools": "react-devtools",
@@ -101,6 +102,8 @@
     "workbox-webpack-plugin": "6.1.5",
     "semver": "7.3.5",
     "webpack-dev-middleware-2": "5.0.2",
-    "webpack-hot-middleware-2": "2.25.2"
+    "webpack-hot-middleware-2": "2.25.2",
+    "hint": "6.1.4",
+    "@opentelemetry/api": "^1.0.0-rc.0"
   }
 }
