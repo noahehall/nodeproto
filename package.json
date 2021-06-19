@@ -47,28 +47,14 @@
   "scripts": {
     "list": "rush list",
     "update": "rush update --recheck",
-    "update:f": "rushx update --full",
-    "update:fp": "rushx update --purge",
-    "lerna:exec": "lerna exec --parallel",
-    "rem": "npm run lerna:exec npm uninstall",
-    "about": "npm list && npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh && lerna info",
-    "add:help": "lerna add --help",
-    "add": "lerna add",
-    "bootstrap:help": "lerna bootstrap --help",
-    "bootstrap": "lerna bootstrap --hoist --force-local",
-    "clean: help": "lerna clean --help",
-    "clean": "lerna clean",
-    "lighthouse": "npm run lerna:run lighthouse",
-    "lerna:about:help": "echo 'see available scripts & pkgs installed in each microservice'",
-    "lerna:about": "lerna run about",
-    "lerna:help": "lerna --help",
-    "lerna:run:help": "lerna run --help",
-    "lerna:run": "lerna run --stream",
-    "lerna": "lerna",
-    "start:help": "npm run lerna:run:help",
-    "start": "lerna run start --parallel",
-    "test:help": "npm run lerna:run:help",
-    "test": "lerna run test"
+    "update:f": "rush update --full",
+    "update:fp": "npm run update:f --purge",
+    "select": "rush-select",
+    "about": "npm list && npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh && lerna info"
+
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "dependencies": {
+    "@telia/rush-select": "^0.12.0"
+  }
 }

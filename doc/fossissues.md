@@ -22,6 +22,7 @@
   - [cant install siteimprove/alfa-react](https://github.com/Siteimprove/alfa/issues/828)
   - [webpack-dev-middleware enable use of other bffs](https://github.com/webpack/webpack-dev-middleware/issues/945)
   - [webpack-hot-middleware enable use of other bffs](https://github.com/webpack-contrib/webpack-hot-middleware/issues/408)
+  - [enable this in our rush-select fork](https://github.com/TeliaSweden/rush-select/issues/5)
 
 
 
