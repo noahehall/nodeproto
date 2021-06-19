@@ -1,6 +1,7 @@
-throw 'TODO'
+import * as pack from './webpack.setup.mjs';
+import webpackBaseConfig from './webpack.base.config.mjs';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
-/**
- * this should run the compiler and output a file
- * as we dont use webpack-cli and have to do it manually
- */
+export default webpackBaseConfig({
+
+})

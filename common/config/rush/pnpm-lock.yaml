@@ -15,12 +15,14 @@ importers:
       '@babel/plugin-transform-react-inline-elements': 7.12.13
       '@babel/plugin-transform-runtime': 7.14.3
       '@babel/preset-env': 7.14.4
+      '@babel/preset-modules': 0.1.4
       '@babel/preset-react': 7.13.13
       '@babel/runtime-corejs3': 7.14.6
       '@babel/traverse': 7.14.5
       '@messageformat/react': 1.0.0
       '@nodeproto/utils': workspace:*
       '@opentelemetry/api': ^1.0.0-rc.0
+      '@opentelemetry/tracing': 0.21.0
       '@reach/router': https://github.com/noahehall/router
       animate.css: 4.1.1
       babel-loader: 8.2.2
@@ -78,6 +80,7 @@ importers:
       '@babel/runtime-corejs3': 7.14.6
       '@messageformat/react': 1.0.0_react@17.0.2
       '@nodeproto/utils': link:../../libraries/utils
+      '@opentelemetry/tracing': 0.21.0_@opentelemetry+api@1.0.0
       '@reach/router': github.com/noahehall/router/7f39668ed7301a137885136eef9a403afcefe700_react-dom@17.0.2+react@17.0.2
       animate.css: 4.1.1
       clsx: 1.1.1
@@ -108,6 +111,7 @@ importers:
       '@babel/plugin-transform-react-inline-elements': 7.12.13_@babel+core@7.14.3
       '@babel/plugin-transform-runtime': 7.14.3_@babel+core@7.14.3
       '@babel/preset-env': 7.14.4_@babel+core@7.14.3
+      '@babel/preset-modules': 0.1.4_@babel+core@7.14.3
       '@babel/preset-react': 7.13.13_@babel+core@7.14.3
       '@babel/traverse': 7.14.5
       '@opentelemetry/api': 1.0.0
@@ -3014,6 +3018,17 @@ packages:
       semver: 7.3.5
     dev: true
 
+  /@opentelemetry/core/0.21.0_@opentelemetry+api@1.0.0:
+    resolution: {integrity: sha512-sZZQThBuqhCdBPgzPq4y9L4dhnpXXCCEqNsR6IUmMc/kQ8Bcw3lmI5fymLlliSt+lnTc26xJPVKZlwoQfwhThg==}
+    engines: {node: '>=8.5.0'}
+    peerDependencies:
+      '@opentelemetry/api': ^0.21.0
+    dependencies:
+      '@opentelemetry/api': 1.0.0
+      '@opentelemetry/semantic-conventions': 0.21.0
+      semver: 7.3.5
+    dev: false
+
   /@opentelemetry/resources/0.19.0_@opentelemetry+api@0.18.1:
     resolution: {integrity: sha512-wrgclhxBH4ZO86u6veSXRtH3hv9q2kaQ1/cfstWun2y6YqjajpqAdyEHrlFWYyjr3t1ze0R68GjYQxPVWYURzg==}
     engines: {node: '>=8.0.0'}
@@ -3024,10 +3039,26 @@ packages:
       '@opentelemetry/core': 0.19.0_@opentelemetry+api@0.18.1
     dev: true
 
+  /@opentelemetry/resources/0.21.0_@opentelemetry+api@1.0.0:
+    resolution: {integrity: sha512-xQUL2/2npP/isH8sbOSdynIRWmlM6p02L9Ex8x/BhUuSkGrMoxO2ezLPPYnfYam1py6ubaz8m1C54O2IRCmgQQ==}
+    engines: {node: '>=8.0.0'}
+    peerDependencies:
+      '@opentelemetry/api': ^0.21.0
+    dependencies:
+      '@opentelemetry/api': 1.0.0
+      '@opentelemetry/core': 0.21.0_@opentelemetry+api@1.0.0
+      '@opentelemetry/semantic-conventions': 0.21.0
+    dev: false
+
   /@opentelemetry/semantic-conventions/0.19.0:
     resolution: {integrity: sha512-MMXhYEvNakvXC+oa5muX8KS2z+rsXLXwabjuzXcbJPH+rvo5XFNQ1c7svxb0B1xPpm4KT7fnH2DVfYqQzsCteQ==}
     engines: {node: '>=8.0.0'}
     dev: true
+
+  /@opentelemetry/semantic-conventions/0.21.0:
+    resolution: {integrity: sha512-qQtZJ8Q+bO/gemBELsZbz5s//tNnyc+mQD/0RHc77XhI6ZBb+tprU6KN/7l0fl5z29smmai0hcJ9UNILC/7nIw==}
+    engines: {node: '>=8.0.0'}
+    dev: false
 
   /@opentelemetry/tracing/0.19.0_@opentelemetry+api@0.18.1:
     resolution: {integrity: sha512-RUmPZLQi4+nlHwTFpHqU45TMW+osIraDtf0jcFKLacKltGIft65tVxIEVn1uF9N9eG7NZzjXLo3jsvCzpavJ8Q==}
@@ -3041,6 +3072,19 @@ packages:
       '@opentelemetry/semantic-conventions': 0.19.0
       lodash.merge: 4.6.2
     dev: true
+
+  /@opentelemetry/tracing/0.21.0_@opentelemetry+api@1.0.0:
+    resolution: {integrity: sha512-6+2pfFpu7Yo2DwmBK9sHDUSIL7UshcEMwDF6+LghGK68ILRaEMqqBPgKarjhFH9ERgJB9GOkJ2snK96qIzMZNA==}
+    engines: {node: '>=8.0.0'}
+    peerDependencies:
+      '@opentelemetry/api': ^0.21.0
+    dependencies:
+      '@opentelemetry/api': 1.0.0
+      '@opentelemetry/core': 0.21.0_@opentelemetry+api@1.0.0
+      '@opentelemetry/resources': 0.21.0_@opentelemetry+api@1.0.0
+      '@opentelemetry/semantic-conventions': 0.21.0
+      lodash.merge: 4.6.2
+    dev: false
 
   /@popperjs/core/2.9.2:
     resolution: {integrity: sha512-VZMYa7+fXHdwIq1TDhSXoVmSPEGM/aa+6Aiq3nVVJ9bXr24zScr+NlKFKC3iPljA7ho/GAZr+d2jOf5GIRC30Q==}
@@ -8787,7 +8831,6 @@ packages:
 
   /lodash.merge/4.6.2:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
-    dev: true
 
   /lodash.omit/4.5.0:
     resolution: {integrity: sha1-brGa5aHuHdnfC5aeZs4Lf6MLXmA=}
@@ -8874,7 +8917,6 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       yallist: 4.0.0
-    dev: true
 
   /magic-string/0.25.7:
     resolution: {integrity: sha512-4CrMT5DOHTDk4HYDlzmwu4FVCcIYI8gauveasrdCu2IKIFOJ3f0v/8MDGJCDL9oD2ppz/Av1b0Nj345H9M+XIA==}
@@ -11001,7 +11043,6 @@ packages:
     hasBin: true
     dependencies:
       lru-cache: 6.0.0
-    dev: true
 
   /serialize-error/7.0.1:
     resolution: {integrity: sha512-8I8TjW5KMOKsZQTvoxjuSIa7foAwPWGOts+6o7sgjz41/qMD9VQHEDxi6PBvK2l0MXUmqZyNpUK+T2tQaaElvw==}
@@ -12887,7 +12928,6 @@ packages:
 
   /yallist/4.0.0:
     resolution: {integrity: sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==}
-    dev: true
 
   /yaml/1.10.2:
     resolution: {integrity: sha512-r3vXyErRCYJ7wg28yvBY5VSoAF8ZvlcW9/BwUzEtUsjvX/DKs24dIkuwjtuprwJJHsbyUbLApepYTR1BN4uHrg==}

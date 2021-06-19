@@ -29,7 +29,7 @@
     "eslint:fix": "npm run eslint -- --fix",
     "lighthouse": "lighthouse http://localhost:8080 --output-path ./doc/lighthouse/localhost.html",
     "prebuild": "rm -rf dist/*",
-    "build": "",
+    "build": "env-cmd node ./lib/webpack.build.mjs",
     "start:reactdevtools": "react-devtools",
     "start:dev": "./node_modules/.bin/env-cmd node ./bff/server.mjs",
     "start": "concurrently npm:start:dev npm:start:reactdevtools",
@@ -59,7 +59,8 @@
     "reakit": "1.3.8",
     "styled-components": "5.3.0",
     "react-is": "17.0.2",
-    "@babel/runtime-corejs3": "7.14.6"
+    "@babel/runtime-corejs3": "7.14.6",
+    "@opentelemetry/tracing": "0.21.0"
   },
   "devDependencies": {
     "@babel/core": "7.14.3",
@@ -104,6 +105,7 @@
     "webpack-dev-middleware-2": "5.0.2",
     "webpack-hot-middleware-2": "2.25.2",
     "hint": "6.1.4",
-    "@opentelemetry/api": "^1.0.0-rc.0"
+    "@opentelemetry/api": "^1.0.0-rc.0",
+    "@babel/preset-modules": "0.1.4"
   }
 }

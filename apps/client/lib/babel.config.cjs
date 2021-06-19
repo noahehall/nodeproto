@@ -21,7 +21,7 @@ const corejs = {
 const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = function (api) {
-  api?.cache(() => nodeEnvIsProd);
+  api?.cache(() => isProd);
 
   // @see https://babeljs.io/docs/en/assumptions
   const assumptions = {
@@ -48,6 +48,14 @@ module.exports = function (api) {
   };
 
   const presets = [
+    // [ // todo: @see https://github.com/babel/preset-modules
+    //   '@babel/preset-modules',
+    //   {
+    //     loose: true
+    //   },
+
+    // ],
+
     [
       // @see https://github.com/zloirock/core-js#babelpreset-env
       '@babel/preset-env',
@@ -57,6 +65,7 @@ module.exports = function (api) {
         },
         // import corejs polyfils as used by each file
         useBuiltIns: 'usage',
+        bugfixes: true,
         // enable
         corejs,
         debug: !isProd,
@@ -106,6 +115,7 @@ module.exports = function (api) {
     // '@babel/plugin-proposal-private-methods',
     // '@babel/plugin-proposal-throw-expressions',
     // '@babel/plugin-syntax-dynamic-import',
+    '@babel/plugin-proposal-export-default-from',
     '@babel/plugin-transform-react-constant-elements',
     isProd && '@babel/plugin-transform-react-inline-elements',
     [

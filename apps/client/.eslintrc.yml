@@ -9,8 +9,8 @@ parserOptions: # @see https://www.npmjs.com/package/@babel/eslint-parser
   sourceType: module
   ecmaFeatures:
     jsx: true
-  babelOptions:
-    configFile: './lib/babel.config.cjs'
+  # babelOptions:
+    # configFile: 'lib/babel.config.cjs' # shits broken? throws parser error cant find
 extends:
   - eslint:all
   - standard
@@ -21,6 +21,7 @@ extends:
   - plugin:react-hooks/recommended
 plugins:
   - '@babel'
+  - exportDefaultFrom
 settings:
   react:
     createClass: createReactClass
@@ -33,6 +34,7 @@ rules:
   '@babel/no-invalid-this': 'error'
   '@babel/no-unused-expressions': 'error'
   '@babel/object-curly-spacing': ['error', 'always']
+  function-call-argument-newline: ['error', 'consistent']
   jsx-quotes: ['error', 'prefer-single']
   no-multiple-empty-lines: 'error'
   no-throw-literal: 'error'
@@ -41,15 +43,15 @@ rules:
   react-hooks/exhaustive-deps: 'warn'
   react-hooks/rules-of-hooks: 'error'
   react/display-name: 'error'
-  react/jsx-indent: ['error', 2]
+  react/forbid-component-props: ['error', {forbid: ['reactsucks', 'angularisgreat']}]
   react/jsx-indent-props: ['error', 2]
+  react/jsx-indent: ['error', 2]
   react/jsx-max-depth: ['error', {max: 5}]
   react/jsx-max-props-per-line: ['error', {maximum: 3, when: multiline}]
   react/jsx-no-literals: 'warn'
   react/jsx-one-expression-per-line: ['error', {allow: single-child}]
   sort-imports: 'error' # I hate serching a list for shit
   sort-keys: 'error' # i hate searchig a list for shit
-  react/forbid-component-props: ['error', {forbid: ['reactsucks', 'angularisgreat']}]
   max-lines-per-function:
     - error
     - skipBlankLines: true

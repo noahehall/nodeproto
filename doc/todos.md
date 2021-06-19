@@ -148,6 +148,8 @@
           Require stack:
       ```
   - need to move eslint and babelrc shit to library/utils and extend from them inside other pkgs
+  - [finish setting up opentelemetry](https://github.com/open-telemetry/opentelemetry-js-api)
+  - need to setup multi compiler for client ot support module/nomodule, check babel.config.cjs todo
 
 ## DONE
   - defaults from pkg.json.config not being used

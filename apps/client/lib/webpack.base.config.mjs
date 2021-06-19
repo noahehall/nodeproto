@@ -1,41 +1,30 @@
-// import { InjectManifest } from 'workbox-webpack-plugin'
-// import externals from 'webpack-node-externals'
-// import webpack from 'webpack'
-import path from 'path'
-import { builtinModules } from 'module';
-import babelConfigDefault from './babel.config.cjs'
-
-const msg = 'error in pack: '
-const throwMsg = msg => { throw msg }
+import * as pack from './webpack.setup.mjs';
 
 /**
  *
- * @param options everything is configursble
+ * @param options everything is configurable
  * @returns webpack configuration object
  */
-export default function pack ({
+export default function mikeTysonPunchOut ({
   // defaults
-  babelConfig = babelConfigDefault(),
-  context = process.cwd(),
+  // externalsConfig = { modulesFromFile: true },
+  babelConfig = pack.babelConfigDefault(),
+  context = pack.context,
+  devtool = pack.ifProd ? 'hidden-source-map' : 'eval-cheap-module-source-map',
   entryPush = [],
   entryUnshift = [],
-  env = throwMsg('env is required in webpack.base.config.mjs, e.g. envproto.synEnvAndConfig(pkgJson)'),
-  extensions = [
-    '.mjs',
-    '.js',
-    '.jsx',
-    '.json'
-  ],
+  env = pack.env,
+  extensions = [ '.mjs', '.js', '.jsx', '.json'],
   externals = [],
-  externalsConfig = { modulesFromFile: true },
-  mainFields = [
-    'module',
-    'browser',
-    'main'
-  ],
+  ifDev = pack.ifDev,
+  ifProd = pack.ifProd,
+  mainFields = [ 'module', 'browser', 'main' ],
+  mode = pack.mode,
   optimization = {},
   output = {},
   outputDefault = { filename: '[name].js', chunkFilename: '[name].chunk.js' },
+  pathDist = pack.pathDist,
+  pathSrc = pack.pathSrc,
   plugins = [],
   publicPath = '/',
   target = 'web',
@@ -43,23 +32,7 @@ export default function pack ({
   // dependent1
   deps = Object.keys(env.dependencies || {}),
   entry = [env.config.REACT_APP_FILE],
-  mode = env.config.NODE_ENV,
-  pathDist = path.resolve(
-    context,
-    env.directories.dist
-  ),
-  pathSrc = path.resolve(
-    context,
-    env.directories.app
-  ),
   peerDeps = Object.keys(env.peerDependencies || {}),
-
-  // dependent2
-  ifDev = mode === 'development',
-  ifProd = mode === 'production',
-
-  // dependent3
-  devtool = ifProd ? 'hidden-source-map' : 'eval-cheap-module-source-map',
 
   // loaders
   // should always be last to use defaults and dependents
@@ -158,7 +131,7 @@ export default function pack ({
       ...entry,
       ...entryPush
     ].filter(e => e),
-    externals: builtinModules.concat(externals),
+    externals: pack.builtinModules.concat(externals),
     mode,
     optimization,
     plugins: [].concat(plugins).filter(x => x),

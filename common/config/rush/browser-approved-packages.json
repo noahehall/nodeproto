@@ -75,6 +75,10 @@
       "allowedCategories": [ "production" ]
     },
     {
+      "name": "@babel/preset-modules",
+      "allowedCategories": [ "production" ]
+    },
+    {
       "name": "@babel/preset-react",
       "allowedCategories": [ "production" ]
     },
@@ -112,6 +116,10 @@
     },
     {
       "name": "@opentelemetry/api",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "@opentelemetry/tracing",
       "allowedCategories": [ "production" ]
     },
     {
