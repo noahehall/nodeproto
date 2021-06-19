@@ -1,4 +1,3 @@
-'use strict'
 
 /* eslint-disable comma-dangle */
 
@@ -21,7 +20,12 @@ export function ScreenRow ({
   const grid = useGridState()
 
   return (
-    <StyledRow {...grid} className={clsx('row', className)} >
+    <StyledRow
+      {...grid} className={clsx(
+        'row',
+        className
+      )}
+    >
       {props.children}
     </StyledRow>
   )

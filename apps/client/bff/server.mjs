@@ -7,15 +7,26 @@ import webpackHotMiddleware from 'webpack-hot-middleware-2';
 const compiler = webpack(devConfig);
 const app = new Koa();
 
-app.use(middleware(compiler, {
-  publicPath: devConfig.publicPath,
-  writeToDisk: false,
-  useBff: 'useKoa2',
-}));
+app.use(middleware(
+  compiler,
+  {
+    publicPath: devConfig.publicPath,
+    writeToDisk: false,
+    useBff: 'useKoa2',
+  }
+));
 
-app.use(webpackHotMiddleware(compiler, { useBff: 'useKoa2'}))
+app.use(webpackHotMiddleware(
+  compiler,
+  { useBff: 'useKoa2' }
+))
 
-app.listen(process.env.CLIENT_PORT, () => {
-  console.log('@nodeproto/client running on: ', process.env.CLIENT_PORT)
-});
-
+app.listen(
+  process.env.CLIENT_PORT,
+  () => {
+    console.log(
+      '@nodeproto/client running on: ',
+      process.env.CLIENT_PORT
+    )
+  }
+);

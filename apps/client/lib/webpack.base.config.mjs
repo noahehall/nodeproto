@@ -1,4 +1,3 @@
-'use strict'
 
 /* eslint-disable comma-dangle */
 
@@ -6,6 +5,8 @@
 // import externals from 'webpack-node-externals'
 // import webpack from 'webpack'
 import path from 'path'
+import { builtinModules } from 'module';
+import babelConfig from './babel.config.cjs'
 
 const msg = 'error in pack: '
 const throwMsg = msg => { throw msg }
@@ -17,14 +18,24 @@ const throwMsg = msg => { throw msg }
  */
 export default function pack ({
   // defaults
-  babelConfig = {},
+  babelConfig = babelConfig(),
   context = process.cwd(),
   entryPush = [],
   entryUnshift = [],
   env = throwMsg('env is required in webpack.base.config.mjs, e.g. envproto.synEnvAndConfig(pkgJson)'),
-  extensions = ['.mjs', '.js', '.jsx', '.json'],
+  extensions = [
+    '.mjs',
+    '.js',
+    '.jsx',
+    '.json'
+  ],
+  externals = [],
   externalsConfig = { modulesFromFile: true },
-  mainFields = ['module', 'browser', 'main'],
+  mainFields = [
+    'module',
+    'browser',
+    'main'
+  ],
   optimization = {},
   output = {},
   outputDefault = { filename: '[name].js', chunkFilename: '[name].chunk.js' },
@@ -36,8 +47,14 @@ export default function pack ({
   deps = Object.keys(env.dependencies || {}),
   entry = [env.config.REACT_APP_FILE],
   mode = env.config.NODE_ENV,
-  pathDist = path.resolve(context, env.directories.dist),
-  pathSrc = path.resolve(context, env.directories.app),
+  pathDist = path.resolve(
+    context,
+    env.directories.dist
+  ),
+  pathSrc = path.resolve(
+    context,
+    env.directories.app
+  ),
   peerDeps = Object.keys(env.peerDependencies || {}),
 
   // dependent2
@@ -45,18 +62,18 @@ export default function pack ({
   ifProd = mode === 'production',
 
   // dependent3
-  devtool = ifProd ? 'cheap-source-map' : 'eval-cheap-module-source-map',
-
-  // other plugins
-  // defineEnv = new webpack.DefinePlugin(env),
+  devtool = ifProd ? 'hidden-source-map' : 'eval-cheap-module-source-map',
 
   // loaders
   // should always be last to use defaults and dependents
   stringReplaceLoader = {
     // test: /\.(html|m?js)$/,
-    loader: 'string-replace-loader',
+    loader: 'string-replace-loader', // we use this instead of dotenv-webpack
     options: {
-      multiple: Object.entries(env.processEnv).map(([search, replace]) => ({ search, replace }))
+      multiple: Object.entries(env.processEnv).map(([
+        search,
+        replace
+      ]) => ({ search, replace }))
     }
 
   },
@@ -74,13 +91,19 @@ export default function pack ({
   cssInternalLoader = {
     test: /\.css$/,
     exclude: /node_modules/,
-    use: ['style-loader', 'css-loader'],
+    use: [
+      'style-loader',
+      'css-loader'
+    ],
   },
 
   cssExternalLoader = {
     test: /\.css$/,
     include: /node_modules/,
-    use: ['style-loader', 'css-loader'],
+    use: [
+      'style-loader',
+      'css-loader'
+    ],
   },
 
   fontLoader = {
@@ -90,25 +113,29 @@ export default function pack ({
 
   svgLoader = {
     test: /\.svg$/,
-    use: [{
-      loader: 'svg-url-loader',
-      options: {
+    use: [
+      {
+        loader: 'svg-url-loader',
+        options: {
         // Inline files smaller than 10 kB
-        limit: 10 * 1024,
-        noquotes: true,
-      },
-    }],
+          limit: 10 * 1024,
+          noquotes: true,
+        },
+      }
+    ],
   },
 
   imageLoader = {
     test: /\.(jpg|png|gif)$/,
-    use: [{
-      loader: 'url-loader',
-      options: {
+    use: [
+      {
+        loader: 'url-loader',
+        options: {
         // Inline files smaller than 10 kB
-        limit: 10 * 1024,
-      },
-    }],
+          limit: 10 * 1024,
+        },
+      }
+    ],
   },
 
   videoLoader = {
@@ -129,32 +156,36 @@ export default function pack ({
   return {
     context,
     devtool,
-    entry: [...entryUnshift, ...entry, ...entryPush].filter(e => e),
-    externals: [], // [ ...peerDeps, ...deps ].concat(target === 'web' ? [] : externals(externalsConfig)),
+    entry: [
+      ...entryUnshift,
+      ...entry,
+      ...entryPush
+    ].filter(e => e),
+    externals: builtinModules.concat(externals),
     mode,
     optimization,
     plugins: [].concat(plugins).filter(x => x),
     target,
 
     resolve: { extensions, mainFields },
-    output: Object.assign({},
-      {
-        path: pathDist,
-        publicPath,
-      },
-      outputDefault,
-      output,
-    ),
+    output: {
+      path: pathDist,
+      publicPath,
+      ...outputDefault,
+      ...output,
+    },
 
-    module: { rules: [
-      jsLoader,
-      cssInternalLoader,
-      cssExternalLoader,
-      fontLoader,
-      svgLoader,
-      imageLoader,
-      videoLoader,
-    ].filter(x => x)},
+    module: {
+      rules: [
+        jsLoader,
+        cssInternalLoader,
+        cssExternalLoader,
+        fontLoader,
+        svgLoader,
+        imageLoader,
+        videoLoader,
+      ].filter(x => x)
+    },
 
     ...overrides,
   }

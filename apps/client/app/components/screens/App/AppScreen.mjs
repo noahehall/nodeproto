@@ -1,4 +1,3 @@
-'use strict'
 
 /**
  *
@@ -41,25 +40,27 @@ const AppWrapper = styled.main`
   padding: 10px;
 `
 
-export const App = () => (
-  <OuterContainer id='outer-container'>
+export function App () {
+  return (<OuterContainer id='outer-container'>
     <Helmet
-      titleTemplate='%s - NIRV'
       defaultTitle='NIRV'
+      titleTemplate='%s - NIRV'
     >
-      <meta name='description' content='IT TAKES NIRV' />
+      <meta content='IT TAKES NIRV' name='description' />
     </Helmet>
+
     <InnerContainer id='inner-container'>
       <AppWrapper id='app-wrapper'>
         <Router>
-          <LandingScreen path='/' isFor='ppop' />
+          <LandingScreen isFor='ppop' path='/' />
+
           <NotFoundScreen default />
         </Router>
       </AppWrapper>
     </InnerContainer>
+
     <GlobalStyle />
-  </OuterContainer>
-)
+  </OuterContainer>)
+}
 
 export default App
-

@@ -1,4 +1,3 @@
-'use strict'
 
 import React from 'react'
 import styled from 'styled-components'
@@ -20,7 +19,12 @@ export function ScreenColumn ({
   const grid = useGridState()
 
   return (
-    <StyledCell {...grid} className={clsx('column', className)} >
+    <StyledCell
+      {...grid} className={clsx(
+        'column',
+        className
+      )}
+    >
       {props.children}
     </StyledCell>
   )

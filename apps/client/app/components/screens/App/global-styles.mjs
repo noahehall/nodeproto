@@ -1,4 +1,4 @@
-'use strict';
+
 /*
   good links
   https://www.rapidtables.com/web/css/css-color.html

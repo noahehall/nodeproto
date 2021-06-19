@@ -4,7 +4,7 @@ import fs from 'fs';
 import manifestPlugin from 'esbuild-plugin-manifest';
 import path from 'path';
 import pkgJson from '../package.json';
-
+import { builtinModules } from 'module';
 
 const appInputFilename = 'index';
 const appExtension = '.mjs';
@@ -70,7 +70,7 @@ const esbuildConfig = {
   define: envproto.syncEnv(pkgJson).processEnv,
   entryNames: isDev ? '[name]-[hash]' : '[name]',
   entryPoints: [appId],
-  // external: Object.keys(process.binding('natives')), // @see https://stackoverflow.com/questions/35725976/how-to-obtain-a-list-of-all-available-node-js-modules
+  external: builtinModules,
   metafile: true,
   minify: false,
   outdir,

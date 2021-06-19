@@ -9,9 +9,12 @@
 
 ## getting started
   1. `rush update`
-  2. `rush start`
+  2. `rushx select`
   3. open `localhost:7777`
 
+## dependencies
+  - until we get docker setup make sure you have **haproxy 2.4** installed
+    - see *apps/gateway* for instructions
 ## common tasks
   - if something doesnt work [please check our todo list](./doc/todos.md)
     - likely we've listened a work around, if not, create a github issue
@@ -23,10 +26,17 @@
         - we dont drop priviledges in *DEV*, if you want, do the below
           - [to *START* as root, but dont *RUN* as root when using **packages/gateway**: click here to read why haproxy recommends this](https://cbonte.github.io/haproxy-dconv/2.4/management.html#13)
 
-      - starting apps
+      - starting apps (in root dir)
+        - `rushx select` select a script to run in each project
+          - use this before any of the others and thank the guys at `rush-select`
         - `rush start` run the start script in each package for development
-          - currently this doenst show the logs, im working on it, how tf did rush fk this up anyway?
-        - `rushx start` inside an *{apps,libraries}/PKG* will run the start script for that particular pkg
+          - currently this doenst show the logs, use `npm run select` instead
+
+
+      - running scripts in specific packages
+        - typically you need to `cd PKGDIR/somepkg` before executing `rushx SCRIPTNAME`
+        - `rushx start` inside an *apps/PKG* will run the start script for that particular pkg
+
       - linting & tests
         - `rushx test` inside an *{apps, libraries}/PKG* will run the test script for htat particular pkg
 
@@ -39,6 +49,10 @@
     - add a pkg - you should be within a pkg and **not the root** dir
     - e.g. `cd apps/client && rush add -p webpack-bundle-analyzer packages/client --dev --exact -m`
       - will install webpack-bundle-analyzer into apps/client
+  - to add a package from github
+    - couldnt figure out how to do it via `rush add`
+    - however this works if you edit the `package.json` directly
+      - `"@reach/router": "https://github.com/noahehall/router",`
 
 
 
@@ -49,6 +63,10 @@
     - to apply default values specified in `package.json.config` set the var name in the `.env` file to nothing, e.g. `API_HTTP_PORT=` and `@nodeproto/envproto.syncEnv` will update `process.env.API_HTTP_PORT` to the value specified in the `package.json.config`
       - if the the `.env` file has a value for the variable, it WILL NOT be updated!
         - this is so values set via CLI or `.env` take precedence over `package.json.config` values
+
+  - **NODE_OPTIONS**
+    - checkout *root/package.json.config*
+    - all of your *PKGDIR/pkg/.env* files should include this, but be sure to use **single** and **not double** quotes
 
 ### enabling SSL
   - self-signed certificates auto created on dev
@@ -61,6 +79,10 @@
   - [npmrc](https://docs.npmjs.com/cli/v7/configuring-npm/npmrc)
   - [nvmrc](https://github.com/nvm-sh/nvm)
   - [hintrc](https://github.com/webhintio/hint/blob/main/packages/hint/docs/user-guide/configuring-webhint/summary.md)
+  - [eslintrc](https://eslint.org/docs/user-guide)
+
+### import config files
+  - [babelrc.config.mjs for client apps](/apps/client/lib/babel.config.mjs)
 
 
 

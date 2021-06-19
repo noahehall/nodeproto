@@ -1,5 +1,3 @@
-'use strict';
-
 
 import React from 'react';
 import JsonPretty from 'react-json-pretty';
@@ -7,11 +5,12 @@ import JSONPrettyMonTheme from 'react-json-pretty/dist/monikai';
 import { DisplayError } from './DisplayError.mjs';
 
 export default class ErrorBoundary extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {}
   }
-  static getDerivedStateFromError(error) {
+
+  static getDerivedStateFromError (error) {
     // Update state so the next render will show the fallback UI.
     return { error }
   }
@@ -20,11 +19,14 @@ export default class ErrorBoundary extends React.Component {
     console.error(errorInfo)
   }
 
-  render() {
+  render () {
     return (
       this.state.error
         ? <DisplayError error={this.state.error} />
-        : React.cloneElement(this.props.children, this.props)
+        : React.cloneElement(
+          this.props.children,
+          this.props
+        )
     )
   }
 }

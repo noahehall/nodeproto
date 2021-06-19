@@ -1,7 +1,5 @@
-'use strict'
 
 /* eslint-disable comma-dangle */
-
 
 import App from './components/screens/App/AppScreen.mjs'
 import ErrorBoundary from './components/composite/Errors/ErrorBoundary.mjs'
@@ -22,12 +20,19 @@ const render = (Comp) => {
 console.log('rendering app')
 render(App)
 
-if (typeof window !== 'undefined')
-  window.addEventListener('error', () => {
+if (typeof window !== 'undefined') {
+  window.addEventListener(
+    'error',
+    () => {
     // if errors are bubbling up to window
     // you're doing something wrong
-    console.error('\n\n unahndled exception occured', e)
-  })
+      console.error(
+        '\n\n unahndled exception occured',
+        e
+      )
+    }
+  )
+}
 // should be disabled here as each screen (perhaps even deeper)
 // should handle HMR for their component hierarchies
 if (module?.hot?.accept) module.hot.accept()
