@@ -8,57 +8,44 @@
 
 
 ## getting started
-  1. `npm install`
-  2. `npm run bootstrap`
-  3. `npm start`
-    - ensure user:group haproxy:haproxy exists on your system
-    - if not, run `packages/gateway/usr/bin/addhaproxyusergroup.sh`
-  4. open `localhost:7777`
+  1. `rush update`
+  2. `rush start`
+  3. open `localhost:7777`
 
 ## common tasks
   - if something doesnt work [please check our todo list](./doc/todos.md)
     - likely we've listened a work around, if not, create a github issue
 ### stable scripts
-  - in general
-    - every cmd comes with a `npm run DO:THIS:HELP` to see the help
 
   - the scripts
     - dev scripts: open browser to **localhost:7777**
       - **NOTE** all START scripts use **haproxy**
         - we dont drop priviledges in *DEV*, if you want, do the below
           - [to *START* as root, but dont *RUN* as root when using **packages/gateway**: click here to read why haproxy recommends this](https://cbonte.github.io/haproxy-dconv/2.4/management.html#13)
-          - run *packages/gateway/usr/bin/addhaproxyusergroup.sh* to create this user and group
-          - uncomment *user haproxy* and *group haproxy* in *packages/gateway/etc/haproxy/haproxy.cfg*
 
       - starting apps
-        - `npm start` run the start script in each package for development
-        - `npm run lerna:run start:client` see above; starts packages/client @ **localhost:7777**
-        - `npm run lerna:run start:pkgcheck` see above; starts packages/pkgcheck @ **localhost:7777/v1**
-
+        - `rush start` run the start script in each package for development
+          - currently this doenst show the logs, im working on it, how tf did rush fk this up anyway?
+        - `rushx start` inside an *{apps,libraries}/PKG* will run the start script for that particular pkg
       - linting & tests
-        - `npm test` run the test script in each package
+        - `rushx test` inside an *{apps, libraries}/PKG* will run the test script for htat particular pkg
+
+### TODO scripts
         - `npm run lighthouse` run and save lighthouse report to `packages/client/doc/lighthouse/localhost.html`
           - *packages/client* must be running on *localhost:7777*
-            - e.g. issue `npm run lerna:run start:client` in a separate terminal
-
-    - other scripts
-      - `npm run lerna:help` see lerna help
-      - `npm run bootstrap` install dependencies in each package + hoisting common ones
-      - `npm run lerna:run RUNSCRIPT` run an arbitrary script in all packages with the matching RUNSCRIPT name
 
 ### adding packages
-  - `npm run add NPMPACKAGE packages/PKG`
-    - e.g. `npm run add webpack-bundle-analyzer packages/client -- -D`
-      - will install webpack-bundle-analyzer into packages/client
-    - issues
-      - you can only add ONE package at a time, i know wtf!
-      - `--save-exact` isnt working, will figure this out later
+  - `rush add -p PKGNAME --dev --exact -m`
+    - add a pkg - you should be within a pkg and **not the root** dir
+    - e.g. `cd apps/client && rush add -p webpack-bundle-analyzer packages/client --dev --exact -m`
+      - will install webpack-bundle-analyzer into apps/client
+
 
 
 ### environment variables
-  - each *package/package.json* should contain a `config` section with the default (and *public*) environment variables
-    - *do not* create an `.env.example` - use the `package/package.json.config` section
-  - create a `package/.env` file with environment variables you want to use in each microservice, referencing the name and values in the `package/package.json.config`
+  - each *PKGDIR/pkg/package.json* should contain a `config` section with the default (and *public*) environment variables
+    - *do not* create an `.env.example` - use the `PKGDIR/pkg/package.json.config` section
+  - create a `PKGDIR/pkg/.env` file with environment variables you want to use in each microservice, referencing the name and values in the `PKGDIR/pkg/package.json.config`
     - to apply default values specified in `package.json.config` set the var name in the `.env` file to nothing, e.g. `API_HTTP_PORT=` and `@nodeproto/envproto.syncEnv` will update `process.env.API_HTTP_PORT` to the value specified in the `package.json.config`
       - if the the `.env` file has a value for the variable, it WILL NOT be updated!
         - this is so values set via CLI or `.env` take precedence over `package.json.config` values
@@ -81,8 +68,6 @@
 #### stable
   - pkg management
     - [rush](https://rushjs.io/pages/commands)
-      - move elseware
-        - rush add -p rimraf --exact --dev -m
     - [pnpm]([npmjs.com/](https://github.com/pnpm/pnpm))
 
   - gateway
