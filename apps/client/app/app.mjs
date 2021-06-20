@@ -1,12 +1,11 @@
-
-/* eslint-disable comma-dangle */
-
 import App from './components/screens/App/AppScreen.mjs'
 import ErrorBoundary from './components/composite/Errors/ErrorBoundary.mjs'
 import React from 'react'
 import ReactDOM from 'react-dom'
 
 const render = (Comp) => {
+  console.log('rendering app');
+
   ReactDOM.render(
     <React.StrictMode>
       <ErrorBoundary>
@@ -14,10 +13,9 @@ const render = (Comp) => {
       </ErrorBoundary>
     </React.StrictMode>,
     document.getElementById(process.env.REACT_APP_ID),
-  )
+  );
 }
 
-console.log('rendering app')
 render(App)
 
 if (typeof window !== 'undefined') {

@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "main": "./index.mjs",
   "type": "module",
+  "sideEffects": ["./app/components/**/*.js", "*.css"],
   "config": {
     "CLIENT_PORT": "8080",
     "HTML_INDEX": "./app/index.html",
@@ -28,8 +29,7 @@
     "eslint": "eslint \"{app,bff,lib}/**/*.+(m|c)js\"",
     "eslint:fix": "npm run eslint -- --fix",
     "lighthouse": "lighthouse http://localhost:8080 --output-path ./doc/lighthouse/localhost.html",
-    "prebuild": "rm -rf dist/*",
-    "build": "env-cmd node ./lib/webpack.build.mjs",
+    "build": "rm -rf dist/* && env-cmd node ./lib/webpack.build.mjs",
     "start:reactdevtools": "react-devtools",
     "start:dev": "./node_modules/.bin/env-cmd node ./bff/server.mjs",
     "start": "concurrently npm:start:dev npm:start:reactdevtools",

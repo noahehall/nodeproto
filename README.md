@@ -15,9 +15,35 @@
 ## dependencies
   - until we get docker setup make sure you have **haproxy 2.4** installed
     - see *apps/gateway* for instructions
+
+
+## important directories
+  - *root/apps* main applications
+  - *root/libraries* libraries used by applications
+  - *root/common* rushjs configuration
+  - *root/doc* various docuemntation
+
+### important dotfiles
+  - [editorconfig](https://editorconfig.org/)
+  - [gitignore](https://git-scm.com/docs/gitignore)
+  - [gitattributes](https://git-scm.com/docs/gitattributes)
+  - [npmrc](https://docs.npmjs.com/cli/v7/configuring-npm/npmrc)
+  - [nvmrc](https://github.com/nvm-sh/nvm)
+  - [hintrc](https://github.com/webhintio/hint/blob/main/packages/hint/docs/user-guide/configuring-webhint/summary.md)
+  - [eslintrc](https://eslint.org/docs/user-guide)
+
+### important config files
+  - [babelrc.config.mjs for client apps](/apps/client/lib/babel.config.cjs)
+  - the browser based eslintrc in apps/client
+  - the node based eslintrc in apps/pkgcheck
+  - the root/rush.json config
+  - most of the shit in root/common/config
+
+
 ## common tasks
   - if something doesnt work [please check our todo list](./doc/todos.md)
     - likely we've listened a work around, if not, create a github issue
+
 ### stable scripts
 
   - the scripts
@@ -36,15 +62,19 @@
       - running scripts in specific packages
         - typically you need to `cd PKGDIR/somepkg` before executing `rushx SCRIPTNAME`
         - `rushx start` inside an *apps/PKG* will run the start script for that particular pkg
+        - `rushx start:dev` useful in *apps/client* so devtools doenst open up
 
       - linting & tests
         - `rushx test` inside an *{apps, libraries}/PKG* will run the test script for htat particular pkg
         - `rushx hint` requires chromium, setup for *apps/client*. saves report to *apps/client/hint-report/*
         - `rushx lighthouse` requires chromium. setupfor *apps/client*. saves report to *apps/client/doc/lighthouse*
 
-### TODO scripts
-        - `npm run lighthouse` run and save lighthouse report to `packages/client/doc/lighthouse/localhost.html`
-          - *packages/client* must be running on *localhost:7777*
+      - builds
+        - `rush build` in root; build all pkgs for development
+        - `rushx select build:prod` in root; build all pkgs for production
+        - `rushx build` in a pkg; build that pkg for development
+        - `rushx build:prod` in a pkg; build that pkg for production
+
 
 ### adding packages
   - `rush add -p PKGNAME --dev --exact -m`
@@ -55,6 +85,7 @@
     - couldnt figure out how to do it via `rush add`
     - however this works if you edit the `package.json` directly
       - `"@reach/router": "https://github.com/noahehall/router",`
+    - then run `rush update` to do the install
 
 
 
@@ -72,21 +103,6 @@
 
 ### enabling SSL
   - self-signed certificates auto created on dev
-
-## dependencies
-### dotfiles
-  - [editorconfig](https://editorconfig.org/)
-  - [gitignore](https://git-scm.com/docs/gitignore)
-  - [gitattributes](https://git-scm.com/docs/gitattributes)
-  - [npmrc](https://docs.npmjs.com/cli/v7/configuring-npm/npmrc)
-  - [nvmrc](https://github.com/nvm-sh/nvm)
-  - [hintrc](https://github.com/webhintio/hint/blob/main/packages/hint/docs/user-guide/configuring-webhint/summary.md)
-  - [eslintrc](https://eslint.org/docs/user-guide)
-
-### import config files
-  - [babelrc.config.mjs for client apps](/apps/client/lib/babel.config.mjs)
-
-
 
 ### modules
 #### stable

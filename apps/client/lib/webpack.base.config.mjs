@@ -8,6 +8,7 @@ import * as pack from './webpack.setup.mjs';
 export default function mikeTysonPunchOut ({
   // defaults
   // externalsConfig = { modulesFromFile: true },
+  // sideEffects = ['./app/components/**/*.js', '*.css'], doesnt work like in pkgjson,
   babelConfig = pack.babelConfigDefault(),
   context = pack.context,
   devtool = pack.ifProd ? 'hidden-source-map' : 'eval-cheap-module-source-map',
@@ -20,13 +21,14 @@ export default function mikeTysonPunchOut ({
   ifProd = pack.ifProd,
   mainFields = [ 'module', 'browser', 'main' ],
   mode = pack.mode,
-  optimization = {},
+  optimization = pack.optimization,
   output = {},
   outputDefault = { filename: '[name].js', chunkFilename: '[name].chunk.js' },
   pathDist = pack.pathDist,
   pathSrc = pack.pathSrc,
   plugins = [],
   publicPath = '/',
+  stats = 'summary',
   target = 'web',
 
   // dependent1
@@ -126,18 +128,15 @@ export default function mikeTysonPunchOut ({
   return {
     context,
     devtool,
-    entry: [
-      ...entryUnshift,
-      ...entry,
-      ...entryPush
-    ].filter(e => e),
+    entry: entryUnshift.concat(entry, entryPush).filter(e => e),
     externals: pack.builtinModules.concat(externals),
     mode,
     optimization,
-    plugins: [].concat(plugins).filter(x => x),
+    plugins: plugins.filter(x => x),
+    resolve: { extensions, mainFields },
+    stats,
     target,
 
-    resolve: { extensions, mainFields },
     output: {
       path: pathDist,
       publicPath,
@@ -147,6 +146,7 @@ export default function mikeTysonPunchOut ({
 
     module: {
       rules: [
+        // sideEffects, // doesnt fkn work? use package.json instead
         jsLoader,
         cssInternalLoader,
         cssExternalLoader,

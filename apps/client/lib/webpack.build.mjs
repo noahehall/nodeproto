@@ -1,5 +1,5 @@
 /**
- * buildd any webpack config and output its files to disk
+ * build any webpack config and output its files to disk
  */
 
 import webpack from 'webpack';
@@ -35,7 +35,7 @@ const handleCompileIssues = (stats) => {
 }
 
 const compilerCallback = (err, stats) => {
-  if (err) return handleConfigErrors(err, stats);
+  if (err) return handleConfigErrors(err);
   handleCompileIssues(stats);
 
 }
