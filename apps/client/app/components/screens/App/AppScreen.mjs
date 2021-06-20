@@ -9,7 +9,7 @@
 
 import { Helmet } from 'react-helmet'
 import { Router } from '@reach/router'
-import GlobalStyle from './global-styles'
+import GlobalStyle from './global-styles.mjs'
 import LandingScreen from '../Landing/LandingScreen.mjs'
 import NotFoundScreen from '../NotFound/NotFoundScreen.mjs'
 import React from 'react'

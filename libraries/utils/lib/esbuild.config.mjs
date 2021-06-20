@@ -15,13 +15,12 @@ const appExtension = '.mjs';
 const appId = appInputFilename + appExtension;
 const manifestFilename = 'manifest.json';
 const outdir = path.resolve('dist');
-const manifestUri = `${outdir}/${manifestFilename}`;
 
 const manifestPluginConfig = {
-  hash: false,
-  shortNames: false,
   extensionless: 'input',
   filename: manifestFilename,
+  hash: false,
+  shortNames: false,
 };
 
 const buildLog = ({ errors, warnings, ...result }) => {
@@ -57,8 +56,9 @@ const esbuildConfig = {
   ],
   sourcemap: true,
   target: ['node14.17.0'], // LTS
+  // format: 'esm',
   write: true,
-  plugins: [manifestPlugin(manifestPluginConfig), ],
+  plugins: [manifestPlugin(manifestPluginConfig)],
   // format: 'iie',
   // outfile: 'dist/out.cjs',
 };

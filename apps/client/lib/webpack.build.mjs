@@ -2,11 +2,11 @@
  * build any webpack config and output its files to disk
  */
 
-import webpack from 'webpack';
 import { envproto } from '@nodeproto/utils';
-import webpackProdConfig from './webpack.prod.config.mjs';
-import webpackDevConfig from './webpack.dev.config.mjs';
 import * as pack from './webpack.setup.mjs';
+import webpack from 'webpack';
+import webpackDevConfig from './webpack.dev.config.mjs';
+import webpackProdConfig from './webpack.prod.config.mjs';
 
 // todo
 // const conditions = envproto.getConditions();
@@ -21,7 +21,9 @@ const handleConfigErrors = ({
 
 // @see https://webpack.js.org/configuration/stats/
 const statsOptions = {
-
+  maxModules: Infinity,
+  optimizationBailout: true,
+  errorDetails: true,
 };
 
 const handleCompileIssues = (stats) => {

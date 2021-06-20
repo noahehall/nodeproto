@@ -19,22 +19,30 @@ const prefix = 'error in pack:';
 export const throwMsg = msg => { throw new Error(`${prefix} ${msg}`); };
 
 // @see https://stackoverflow.com/questions/66343602/use-latest-terser-webpack-plugin-with-webpack5
-const terserPlugin = () => ({
-  test: /\.+(m|c)js$/i,
+const terserPlugin = [() => ({
+  test: /\.(m|c)+js$/i,
   include: [pkgJson.directories.app],
+  extractComments: false,
   parallel: (os.cpus().length - 1 ) || 1,
 
   // @see https://github.com/terser/terser#minify-options
   terserOptions: {
+    format: { comments: false },
+    keep_classnames: true,
     mangle: ifProd,
     module: false, // TODO: when enabling module + nomodule output
     toplevel: false,
-    keep_classnames: true,
   },
-});
+})];
 
 const minSize = 20000;
 const maxSize = minSize * 6;
+const vendors = {
+  chunks: 'all',
+  enforce: true,
+  filename: 'js/[name]/bundle.js',
+  reuseExistingChunk: true,
+}
 const splitChunks = {
   chunks: 'all',
   enforceSizeThreshold: 50000,
@@ -50,16 +58,38 @@ const splitChunks = {
   minSize,
 
   cacheGroups: {
-    defaultVendors: {
-      filename: 'js/[name]/bundle.js',
-      idHint: 'ext',
-      test: /[\\/]node_modules[\\/]/,
+    styled: {
+      ...vendors,
+      idHint: '1',
+      priority: -6,
+      test: /[\\/]node_modules[\\/](animate|normalize|styled|milligram).*[\\/]/,
+    },
+    support: {
+      ...vendors,
+      idHint: '2',
+      priority: -7,
+      test: /[\\/]node_modules[\\/](reakit|react\-aria|\@reach).*[\\/]/,
+    },
+    babel: {
+      ...vendors,
+      idHint: '3',
+      priority: -8,
+      test: /[\\/]node_modules[\\/].*babel.*[\\/]/,
+    },
+    react: {
+      ...vendors,
+      idHint: '4',
+      priority: -9,
+      test: /[\\/]node_modules[\\/].*react.*[\\/]/,
+    },
+    etc: {
+      ...vendors,
+      idHint: '5',
       priority: -10,
-      reuseExistingChunk: true,
-      enforce: true,
-      chunks: 'all',
+      test: /[\\/]node_modules[\\/]/,
     },
     default: {
+      idHint: '6',
       minChunks: 2,
       priority: -20,
       reuseExistingChunk: true,

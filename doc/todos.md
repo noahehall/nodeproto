@@ -150,6 +150,8 @@
   - need to move eslint and babelrc shit to library/utils and extend from them inside other pkgs
   - [finish setting up opentelemetry](https://github.com/open-telemetry/opentelemetry-js-api)
   - need to setup multi compiler for client ot support module/nomodule, check babel.config.cjs todo
+  - need to lazy load routesin app/client
+  - [how the fk do i override env var via env-cmd](https://github.com/toddbluhm/env-cmd/issues/300)
 
 ## DONE
   - defaults from pkg.json.config not being used

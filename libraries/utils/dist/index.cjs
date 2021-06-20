@@ -2101,10 +2101,22 @@ __export(envproto_exports, {
 
 // envproto/envvars.mjs
 var import_dotenv = __toModule(require_main());
-"use strict";
-var parsed = import_dotenv.default.config().parsed;
-var wrapValue = (v) => '"' + v + '"';
-var buildEnv = (env = parsed) => Object.entries(env).reduce((a, [k, v]) => (a[`process.env.${k}`] = wrapValue(env[k])) && a, {});
+var { parsed } = import_dotenv.default.config();
+var wrapValue = (v) => `"${v}"`;
+process.argv.slice(2).forEach((argv) => {
+  if (!argv.includes("="))
+    return;
+  const [arg, v] = argv.split("=");
+  parsed[arg] = v;
+});
+var buildEnv = (env = parsed) => Object.entries(env).reduce((a, [
+  k,
+  v
+]) => {
+  a[`process.env.${k}`] = wrapValue(env[k]);
+  process.env[k] = env[k];
+  return a;
+}, {});
 var syncEnv = (_a = {}) => {
   var _b = _a, { config = {} } = _b, opts = __objRest(_b, ["config"]);
   for (const k in config) {
@@ -2119,12 +2131,12 @@ var syncEnv = (_a = {}) => {
 var syncConfig = (_a = {}) => {
   var _b = _a, { config = {} } = _b, opts = __objRest(_b, ["config"]);
   return __spreadProps(__spreadValues({}, opts), {
-    config: Object.assign({}, config, parsed)
+    config: __spreadValues(__spreadValues({}, config), parsed)
   });
 };
 var syncEnvAndConfig = (_a) => {
   var _b = _a, { config = {} } = _b, opts = __objRest(_b, ["config"]);
-  return Object.assign({}, syncEnv({ config }), syncConfig(__spreadValues({ config }, opts)));
+  return __spreadValues(__spreadValues({}, syncEnv({ config })), syncConfig(__spreadValues({ config }, opts)));
 };
 
 // fsproto/index.mjs
@@ -2169,16 +2181,13 @@ var import_meta = {};
 var isMain = (requireMain, importMeta) => {
   if (typeof require !== "undefined") {
     return requireMain == module;
-  } else {
-    if (!typeof importMeta)
-      throw "must pass in import.meta";
-    return main_default(importMeta);
   }
+  if (!typeof importMeta)
+    throw "must pass in import.meta";
+  return main_default(importMeta);
 };
-var readFile = import_fs.default.promises.readFile;
-var readFiles = async (files = []) => {
-  return !files.length ? [] : Promise.all(files.map(({ filename, encoding = "utf8" }) => readFile(filename, encoding)));
-};
+var { readFile } = import_fs.default.promises;
+var readFiles = async (files = []) => !files.length ? [] : Promise.all(files.map(({ filename, encoding = "utf8" }) => readFile(filename, encoding)));
 var writeFile = async (...opts) => {
   try {
     await (0, import_mkdirp.default)(import_path2.default.dirname(opts[0]));
@@ -2187,22 +2196,17 @@ var writeFile = async (...opts) => {
     return import_fs.default.promises.writeFile.apply(import_fs.default, opts);
   }
 };
-var writeFiles = async (files = []) => {
-  return !files.length ? [] : Promise.all(files.map((_a) => {
-    var _b = _a, { filename, data, encoding = "utf8" } = _b, opts = __objRest(_b, ["filename", "data", "encoding"]);
-    return writeFile(filename, data, __spreadValues({ encoding }, opts));
-  })).catch((e) => [e]);
-};
+var writeFiles = async (files = []) => !files.length ? [] : Promise.all(files.map((_a) => {
+  var _b = _a, { filename, data, encoding = "utf8" } = _b, opts = __objRest(_b, ["filename", "data", "encoding"]);
+  return writeFile(filename, data, __spreadValues({ encoding }, opts));
+})).catch((e) => [e]);
 var parentUri = (importMeta = import_meta) => importMeta?.url ? (0, import_url2.fileURLToPath)(importMeta.url) : module.filename;
-var resolve = async (fileToImport, parent = parentUri()) => {
-  return import_meta?.resolve ? await import_meta.resolve(fileToImport, parent) : import_path2.default.join(import_path2.default.dirname(parent), fileToImport);
-};
+var resolve = async (fileToImport, parent = parentUri()) => import_meta?.resolve ? await import_meta.resolve(fileToImport, parent) : import_path2.default.join(import_path2.default.dirname(parent), fileToImport);
 
 // envproto/ssl.mjs
 var import_path3 = __toModule(require("path"));
 var import_pem = __toModule(require_pem());
 var import_meta2 = {};
-"use strict";
 var getDevCert = async (_a = {}) => {
   var _b = _a, {
     selfSigned = true,
@@ -2218,13 +2222,17 @@ var getDevCert = async (_a = {}) => {
     "commonName"
   ]);
   if (!tmpDir)
-    process.env.PEMJS_TMPDIR = import_path3.default.dirname(parentUri(import_meta2)) + "/certs";
-  let certificate, clientKey, csr, serviceKey, msgs = [];
+    process.env.PEMJS_TMPDIR = `${import_path3.default.dirname(parentUri(import_meta2))}/certs`;
+  let certificate;
+  let clientKey;
+  let csr;
+  let serviceKey;
+  const msgs = [];
   const names = {
-    certificate: process.env.PEMJS_TMPDIR + `/${domain}.certificate`,
-    clientKey: process.env.PEMJS_TMPDIR + `/${domain}.clientKey`,
-    csr: process.env.PEMJS_TMPDIR + `/${domain}.csr`,
-    serviceKey: process.env.PEMJS_TMPDIR + `/${domain}.serviceKey`
+    certificate: `${process.env.PEMJS_TMPDIR}/${domain}.certificate`,
+    clientKey: `${process.env.PEMJS_TMPDIR}/${domain}.clientKey`,
+    csr: `${process.env.PEMJS_TMPDIR}/${domain}.csr`,
+    serviceKey: `${process.env.PEMJS_TMPDIR}/${domain}.serviceKey`
   };
   try {
     [
@@ -2299,7 +2307,7 @@ var fileShouldCopy = async (sourcepath) => {
     fd = await import_fs2.default.promises.open(sourcepath, "r");
     if (!fd)
       return;
-    const mtimeMs = (await fd.stat()).mtimeMs;
+    const { mtimeMs } = await fd.stat();
     const cacheMs = cache.get(sourcepath)?.ms;
     fd.close();
     return (!cacheMs || cacheMs < mtimeMs) && mtimeMs;
@@ -2325,16 +2333,18 @@ var fileCopy = async (newCacheMs, sourcepath, outdir) => {
 };
 var filesToCopy = (options) => {
   const msg = "not copying files:";
-  if (!options.length)
+  if (!options.length) {
     return console.warn(`${msg} options empty`, options);
+  }
   options.forEach(async (_a) => {
     var _b = _a, { outdir, endingWith, indir, recurse } = _b, opts = __objRest(_b, ["outdir", "endingWith", "indir", "recurse"]);
     try {
-      if (!(endingWith instanceof RegExp) || (!indir || !indir.startsWith("/")) || (!outdir || !outdir.startsWith("/")))
+      if (!(endingWith instanceof RegExp) || (!indir || !indir.startsWith("/")) || (!outdir || !outdir.startsWith("/"))) {
         return console.warn(`${msg} invalid params`, { outdir, endingWith, indir, recurse, opts });
+      }
       const sourcedirs = await import_fs2.default.promises.readdir(indir, { encoding: "utf8", withFileTypes: true }) ?? [];
       sourcedirs.forEach((dirEnt) => {
-        if (!dirEnt.name.includes(".") && recurse)
+        if (!dirEnt.name.includes(".") && recurse) {
           filesToCopy([
             __spreadValues({
               outdir,
@@ -2343,7 +2353,7 @@ var filesToCopy = (options) => {
               indir: `${indir}/${dirEnt.name}`
             }, opts)
           ]);
-        else {
+        } else {
           if (endingWith.test(dirEnt.name)) {
             const sourcepath = `${indir}/${dirEnt.name}`;
             const outpath = `${outdir}/${dirEnt.name}`;
@@ -2372,21 +2382,24 @@ function popCopy(config) {
         if (popCopy.onStarted)
           return;
         popCopy.onStarted = true;
-        if (cache.size)
-          for (const [sourcepath, { ms, outpath }] of cache) {
+        if (cache.size) {
+          for (const [
+            sourcepath,
+            { ms, outpath }
+          ] of cache) {
             try {
               const newCacheMs = await fileShouldCopy(sourcepath);
-              if (newCacheMs)
+              if (newCacheMs) {
                 await fileCopy(newCacheMs, sourcepath, import_path4.default.dirname(outpath));
+              }
             } catch (e) {
               console.warn("popCopy.onStart error", e);
             }
           }
-        return;
+        }
       });
       build.onEnd((result) => {
         popCopy.onStarted = false;
-        return;
       });
     }
   };

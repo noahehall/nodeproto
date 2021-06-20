@@ -68,19 +68,23 @@
         - `rushx test` inside an *{apps, libraries}/PKG* will run the test script for htat particular pkg
         - `rushx hint` requires chromium, setup for *apps/client*. saves report to *apps/client/hint-report/*
         - `rushx lighthouse` requires chromium. setupfor *apps/client*. saves report to *apps/client/doc/lighthouse*
+        - `rushx browsertime` requires chromium, setup for *apps/client*, saves metrics to *apps/client/browsertime-results/*
+
 
       - builds
         - `rush build` in root; build all pkgs for development
         - `rushx select build:prod` in root; build all pkgs for production
         - `rushx build` in a pkg; build that pkg for development
         - `rushx build:prod` in a pkg; build that pkg for production
+        - building *apps/client*
+          - always saves bundle stats to *apps/client/bundlestats/*
 
 
 ### adding packages
   - `rush add -p PKGNAME --dev --exact -m`
     - add a pkg - you should be within a pkg and **not the root** dir
     - e.g. `cd apps/client && rush add -p webpack-bundle-analyzer packages/client --dev --exact -m`
-      - will install webpack-bundle-analyzer into apps/client
+      - will install webpack-bundle-analyzer into apps/client as a devDependency
   - to add a package from github
     - couldnt figure out how to do it via `rush add`
     - however this works if you edit the `package.json` directly
@@ -148,6 +152,9 @@
       - react as we need to support react linting
       - standard (minus comma-dangle) + react
     - [lighthouse](https://github.com/GoogleChrome/lighthouse#cli-options)
+    - [browsertime](https://github.com/sitespeedio/browsertime)
+      - [google admin toolbox has an excellent har analyzer](https://toolbox.googleapps.com/apps/har_analyzer/)
+    - [bundle stats](https://github.com/relative-ci/bundle-stats/tree/master/packages/webpack-plugin)
 
   - UI
     - [react](https://reactjs.org)

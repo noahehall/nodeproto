@@ -5,11 +5,21 @@
  * shit releted to environment variables
  */
 
-import dotenv from 'dotenv'
+import dotenv from 'dotenv';
 
 // load env
-const { parsed } = dotenv.config()
+const { parsed } = dotenv.config();
 const wrapValue = v => (`"${v}"`)
+
+// cmdline args override
+process.argv.slice(2).forEach(argv => {
+  if (!argv.includes('=')) return;
+
+  const [arg, v] = argv.split('=');
+
+  parsed[arg] = v;
+})
+
 
 /**
  * injects .env variables into an object
@@ -23,7 +33,12 @@ export const buildEnv = (env = parsed) => Object.entries(env)
     (a, [
       k,
       v
-    ]) => (a[`process.env.${k}`] = wrapValue(env[k])) && a,
+    ]) => {
+      a[`process.env.${k}`] = wrapValue(env[k]);
+      process.env[k] = env[k];
+
+      return a;
+    },
     {}
   )
 

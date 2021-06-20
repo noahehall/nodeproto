@@ -12,13 +12,17 @@
  */
 
 const pkgJson = require('../package.json')
+const  { envproto } = require('@nodeproto/utils');
 
 const corejs = {
   version: 3, // throws error? pkgJson.dependencies['core-js'], @see fossissues.md for link to issue
   proposals: true,
 };
 
+const env = envproto.syncEnvAndConfig(pkgJson);
+
 const isProd = process.env.NODE_ENV === 'production';
+
 
 module.exports = function (api) {
   api?.cache(() => isProd);
@@ -68,6 +72,7 @@ module.exports = function (api) {
         bugfixes: true,
         // enable
         corejs,
+        modules: false, // rely on webpack for treeshaking which needs this
         debug: !isProd,
       }
     ],
@@ -97,7 +102,7 @@ module.exports = function (api) {
         displayName: !isProd,
         fileName: !isProd,
         minify: isProd,
-        namesace: 'nirv',
+        namespace: 'nirv',
         pure: isProd,
         srr: false,
         transpileTemplateLiterals: isProd,
@@ -115,15 +120,15 @@ module.exports = function (api) {
     // '@babel/plugin-proposal-private-methods',
     // '@babel/plugin-proposal-throw-expressions',
     // '@babel/plugin-syntax-dynamic-import',
-    '@babel/plugin-proposal-export-default-from',
+    // '@babel/plugin-proposal-export-default-from',
     '@babel/plugin-transform-react-constant-elements',
     isProd && '@babel/plugin-transform-react-inline-elements',
-    [
-      '@babel/plugin-transform-modules-commonjs',
-      {
-        importInterop: 'babel'
-      }
-    ],
+    // [ disabled for treeshaking via webpack
+    //   '@babel/plugin-transform-modules-commonjs',
+    //   {
+    //     importInterop: 'babel'
+    //   }
+    // ],
   ].filter(e => e);
 
   return {

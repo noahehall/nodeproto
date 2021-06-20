@@ -1,4 +1,17 @@
 import * as pack from './webpack.setup.mjs';
+import { BundleStatsWebpackPlugin } from 'bundle-stats-webpack-plugin';
+
+const defaultPlugins = [
+  // @see https://github.com/relative-ci/bundle-stats/tree/master/packages/webpack-plugin
+  new BundleStatsWebpackPlugin({
+    compare: false,
+    baseline: false,
+    html: true,
+    json: false,
+    outDir: '../bundlestats',
+    silent: false,
+  })
+];
 
 /**
  *
@@ -27,6 +40,7 @@ export default function mikeTysonPunchOut ({
   pathDist = pack.pathDist,
   pathSrc = pack.pathSrc,
   plugins = [],
+  basePlugins = defaultPlugins,
   publicPath = '/',
   stats = 'summary',
   target = 'web',
@@ -48,6 +62,14 @@ export default function mikeTysonPunchOut ({
       ]) => ({ search, replace }))
     }
 
+  },
+
+  // @see https://github.com/webpack/webpack/issues/11467
+  esmLoader = {
+    test: /\.m?js$/,
+    type: 'javascript/auto',
+    // include: /node_modules/,
+    resolve: { fullySpecified: false },
   },
 
   jsLoader = {
@@ -132,7 +154,7 @@ export default function mikeTysonPunchOut ({
     externals: pack.builtinModules.concat(externals),
     mode,
     optimization,
-    plugins: plugins.filter(x => x),
+    plugins: (plugins.concat(basePlugins)).filter(x => x),
     resolve: { extensions, mainFields },
     stats,
     target,
@@ -146,7 +168,7 @@ export default function mikeTysonPunchOut ({
 
     module: {
       rules: [
-        // sideEffects, // doesnt fkn work? use package.json instead
+        esmLoader,
         jsLoader,
         cssInternalLoader,
         cssExternalLoader,
