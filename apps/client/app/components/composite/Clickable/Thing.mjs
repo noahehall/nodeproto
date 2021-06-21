@@ -5,10 +5,6 @@ import clsx from 'clsx'
 import React from 'react'
 import styled from 'styled-components'
 
-console.log(
-  '\n\n useButton',
-  useButton
-)
 const StyledAnchor = styled(Clickable)`
 
 `

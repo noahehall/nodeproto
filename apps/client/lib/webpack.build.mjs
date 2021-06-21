@@ -11,7 +11,7 @@ import webpackProdConfig from './webpack.prod.config.mjs';
 // todo
 // const conditions = envproto.getConditions();
 
-const useConfig = pack.ifProd && false ? webpackProdConfig : webpackDevConfig;
+const useConfig = pack.ifProd ? webpackProdConfig : webpackDevConfig;
 
 const handleConfigErrors = ({
   stack = 'stack undefined',
