@@ -52,10 +52,8 @@
     "update:fp": "npm run update:f --purge",
     "select": "rush-select",
     "about": "npm list && npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh && lerna info"
-
   },
-  "devDependencies": {},
   "dependencies": {
-    "@telia/rush-select": "^0.12.0"
+    "@telia/rush-select": "0.12.0"
   }
 }

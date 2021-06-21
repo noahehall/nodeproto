@@ -8,9 +8,15 @@
 
 
 ## getting started
-  1. `rush update`
-  2. `rushx select`
-  3. open `localhost:7777`
+  1. `npm install -g @microsoft/rush` *install rush*
+  2. [configure your git username & email](https://support.atlassian.com/bitbucket-cloud/docs/configure-your-dvcs-username-for-commits/)
+    - you should do this even if your not using this starterkit
+    - *$ git config --global user.name "fname lname"*
+    - *$ git config --global "your_github_username@users.noreply.github.com"*
+  3. `npm i` *install rush-select in root dir*
+  4. `rush update` *install npm dependencies in all pkgs*
+  5. `rushx select` *choose start cmd in all pkgs where its available*
+  6. open `localhost:7777`
 
 ## dependencies
   - until we get docker setup make sure you have **haproxy 2.4** installed
