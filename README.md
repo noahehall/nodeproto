@@ -1,3 +1,7 @@
+# support us!
+  - [buy me a starbook](https://us.starlabs.systems/)
+
+
 # @nodeproto
   - monorepo for rapidly prototyping end-to-end, complex, and secure applications and microservices
 
@@ -37,9 +41,17 @@
   - [nvmrc](https://github.com/nvm-sh/nvm)
   - [hintrc](https://github.com/webhintio/hint/blob/main/packages/hint/docs/user-guide/configuring-webhint/summary.md)
   - [eslintrc](https://eslint.org/docs/user-guide)
+  - [flowconfig](https://flow.org/en/docs/config/)
 
 ### important config files
   - [babelrc.config.mjs for client apps](/apps/client/lib/babel.config.cjs)
+  - [our vscodium settings via sync settings extension](https://gist.github.com/noahehall/33f60c724f51bde9afa2c2a9e540d094)
+    - use gist id: **33f60c724f51bde9afa2c2a9e540d094**
+  - *dracula themes*
+    - [gnome terminal](https://draculatheme.com/gnome-terminal)
+    - [gtk](https://draculatheme.com/gtk)
+    - [enable via shell-extensions](https://www.omgubuntu.co.uk/2020/04/enable-full-dark-mode-in-ubuntu-20-04)
+    - [and do a quick backup](https://linuxconfig.org/ubuntu-20-04-system-backup-and-restore)
   - the browser based eslintrc in apps/client
   - the node based eslintrc in apps/pkgcheck
   - the root/rush.json config
@@ -53,37 +65,39 @@
 ### stable scripts
 
   - the scripts
+    - `rushx about` see cur pkgs pkg.json scripts, or use with `rush-select` to see them about
+
     - dev scripts: open browser to **localhost:7777**
-      - **NOTE** all START scripts use **haproxy**
-        - we dont drop priviledges in *DEV*, if you want, do the below
-          - [to *START* as root, but dont *RUN* as root when using **packages/gateway**: click here to read why haproxy recommends this](https://cbonte.github.io/haproxy-dconv/2.4/management.html#13)
+    - **NOTE** all START scripts use **haproxy**
+      - we dont drop priviledges in *DEV*, if you want, do the below
+        - [to *START* as root, but dont *RUN* as root when using **packages/gateway**: click here to read why haproxy recommends this](https://cbonte.github.io/haproxy-dconv/2.4/management.html#13)
 
-      - starting apps (in root dir)
-        - `rushx select` select a script to run in each project
-          - use this before any of the others and thank the guys at `rush-select`
-        - `rush start` run the start script in each package for development
-          - currently this doenst show the logs, use `npm run select` instead
-
-
-      - running scripts in specific packages
-        - typically you need to `cd PKGDIR/somepkg` before executing `rushx SCRIPTNAME`
-        - `rushx start` inside an *apps/PKG* will run the start script for that particular pkg
-        - `rushx start:dev` useful in *apps/client* so devtools doenst open up
-
-      - linting & tests
-        - `rushx test` inside an *{apps, libraries}/PKG* will run the test script for htat particular pkg
-        - `rushx hint` requires chromium, setup for *apps/client*. saves report to *apps/client/hint-report/*
-        - `rushx lighthouse` requires chromium. setupfor *apps/client*. saves report to *apps/client/doc/lighthouse*
-        - `rushx browsertime` requires chromium, setup for *apps/client*, saves metrics to *apps/client/browsertime-results/*
+    - starting apps (in root dir)
+      - `rushx select` select a script to run in each project
+        - use this before any of the others and thank the guys at `rush-select`
+      - `rush start` run the start script in each package for development
+        - currently this doenst show the logs, use `npm run select` instead
 
 
-      - builds
-        - `rush build` in root; build all pkgs for development
-        - `rushx select build:prod` in root; build all pkgs for production
-        - `rushx build` in a pkg; build that pkg for development
-        - `rushx build:prod` in a pkg; build that pkg for production
-        - building *apps/client*
-          - always saves bundle stats to *apps/client/bundlestats/*
+    - running scripts in specific packages
+      - typically you need to `cd PKGDIR/somepkg` before executing `rushx SCRIPTNAME`
+      - `rushx start` inside an *apps/PKG* will run the start script for that particular pkg
+      - `rushx start:dev` useful in *apps/client* so devtools doenst open up
+
+    - linting & tests
+      - `rushx test` inside an *{apps, libraries}/PKG* will run the test script for htat particular pkg
+      - `rushx hint` requires chromium, setup for *apps/client*. saves report to *apps/client/hint-report/*
+      - `rushx lighthouse` requires chromium. setupfor *apps/client*. saves report to *apps/client/doc/lighthouse*
+      - `rushx browsertime` requires chromium, setup for *apps/client*, saves metrics to *apps/client/browsertime-results/*
+
+
+    - builds
+      - `rush build` in root; build all pkgs for development
+      - `rushx select build:prod` in root; build all pkgs for production
+      - `rushx build` in a pkg; build that pkg for development
+      - `rushx build:prod` in a pkg; build that pkg for production
+      - building *apps/client*
+        - always saves bundle stats to *apps/client/bundlestats/*
 
 
 ### adding packages
@@ -150,6 +164,8 @@
     - [purple-tape](https://github.com/mattiash/purple-tape/blob/master/lib/test.ts)
     - [multi-tape](https://github.com/mattiash/node-multi-tape)
     - [sinon](https://sinonjs.org/)
+    - [all non esbuild pkgs use flow (see todo)](https://flow.org/en/docs/)
+    - [flow-type](https://github.com/flow-typed/flow-typed)
 
   - linting
     - [webhint/hint](https://github.com/webhintio/hint)

@@ -75,6 +75,10 @@
       "allowedCategories": [ "production" ]
     },
     {
+      "name": "@babel/preset-flow",
+      "allowedCategories": [ "production" ]
+    },
+    {
       "name": "@babel/preset-modules",
       "allowedCategories": [ "production" ]
     },
@@ -219,6 +223,10 @@
       "allowedCategories": [ "libraries", "production" ]
     },
     {
+      "name": "eslint-plugin-flowtype",
+      "allowedCategories": [ "production" ]
+    },
+    {
       "name": "eslint-plugin-import",
       "allowedCategories": [ "libraries", "production" ]
     },
@@ -240,6 +248,14 @@
     },
     {
       "name": "file-loader",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "flow-bin",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "flow-typed",
       "allowedCategories": [ "production" ]
     },
     {

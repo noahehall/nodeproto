@@ -19,21 +19,23 @@ const prefix = 'error in pack:';
 export const throwMsg = msg => { throw new Error(`${prefix} ${msg}`); };
 
 // @see https://stackoverflow.com/questions/66343602/use-latest-terser-webpack-plugin-with-webpack5
-const terserPlugin = [() => ({
-  test: /\.(m|c)+js$/i,
-  include: [pkgJson.directories.app],
-  extractComments: false,
-  parallel: (os.cpus().length - 1 ) || 1,
+const terserPlugin = [
+  () => ({
+    test: /\.(m|c)+js$/i,
+    include: [pkgJson.directories.app],
+    extractComments: false,
+    parallel: (os.cpus().length - 1) || 1,
 
-  // @see https://github.com/terser/terser#minify-options
-  terserOptions: {
-    format: { comments: false },
-    keep_classnames: true,
-    mangle: ifProd,
-    module: false, // TODO: when enabling module + nomodule output
-    toplevel: false,
-  },
-})];
+    // @see https://github.com/terser/terser#minify-options
+    terserOptions: {
+      format: { comments: false },
+      keep_classnames: true,
+      mangle: ifProd,
+      module: false, // TODO: when enabling module + nomodule output
+      toplevel: false,
+    },
+  })
+];
 
 const minSize = 20000;
 const maxSize = minSize * 6;

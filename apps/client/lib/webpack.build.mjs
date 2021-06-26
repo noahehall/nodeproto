@@ -11,7 +11,7 @@ import webpackProdConfig from './webpack.prod.config.mjs';
 // todo
 // const conditions = envproto.getConditions();
 
-const useConfig = pack.ifProd && false ? webpackProdConfig : webpackDevConfig;
+const useConfig = pack.ifProd ? webpackProdConfig : webpackDevConfig;
 
 const handleConfigErrors = ({
   stack = 'stack undefined',
@@ -28,7 +28,7 @@ const statsOptions = {
 
 const handleCompileIssues = (stats) => {
   if (stats.hasErrors() || stats.hasWarnings()) {
-    const {errors, warnings, ...info} = stats.toJson();
+    const { errors, warnings, ...info } = stats.toJson();
     console.error({ errors, warnings });
   }
 
@@ -39,7 +39,6 @@ const handleCompileIssues = (stats) => {
 const compilerCallback = (err, stats) => {
   if (err) return handleConfigErrors(err);
   handleCompileIssues(stats);
-
 }
 
 webpack(useConfig, compilerCallback);

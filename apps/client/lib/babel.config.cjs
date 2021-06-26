@@ -12,7 +12,7 @@
  */
 
 const pkgJson = require('../package.json')
-const  { envproto } = require('@nodeproto/utils');
+const { envproto } = require('@nodeproto/utils');
 
 const corejs = {
   version: 3, // throws error? pkgJson.dependencies['core-js'], @see fossissues.md for link to issue
@@ -22,7 +22,6 @@ const corejs = {
 const env = envproto.syncEnvAndConfig(pkgJson);
 
 const isProd = process.env.NODE_ENV === 'production';
-
 
 module.exports = function (api) {
   api?.cache(() => isProd);
@@ -83,6 +82,7 @@ module.exports = function (api) {
         development: !isProd
       }
     ],
+    ['@babel/preset-flow'],
   ].filter(e => e);
 
   const plugins = [
