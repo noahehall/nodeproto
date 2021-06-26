@@ -27,10 +27,11 @@
     "linux"
   ],
   "scripts": {
+    "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
+    "prepublish": "rushx build",
     "eslint": "eslint \"{app,lib}/**/*.+(m|c)js\"",
     "eslint:fix": "npm run eslint -- --fix",
     "test": "env-cmd multi-tape --conditions=test \"{app,lib}/**/*.test.mjs\" | tap-spec",
-    "about": "npm list && npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh",
     "rm:dist": "rimraf dist",
     "prebuild": "npm run rm:dist",
     "build": "env-cmd node --conditions=build lib/esbuild.config.mjs",

@@ -47,6 +47,7 @@
     "@babel/core": "7.14.3"
   },
   "scripts": {
+    "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
     "eslint": "eslint \"{envproto,esproto,fsproto,lib}/**/*.+(m|c)js\"",
     "eslint:fix": "npm run eslint -- --fix",
     "test": "env-cmd multi-tape --conditions=test  \"**/*.test.+(c|m)js\" | tap-spec",

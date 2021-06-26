@@ -1,3 +1,5 @@
+# @todo: add rules from: https://www.npmjs.com/package/eslint-plugin-flowtype
+
 env: # @see https://eslint.org/docs/user-guide/configuring/language-options
   es2021: true
   shared-node-browser: true
@@ -21,13 +23,15 @@ extends:
   - plugin:react-hooks/recommended
 plugins:
   - '@babel'
-  - exportDefaultFrom
+  - flow
 settings:
   react:
     createClass: createReactClass
     pragma: React
     fragment: Fragment
     version: detect
+  flowtype:
+    onlyFilesWithFlowAnnotation: true
 rules:
   # great rules here
   '@babel/new-cap': 'error'

@@ -152,6 +152,8 @@
   - need to setup multi compiler for client ot support module/nomodule, check babel.config.cjs todo
   - need to lazy load routesin app/client
   - [how the fk do i override env var via env-cmd](https://github.com/toddbluhm/env-cmd/issues/300)
+  - [make this shit into a real plugin](https://www.npmjs.com/package/esbuild-plugin-flow)
+  - 
 
 ## DONE
   - defaults from pkg.json.config not being used

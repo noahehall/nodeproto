@@ -11,6 +11,7 @@
     "GATEWAY_STATS_SOCK": "./run/haproxy/admin.sock"
   },
   "scripts": {
+    "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
     "build": "",
     "linkandsetowner": "usr/bin/linkandsetowner.sh",
     "start": "usr/bin/startdefault.sh",

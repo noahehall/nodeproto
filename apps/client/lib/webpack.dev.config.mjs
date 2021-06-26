@@ -3,7 +3,6 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import webpack from 'webpack';
 import webpackBaseConfig from './webpack.base.config.mjs';
 
-
 export default webpackBaseConfig({
   entryUnshift: [
     'react-devtools',

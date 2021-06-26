@@ -28,7 +28,7 @@ const statsOptions = {
 
 const handleCompileIssues = (stats) => {
   if (stats.hasErrors() || stats.hasWarnings()) {
-    const {errors, warnings, ...info} = stats.toJson();
+    const { errors, warnings, ...info } = stats.toJson();
     console.error({ errors, warnings });
   }
 
@@ -39,7 +39,6 @@ const handleCompileIssues = (stats) => {
 const compilerCallback = (err, stats) => {
   if (err) return handleConfigErrors(err);
   handleCompileIssues(stats);
-
 }
 
 webpack(useConfig, compilerCallback);

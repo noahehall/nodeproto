@@ -28,11 +28,20 @@ export default function mikeTysonPunchOut ({
   entryPush = [],
   entryUnshift = [],
   env = pack.env,
-  extensions = [ '.mjs', '.js', '.jsx', '.json'],
+  extensions = [
+    '.mjs',
+    '.js',
+    '.jsx',
+    '.json'
+  ],
   externals = [],
   ifDev = pack.ifDev,
   ifProd = pack.ifProd,
-  mainFields = [ 'module', 'browser', 'main' ],
+  mainFields = [
+    'module',
+    'browser',
+    'main'
+  ],
   mode = pack.mode,
   optimization = pack.optimization,
   output = {},
