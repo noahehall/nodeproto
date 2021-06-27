@@ -89,6 +89,9 @@
       - `rushx hint` requires chromium, setup for *apps/client*. saves report to *apps/client/hint-report/*
       - `rushx lighthouse` requires chromium. setupfor *apps/client*. saves report to *apps/client/doc/lighthouse*
       - `rushx browsertime` requires chromium, setup for *apps/client*, saves metrics to *apps/client/browsertime-results/*
+      - `rushx flow:q` run flow quietly
+      - `rushx eslint` run eslint
+      - `rushx eslint:fix` run and fix eslint issues
 
 
     - builds
@@ -110,6 +113,8 @@
     - however this works if you edit the `package.json` directly
       - `"@reach/router": "https://github.com/noahehall/router",`
     - then run `rush update` to do the install
+  - `rushx flowtyped:i` update flow type definitions for all deps using cache if available
+  - `rushx flowtyped:i-force` install flow type definitions for all dpes
 
 
 

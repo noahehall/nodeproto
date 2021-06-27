@@ -1,20 +1,21 @@
 // @flow
 import { Clickable } from 'reakit/Clickable'
-import { type, Element, declare } from '../../../../propTypes/index.mjs';
 import { useButton } from 'react-aria';
 import clsx from 'clsx';
-import React from 'react';
+import * as React from 'react';
 import styled from 'styled-components';
 
-const StyledAnchor = styled(Clickable)`
+
+
+const StyledAnchor: React.ComponentType<any> = styled(Clickable)`
 
 `
 
-export type ButtonProps = {
-  children: any
+type ButtonProps = {
+  children: React.Node
 }
 
-export function Button (props: ButtonProps): Element<'button'> {
+export function Button (props: ButtonProps): React.Element<'button'> {
   const ref = React.useRef();
   const { buttonProps } = useButton(
     props,
@@ -28,12 +29,12 @@ export function Button (props: ButtonProps): Element<'button'> {
   );
 }
 
-
-export type AnchorProps = {
+type AnchorProps = {
   className: string,
   text?: string,
 }
-export function Anchor (arg: AnchorProps = {}): Element<'anchor'> {
+
+export function Anchor (arg: AnchorProps = {}): React.Node {
   const { className, text = 'Click Here', ...props } = arg;
 
   return (

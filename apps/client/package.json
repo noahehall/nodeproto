@@ -31,6 +31,7 @@
     "flowtyped:v": "flow-typed validate-defs",
     "flow": "flow",
     "flow:q": "flow status --quiet",
+    "flow:dev": "flow batch-coverage --show-all --from local app/",
     "prepublish": "rushx build",
     "hint": "hint http://localhost:8080",
     "eslint": "eslint \"{app,bff,lib}/**/*.+(m|c)js\"",
