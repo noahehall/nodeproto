@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "packages": {
+    "dep1": {
+      "signature": "dd0673bf68efc57dbbed0c8c100353d7",
+      "link": true,
+      "replaced": "link:.yalc/dep1"
+    },
+    "dep3": {
+      "signature": "b0d58098aa0e6ff1fc4a31186ef3e257",
+      "link": true,
+      "replaced": "link:.yalc/dep3"
+    }
+  }
+}

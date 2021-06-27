@@ -1,0 +1,12 @@
+{
+  "name": "dep3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "yalcSig": "b0d58098aa0e6ff1fc4a31186ef3e257"
+}

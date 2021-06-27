@@ -13,6 +13,7 @@ app.use(middleware(
     publicPath: devConfig.publicPath,
     writeToDisk: false,
     useBff: 'useKoa2',
+    stats: 'errors-warnings',
   }
 ));
 

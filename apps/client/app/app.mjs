@@ -3,6 +3,8 @@ import ErrorBoundary from './components/composite/Errors/ErrorBoundary.mjs'
 import React from 'react'
 import ReactDOM from 'react-dom'
 
+import fakeDep from 'dep1';
+
 const render = (Comp) => {
   console.log('rendering app');
 

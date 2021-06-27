@@ -1,0 +1,16 @@
+{
+  "name": "dep1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.mjs",
+  "scripts": {
+    "build:dep1": "echo 'building dep1' && sleep 5",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dep2": "file:.yalc/dep2"
+  },
+  "yalcSig": "dd0673bf68efc57dbbed0c8c100353d7"
+}
