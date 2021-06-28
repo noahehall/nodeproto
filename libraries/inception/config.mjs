@@ -1,11 +1,11 @@
 
-let client, dep1, dep2, dup2, dep3;
+let dep1, dep2;
 
 /**
- * if pushWithoutBuild && yalcPush
+ * destructure to create a new dependency
  */
 const defaultConfig = {
-  watchGlob: /\.(c|m)?js|css$/, // javascript and css files
+  watchGlob: /src\/.*\.(c|m)?js|css|tsx$/, // javascript and css files
   chokidarConfig: {}, // TODO: currently using a single watcher for all deps
   name: '', // pkgJson.name // only required if pkgs have the same name (not sure why but hey),
   pushAfterBuild: true,
@@ -18,37 +18,23 @@ const defaultConfig = {
   workDir: '', // ../../dirWithPkgJson
 }
 
-dep3 = {
-  ...defaultConfig,
-  pushWithoutBuild: true,
-  workDir: '../../../fakedeps/dep3/',
-}
+const baseDir = '../../../../nodeproto/';
 
-dep2 = {
-  ...defaultConfig,
-  name: 'dep2',
-  scriptBuild: 'build',
-  workDir: '../../../fakedeps/dep2/',
-};
-dup2 = dep2;
 
 dep1 = {
   ...defaultConfig,
-  name: 'dep1',
-  scriptBuild: 'build:dep1',
-  workDir: '../../../fakedeps/dep1/',
-  upstreamDeps: ['dep2'],
-};
+  name: 'insert package.json.name',
+  workDir: baseDir + 'dep1',
+  scriptBuild: 'build:es',
+}
 
-client = {
+pageComponents = {
   ...defaultConfig,
-  name: '@nodeproto/client',
-  runner: 'rushx',
-  scriptStart: 'client:dev',
-  upstreamDeps: [dep1.name, 'dep3'],
-  watch: false,
-  workDir: '../../apps/client/',
-};
+  name: 'insert package.json.name',
+  workDir: baseDir + 'dep2',
+  upstreamDeps: ['insert package.json.name'],
+  scriptBuild: 'dev:build',
+}
 
 
-export default [client, dep1, dep2, dup2, dep3];
+export default [dep1, dep2];

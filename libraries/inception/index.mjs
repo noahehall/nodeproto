@@ -6,7 +6,9 @@
  * @see https://github.com/wclr/yalc/blob/master/test/index.ts
  * @see https://reflectoring.io/upstream-downstream/
  * @see https://github.com/micromatch/anymatch
+ * @see https://github.com/micromatch/anymatch/pull/15/files
  * @see https://github.com/paulmillr/chokidar
+ * @see https://github.com/paulmillr/chokidar/issues/773
  */
 import { hideBin } from 'yargs/helpers';
 import chokidar from 'chokidar';
@@ -15,6 +17,22 @@ import fs from 'fs';
 import path from 'path';
 import shelljs from 'shelljs';
 import yargs from 'yargs';
+import { chokidarConfigDefault } from './configs/chokidar.config.mjs';
+import { inceptionBaseConfig } from './configs/inception.config.mjs';
+
+import { 
+  error,
+  IFS,
+  info,
+  isBuildable,
+  isPushable,
+  isStartable,
+  log,
+  success,
+  warn,
+  getPkgName,
+  getPkgKey,
+} from './utils/index.mjs';
 import yalc, {
   addPackages,
   checkManifest,
@@ -25,22 +43,7 @@ import yalc, {
 } from 'yalc';
 
 
-// console.log(yalc);
-// import { spawn } from 'child_process';
-// import readline from 'readline';
-
 const cwd = process.cwd();
-
-// TODO: chalk that bitch
-const logger = console.log.bind(console);
-const warner = console.warn.bind(console);
-const errorer = console.error.bind(console);
-const log = (...msgs) => logger.apply(null, ['\ninfo\n', ...msgs]);
-const warn = (...msgs) => warner.apply(null, ['\nwarn\n', ...msgs]);
-const error = (...msgs) => errorer.apply(null, ['\nerror\n', ...msgs]);
-const success = log;
-const info = log;
-const IFS = '||';
 
 const pathsToWatch = [];
 const pkgDirWatchMap = new Map(); // only for watched paths
@@ -49,50 +52,8 @@ const pushablePkgs = new Set();
 const buildablePkgs = new Set();
 const uniquePkgs = new Map();
 
-const isBuildable = ({ scriptBuild, inception = { pkgJson: { scripts: {} }}} = {}) => scriptBuild && scriptBuild in inception.pkgJson.scripts;
-const isPushable = pkg => (isBuildable(pkg) && pkg.pushAfterBuild) || pkg.pushWithoutBuild;
-const isStartable = ({ scriptStart, inception = { pkgJson: { scripts: {} }}} = {}) => scriptStart && scriptStart in inception.pkgJson.scripts;
 
-
-const getPkgKey = ({ name, workDir } = {}) => `${workDir}${IFS}${name}`;
-
-const chokidarConfigDefault = {
-  alwaysStat: false,
-  atomic: true,
-  awaitWriteFinish: { stabilityThreshold: 2000, pollInterval: 100 },
-  binaryInterval: 300,
-  cwd,
-  depth: 99,
-  disableGlobbing: false,
-  ignored: [
-    './dist/**/*',
-    '*\.test\.*', // files containing .test.filetype
-    '**/test/**/*', // all test directories
-    './node_modules/**/*',
-    /(^|[\/\\])\../, // dotfiles
-  ],
-  ignoreInitial: true,
-  ignorePermissionErrors: false,
-  interval: 100,
-  persistent: true,
-  usePolling: false,
-}
-
-const inceptionBaseConfig = {
-  built: false,
-  depsDownstream: new Set(), // we depend on these
-  depsDownstreamLinked: false,
-  depsUpstream: new Set(), // they depenend on us
-  pkgJson: {},
-  published: false,
-  running: false,
-};
-
-const getPkgName = (pkg) => (
-  `${pkg.inception.pkgJson.name}`//@${pkg.inception.pkgJson.version.replace(/\@|\^|\~/g, '')}`
-);
-
-const upsertConfigs = ({
+export const upsertConfigs = ({
   chokidarConfig = {},
   workDir = new Error('workDir required in config'),
   name = '', // required if watching multiple pkgs in the same workdir
@@ -132,7 +93,7 @@ const upsertConfigs = ({
     }
   });
 
-  shelljs.cd(cwd);
+  shelljs.cd('');
 
   return pkg;
 };
@@ -163,7 +124,7 @@ const setUniquePkgs = async configs => {
 
 // const yalcLink = async pkgId => shelljs.exec(`yalc add ${pkgId}`)
 const linkPkgs = async () => {
-  info('setting up pkg links');
+  info('linking packages');
   const cmdsToRun = []
   for (const [pkgKey, pkg] of uniquePkgs) {
     const [workDir, pkgName] = pkgKey.split(IFS);
@@ -211,6 +172,7 @@ const yalcPush = async (publishOptions = new Error('publishOptions required in y
 }
 
 const pushPkgs = async (pkg = false, push = false) => {
+  log('pushing packages');
   const publishOptions = !push && false ? {} :
     {
       push: true,
@@ -241,6 +203,8 @@ const pushPkgs = async (pkg = false, push = false) => {
  * build and push pkgs
  */
 const buildPkgs = async (usePkg = false) => {
+  log('building packages');
+
   if (!buildablePkgs.size && !usePkg) return log('no buildable pkgs: ', !buildablePkgs.size, !usePkg);
 
   if (usePkg) { // rebuilding
@@ -297,6 +261,7 @@ const buildPkgs = async (usePkg = false) => {
 }
 
 const startWatching = async () => {
+  log('starting watcher');
   for (const [pkgKey, pkg] of uniquePkgs) {
     const [workingDir, pkgName] = pkgKey.split(IFS);
     if (pkg.watch) {
@@ -314,18 +279,25 @@ const startWatching = async () => {
   );
 
   const errorCallback = async usePath => {
-    error(`watching path ${usingPath}`)
+    error(`watching path ${usePath}`)
   }
 
   // @see https://stackoverflow.com/questions/37521893/determine-if-a-path-is-subdirectory-of-another-in-node-js
   const pkgOf = (path1, path2) => {
+    
+    
     if (path1 === path2) return true;
     const [parent, child] = path1.length > path2.length
-      ? [path2, path1]
-      : [path1, path2]
-
+    ? [path2, path1]
+    : [path1, path2]
+    
+    console.log('\n\n parent:child', parent, child);
     const relative = path.relative(parent, child);
-    return relative && !relative.startsWith('..') && !path.isAbsolute(relative);
+    
+    const response = relative && !relative.startsWith('..') && !path.isAbsolute(relative);
+    console.log('\n\n relative', response, relative, !relative.startsWith('..'), !path.isAbsolute(relative) );
+
+    return response
   }
 
   const rebuildCallback = async usePath => {
@@ -334,14 +306,14 @@ const startWatching = async () => {
 
     for (const [workingDir, pkg] of pkgDirWatchMap) {
       if (pkgOf(dirname, workingDir)) {
-        log(`${pkg.name}: file change alert! ${filename}`)
+        // log(`${pkg.name}: file change alert! ${filename}`)
         if (pkg.watchGlob.test(filename)) {
           log('initiating rebuild: ', pkg.name)
 
           await buildPkgs(pkg);
 
           return true;
-        }
+        } else return false;
       }
     }
 
@@ -366,62 +338,13 @@ const checkSetup = async () => {
   await pushPkgs();
   await linkPkgs();
   await startWatching();
-  /**
-   * brainstorm logic
-   * + likely isnt update-to-date as this was brainstormed before any code was wrritten
-
-   state: required[setUniqueDeps, built, published, linked, run, watch]
-   * 1. for all configs, set unique deps with upserted configs
-   * 2. setUniqueDeps(configs)
-
-   state: required[built, published, linked, run, watch]
-   * 2. for all !!pkgs.buildScript
-   * 3. $ cd pkgs.workDir
-   * 4. $ run pkgs.buildScript
-   * 5. set pkgs.inception.built = true
-   *
-
-   state: required[published, linked, run, watch]
-   * 1. for all !!uniquePkgs.publishScript
-   * 2. $ cd config.workDir
-   * 3. $ config.publishScript
-   * 4. set config.inception.published = true
-
-  state: required[linked, run, watch]
-   * 1. uniquePkgs.forEach(pkg => {
-          if (!pkg.deps.length || !!pkg.inception.depsLinked) return;
-
-          $ cd pkg.inception.workDir;
-          pkg.deps.forEach(dep => yalcLink(dep.inception.name))
-
-          pkg.inception.depsLinked = true;
-        }
-
-   state: required[run, watch]
-   * 1. uniquePkgs.forEach(pkg => {
-          if (!pkg.startScript) return;
-          $ run pkg.startScript
-          set pkg.inception.running = true;
-        })
-
-   state: required[watch]
-   * 1. uniquePkgs.foEach(pkg => {
-          if (!pkg.workDirWatchGlob || !pkg.buildScript) return;
-
-          $ run createChokidarWatch(pkg);
-          $ when chokidar[change|addfile|adddir|etc]
-              $ if (!!pkg.buildScript) run pkg.buildScript
-              $ yalcPush(pkg.inception.name)
-        })
-   */
-
 }
 
 
 const argv = yargs(hideBin(process.argv)).argv;
 
 if (argv.h) console.log('one of', '-h', '--clean', '--check')
-else if (argv.check) checkSetup();
+else if (argv.run) checkSetup()
 else if (argv.clean) {
   log('cleaning directories')
   shelljs.exec('yalc installations show');
