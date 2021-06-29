@@ -1,5 +1,5 @@
-
-let dep1, dep2;
+import fs from 'fs';
+import { homedir } from 'os';
 
 /**
  * destructure to create a new dependency
@@ -13,28 +13,34 @@ const defaultConfig = {
   runner: 'npm run', // e.g. yarn|rushx|npx
   scriptBuild: '', // e.g. build
   scriptStart: '', // e.g. start
-  upstreamDeps: [], // pkgJson.name@pkgJson.version, list of pkgs@version this pkg depends on
+  upstreamDeps: [], // pkgJson.name, list of pkgs this pkg depends on
   watch: true,
   workDir: '', // ../../dirWithPkgJson
 }
 
-const baseDir = '../../../../nodeproto/';
+
+const baseDir = '../../../../foss/';
+
+export const inceptionStore = `${homedir()}/node_modules`;
 
 
-dep1 = {
+export const dep1 = {
   ...defaultConfig,
-  name: 'insert package.json.name',
-  workDir: baseDir + 'dep1',
-  scriptBuild: 'build:es',
+  workDir: baseDir + 'fakedeps/dep1',
+  upstreamDeps: ['dep2'],
+  scriptBuild: 'build:dep1',
 }
 
-pageComponents = {
+export const dep2 = {
   ...defaultConfig,
-  name: 'insert package.json.name',
-  workDir: baseDir + 'dep2',
-  upstreamDeps: ['insert package.json.name'],
-  scriptBuild: 'dev:build',
+  workDir: baseDir + 'fakedeps/dep2',
+  scriptBuild: 'build',
 }
 
-
-export default [dep1, dep2];
+export const client = {
+  ...defaultConfig,
+  workDir: baseDir + 'nodeproto/apps/client',
+  runner: 'rushx',
+  startScript: 'start:dev',
+  upstreamDeps: ['dep1'],
+}

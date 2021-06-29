@@ -7,6 +7,12 @@ import webpackHotMiddleware from 'webpack-hot-middleware-2';
 const compiler = webpack(devConfig);
 const app = new Koa();
 
+import dep1 from 'dep1';
+
+console.log('\n\n\n\n dep1', dep1)
+throw 'hello';
+
+
 app.use(middleware(
   compiler,
   {
