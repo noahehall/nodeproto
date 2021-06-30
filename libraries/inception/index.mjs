@@ -12,7 +12,7 @@
  */
 import { hideBin } from 'yargs/helpers';
 import chokidar from 'chokidar';
-import * as serviceConfigs from './config.mjs';
+import * as serviceDefinitions from './serviceDefinitions.mjs';
 import fs from 'fs';
 import path from 'path';
 import shelljs from 'shelljs';
@@ -38,7 +38,7 @@ import {
 const noop = () => void(0);
 const symlink = promisify(fs.symlink);
 const rm = promisify(fs.rm)
-const { inceptionStore, ...defaultConfigs} = serviceConfigs;
+const { inceptionStore, ...defaultConfigs} = serviceDefinitions;
 
 let log; // send in -v for verbosity, log will log
 let info; // send in -q for quiet, quiet will silce infos
