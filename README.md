@@ -12,6 +12,9 @@
 
 
 ## getting started
+<details>
+  <summary> installation and starting </summary>
+
   1. `npm install -g @microsoft/rush` *install rush*
   2. [configure your git username & email](https://support.atlassian.com/bitbucket-cloud/docs/configure-your-dvcs-username-for-commits/)
     - you should do this even if your not using this starterkit
@@ -21,19 +24,32 @@
   4. `rush update` *install npm dependencies in all pkgs*
   5. `rushx select` *choose start cmd in all pkgs where its available*
   6. open `localhost:7777`
+</details>
 
-## dependencies
+<details>
+  <summary> gotchas </summary>
+
   - until we get docker setup make sure you have **haproxy 2.4** installed
     - see *apps/gateway* for instructions
+  - if something doesnt work [please check our todo list](./doc/todos.md)
+    - likely we've provided a work around, if not, create a github issue!
+
+</details>
 
 
-## important directories
+## important files and locations
+<details>
+  <summary> directories </summary>
+
   - *root/apps* main applications
   - *root/libraries* libraries used by applications
   - *root/common* rushjs configuration
   - *root/doc* various docuemntation
+</details>
 
-### important dotfiles
+<details>
+  <summary> dotfiles </summary>
+
   - [editorconfig](https://editorconfig.org/)
   - [gitignore](https://git-scm.com/docs/gitignore)
   - [gitattributes](https://git-scm.com/docs/gitattributes)
@@ -42,8 +58,11 @@
   - [hintrc](https://github.com/webhintio/hint/blob/main/packages/hint/docs/user-guide/configuring-webhint/summary.md)
   - [eslintrc](https://eslint.org/docs/user-guide)
   - [flowconfig](https://flow.org/en/docs/config/)
+</details>
 
-### important config files
+<details>
+  <summary> configuration </summary>
+
   - [babelrc.config.mjs for client apps](/apps/client/lib/babel.config.cjs)
   - [our vscodium settings via sync settings extension](https://gist.github.com/noahehall/33f60c724f51bde9afa2c2a9e540d094)
     - use gist id: **33f60c724f51bde9afa2c2a9e540d094**
@@ -57,53 +76,61 @@
   - the root/rush.json config
   - most of the shit in root/common/config
 
+</details>
 
-## common tasks
-  - if something doesnt work [please check our todo list](./doc/todos.md)
-    - likely we've listened a work around, if not, create a github issue
+## scripts and tasks
+<details>
+  <summary> info </summary>
 
-### stable scripts
+  - `rushx about` see cur pkgs pkg.json scripts, or use with `rush-select` to see all scripts in all pkgs
+</details>
 
-  - the scripts
-    - `rushx about` see cur pkgs pkg.json scripts, or use with `rush-select` to see them about
+<details>
+  <summary> development </summary>
 
-    - dev scripts: open browser to **localhost:7777**
-    - **NOTE** all START scripts use **haproxy**
-      - we dont drop priviledges in *DEV*, if you want, do the below
-        - [to *START* as root, but dont *RUN* as root when using **packages/gateway**: click here to read why haproxy recommends this](https://cbonte.github.io/haproxy-dconv/2.4/management.html#13)
+  - dev scripts: open browser to **localhost:7777**
+  - **NOTE** all START scripts use **haproxy**
+    - we dont drop priviledges in *DEV*, if you want, do the below
+      - [to *START* as root, but dont *RUN* as root when using **packages/gateway**: click here to read why haproxy recommends this](https://cbonte.github.io/haproxy-dconv/2.4/management.html#13)
 
-    - starting apps (in root dir)
-      - `rushx select` select a script to run in each project
-        - use this before any of the others and thank the guys at `rush-select`
-      - `rush start` run the start script in each package for development
-        - currently this doenst show the logs, use `npm run select` instead
+  - starting apps (in root dir)
+    - `rushx select` select a script to run in each project
+      - use this before any of the others and thank the guys at `rush-select`
+    - `rush start` run the start script in each package for development
+      - currently this doenst show the logs, use `npm run select` instead
 
+  - running scripts in specific packages
+    - typically you need to `cd PKGDIR/somepkg` before executing `rushx SCRIPTNAME`
+    - `rushx start` inside an *apps/PKG* will run the start script for that particular pkg
+    - `rushx start:dev` useful in *apps/client* so devtools doenst open up
+</details>
 
-    - running scripts in specific packages
-      - typically you need to `cd PKGDIR/somepkg` before executing `rushx SCRIPTNAME`
-      - `rushx start` inside an *apps/PKG* will run the start script for that particular pkg
-      - `rushx start:dev` useful in *apps/client* so devtools doenst open up
+<details>
+  <summary> testing and linting </summary>
 
-    - linting & tests
-      - `rushx test` inside an *{apps, libraries}/PKG* will run the test script for htat particular pkg
-      - `rushx hint` requires chromium, setup for *apps/client*. saves report to *apps/client/hint-report/*
-      - `rushx lighthouse` requires chromium. setupfor *apps/client*. saves report to *apps/client/doc/lighthouse*
-      - `rushx browsertime` requires chromium, setup for *apps/client*, saves metrics to *apps/client/browsertime-results/*
-      - `rushx flow:q` run flow quietly
-      - `rushx eslint` run eslint
-      - `rushx eslint:fix` run and fix eslint issues
+  - `rushx test` inside an *{apps, libraries}/PKG* will run the test script for htat particular pkg
+  - `rushx hint` requires chromium, setup for *apps/client*. saves report to *apps/client/hint-report/*
+  - `rushx lighthouse` requires chromium. setupfor *apps/client*. saves report to *apps/client/doc/lighthouse*
+  - `rushx browsertime` requires chromium, setup for *apps/client*, saves metrics to *apps/client/browsertime-results/*
+  - `rushx flow:q` run flow quietly
+  - `rushx eslint` run eslint
+  - `rushx eslint:fix` run and fix eslint issues
+</details>
 
+<details>
+  <summary> building </summary>
 
-    - builds
-      - `rush build` in root; build all pkgs for development
-      - `rushx select build:prod` in root; build all pkgs for production
-      - `rushx build` in a pkg; build that pkg for development
-      - `rushx build:prod` in a pkg; build that pkg for production
-      - building *apps/client*
-        - always saves bundle stats to *apps/client/bundlestats/*
+  - `rush build` in root; build all pkgs for development
+  - `rushx select build:prod` in root; build all pkgs for production
+  - `rushx build` in a pkg; build that pkg for development
+  - `rushx build:prod` in a pkg; build that pkg for production
+  - building *apps/client*
+    - always saves bundle stats to *apps/client/bundlestats/*
+</details>
 
+<details>
+  <summary> adding packages </summary>
 
-### adding packages
   - `rush add -p PKGNAME --dev --exact -m`
     - add a pkg - you should be within a pkg and **not the root** dir
     - e.g. `cd apps/client && rush add -p webpack-bundle-analyzer packages/client --dev --exact -m`
@@ -115,104 +142,159 @@
     - then run `rush update` to do the install
   - `rushx flowtyped:i` update flow type definitions for all deps using cache if available
   - `rushx flowtyped:i-force` install flow type definitions for all dpes
+</details>
 
+## environment
+<details>
+  <summary> variables </summary>
 
-
-### environment variables
   - each *PKGDIR/pkg/package.json* should contain a `config` section with the default (and *public*) environment variables
     - *do not* create an `.env.example` - use the `PKGDIR/pkg/package.json.config` section
   - create a `PKGDIR/pkg/.env` file with environment variables you want to use in each microservice, referencing the name and values in the `PKGDIR/pkg/package.json.config`
     - to apply default values specified in `package.json.config` set the var name in the `.env` file to nothing, e.g. `API_HTTP_PORT=` and `@nodeproto/envproto.syncEnv` will update `process.env.API_HTTP_PORT` to the value specified in the `package.json.config`
       - if the the `.env` file has a value for the variable, it WILL NOT be updated!
         - this is so values set via CLI or `.env` take precedence over `package.json.config` values
+</details>
 
-  - **NODE_OPTIONS**
+<details>
+  <summary> node options </summary>
+
     - checkout *root/package.json.config*
     - all of your *PKGDIR/pkg/.env* files should include this, but be sure to use **single** and **not double** quotes
+</details>
 
-### enabling SSL
+<details>
+  <summary> tls/ssl </summary>
   - self-signed certificates auto created on dev
 
-### modules
-#### stable
-  - pkg management
-    - [rush](https://rushjs.io/pages/commands)
+</details>
+
+## our favorite modules
+  - got someting better?
+  - please give us a link we love the latest and greatest and prefer the bleeding edge
+
+<details>
+  <summary> pkg management </summary>
+
+  - [npm](https://www.npmjs.com/)
+    - only used to install dry
+  - [dry](https://github.com/Cosium/dry-dry/blob/master/src/index.test.ts)
+    - never use `npm` within this applicatoin
+    - always use `dry` instead which will proxy cmds to pnpm
+  - [rush](https://rushjs.io/pages/commands)
     - [pnpm]([npmjs.com/](https://github.com/pnpm/pnpm))
+    - all `rush` cmds use `pnpm`
 
-  - gateway
+</details>
+
+<details>
+  <summary> gateway </summary>
+
     - [haproxy](https://cbonte.github.io/haproxy-dconv/2.4/management.html)
+</details>
 
-  - api layer
-    - [koa](https://koajs.com/#introduction)
-      - [koa-body](https://github.com/koajs/koa-body/blob/9b00b40adbfc40a5f5f73efbc88108adf66bcf8b/index.js#L75)
-      - [koa-compose](https://github.com/koajs/compose/blob/25568a36509fefc58914bc2a7600f787b16aa0df/index.js#L19)
-      - [koa-jwt](https://github.com/koajs/jwt#example)
-      - [koa-session](https://github.com/koajs/session#example)
-      - [koa-helmet](https://github.com/venables/koa-helmet)
-      - [@koa/cors](https://github.com/koajs/cors)
-      - [koa-ratelimit](https://github.com/koajs/ratelimit)
-      - [koa-oas3](https://github.com/atlassian/koa-oas3)
+<details>
+  <summary> api </summary>
 
-  - SSL/TLS
-    - [pem](https://github.com/Dexus/pem/blob/master/test/pem.spec.js)
+  - [koa](https://koajs.com/#introduction)
+    - [koa-body](https://github.com/koajs/koa-body/blob/9b00b40adbfc40a5f5f73efbc88108adf66bcf8b/index.js#L75)
+    - [koa-compose](https://github.com/koajs/compose/blob/25568a36509fefc58914bc2a7600f787b16aa0df/index.js#L19)
+    - [koa-jwt](https://github.com/koajs/jwt#example)
+    - [koa-session](https://github.com/koajs/session#example)
+    - [koa-helmet](https://github.com/venables/koa-helmet)
+    - [@koa/cors](https://github.com/koajs/cors)
+    - [koa-ratelimit](https://github.com/koajs/ratelimit)
+    - [koa-oas3](https://github.com/atlassian/koa-oas3)
+</details>
 
-  - tooling
-    - [esbuild for apis](https://esbuild.github.io)
-      - [always review this first b4 intalling babel plugins](https://esbuild.github.io/content-types/#javascript)
-    - [webpack 5 + esbuild for client](https://webpack.js.org/)
-      - frontend requires complex bundling to support a wide range of environments.
-      - thus we use both webpack 5 + esbuild
-    - [es-main](https://github.com/tschaub/es-main/blob/main/test.js)
-    - [concurrently](https://github.com/kimmobrunfeldt/concurrently)
+<details>
+  <summary> tls/ssl </summary>
 
-  - testing
-    - [purple-tape](https://github.com/mattiash/purple-tape/blob/master/lib/test.ts)
-    - [multi-tape](https://github.com/mattiash/node-multi-tape)
-    - [sinon](https://sinonjs.org/)
-    - [all non esbuild pkgs use flow (see todo)](https://flow.org/en/docs/)
-    - [flow-type](https://github.com/flow-typed/flow-typed)
+  - [pem](https://github.com/Dexus/pem/blob/master/test/pem.spec.js)
+</details>
 
-  - linting
-    - [webhint/hint](https://github.com/webhintio/hint)
-    - [standard](https://standardjs.com/#table-of-contents)
-    - [eslint](https://eslint.org/docs/user-guide/configuring/)
-      - react as we need to support react linting
-      - standard (minus comma-dangle) + react
-    - [lighthouse](https://github.com/GoogleChrome/lighthouse#cli-options)
-    - [browsertime](https://github.com/sitespeedio/browsertime)
-      - [google admin toolbox has an excellent har analyzer](https://toolbox.googleapps.com/apps/har_analyzer/)
-    - [bundle stats](https://github.com/relative-ci/bundle-stats/tree/master/packages/webpack-plugin)
+<details>
+  <summary> tooling </summary>
 
-  - UI
-    - [react](https://reactjs.org)
-    - [react-icons](https://react-icons.github.io/react-icons/)
-    - [clsx](https://github.com/lukeed/clsx)
-    - [react-helmet](https://github.com/nfl/react-helmet)
-    - [react-devtools](https://www.npmjs.com/package/react-devtools)]
+  - [esbuild for apis](https://esbuild.github.io)
+    - [always review this first b4 intalling babel plugins](https://esbuild.github.io/content-types/#javascript)
+  - [webpack 5 + esbuild for client](https://webpack.js.org/)
+    - frontend requires complex bundling to support a wide range of environments.
+    - thus we use both webpack 5 + esbuild
+  - [es-main](https://github.com/tschaub/es-main/blob/main/test.js)
+  - [concurrently](https://github.com/kimmobrunfeldt/concurrently)
+</details>
 
+<details>
+  <summary> testing</summary>
 
-  - text & internationalization
-    - [messageformat](https://github.com//messageformat)
+  - [purple-tape](https://github.com/mattiash/purple-tape/blob/master/lib/test.ts)
+  - [multi-tape](https://github.com/mattiash/node-multi-tape)
+  - [sinon](https://sinonjs.org/)
+  - [all non esbuild pkgs use flow (see todo)](https://flow.org/en/docs/)
+  - [flow-type](https://github.com/flow-typed/flow-typed)
+</details>
 
-  - feature detection
-    - [modernizr](https://modernizr.com/download?setclasses)
+<details>
+  <summary> linting </summary>
 
-  - css
-    - [normalize.css](https://github.com/necolas/normalize.css/)
-    - [milligram](https://milligram.io/)
-    - [styled-components](https://styled-components.com/docs)
+  - [webhint/hint](https://github.com/webhintio/hint)
+  - [standard](https://standardjs.com/#table-of-contents)
+  - [eslint](https://eslint.org/docs/user-guide/configuring/)
+    - react as we need to support react linting
+    - standard (minus comma-dangle) + react
+  - [lighthouse](https://github.com/GoogleChrome/lighthouse#cli-options)
+  - [browsertime](https://github.com/sitespeedio/browsertime)
+    - [google admin toolbox has an excellent har analyzer](https://toolbox.googleapps.com/apps/har_analyzer/)
+  - [bundle stats](https://github.com/relative-ci/bundle-stats/tree/master/packages/webpack-plugin)
+</details>
 
-  - micro interactions & animations
-    - [animate.css](https://animate.style/)
+<details>
+  <summary> UI </summary>
 
-  - accessbility
-    - we use both reakit + react-aria as they compliment each other and keep us from writing primitives
-      - be sure to checkout both as:
-        - doubt this list will stay up to date
-        - we have an accurate representation of everything each provide
-    - [reakit](https://reakit.io/)
-    - [react-aria](https://react-spectrum.adobe.com/react-aria/)
-    - [react-stately](https://react-spectrum.adobe.com/react-stately/getting-started.html)
+  - [react](https://reactjs.org)
+  - [react-icons](https://react-icons.github.io/react-icons/)
+  - [clsx](https://github.com/lukeed/clsx)
+  - [react-helmet](https://github.com/nfl/react-helmet)
+  - [react-devtools](https://www.npmjs.com/package/react-devtools)]
+</details>
+
+<details>
+  <summary> text/internationalization </summary>
+
+  - [messageformat](https://github.com//messageformat)
+</details>
+
+<details>
+  <summary> feature detection </summary>
+
+  - [modernizr](https://modernizr.com/download?setclasses)
+</details>
+
+<details>
+  <summary> css </summary>
+
+  - [normalize.css](https://github.com/necolas/normalize.css/)
+  - [milligram](https://milligram.io/)
+  - [styled-components](https://styled-components.com/docs)
+</details>
+
+<details>
+  <summary> animation </summary>
+
+  - [animate.css](https://animate.style/)
+</details>
+
+<details>
+  <summary> accessibility </summary>
+
+  - we use both reakit + react-aria as they compliment each other and keep us from writing primitives
+    - be sure to checkout both as:
+      - doubt this list will stay up to date
+      - we have an accurate representation of everything each provide
+  - [reakit](https://reakit.io/)
+  - [react-aria](https://react-spectrum.adobe.com/react-aria/)
+  - [react-stately](https://react-spectrum.adobe.com/react-stately/getting-started.html)
 
 | COMPONENT | [REACT-ARIA](https://react-spectrum.adobe.com/react-aria/getting-started.html) | [REAKIT](https://reakit.io/docs) |
 | :-------: | :-------: | :-------: |
@@ -258,3 +340,4 @@ TOOLTIP   | Y | Y |
 USELINK   | Y | N |
 VISUALLYHIDDEN   | Y | Y |
 
+</details>

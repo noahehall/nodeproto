@@ -5,10 +5,10 @@
     "url": "github.com/noahehal"
   },
   "bugs": "https://github.com/noahehall/nodeproto/issues",
-  "description": "bleeding-edge repo for prototyping end-to-end, complex, and secure applications and microservices",
-  "homepage": "https://github.com/noahehall/nodeproto",
+  "description": "script runner and bad azz tool for @nodeproto",
+  "homepage": "https://github.com/noahehall/nodeproto/tools/inception",
   "license": "SEE LICENSE IN LICENSE.md",
-  "name": "nodeproto",
+  "name": "@nodeproto/inception",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -47,7 +47,10 @@
     "apps": "./apps",
     "common": "./common",
     "libraries": "./libraries",
-    "tools": "./tools"
+    "tools": "./tools",
+    "bin": {
+      "inception": "bin/inception.sh"
+    }
   },
   "config": {
     "NODE_OPTIONS": "--experimental-specifier-resolution=node --trace-uncaught --trace-warnings --experimental-import-meta-resolve --enable-source-maps --experimental-json-modules --preserve-symlinks-main --preserve-symlinks"
@@ -58,6 +61,22 @@
     "update": "rush update --recheck",
     "update:f": "rush update --full",
     "update:fp": "npm run update:f --purge",
-    "select": "rush-select"
+    "select": "rush-select",
+    "start": "node index.mjs --run",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "main": "index.mjs",
+  "dependencies": {
+    "@folder/readdir": "^3.1.0",
+    "@folder/xdg": "github:folder/xdg",
+    "chalk": "4.1.1",
+    "chokidar": "3.5.2",
+    "contains-path": "^1.0.0",
+    "dirent": "^2.0.1",
+    "global-modules": "^2.0.0",
+    "global-prefix": "^3.0.0",
+    "picomatch": "^2.3.0",
+    "shelljs": "0.8.4",
+    "yargs": "16.2.0"
   }
 }

@@ -191,6 +191,10 @@
       "allowedCategories": [ "production" ]
     },
     {
+      "name": "dep1",
+      "allowedCategories": [ "production" ]
+    },
+    {
       "name": "dotenv",
       "allowedCategories": [ "libraries", "production" ]
     },

@@ -35,6 +35,7 @@ importers:
       concurrently: 6.2.0
       core-js: '3.14'
       css-loader: 5.2.6
+      dep1: 1.0.0
       env-cmd: 10.1.0
       eslint: '7.29'
       eslint-config-standard: 16.0.3
@@ -92,6 +93,7 @@ importers:
       animate.css: 4.1.1
       clsx: 1.1.1
       core-js: 3.14.0
+      dep1: 1.0.0
       env-cmd: 10.1.0
       history: 5.0.0
       immutability-helper: 3.1.1
@@ -6940,6 +6942,10 @@ packages:
 
   /delegates/1.0.0:
     resolution: {integrity: sha1-hMbhWbgZBP3KWaDvRM2HDTElD5o=}
+
+  /dep1/1.0.0:
+    resolution: {integrity: sha1-r3ajvLeMbHnoPD0kss4lfZfySrM=}
+    dev: false
 
   /depd/1.1.2:
     resolution: {integrity: sha1-m81S4UwJd2PnSbJ0xDRu0uVgtak=}

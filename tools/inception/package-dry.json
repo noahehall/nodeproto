@@ -1,0 +1,34 @@
+{
+  "name": "@nodeproto/inception",
+  "homepage": "https://github.com/noahehall/nodeproto/tools/inception",
+  "dry": {
+    "extends": "../../package-dry.json",
+    "dependencies": {
+      "nodeproto": "file:/../../"
+    }
+  },
+  "description": "script runner and bad azz tool for @nodeproto",
+  "main": "index.mjs",
+  "directories": {
+    "bin": {
+      "inception": "bin/inception.sh"
+    }
+  },
+  "scripts": {
+    "start": "node index.mjs --run",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@folder/readdir": "^3.1.0",
+    "@folder/xdg": "github:folder/xdg",
+    "chalk": "4.1.1",
+    "chokidar": "3.5.2",
+    "contains-path": "^1.0.0",
+    "dirent": "^2.0.1",
+    "global-modules": "^2.0.0",
+    "global-prefix": "^3.0.0",
+    "picomatch": "^2.3.0",
+    "shelljs": "managed",
+    "yargs": "managed"
+  }
+}

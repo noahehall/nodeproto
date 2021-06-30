@@ -59,5 +59,11 @@
     "update:f": "rush update --full",
     "update:fp": "npm run update:f --purge",
     "select": "rush-select"
+
+  },
+  "dependencyManagement": {
+    "@telia/rush-select": "0.12.0",
+    "shelljs": "0.8.4",
+    "yargs": "16.2.0"
   }
 }
