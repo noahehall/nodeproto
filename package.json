@@ -5,7 +5,7 @@
     "url": "github.com/noahehal"
   },
   "bugs": "https://github.com/noahehall/nodeproto/issues",
-  "description": "bleeding-edge repo for prototyping end-to-end, complex, and secure applications and microservices",
+  "description": "bleeding-edge monorepo for rapidly prototyping end-to-end, complex, and secure applications and microservices",
   "homepage": "https://github.com/noahehall/nodeproto",
   "license": "SEE LICENSE IN LICENSE.md",
   "name": "nodeproto",

@@ -3,7 +3,7 @@
 
 
 # @nodeproto
-  - monorepo for rapidly prototyping end-to-end, complex, and secure applications and microservices
+  - bleeding-edge monorepo for rapidly prototyping end-to-end, complex, and secure applications and microservices
 
 
 | tech stach |
