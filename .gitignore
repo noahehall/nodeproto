@@ -1,3 +1,6 @@
+gitpod-local-companion-linux
+.ultra.cache.json
+report.*
 dist
 # Logs
 *.log
@@ -6,6 +9,7 @@ yarn-debug.log*
 yarn-error.log*
 .flowlog*
 **yalc**
+.pnpm*
 
 # Runtime data
 *.pid

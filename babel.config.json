@@ -1,0 +1,10 @@
+{
+  "extends": "packages/libraries/configproto/babel/base.babelrc",
+  "babelrcRoots": [
+    ".",
+    "packages/apps/*",
+    "packages/libraries/",
+    "packages/tools/*"
+    // "packages/tests/*", // not included: tests should be independent
+  ],
+}

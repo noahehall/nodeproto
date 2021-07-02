@@ -1,0 +1,88 @@
+{
+  "description": "@nodeproto/jsync - sync package.json files in a monorepo",
+  "version": "0.0.0",
+  "bin": {
+    "jsync": "./bin/jsync.js"
+  },
+  "scripts": {
+    "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
+    "start": "NODE_OPTIONS=$npm_package_config_NODE_OPTIONS node index.mjs",
+    "verbose": "NODE_ENV=verbose node index.mjs",
+    "upgrade": "pnpm upgrade -L",
+    "nvm:latest": "nvm install node --reinstall-packages-from=current",
+    "post:nvm:latest": "nvm alias default node",
+    "eslint": "eslint 'src/**/*'",
+    "eslint:fix": "pnpm eslint -- --fix",
+    "cp:flow": "cp node_modules/@nodeproto/configproto/.flowconfig .",
+    "jsync": "node ./bin/jsync.js",
+    "test": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" uvu ./src test.mjs",
+    "test:help": "uvu --help",
+    "test:ing": "clear; pnpm test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"clear; pnpm test\""
+  },
+  "dependencies": {
+    "@nodeproto/wtf": "workspace:*",
+    "env-cmd": "10.1.0",
+    "eslint": "7.32.0",
+    "flow-bin": "0.157.0",
+    "ultra-runner": "3.10.5"
+  },
+  "jsync": {
+    "root": false
+  },
+  "type": "module",
+  "main": "index.mjs",
+  "name": "@nodeproto/jsync",
+  "author": {
+    "name": "theDRAGON",
+    "email": "noahedwardhall+souls@gmail.com",
+    "url": "https://github.com/noahehall"
+  },
+  "bugs": "https://github.com/noahehall/nodeproto/issues",
+  "homepage": "https://github.com/noahehall/nodeproto",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "private": true,
+  "keywords": [
+    "@nirv",
+    "@nodeproto",
+    "api",
+    "bodyguard",
+    "docker",
+    "esbuild",
+    "fullstack",
+    "grafana",
+    "haproxy",
+    "inception",
+    "jsync",
+    "koa",
+    "micro service",
+    "microservice",
+    "nirv",
+    "nodeproto",
+    "openapi",
+    "pnpm",
+    "prometheus",
+    "prototype",
+    "react",
+    "ssl",
+    "starter",
+    "swagger",
+    "webpack5"
+  ],
+  "os": [
+    "darwin",
+    "linux"
+  ],
+  "config": {
+    "NODE_OPTIONS": "--pending-deprecation --experimental-wasm-modules --trace-warnings --experimental-top-level-await --enable-source-maps --experimental-vm-modules --experimental-worker --experimental-import-meta-resolve --experimental-report --trace-exit --heapsnapshot-near-heap-limit=3 --trace-uncaught --deprecation --trace-deprecation --no-insecure-http-parser --report-uncaught-exception --use-largepages=on --warnings --experimental-abortcontroller --report-on-fatalerror --experimental-json-modules --trace-sigint --abort-on-uncaught-exception --es-module-specifier-resolution=node --experimental-specifier-resolution=node --experimental-modules",
+    "NODE_ENV": "development",
+    "BABEL_SHOW_CONFIG_FOR": "e.g. BABEL_SHOW_CONFIG_FOR=absolute/path/to/file somePkgJsonScriptName",
+    "PATH_DIST": "./dist",
+    "PATH_SRC": "./src"
+  },
+  "repository": "git://github.com/noahehall/nodeproto.git",
+  "devDependencies": {
+    "ultra-runner": "3.10.5",
+    "uvu": "0.5.1"
+  },
+  "packageManager": "pnpm@6.15.1"
+}

@@ -1,3 +1,12 @@
+<!--
+⚠ Before proceeding:
+
+Search for existing issues. It would be best to also review the closed ones.
+
+check CONTRIBUTING.md
+https://github.com/noahehall/nodeproto/blob/extract-nodeproto-utils/CONTRIBUTING.md
+-->
+
 ---
 name: Feature request
 about: Suggest an idea for this project

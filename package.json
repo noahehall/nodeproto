@@ -2,10 +2,11 @@
   "author": {
     "name": "theDRAGON",
     "email": "noahedwardhall+souls@gmail.com",
-    "url": "github.com/noahehal"
+    "url": "https://github.com/noahehall"
   },
   "bugs": "https://github.com/noahehall/nodeproto/issues",
-  "description": "bleeding-edge monorepo for rapidly prototyping end-to-end, complex, and secure applications and microservices",
+  "repository": "git://github.com/noahehall/nodeproto.git",
+  "description": "bleeding-edge repo for prototyping end-to-end, complex, and secure applications and microservices",
   "homepage": "https://github.com/noahehall/nodeproto",
   "license": "SEE LICENSE IN LICENSE.md",
   "name": "nodeproto",
@@ -13,27 +14,27 @@
   "private": true,
   "type": "module",
   "keywords": [
-    "dry",
-    "pnpm",
-    "inception",
     "@nirv",
     "@nodeproto",
     "api",
+    "bodyguard",
     "docker",
     "esbuild",
     "fullstack",
     "grafana",
     "haproxy",
+    "inception",
+    "jsync",
     "koa",
     "micro service",
     "microservice",
     "nirv",
     "nodeproto",
     "openapi",
+    "pnpm",
     "prometheus",
     "prototype",
     "react",
-    "rushstack",
     "ssl",
     "starter",
     "swagger",
@@ -44,20 +45,54 @@
     "linux"
   ],
   "directories": {
-    "apps": "./apps",
-    "common": "./common",
-    "libraries": "./libraries",
-    "tools": "./tools"
+    "bin": "./bin",
+    "doc": "./doc",
+    "packages": "./packages"
   },
+  "files": [
+    "proto",
+    ".eslintrc.yml",
+    ".editorconfig",
+    ".gitignore",
+    ".npmrc",
+    ".nvmrc",
+    "pnpm-lock.yaml",
+    "pnpm-workspace.yaml",
+    "README.md"
+  ],
   "config": {
-    "NODE_OPTIONS": "--experimental-specifier-resolution=node --trace-uncaught --trace-warnings --experimental-import-meta-resolve --enable-source-maps --experimental-json-modules --preserve-symlinks-main --preserve-symlinks"
+    "PATH_DIST": "./dist",
+    "PATH_SRC": "./src",
+    "BABEL_SHOW_CONFIG_FOR": "e.g. BABEL_SHOW_CONFIG_FOR=absolute/path/to/file somePkgJsonScriptName",
+    "NODE_ENV": "development",
+    "NODE_OPTIONS": "--pending-deprecation --experimental-wasm-modules --trace-warnings --experimental-top-level-await --enable-source-maps --experimental-vm-modules --experimental-worker --experimental-import-meta-resolve --experimental-report --trace-exit --heapsnapshot-near-heap-limit=3 --trace-uncaught --deprecation --trace-deprecation --no-insecure-http-parser --report-uncaught-exception --use-largepages=on --warnings --experimental-abortcontroller --report-on-fatalerror --experimental-json-modules --trace-sigint --abort-on-uncaught-exception --es-module-specifier-resolution=node --experimental-specifier-resolution=node --experimental-modules"
   },
   "scripts": {
     "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
-    "list": "rush list",
-    "update": "rush update --recheck",
-    "update:f": "rush update --full",
-    "update:fp": "npm run update:f --purge",
-    "select": "rush-select"
+    "config:list": "pnpm config list --json",
+    "cp:flow": "cp node_modules/@nodeproto/configproto/.flowconfig .",
+    "eslint:fix": "pnpm eslint -- --fix",
+    "eslint": "eslint 'src/**/*'",
+    "nvm:latest": "nvm install node --reinstall-packages-from=current",
+    "post:nvm:latest": "nvm alias default node",
+    "test:help": "uvu --help",
+    "test:ing": "clear; pnpm test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"clear; pnpm test\"",
+    "test": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" uvu ./src test.mjs",
+    "upgrade": "pnpm upgrade -L"
+  },
+  "jsync": {
+    "root": true
+  },
+  "ultra": {
+    "concurrent": [
+      "eslint",
+      "test",
+      "cp:flow"
+    ]
+  },
+  "packageManager": "pnpm@6.15.1",
+  "devDependencies": {
+    "@changesets/cli": "2.17.0",
+    "ultra-runner": "3.10.5"
   }
 }

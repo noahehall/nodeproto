@@ -1,0 +1,62 @@
+/**
+  * @see https://docs.npmjs.com/cli/v7/configuring-npm/package-json
+  */
+{
+  "jsync": {
+      // the root governs child package files
+    "root": false,
+    // the total number of ancestor dirs to search for root
+    // will throw err if not found
+    "maxLookups": 3,
+    // list of root/package.json fields to always ignore
+    // overrides all other settings
+    "ignoreRootValues": [
+      "bin",
+      "bundledDependencies",
+      "contributors",
+      "directories",
+      "files",
+      "jsync",
+      "name",
+      "workspaces",
+      // "*" uncomment to test precedence logic
+    ],
+    // list of root/package.json fields to always use if available
+    // i.e. child.field = root.field
+    // overrides spreadRootValues
+    "forceRootValues": [
+      "author",
+      "bugs",
+      "funding",
+      "homepage",
+      "license",
+      // "*" // uncomment to test precedence logic
+    ],
+    // list of package fields in root to spread into child
+    // e.g. !(field in child) && child[field] = root.field
+    // e.g. child.field: Object = { ...root.field, ...child.field }
+    // e.g. child.field: Array = new Set([ ...root.field, ...child.field ])
+    "spreadRootValues": [
+      "*", // spread all remaining values, * will only be in a single category
+      // the below isnt needed since we use the * above
+      // "private",
+      // "browser",
+      // "config",
+      // "cpu",
+      // "dependencies",
+      // "description",
+      // "devDependencies",
+      // "engines",
+      // "keywords",
+      // "main",
+      // "man",
+      // "optionalDependencies",
+      // "os",
+      // "peerDependencies",
+      // "peerDependenciesMeta",
+      // "publishConfig",
+      // "scripts",
+      // "version",
+    ],
+  },
+}
