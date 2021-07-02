@@ -9,8 +9,7 @@ const app = new Koa();
 
 import dep1 from 'dep1';
 
-console.log('\n\n\n\n dep1', dep1)
-throw 'hello';
+dep1()
 
 
 app.use(middleware(

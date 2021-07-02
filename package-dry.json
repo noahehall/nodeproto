@@ -2,7 +2,7 @@
   "author": {
     "name": "theDRAGON",
     "email": "noahedwardhall+souls@gmail.com",
-    "url": "github.com/noahehal"
+    "url": "https://github.com/noahehall"
   },
   "bugs": "https://github.com/noahehall/nodeproto/issues",
   "description": "bleeding-edge repo for prototyping end-to-end, complex, and secure applications and microservices",
@@ -65,5 +65,8 @@
     "@telia/rush-select": "0.12.0",
     "shelljs": "0.8.4",
     "yargs": "16.2.0"
+  },
+  "dependencies": {
+    "@telia/rush-select": "0.12.0"
   }
 }

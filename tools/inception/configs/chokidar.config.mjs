@@ -17,5 +17,7 @@ export const chokidarConfigDefault = {
     ignorePermissionErrors: false,
     interval: 100,
     persistent: true,
+    useFsEvents: false,
+    usePolling: true,
     usePolling: false,
   }

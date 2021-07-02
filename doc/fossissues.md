@@ -25,6 +25,7 @@
   - [enable this in our rush-select fork](https://github.com/TeliaSweden/rush-select/issues/5)
   - [cant specify corejs version in babelruntime](https://github.com/zloirock/core-js/issues/946)
   - [dry verbose options](https://github.com/Cosium/dry-dry/blob/master/src/index.test.ts)
+  - [chokidar run in bg informatoin](https://github.com/paulmillr/chokidar/issues/1124)
 
 
 
