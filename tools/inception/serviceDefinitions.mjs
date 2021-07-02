@@ -4,19 +4,10 @@ import Dirent from 'dirent';
 import fs from 'fs';
 import path from 'path';
 import picomatch from 'picomatch';
-import prefix from 'global-prefix';
 import readdir from '@folder/readdir';
 import xdg from '@folder/xdg';
+import globalDirs from 'global-dirs';
 
-// copy pasta
-// @see https://github.com/jonschlinkert/global-modules/blob/master/index.js
-function getGlobalDir() {
-  if (process.platform === 'win32' || process.env.OSTYPE === 'msys' || process.env.OSTYPE === 'cygwin') {
-    return path.resolve(prefix, 'node_modules');
-  }
-  return path.resolve(prefix, 'lib/node_modules');
-}
-const globalDir = getGlobalDir();
 
 /**
  * gets cross-platform directories
@@ -25,7 +16,6 @@ const globalDir = getGlobalDir();
  * @see https://github.com/folder/readdir
  * @see https://github.com/folder/readdir#tips--tricks
  * @see https://github.com/jonschlinkert/global-modules/blob/master/index.js
- * @see https://github.com/jonschlinkert/global-prefix/blob/master/index.js
  *
  * @TODO https://www.npmjs.com/package/unixify
  * @return {*}
@@ -50,7 +40,8 @@ const getDirs = () => {
       tempdir: tmpdir(),
     }),
     cPath,
-    globalDir,
+    globalDirs,
+    inceptionStore: `${homedir()}/.node_modules`,
     async readdir ({ dirpath, glob, ...opts}) {
       return readdir(
         dirpath,
@@ -62,66 +53,47 @@ const getDirs = () => {
 
 export const dirs = getDirs();
 
-// examples
-const fpath = await dirs.readdir({ dirpath: dirs.cwd, glob: '*/*.mjs' })
-const file = new Dirent(fpath[0])
 
-console.log(
-  '\n\n wtf dirs',
-  dirs,
-  await dirs.readdir({ dirpath: dirs.cwd, glob: '*/*.mjs' }),
+export const globalOptions = {
+  chokidarConfig: {},
+  runner: 'npm run', // enum(true)
+  watchGlob: /src\/.*\.(c|m)?js|css|tsx$/, // javascript and css files
+}
 
-  '\n\n dirent',
-  file.dirname,
-  file.basename,
-  file.stem,
-  file.extname,
 
-  '\n\n global intall dir',
-  globalDir,
-
-)
-
+// @see https://github.com/nodejs/node-eps/blob/master/002-es-modules.md#4-compatibility
+// symlinks to ~/.node_modules will always work, with a performance hit but hey
 /**
  * destructure to create a new dependency
  */
 const defaultService = {
-  watchGlob: /src\/.*\.(c|m)?js|css|tsx$/, // javascript and css files
-  chokidarConfig: {}, // TODO: currently using a single watcher for all deps
-  name: '', // pkgJson.name // only required if pkgs have the same name (not sure why but hey),
-  pushAfterBuild: true,
-  pushWithoutBuild: false, // push a pkg without building it
-  runner: 'npm run', // e.g. yarn|rushx|npx
+  // chokidarConfig: {}, // TODO: currently using a single watcher for all deps
+  // runner: 'npm run', // e.g. yarn|rushx|npx
+  // watchGlob: /src\/.*\.(c|m)?js|css|tsx$/, // javascript and css files
   scriptBuild: '', // e.g. build
   scriptStart: '', // e.g. start
   upstreamDeps: [], // pkgJson.name, list of pkgs this pkg depends on
   watch: true,
-  workDir: '', // ../../dirWithPkgJson
+  workDir: '', // directory with pkg.json, must be unique
 }
-
-
-const baseDir = '../../../../foss/';
-
-export const inceptionStore = `${homedir()}/node_modules`;
-
 
 export const dep1 = {
   ...defaultService,
-  workDir: baseDir + 'fakedeps/dep1',
+  workDir: '../../../fakedeps/dep1',
   upstreamDeps: ['dep2'],
   scriptBuild: 'build:dep1',
 }
 
 export const dep2 = {
   ...defaultService,
-  workDir: baseDir + 'fakedeps/dep2',
+  workDir: '../../../fakedeps/dep2',
   scriptBuild: 'build',
 }
 
 export const client = {
   ...defaultService,
-  workDir: baseDir + 'nodeproto/apps/client',
-  runner: 'rushx',
-  startScript: 'start:dev',
+  workDir: '../../apps/client',
+  scriptStart: 'start:dev',
   upstreamDeps: ['dep1'],
 }
+

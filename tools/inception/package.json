@@ -2,7 +2,7 @@
   "author": {
     "name": "theDRAGON",
     "email": "noahedwardhall+souls@gmail.com",
-    "url": "github.com/noahehal"
+    "url": "https://github.com/noahehall"
   },
   "bugs": "https://github.com/noahehall/nodeproto/issues",
   "description": "script runner and bad azz tool for @nodeproto",
@@ -62,11 +62,13 @@
     "update:f": "rush update --full",
     "update:fp": "npm run update:f --purge",
     "select": "rush-select",
-    "start": "node index.mjs --run",
+    "check": "node index.mjs --check",
+    "run": "node index.mjs --run",
+    "inception": "node index.mjs --inception",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "main": "index.mjs",
   "dependencies": {
+    "@telia/rush-select": "0.12.0",
     "@folder/readdir": "^3.1.0",
     "@folder/xdg": "github:folder/xdg",
     "chalk": "4.1.1",
@@ -74,9 +76,13 @@
     "contains-path": "^1.0.0",
     "dirent": "^2.0.1",
     "global-modules": "^2.0.0",
-    "global-prefix": "^3.0.0",
     "picomatch": "^2.3.0",
     "shelljs": "0.8.4",
-    "yargs": "16.2.0"
-  }
+    "yargs": "16.2.0",
+    "ultra-runner": "^3.10.5",
+    "@alumna/reflect": "^1.0.5",
+    "global-dirs": "^3.0.0",
+    "symlink-dir": "^5.0.1"
+  },
+  "main": "index.mjs"
 }

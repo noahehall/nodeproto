@@ -155,6 +155,7 @@
   - [make this shit into a real plugin](https://www.npmjs.com/package/esbuild-plugin-flow)
   - [review this dope way of using reflect on module exports](https://github.com/jonschlinkert/global-modules/blob/master/index.js)
     - when you import it, it only returns a string as expected from the code
+  - [finish settin gup tabine](https://www.tabnine.com/welcome)
 
 ## DONE
   - defaults from pkg.json.config not being used
