@@ -1,0 +1,15 @@
+{
+  "name": "dep2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.mjs",
+  "files": [
+    "index.js"
+  ],
+  "scripts": {
+    "build": "echo 'building dep2' && sleep 2",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

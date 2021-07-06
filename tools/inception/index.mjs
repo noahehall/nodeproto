@@ -32,8 +32,6 @@ import {
   ErrorInception,
   ErrorLinkPkgs,
   ErrorRunInception,
-  getPkgKey,
-  IFS,
   info as infoIt,
   isBuildable,
   isStartable,
