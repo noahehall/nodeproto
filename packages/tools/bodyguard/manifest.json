@@ -1,0 +1,33 @@
+{
+
+  "manifest_version": 2,
+  "version": "1.0",
+
+  "name": "@nodeproto/bodyguard",
+  "description": "protect your network requests with @nodeproto/bodyguard",
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "noahedwardhall@gmail.com"
+    }
+  },
+
+  "icons": {
+    "48": "icons/icons8-muscle-48.png"
+  },
+
+  "permissions": [
+    "webRequest",
+    "webRequestBlocking",
+    "tabs",
+    "webNavigation",
+    "http://*/*",
+    "https://*/*",
+    "<all_urls>"
+
+  ],
+
+  "background": {
+    "scripts": ["network.js"]
+  }
+}

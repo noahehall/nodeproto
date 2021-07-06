@@ -1,0 +1,89 @@
+{
+  "author": {
+    "name": "theDRAGON",
+    "email": "noahedwardhall+souls@gmail.com",
+    "url": "https://github.com/noahehall"
+  },
+  "bugs": "https://github.com/noahehall/nodeproto/issues",
+  "description": "script runner and bad azz tool for @nodeproto",
+  "homepage": "https://github.com/noahehall/nodeproto/tools/inception",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "name": "@nodeproto/inception",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "keywords": [
+    "dry",
+    "pnpm",
+    "inception",
+    "@nirv",
+    "@nodeproto",
+    "api",
+    "docker",
+    "esbuild",
+    "fullstack",
+    "grafana",
+    "haproxy",
+    "koa",
+    "micro service",
+    "microservice",
+    "nirv",
+    "nodeproto",
+    "openapi",
+    "prometheus",
+    "prototype",
+    "react",
+    "rushstack",
+    "ssl",
+    "starter",
+    "swagger",
+    "webpack5"
+  ],
+  "os": [
+    "darwin",
+    "linux"
+  ],
+  "directories": {
+    "apps": "./apps",
+    "common": "./common",
+    "libraries": "./libraries",
+    "tools": "./tools",
+    "bin": {
+      "inception": "bin/inception.sh"
+    }
+  },
+  "config": {
+    "NODE_OPTIONS": "--experimental-specifier-resolution=node --trace-uncaught --trace-warnings --experimental-import-meta-resolve --enable-source-maps --experimental-json-modules --preserve-symlinks-main --preserve-symlinks"
+  },
+  "scripts": {
+    "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
+    "list": "rush list",
+    "update": "rush update --recheck",
+    "update:f": "rush update --full",
+    "update:fp": "npm run update:f --purge",
+    "select": "rush-select",
+    "check": "node index.mjs --check",
+    "run": "node index.mjs --run",
+    "inception": "node index.mjs --inception",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@alumna/reflect": "^1.0.5",
+    "@folder/readdir": "^3.1.0",
+    "@folder/xdg": "github:folder/xdg",
+    "@nodeproto/wtf": "workspace:1.0.0",
+    "@telia/rush-select": "0.12.0",
+    "chalk": "4.1.1",
+    "chokidar": "3.5.2",
+    "contains-path": "^1.0.0",
+    "dirent": "^2.0.1",
+    "global-dirs": "^3.0.0",
+    "global-modules": "^2.0.0",
+    "picomatch": "^2.3.0",
+    "shelljs": "0.8.4",
+    "symlink-dir": "^5.0.1",
+    "ultra-runner": "^3.10.5",
+    "yargs": "16.2.0"
+  },
+  "main": "index.mjs"
+}

@@ -1,0 +1,46 @@
+{
+  "description": "symlink and monitor pkgs before running",
+  "homepage": "https://github.com/noahehall/nodeproto/tools/inception",
+  "name": "@nodeproto/inception",
+  "main": "index.mjs",
+  "directories": {
+    "bin": "./bin"
+  },
+  "scripts": {
+    "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
+    "list": "rush list",
+    "update": "rush update --recheck",
+    "update:f": "rush update --full",
+    "update:fp": "npm run update:f --purge",
+    "select": "rush-select",
+    "check": "node index.mjs --check",
+    "run": "node index.mjs --run",
+    "inception": "node index.mjs --inception",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dry": {
+    "extends": "../../../package-dry.json",
+    "dependencies": {
+      "nodeproto": "file:/../../../"
+    }
+  },
+  "dependencies": {
+    "@folder/readdir": "^3.1.0",
+    "@folder/xdg": "github:folder/xdg",
+    "chalk": "4.1.1",
+    "chokidar": "3.5.2",
+    "contains-path": "^1.0.0",
+    "dirent": "^2.0.1",
+    "global-modules": "^2.0.0",
+    "picomatch": "^2.3.0",
+    "shelljs": "0.8.4",
+    "yargs": "16.2.0",
+    "ultra-runner": "^3.10.5",
+    "@alumna/reflect": "^1.0.5",
+    "global-dirs": "^3.0.0",
+    "symlink-dir": "^5.0.1"
+  },
+  "jsync": {
+    "root": false,
+  },
+}

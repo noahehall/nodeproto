@@ -6,8 +6,20 @@
     - koa relies heavily on this groups open source projects
   - [st static files + etc](https://github.com/isaacs/st#readme)
   - [koajs/mount](https://github.com/koajs/mount)
+  - [pnpm/beta as nvm replacement](https://github.com/pnpm/pnpm/discussions/3434)
+    - nvm is perfect, not sure why but atleast check it out
+  - [pnpm workspaces](https://pnpm.io/workspaces)
+  - [aws opensearch](https://github.com/opensearch-project/OpenSearch)
+    - aws fork of eslaticsearch
+  - [changesets for mgnging release workflow](https://github.com/atlassian/changesets)
+  - [find a use for reghex](https://github.com/kitten/reghex)
+  - [pnpm nopt - fork of npms](https://github.com/pnpm/nopt)
+  - [npm nopt](https://github.com/npm/nopt)
+  - [pnpm action: setup pnpm](https://github.com/pnpm/action-setup)
+  - [pnpm logger](https://github.com/pnpm/logger)
+  - [ndjson](https://github.com/ndjson/ndjson.js)
+  - [only-allow](https://github.com/pnpm/only-allow)
 
-s
 ### not so bad
   - [keyGrip](https://github.com/crypto-utils/keygrip)
     - hasnt been updated since 2019

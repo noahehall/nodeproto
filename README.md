@@ -1,3 +1,17 @@
+# categorize these before merge to master
+  - [npmrc pnpm specific](https://pnpm.io/npmrc)
+  - [update pnpm publishConfig before publishing](https://pnpm.io/package_json)
+  - [use this link to add to our readmefile for pnpm](https://pnpm.io/installation)
+  - [migrating from typescript to flow](https://github.com/niieani/typescript-vs-flowtype)
+  - [finish setting up github packages](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry)
+  - [finish setting up gitub container registry](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry)
+  - [finish setting up snyk](https://app.snyk.io/org/noahehall/manage/integrations/github)
+  - [finish setting up codeql](https://codeql.github.com/docs/codeql-for-visual-studio-code/)
+  - [finish settin gup gitpod](https://gitpod.io/workspaces/)
+  - [finish setting up security workflows](https://github.com/noahehall/nodeproto/actions)
+  - [finish setting up github beta release projects](https://github.com/noahehall/nodeproto/projects/1?add_cards_query=is%3Aopen)
+
+
 # support us!
   - [buy me a starbook](https://us.starlabs.systems/)
 

@@ -156,6 +156,9 @@
   - [review this dope way of using reflect on module exports](https://github.com/jonschlinkert/global-modules/blob/master/index.js)
     - when you import it, it only returns a string as expected from the code
   - [finish settin gup tabine](https://www.tabnine.com/welcome)
+  - [checkout putout](https://github.com/coderaiser/putout)
+  - [awesome codemods](http://www.lib4dev.in/info/rajasegar/awesome-codemods/227242829)
+  -
 
 ## DONE
   - defaults from pkg.json.config not being used
