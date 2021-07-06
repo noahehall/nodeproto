@@ -33,7 +33,6 @@
     "prometheus",
     "prototype",
     "react",
-    "rushstack",
     "ssl",
     "starter",
     "swagger",
@@ -53,20 +52,12 @@
     "NODE_OPTIONS": "--experimental-specifier-resolution=node --trace-uncaught --trace-warnings --experimental-import-meta-resolve --enable-source-maps --experimental-json-modules --preserve-symlinks-main --preserve-symlinks"
   },
   "scripts": {
-    "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
-    "list": "rush list",
-    "update": "rush update --recheck",
-    "update:f": "rush update --full",
-    "update:fp": "npm run update:f --purge",
-    "select": "rush-select"
-
+    "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0"
   },
   "dependencyManagement": {
-    "@telia/rush-select": "0.12.0",
     "shelljs": "0.8.4",
     "yargs": "16.2.0"
   },
   "dependencies": {
-    "@telia/rush-select": "0.12.0"
   }
 }
