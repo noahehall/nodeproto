@@ -11,6 +11,7 @@ import globalDirs from 'global-dirs';
 
 /**
  * gets cross-platform directories
+ *
  * @see https://github.com/folder/xdg
  * @see https://github.com/jonschlinkert/contains-path
  * @see https://github.com/folder/readdir
@@ -18,7 +19,7 @@ import globalDirs from 'global-dirs';
  * @see https://github.com/jonschlinkert/global-modules/blob/master/index.js
  *
  * @TODO https://www.npmjs.com/package/unixify
- * @return {*}
+ * @return {object} properties and methods supporting filesystem management
  */
 const getDirs = () => {
   const readdirOptions = {
@@ -79,14 +80,14 @@ const defaultService = {
 
 export const dep1 = {
   ...defaultService,
-  workDir: '../../../fakedeps/dep1',
+  workDir: './fixtures/fakedeps/dep1',
   upstreamDeps: ['dep2'],
   scriptBuild: 'build:dep1',
 }
 
 export const dep2 = {
   ...defaultService,
-  workDir: '../../../fakedeps/dep2',
+  workDir: './fixtures/fakedeps/dep2',
   scriptBuild: 'build',
 }
 
