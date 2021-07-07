@@ -14,6 +14,7 @@
   pnpm CMD // run a cmd (use ultra instead)
   pnpm exec CMD // specifically run a node_modules/.bin
   pnpm i // install all pkgs from package.json
+  pnpm config ls -l // see config values
   // TODO
     - the filtering link
     - pnpm uses npm config + all pnpm options can be set, see npm/config link
