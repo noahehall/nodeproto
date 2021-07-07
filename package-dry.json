@@ -50,6 +50,10 @@
   "files": [
     "./proto"
   ],
+  "engines":{
+    "node": ">=16.4",
+    "pnpm": ">=6.9"
+  },
   "config": {
     "NODE_OPTIONS": "--experimental-specifier-resolution=node --trace-uncaught --trace-warnings --experimental-import-meta-resolve --enable-source-maps --experimental-json-modules --preserve-symlinks-main --preserve-symlinks"
   },
