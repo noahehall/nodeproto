@@ -1,1 +1,1 @@
-each package is an independent service
+each package is an independent cloud-native service
