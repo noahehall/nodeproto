@@ -1,55 +1,10 @@
 {
-  "author": {
-    "name": "theDRAGON",
-    "email": "noahedwardhall+souls@gmail.com",
-    "url": "https://github.com/noahehall"
-  },
-  "bugs": "https://github.com/noahehall/nodeproto/issues",
-  "description": "script runner and bad azz tool for @nodeproto",
+  "description": "symlink and monitor pkgs before running",
   "homepage": "https://github.com/noahehall/nodeproto/tools/inception",
-  "license": "SEE LICENSE IN LICENSE.md",
   "name": "@nodeproto/inception",
-  "version": "0.0.0",
-  "private": true,
-  "type": "module",
-  "keywords": [
-    "dry",
-    "pnpm",
-    "inception",
-    "@nirv",
-    "@nodeproto",
-    "api",
-    "docker",
-    "esbuild",
-    "fullstack",
-    "grafana",
-    "haproxy",
-    "koa",
-    "micro service",
-    "microservice",
-    "nirv",
-    "nodeproto",
-    "openapi",
-    "prometheus",
-    "prototype",
-    "react",
-    "rushstack",
-    "ssl",
-    "starter",
-    "swagger",
-    "webpack5"
-  ],
-  "os": [
-    "darwin",
-    "linux"
-  ],
+  "main": "index.mjs",
   "directories": {
-    "bin": {
-      "inception": "bin/inception.sh"
-    }
-  },
-  "config": {
-    "NODE_OPTIONS": "--experimental-specifier-resolution=node --trace-uncaught --trace-warnings --experimental-import-meta-resolve --enable-source-maps --experimental-json-modules --preserve-symlinks-main --preserve-symlinks"
+    "bin": "./bin"
   },
   "scripts": {
     "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
@@ -63,18 +18,12 @@
     "inception": "node index.mjs --inception",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "dependencyManagement": {
-    "@telia/rush-select": "0.12.0",
-    "shelljs": "0.8.4",
-    "yargs": "16.2.0"
-  },
   "dry": {
-    "extends": "../../package-dry.json",
+    "extends": "../../../package-dry.json",
     "dependencies": {
-      "nodeproto": "file:/../../"
+      "nodeproto": "file:/../../../"
     }
   },
-  "main": "index.mjs",
   "dependencies": {
     "@folder/readdir": "^3.1.0",
     "@folder/xdg": "github:folder/xdg",
