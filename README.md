@@ -1,6 +1,7 @@
 # categorize these before merge to master
   - [npmrc pnpm specific](https://pnpm.io/npmrc)
   - [update pnpm publishConfig before publishing](https://pnpm.io/package_json)
+  - [use this link to add to our readmefile for pnpm](https://pnpm.io/installation)
 
 
 # support us!
