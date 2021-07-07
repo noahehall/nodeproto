@@ -6,6 +6,8 @@
     - koa relies heavily on this groups open source projects
   - [st static files + etc](https://github.com/isaacs/st#readme)
   - [koajs/mount](https://github.com/koajs/mount)
+  - [pnpm/beta as nvm replacement](https://github.com/pnpm/pnpm/discussions/3434)
+    - nvm is perfect, not sure why but atleast check it out
 
 s
 ### not so bad
