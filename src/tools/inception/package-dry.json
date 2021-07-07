@@ -44,10 +44,6 @@
     "linux"
   ],
   "directories": {
-    "apps": "./apps",
-    "common": "./common",
-    "libraries": "./libraries",
-    "tools": "./tools",
     "bin": {
       "inception": "bin/inception.sh"
     }
