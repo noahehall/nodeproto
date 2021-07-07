@@ -8,6 +8,8 @@
   - [koajs/mount](https://github.com/koajs/mount)
   - [pnpm/beta as nvm replacement](https://github.com/pnpm/pnpm/discussions/3434)
     - nvm is perfect, not sure why but atleast check it out
+  - [pnpm workspaces](https://pnpm.io/workspaces)
+  -
 
 s
 ### not so bad

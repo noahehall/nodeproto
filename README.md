@@ -1,3 +1,8 @@
+# categorize these before merge to master
+  - [npmrc pnpm specific](https://pnpm.io/npmrc)
+  - [update pnpm publishConfig before publishing](https://pnpm.io/package_json)
+
+
 # support us!
   - [buy me a starbook](https://us.starlabs.systems/)
 
