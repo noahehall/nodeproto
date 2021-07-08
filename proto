@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # expected output if ./proto -f=proto cmd=blah blah blah
-# ./bin/proto.cjs "$*"
+# ./bin/proto "$*"
 
 # retrieve command line arguments
 #

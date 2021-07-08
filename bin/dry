@@ -1,5 +1,8 @@
 #!/usr/bin/env sh
 
+# because the verbosity of dry cmds sucks
+# run any dry cmd via root/proto script
+
 # always do this
 # dry --dry-keep-package-json --dry-packager=pnpm
 
