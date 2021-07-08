@@ -1,3 +1,40 @@
 #!/usr/bin/env bash
 
-./bin/proto.cjs "$*"
+# expected output if ./proto -f=proto cmd=blah blah blah
+# ./bin/proto.cjs "$*"
+
+# retrieve command line arguments
+#
+# @param [Array] args
+# @return [Object]
+function proto_get_args() {
+  local args=()
+  while [[ $# -gt 0 ]]; do
+      args+=("$1")
+      shift
+  done
+  echo "${args[@]}"
+}
+
+# get command matching filename array
+#
+# @param [Array] files
+# @param [Array] commands
+# @return [String]
+function proto_get_command() {
+  local files=("${@:1}")
+  local commands=()
+  local command=""
+  for file in "${files[@]}"; do
+    commands+=("$(basename "$file" ".js")")
+  done
+  for command in "${commands[@]}"; do
+    if [[ "$command" == "$1" ]]; then
+      echo "$command"
+      return
+    fi
+  done
+  echo "ERROR: No command found matching filename(s) '${files[@]}'"
+  echo "ERROR: Allowed commands: ${commands[@]}"
+  exit 1
+}
