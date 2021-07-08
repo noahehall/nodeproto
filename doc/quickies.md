@@ -31,4 +31,5 @@
 
   // multiply two numbers
   function // <-- you should see suggestions without even providing a function name
+  // <-- lol you dont even need to type function keyword ;) just the comment #superdope
 ```
