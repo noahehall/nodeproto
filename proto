@@ -38,3 +38,16 @@ function proto_get_command() {
   echo "ERROR: Allowed commands: ${commands[@]}"
   exit 1
 }
+
+
+# @see https://stackoverflow.com/questions/10569198/take-the-first-command-line-argument-and-pass-the-rest
+all_args=("$@")
+cmd_args=("${all_args[@]:2}")
+
+if test -f "./bin/$1";
+then
+  echo "running $1 with cmd $2 args $cmd_args[@]"
+  ./bin/$1
+else
+  echo "unknown bin file: $1 and cmd $2 and args $cmd_args[@]"
+fi
