@@ -1,0 +1,16 @@
+{
+  "name": "@nodeproto/bodyguard",
+  "version": "1.0.0",
+  "description": "protect your network requests with @nodeproto bodyguard browser extension",
+  "main": "network.js",
+  "scripts": {
+    "start": "web-ext run --bc -t firefox-desktop --url about.pinterest.com",
+    "start:c": "web-ext run --bc -t chromium",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "web-ext": "^6.2.0"
+  }
+}
