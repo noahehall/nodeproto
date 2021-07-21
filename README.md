@@ -3,6 +3,7 @@
   - [update pnpm publishConfig before publishing](https://pnpm.io/package_json)
   - [use this link to add to our readmefile for pnpm](https://pnpm.io/installation)
   - [migrating from typescript to flow](https://github.com/niieani/typescript-vs-flowtype)
+  - [finish extracting package.json mgmt logic from dry-dry](https://github.com/noahehall/dry-dry/pull/1)
 
 
 # support us!

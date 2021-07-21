@@ -17,10 +17,9 @@ function redirect(requestDetails) {
   });
 }
 
-// looks like these accept plural strings? images work...
 // @see https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/webRequest/ResourceType
 const redirectTypes = [
-  'images',
+  'image',
   // imageset
   // script
   // stylesheet
