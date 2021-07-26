@@ -1,0 +1,11 @@
+{
+  "name": "@nodeproto/jsync",
+  "version": "1.0.0",
+  "description": "@nodeproto/jsync: sync json files",
+  "main": "index.mjs",
+  "type": "module",
+  "dependencies": {
+    "diff": "5.0.0",
+    "jsonc-simple-parser": "2.2.0"
+  }
+}

@@ -9,7 +9,10 @@
   - [pnpm/beta as nvm replacement](https://github.com/pnpm/pnpm/discussions/3434)
     - nvm is perfect, not sure why but atleast check it out
   - [pnpm workspaces](https://pnpm.io/workspaces)
-  -
+  - [aws opensearch](https://github.com/opensearch-project/OpenSearch)
+    - aws fork of eslaticsearch
+  - [changesets for mgnging release workflow](https://github.com/atlassian/changesets)
+  - [find a use for reghex](https://github.com/kitten/reghex)
 
 s
 ### not so bad

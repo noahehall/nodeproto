@@ -62,4 +62,4 @@ suppress_type=$FlowTODO
 <PROJECT_ROOT>/*\.test\.(c|m)js
 
 [version]
-0.154.0
+0.155.0
