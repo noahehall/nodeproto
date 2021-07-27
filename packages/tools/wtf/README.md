@@ -4,6 +4,9 @@
 
 # import dependencies
   - [readdir](https://github.com/folder/readdir)
+  - [jsonc](https://github.com/fabiospampinato/jsonc-simple-parser/blob/master/test/lib/index.js)
+
+
 # examples
   ```js
     // get the pkg json file in the current directory
@@ -15,5 +18,10 @@
     // similarly, get the pkg jsonc file in the current directory
     await dirs.getPkgJsonc()
 
-
+    dirs.JSONC
+      .lookup
+      .stringify
+      .strip // strip new lines but keep comments?
+      .validate // validate jsonc?
+      .parse // convert to json
   ```

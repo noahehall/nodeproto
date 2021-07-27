@@ -1,38 +1,57 @@
+/**
+  * @see https://docs.npmjs.com/cli/v7/configuring-npm/package-json
+  */
 {
   "jsync": {
       // the root governs child package files
     "root": false,
-    // the total number of parent directories to search for root
+    // the total number of ancestor dirs to search for root
     // will throw err if not found
-    "maxLookups": 5,
-    // if child + root package property clash, use root value
-    "overrideDefault": false,
-    // if child + root package property clash, use root value
-    // list of package fields to force overriding
-    "overrideForce": [],
-    // list of package fields in root to spread into child
-    // e.g.
-      // child.devDependencies = {
-      // ...root.devDependencies,
-      // ...child.dependencies,
-      // }
-    "overrideSpread": [
+    "maxLookups": 3,
+    // list of root/package.json fields to always ignore
+    "ignoreRootValues": [
+      "bin",
       "bundledDependencies",
-      "config",
+      "contributors",
       "dependencies",
-      "devDependencies",
       "directories",
-      "engines",
       "files",
+      "jsync",
+      "name",
+      "scripts",
+      "workspaces",
+    ],
+    // list of root/package.json fields to always use if available
+    // i.e. child.field = root.field
+    "forceRootValues": [
+      "author",
+      "bugs",
+      "description",
+      "funding",
+      "homepage",
+      "license",
+      "private",
+    ],
+    // list of package fields in root to spread into child
+    // e.g. !(field in child) && child[field] = root.field
+    // e.g. child.field: Object = { ...root.field, ...child.field }
+    // e.g. child.field: Array = new Set([ ...root.field, ...child.field ])
+    "spreadRootValues": [
+      "browser",
+      "config",
+      "cpu",
+      "devDependencies",
+      "engines",
+      "keywords",
+      "main",
+      "man",
       "optionalDependencies",
       "os",
       "peerDependencies",
-      "root",
-      // "scripts",
-    ],
-    // will take the set of child + root package fields
-    "overrideSet": [
-      "keywords",
+      "peerDependenciesMeta",
+      "publishConfig",
+      "version",
+      "*", // spread all remaining values
     ],
   },
 }

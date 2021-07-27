@@ -6,8 +6,9 @@
   "type": "module",
   "dependencies": {
     "@nodeproto/wtf": "workspace:1.0.0",
-    "diff": "5.0.0",
-    "jsonc-simple-parser": "2.2.0",
-    "shelljs": "0.8.4"
+    "diff": "5.0.0"
+  },
+  "jsync": {
+    "root": false
   }
 }

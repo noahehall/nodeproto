@@ -4,10 +4,46 @@ import { getDirs } from '@nodeproto/wtf';
 
 const dirs = getDirs();
 
-console.log('\n\n wtf is package.jsonc', await dirs.getPkgJsonc());
-console.log('\n\n wtf is package.json', await dirs.getPkgJson());
-console.log('\n\n wtf is root package.json', await dirs.getPkgJson('../../..'));
-// console.log('\n\n wtf are dirs', getDirs())
+// TODO
+// for prod
+// stamp this via build so we dont need to retrieve from disk
+let jsyncDefault = process.env.JSYNC_DEFAULT_CONFIG;
+
+// for dev purposes
+if (!jsyncDefault) {
+  const { file: thisPkgJson, path: thisPkgJsonPath } = (await dirs.getPkgJson());
+  const { file: thisPkgJsonc, path: thisPkgJsoncPath } = (await dirs.getPkgJsonc());
+  jsyncDefault = thisPkgJsonc.jsync;
+}
+
+
+
+const getRootPkgFiles = async () => {
+  let maxLookups = jsyncDefault.maxLookups;
+  let currentDir = '..';
+
+  while (maxLookups) {
+    // we only care about the pkgJson until we find the root
+    // once we find the root we will check for package.jsonc
+    const { file: json, path: jsonPath } = await dirs.getPkgJson(currentDir);
+    if (json?.jsync?.root) {
+      return { json, jsonPath };
+    }
+
+    currentDir += '/..';
+    maxLookups--;
+  }
+
+  throw `unable to find root packageFile`
+}
+
+const finalizeJsyncConfig = (main, overrides) => ({ ...main, ...overrides });
+
+const { json: { jsync: rootJsync, ...rootJson }, jsonPath: rootPath } = await getRootPkgFiles();
+const rootJsyncFinal = finalizeJsyncConfig(jsyncDefault, rootJsync);
+
+console.log('\n\n root json', rootJson, rootPath );
+console.log('\n\n root jsync', rootJsync, rootJsyncFinal)
 
 /**
   - required files

@@ -44,13 +44,20 @@ export const getDirs = () => {
 
   const getPkgJsonAbs = async (dirpath = '.', glob) => (await getFilePathAbs(dirpath, glob))[0];
 
-  const getPkgJson = async (dirpath = '.', glob = 'package\.json') => {
+  const getPkgJson = async (dirpath = '.', glob = 'package\.json', interpreter = JSONC.parse) => {
     const pkgJsonAbs = await getPkgJsonAbs(dirpath, glob);
 
-    return pkgJsonAbs && JSONC.parse(shelljs.cat(pkgJsonAbs))
+    return pkgJsonAbs
+      && {
+        file: interpreter(shelljs.cat(pkgJsonAbs)),
+        path: pkgJsonAbs,
+      }
+      || {};
   }
 
-  const getPkgJsonc = async (dirpath = '.') => getPkgJson(dirpath, 'package\.jsonc')
+  // TODO
+  // review microsoft/jsonc-parser thing
+  const getPkgJsonc = async (dirpath = '.') => getPkgJson(dirpath, 'package\.jsonc');
 
 
   return {
@@ -69,5 +76,9 @@ export const getDirs = () => {
     getPkgJsonAbs,
     getPkgJson,
     getPkgJsonc,
+    JSONC,
+    shelljs,
+    picomatch,
+    fs,
   };
 }
