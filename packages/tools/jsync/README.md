@@ -21,6 +21,7 @@
     - we should work with jsonc instead
   - [jora object query](https://github.com/discoveryjs/jora#readme)
   - [json-merger](https://github.com/boschni/json-merger)
+  - [another jsonc parser](https://www.npmjs.com/package/jsonc)
 
 
 # vscode
@@ -28,12 +29,20 @@
 
 
 # nomenclature
-  - `package file` a `.jsync.jsonc`, `package.jsonc` or `package.json` file
-  - `.jsync.jsonc` configuration file for `@nodeproto/jsync`
+  - `packageFile` `package.jsonc` or `package.json` file
+  - either the file must contain a `jsync` property
+    - `package.jsonc` overrides `package.json` if it exists
 
 # workflow
   - extending json files
-    - every package must start with a standard `package.json` and a `.jsync.json` file with `"root": true` must be found
+    - every package must start with a standard `package.json`
+    - a `packageFile.jsync.root: true` must be found
+    - a  `package.jsonc` file will be upserted in each directory that contains a `packageFile` with a `jsync` propertyin the merged
+    - all `packageFiles` files will be updated based on the final set of rules defined by merging `{..child, ..parent}.jsync` property
+    - file locations will be saved in each `packageFile.jsync.locations` property
+    - TODO
+      - a hash of each `packageFile` file will be saved in each `packageFile.jsync.hash` property for quicker upserts
+      - changelist will be saved in each `packaeFile.jsync.changelist` property
 
 
 # .jsync.json

@@ -13,23 +13,24 @@
   "private": true,
   "type": "module",
   "keywords": [
-    "dry",
-    "pnpm",
-    "inception",
     "@nirv",
     "@nodeproto",
     "api",
+    "bodyguard",
     "docker",
     "esbuild",
     "fullstack",
     "grafana",
     "haproxy",
+    "inception",
+    "jsync",
     "koa",
     "micro service",
     "microservice",
     "nirv",
     "nodeproto",
     "openapi",
+    "pnpm",
     "prometheus",
     "prototype",
     "react",
@@ -60,7 +61,10 @@
   "scripts": {
     "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0"
   },
-  "dependencyManagement": {
+  "jsync": {
+    "root": true,
+  },
+  "dependencies": {
     "@babel/core": "7.14.3",
     "@babel/eslint-parser": "7.14.5",
     "@babel/eslint-plugin": "7.13.16",
@@ -103,11 +107,6 @@
     "ultra-runner": "3.10.5",
     "webpack-dev-middleware-2": "5.0.2",
     "webpack": "5.38.1",
-    "yargs": "16.2.0"
-  },
-  "dependencies": {
-    "env-cmd": "10.1.0",
-    "ultra-runner": "3.10.5",
-    "yargs": "16.2.0"
+    "yargs": "16.2.0",
   }
 }
