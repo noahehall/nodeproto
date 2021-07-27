@@ -50,9 +50,11 @@ importers:
 
   packages/tools/jsync:
     specifiers:
+      '@nodeproto/wtf': workspace:1.0.0
       diff: 5.0.0
       jsonc-simple-parser: 2.2.0
     dependencies:
+      '@nodeproto/wtf': link:../wtf
       diff: 5.0.0
       jsonc-simple-parser: 2.2.0
 
