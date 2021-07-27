@@ -13,23 +13,24 @@
   "private": true,
   "type": "module",
   "keywords": [
-    "dry",
-    "pnpm",
-    "inception",
     "@nirv",
     "@nodeproto",
     "api",
+    "bodyguard",
     "docker",
     "esbuild",
     "fullstack",
     "grafana",
     "haproxy",
+    "inception",
+    "jsync",
     "koa",
     "micro service",
     "microservice",
     "nirv",
     "nodeproto",
     "openapi",
+    "pnpm",
     "prometheus",
     "prototype",
     "react",
@@ -51,7 +52,8 @@
     "./proto"
   ],
   "engines": {
-    "node": ">=16.4",
+    "node": ">=16.5",
+    "npm": ">=7.18.1",
     "pnpm": ">=6.9"
   },
   "config": {
@@ -59,6 +61,9 @@
   },
   "scripts": {
     "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0"
+  },
+  "jsync": {
+    "root": true
   },
   "dependencies": {
     "env-cmd": "10.1.0",

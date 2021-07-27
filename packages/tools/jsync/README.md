@@ -22,29 +22,26 @@
   - [jora object query](https://github.com/discoveryjs/jora#readme)
   - [json-merger](https://github.com/boschni/json-merger)
   - [another jsonc parser](https://www.npmjs.com/package/jsonc)
+  - [microsofts jsonc parser](https://github.com/microsoft/node-jsonc-parser)
+    - will likely have to go with this one
 
 
 # vscode
   - [enable trailing commas in jsonc files](https://github.com/microsoft/vscode/issues/102061)
 
 
-# nomenclature
-  - `packageFile` `package.jsonc` or `package.json` file
-  - either the file must contain a `jsync` property
-    - `package.jsonc` overrides `package.json` if it exists
-
 # workflow
   - extending json files
     - every package must start with a standard `package.json`
     - a `packageFile.jsync.root: true` must be found
-    - a  `package.jsonc` file will be upserted in each directory that contains a `packageFile` with a `jsync` propertyin the merged
-    - all `packageFiles` files will be updated based on the final set of rules defined by merging `{..child, ..parent}.jsync` property
+
+    - all `package.json` files will be updated based on the final set of rules defined by merging `{..child, ..parent}.jsync` property
     - file locations will be saved in each `packageFile.jsync.locations` property
+    - `child.jsync.parent.hash` and `parent.jsync[childName].hash` will be updated on each upsert to shortcut logic and speed up subsequential checks
+
     - TODO
-      - a hash of each `packageFile` file will be saved in each `packageFile.jsync.hash` property for quicker upserts
       - changelist will be saved in each `packaeFile.jsync.changelist` property
+      - support `package.jsonc` via `microsoft/jsonc-updater-thing` pkg
 
-
-# .jsync.json
-  - a standard jsonc file
-  - ensure your editor reads it as such
+# todos
+  - bring over error handling logic from inception
