@@ -1,6 +1,13 @@
-import JSONC from 'jsonc-simple-parser';
-import diff from 'diff';
+import { Diff } from 'diff';
+import { getDirs } from '@nodeproto/wtf';
 
+
+const dirs = getDirs();
+
+console.log('\n\n wtf is package.jsonc', await dirs.getPkgJsonc());
+console.log('\n\n wtf is package.json', await dirs.getPkgJson());
+console.log('\n\n wtf is root package.json', await dirs.getPkgJson('../../..'));
+// console.log('\n\n wtf are dirs', getDirs())
 
 /**
   - required files

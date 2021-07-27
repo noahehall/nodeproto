@@ -15,7 +15,7 @@ import monitor from 'ultra-runner/lib/monitor.js';
 import { promisify } from 'util';
 import * as serviceDefinitions from './serviceDefinitions.mjs';
 
-import fs from 'fs';
+import fs from 'fs'; // TODO: change this to fs-extra
 import path from 'path';
 import shelljs from 'shelljs';
 import symlinkDir from 'symlink-dir';

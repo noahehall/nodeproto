@@ -2,12 +2,13 @@ import { homedir, tmpdir } from 'os';
 import cPath from 'contains-path';
 import Dirent from 'dirent';
 import fs from 'fs-extra';
+import globalDirs from 'global-dirs';
+import JSONC from 'jsonc-simple-parser';
 import path from 'path';
 import picomatch from 'picomatch';
-import readdir from '@folder/readdir';
+import Readdir from '@folder/readdir';
+import shelljs from 'shelljs';
 import xdg from '@folder/xdg';
-import globalDirs from 'global-dirs';
-
 
 /**
  * gets cross-platform directories
@@ -32,6 +33,26 @@ export const getDirs = () => {
     // isMatch: someRegex, see filter
   };
 
+  const readdir = async ({ dirpath, glob, ...opts}) => {
+    return Readdir(
+      dirpath,
+      {...readdirOptions, ...opts, isMatch: glob ? file => picomatch(glob)(file.relative) : undefined }
+    );
+  };
+
+  const getFilePathAbs = async (dirpath = '.', glob) => (await readdir({ dirpath, glob }));
+
+  const getPkgJsonAbs = async (dirpath = '.', glob) => (await getFilePathAbs(dirpath, glob))[0];
+
+  const getPkgJson = async (dirpath = '.', glob = 'package\.json') => {
+    const pkgJsonAbs = await getPkgJsonAbs(dirpath, glob);
+
+    return pkgJsonAbs && JSONC.parse(shelljs.cat(pkgJsonAbs))
+  }
+
+  const getPkgJsonc = async (dirpath = '.') => getPkgJson(dirpath, 'package\.jsonc')
+
+
   return {
     ...xdg({
       expanded: true,
@@ -43,11 +64,10 @@ export const getDirs = () => {
     cPath,
     globalDirs,
     inceptionStore: `${homedir()}/.node_modules`,
-    async readdir ({ dirpath, glob, ...opts}) {
-      return readdir(
-        dirpath,
-        {...readdirOptions, ...opts, isMatch: glob ? file => picomatch(glob)(file.relative) : undefined }
-      );
-    },
+    readdir,
+    getFilePathAbs,
+    getPkgJsonAbs,
+    getPkgJson,
+    getPkgJsonc,
   };
 }

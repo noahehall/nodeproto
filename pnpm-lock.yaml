@@ -53,10 +53,12 @@ importers:
       '@nodeproto/wtf': workspace:1.0.0
       diff: 5.0.0
       jsonc-simple-parser: 2.2.0
+      shelljs: 0.8.4
     dependencies:
       '@nodeproto/wtf': link:../wtf
       diff: 5.0.0
       jsonc-simple-parser: 2.2.0
+      shelljs: 0.8.4
 
   packages/tools/wtf:
     specifiers:
@@ -64,17 +66,25 @@ importers:
       '@folder/xdg': 3.1.2
       contains-path: 1.0.0
       dirent: 2.0.1
+      es-main: 1.0.2
       fs-extra: 10.0.0
       global-dirs: 3.0.0
+      jsonc-simple-parser: 2.2.0
+      mkdirp: 1.0.4
       picomatch: 2.3.0
+      shelljs: 0.8.4
     dependencies:
       '@folder/readdir': 3.1.0
       '@folder/xdg': 3.1.2
       contains-path: 1.0.0
       dirent: 2.0.1
+      es-main: 1.0.2
       fs-extra: 10.0.0
       global-dirs: 3.0.0
+      jsonc-simple-parser: 2.2.0
+      mkdirp: 1.0.4
       picomatch: 2.3.0
+      shelljs: 0.8.4
 
 packages:
 
@@ -401,6 +411,10 @@ packages:
     dependencies:
       commander: 4.1.1
       cross-spawn: 7.0.3
+    dev: false
+
+  /es-main/1.0.2:
+    resolution: {integrity: sha512-LLgW8Cby/FiyQygrI23q2EswulHiDKoyjWlDRgTGXjQ3iRim2R26VfoehpxI5oKRXSNams3L/80KtggoUdxdDQ==}
     dev: false
 
   /escalade/3.1.1:
@@ -736,6 +750,12 @@ packages:
 
   /minimist/1.2.5:
     resolution: {integrity: sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==}
+    dev: false
+
+  /mkdirp/1.0.4:
+    resolution: {integrity: sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==}
+    engines: {node: '>=10'}
+    hasBin: true
     dev: false
 
   /nice-try/1.0.5:

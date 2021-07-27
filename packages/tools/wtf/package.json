@@ -11,8 +11,12 @@
     "@folder/xdg": "3.1.2",
     "contains-path": "1.0.0",
     "dirent": "2.0.1",
+    "es-main": "1.0.2",
     "fs-extra": "10.0.0",
     "global-dirs": "3.0.0",
-    "picomatch": "2.3.0"
+    "jsonc-simple-parser": "2.2.0",
+    "mkdirp": "1.0.4",
+    "picomatch": "2.3.0",
+    "shelljs": "0.8.4"
   }
 }

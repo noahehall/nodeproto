@@ -2,13 +2,11 @@ import { getDirs } from '@nodeproto/wtf';
 
 export const dirs = getDirs();
 
-
 export const globalOptions = {
   chokidarConfig: {},
   runner: 'npm run', // enum(true)
   watchGlob: /src\/.*\.(c|m)?js|css|tsx$/, // javascript and css files
 }
-
 
 // @see https://github.com/nodejs/node-eps/blob/master/002-es-modules.md#4-compatibility
 // symlinks to ~/.node_modules will always work, with a performance hit but hey
