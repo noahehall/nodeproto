@@ -39,5 +39,8 @@
     "@alumna/reflect": "^1.0.5",
     "global-dirs": "^3.0.0",
     "symlink-dir": "^5.0.1"
-  }
+  },
+  "jsync": {
+    "root": false,
+  },
 }
