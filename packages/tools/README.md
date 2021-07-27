@@ -1,1 +1,1 @@
-each tool is responsible for devops related functionality
+each tool is responsible for some cross-cutting concern

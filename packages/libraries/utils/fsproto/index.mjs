@@ -1,4 +1,5 @@
-
+// TODO
+// ^ move all this stuff into @nodeproto/wtf
 import { fileURLToPath } from 'url';
 import esMain from 'es-main';
 import fs from 'fs';
