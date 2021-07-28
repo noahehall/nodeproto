@@ -8,7 +8,8 @@ const dirs = getDirs();
 // TODO: @see @nodeproto/inception
 const throwIt = msg => { throw msg };
 // TODO: @see @nodeproto/inception
-let logIt = (...msgs) => console.log(...msgs)
+const noop = () => void 0;
+const logIt = process.env.NODE_ENV === 'poop' ? noop : (...msgs) => console.log(...msgs)
 
 
 // json field value categories
