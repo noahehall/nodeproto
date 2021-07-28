@@ -59,6 +59,7 @@ export const parentUri = (importMeta = import.meta) => (
 );
 // directory where the code is being run
 // export const cwd = path.resolve('', path.dirname(parentUri()));
+//@see https://github.com/stefanpenner/mjs-dirname/blob/main/index.mjs
 /**
  *
  * @param fileToImport filename

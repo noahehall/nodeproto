@@ -6,7 +6,11 @@
   "type": "module",
   "dependencies": {
     "@nodeproto/wtf": "workspace:1.0.0",
-    "diff": "5.0.0"
+    "diff": "5.0.0",
+    "node-json-transform": "1.1.2"
+  },
+  "scripts": {
+    "start": "node index.mjs"
   },
   "jsync": {
     "root": false

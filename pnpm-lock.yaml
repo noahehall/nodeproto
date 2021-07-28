@@ -52,9 +52,11 @@ importers:
     specifiers:
       '@nodeproto/wtf': workspace:1.0.0
       diff: 5.0.0
+      node-json-transform: 1.1.2
     dependencies:
       '@nodeproto/wtf': link:../wtf
       diff: 5.0.0
+      node-json-transform: 1.1.2
 
   packages/tools/wtf:
     specifiers:
@@ -721,6 +723,10 @@ packages:
       p-locate: 4.1.0
     dev: false
 
+  /lodash/4.17.21:
+    resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
+    dev: false
+
   /merge2/1.4.1:
     resolution: {integrity: sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==}
     engines: {node: '>= 8'}
@@ -756,6 +762,12 @@ packages:
 
   /nice-try/1.0.5:
     resolution: {integrity: sha512-1nh45deeb5olNY7eX82BkPO7SSxR5SSYJiPTrTdFUVYwAl8CKMA5N9PjTYkHiRjisVcxcQ1HXdLhx2qxxJzLNQ==}
+    dev: false
+
+  /node-json-transform/1.1.2:
+    resolution: {integrity: sha512-Y3twjldHF1htCiCu6elGwQDdNp5PD54U66waWa2XNKh+g2lXSnWo3nq9SZnZOV3odFAqkM/roiNZx078RE2new==}
+    dependencies:
+      lodash: 4.17.21
     dev: false
 
   /normalize-path/2.1.1:

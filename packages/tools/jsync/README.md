@@ -9,6 +9,7 @@
 # inspiration
   - [read json](https://github.com/sindresorhus/read-pkg/blob/main/index.js)
   - [dry-dry](https://github.com/Cosium/dry-dry)
+  - [pnpm meta-updator](https://github.com/pnpm/meta-updater)
 
 # important dependencies
   - [normalize-package-data](https://github.com/npm/normalize-package-data)

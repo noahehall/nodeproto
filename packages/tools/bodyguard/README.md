@@ -18,6 +18,7 @@
 
 # TODO
   - [provide linkback for free icon](https://icons8.com/icon/7319/muscle)
+  - [review how they set this up](https://github.com/ritwickdey/live-server-web-extension/blob/master/manifest.json)
 
 # links
   - packages

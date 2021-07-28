@@ -13,6 +13,12 @@
     - aws fork of eslaticsearch
   - [changesets for mgnging release workflow](https://github.com/atlassian/changesets)
   - [find a use for reghex](https://github.com/kitten/reghex)
+  - [pnpm nopt - fork of npms](https://github.com/pnpm/nopt)
+  - [npm nopt](https://github.com/npm/nopt)
+  - [pnpm action: setup pnpm](https://github.com/pnpm/action-setup)
+  - [pnpm logger](https://github.com/pnpm/logger)
+  - [ndjson](https://github.com/ndjson/ndjson.js)
+  - [only-allow](https://github.com/pnpm/only-allow)
 
 s
 ### not so bad
