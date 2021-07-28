@@ -8,6 +8,12 @@ const throwIt = msg => { throw msg };
 // TODO: @see @nodeproto/inception
 const logIt = (...msgs) => console.log(...msgs)
 
+// json field value categories
+const VTS = 'valuesToSpread';
+const VTF = 'valuesToForce';
+const VTI = 'valuesToIgnore';
+const V = {};
+
 // TODO
 // for prod
 // stamp this via build so we dont need to retrieve from disk
@@ -15,7 +21,7 @@ let JSYNC_DEFAULT_CONFIG = process.env.JSYNC_DEFAULT_CONFIG;
 
 
 if (!JSYNC_DEFAULT_CONFIG) {
-  // const { file: thisPkgJson, path: thisPkgJsonPath } = (await dirs.getPkgJson());
+  const { file: thisPkgJson, path: thisPkgJsonPath } = (await dirs.getPkgJson());
   const { file: thisPkgJsonc, path: thisPkgJsoncPath } = (await dirs.getPkgJsonc());
   JSYNC_DEFAULT_CONFIG = thisPkgJsonc.jsync;
 }
@@ -65,33 +71,31 @@ const {
 }  = finalizeJsyncConfig(rootJsync, useChildJsyncConfig);
 logIt('\n\n final jsync', {rootJsync, ignoreRootValues, forceRootValues, spreadRootValues})
 
-const valuesToIgnore = new Set(ignoreRootValues.map(v => v.toLowerCase()));
-logIt('\n\n values to ignore', valuesToIgnore)
+V[VTI] = new Set(ignoreRootValues.map(v => v.toLowerCase()));
+logIt('\n\n values to ignore', V[VTI])
 
 // these root values will be set in child package.json
 const forceRootValuesLowerCase = forceRootValues.map(v => v.toLowerCase());
-const valuesToForce = new Set(forceRootValuesLowerCase.filter(v => !valuesToIgnore.has(v)));
-logIt('\n\n values to force', valuesToForce)
+V[VTF] = new Set(forceRootValuesLowerCase.filter(v => !V[VTI].has(v)));
+logIt('\n\n values to force', V[VTF])
 
 // these values will never be spread into child.package.json
-const valuesToNeverSpread = new Set([...valuesToIgnore].concat([...valuesToForce]));
+const valuesToNeverSpread = new Set([...V[VTI]].concat([...V[VTF]]));
 logIt('\n\n never spread values', valuesToNeverSpread)
 
 // these values will be spread into child from root
-const valuesToSpread = new Set(
+V[VTS] = new Set(
   spreadRootValues
     .map(v => v.toLowerCase())
     .filter(v => !valuesToNeverSpread.has(v))
 );
-logIt('\n\n values to spread', valuesToSpread);
+logIt('\n\n values to spread', V[VTS]);
 
-const VTS = 'valuesToSpread';
-const VTF = 'valuesToForce';
-const VTI = 'valuesToIgnore';
+
 
 const getJsonFieldCategory = k => (
-  (valuesToSpread.has(k) && VTS)
-  || (valuesToForce.has(k) && VTF)
+  (V[VTS].has(k) && VTS)
+  || (V[VTF].has(k) && VTF)
   || VTI
 );
 
@@ -117,7 +121,10 @@ const segmentJsonFieldsByCategory = (json = rootJson) => (
 const rootJsonSegments = segmentJsonFieldsByCategory();
 logIt('\n\n root json segments', rootJsonSegments)
 
-const spreadRootValuesIntoChild = (rootJson, childJson) => {
+const spreadRootValuesIntoChild = ({
+  fromJson = rootJsonSegments[VTS],
+  toJson = thisPkgJson
+}) => {
 
 }
 
