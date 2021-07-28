@@ -22,7 +22,7 @@ import xdg from '@folder/xdg';
  * @TODO https://www.npmjs.com/package/unixify
  * @return {object} properties and methods supporting filesystem management
  */
-export const getDirs = () => {
+export const getDirs = (overrides = {}) => {
   const readdirOptions = {
     absolute: true,
     depth: 2,
@@ -80,5 +80,9 @@ export const getDirs = () => {
     shelljs,
     picomatch,
     fs,
+
+    ...overrides
   };
 }
+
+export default getDirs();
