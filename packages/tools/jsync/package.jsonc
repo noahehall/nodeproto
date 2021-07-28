@@ -9,6 +9,7 @@
     // will throw err if not found
     "maxLookups": 3,
     // list of root/package.json fields to always ignore
+    // overrides all other settings
     "ignoreRootValues": [
       "bin",
       "bundledDependencies",
@@ -20,9 +21,11 @@
       "name",
       "scripts",
       "workspaces",
+      // "*" uncomment to test precedence logic
     ],
     // list of root/package.json fields to always use if available
     // i.e. child.field = root.field
+    // overrides spreadRootValues
     "forceRootValues": [
       "author",
       "bugs",
@@ -31,6 +34,8 @@
       "homepage",
       "license",
       "private",
+      "browser",
+      // "*" // uncomment to test precedence logic
     ],
     // list of package fields in root to spread into child
     // e.g. !(field in child) && child[field] = root.field
@@ -51,7 +56,7 @@
       "peerDependenciesMeta",
       "publishConfig",
       "version",
-      "*", // spread all remaining values
+      "*", // spread all remaining values, * will only be in a single category
     ],
   },
 }
