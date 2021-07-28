@@ -1,12 +1,15 @@
 import { Diff } from 'diff';
 import { getDirs } from '@nodeproto/wtf';
 
+
 const dirs = getDirs();
 
-// TODO: everywhere throw should be an error, @see @nodeproto/inception
+
+// TODO: @see @nodeproto/inception
 const throwIt = msg => { throw msg };
 // TODO: @see @nodeproto/inception
 let logIt = (...msgs) => console.log(...msgs)
+
 
 // json field value categories
 const VTS = 'valuesToSpread';
@@ -14,17 +17,17 @@ const VTF = 'valuesToForce';
 const VTI = 'valuesToIgnore';
 const V = {};
 
+
 // TODO
-// for prod
 // stamp this via build so we dont need to retrieve from disk
 let JSYNC_DEFAULT_CONFIG = process.env.JSYNC_DEFAULT_CONFIG;
-
 
 if (!JSYNC_DEFAULT_CONFIG) {
   const { file: thisPkgJson, path: thisPkgJsonPath } = (await dirs.getPkgJson());
   const { file: thisPkgJsonc, path: thisPkgJsoncPath } = (await dirs.getPkgJsonc());
   JSYNC_DEFAULT_CONFIG = thisPkgJsonc.jsync;
 }
+
 
 const getRootPkgFiles = async ({
   maxLookups = throwIt(`maxLookups is required in getRootPkgFiles`),
@@ -42,16 +45,20 @@ const getRootPkgFiles = async ({
       });
 }
 
+
 const finalizeJsyncConfig = (main, overrides) => ({ ...main, ...overrides });
+
 
 // TODO: confirm env
 const childPkgJsonPath = process.env.CHILD_PKG_JSON_PATH || process.cwd();
 const childPkgJson = await dirs.getPkgJson(childPkgJsonPath);
 
+
 // finalize child jsync config
 if (!childPkgJson?.file?.jsync) throwIt(`invalid child package.json file ${childPkgJson}`);
 const useChildJsyncConfig = finalizeJsyncConfig(JSYNC_DEFAULT_CONFIG, childPkgJson.file.jsync);
 logIt('\n\n final child jsync', useChildJsyncConfig);
+
 
 // retrieve root jsync config
 const {
@@ -63,6 +70,7 @@ const {
   });
 logIt('\n\n root json', rootJson, rootPath );
 
+
 // the jsync config to use for this parent-child relationship
 const {
   ignoreRootValues = [],
@@ -71,17 +79,21 @@ const {
 }  = finalizeJsyncConfig(rootJsync, useChildJsyncConfig);
 logIt('\n\n final jsync', {rootJsync, ignoreRootValues, forceRootValues, spreadRootValues})
 
+
 V[VTI] = new Set(ignoreRootValues.map(v => v.toLowerCase()));
 logIt('\n\n values to ignore', V[VTI])
+
 
 // these root values will be set in child package.json
 const forceRootValuesLowerCase = forceRootValues.map(v => v.toLowerCase());
 V[VTF] = new Set(forceRootValuesLowerCase.filter(v => !V[VTI].has(v)));
 logIt('\n\n values to force', V[VTF])
 
+
 // these values will never be spread into child.package.json
 const valuesToNeverSpread = new Set([...V[VTI]].concat([...V[VTF]]));
 logIt('\n\n never spread values', valuesToNeverSpread)
+
 
 // these values will be spread into child from root
 V[VTS] = new Set(
@@ -92,15 +104,16 @@ V[VTS] = new Set(
 logIt('\n\n values to spread', V[VTS]);
 
 
-
 const getJsonFieldCategory = k => (
   (V[VTS].has(k) && VTS)
   || (V[VTF].has(k) && VTF)
   || VTI
 );
 
+
 const DEFAULT_CATEGORY = getJsonFieldCategory('*')
 logIt('\n\n default category', DEFAULT_CATEGORY)
+
 
 let category;
 const segmentJsonFieldsByCategory = (json = rootJson) => (
@@ -118,8 +131,10 @@ const segmentJsonFieldsByCategory = (json = rootJson) => (
   ) // end reduce
 );
 
+
 const rootJsonSegments = segmentJsonFieldsByCategory();
 logIt('\n\n root json segments', rootJsonSegments)
+
 
 const spreadRootValuesIntoChild = ({
   fromJson = rootJsonSegments[VTS],
@@ -132,12 +147,14 @@ const spreadRootValuesIntoChild = ({
   // if value is array, take union
 }
 
+
 const forceRootValuesInChild = ({
   fromJson = rootJsonSegments[VTF],
   toJson = thisPkgJson,
 } = {}) => {
   // set it and forget it
 }
+
 
 // TODO: use whatever @nodeproto/wtf has for persisting files
 // should be something out of fs-extra
