@@ -3,8 +3,10 @@ import { getDirs } from '@nodeproto/wtf';
 
 const dirs = getDirs();
 
-// TODO: everywhere throw should be an error, see @nodeproto/inception
+// TODO: everywhere throw should be an error, @see @nodeproto/inception
 const throwIt = msg => { throw msg };
+// TODO: @see @nodeproto/inception
+const logIt = (...msgs) => console.log(...msgs)
 
 // TODO
 // for prod
@@ -43,7 +45,7 @@ const childPkgJson = await dirs.getPkgJson(childPkgJsonPath);
 // finalize child jsync config
 if (!childPkgJson?.file?.jsync) throwIt(`invalid child package.json file ${childPkgJson}`);
 const useChildJsyncConfig = finalizeJsyncConfig(JSYNC_DEFAULT_CONFIG, childPkgJson.file.jsync);
-console.log('\n\n final child jsync', useChildJsyncConfig);
+logIt('\n\n final child jsync', useChildJsyncConfig);
 
 // retrieve root jsync config
 const {
@@ -53,7 +55,7 @@ const {
     maxLookups: useChildJsyncConfig.maxLookups,
     currentDir: '..', // start in parent dir
   });
-console.log('\n\n root json', rootJson, rootPath );
+logIt('\n\n root json', rootJson, rootPath );
 
 // the jsync config to use for this parent-child relationship
 const {
@@ -61,19 +63,19 @@ const {
   forceRootValues = [],
   spreadRootValues = [],
 }  = finalizeJsyncConfig(rootJsync, useChildJsyncConfig);
-console.log('\n\n final jsync', {rootJsync, ignoreRootValues, forceRootValues, spreadRootValues})
+logIt('\n\n final jsync', {rootJsync, ignoreRootValues, forceRootValues, spreadRootValues})
 
 const valuesToIgnore = new Set(ignoreRootValues.map(v => v.toLowerCase()));
-console.log('\n\n values to ignore', valuesToIgnore)
+logIt('\n\n values to ignore', valuesToIgnore)
 
 // these root values will be set in child package.json
 const forceRootValuesLowerCase = forceRootValues.map(v => v.toLowerCase());
 const valuesToForce = new Set(forceRootValuesLowerCase.filter(v => !valuesToIgnore.has(v)));
-console.log('\n\n values to force', valuesToForce)
+logIt('\n\n values to force', valuesToForce)
 
 // these values will never be spread into child.package.json
 const valuesToNeverSpread = new Set([...valuesToIgnore].concat([...valuesToForce]));
-console.log('\n\n never spread values', valuesToNeverSpread)
+logIt('\n\n never spread values', valuesToNeverSpread)
 
 // these values will be spread into child from root
 const valuesToSpread = new Set(
@@ -81,7 +83,7 @@ const valuesToSpread = new Set(
     .map(v => v.toLowerCase())
     .filter(v => !valuesToNeverSpread.has(v))
 );
-console.log('\n\n values to spread', valuesToSpread);
+logIt('\n\n values to spread', valuesToSpread);
 
 const VTS = 'valuesToSpread';
 const VTF = 'valuesToForce';
@@ -94,7 +96,7 @@ const getJsonFieldCategory = k => (
 );
 
 const DEFAULT_CATEGORY = getJsonFieldCategory('*')
-console.log('\n\n default category', DEFAULT_CATEGORY)
+logIt('\n\n default category', DEFAULT_CATEGORY)
 
 let category;
 const segmentJsonFieldsByCategory = (json = rootJson) => (
@@ -113,7 +115,7 @@ const segmentJsonFieldsByCategory = (json = rootJson) => (
 );
 
 const rootJsonSegments = segmentJsonFieldsByCategory();
-console.log('\n\n root json segments', rootJsonSegments)
+logIt('\n\n root json segments', rootJsonSegments)
 
 const spreadRootValuesIntoChild = (rootJson, childJson) => {
 
