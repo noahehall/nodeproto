@@ -1,73 +1,128 @@
 import { Diff } from 'diff';
 import { getDirs } from '@nodeproto/wtf';
 
-
 const dirs = getDirs();
+
+// TODO: everywhere throw should be an error, see @nodeproto/inception
+const throwIt = msg => { throw msg };
 
 // TODO
 // for prod
 // stamp this via build so we dont need to retrieve from disk
-let jsyncDefault = process.env.JSYNC_DEFAULT_CONFIG;
+let JSYNC_DEFAULT_CONFIG = process.env.JSYNC_DEFAULT_CONFIG;
 
-// for dev purposes
-if (!jsyncDefault) {
-  const { file: thisPkgJson, path: thisPkgJsonPath } = (await dirs.getPkgJson());
+
+if (!JSYNC_DEFAULT_CONFIG) {
+  // const { file: thisPkgJson, path: thisPkgJsonPath } = (await dirs.getPkgJson());
   const { file: thisPkgJsonc, path: thisPkgJsoncPath } = (await dirs.getPkgJsonc());
-  jsyncDefault = thisPkgJsonc.jsync;
+  JSYNC_DEFAULT_CONFIG = thisPkgJsonc.jsync;
 }
 
+const getRootPkgFiles = async ({
+  maxLookups = throwIt(`maxLookups is required in getRootPkgFiles`),
+  currentDir = throwIt(`currentDir is required in getRootPkgFiles`),
+}) => {
+  if (!maxLookups) throwIt(`unable to find root packageFile in getRootPkgFiles`)
 
+  const { file: json, path: jsonPath } = await dirs.getPkgJson(currentDir);
 
-const getRootPkgFiles = async () => {
-  let maxLookups = jsyncDefault.maxLookups;
-  let currentDir = '..';
-
-  while (maxLookups) {
-    // we only care about the pkgJson until we find the root
-    // once we find the root we will check for package.jsonc
-    const { file: json, path: jsonPath } = await dirs.getPkgJson(currentDir);
-    if (json?.jsync?.root) {
-      return { json, jsonPath };
-    }
-
-    currentDir += '/..';
-    maxLookups--;
-  }
-
-  throw `unable to find root packageFile`
+  return (json?.jsync?.root)
+    ? { json, jsonPath }
+    : getRootPkgFiles({
+        currentDir: currentDir += '/..',
+        maxLookups: --maxLookups,
+      });
 }
 
 const finalizeJsyncConfig = (main, overrides) => ({ ...main, ...overrides });
 
-const { json: { jsync: rootJsync, ...rootJson }, jsonPath: rootPath } = await getRootPkgFiles();
-const rootJsyncFinal = finalizeJsyncConfig(jsyncDefault, rootJsync);
+// TODO: confirm env
+const childPkgJsonPath = process.env.CHILD_PKG_JSON_PATH || process.cwd();
+const childPkgJson = await dirs.getPkgJson(childPkgJsonPath);
 
+// finalize child jsync config
+if (!childPkgJson?.file?.jsync) throwIt(`invalid child package.json file ${childPkgJson}`);
+const useChildJsyncConfig = finalizeJsyncConfig(JSYNC_DEFAULT_CONFIG, childPkgJson.file.jsync);
+console.log('\n\n final child jsync', useChildJsyncConfig);
+
+// retrieve root jsync config
+const {
+  json: { jsync: rootJsync, ...rootJson },
+  jsonPath: rootPath
+} = await getRootPkgFiles({
+    maxLookups: useChildJsyncConfig.maxLookups,
+    currentDir: '..', // start in parent dir
+  });
 console.log('\n\n root json', rootJson, rootPath );
-console.log('\n\n root jsync', rootJsync, rootJsyncFinal)
 
-/**
-  - required files
-    package.json
-    package.jsonc
+// the jsync config to use for this parent-child relationship
+const {
+  ignoreRootValues = [],
+  forceRootValues = [],
+  spreadRootValues = [],
+}  = finalizeJsyncConfig(rootJsync, useChildJsyncConfig);
+console.log('\n\n final jsync', {rootJsync, ignoreRootValues, forceRootValues, spreadRootValues})
 
-  - import required files
-    - import required files that exist in this dir
+const valuesToIgnore = new Set(ignoreRootValues.map(v => v.toLowerCase()));
+console.log('\n\n values to ignore', valuesToIgnore)
 
-    - if this dir is not the root
-      - find the root dir
-        - import root dirs required files
+// these root values will be set in child package.json
+const forceRootValuesLowerCase = forceRootValues.map(v => v.toLowerCase());
+const valuesToForce = new Set(forceRootValuesLowerCase.filter(v => !valuesToIgnore.has(v)));
+console.log('\n\n values to force', valuesToForce)
 
-old notes
- - if `package.jsonc` doesnt exist
-      1. copy `package.json` to `package.jsonc`
-      2. follow rules in `packageFile.jsync`
-      3. save new `package.jsonc`
-      4. update existing `package.json`
+// these values will never be spread into child.package.json
+const valuesToNeverSpread = new Set([...valuesToIgnore].concat([...valuesToForce]));
+console.log('\n\n never spread values', valuesToNeverSpread)
 
-    - if `package.jsonc` does exist
-      1. `diff` `package.jsonc` with `package.json`
-         1. for any changes, follow rules in `.jsync` jsonc config file
-      2. update existing `package.jsonc`
-      3. update existing `package.json`
+// these values will be spread into child from root
+const valuesToSpread = new Set(
+  spreadRootValues
+    .map(v => v.toLowerCase())
+    .filter(v => !valuesToNeverSpread.has(v))
+);
+console.log('\n\n values to spread', valuesToSpread);
 
-*/
+const VTS = 'valuesToSpread';
+const VTF = 'valuesToForce';
+const VTI = 'valuesToIgnore';
+
+const getJsonFieldCategory = k => (
+  (valuesToSpread.has(k) && VTS)
+  || (valuesToForce.has(k) && VTF)
+  || VTI
+);
+
+const DEFAULT_CATEGORY = getJsonFieldCategory('*')
+console.log('\n\n default category', DEFAULT_CATEGORY)
+
+let category;
+const segmentJsonFieldsByCategory = (json = rootJson) => (
+  Object
+    .keys(json)
+    .reduce((acc, k) => Object.assign(
+      acc,
+      (
+        category = getJsonFieldCategory(k),
+        {
+          [category]: acc[category].concat(k)
+        })
+      ),
+      { [VTS]: [], [VTI]: [], [VTF]: [] } // base accumulator
+  ) // end reduce
+);
+
+const rootJsonSegments = segmentJsonFieldsByCategory();
+console.log('\n\n root json segments', rootJsonSegments)
+
+const spreadRootValuesIntoChild = (rootJson, childJson) => {
+
+}
+
+const forceRootValuesInChild = (rootJson, childJson) => {
+
+}
+
+const persistChildPkgJson = (pkgJson) => {
+
+}
