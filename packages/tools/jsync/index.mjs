@@ -6,7 +6,7 @@ const dirs = getDirs();
 // TODO: everywhere throw should be an error, @see @nodeproto/inception
 const throwIt = msg => { throw msg };
 // TODO: @see @nodeproto/inception
-const logIt = (...msgs) => console.log(...msgs)
+let logIt = (...msgs) => console.log(...msgs)
 
 // json field value categories
 const VTS = 'valuesToSpread';
@@ -124,14 +124,23 @@ logIt('\n\n root json segments', rootJsonSegments)
 const spreadRootValuesIntoChild = ({
   fromJson = rootJsonSegments[VTS],
   toJson = thisPkgJson
-}) => {
-
+} = {}) => {
+  // get all spreadable entries in fromJson
+  // if key is not in toJson, set it and forget it
+  // if value is stirng, ignore it (dont concat strings
+  // if value is object, spread it
+  // if value is array, take union
 }
 
-const forceRootValuesInChild = (rootJson, childJson) => {
-
+const forceRootValuesInChild = ({
+  fromJson = rootJsonSegments[VTF],
+  toJson = thisPkgJson,
+} = {}) => {
+  // set it and forget it
 }
 
+// TODO: use whatever @nodeproto/wtf has for persisting files
+// should be something out of fs-extra
 const persistChildPkgJson = (pkgJson) => {
 
 }
