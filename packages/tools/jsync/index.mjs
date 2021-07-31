@@ -121,11 +121,11 @@ const segmentJsonFieldsByCategory = (json = rootJson) => (
   Object
     .keys(json)
     .reduce((acc, k) => Object.assign(
-      acc,
+      acc, // mutated each time
       (
-        category = getJsonFieldCategory(k),
+        category = getJsonFieldCategory(k), // comma operator
         {
-          [category]: acc[category].concat(k)
+          [category]: acc[category].concat(k) // injected into acc
         })
       ),
       { [VTS]: [], [VTI]: [], [VTF]: [] } // base accumulator
