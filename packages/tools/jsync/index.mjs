@@ -127,7 +127,7 @@ const segmentJsonFieldsByCategory = (json = rootJson) => (
         {
           [category]: acc[category].concat(k) // injected into acc
         })
-      ),
+      ), // end object assign[=----------------------------------------------------------------------
       { [VTS]: [], [VTI]: [], [VTF]: [] } // base accumulator
   ) // end reduce
 );
