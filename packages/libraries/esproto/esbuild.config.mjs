@@ -1,12 +1,16 @@
 
 import { builtinModules as builtin } from 'module';
-import envproto from '@nodeproto/envproto';
+import { syncEnv } from '@nodeproto/envproto';
 import esbuild from 'esbuild';
 import manifestPlugin from 'esbuild-plugin-manifest';
 import path from 'path';
 import { fs } from '@nodeproto/wtf';
 
 const pkgJson = fs.readJsonSync('package.json');
+
+console.log('\n\n this pkg json', pkgJson);
+
+throw syncEnv(pkgJson);
 
 const appInputFilename = 'index';
 const appExtension = '.mjs';
@@ -37,7 +41,7 @@ const esbuildConfig = {
   // conditions: ['browser'],
   assetNames: 'assets/[name]',
   bundle: true,
-  define: envproto.syncEnv(pkgJson).processEnv,
+  define: syncEnv(pkgJson).processEnv,
   entryNames: '[name]',
   entryPoints: [appId],
   external: builtin,

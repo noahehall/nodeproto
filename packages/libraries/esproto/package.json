@@ -36,6 +36,7 @@
   "scripts": {
     "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
     "build": "env-cmd node --conditions=build lib/esbuild.config.mjs",
+    "buildtest": "node esbuild.config.mjs",
     "ultra": "ultra",
     "upgrade": "pnpm upgrade -L"
   },

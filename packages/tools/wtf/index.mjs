@@ -3,7 +3,7 @@ import { homedir, tmpdir } from 'os';
 import * as fsprotoInternal from './fsproto.mjs';
 import cPath from 'contains-path';
 import Dirent from 'dirent';
-import fs from 'fs-extra';
+import fse from 'fs-extra';
 import globalDirs from 'global-dirs';
 import JSONC from 'jsonc-simple-parser';
 import path from 'path';
@@ -22,7 +22,7 @@ const dirname = (importMetaUrl = import.meta?.url) => isCjs
   : __dirname;
 
 export const fsproto = fsprotoInternal;
-
+export const fs = fse;
 /**
  * gets cross-platform directories
  *
@@ -83,7 +83,7 @@ export const getDirs = (overrides = {}) => {
     cPath,
     dirname,
     filename,
-    fs,
+    fs: fse,
     fsproto,
     getFilePathAbs,
     getPkgJson,
