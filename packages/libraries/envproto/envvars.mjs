@@ -6,7 +6,6 @@
  */
 
 import dotenv from 'dotenv';
-
 // load env
 const { parsed } = dotenv.config();
 const wrapValue = v => (`"${v}"`)

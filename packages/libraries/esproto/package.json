@@ -24,38 +24,16 @@
     }
   },
   "dependencies": {
-    "dotenv": "10.0.0",
-    "env-cmd": "10.1.0",
-    "pem": "1.14.4",
     "ultra-runner": "3.10.5",
     "@nodeproto/wtf": "workspace:*",
-    "yargs": "17.0.1"
   },
   "devDependencies": {
-    "@babel/core": "7.14.8",
-    "@babel/eslint-parser": "7.14.7",
-    "@babel/eslint-plugin": "7.14.5",
     "@nodeproto/jsync": "workspace:*",
     "esbuild": "0.12.16",
-    "esbuild-plugin-manifest": "0.4.6",
-    "eslint": "~7.31.0",
-    "eslint-config-standard": "16.0.3",
-    "eslint-plugin-import": "2.23.4",
-    "eslint-plugin-node": "11.1.0",
-    "eslint-plugin-promise": "5.1.0",
-    "multi-tape": "1.6.1",
-    "purple-tape": "3.9.2",
-    "rimraf": "3.0.2",
-    "sinon": "11.1.1",
-    "tap-spec": "5.0.0"
+    "esbuild-plugin-manifest": "0.4.6"
   },
   "scripts": {
     "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
-    "eslint": "eslint \"{envproto,esproto,lib}/**/*.+(m|c)js\"",
-    "eslint:fix": "pnpm eslint -- --fix",
-    "test": "env-cmd multi-tape --conditions=test  \"**/*.test.+(c|m)js\" | tap-spec",
-    "prepublishOnly": "rimraf dist && npm run build",
-    "prebuild": "rimraf dist",
     "build": "env-cmd node --conditions=build lib/esbuild.config.mjs",
     "ultra": "ultra",
     "upgrade": "pnpm upgrade -L"

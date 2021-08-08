@@ -3,7 +3,7 @@
  * @see https://github.com/Dexus/pem/blob/master/test/pem.spec.js
  */
 
-import fsproto from '@nodeproto/wtf';
+import { fsproto } from '@nodeproto/wtf';
 import path from 'path';
 import pem from 'pem';
 
