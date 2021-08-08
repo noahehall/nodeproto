@@ -1,18 +1,17 @@
-import { Diff } from 'diff';
 import { getDirs } from '@nodeproto/wtf';
+
+const dirs = getDirs();
 
 const isObject = (v) => typeof v === 'object' && v !== null;
 const notArrayOrObject = (v) => !isObject(v) || !Array.isArray(v);
-const dirs = getDirs();
-
-let newChildJson = {}
-let newRootJson = {};
 
 // TODO: @see @nodeproto/inception
 const throwIt = msg => { throw msg };
 // TODO: @see @nodeproto/inception
 const noop = () => void 0;
-const logIt = process.env.NODE_ENV === 'poop' ? noop : (...msgs) => console.log(...msgs)
+const logIt = process.env.NODE_ENV !== 'verbose' ? noop : (...msgs) => console.log(...msgs)
+
+let newChildJson = {}
 
 // json field value categories
 const VTS = 'valuesToSpread';
@@ -181,13 +180,6 @@ const updateNewJson = async ({
   logIt('\n\n newChildJson', newChildJson);
 }
 
-
-// TODO: use whatever @nodeproto/wtf has for persisting files
-// should be something out of fs-extra
-const persistChildPkgJson = (pkgJson) => {
-
-}
-
 // spread values from root to child
 await updateNewJson();
 // force values from root to child
@@ -207,4 +199,5 @@ await updateNewJson({
 // handle remaining child fields
 newChildJson = { ...newChildJson, ...childPkgJson.file };
 
-console.log('\n\n new child json', newChildJson);
+logIt('\n\n new child json', newChildJson);
+await dirs.fs.outputJson(childPkgJsonPath + '/package.json', newChildJson, { spaces: 2 });
