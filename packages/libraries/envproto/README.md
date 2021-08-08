@@ -33,3 +33,4 @@
     - --disallow-code-generation-from-strings
     - --preserve-symlinks
     - --preserve-symlinks-main
+- [node config spec](https://docs.npmjs.com/cli/v6/using-npm/config)

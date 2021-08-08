@@ -173,6 +173,12 @@ importers:
       webpack-hot-middleware-2: 2.25.2
       workbox-webpack-plugin: 6.1.5_webpack@5.46.0
 
+  packages/libraries/configproto:
+    specifiers:
+      '@nodeproto/jsync': workspace:*
+    devDependencies:
+      '@nodeproto/jsync': link:../../tools/jsync
+
   packages/libraries/envproto:
     specifiers:
       '@nodeproto/jsync': workspace:*

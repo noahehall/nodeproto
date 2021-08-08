@@ -1,0 +1,1 @@
+# @nodeproto/configproto - reusable configs

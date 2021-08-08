@@ -1,15 +1,16 @@
 {
-  "name": "@nodeproto/bodyguard",
+  "name": "@nodeproto/configproto",
   "version": "0.0.0",
-  "description": "@nodeproto/bodyguard - protect your network requests with @nodeproto/bodyguard firefox browser extension",
-  "main": "network.js",
+  "description": "@nodeproto/configproto - reusable configs",
+  "main": "index.mjs",
   "scripts": {
-    "start": "NODE_OPTIONS=$npm_package_config_NODE_OPTIONS web-ext run --bc -t firefox-desktop --url about.pinterest.com",
-    "start:c": "web-ext run --bc -t chromium",
     "test": "echo \"Error: no test specified\" && exit 1",
     "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
     "ultra": "ultra",
     "upgrade": "pnpm upgrade -L"
+  },
+  "jsync": {
+    "root": false
   },
   "author": {
     "name": "theDRAGON",
@@ -18,14 +19,10 @@
   },
   "license": "SEE LICENSE IN LICENSE.md",
   "devDependencies": {
-    "@nodeproto/jsync": "workspace:*",
-    "web-ext": "^6.2.0"
+    "@nodeproto/jsync": "workspace:*"
   },
   "peerDependencies": {
     "@nodeproto/jsync": "workspace:*"
-  },
-  "jsync": {
-    "root": false
   },
   "bugs": "https://github.com/noahehall/nodeproto/issues",
   "homepage": "https://github.com/noahehall/nodeproto",
@@ -67,16 +64,11 @@
     "pnpm": ">=6.9"
   },
   "config": {
-    "NODE_OPTIONS": "--pending-deprecation --experimental-wasm-modules --trace-warnings --experimental-top-level-await --enable-source-maps --experimental-vm-modules --experimental-worker --experimental-import-meta-resolve --experimental-report --trace-exit --heapsnapshot-near-heap-limit=3 --trace-uncaught --deprecation --trace-deprecation --no-insecure-http-parser --report-uncaught-exception --use-largepages=on --warnings --experimental-abortcontroller --report-on-fatalerror --experimental-json-modules --trace-sigint --abort-on-uncaught-exception --es-module-specifier-resolution=node --experimental-specifier-resolution=node --experimental-modules",
-    "NODE_ENV": "development"
+    "NODE_ENV": "development",
+    "NODE_OPTIONS": "--pending-deprecation --experimental-wasm-modules --trace-warnings --experimental-top-level-await --enable-source-maps --experimental-vm-modules --experimental-worker --experimental-import-meta-resolve --experimental-report --trace-exit --heapsnapshot-near-heap-limit=3 --trace-uncaught --deprecation --trace-deprecation --no-insecure-http-parser --report-uncaught-exception --use-largepages=on --warnings --experimental-abortcontroller --report-on-fatalerror --experimental-json-modules --trace-sigint --abort-on-uncaught-exception --es-module-specifier-resolution=node --experimental-specifier-resolution=node --experimental-modules"
   },
   "dependencies": {
-    "download": "8.0.0",
-    "env-cmd": "10.1.0",
-    "express": "4.17.1",
-    "safe-compare": "1.1.4",
-    "ultra-runner": "3.10.5",
-    "yargs": "17.0.1"
+    "ultra-runner": "3.10.5"
   },
   "repository": "git://github.com/noahehall/nodeproto.git",
   "type": "module"
