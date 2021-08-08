@@ -61,7 +61,7 @@
     "upgrade": "pnpm upgrade -L"
   },
   "peerDependencies": {
-    "@nodeproto/jsync": "workspace:*",
+    "@nodeproto/jsync": "workspace:*"
   },
   "author": {
     "name": "theDRAGON",

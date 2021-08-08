@@ -9,7 +9,8 @@
     "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
     "ultra": "ultra",
     "start": "node index.mjs",
-    "verbose": "NODE_ENV=verbose node index.mjs"
+    "verbose": "NODE_ENV=verbose node index.mjs",
+    "upgrade": "pnpm upgrade -L"
   },
   "dependencies": {
     "@nodeproto/wtf": "workspace:*",

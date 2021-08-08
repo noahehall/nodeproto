@@ -173,6 +173,25 @@ importers:
       webpack-hot-middleware-2: 2.25.2
       workbox-webpack-plugin: 6.1.5_webpack@5.46.0
 
+  packages/libraries/envproto:
+    specifiers:
+      '@nodeproto/jsync': workspace:*
+      '@nodeproto/wtf': workspace:*
+      dotenv: 10.0.0
+      env-cmd: 10.1.0
+      pem: 1.14.4
+      ultra-runner: 3.10.5
+      yargs: 17.0.1
+    dependencies:
+      '@nodeproto/wtf': link:../../tools/wtf
+      dotenv: 10.0.0
+      env-cmd: 10.1.0
+      pem: 1.14.4
+      ultra-runner: 3.10.5
+      yargs: 17.0.1
+    devDependencies:
+      '@nodeproto/jsync': link:../../tools/jsync
+
   packages/libraries/utils:
     specifiers:
       '@babel/core': 7.14.8
