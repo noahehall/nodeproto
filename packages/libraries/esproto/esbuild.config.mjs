@@ -8,9 +8,9 @@ import { fs } from '@nodeproto/wtf';
 
 const pkgJson = fs.readJsonSync('package.json');
 
-console.log('\n\n this pkg json', pkgJson);
+// syncEnv(pkgJson);
 
-throw syncEnv(pkgJson);
+throw process
 
 const appInputFilename = 'index';
 const appExtension = '.mjs';

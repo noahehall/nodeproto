@@ -59,7 +59,7 @@
   },
   "config": {
     "NODE_ENV": "development",
-    "NODE_OPTIONS": "--trace-exit --trace-sigint --experimental-specifier-resolution=node --trace-uncaught --trace-warnings --experimental-import-meta-resolve --enable-source-maps --experimental-json-modules --preserve-symlinks-main --preserve-symlinks"
+    "NODE_OPTIONS": "--enable-source-maps --experimental-vm-modules --experimental-worker --experimental-import-meta-resolve --experimental-report --trace-exit --heapsnapshot-near-heap-limit --trace-uncaught --tls-max-v1.2 --deprecation --experimental-modules --disallow-code-generation-from-strings --trace-deprecation --no-insecure-http-parser --experimental-specifier-resolution=node --report-uncaught-exception --use-largepages --warnings --experimental-abortcontroller --experimental-policy --report-on-fatalerror --experimental-json-modules --trace-sigint --enable-fips --abort-on-uncaught-exception --experimental-top-level-await --preserve-symlinks --trace-warnings --preserve-symlinks-main --pending-deprecation --experimental-wasm-modules --es-module-specifier-resolution=node"
   },
   "scripts": {
     "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",

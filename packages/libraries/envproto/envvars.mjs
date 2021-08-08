@@ -10,7 +10,6 @@ import dotenv from 'dotenv';
 const { parsed = {}} = dotenv.config();
 const wrapValue = v => (`"${v}"`)
 
-console.log('\n\n parsed is', parsed)
 // cmdline args override
 process.argv.slice(2).forEach(argv => {
   if (!argv.includes('=')) return;
@@ -52,7 +51,6 @@ export const buildEnv = (env = parsed) => Object.entries(env)
  * @returns  { parsed, processEnv } containing new env in parsed, and formatted env in processEnv (keys as process.env.K)
  */
 export const syncEnv = ({ config = {}, ...opts } = {}) => {
-  console.log('\n\n wtf is parsed', parsed)
   for (const k in config) {
     if (config.hasOwnProperty(k) && parsed[k]?.length === 0) { // eslint-disable-line no-prototype-builtins
       // update the global process.env if it exists
