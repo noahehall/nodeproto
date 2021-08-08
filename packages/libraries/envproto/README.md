@@ -25,3 +25,11 @@
       SECRET_KEY=poop
 
     ```
+
+## links
+
+- [nodejs CLI options](https://nodejs.org/api/cli.html)
+  - incompatible with @nodeproto architecture:
+    - --disallow-code-generation-from-strings
+    - --preserve-symlinks
+    - --preserve-symlinks-main

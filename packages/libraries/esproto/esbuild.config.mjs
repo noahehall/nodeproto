@@ -10,7 +10,7 @@ const pkgJson = fs.readJsonSync('package.json');
 
 // syncEnv(pkgJson);
 
-throw process
+throw process.env.NODE_OPTIONS
 
 const appInputFilename = 'index';
 const appExtension = '.mjs';

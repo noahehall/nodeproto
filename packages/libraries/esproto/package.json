@@ -36,7 +36,7 @@
   "scripts": {
     "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
     "build": "env-cmd node --conditions=build lib/esbuild.config.mjs",
-    "buildtest": "NODE_OPTIONS='--enable-source-maps --experimental-vm-modules --experimental-worker --experimental-import-meta-resolve --experimental-report --trace-exit --heapsnapshot-near-heap-limit --trace-uncaught --tls-max-v1.2 --deprecation --experimental-modules --disallow-code-generation-from-strings --trace-deprecation --no-insecure-http-parser --experimental-specifier-resolution=node --report-uncaught-exception --use-largepages --warnings --experimental-abortcontroller --experimental-policy --report-on-fatalerror --experimental-json-modules --trace-sigint --enable-fips --abort-on-uncaught-exception --experimental-top-level-await --preserve-symlinks --trace-warnings --preserve-symlinks-main --pending-deprecation --experimental-wasm-modules --es-module-specifier-resolution=node' node esbuild.config.mjs",
+    "buildtest": "NODE_OPTIONS='--pending-deprecation --experimental-wasm-modules --trace-warnings --experimental-top-level-await --enable-source-maps --experimental-vm-modules --experimental-worker --experimental-import-meta-resolve --experimental-report --trace-exit --heapsnapshot-near-heap-limit=3 --trace-uncaught --deprecation --trace-deprecation --no-insecure-http-parser --report-uncaught-exception --use-largepages=on --warnings --experimental-abortcontroller --report-on-fatalerror --experimental-json-modules --trace-sigint --abort-on-uncaught-exception --es-module-specifier-resolution=node --experimental-specifier-resolution=node --experimental-modules' node esbuild.config.mjs",
     "ultra": "ultra",
     "upgrade": "pnpm upgrade -L"
   },
