@@ -1,3 +1,3 @@
 # Library files
 
-- each library provides some small utility ogic
+- each library provides some small utility logic
