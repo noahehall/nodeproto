@@ -70,9 +70,7 @@
     "root": true
   },
   "dependencies": {
-    "env-cmd": "10.1.0",
-    "ultra-runner": "3.10.5",
-    "yargs": "17.0.1"
+    "ultra-runner": "3.10.5"
   },
   "peerDependencies": {},
   "devDependencies": {}
