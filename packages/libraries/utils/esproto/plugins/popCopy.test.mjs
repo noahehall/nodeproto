@@ -1,11 +1,10 @@
 
-import { fsproto } from '@nodeproto/utils';
 import { test } from 'purple-tape';
-import fs from 'fs';
 import * as popCopy from './popCopy.mjs';
-import path from 'path';
 import sinon from 'sinon';
-import rimraf from 'rimraf'
+import wtf from '@nodeproto/wtf';
+
+const { fs } = wtf;
 
 const fstubs = {};
 test.beforeAll(async t => {
@@ -13,7 +12,7 @@ test.beforeAll(async t => {
   fstubs.fd = Promise.resolve({ close: sinon.stub() });
   fstubs.negativeInfinity = Promise.resolve({ mtimeMs: Number.NEGATIVE_INFINITY })
   fstubs.postitiveInfinity = Promise.resolve({ mtimeMs: Number.POSITIVE_INFINITY })
-  fstubs.sourcepath = await fsproto.resolve(
+  fstubs.sourcepath = await wtf.fsproto.resolve(
     './fixtures/sourcedir/copytooutdir.mjs',
     import.meta.url
   );
@@ -27,11 +26,11 @@ test(
   async t => {
   // stubs for this test case
     fstubs.open = sinon.stub(
-      fs.promises,
+      fs,
       'open'
     ).returns(fstubs.fd)
     fstubs.stat = sinon.stub(
-      fs.promises,
+      fs,
       'stat'
     ).returns(fstubs.postitiveInfinity)
 
@@ -52,11 +51,11 @@ test(
   async t => {
   // stub for this test case
     fstubs.open = sinon.stub(
-      fs.promises,
+      fs,
       'open'
     ).returns(fstubs.fd)
     fstubs.stat = sinon.stub(
-      fs.promises,
+      fs,
       'stat'
     ).returns(fstubs.negativeInfinity)
 
@@ -81,11 +80,11 @@ test(
   async t => {
   // stub for this test case
     fstubs.open = sinon.stub(
-      fs.promises,
+      fs,
       'open'
     ).throws()
     fstubs.stat = sinon.stub(
-      fs.promises,
+      fs,
       'stat'
     ).returns(fstubs.negativeInfinity)
 

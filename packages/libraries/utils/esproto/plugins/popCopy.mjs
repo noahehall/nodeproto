@@ -10,10 +10,10 @@
  * implement watching yaml files
  */
 
-// import fs from 'fs';
-import fs from 'fs'
 import path from 'path';
+import wtf from '@nodeproto/wtf';
 
+const { fs } = wtf;
 // cache mapping { filepath: { input, output} }
 // for us to return the previous output if the input hasnt change
 // ALWAYS use the filepath as key
@@ -24,7 +24,7 @@ export const cache = new Map();
 export const fileShouldCopy = async sourcepath => {
   let fd;
   try {
-    fd = await fs.promises.open(
+    fd = await fs.open(
       sourcepath,
       'r'
     );
@@ -56,11 +56,11 @@ export const fileCopy = async (newCacheMs, sourcepath, outdir) => {
         { ms: newCacheMs, outpath }
       );
 
-      await fs.promises.mkdir(
+      await fs.mkdir(
         outdir,
         { recursive: true }
       )
-      await fs.promises.copyFile(
+      await fs.copyFile(
         sourcepath,
         outpath
       ); // dont catch let it throw
@@ -99,7 +99,7 @@ options
         );
       }
 
-      const sourcedirs = await fs.promises.readdir(
+      const sourcedirs = await fs.readdir(
         indir,
         { encoding: 'utf8', withFileTypes: true }
       ) ?? [];

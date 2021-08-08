@@ -2,14 +2,10 @@
  * build any webpack config and output its files to disk
  */
 
-import { envproto } from '@nodeproto/utils';
 import * as pack from './webpack.setup.mjs';
 import webpack from 'webpack';
 import webpackDevConfig from './webpack.dev.config.mjs';
 import webpackProdConfig from './webpack.prod.config.mjs';
-
-// todo
-// const conditions = envproto.getConditions();
 
 const useConfig = pack.ifProd ? webpackProdConfig : webpackDevConfig;
 

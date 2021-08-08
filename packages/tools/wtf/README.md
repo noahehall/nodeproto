@@ -10,22 +10,26 @@
 # examples
   ```js
     // get the pkg json file in the current directory
-    await dirs.getPkgJson()
+    await wtf.getPkgJson()
     // get the pkg json in the parent directory
-    await dirs.getPkgJson('..')
+    await wtf.getPkgJson('..')
     // get the root pkg json file of @nodeproto from within @nodeprot/jsync
-    await dirs.getPkgJson('../../..')
+    await wtf.getPkgJson('../../..')
     // similarly, get the pkg jsonc file in the current directory
-    await dirs.getPkgJsonc()
+    await wtf.getPkgJsonc()
 
     // can be used in .mjs|cjs files
-    await dirs.dirname(import.meta?.url)
-    await dirs.filename(import.meta?.url)
+    await wtf.dirname(import.meta?.url)
+    await wtf.filename(import.meta?.url)
 
-    dirs.JSONC
+    wtf.JSONC
       .lookup
       .stringify
       .strip // strip new lines but keep comments?
       .validate // validate jsonc?
       .parse // convert to json
+
+    wtf.fs
+      // @see https://github.com/jprichardson/node-fs-extra
+      .readJson[Sync]
   ```

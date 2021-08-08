@@ -58,11 +58,12 @@
     "pnpm": ">=6.9"
   },
   "config": {
-    "NODE_OPTIONS": "--experimental-specifier-resolution=node --trace-uncaught --trace-warnings --experimental-import-meta-resolve --enable-source-maps --experimental-json-modules --preserve-symlinks-main --preserve-symlinks"
+    "NODE_OPTIONS": "--trace-exit --trace-sigint --experimental-specifier-resolution=node --trace-uncaught --trace-warnings --experimental-import-meta-resolve --enable-source-maps --experimental-json-modules --preserve-symlinks-main --preserve-symlinks"
   },
   "scripts": {
     "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
-    "ultra": "ultra"
+    "ultra": "ultra",
+    "upgrade": "pnpm upgrade -L"
   },
   "jsync": {
     "root": true
@@ -70,6 +71,6 @@
   "dependencies": {
     "env-cmd": "10.1.0",
     "ultra-runner": "3.10.5",
-    "yargs": "16.2.0"
+    "yargs": "17.0.1"
   }
 }

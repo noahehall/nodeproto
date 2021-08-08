@@ -17,11 +17,11 @@
   },
   "license": "SEE LICENSE IN LICENSE.md",
   "devDependencies": {
-    "@nodeproto/jsync": "workspace:0.0.0",
+    "@nodeproto/jsync": "workspace:*",
     "web-ext": "^6.2.0"
   },
   "peerDependencies": {
-    "@nodeproto/jsync": "workspace:0.0.0"
+    "@nodeproto/jsync": "workspace:*"
   },
   "jsync": {
     "root": false
@@ -66,12 +66,15 @@
     "pnpm": ">=6.9"
   },
   "config": {
-    "NODE_OPTIONS": "--experimental-specifier-resolution=node --trace-uncaught --trace-warnings --experimental-import-meta-resolve --enable-source-maps --experimental-json-modules --preserve-symlinks-main --preserve-symlinks"
+    "NODE_OPTIONS": "--trace-exit --trace-sigint --experimental-specifier-resolution=node --trace-uncaught --trace-warnings --experimental-import-meta-resolve --enable-source-maps --experimental-json-modules --preserve-symlinks-main --preserve-symlinks"
   },
   "dependencies": {
+    "download": "8.0.0",
     "env-cmd": "10.1.0",
+    "express": "4.17.1",
+    "safe-compare": "1.1.4",
     "ultra-runner": "3.10.5",
-    "yargs": "16.2.0"
+    "yargs": "17.0.1"
   },
   "repository": "git://github.com/noahehall/nodeproto.git",
   "type": "module"

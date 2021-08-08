@@ -17,13 +17,12 @@
     "ultra": "ultra"
   },
   "dependencies": {
-    "@nodeproto/jsync": "workspace:0.0.0",
-    "@nodeproto/wtf": "workspace:0.0.0",
+    "@nodeproto/wtf": "workspace:*",
     "chalk": "4.1.1",
     "chokidar": "3.5.2",
+    "env-cmd": "10.1.0",
     "ultra-runner": "3.10.5",
-    "yargs": "16.2.0",
-    "env-cmd": "10.1.0"
+    "yargs": "17.0.1"
   },
   "jsync": {
     "root": false
@@ -75,7 +74,13 @@
     "pnpm": ">=6.9"
   },
   "config": {
-    "NODE_OPTIONS": "--experimental-specifier-resolution=node --trace-uncaught --trace-warnings --experimental-import-meta-resolve --enable-source-maps --experimental-json-modules --preserve-symlinks-main --preserve-symlinks"
+    "NODE_OPTIONS": "--trace-exit --trace-sigint --experimental-specifier-resolution=node --trace-uncaught --trace-warnings --experimental-import-meta-resolve --enable-source-maps --experimental-json-modules --preserve-symlinks-main --preserve-symlinks"
   },
-  "repository": "git://github.com/noahehall/nodeproto.git"
+  "repository": "git://github.com/noahehall/nodeproto.git",
+  "devDependencies": {
+    "@nodeproto/jsync": "workspace:*"
+  },
+  "peerDependencies": {
+    "@nodeproto/jsync": "workspace:*"
+  }
 }

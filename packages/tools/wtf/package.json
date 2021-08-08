@@ -21,10 +21,10 @@
     "shelljs": "0.8.4",
     "symlink-dir": "5.0.1",
     "ultra-runner": "3.10.5",
-    "yargs": "16.2.0"
+    "yargs": "17.0.1"
   },
   "peerDependencies": {
-    "@nodeproto/jsync": "workspace:0.0.0"
+    "@nodeproto/jsync": "workspace:*"
   },
   "author": {
     "name": "theDRAGON",
@@ -75,9 +75,10 @@
   },
   "scripts": {
     "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
-    "ultra": "ultra"
+    "ultra": "ultra",
+    "upgrade": "pnpm upgrade -L"
   },
   "config": {
-    "NODE_OPTIONS": "--experimental-specifier-resolution=node --trace-uncaught --trace-warnings --experimental-import-meta-resolve --enable-source-maps --experimental-json-modules --preserve-symlinks-main --preserve-symlinks"
+    "NODE_OPTIONS": "--trace-exit --trace-sigint --experimental-specifier-resolution=node --trace-uncaught --trace-warnings --experimental-import-meta-resolve --enable-source-maps --experimental-json-modules --preserve-symlinks-main --preserve-symlinks"
   }
 }

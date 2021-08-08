@@ -1,6 +1,6 @@
 import { test } from 'purple-tape';
 import * as wrapper from '@nodeproto/utils';
-import defaultImport, { envproto, esproto, fsproto } from '@nodeproto/utils';
+import defaultImport, { envproto, esproto } from '@nodeproto/utils';
 
 test(
   'esm: can glob import',
@@ -11,7 +11,6 @@ test(
         'default',
         'envproto',
         'esproto',
-        'fsproto'
       ]
     );
   }

@@ -1,7 +1,9 @@
 import { envproto } from '@nodeproto/utils';
 import path from 'path';
-import pkgJson from '../package.json';
+import wtf from '@nodeproto/wtf';
 import os from 'os';
+
+const pkgJson = wtf.fs.readJsonSync('./package.json');
 
 export { builtinModules } from 'module';
 export { default as babelConfigDefault } from './babel.config.cjs';

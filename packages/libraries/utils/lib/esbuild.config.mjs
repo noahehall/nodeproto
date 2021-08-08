@@ -1,14 +1,12 @@
 
 import { builtinModules as builtin } from 'module';
-import { envproto, esproto } from '@nodeproto/utils/index';
-import { fileURLToPath } from 'url';
-import { readFile } from 'fs/promises';
+import { envproto } from '../index.mjs';
 import esbuild from 'esbuild';
-import fs from 'fs';
 import manifestPlugin from 'esbuild-plugin-manifest';
 import path from 'path';
-import pkgJson from '../package.json';
-import util from 'util';
+import wtf from '@nodeproto/wtf';
+
+const pkgJson = wtf.fs.readJsonSync('package.json');
 
 const appInputFilename = 'index';
 const appExtension = '.mjs';
