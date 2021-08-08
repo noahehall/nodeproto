@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "ultra-runner": "3.10.5",
-    "@nodeproto/wtf": "workspace:*",
+    "@nodeproto/wtf": "workspace:*"
   },
   "devDependencies": {
     "@nodeproto/jsync": "workspace:*",

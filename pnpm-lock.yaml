@@ -192,6 +192,21 @@ importers:
     devDependencies:
       '@nodeproto/jsync': link:../../tools/jsync
 
+  packages/libraries/esproto:
+    specifiers:
+      '@nodeproto/jsync': workspace:*
+      '@nodeproto/wtf': workspace:*
+      esbuild: 0.12.16
+      esbuild-plugin-manifest: 0.4.6
+      ultra-runner: 3.10.5
+    dependencies:
+      '@nodeproto/wtf': link:../../tools/wtf
+      ultra-runner: 3.10.5
+    devDependencies:
+      '@nodeproto/jsync': link:../../tools/jsync
+      esbuild: 0.12.16
+      esbuild-plugin-manifest: 0.4.6_esbuild@0.12.16
+
   packages/libraries/utils:
     specifiers:
       '@babel/core': 7.14.8

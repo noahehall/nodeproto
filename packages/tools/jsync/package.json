@@ -70,7 +70,10 @@
     "pnpm": ">=6.9"
   },
   "config": {
-    "NODE_OPTIONS": "--trace-exit --trace-sigint --experimental-specifier-resolution=node --trace-uncaught --trace-warnings --experimental-import-meta-resolve --enable-source-maps --experimental-json-modules --preserve-symlinks-main --preserve-symlinks"
+    "NODE_OPTIONS": "--trace-exit --trace-sigint --experimental-specifier-resolution=node --trace-uncaught --trace-warnings --experimental-import-meta-resolve --enable-source-maps --experimental-json-modules --preserve-symlinks-main --preserve-symlinks",
+    "NODE_ENV": "development"
   },
-  "repository": "git://github.com/noahehall/nodeproto.git"
+  "repository": "git://github.com/noahehall/nodeproto.git",
+  "peerDependencies": {},
+  "devDependencies": {}
 }
