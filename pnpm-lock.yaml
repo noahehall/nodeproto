@@ -194,18 +194,20 @@ importers:
 
   packages/libraries/esproto:
     specifiers:
+      '@nodeproto/envproto': workspace:*
       '@nodeproto/jsync': workspace:*
       '@nodeproto/wtf': workspace:*
       esbuild: 0.12.16
       esbuild-plugin-manifest: 0.4.6
       ultra-runner: 3.10.5
     dependencies:
+      '@nodeproto/envproto': link:../envproto
       '@nodeproto/wtf': link:../../tools/wtf
+      esbuild: 0.12.16
+      esbuild-plugin-manifest: 0.4.6_esbuild@0.12.16
       ultra-runner: 3.10.5
     devDependencies:
       '@nodeproto/jsync': link:../../tools/jsync
-      esbuild: 0.12.16
-      esbuild-plugin-manifest: 0.4.6_esbuild@0.12.16
 
   packages/libraries/utils:
     specifiers:
@@ -7659,13 +7661,11 @@ packages:
       esbuild: ~0
     dependencies:
       esbuild: 0.12.16
-    dev: true
 
   /esbuild/0.12.16:
     resolution: {integrity: sha512-XqI9cXP2bmQ6MREIqrYBb13KfYFSERsV1+e5jSVWps8dNlLZK+hln7d0mznzDIpfISsg/AgQW0DW3kSInXWhrg==}
     hasBin: true
     requiresBuild: true
-    dev: true
 
   /escalade/3.1.1:
     resolution: {integrity: sha512-k0er2gUkLf8O0zKJiAhmkTnJlTvINGv7ygDNPbeIsX/TJjGJZHuh9B2UxbsaEkmlEo9MfhrSzmhIlhRlI2GXnw==}

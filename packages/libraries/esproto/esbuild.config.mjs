@@ -1,12 +1,12 @@
 
 import { builtinModules as builtin } from 'module';
-import { envproto } from '../index.mjs';
+import envproto from '@nodeproto/envproto';
 import esbuild from 'esbuild';
 import manifestPlugin from 'esbuild-plugin-manifest';
 import path from 'path';
-import wtf from '@nodeproto/wtf';
+import { fs } from '@nodeproto/wtf';
 
-const pkgJson = wtf.fs.readJsonSync('package.json');
+const pkgJson = fs.readJsonSync('package.json');
 
 const appInputFilename = 'index';
 const appExtension = '.mjs';
@@ -53,7 +53,7 @@ const esbuildConfig = {
     '.json'
   ],
   sourcemap: true,
-  target: ['node14.17.0'], // LTS
+  target: ['node14.17.4'], // LTS
   // format: 'esm',
   write: true,
   plugins: [manifestPlugin(manifestPluginConfig)],

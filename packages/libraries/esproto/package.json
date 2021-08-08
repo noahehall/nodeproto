@@ -24,13 +24,14 @@
     }
   },
   "dependencies": {
-    "ultra-runner": "3.10.5",
-    "@nodeproto/wtf": "workspace:*"
+    "@nodeproto/envproto": "workspace:*",
+    "@nodeproto/wtf": "workspace:*",
+    "esbuild": "0.12.16",
+    "esbuild-plugin-manifest": "0.4.6",
+    "ultra-runner": "3.10.5"
   },
   "devDependencies": {
-    "@nodeproto/jsync": "workspace:*",
-    "esbuild": "0.12.16",
-    "esbuild-plugin-manifest": "0.4.6"
+    "@nodeproto/jsync": "workspace:*"
   },
   "scripts": {
     "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
