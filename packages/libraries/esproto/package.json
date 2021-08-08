@@ -1,6 +1,6 @@
 {
-  "name": "@nodeproto/envproto",
-  "description": "@nodeproto/envproto - DRY environment management",
+  "name": "@nodeproto/esproto",
+  "description": "@nodeproto/esproto - the esbuild sushi-knife ",
   "version": "0.0.0",
   "type": "module",
   "jsync": {

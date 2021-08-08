@@ -1,6 +1,6 @@
 {
-  "name": "@nodeproto/envproto",
-  "description": "@nodeproto/envproto - DRY environment management",
+  "name": "@nodeproto/lintproto",
+  "description": "@nodeproto/lintproto - the sanity you need when crafting your next one-liner ",
   "version": "0.0.0",
   "type": "module",
   "jsync": {
