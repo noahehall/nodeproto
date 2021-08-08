@@ -5,15 +5,28 @@
     "jsync": "./bin/jsync.js"
   },
   "scripts": {
-    "preinstall": "jsync",
     "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
     "ultra": "ultra",
-    "start": "node index.mjs",
-    "verbose": "NODE_ENV=verbose node index.mjs"
+    "start": "NODE_OPTIONS=$npm_package_config_NODE_OPTIONS node index.mjs",
+    "verbose": "NODE_ENV=verbose node index.mjs",
+    "upgrade": "pnpm upgrade -L",
+    "nvm:latest": "nvm install node --reinstall-packages-from=current",
+    "post:nvm:latest": "nvm alias default node",
+    "eslint": "eslint 'src/**/*'",
+    "eslint:fix": "pnpm eslint -- --fix",
+    "cp:flow": "cp node_modules/@nodeproto/configproto/.flowconfig .",
+    "jsync": "node ./bin/jsync.js",
+    "test": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" uvu ./src test.mjs",
+    "test:help": "uvu --help",
+    "test:ing": "pnpm test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"clear; pnpm test\""
   },
   "dependencies": {
     "@nodeproto/wtf": "workspace:*",
     "env-cmd": "10.1.0",
+    "eslint": "7.32.0",
+    "flow-bin": "0.157.0",
+    "react": "18.0.0-alpha-419cc9c37-20210726",
+    "react-dom": "18.0.0-alpha-419cc9c37-20210726",
     "ultra-runner": "3.10.5",
     "yargs": "17.0.1"
   },
@@ -64,12 +77,20 @@
     "linux"
   ],
   "engines": {
-    "node": ">=16.5",
+    "node": ">=16.9",
     "npm": ">=7.18.1",
     "pnpm": ">=6.9"
   },
   "config": {
-    "NODE_OPTIONS": "--trace-exit --trace-sigint --experimental-specifier-resolution=node --trace-uncaught --trace-warnings --experimental-import-meta-resolve --enable-source-maps --experimental-json-modules --preserve-symlinks-main --preserve-symlinks"
+    "NODE_OPTIONS": "--pending-deprecation --experimental-wasm-modules --trace-warnings --experimental-top-level-await --enable-source-maps --experimental-vm-modules --experimental-worker --experimental-import-meta-resolve --experimental-report --trace-exit --heapsnapshot-near-heap-limit=3 --trace-uncaught --deprecation --trace-deprecation --no-insecure-http-parser --report-uncaught-exception --use-largepages=on --warnings --experimental-abortcontroller --report-on-fatalerror --experimental-json-modules --trace-sigint --abort-on-uncaught-exception --es-module-specifier-resolution=node --experimental-specifier-resolution=node --experimental-modules",
+    "NODE_ENV": "development",
+    "BABEL_SHOW_CONFIG_FOR": "e.g. BABEL_SHOW_CONFIG_FOR=absolute/path/to/file somePkgJsonScriptName",
+    "PATH_DIST": "./dist",
+    "PATH_SRC": "./src"
   },
-  "repository": "git://github.com/noahehall/nodeproto.git"
+  "repository": "git://github.com/noahehall/nodeproto.git",
+  "devDependencies": {
+    "tap": "15.0.9",
+    "tapromise": "1.1.2"
+  }
 }
