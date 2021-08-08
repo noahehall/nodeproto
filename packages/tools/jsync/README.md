@@ -3,8 +3,12 @@
   - idea taken from the awesome `dry-dry` pkg manager
 
 
-# TLDR
+## TLDR
   - main use cases is extending one json file from another, e.g. packag.jsons in a monorepo
+  1. install globally/`npm link` if developing `jsync` locally
+  2. add `"jsync": { "root": false }` to your child pkg.json and `"rooot": true"` to some parent (e.g. monorepo root) package.json
+  3. `@nodeproto/jsync` will now automatically update your package.json file whenever you run `pnpm install` or related cmds
+  4. you can force sync via `$ jsync`
 
 # inspiration
   - [read json](https://github.com/sindresorhus/read-pkg/blob/main/index.js)

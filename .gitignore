@@ -1,4 +1,6 @@
 gitpod-local-companion-linux
+.ultra.cache.json
+report.*
 dist
 # Logs
 *.log

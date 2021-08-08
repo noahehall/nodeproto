@@ -1,3 +1,3 @@
-each library is installed into an application to provide cross-cutting functionality
+# Library files
 
-these are not tools, as they are likely only applicable to @nodeproto
+- each library provides some focused utility logic

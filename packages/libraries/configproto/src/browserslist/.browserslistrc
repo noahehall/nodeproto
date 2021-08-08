@@ -1,0 +1,17 @@
+# @see https://github.com/browserslist/browserslist#shareable-configs
+# ^ you have to disable validation via BROWSERSLIST_DANGEROUS_EXTEND=1 npx webpack
+# @see https://github.com/browserslist/browserslist#configuring-for-different-environments
+# @see https://github.com/browserslist/browserslist#full-list
+
+[client]
+defaults
+
+[node]
+node >= 14
+
+[ssr]
+defaults and node >= 14
+
+# es6 modules: set type="module" on the script tag in your html
+[es6]
+supports es6-module
