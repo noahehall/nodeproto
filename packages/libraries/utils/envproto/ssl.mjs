@@ -1,10 +1,9 @@
-
 /**
  * shit related to ssl certs
  * @see https://github.com/Dexus/pem/blob/master/test/pem.spec.js
  */
 
-import * as fsproto from '../fsproto/index.mjs'
+import fsproto from '@nodeproto/wtf';
 import path from 'path';
 import pem from 'pem';
 

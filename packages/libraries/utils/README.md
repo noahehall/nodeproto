@@ -1,6 +1,4 @@
-reusable packages for your microservices
+# @nodeproto/utils
 
-each package in this directory can be imported, e.g.
-
-in your packages/pkg/somefile.mjs file
-  - `import {envproto} from '@nodeproto/lib'`
+- useful utility logic
+- see each subpackage for more information

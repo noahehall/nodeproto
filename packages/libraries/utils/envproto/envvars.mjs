@@ -15,11 +15,13 @@ const wrapValue = v => (`"${v}"`)
 process.argv.slice(2).forEach(argv => {
   if (!argv.includes('=')) return;
 
-  const [arg, v] = argv.split('=');
+  const [
+    arg,
+    v
+  ] = argv.split('=');
 
   parsed[arg] = v;
 })
-
 
 /**
  * injects .env variables into an object

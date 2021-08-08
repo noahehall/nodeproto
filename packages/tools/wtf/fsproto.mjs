@@ -2,8 +2,7 @@
 // ^ move all this stuff into @nodeproto/wtf
 import { fileURLToPath } from 'url';
 import esMain from 'es-main';
-import fs from 'fs';
-import mkdirp from 'mkdirp'
+import fs from 'fs-extra';
 import path from 'path';
 
 /**
@@ -23,7 +22,7 @@ export const isMain = (requireMain, importMeta) => {
   return esMain(importMeta)
 }
 
-export const { readFile } = fs.promises;
+export const { readFile } = fs;
 export const readFiles = async (files = []) => (!files.length
   ? []
   : Promise.all(files.map(({ filename, encoding = 'utf8' }) => (
@@ -35,9 +34,9 @@ export const readFiles = async (files = []) => (!files.length
 
 export const writeFile = async (...opts) => {
   try {
-    await mkdirp(path.dirname(opts[0]));
+    await fs.ensureDir(path.dirname(opts[0]));
   } catch (e) {} finally {
-    return fs.promises.writeFile.apply(
+    return fs.writeFile.apply(
       fs,
       opts
     );
@@ -59,7 +58,7 @@ export const parentUri = (importMeta = import.meta) => (
 );
 // directory where the code is being run
 // export const cwd = path.resolve('', path.dirname(parentUri()));
-//@see https://github.com/stefanpenner/mjs-dirname/blob/main/index.mjs
+// @see https://github.com/stefanpenner/mjs-dirname/blob/main/index.mjs
 /**
  *
  * @param fileToImport filename

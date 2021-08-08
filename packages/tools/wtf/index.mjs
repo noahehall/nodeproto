@@ -1,5 +1,6 @@
 import { fileURLToPath } from 'url';
 import { homedir, tmpdir } from 'os';
+import * as fsprotoInternal from './fsproto.mjs';
 import cPath from 'contains-path';
 import Dirent from 'dirent';
 import fs from 'fs-extra';
@@ -19,6 +20,9 @@ const filename = (importMetaUrl = import.meta?.url) => isCjs
 const dirname = (importMetaUrl = import.meta?.url) => isCjs
   ? path.dirname(filename(importMetaUrl))
   : __dirname;
+
+export const fsproto = fsprotoInternal;
+
 /**
  * gets cross-platform directories
  *
@@ -68,7 +72,6 @@ export const getDirs = (overrides = {}) => {
   // review microsoft/jsonc-parser thing
   const getPkgJsonc = async (dirpath = '.') => getPkgJson(dirpath, 'package\.jsonc');
 
-
   return {
     ...xdg({
       expanded: true,
@@ -81,6 +84,7 @@ export const getDirs = (overrides = {}) => {
     dirname,
     filename,
     fs,
+    fsproto,
     getFilePathAbs,
     getPkgJson,
     getPkgJsonAbs,

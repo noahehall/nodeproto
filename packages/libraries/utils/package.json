@@ -1,17 +1,21 @@
 {
   "name": "@nodeproto/utils",
+  "description": "@nodeproto/utils - useful utility logic",
   "version": "0.0.0",
   "type": "module",
+  "jsync": {
+    "root": false
+  },
   "directories": {
     "dist": "./dist",
     "fstest": "./fstest",
     "envproto": "./envproto",
     "esproto": "./esproto",
-    "fsproto": "./fsproto",
     "lib": "./lib"
   },
   "config": {
-    "NODE_ENV": "development"
+    "NODE_ENV": "development",
+    "NODE_OPTIONS": "--experimental-specifier-resolution=node --trace-uncaught --trace-warnings --experimental-import-meta-resolve --enable-source-maps --experimental-json-modules --preserve-symlinks-main --preserve-symlinks"
   },
   "main": "./dist/index.cjs",
   "exports": {
@@ -23,15 +27,20 @@
     }
   },
   "dependencies": {
-    "es-main": "1.0.2",
-    "pem": "1.14.4",
-    "mkdirp": "1.0.4",
+    "dotenv": "10.0.0",
     "env-cmd": "10.1.0",
-    "dotenv": "10.0.0"
+    "es-main": "1.0.2",
+    "mkdirp": "1.0.4",
+    "pem": "1.14.4",
+    "ultra-runner": "3.10.5",
+    "yargs": "16.2.0"
   },
   "devDependencies": {
+    "@babel/core": "7.14.3",
     "@babel/eslint-parser": "7.14.5",
     "@babel/eslint-plugin": "7.13.16",
+    "@nodeproto/jsync": "workspace:0.0.0",
+    "@nodeproto/wtf": "workspace:0.0.0",
     "esbuild": "0.12.8",
     "esbuild-plugin-manifest": "0.4.3",
     "eslint": "7.29",
@@ -39,20 +48,70 @@
     "eslint-plugin-import": "2.23.4",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-promise": "5.1.0",
-    "rimraf": "3.0.2",
-    "tap-spec": "2.2.2",
-    "sinon": "11.1.1",
-    "purple-tape": "3.9.2",
     "multi-tape": "1.6.1",
-    "@babel/core": "7.14.3"
+    "purple-tape": "3.9.2",
+    "rimraf": "3.0.2",
+    "sinon": "11.1.1",
+    "tap-spec": "2.2.2"
   },
   "scripts": {
     "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
-    "eslint": "eslint \"{envproto,esproto,fsproto,lib}/**/*.+(m|c)js\"",
-    "eslint:fix": "npm run eslint -- --fix",
+    "eslint": "eslint \"{envproto,esproto,lib}/**/*.+(m|c)js\"",
+    "eslint:fix": "pnpm eslint -- --fix",
     "test": "env-cmd multi-tape --conditions=test  \"**/*.test.+(c|m)js\" | tap-spec",
     "prepublishOnly": "rimraf dist && npm run build",
     "prebuild": "rimraf dist",
-    "build": "env-cmd node --conditions=build lib/esbuild.config.mjs"
-  }
+    "build": "env-cmd node --conditions=build lib/esbuild.config.mjs",
+    "ultra": "ultra"
+  },
+  "peerDependencies": {
+    "@nodeproto/jsync": "workspace:0.0.0",
+    "@nodeproto/wtf": "workspace:0.0.0"
+  },
+  "author": {
+    "name": "theDRAGON",
+    "email": "noahedwardhall+souls@gmail.com",
+    "url": "https://github.com/noahehall"
+  },
+  "bugs": "https://github.com/noahehall/nodeproto/issues",
+  "homepage": "https://github.com/noahehall/nodeproto",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "private": true,
+  "keywords": [
+    "@nirv",
+    "@nodeproto",
+    "api",
+    "bodyguard",
+    "docker",
+    "esbuild",
+    "fullstack",
+    "grafana",
+    "haproxy",
+    "inception",
+    "jsync",
+    "koa",
+    "micro service",
+    "microservice",
+    "nirv",
+    "nodeproto",
+    "openapi",
+    "pnpm",
+    "prometheus",
+    "prototype",
+    "react",
+    "ssl",
+    "starter",
+    "swagger",
+    "webpack5"
+  ],
+  "os": [
+    "darwin",
+    "linux"
+  ],
+  "engines": {
+    "node": ">=16.5",
+    "npm": ">=7.18.1",
+    "pnpm": ">=6.9"
+  },
+  "repository": "git://github.com/noahehall/nodeproto.git"
 }
