@@ -61,7 +61,8 @@
     "NODE_OPTIONS": "--experimental-specifier-resolution=node --trace-uncaught --trace-warnings --experimental-import-meta-resolve --enable-source-maps --experimental-json-modules --preserve-symlinks-main --preserve-symlinks"
   },
   "scripts": {
-    "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0"
+    "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
+    "ultra": "ultra"
   },
   "jsync": {
     "root": true

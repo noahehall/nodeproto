@@ -1,16 +1,78 @@
 {
   "name": "@nodeproto/bodyguard",
-  "version": "1.0.0",
-  "description": "protect your network requests with @nodeproto bodyguard browser extension",
+  "version": "0.0.0",
+  "description": "@nodeproto/bodyguard - protect your network requests with @nodeproto/bodyguard firefox browser extension",
   "main": "network.js",
   "scripts": {
     "start": "web-ext run --bc -t firefox-desktop --url about.pinterest.com",
     "start:c": "web-ext run --bc -t chromium",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
+    "ultra": "ultra"
   },
-  "author": "",
-  "license": "ISC",
+  "author": {
+    "name": "theDRAGON",
+    "email": "noahedwardhall+souls@gmail.com",
+    "url": "https://github.com/noahehall"
+  },
+  "license": "SEE LICENSE IN LICENSE.md",
   "devDependencies": {
+    "@nodeproto/jsync": "workspace:0.0.0",
     "web-ext": "^6.2.0"
-  }
+  },
+  "peerDependencies": {
+    "@nodeproto/jsync": "workspace:0.0.0"
+  },
+  "jsync": {
+    "root": false
+  },
+  "bugs": "https://github.com/noahehall/nodeproto/issues",
+  "homepage": "https://github.com/noahehall/nodeproto",
+  "private": true,
+  "keywords": [
+    "@nirv",
+    "@nodeproto",
+    "api",
+    "bodyguard",
+    "docker",
+    "esbuild",
+    "fullstack",
+    "grafana",
+    "haproxy",
+    "inception",
+    "jsync",
+    "koa",
+    "micro service",
+    "microservice",
+    "nirv",
+    "nodeproto",
+    "openapi",
+    "pnpm",
+    "prometheus",
+    "prototype",
+    "react",
+    "ssl",
+    "starter",
+    "swagger",
+    "webpack5"
+  ],
+  "os": [
+    "darwin",
+    "linux"
+  ],
+  "engines": {
+    "node": ">=16.5",
+    "npm": ">=7.18.1",
+    "pnpm": ">=6.9"
+  },
+  "config": {
+    "NODE_OPTIONS": "--experimental-specifier-resolution=node --trace-uncaught --trace-warnings --experimental-import-meta-resolve --enable-source-maps --experimental-json-modules --preserve-symlinks-main --preserve-symlinks"
+  },
+  "dependencies": {
+    "env-cmd": "10.1.0",
+    "ultra-runner": "3.10.5",
+    "yargs": "16.2.0"
+  },
+  "repository": "git://github.com/noahehall/nodeproto.git",
+  "type": "module"
 }

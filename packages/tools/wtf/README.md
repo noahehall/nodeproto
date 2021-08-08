@@ -18,6 +18,10 @@
     // similarly, get the pkg jsonc file in the current directory
     await dirs.getPkgJsonc()
 
+    // can be used in .mjs|cjs files
+    await dirs.dirname(import.meta?.url)
+    await dirs.filename(import.meta?.url)
+
     dirs.JSONC
       .lookup
       .stringify

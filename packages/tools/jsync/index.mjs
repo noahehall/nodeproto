@@ -1,9 +1,7 @@
-import { getDirs } from '@nodeproto/wtf';
-
-const dirs = getDirs();
+import dirs from '@nodeproto/wtf';
 
 const isObject = (v) => typeof v === 'object' && v !== null;
-const notArrayOrObject = (v) => !isObject(v) || !Array.isArray(v);
+const notArrayOrObject = (v) => !isObject(v) && !Array.isArray(v);
 
 // TODO: @see @nodeproto/inception
 const throwIt = msg => { throw msg };
@@ -24,8 +22,10 @@ const V = {}; // container for all the json segments
 let JSYNC_DEFAULT_CONFIG = process.env.JSYNC_DEFAULT_CONFIG;
 
 if (!JSYNC_DEFAULT_CONFIG) {
-  const { file: thisPkgJson, path: thisPkgJsonPath } = (await dirs.getPkgJson());
-  const { file: thisPkgJsonc, path: thisPkgJsoncPath } = (await dirs.getPkgJsonc());
+  const diskPath = dirs.dirname(import.meta.url);
+  const { file: thisPkgJson, path: thisPkgJsonPath } = (await dirs.getPkgJson(diskPath));
+  const { file: thisPkgJsonc, path: thisPkgJsoncPath } = (await dirs.getPkgJsonc(diskPath));
+
   JSYNC_DEFAULT_CONFIG = thisPkgJsonc.jsync;
 }
 
@@ -121,7 +121,6 @@ const segmentJsonFieldsByCategory = (json = rootJson) => (
 const rootJsonSegments = segmentJsonFieldsByCategory();
 logIt('\n\n root json segments', rootJsonSegments)
 
-const valuesUpdated = new Set(V[VTI]);
 // TODO: need to define logic when root & child have different value types
 // ^  root takes precendence if missing from child or child has same value type as root
 // ^  child takes precedence in all other cases
@@ -134,70 +133,67 @@ const updateNewJson = async ({
   for (const k of keys) {
     const rootValue = fromJson[k];
     const childValue = toJson[k];
+    const missing = !(k in toJson);
 
-    valuesUpdated.add(k);
-
-    if (!(k in toJson) || force) {
+    // set the value if forced or missing
+    if (force || missing) {
       newChildJson[k] = rootValue;
 
-      continue;
+      V[VTI].add(k);
     }
 
-    // set the value if not an object/array
-    if (notArrayOrObject(rootValue)) {
-      if (notArrayOrObject(childValue))
+    if (V[VTI].has(k)) continue;
+    // set the value only if missing: use force above to override
+    else if (notArrayOrObject(rootValue)) {
+      if (notArrayOrObject(childValue) && missing)
         newChildJson[k] = rootValue;
       else
         newChildJson[k] = childValue;
-
-      continue;
     }
-
     // take set of root & child values
-    if (Array.isArray(rootValue)) {
+    else if (Array.isArray(rootValue)) {
       if (Array.isArray(childValue))
         newChildJson[k] = Array.from(new Set(rootValue.concat(childValue || [])));
       else
         newChildJson[k] = childValue;
-
-      continue;
     }
-
     // using rudimentary check for object
     // but has to be an object based on previous checks
-    if (isObject(rootValue)) {
+    else if (isObject(rootValue)) {
       if (isObject(childValue))
-        newChildJson[k] = { ...rootValue, ...(childValue || {}) };
+        // root takes precedence to get updated values (if any) on subsequent runs
+        newChildJson[k] = { ...(childValue || {}), ...rootValue};
       else
         newChildJson[k] = childValue;
-
-      continue;
     }
 
-    logIt('\n\n unkown value type', k, rootValue, childValue);
+    else logIt('\n\n unkown value type', k, rootValue, childValue);
+
+    V[VTI].add(k);
   }
 
   logIt('\n\n newChildJson', newChildJson);
 }
 
-// spread values from root to child
-await updateNewJson();
 // force values from root to child
 await updateNewJson({
   force: true,
   keys: rootJsonSegments[VTF],
 });
-
-// handle remaining root fields
-const forceRemaingValues = DEFAULT_CATEGORY === VTF;
-const remainingValues = Object.keys(rootJson).filter(k => !valuesUpdated.has(k));
+// spread values from root to child
 await updateNewJson({
-  force: forceRemaingValues,
-  keys: remainingValues,
+  force: false,
+  keys: rootJsonSegments[VTS],
 });
 
-// handle remaining child fields
-newChildJson = { ...newChildJson, ...childPkgJson.file };
+// handle remaining root fields
+await updateNewJson({
+  force: DEFAULT_CATEGORY === VTF,
+  keys: Object.keys(rootJson).filter(k => !V[VTI].has(k)),
+});
+// use remaining values in childPkgJson as defualt
+// but override with new values on clash
+newChildJson = { ...childPkgJson.file, ...newChildJson };
 
 logIt('\n\n new child json', newChildJson);
 await dirs.fs.outputJson(childPkgJsonPath + '/package.json', newChildJson, { spaces: 2 });

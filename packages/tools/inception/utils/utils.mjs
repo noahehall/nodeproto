@@ -1,10 +1,12 @@
 import chalk from 'chalk';
 import path from 'path';
-import shelljs from 'shelljs';
+import wtf from '@nodeproto/wtf';
 import { inceptionBaseConfig } from '../configs/inception.config.mjs';
 import { chokidarConfigDefault } from '../configs/chokidar.config.mjs';
 import { ErrorCdBack } from './errors.mjs';
+
 const logger = msgs => console.log.bind(console).apply(null, msgs);
+const shelljs = wtf.shelljs;
 
 export const std = {
   log: chalk.bgBlack.bold.whiteBright,
@@ -71,4 +73,3 @@ const pkgOf = (path1, path2) => {
 const getPkgVersion = pkgName => (
   Array.from(uniquePkgs.values()).filter(pkg => pkg.name === pkgName).pop().inception.version
 )
-

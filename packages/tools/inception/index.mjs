@@ -3,7 +3,6 @@
  * build, link and run dependencies
  * use case: developing a client with downstream local dependencies within a dependency within a dependency.... within a dependency... within a dream
  *
- * @see https://github.com/wclr/yalc/blob/master/test/index.ts
  * @see https://reflectoring.io/upstream-downstream/
  * @see https://github.com/micromatch/anymatch
  * @see https://github.com/micromatch/anymatch/pull/15/files
@@ -15,10 +14,10 @@ import monitor from 'ultra-runner/lib/monitor.js';
 import { promisify } from 'util';
 import * as serviceDefinitions from './serviceDefinitions.mjs';
 
-import fs from 'fs'; // TODO: change this to fs-extra
+// import fs from 'fs'; // TODO: change this to fs-extra
 import path from 'path';
-import shelljs from 'shelljs';
-import symlinkDir from 'symlink-dir';
+import wtf from '@nodeproto/wtf';
+// import shelljs from 'shelljs';
 import ultra from 'ultra-runner';
 import yargs from 'yargs';
 
@@ -43,8 +42,9 @@ import {
 
 // module globals
 const noop = () => void(0);
-const symlink = promisify(fs.symlink);
-const rm = promisify(fs.rm)
+const rm = wtf.fs.rm;
+const shelljs = wtf.shelljs;
+const symlinkDir = wtf.symlinkDir;
 
 // @see https://github.com/folke/ultra-runner/blob/master/src/cli.ts
 const Runner = new ultra.Runner();
@@ -425,5 +425,3 @@ const linkPkgsLifecycle = async () => Promise.resolve()
 
   else error('@nodeproto/inception, cmd required') || infoIt(...availScripts);
 })();
-
-

@@ -14,12 +14,10 @@
       "bin",
       "bundledDependencies",
       "contributors",
-      "dependencies",
       "directories",
       "files",
       "jsync",
       "name",
-      "scripts",
       "workspaces",
       // "*" uncomment to test precedence logic
     ],
@@ -29,12 +27,9 @@
     "forceRootValues": [
       "author",
       "bugs",
-      "description",
       "funding",
       "homepage",
       "license",
-      "private",
-      "browser",
       // "*" // uncomment to test precedence logic
     ],
     // list of package fields in root to spread into child
@@ -42,9 +37,13 @@
     // e.g. child.field: Object = { ...root.field, ...child.field }
     // e.g. child.field: Array = new Set([ ...root.field, ...child.field ])
     "spreadRootValues": [
+      "*", // spread all remaining values, * will only be in a single category
+      "private",
       "browser",
       "config",
       "cpu",
+      "dependencies",
+      "description",
       "devDependencies",
       "engines",
       "keywords",
@@ -55,8 +54,8 @@
       "peerDependencies",
       "peerDependenciesMeta",
       "publishConfig",
+      "scripts",
       "version",
-      "*", // spread all remaining values, * will only be in a single category
     ],
   },
 }

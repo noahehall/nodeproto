@@ -1,3 +1,4 @@
+import { fileURLToPath } from 'url';
 import { homedir, tmpdir } from 'os';
 import cPath from 'contains-path';
 import Dirent from 'dirent';
@@ -8,8 +9,16 @@ import path from 'path';
 import picomatch from 'picomatch';
 import Readdir from '@folder/readdir';
 import shelljs from 'shelljs';
+import symlinkDir from 'symlink-dir';
 import xdg from '@folder/xdg';
 
+const isCjs = typeof __filename === 'undefined';
+const filename = (importMetaUrl = import.meta?.url) => isCjs
+  ? fileURLToPath(importMetaUrl)
+  : __filename;
+const dirname = (importMetaUrl = import.meta?.url) => isCjs
+  ? path.dirname(filename(importMetaUrl))
+  : __dirname;
 /**
  * gets cross-platform directories
  *
@@ -69,17 +78,20 @@ export const getDirs = (overrides = {}) => {
       tempdir: tmpdir(),
     }),
     cPath,
+    dirname,
+    filename,
+    fs,
+    getFilePathAbs,
+    getPkgJson,
+    getPkgJsonAbs,
+    getPkgJsonc,
     globalDirs,
     inceptionStore: `${homedir()}/.node_modules`,
-    readdir,
-    getFilePathAbs,
-    getPkgJsonAbs,
-    getPkgJson,
-    getPkgJsonc,
     JSONC,
-    shelljs,
     picomatch,
-    fs,
+    readdir,
+    shelljs,
+    symlinkDir,
 
     ...overrides
   };

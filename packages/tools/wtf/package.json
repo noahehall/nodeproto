@@ -1,7 +1,7 @@
 {
-  "version": "1.0.0",
+  "version": "0.0.0",
   "name": "@nodeproto/wtf",
-  "description": "where the FK? file locations and things",
+  "description": "@nodeproto/wtf - Where the file? file and directory management",
   "main": "index.mjs",
   "jsync": {
     "root": false
@@ -11,12 +11,73 @@
     "@folder/xdg": "3.1.2",
     "contains-path": "1.0.0",
     "dirent": "2.0.1",
+    "env-cmd": "10.1.0",
     "es-main": "1.0.2",
     "fs-extra": "10.0.0",
     "global-dirs": "3.0.0",
     "jsonc-simple-parser": "2.2.0",
     "mkdirp": "1.0.4",
     "picomatch": "2.3.0",
-    "shelljs": "0.8.4"
+    "shelljs": "0.8.4",
+    "symlink-dir": "5.0.1",
+    "ultra-runner": "3.10.5",
+    "yargs": "16.2.0"
+  },
+  "peerDependencies": {
+    "@nodeproto/jsync": "workspace:0.0.0"
+  },
+  "author": {
+    "name": "theDRAGON",
+    "email": "noahedwardhall+souls@gmail.com",
+    "url": "https://github.com/noahehall"
+  },
+  "bugs": "https://github.com/noahehall/nodeproto/issues",
+  "homepage": "https://github.com/noahehall/nodeproto",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "private": true,
+  "repository": "git://github.com/noahehall/nodeproto.git",
+  "type": "module",
+  "keywords": [
+    "@nirv",
+    "@nodeproto",
+    "api",
+    "bodyguard",
+    "docker",
+    "esbuild",
+    "fullstack",
+    "grafana",
+    "haproxy",
+    "inception",
+    "jsync",
+    "koa",
+    "micro service",
+    "microservice",
+    "nirv",
+    "nodeproto",
+    "openapi",
+    "pnpm",
+    "prometheus",
+    "prototype",
+    "react",
+    "ssl",
+    "starter",
+    "swagger",
+    "webpack5"
+  ],
+  "os": [
+    "darwin",
+    "linux"
+  ],
+  "engines": {
+    "node": ">=16.5",
+    "npm": ">=7.18.1",
+    "pnpm": ">=6.9"
+  },
+  "scripts": {
+    "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
+    "ultra": "ultra"
+  },
+  "config": {
+    "NODE_OPTIONS": "--experimental-specifier-resolution=node --trace-uncaught --trace-warnings --experimental-import-meta-resolve --enable-source-maps --experimental-json-modules --preserve-symlinks-main --preserve-symlinks"
   }
 }

@@ -1,5 +1,37 @@
 {
-  "version": "1.0.0",
+  "description": "@nodeproto/jsync - sync package.json files in a monorepo",
+  "version": "0.0.0",
+  "bin": {
+    "jsync": "./bin/jsync.js"
+  },
+  "scripts": {
+    "preinstall": "jsync",
+    "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
+    "ultra": "ultra",
+    "start": "node index.mjs",
+    "verbose": "NODE_ENV=verbose node index.mjs"
+  },
+  "dependencies": {
+    "env-cmd": "10.1.0",
+    "ultra-runner": "3.10.5",
+    "yargs": "16.2.0",
+    "@nodeproto/wtf": "workspace:0.0.0"
+  },
+  "jsync": {
+    "root": false
+  },
+  "type": "module",
+  "main": "index.mjs",
+  "name": "@nodeproto/jsync",
+  "author": {
+    "name": "theDRAGON",
+    "email": "noahedwardhall+souls@gmail.com",
+    "url": "https://github.com/noahehall"
+  },
+  "bugs": "https://github.com/noahehall/nodeproto/issues",
+  "homepage": "https://github.com/noahehall/nodeproto",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "private": true,
   "keywords": [
     "@nirv",
     "@nodeproto",
@@ -39,27 +71,5 @@
   "config": {
     "NODE_OPTIONS": "--experimental-specifier-resolution=node --trace-uncaught --trace-warnings --experimental-import-meta-resolve --enable-source-maps --experimental-json-modules --preserve-symlinks-main --preserve-symlinks"
   },
-  "author": {
-    "name": "theDRAGON",
-    "email": "noahedwardhall+souls@gmail.com",
-    "url": "https://github.com/noahehall"
-  },
-  "bugs": "https://github.com/noahehall/nodeproto/issues",
-  "description": "@nodeproto/jsync: sync json files",
-  "homepage": "https://github.com/noahehall/nodeproto",
-  "license": "SEE LICENSE IN LICENSE.md",
-  "private": true,
-  "repository": "git://github.com/noahehall/nodeproto.git",
-  "type": "module",
-  "name": "@nodeproto/jsync",
-  "main": "index.mjs",
-  "dependencies": {
-    "@nodeproto/wtf": "workspace:1.0.0"
-  },
-  "scripts": {
-    "start": "node index.mjs"
-  },
-  "jsync": {
-    "root": false
-  }
+  "repository": "git://github.com/noahehall/nodeproto.git"
 }
