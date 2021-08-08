@@ -1,0 +1,4 @@
+{
+  "extends": "@nodeproto/configproto/babel/client"
+  // "babelrc": true, // not permitted in .babelrc files
+}

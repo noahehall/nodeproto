@@ -1,0 +1,110 @@
+{
+  "author": {
+    "name": "theDRAGON",
+    "email": "noahedwardhall+souls@gmail.com",
+    "url": "https://github.com/noahehall"
+  },
+  "engines": {
+    "node": ">=16.5",
+    "npm": ">=7.18.1",
+    "pnpm": ">=6.9"
+  },
+  "directories": {
+    "dist": "./dist"
+  },
+  "files": [
+    "./index.mjs"
+  ],
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "bugs": "https://github.com/noahehall/nodeproto/issues",
+  "repository": "git://github.com/noahehall/nodeproto.git",
+  "homepage": "https://github.com/noahehall/nodeproto",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "name": "@nodeproto/tests",
+  "version": "0.0.0",
+  "description": "@nodeproto/tests - various monorepo-level tests to be used as reference for consumer integrations. exports a no-frills testrunner for node",
+  "config": {
+    "PATH_DIST": "./dist",
+    "PATH_SRC": ".",
+    "BABEL_ESM_LOADER": "--loader babel-register-esm",
+    "BABEL_SHOW_CONFIG_FOR": "e.g. BABEL_SHOW_CONFIG_FOR=absolute/path/to/file as lead to some pkgjson script",
+    "DEBUG_FILE": "copypasta/react/helloworld/index.jsx"
+  },
+  "scripts": {
+    "flow": "flow",
+    "cp:flow": "cp node_modules/@nodeproto/configproto/.flowconfig .",
+    "about": "npm run-script",
+    "ultra": "ultra",
+    "serve": "npx serve",
+    "start:reactdevtools": "react-devtools",
+    "start:webpack:server": "node integration/configproto/webpack.server.mjs",
+    "start:react": "concurrently pnpm:start:webpack:server pnpm:start:reactdevtools",
+    "test": "uvu ./integration test.mjs -i node_modules",
+    "test:ing": "pnpm test; chokidar \"integration/**/*(?:.test)?.(m|c)?js\" -c \"clear; pnpm test\"",
+    "test:focus": "clear; pnpm test:configproto:esbuild:run",
+    "test:help": "uvu --help",
+    "test:configproto:webpack:react:esbuild:build": "node integration/configproto/webpack.react.esbuild.config.mjs",
+    "test:configproto:esbuild:build": "node integration/configproto/esbuild.build.config.mjs",
+    "test:configproto:esbuild:run": "node integration/configproto/esbuild.run.config.mjs",
+    "test:configproto:webpack:react:dev:build": "node integration/configproto/webpack.react.dev.config.mjs",
+    "test:configproto:babel:copypasta": "babel copypasta -d dist/cjs/copypasta --copy-files --out-file-extension .cjs",
+    "test:configproto:eslint": "eslint './**/*'",
+    "test:configproto:eslint:debug": "BABEL_SHOW_CONFIG_FOR=$npm_package_config_DEBUG_FILE pnpm test:configproto:eslint -- --debug",
+    "test:configproto:eslint:fix": "pnpm test:configproto:eslint -- --fix --ignore-pattern 'copypasta/**'",
+    "test:configproto:export:require": "node ./integration/configproto/require.cjs",
+    "test:configproto:export:import": "node --input-type=module --eval \"import './integration/configproto/import.mjs'\""
+  },
+  "private": true,
+  "type": "module",
+  "os": [
+    "darwin",
+    "linux"
+  ],
+  "devDependencies": {
+    "@babel/cli": "7.14.8",
+    "@babel/core": "7.15.0",
+    "@babel/plugin-transform-runtime": "7.14.5",
+    "@nodeproto/configproto": "workspace:*",
+    "@nodeproto/envproto": "workspace:0.0.0",
+    "@nodeproto/jsync": "workspace:0.0.0",
+    "@nodeproto/wtf": "workspace:0.0.0",
+    "babel-loader": "8.2.2",
+    "babel-register-esm": "1.1.0",
+    "bundle-stats-webpack-plugin": "3.0.1",
+    "chalk": "4.1.2",
+    "chokidar-cli": "3.0.0",
+    "concurrently": "6.2.0",
+    "core-js": "3.16.3",
+    "css-loader": "6.2.0",
+    "es-main": "1.0.2",
+    "esbuild": "0.12.20",
+    "esbuild-loader": "2.15.0",
+    "eslint": "7.32.0",
+    "file-loader": "6.2.0",
+    "flow-bin": "0.158.0",
+    "http-terminator": "3.0.0",
+    "jssm": "5.35.4",
+    "koa": "2.13.1",
+    "memfs": "3.2.2",
+    "react": "18.0.0-alpha-edfe50510-20210823",
+    "react-devtools": "4.14.0",
+    "react-dom": "18.0.0-alpha-419cc9c37-20210726",
+    "string-replace-loader": "3.0.3",
+    "style-loader": "3.2.1",
+    "svg-url-loader": "7.1.1",
+    "ultra-runner": "3.10.5",
+    "url-loader": "4.1.1",
+    "uvu": "0.5.1",
+    "webpack": "5.51.1",
+    "webpack-cli": "4.8.0",
+    "webpack-dev-middleware-2": "5.0.2",
+    "webpack-hot-middleware-2": "2.25.2"
+  },
+  "dependencies": {
+    "@babel/runtime": "7.14.8",
+    "html-webpack-plugin": "5.3.2"
+  }
+}
