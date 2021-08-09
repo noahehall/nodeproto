@@ -2,7 +2,10 @@
   "name": "@nodeproto/configproto",
   "version": "0.0.0",
   "description": "@nodeproto/configproto - reusable configs",
-  "main": "index.mjs",
+  "main": "./dist/index.js",
+  "exports": {
+
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
