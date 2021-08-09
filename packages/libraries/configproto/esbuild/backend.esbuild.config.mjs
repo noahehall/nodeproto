@@ -1,3 +1,7 @@
+/**
+ * @nodeproto/configproto - esbuild config file
+ * full featured esbuild configuration for backend apps
+ */
 import { envproto, esproto, fsproto } from '@nodeproto/utils';
 import esbuild from 'esbuild';
 import fs from 'fs';
@@ -98,5 +102,3 @@ const esbuildConfig = {
 
 const buildResult = await esbuild.build(esbuildConfig);
 isBuild && buildLogAndDevOrStop(buildResult); // isDev handled by watch.onRebuild
-
-

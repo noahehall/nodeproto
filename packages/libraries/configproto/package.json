@@ -2,15 +2,54 @@
   "name": "@nodeproto/configproto",
   "version": "0.0.0",
   "description": "@nodeproto/configproto - reusable configs",
-  "main": "./dist/index.js",
+  "directories": {
+    "babel": "./babel",
+    "browserslist": "./browserslist",
+    "cjs": "./cjs",
+    "esbuild": "./esbuild",
+    "eslint": "./eslint",
+    "flowtype": "./flowtype",
+    "swc": "./swc",
+    "webpack": "./webpack"
+  },
   "exports": {
-
+    "./babel/*": {
+      "import": "./babel/*",
+      "default": "./cjs/*"
+    },
+    "./browserslist/*": {
+      "default": "./browserslist/*"
+    },
+    "./esbuild/*": {
+      "import": "./esbuild/*",
+      "default": "./cjs/*"
+    },
+    "./eslint/*": {
+      "default": "./eslint/*"
+    },
+    "./flowtype/*": {
+      "default": "./flowtype/*"
+    },
+    "./swc/*": {
+      "default": "./swc/*"
+    },
+    "./webpack/*": {
+      "import": "./webpack/*",
+      "default": "./cjs/*"
+    }
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
     "ultra": "ultra",
-    "upgrade": "pnpm upgrade -L"
+    "upgrade": "pnpm upgrade -L",
+    "d": "rm -rf cjs/*",
+    "cjs:babel:copy": "pnpm d && NODE_OPTIONS=$npm_package_config_NODE_OPTIONS babel babel/*.mjs esbuild/*.mjs eslint/*.mjs webpack/*.mjs flowtype/.flowconfig -d cjs --copy-files --out-file-extension .cjs",
+    "cjs:babel": "pnpm d && NODE_OPTIONS=$npm_package_config_NODE_OPTIONS babel babel/*.mjs esbuild/*.mjs eslint/*.mjs webpack/*.mjs -d cjs --copy-files --out-file-extension .cjs",
+    "cjs:swc": "NODE_OPTIONS=$npm_package_config_NODE_OPTIONS swc babel/*.mjs esbuild/*.mjs eslint/*.mjs webpack/*.mjs -d cjs --config-file ./swc/node.swcrc --env-name='production' --extensions='.cjs'",
+    "cjs:swc:test": "NODE_OPTIONS=$npm_package_config_NODE_OPTIONS swc babel/*.mjs esbuild/*.mjs eslint/*.mjs webpack/*.mjs -d cjs --config-file ./swc/node.swcrc --env-name='production' --sync",
+    "bl:update": "echo 'doesnt work with pnpm'; exit 0; browserslist --update-db",
+    "bl:check": "browserslist"
   },
   "jsync": {
     "root": false
@@ -22,7 +61,16 @@
   },
   "license": "SEE LICENSE IN LICENSE.md",
   "devDependencies": {
-    "@nodeproto/jsync": "workspace:*"
+    "@babel/cli": "7.14.8",
+    "@babel/core": "7.14.8",
+    "@babel/plugin-syntax-top-level-await": "7.14.5",
+    "@babel/plugin-transform-modules-commonjs": "7.14.5",
+    "@babel/preset-env": "7.14.8",
+    "@nodeproto/jsync": "workspace:*",
+    "@swc/cli": "0.1.46",
+    "@swc/core": "1.2.75",
+    "@swc/helpers": "0.2.12",
+    "browserslist": "4.16.6"
   },
   "peerDependencies": {
     "@nodeproto/jsync": "workspace:*"

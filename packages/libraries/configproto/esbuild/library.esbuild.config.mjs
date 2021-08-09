@@ -1,4 +1,8 @@
 
+/**
+ * @nodeproto/configproto - esbuild configuration file
+ * full featured esbuild file for library authors
+ */
 import { builtinModules as builtin } from 'module';
 import { syncEnv } from '@nodeproto/envproto';
 import esbuild from 'esbuild';

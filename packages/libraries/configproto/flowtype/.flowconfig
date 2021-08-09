@@ -1,3 +1,5 @@
+; wtf! https://github.com/facebook/flow/issues/153
+; https://github.com/TiddoLangerak/flow-json-config#readme
 ; @nodeproto: the ultimate flowconfig
 ; @todo: https://github.com/flow-typed/flow-typed
 ; @todo: https://github.com/flow-typed/flow-typed/wiki/Importing-And-Using-Type-Definitions

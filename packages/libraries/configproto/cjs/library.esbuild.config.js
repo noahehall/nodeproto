@@ -1,0 +1,1 @@
+"use strict";var result,_module=require("module"),_envproto=require("@nodeproto/envproto"),_esbuild=require("esbuild"),_esbuildPluginManifest=require("esbuild-plugin-manifest"),_path=require("path"),_wtf=require("@nodeproto/wtf");const pkgJson=_wtf.fs.readJsonSync("package.json");throw process.env.NODE_OPTIONS
