@@ -1,5 +1,18 @@
 # categorize these before merge to master
 
+tests
+
+- generally unit tests are located next to their source files
+- integration & e2e tests are in `packages/tests`
+  - check `packages/tests/integration` for runnable & reference implementations
+  - TODO: e2e tests will be in `packages/tests/e2e`
+- [watchlist for uvu tests](https://github.com/lukeed/watchlist)
+  - maybe just stick to chokidar
+  - this always clears console
+- [uvu until we break it](https://github.com/lukeed/uvu)
+
+other shit
+
 - [npmrc pnpm specific](https://pnpm.io/npmrc)
 - [update pnpm publishConfig before publishing](https://pnpm.io/package_json)
 - [use this link to add to our readmefile for pnpm](https://pnpm.io/installation)

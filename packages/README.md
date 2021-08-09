@@ -1,1 +1,3 @@
-each directory groups workspace packages by function
+# @nodeproto packages
+
+- each packge is a cloud-native microservice

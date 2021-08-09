@@ -2,12 +2,58 @@
   "name": "@nodeproto/configproto",
   "version": "0.0.0",
   "description": "@nodeproto/configproto - reusable configs",
-  "main": "index.mjs",
+  "directories": {
+    "babel": "./babel",
+    "browserslist": "./browserslist",
+    "cjs": "./cjs",
+    "esbuild": "./esbuild",
+    "eslint": "./eslint",
+    "swc": "./swc",
+    "webpack": "./webpack"
+  },
+  "main": "./cjs/index.cjs",
+  "exports": {
+    ".": {
+      "import": "./index.mjs",
+      "default": "./cjs/index.cjs"
+    },
+    "./babel/*": "./babel/*.babelrc",
+    "./browserslist": "./browserslist/.browserslistrc",
+    "./flowconfig": "./.flowconfig",
+    "./package.json": "./package.json",
+    "./esbuild/*": {
+      "import": "./esbuild/*.esbuild.config.mjs",
+      "default": "./cjs/*.esbuild.config.cjs"
+    },
+    "./eslint": "./eslint/base.eslintrc.yml",
+    "./eslint/*": {
+      "default": "./eslint/*.eslintrc.yml"
+    },
+    "./swc/*": "./swc/*.swcrc",
+    "./webpack/loader/*": "./webpack/loader/*.cjs",
+    "./webpack/bff/*": {
+      "import": "./webpack/bff/*.webpack.mjs",
+      "default": "./cjs/*.webpack.cjs"
+    },
+    "./webpack/*": {
+      "import": "./webpack/*.webpack.config.mjs",
+      "default": "./cjs/*.webpack.config.cjs"
+    }
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" uvu . test.mjs -i node_modules",
+    "test:ing": "watchlist . --ignore cjs -- pnpm test",
+    "test:help": "uvu --help",
     "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
     "ultra": "ultra",
-    "upgrade": "pnpm upgrade -L"
+    "upgrade": "pnpm upgrade -L",
+    "d": "rm -rf cjs/*",
+    "cjs:babel": "pnpm d && NODE_OPTIONS=$npm_package_config_NODE_OPTIONS babel $npm_package_config_DIRS_TO_TRANSPILE -d cjs --out-file-extension .cjs --ignore '**/*.test.mjs' --ignore **/test.compiler.mjs",
+    "cjs:swc": "pnpm d && NODE_OPTIONS=$npm_package_config_NODE_OPTIONS swc $npm_package_config_DIRS_TO_TRANSPILE -d cjs --config-file ./swc/node.swcrc --env-name='production' && pnpm js:to:cjs",
+    "js:to:cjs": "for f in ./cjs/*.js; do mv -- \"$f\" \"${f%.js}.cjs\"; done",
+    "cjs:swc:debug": "pnpm cjs:swc -- --sync",
+    "bl:update": "echo 'doesnt work with pnpm'; exit 0; browserslist --update-db",
+    "bl:check": "browserslist"
   },
   "jsync": {
     "root": false
@@ -18,12 +64,6 @@
     "url": "https://github.com/noahehall"
   },
   "license": "SEE LICENSE IN LICENSE.md",
-  "devDependencies": {
-    "@nodeproto/jsync": "workspace:*"
-  },
-  "peerDependencies": {
-    "@nodeproto/jsync": "workspace:*"
-  },
   "bugs": "https://github.com/noahehall/nodeproto/issues",
   "homepage": "https://github.com/noahehall/nodeproto",
   "private": true,
@@ -64,11 +104,257 @@
     "pnpm": ">=6.9"
   },
   "config": {
+    "PATH_DIST": "./dist",
+    "PATH_SRC": ".",
     "NODE_ENV": "development",
-    "NODE_OPTIONS": "--pending-deprecation --experimental-wasm-modules --trace-warnings --experimental-top-level-await --enable-source-maps --experimental-vm-modules --experimental-worker --experimental-import-meta-resolve --experimental-report --trace-exit --heapsnapshot-near-heap-limit=3 --trace-uncaught --deprecation --trace-deprecation --no-insecure-http-parser --report-uncaught-exception --use-largepages=on --warnings --experimental-abortcontroller --report-on-fatalerror --experimental-json-modules --trace-sigint --abort-on-uncaught-exception --es-module-specifier-resolution=node --experimental-specifier-resolution=node --experimental-modules"
+    "TEST_FILES": "'**/*.test.mjs'",
+    "DIRS_TO_TRANSPILE": "esbuild/*.mjs webpack/*.{c,m}js webpack/loader/*.{c,m}js webpack/bff/*.{c,m}js",
+    "REMOVED_BABEL_OPTIONS": "--copy-files",
+    "REMOVED_NODE_OPTIONS": "",
+    "NODE_OPTIONS": "--es-module-specifier-resolution=node --experimental-specifier-resolution=node --experimental-wasm-modules --trace-warnings --experimental-top-level-await --enable-source-maps --experimental-vm-modules --experimental-worker --experimental-import-meta-resolve --experimental-report --trace-exit --heapsnapshot-near-heap-limit=3 --trace-uncaught --no-insecure-http-parser --report-uncaught-exception --use-largepages=on --experimental-abortcontroller --report-on-fatalerror --experimental-json-modules --trace-sigint --abort-on-uncaught-exception --experimental-modules"
   },
-  "dependencies": {
-    "ultra-runner": "3.10.5"
+  "devDependencies": {
+    "@babel/cli": "7.14.8",
+    "@babel/core": "7.15.0",
+    "@babel/eslint-parser": "7.14.7",
+    "@babel/eslint-plugin": "7.14.5",
+    "@babel/parser": "7.15.3",
+    "@babel/plugin-proposal-throw-expressions": "7.14.5",
+    "@babel/plugin-syntax-jsx": "7.14.5",
+    "@babel/plugin-syntax-top-level-await": "7.14.5",
+    "@babel/plugin-transform-flow-strip-types": "7.14.5",
+    "@babel/plugin-transform-react-constant-elements": "7.14.5",
+    "@babel/plugin-transform-react-inline-elements": "7.14.5",
+    "@babel/plugin-transform-runtime": "7.14.5",
+    "@babel/preset-env": "7.14.8",
+    "@babel/preset-flow": "7.14.5",
+    "@babel/preset-react": "7.14.5",
+    "@babel/runtime": "7.14.8",
+    "@babel/traverse": "7.15.0",
+    "@emotion/babel-plugin": "11.3.0",
+    "@nodeproto/jsync": "workspace:*",
+    "@swc/cli": "0.1.46",
+    "@swc/core": "1.2.75",
+    "@swc/helpers": "0.2.12",
+    "babel-loader": "8.2.2",
+    "babel-plugin-tailcall-optimization": "2.0.0",
+    "babel-plugin-transform-export-default-name": "2.1.0",
+    "babel-plugin-transform-flow-strip-types": "6.22.0",
+    "browserslist": "4.16.8",
+    "bundle-stats-webpack-plugin": "3.0.1",
+    "core-js": "3.16.3",
+    "css-loader": "6.2.0",
+    "esbuild": "0.12.20",
+    "esbuild-loader": "2.15.0",
+    "eslint": "7.32.0",
+    "eslint-plugin-flowtype-errors": "4.4.0",
+    "eslint-plugin-html": "6.1.2",
+    "eslint-plugin-json": "3.1.0",
+    "eslint-plugin-markdown": "2.2.0",
+    "eslint-plugin-react": "7.24.0",
+    "eslint-plugin-react-hooks": "4.2.0",
+    "eslint-plugin-yml": "0.10.0",
+    "file-loader": "6.2.0",
+    "flow": "0.2.3",
+    "flow-bin": "0.158.0",
+    "flow-remove-types": "2.158.0",
+    "html-webpack-plugin": "5.3.2",
+    "http-terminator": "3.0.0",
+    "koa": "2.13.1",
+    "memfs": "3.2.2",
+    "react": "17.0.2",
+    "react-devtools": "4.14.0",
+    "schema-utils": "3.1.1",
+    "string-replace-loader": "3.0.3",
+    "style-loader": "3.2.1",
+    "svg-url-loader": "7.1.1",
+    "ultra-runner": "3.10.5",
+    "url-loader": "4.1.1",
+    "uvu": "0.5.1",
+    "watchlist": "0.3.1",
+    "webpack": "5.51.1",
+    "webpack-dev-middleware-2": "5.0.2",
+    "webpack-hot-middleware-2": "2.25.2",
+    "yaml-eslint-parser": "0.4.1"
+  },
+  "peerDependencies": {
+    "@babel/cli": "7.14.8",
+    "@babel/core": "7.14.8",
+    "@babel/eslint-parser": "7.14.7",
+    "@babel/eslint-plugin": "7.14.5",
+    "@babel/parser": "7.14.8",
+    "@babel/plugin-proposal-throw-expressions": "7.14.5",
+    "@babel/plugin-syntax-jsx": "7.14.5",
+    "@babel/plugin-syntax-top-level-await": "7.14.5",
+    "@babel/plugin-transform-flow-strip-types": "7.14.5",
+    "@babel/plugin-transform-react-constant-elements": "7.14.5",
+    "@babel/plugin-transform-react-inline-elements": "7.14.5",
+    "@babel/plugin-transform-runtime": "7.14.5",
+    "@babel/preset-env": "7.14.8",
+    "@babel/preset-flow": "7.14.5",
+    "@babel/preset-react": "7.14.5",
+    "@babel/runtime": "7.14.8",
+    "@babel/traverse": "7.14.8",
+    "@emotion/babel-plugin": "11.3.0",
+    "@nodeproto/jsync": "workspace:*",
+    "@swc/cli": "0.1.46",
+    "@swc/core": "1.2.75",
+    "@swc/helpers": "0.2.12",
+    "babel-loader": "8.2.2",
+    "babel-plugin-tailcall-optimization": "2.0.0",
+    "babel-plugin-transform-flow-strip-types": "6.22.0",
+    "browserslist": "4.16.6",
+    "bundle-stats-webpack-plugin": "3.0.1",
+    "core-js": "3.15.2",
+    "css-loader": "6.2.0",
+    "esbuild": "0.12.20",
+    "esbuild-loader": "2.15.0",
+    "eslint": "7.31.0",
+    "eslint-plugin-flowtype-errors": "4.4.0",
+    "eslint-plugin-html": "6.1.2",
+    "eslint-plugin-json": "3.1.0",
+    "eslint-plugin-markdown": "2.2.0",
+    "eslint-plugin-react": "7.24.0",
+    "eslint-plugin-react-hooks": "4.2.0",
+    "eslint-plugin-yml": "0.10.0",
+    "file-loader": "6.2.0",
+    "flow": "0.2.3",
+    "flow-bin": "0.158.0",
+    "http-terminator": "3.0.0",
+    "koa": "2.13.1",
+    "memfs": "3.2.2",
+    "react-devtools": "4.14.0",
+    "string-replace-loader": "3.0.3",
+    "style-loader": "3.2.1",
+    "svg-url-loader": "7.1.1",
+    "ultra-runner": "3.10.5",
+    "url-loader": "4.1.1",
+    "webpack": "5.46.0",
+    "webpack-dev-middleware-2": "5.0.2",
+    "webpack-hot-middleware-2": "2.25.2",
+    "yaml-eslint-parser": "0.4.1"
+  },
+  "peerDependenciesMeta": {
+    "@babel/plugin-transform-flow-strip-types": {
+      "optional": true
+    },
+    "babel-loader": {
+      "optional": true
+    },
+    "@babel/cli": {
+      "optional": true
+    },
+    "@babel/core": {
+      "optional": true
+    },
+    "@babel/eslint-parser": {
+      "optional": true
+    },
+    "@babel/eslint-plugin": {
+      "optional": true
+    },
+    "@babel/parser": {
+      "optional": true
+    },
+    "@babel/plugin-proposal-throw-expressions": {
+      "optional": true
+    },
+    "@babel/plugin-syntax-top-level-await": {
+      "optional": true
+    },
+    "@babel/plugin-transform-react-constant-elements": {
+      "optional": true
+    },
+    "@babel/plugin-transform-react-inline-elements": {
+      "optional": true
+    },
+    "@babel/plugin-transform-runtime": {
+      "optional": true
+    },
+    "@babel/preset-env": {
+      "optional": true
+    },
+    "@babel/preset-flow": {
+      "optional": true
+    },
+    "@babel/preset-react": {
+      "optional": true
+    },
+    "@babel/runtime": {
+      "optional": true
+    },
+    "@babel/traverse": {
+      "optional": true
+    },
+    "@emotion/babel-plugin": {
+      "optional": true
+    },
+    "@nodeproto/jsync": {
+      "optional": true
+    },
+    "@swc/cli": {
+      "optional": true
+    },
+    "@swc/core": {
+      "optional": true
+    },
+    "@swc/helpers": {
+      "optional": true
+    },
+    "babel-plugin-tailcall-optimization": {
+      "optional": true
+    },
+    "babel-plugin-transform-flow-strip-types": {
+      "optional": true
+    },
+    "browserslist": {
+      "optional": true
+    },
+    "core-js": {
+      "optional": true
+    },
+    "esbuild": {
+      "optional": true
+    },
+    "esbuild-loader": {
+      "optional": true
+    },
+    "eslint": {
+      "optional": true
+    },
+    "eslint-plugin-flowtype-errors": {
+      "optional": true
+    },
+    "eslint-plugin-html": {
+      "optional": true
+    },
+    "eslint-plugin-json": {
+      "optional": true
+    },
+    "eslint-plugin-markdown": {
+      "optional": true
+    },
+    "eslint-plugin-react": {
+      "optional": true
+    },
+    "eslint-plugin-react-hooks": {
+      "optional": true
+    },
+    "eslint-plugin-yml": {
+      "optional": true
+    },
+    "flow-bin": {
+      "optional": true
+    },
+    "ultra-runner": {
+      "optional": true
+    },
+    "webpack": {
+      "optional": true
+    },
+    "yaml-eslint-parser": {
+      "optional": true
+    }
   },
   "repository": "git://github.com/noahehall/nodeproto.git",
   "type": "module"
