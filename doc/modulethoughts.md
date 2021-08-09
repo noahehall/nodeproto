@@ -19,6 +19,7 @@
   - [pnpm logger](https://github.com/pnpm/logger)
   - [ndjson](https://github.com/ndjson/ndjson.js)
   - [only-allow](https://github.com/pnpm/only-allow)
+  - [checkout jssm](https://github.com/StoneCypher/jssm)
 
 ### not so bad
   - [keyGrip](https://github.com/crypto-utils/keygrip)

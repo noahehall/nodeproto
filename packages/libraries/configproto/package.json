@@ -46,8 +46,8 @@
     "d": "rm -rf cjs/*",
     "cjs:babel:copy": "pnpm d && NODE_OPTIONS=$npm_package_config_NODE_OPTIONS babel babel/*.mjs esbuild/*.mjs eslint/*.mjs webpack/*.mjs flowtype/.flowconfig -d cjs --copy-files --out-file-extension .cjs",
     "cjs:babel": "pnpm d && NODE_OPTIONS=$npm_package_config_NODE_OPTIONS babel babel/*.mjs esbuild/*.mjs eslint/*.mjs webpack/*.mjs -d cjs --copy-files --out-file-extension .cjs",
-    "cjs:swc": "NODE_OPTIONS=$npm_package_config_NODE_OPTIONS swc babel/*.mjs esbuild/*.mjs eslint/*.mjs webpack/*.mjs -d cjs --config-file ./swc/node.swcrc --env-name='production' --extensions='.cjs'",
-    "cjs:swc:test": "NODE_OPTIONS=$npm_package_config_NODE_OPTIONS swc babel/*.mjs esbuild/*.mjs eslint/*.mjs webpack/*.mjs -d cjs --config-file ./swc/node.swcrc --env-name='production' --sync",
+    "cjs:swc": "NODE_OPTIONS=$npm_package_config_NODE_OPTIONS swc babel/*.mjs esbuild/*.mjs eslint/*.mjs webpack/*.mjs -d cjs --config-file ./swc/node.swcrc --env-name='production'",
+    "cjs:swc:debug": "pnpm cjs:swc -- --sync",
     "bl:update": "echo 'doesnt work with pnpm'; exit 0; browserslist --update-db",
     "bl:check": "browserslist"
   },
@@ -61,16 +61,7 @@
   },
   "license": "SEE LICENSE IN LICENSE.md",
   "devDependencies": {
-    "@babel/cli": "7.14.8",
-    "@babel/core": "7.14.8",
-    "@babel/plugin-syntax-top-level-await": "7.14.5",
-    "@babel/plugin-transform-modules-commonjs": "7.14.5",
-    "@babel/preset-env": "7.14.8",
-    "@nodeproto/jsync": "workspace:*",
-    "@swc/cli": "0.1.46",
-    "@swc/core": "1.2.75",
-    "@swc/helpers": "0.2.12",
-    "browserslist": "4.16.6"
+    "@nodeproto/jsync": "workspace:*"
   },
   "peerDependencies": {
     "@nodeproto/jsync": "workspace:*"
@@ -119,6 +110,22 @@
     "NODE_OPTIONS": "--pending-deprecation --experimental-wasm-modules --trace-warnings --experimental-top-level-await --enable-source-maps --experimental-vm-modules --experimental-worker --experimental-import-meta-resolve --experimental-report --trace-exit --heapsnapshot-near-heap-limit=3 --trace-uncaught --deprecation --trace-deprecation --no-insecure-http-parser --report-uncaught-exception --use-largepages=on --warnings --experimental-abortcontroller --report-on-fatalerror --experimental-json-modules --trace-sigint --abort-on-uncaught-exception --es-module-specifier-resolution=node --experimental-specifier-resolution=node --experimental-modules"
   },
   "dependencies": {
+    "@babel/cli": "7.14.8",
+    "@babel/core": "7.14.8",
+    "@babel/eslint-parser": "7.14.7",
+    "@babel/plugin-syntax-top-level-await": "7.14.5",
+    "@babel/plugin-transform-modules-commonjs": "7.14.5",
+    "@babel/preset-env": "7.14.8",
+    "@babel/preset-flow": "7.14.5",
+    "@swc/cli": "0.1.46",
+    "@swc/core": "1.2.75",
+    "@swc/helpers": "0.2.12",
+    "babel-plugin-transform-flow-strip-types": "6.22.0",
+    "browserslist": "4.16.6",
+    "core-js": "~3.15.2",
+    "eslint": "7.31.0",
+    "eslint-plugin-flowtype": "5.8.2",
+    "eslint-plugin-flowtype-errors": "4.4.0",
     "ultra-runner": "3.10.5"
   },
   "repository": "git://github.com/noahehall/nodeproto.git",

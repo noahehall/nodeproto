@@ -1,7 +1,16 @@
 # @nodeproto/configproto - swc configs
 
 - you should prefer swc for is simplicity and raw speed
-- use whenever you dont need a particular babel plugin or swc is too buggy
+- use whenever you:
+  - dont need a particular babel plugin or swc is too buggy
+  - dont use flow
+    - if you do
+      - you need to double transpile (flow-remove-types > swc)
+      - you need to configure eslint + flow (see eslint docs in this repo)
+  - [dont use eslint](https://github.com/swc-project/swc/issues/246)
+    - if you do: you need to run eslint as a separate build step
+    -
+
 
 # NOTES
 
@@ -12,6 +21,7 @@
     - however you cant use the options as specified in terser docs
     - i believe what they mean is refer to terser docs for definitions, but not for available options
       - i.e. only use the options specified in swc, but refer to terser docs for the definitions
+
 - node config
   - dont use these options: no matter what value you provide (buggy for me at least)
     - compress
