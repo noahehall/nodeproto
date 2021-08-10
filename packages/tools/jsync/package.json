@@ -74,6 +74,7 @@
     "NODE_ENV": "development"
   },
   "repository": "git://github.com/noahehall/nodeproto.git",
-  "peerDependencies": {},
-  "devDependencies": {}
+  "devDependencies": {
+    "@nodeproto/configproto": "workspace:*"
+  }
 }

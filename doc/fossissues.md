@@ -26,6 +26,7 @@
   - [cant specify corejs version in babelruntime](https://github.com/zloirock/core-js/issues/946)
   - [dry verbose options](https://github.com/Cosium/dry-dry/blob/master/src/index.test.ts)
   - [chokidar run in bg informatoin](https://github.com/paulmillr/chokidar/issues/1124)
+  - [eslint yml errors on yml comments](https://github.com/ota-meshi/eslint-plugin-yml/issues/97)
 
 
 

@@ -1,0 +1,41 @@
+{
+  "author": {
+    "name": "theDRAGON",
+    "email": "noahedwardhall+souls@gmail.com",
+    "url": "https://github.com/noahehall"
+  },
+  "engines": {
+    "node": ">=16.5",
+    "npm": ">=7.18.1",
+    "pnpm": ">=6.9"
+  },
+  "bugs": "https://github.com/noahehall/nodeproto/issues",
+  "repository": "git://github.com/noahehall/nodeproto.git",
+  "homepage": "https://github.com/noahehall/nodeproto",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "name": "@nodeproto/tests",
+  "version": "0.0.0",
+  "description": "@nodeproto/tests - various monorepo-level tests to be used as reference for consumer integrations. also a no-frills testrunner for node",
+  "scripts": {
+    "about": "npm run-script",
+    "ultra": "ultra",
+    "configproto:eslint": "eslint './**/*'",
+    "configproto:eslint:fix": "pnpm configproto:eslint -- --fix --ignore-pattern 'copypasta/**'",
+    "configproto:require": "node -r ./integration/configproto/require.cjs",
+    "configproto:import": "node --input-type=module --eval \"import './integration/configproto/import.mjs'\""
+  },
+  "private": true,
+  "type": "module",
+  "os": [
+    "darwin",
+    "linux"
+  ],
+  "devDependencies": {
+    "@nodeproto/configproto": "workspace:*",
+    "eslint": "7.32.0"
+  },
+  "dependencies": {
+    "jssm": "5.35.4",
+    "ultra-runner": "3.10.5"
+  }
+}

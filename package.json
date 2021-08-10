@@ -45,12 +45,20 @@
     "linux"
   ],
   "directories": {
-    "src": "./src",
+    "bin": "./bin",
     "doc": "./doc",
-    "bin": "./bin"
+    "packages": "./packages"
   },
   "files": [
-    "./proto"
+    "proto",
+    ".eslintrc.yml",
+    ".editorconfig",
+    ".gitignore",
+    ".npmrc",
+    ".nvmrc",
+    "pnpm-lock.yaml",
+    "pnpm-workspace.yaml",
+    "README.md"
   ],
   "engines": {
     "node": ">=16.5",
