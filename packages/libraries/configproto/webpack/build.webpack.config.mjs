@@ -1,13 +1,12 @@
 /**
  * build any webpack config and output its files to disk
  */
+// import * as pack from './webpack.setup.mjs';
+// import webpackDevConfig from './webpack.dev.config.mjs';
+// import webpackProdConfig from './webpack.prod.config.mjs';
+// const useConfig = pack.ifProd ? webpackProdConfig : webpackDevConfig;
 
-import * as pack from './webpack.setup.mjs';
 import webpack from 'webpack';
-import webpackDevConfig from './webpack.dev.config.mjs';
-import webpackProdConfig from './webpack.prod.config.mjs';
-
-const useConfig = pack.ifProd ? webpackProdConfig : webpackDevConfig;
 
 const handleConfigErrors = ({
   stack = 'stack undefined',
@@ -29,12 +28,14 @@ const handleCompileIssues = (stats) => {
   }
 
   // todo
-  console.log(stats.toString({ ...statsOptions, chunks: false, colors: true }))
-}
+  console.log(stats.toString({ ...statsOptions, chunks: false, colors: true }));
+};
 
 const compilerCallback = (err, stats) => {
   if (err) return handleConfigErrors(err);
   handleCompileIssues(stats);
-}
+};
 
-webpack(useConfig, compilerCallback);
+export default function webpackBuild(useConfig = 'THROW IF MISSING') {
+  return webpack(useConfig, compilerCallback);
+}

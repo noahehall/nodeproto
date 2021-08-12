@@ -9,20 +9,44 @@
     "npm": ">=7.18.1",
     "pnpm": ">=6.9"
   },
+  "directories": {
+    "dist": "./dist"
+  },
+  "files": [
+    "./index.mjs"
+  ],
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
   "bugs": "https://github.com/noahehall/nodeproto/issues",
   "repository": "git://github.com/noahehall/nodeproto.git",
   "homepage": "https://github.com/noahehall/nodeproto",
   "license": "SEE LICENSE IN LICENSE.md",
   "name": "@nodeproto/tests",
   "version": "0.0.0",
-  "description": "@nodeproto/tests - various monorepo-level tests to be used as reference for consumer integrations. also a no-frills testrunner for node",
+  "description": "@nodeproto/tests - various monorepo-level tests to be used as reference for consumer integrations. exports a no-frills testrunner for node",
+  "config": {
+    "PATH_DIST": "./dist",
+    "PATH_SRC": "./src",
+    "BABEL_ESM_LOADER": "--loader babel-register-esm",
+    "BABEL_SHOW_CONFIG_FOR": "e.g. BABEL_SHOW_CONFIG_FOR=absolute/path/to/file as lead to some pkgjson script",
+    "DEBUG_FILE": "copypasta/react/helloworld/index.jsx"
+  },
   "scripts": {
+    "flow": "flow",
+    "postinstall": "cp node_modules/@nodeproto/configproto/.flowconfig .",
     "about": "npm run-script",
     "ultra": "ultra",
-    "configproto:eslint": "eslint './**/*'",
-    "configproto:eslint:fix": "pnpm configproto:eslint -- --fix --ignore-pattern 'copypasta/**'",
-    "configproto:require": "node -r ./integration/configproto/require.cjs",
-    "configproto:import": "node --input-type=module --eval \"import './integration/configproto/import.mjs'\""
+    "serve": "npx serve",
+    "test:focus": "node integration/configproto/webpack.react.esbuild.config.mjs",
+    "test:configproto:webpack:react:esbuild:build": "node integration/configproto/webpack.react.esbuild.config.mjs",
+    "test:configproto:babel:copypasta": "babel copypasta -d dist/cjs/copypasta --copy-files --out-file-extension .cjs",
+    "test:configproto:eslint": "eslint './**/*'",
+    "test:configproto:eslint:debug": "BABEL_SHOW_CONFIG_FOR=$npm_package_config_DEBUG_FILE pnpm test:configproto:eslint -- --debug",
+    "test:configproto:eslint:fix": "pnpm test:configproto:eslint -- --fix --ignore-pattern 'copypasta/**'",
+    "test:configproto:export:require": "node ./integration/configproto/require.cjs",
+    "test:configproto:export:import": "node --input-type=module --eval \"import './integration/configproto/import.mjs'\""
   },
   "private": true,
   "type": "module",
@@ -31,11 +55,34 @@
     "linux"
   ],
   "devDependencies": {
+    "@babel/cli": "7.14.8",
+    "@babel/core": "7.14.8",
+    "@babel/plugin-transform-runtime": "7.14.5",
     "@nodeproto/configproto": "workspace:*",
-    "eslint": "7.32.0"
+    "babel-loader": "8.2.2",
+    "babel-register-esm": "1.1.0",
+    "bundle-stats-webpack-plugin": "3.0.1",
+    "chalk": "4.1.1",
+    "core-js": "3.15.2",
+    "css-loader": "6.2.0",
+    "esbuild": "0.12.20",
+    "esbuild-loader": "2.15.0",
+    "eslint": "7.32.0",
+    "file-loader": "6.2.0",
+    "flow-bin": "0.157.0",
+    "jssm": "5.35.4",
+    "react": "18.0.0-alpha-419cc9c37-20210726",
+    "react-dom": "18.0.0-alpha-419cc9c37-20210726",
+    "string-replace-loader": "3.0.3",
+    "style-loader": "3.2.1",
+    "svg-url-loader": "7.1.1",
+    "ultra-runner": "3.10.5",
+    "url-loader": "4.1.1",
+    "webpack": "5.46.0",
+    "webpack-cli": "4.8.0"
   },
   "dependencies": {
-    "jssm": "5.35.4",
-    "ultra-runner": "3.10.5"
+    "@babel/runtime": "7.14.8",
+    "html-webpack-plugin": "5.3.2"
   }
 }

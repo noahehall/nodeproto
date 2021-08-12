@@ -1,0 +1,12 @@
+// removes flowtypes, e.g. before running esbuild in webpack
+{
+  "plugins": [
+    [
+      "@babel/plugin-transform-flow-strip-types", {
+        "requireDirective": true,
+        "allowDeclareFields": true,
+        "all": true
+      }
+    ]
+  ]
+}

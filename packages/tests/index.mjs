@@ -1,16 +1,28 @@
+// @flow
 import { strict as assert } from 'assert';
+import chalk from 'chalk';
 
-const tracker = {
-  failed: 0,
-  success: 0 // TODO: eslint should show error for missing ending comma
+type TrackerType = {
+  [key: string]: number,
 };
-export const test = (msg, test, cmd = 'ok') => {
+
+const tracker: TrackerType = {
+  failed: 0,
+  success: 0,
+};
+// TODO: eslint should err if parameters > 3 && ! object
+export const test = async (
+  msg: string,
+  is: function,
+  cmd: string = 'ok'
+) => {
   try {
-    assert[cmd](test, msg);
-    console.info(msg);
+    assert[cmd](await is(), msg);
+    console.info(chalk.green(msg));
     tracker.success++;
   } catch (e) {
     console.error(e);
+    console.info(chalk.red(msg));
     tracker.failed++;
   }
 };

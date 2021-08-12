@@ -15,8 +15,10 @@
 - linting all subdirectories via pkg.json script
   - our configs ignore node_modules & dist dirs by default
   - `eslint": "eslint './**/*'",`
+- generally you should use `.jsx` to save yourself a lot of work
 
-# known issues
+# known issues & resolutions
 
 - [you need a babelrc to use toplevel await](https://github.com/babel/babel/discussions/12685)
   - still figuring this out for vscode, but atleast the eslint script runs now
+- [vscode-eslint not working in monorepo](https://github.com/microsoft/vscode-eslint/issues/1316)
