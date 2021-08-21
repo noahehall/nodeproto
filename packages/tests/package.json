@@ -39,7 +39,7 @@
     "about": "npm run-script",
     "ultra": "ultra",
     "serve": "npx serve",
-    "test:focus": "node integration/configproto/webpack.react.esbuild.config.mjs",
+    "test:focus": "node integration/test.integration.mjs",
     "test:configproto:webpack:react:esbuild:build": "node integration/configproto/webpack.react.esbuild.config.mjs",
     "test:configproto:babel:copypasta": "babel copypasta -d dist/cjs/copypasta --copy-files --out-file-extension .cjs",
     "test:configproto:eslint": "eslint './**/*'",
