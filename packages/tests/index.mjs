@@ -1,4 +1,7 @@
 // @flow
+// for integration tests, use tap for unit & playwrite? for e2e
+// TODO: move this to distinct package
+
 import { strict as assert } from 'assert';
 import chalk from 'chalk';
 
@@ -14,7 +17,7 @@ const tracker: TrackerType = {
 export const test = async (
   msg: string,
   is: function,
-  cmd: string = 'ok'
+  cmd: string = 'ok',
 ) => {
   try {
     assert[cmd](await is(), msg);

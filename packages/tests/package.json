@@ -71,6 +71,7 @@
     "file-loader": "6.2.0",
     "flow-bin": "0.157.0",
     "jssm": "5.35.4",
+    "memfs": "3.2.2",
     "react": "18.0.0-alpha-419cc9c37-20210726",
     "react-dom": "18.0.0-alpha-419cc9c37-20210726",
     "string-replace-loader": "3.0.3",

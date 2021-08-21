@@ -79,5 +79,9 @@
   },
   "jsync": {
     "root": true
+  },
+  "devDependencies": {
+    "tap": "15.0.9",
+    "tapromise": "1.1.2"
   }
 }
