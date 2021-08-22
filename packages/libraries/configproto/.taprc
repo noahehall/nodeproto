@@ -19,7 +19,7 @@ coverage-report: []
 coverage: true
 debug: false
 files: []
-flow: false
+flow: true
 functions: 100
 grep: []
 help: false
