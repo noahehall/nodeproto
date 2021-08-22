@@ -1,4 +1,3 @@
-// @flow
 import implementation from 'esbuild';
 import path from 'path';
 import t from 'tap';
@@ -10,7 +9,6 @@ const instance = new FlowRMTLoader(`
   const poop: string = 'flush';
 `);
 
-let testName: string = 'removeFlowTypesLoader.test.js';
 t.test('removeFlowTypesLoader', t => {
   t.ok(FlowRMTLoader, 'FlowRMTLoader exists');
   t.equal(typeof instance(), 'string', 'should return a string');

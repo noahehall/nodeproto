@@ -36,8 +36,8 @@
     }
   },
   "scripts": {
-    "test": "tap",
-    "test:ing": "pnpm test -- -wb --test-env=\"NODE_OPTIONS=$npm_package_config_NODE_OPTIONS\"",
+    "test": "tap --test-env=\"NODE_OPTIONS=$npm_package_config_NODE_OPTIONS\"",
+    "test:ing": "pnpm test -- -wb",
     "test:help": "tap -h",
     "test:config": "tap --dump-config",
     "test:ci": "tap --reporter=min **/*.test.mjs -j 1",

@@ -1,12 +1,16 @@
-# after: ~ # error: Null|null|~| # all throw errs anywhere we try to use the value Null in any of its forms defined by yaml spec @see https://yaml.org/type/null.html
-# before: Null # error
-# jobs: 8 # let tap set this dynamically unless in CI/CD where it should always be 1
-# libtap-settings: Null # error
-# output-dir: Null # error
-# output-file: Null # error
-# rcfile: /some/path.taprc # let tap set this dynamically based on process.cwd()
-# save: Null # error
+#################### ERRORS AND WHAT NOT OR WTF #####################
+# below throws err when setting to null Null|null|~| in any of its forms defined by yaml spec
+# after:  # error: Error [ERR_MODULE_NOT_FOUND]: Cannot find module 'some/path/on/disk/null' <-- looking for null?
+# before: Null # error: Error [ERR_MODULE_NOT_FOUND]: Cannot find module 'some/path/on/disk/null' <-- looking for null?
+# libtap-settings: Null # always throws error
+# output-dir: Null # errors if set with below option?
+# output-file: Null # works if set by itself,
 # show-process-true: true # eror: invalid argument?
+# @see https://yaml.org/type/null.html
+########################## TAP RC CONFIG ##############################
+# let tap handle these automatically
+# jobs: 8 # however always set to 1 in ci/cd
+# rcfile: /some/path.taprc
 bail: false
 branches: 100
 browser: true
@@ -35,6 +39,7 @@ parser-version: false
 reporter-arg: []
 reporter: base
 save-fixture: false
+save: Null
 snapshot: false
 statements: 100
 test-arg: []
