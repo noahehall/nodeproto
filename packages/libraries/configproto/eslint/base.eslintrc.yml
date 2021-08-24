@@ -116,6 +116,9 @@ overrides:
       no-undef: off
       no-unused-vars: off
       padded-blocks: off
+      no-inline-html: off
+      # MD033/no-inline-html: off not sure which of these work, review markdownlint
+      # MD033: off
 
 # any enabled @babel rule requires you to turn off the same eslint rule, e.g. see semi
 rules:

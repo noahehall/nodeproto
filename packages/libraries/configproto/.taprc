@@ -50,4 +50,4 @@ timeout: 10
 ts: false
 version: false
 versions: false
-watch: false
+watch: false # when true; press enter after test run to see options

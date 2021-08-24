@@ -1,5 +1,6 @@
 // @flow
 // for integration tests, use tap for unit & playwrite? for e2e
+// https://github.com/tapjs/tcompare
 // TODO: move this to distinct package
 
 import { strict as assert } from 'assert';

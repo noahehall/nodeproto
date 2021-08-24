@@ -223,6 +223,7 @@ importers:
       svg-url-loader: 7.1.1
       tap: 15.0.9
       tapromise: 1.1.2
+      tcompare: 5.0.6
       ultra-runner: 3.10.5
       url-loader: 4.1.1
       webpack: 5.46.0
@@ -278,6 +279,7 @@ importers:
       svg-url-loader: 7.1.1_webpack@5.46.0
       tap: 15.0.9_flow-remove-types@2.158.0
       tapromise: 1.1.2
+      tcompare: 5.0.6
       ultra-runner: 3.10.5
       url-loader: 4.1.1_file-loader@6.2.0+webpack@5.46.0
       webpack: 5.46.0
