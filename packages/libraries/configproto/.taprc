@@ -13,7 +13,7 @@
 # rcfile: /some/path.taprc
 bail: false
 branches: 100
-browser: true
+browser: false
 changed: false # wont run tests if nothing has changed since last run?
 check-coverage: true
 color: true
@@ -21,9 +21,9 @@ comments: true
 coverage-map: './.tapcoverage.map.cjs'
 coverage-report: []
 coverage: true
-debug: false
+debug: true
 files: []
-flow: true
+flow: false # cant set to true
 functions: 100
 grep: []
 help: false
@@ -43,10 +43,10 @@ save: Null
 snapshot: false
 statements: 100
 test-arg: []
-test-env: []
+# test-env: [] # set via cli
 test-ignore: $.
-test-regex: '.test.mjs$'
-timeout: 10
+test-regex: '.test.(c|m)js$'
+timeout: 100
 ts: false
 version: false
 versions: false

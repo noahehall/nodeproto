@@ -76,8 +76,14 @@
   "config": {
     "NODE_OPTIONS": "--pending-deprecation --experimental-wasm-modules --trace-warnings --experimental-top-level-await --enable-source-maps --experimental-vm-modules --experimental-worker --experimental-import-meta-resolve --experimental-report --trace-exit --heapsnapshot-near-heap-limit=3 --trace-uncaught --deprecation --trace-deprecation --no-insecure-http-parser --report-uncaught-exception --use-largepages=on --warnings --experimental-abortcontroller --report-on-fatalerror --experimental-json-modules --trace-sigint --abort-on-uncaught-exception --es-module-specifier-resolution=node --experimental-specifier-resolution=node --experimental-modules",
     "NODE_ENV": "development",
-    "BABEL_SHOW_CONFIG_FOR": "e.g. BABEL_SHOW_CONFIG_FOR=absolute/path/to/file somePkgJsonScriptName"
+    "BABEL_SHOW_CONFIG_FOR": "e.g. BABEL_SHOW_CONFIG_FOR=absolute/path/to/file somePkgJsonScriptName",
+    "PATH_DIST": "./dist",
+    "PATH_SRC": "./src"
   },
   "repository": "git://github.com/noahehall/nodeproto.git",
-  "peerDependencies": {}
+  "peerDependencies": {},
+  "devDependencies": {
+    "tap": "15.0.9",
+    "tapromise": "1.1.2"
+  }
 }
