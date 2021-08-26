@@ -1,20 +1,17 @@
 // @flow
-import { fileURLToPath } from 'url';
 // import * as flowFixtures from './fixtures/flow.mjs';
+import { fileURLToPath } from 'url';
+import { suite } from 'uvu';
+import * as assert from 'uvu/assert';
 import FlowRMTLoader from './removeFlowTypesLoader.mjs';
 import implementation from 'esbuild';
 import path from 'path';
-import t from 'tap';
-import tapromise from 'tapromise';
 import testCompiler, { createConfig } from './test.compiler.mjs';
 
 const instance = new FlowRMTLoader(`
   // @flow
   const poop: string = 'flush';
 `);
-
-// @see https://node-tap.org/docs/api/mochalike/
-t.mochaGlobals();
 
 // @see https://webpack.js.org/contribute/writing-a-loader/#absolute-paths
 // dont use absolute paths as it breaks hashing
@@ -81,29 +78,56 @@ const getConfig = (i = r('index')) => ({
   },
 });
 
-t.test('removeFlowTypesLoader', t => {
-  t.test('implementation', t => {
-    const result = instance();
+// @see https://github.com/lukeed/uvu/blob/master/docs/cli.md
+// @see https://github.com/lukeed/uvu/blob/master/docs/api.assert.md
+// @see https://github.com/lukeed/uvu/tree/master/examples
+// @see https://github.com/lukeed/uvu/tree/master/examples/esbuild
+// @see https://github.com/bcoe/c8
+// @see https://github.com/lukeed/uvu/blob/master/examples/coverage/package.json
+// @see https://github.com/lukeed/watchlist
+// ^ maybe chokidar instead
 
-    let poop = 'FlowRMTLoader exists'; // eslint-disable-line
-    t.ok(FlowRMTLoader, poop);
-    t.equal(typeof instance(), 'string', 'should return a string');
-    t.equal(result.includes('@flow'), false, 'should remove string @flow');
-    t.equal(result.includes(': string'), false, 'should remove string type');
+const test = suite('removeFlowTypesLoader');
 
-    t.end();
-  });
-
-  t.test('integration', t => {
-    t = tapromise(t);
-
-    return Promise.all([
-      t.ok(createConfig(config), 'creates config'),
-      t.ok(testCompiler(getConfig(0)), 'sanity check with external cjs loader'),
-      // t.ok(testCompiler(getConfig(1)), 'sanity check with external mjs loader'),
-      t.ok(testCompiler(getConfig(2)), 'internal loader'),
-    ]);
-  });
-
-  t.end();
+const result = instance();
+test('is function', () => {
+  assert.type(FlowRMTLoader, 'function');
 });
+
+test('returns string', () => {
+  assert.type(instance(), 'string', 'should return a string');
+});
+
+test('removes @flow from source', () => {
+  assert.not(result.includes('@flow'), 'should remove string @flow');
+});
+
+test('removes types from source', () => {
+  assert.not(result.includes(': string'), 'should remove string type');
+});
+
+test('creates config', () => {
+  assert.ok(createConfig(config), 'creates config');
+});
+
+test('sanity check with external cjs loader', async () => {
+  const result = await testCompiler(getConfig(0));
+  assert.type(result, 'object');
+});
+
+test('sanity check with external mjs loader', async () => {
+  const result = await testCompiler(getConfig(1));
+  assert.type(result, 'object', 'wtf');
+});
+
+test('webpack + flowRemoveTypesLoader', async () => {
+  const result = await testCompiler(getConfig(2));
+  assert.type(result, 'object');
+});
+
+test('webpack + flowRemoveTypesLoader + esbuild-loader', async () => {
+  const result = await testCompiler(getConfig(3));
+  assert.type(result, 'object');
+});
+
+test.run();

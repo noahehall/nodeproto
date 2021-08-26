@@ -36,11 +36,9 @@
     }
   },
   "scripts": {
-    "test": "tap --test-env=\"NODE_OPTIONS=$npm_package_config_NODE_OPTIONS\"",
+    "test": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" uvu . test.mjs -i node_modules",
     "test:ing": "pnpm test -- -wb",
-    "test:help": "tap -h",
-    "test:config": "tap --dump-config",
-    "test:ci": "tap --reporter=min **/*.test.mjs -j 1",
+    "test:help": "uvu --help",
     "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
     "ultra": "ultra",
     "upgrade": "pnpm upgrade -L",
@@ -105,7 +103,7 @@
     "DIRS_TO_TRANSPILE": "babel/*.mjs esbuild/*.mjs webpack/*.mjs",
     "REMOVED_BABEL_OPTIONS": "--copy-files",
     "REMOVED_NODE_OPTIONS": "--es-module-specifier-resolution=node --experimental-specifier-resolution=node",
-    "NODE_OPTIONS": "-r suppress-experimental --experimental-loader @istanbuljs/esm-loader-hook --experimental-wasm-modules --trace-warnings --experimental-top-level-await --enable-source-maps --experimental-vm-modules --experimental-worker --experimental-import-meta-resolve --experimental-report --trace-exit --heapsnapshot-near-heap-limit=3 --trace-uncaught --no-insecure-http-parser --report-uncaught-exception --use-largepages=on --experimental-abortcontroller --report-on-fatalerror --experimental-json-modules --trace-sigint --abort-on-uncaught-exception --experimental-modules"
+    "NODE_OPTIONS": "--experimental-wasm-modules --trace-warnings --experimental-top-level-await --enable-source-maps --experimental-vm-modules --experimental-worker --experimental-import-meta-resolve --experimental-report --trace-exit --heapsnapshot-near-heap-limit=3 --trace-uncaught --no-insecure-http-parser --report-uncaught-exception --use-largepages=on --experimental-abortcontroller --report-on-fatalerror --experimental-json-modules --trace-sigint --abort-on-uncaught-exception --experimental-modules"
   },
   "devDependencies": {
     "@babel/cli": "7.14.8",
@@ -125,7 +123,6 @@
     "@babel/runtime": "7.14.8",
     "@babel/traverse": "7.14.8",
     "@emotion/babel-plugin": "11.3.0",
-    "@istanbuljs/esm-loader-hook": "0.1.2",
     "@nodeproto/jsync": "workspace:*",
     "@swc/cli": "0.1.46",
     "@swc/core": "1.2.75",
@@ -155,13 +152,10 @@
     "schema-utils": "3.1.1",
     "string-replace-loader": "3.0.3",
     "style-loader": "3.2.1",
-    "suppress-experimental": "1.0.0",
     "svg-url-loader": "7.1.1",
-    "tap": "15.0.9",
-    "tapromise": "1.1.2",
-    "tcompare": "5.0.6",
     "ultra-runner": "3.10.5",
     "url-loader": "4.1.1",
+    "uvu": "0.5.1",
     "webpack": "5.46.0",
     "yaml-eslint-parser": "0.4.1"
   },

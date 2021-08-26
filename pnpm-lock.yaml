@@ -190,7 +190,6 @@ importers:
       '@babel/runtime': 7.14.8
       '@babel/traverse': 7.14.8
       '@emotion/babel-plugin': 11.3.0
-      '@istanbuljs/esm-loader-hook': 0.1.2
       '@nodeproto/jsync': workspace:*
       '@swc/cli': 0.1.46
       '@swc/core': 1.2.75
@@ -220,13 +219,10 @@ importers:
       schema-utils: 3.1.1
       string-replace-loader: 3.0.3
       style-loader: 3.2.1
-      suppress-experimental: 1.0.0
       svg-url-loader: 7.1.1
-      tap: 15.0.9
-      tapromise: 1.1.2
-      tcompare: 5.0.6
       ultra-runner: 3.10.5
       url-loader: 4.1.1
+      uvu: 0.5.1
       webpack: 5.46.0
       yaml-eslint-parser: 0.4.1
     devDependencies:
@@ -247,7 +243,6 @@ importers:
       '@babel/runtime': 7.14.8
       '@babel/traverse': 7.14.8
       '@emotion/babel-plugin': 11.3.0_@babel+core@7.14.8
-      '@istanbuljs/esm-loader-hook': 0.1.2
       '@nodeproto/jsync': link:../../tools/jsync
       '@swc/cli': 0.1.46_@swc+core@1.2.75
       '@swc/core': 1.2.75
@@ -277,13 +272,10 @@ importers:
       schema-utils: 3.1.1
       string-replace-loader: 3.0.3_webpack@5.46.0
       style-loader: 3.2.1_webpack@5.46.0
-      suppress-experimental: 1.0.0
       svg-url-loader: 7.1.1_webpack@5.46.0
-      tap: 15.0.9_flow-remove-types@2.158.0
-      tapromise: 1.1.2
-      tcompare: 5.0.6
       ultra-runner: 3.10.5
       url-loader: 4.1.1_file-loader@6.2.0+webpack@5.46.0
+      uvu: 0.5.1
       webpack: 5.46.0
       yaml-eslint-parser: 0.4.1
 
@@ -483,6 +475,8 @@ importers:
       flow-bin: 0.157.0
       react: 18.0.0-alpha-419cc9c37-20210726
       react-dom: 18.0.0-alpha-419cc9c37-20210726
+      tap: 15.0.9
+      tapromise: 1.1.2
       ultra-runner: 3.10.5
       yargs: 17.0.1
     dependencies:
@@ -494,6 +488,9 @@ importers:
       react-dom: 18.0.0-alpha-419cc9c37-20210726_c4586f572de136fa2418f70a41f674b3
       ultra-runner: 3.10.5
       yargs: 17.0.1
+    devDependencies:
+      tap: 15.0.9
+      tapromise: 1.1.2
 
   packages/tools/wtf:
     specifiers:
@@ -3457,19 +3454,6 @@ packages:
       '@babel/runtime': 7.14.8
     dev: false
 
-  /@istanbuljs/esm-loader-hook/0.1.2:
-    resolution: {integrity: sha512-tPKj7bcnaCBooXgaTIPJHVZUjZ3axrlknowUC6aTbjzDfPHRd+px1Xhtd0vIIg1RkmXZ0QMCeMp1JlJiXXb4fQ==}
-    engines: {node: '>=13.7.0'}
-    dependencies:
-      '@babel/core': 7.14.8
-      '@istanbuljs/load-nyc-config': 1.1.0
-      '@istanbuljs/schema': 0.1.3
-      babel-plugin-istanbul: 6.0.0
-      test-exclude: 6.0.0
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
   /@istanbuljs/load-nyc-config/1.1.0:
     resolution: {integrity: sha512-VjeHSlIzpv/NyD3N0YuHfXOPDIixcA1q2ZV98wsMqcYlPmv2n3Yb2lYP9XMElnaFVXg5A7YLTeLu6V84uQDjmQ==}
     engines: {node: '>=8'}
@@ -6331,19 +6315,6 @@ packages:
       object.assign: 4.1.2
     dev: true
 
-  /babel-plugin-istanbul/6.0.0:
-    resolution: {integrity: sha512-AF55rZXpe7trmEylbaE1Gv54wn6rwU03aptvRoVIGP8YykoSxqdVLV1TfwflBCE/QtHmqtP8SWlTENqbK8GCSQ==}
-    engines: {node: '>=8'}
-    dependencies:
-      '@babel/helper-plugin-utils': 7.14.5
-      '@istanbuljs/load-nyc-config': 1.1.0
-      '@istanbuljs/schema': 0.1.3
-      istanbul-lib-instrument: 4.0.3
-      test-exclude: 6.0.0
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
   /babel-plugin-macros/2.8.0:
     resolution: {integrity: sha512-SEP5kJpfGYqYKpBrj5XU3ahw5p5GOHJ0U5ssOSQ/WBVdwkD2Dzlce95exQTs3jOVWPPKLBN2rlEWkCK7dSmLvg==}
     dependencies:
@@ -8101,6 +8072,11 @@ packages:
 
   /deprecation/2.3.1:
     resolution: {integrity: sha512-xmHIy4F3scKVwMsQ4WnVaS8bHOx0DmVwRywosKhaILI0ywMDWPtBSku2HNxRvF7jtwDRsoEwYQSfbxj8b7RlJQ==}
+    dev: true
+
+  /dequal/2.0.2:
+    resolution: {integrity: sha512-q9K8BlJVxK7hQYqa6XISGmBZbtQQWVXSrRrWreHC94rMt1QL/Impruc+7p2CYSYuVIUr+YCt6hjrs1kkdJRTug==}
+    engines: {node: '>=6'}
     dev: true
 
   /destroy/1.0.4:
@@ -11731,6 +11707,11 @@ packages:
       graceful-fs: 4.2.6
     dev: true
 
+  /kleur/4.1.4:
+    resolution: {integrity: sha512-8QADVssbrFjivHWQU7KkMgptGTl6WAcSdlbBPY4uNF+mWr6DGcKrvY2w4FQJoXch7+fKMjj0dRrL75vk3k23OA==}
+    engines: {node: '>=6'}
+    dev: true
+
   /koa-compose/3.2.1:
     resolution: {integrity: sha1-qFzLQLfZhtjlo0Wzoazo6rz1Tec=}
     dependencies:
@@ -12666,6 +12647,11 @@ packages:
     resolution: {integrity: sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ==}
     dev: true
     optional: true
+
+  /mri/1.1.6:
+    resolution: {integrity: sha512-oi1b3MfbyGa7FJMP9GmLTttni5JoICpYBRlq+x5V16fZbLsnL9N3wFqqIm/nIG43FjUFkFh9Epzp/kzUGUnJxQ==}
+    engines: {node: '>=4'}
+    dev: true
 
   /ms/2.0.0:
     resolution: {integrity: sha1-VgiurfwAvmwpAd9fmGF4jeDVl8g=}
@@ -14909,6 +14895,13 @@ packages:
       tslib: 1.14.1
     dev: true
 
+  /sade/1.7.4:
+    resolution: {integrity: sha512-y5yauMD93rX840MwUJr7C1ysLFBgMspsdTo4UVrDg3fXDvtwOyIqykhVAAm6fk/3au77773itJStObgK+LKaiA==}
+    engines: {node: '>= 6'}
+    dependencies:
+      mri: 1.1.6
+    dev: true
+
   /safe-buffer/5.1.2:
     resolution: {integrity: sha512-Gd2UZBJDkXlY7GbJxfsE8/nvKkUEU1G38c1siN6QP6a9PT9MmHB8GnpscSmMJSoF8LOIrt8ud/wPtojys4G6+g==}
 
@@ -15916,11 +15909,6 @@ packages:
       has-flag: 4.0.0
     dev: true
 
-  /suppress-experimental/1.0.0:
-    resolution: {integrity: sha512-bruRR7ZXuC4zNmls1ekzzrMVlb4Hs1jtiqeX5o/7jZZCjPXubco6CIkzfZ0JEJm0D5Rz/7Qj4aLjq+HXBe8pSA==}
-    engines: {node: '>=6'}
-    dev: true
-
   /svg-url-loader/7.1.1_webpack@5.46.0:
     resolution: {integrity: sha512-NlsMCePODm7FQhU9aEZyGLPx5Xe1QRI1cSEUE6vTq5LJc9l9pStagvXoEIyZ9O3r00w6G3+Wbkimb+SC3DI/Aw==}
     engines: {node: '>=10'}
@@ -16067,55 +16055,6 @@ packages:
       chokidar: 3.5.2
       coveralls: 3.1.1
       findit: 2.0.0
-      foreground-child: 2.0.0
-      fs-exists-cached: 1.0.0
-      glob: 7.1.7
-      import-jsx: 4.0.0
-      isexe: 2.0.0
-      istanbul-lib-processinfo: 2.0.2
-      jackspeak: 1.4.0
-      libtap: 1.1.1
-      minipass: 3.1.3
-      mkdirp: 1.0.4
-      nyc: 15.1.0
-      opener: 1.5.2
-      react: 16.14.0
-      rimraf: 3.0.2
-      signal-exit: 3.0.3
-      source-map-support: 0.5.19
-      tap-mocha-reporter: 5.0.1
-      tap-parser: 10.1.0
-      tap-yaml: 1.0.0
-      tcompare: 5.0.6
-      which: 2.0.2
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-    bundledDependencies:
-      - ink
-      - treport
-      - '@types/react'
-
-  /tap/15.0.9_flow-remove-types@2.158.0:
-    resolution: {integrity: sha512-bqY5SxEqYKRd37PIUfKBf9HMs/hklyl/fGXkuStr9rYTIGa0/icpSLsm6IVOmx2qT0/TliPNJ6OvS5kddJYHdg==}
-    engines: {node: '>=10'}
-    hasBin: true
-    peerDependencies:
-      flow-remove-types: '>=2.112.0'
-      ts-node: '>=8.5.2'
-      typescript: '>=3.7.2'
-    peerDependenciesMeta:
-      flow-remove-types:
-        optional: true
-      ts-node:
-        optional: true
-      typescript:
-        optional: true
-    dependencies:
-      chokidar: 3.5.2
-      coveralls: 3.1.1
-      findit: 2.0.0
-      flow-remove-types: 2.158.0
       foreground-child: 2.0.0
       fs-exists-cached: 1.0.0
       glob: 7.1.7
@@ -16457,6 +16396,11 @@ packages:
   /tosource/1.0.0:
     resolution: {integrity: sha1-QtiN0RZhi88A1hBt1URvNCeQL/E=}
     engines: {node: '>=0.4.0'}
+    dev: true
+
+  /totalist/2.0.0:
+    resolution: {integrity: sha512-+Y17F0YzxfACxTyjfhnJQEe7afPA0GSpYlFkl2VFMxYP7jshQf9gXV7cH47EfToBumFThfKBvfAcoUn6fdNeRQ==}
+    engines: {node: '>=6'}
     dev: true
 
   /tough-cookie/2.5.0:
@@ -17031,6 +16975,18 @@ packages:
   /uuid/8.3.2:
     resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
     hasBin: true
+    dev: true
+
+  /uvu/0.5.1:
+    resolution: {integrity: sha512-JGxttnOGDFs77FaZ0yMUHIzczzQ5R1IlDeNW6Wymw6gAscwMdAffVOP6TlxLIfReZyK8tahoGwWZaTCJzNFDkg==}
+    engines: {node: '>=8'}
+    hasBin: true
+    dependencies:
+      dequal: 2.0.2
+      diff: 5.0.0
+      kleur: 4.1.4
+      sade: 1.7.4
+      totalist: 2.0.0
     dev: true
 
   /v8-compile-cache/2.3.0:
