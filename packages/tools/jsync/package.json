@@ -5,7 +5,6 @@
     "jsync": "./bin/jsync.js"
   },
   "scripts": {
-    "preinstall": "jsync",
     "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
     "ultra": "ultra",
     "start": "NODE_OPTIONS=$npm_package_config_NODE_OPTIONS node index.mjs",

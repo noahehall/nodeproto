@@ -2,13 +2,14 @@
  * @nodeproto/configproto - esbuild config file
  * full featured esbuild configuration for backend apps
  */
+import { builtinModules } from 'module';
 import { envproto, esproto, fsproto } from '@nodeproto/utils';
+
 import esbuild from 'esbuild';
 import fs from 'fs';
 import manifestPlugin from 'esbuild-plugin-manifest';
 import path from 'path';
 import pkgJson from '../package.json';
-import { builtinModules } from 'module';
 
 const appInputFilename = 'index';
 const appExtension = '.mjs';
@@ -18,9 +19,8 @@ const outdir = path.resolve('dist');
 const manifestUri = outdir + '/' + manifestFilename;
 
 const conditions = process.execArgv.filter(x => x.startsWith('--conditions'));
-const isBuild = !!conditions.filter(x => x.endsWith('build')).length
+const isBuild = !!conditions.filter(x => x.endsWith('build')).length;
 const isDev = !isBuild; // cant be both dev and build
-
 
 // for auto starting in dev
 let servers = undefined;
@@ -28,15 +28,18 @@ const stopDev = async () => isDev && servers?.length && servers.forEach(s => s.c
 const startDev = async () => {
   if (isBuild) return;
 
-  await (stopDev())
+  await (stopDev());
 
-  const newServers = await fs.promises.readFile(manifestUri, 'utf-8')
+  return fs.promises.readFile(manifestUri, 'utf-8')
     .then(manifest => import('../' + JSON.parse(manifest)[appInputFilename]))
+    .then(async newServers => {
+      if (newServers) servers = await newServers.runApp();
 
-  if (newServers) servers = await newServers.runApp();
-}
+      return servers;
+    });
+};
 
-const buildLogAndDevOrStop = ({ errors, warnings, ...result}) => {
+const buildLogAndDevOrStop = ({ errors, warnings, ...result }) => {
   console.info('\n\n finished build\n', Object.keys(result.metafile.outputs));
 
   if (errors.length || warnings.length)
@@ -49,19 +52,19 @@ const buildLogAndDevOrStop = ({ errors, warnings, ...result}) => {
 const popCopyConfig = {
   options: [
     {
+      endingWith: /openapi\.(yml|yaml)$/,
       indir: (await fsproto.resolve('../app', import.meta.url)).replace('file://', ''),
       outdir,
-      endingWith: /openapi\.(yml|yaml)$/,
       recurse: true,
     },
   ],
 };
 
 const manifestPluginConfig = {
-  hash: false,
-  shortNames: false,
   extensionless: 'input',
   filename: manifestFilename,
+  hash: false,
+  shortNames: false,
 };
 
 // const env = envproto.syncEnv(pkgJson);
@@ -78,23 +81,20 @@ const esbuildConfig = {
   metafile: true,
   minify: false,
   outdir,
-  outExtension: {'.js': '.cjs'},
+  outExtension: { '.js': '.cjs' },
   platform: 'node',
+  plugins: [ esproto.popCopy(popCopyConfig), manifestPlugin(manifestPluginConfig) ],
   resolveExtensions: ['.mjs', '.js', '.cjs', '.json'],
   sourcemap: true,
   target: ['node14.17.0'], // LTS
-  write: true,
-  plugins: [
-    esproto.popCopy(popCopyConfig),
-    manifestPlugin(manifestPluginConfig),
-  ],
   watch: {
     async onRebuild(error, result) {
       buildLogAndDevOrStop(result);
 
       if (error) console.error(error);
     }
-  }
+  },
+  write: true,
   // format: 'iie',
   // outfile: 'dist/out.cjs',
 };

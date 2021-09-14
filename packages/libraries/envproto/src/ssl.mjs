@@ -8,15 +8,13 @@ import path from 'path';
 import pem from 'pem';
 
 export const getDevCert = async ({
-  selfSigned = true,
   days = 7,
   domain = process.env.DEV_DOMAIN || 'localhost',
+  selfSigned = true,
   tmpDir = process.env.PEMJS_TMPDIR,
 
   // dependent
   commonName = `*.${domain}`,
-
-  ...opts
 } = {}) => {
   // where to save dev certs
   if (!tmpDir) process.env.PEMJS_TMPDIR = `${path.dirname(fsproto.parentUri(import.meta))}/certs`;
@@ -44,11 +42,11 @@ export const getDevCert = async ({
       { filename: names.serviceKey },
     ]));
 
-    if (!certificate || !serviceKey || !csr || !clientKey) throw 'couldnt read dev keys';
+    if (!certificate || !serviceKey || !csr || !clientKey) throw new Error('couldnt read dev keys');
 
     const certValid = await pem.promisified.checkCertificate(certificate);
 
-    if (!certValid) throw 'need to create new dev cert';
+    if (!certValid) throw new Error('need to create new dev cert');
 
     return {
       certificate,
@@ -77,7 +75,7 @@ export const getDevCert = async ({
       );
 
       return {};
-    } else if (!certificate || !serviceKey || !csr || !clientKey) throw '@noahedwardhall needs to fix @nodeproto/lib/envproto';
+    } else if (!certificate || !serviceKey || !csr || !clientKey) throw new Error('@noahedwardhall needs to fix @nodeproto/lib/envproto');
 
     return fsproto.writeFiles([
       { filename: names.certificate, data: certificate },
@@ -90,6 +88,6 @@ export const getDevCert = async ({
       '\n\n could not retrieve, create, or save new|old dev certs',
       msgs.concat(e.message),
       e
-    )
+    );
   }
-}
+};

@@ -2,58 +2,57 @@
   "name": "@nodeproto/configproto",
   "version": "0.0.0",
   "description": "@nodeproto/configproto - reusable configs",
-  "directories": {
-    "babel": "./babel",
-    "browserslist": "./browserslist",
-    "cjs": "./cjs",
-    "esbuild": "./esbuild",
-    "eslint": "./eslint",
-    "swc": "./swc",
-    "webpack": "./webpack"
-  },
-  "main": "./cjs/index.cjs",
+  "directories": [
+    "dist",
+    "src"
+  ],
+  "main": "./src/cjs/index.cjs",
   "exports": {
     ".": {
       "import": "./index.mjs",
-      "default": "./cjs/index.cjs"
+      "default": "./src/cjs/index.cjs"
     },
-    "./babel/*": "./babel/*.babelrc",
-    "./browserslist": "./browserslist/.browserslistrc",
+    "./babel/*": "./src/babel/*.babelrc",
+    "./browserslist": "./src/browserslist/.browserslistrc",
     "./flowconfig": "./.flowconfig",
     "./package.json": "./package.json",
     "./esbuild/*": {
-      "import": "./esbuild/*.esbuild.config.mjs",
-      "default": "./cjs/*.esbuild.config.cjs"
+      "import": "./src/esbuild/*.esbuild.config.mjs",
+      "default": "./src/cjs/*.esbuild.config.cjs"
     },
-    "./eslint": "./eslint/base.eslintrc.yml",
+    "./eslint": "./src/eslint/base.eslintrc.yml",
     "./eslint/*": {
-      "default": "./eslint/*.eslintrc.yml"
+      "default": "./src/eslint/*.eslintrc.yml"
     },
-    "./swc/*": "./swc/*.swcrc",
-    "./webpack/loader/*": "./webpack/loader/*.cjs",
+    "./swc/*": "./src/swc/*.swcrc",
+    "./webpack/loader/*": "./src/webpack/loader/*.cjs",
     "./webpack/bff/*": {
-      "import": "./webpack/bff/*.webpack.mjs",
-      "default": "./cjs/*.webpack.cjs"
+      "import": "./src/webpack/bff/*.webpack.mjs",
+      "default": "./src/cjs/*.webpack.cjs"
     },
     "./webpack/*": {
-      "import": "./webpack/*.webpack.config.mjs",
-      "default": "./cjs/*.webpack.config.cjs"
+      "import": "./src/webpack/*.webpack.config.mjs",
+      "default": "./src/cjs/*.webpack.config.cjs"
     }
   },
   "scripts": {
-    "test": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" uvu . test.mjs -i node_modules",
-    "test:ing": "watchlist . --ignore cjs -- pnpm test",
+    "test": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" uvu ./src test.mjs",
     "test:help": "uvu --help",
+    "test:ing": "pnpm test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"pnpm test\"",
     "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
     "ultra": "ultra",
     "upgrade": "pnpm upgrade -L",
     "d": "rm -rf cjs/*",
-    "cjs:babel": "pnpm d && NODE_OPTIONS=$npm_package_config_NODE_OPTIONS babel $npm_package_config_DIRS_TO_TRANSPILE -d cjs --out-file-extension .cjs --ignore '**/*.test.mjs' --ignore **/test.compiler.mjs",
-    "cjs:swc": "pnpm d && NODE_OPTIONS=$npm_package_config_NODE_OPTIONS swc $npm_package_config_DIRS_TO_TRANSPILE -d cjs --config-file ./swc/node.swcrc --env-name='production' && pnpm js:to:cjs",
-    "js:to:cjs": "for f in ./cjs/*.js; do mv -- \"$f\" \"${f%.js}.cjs\"; done",
+    "cjs:babel": "pnpm d && NODE_OPTIONS=$npm_package_config_NODE_OPTIONS babel $npm_package_config_DIRS_TO_TRANSPILE -d src/cjs --out-file-extension .cjs --ignore 'src/**/*.test.mjs' --ignore src/webpack/test.compiler.mjs",
+    "cjs:swc": "pnpm d && NODE_OPTIONS=$npm_package_config_NODE_OPTIONS swc $npm_package_config_DIRS_TO_TRANSPILE -d src/cjs --config-file ./src/swc/node.swcrc --env-name='production' && pnpm js:to:cjs",
+    "js:to:cjs": "for f in ./src/cjs/*.js; do mv -- \"$f\" \"${f%.js}.cjs\"; done",
     "cjs:swc:debug": "pnpm cjs:swc -- --sync",
     "bl:update": "echo 'doesnt work with pnpm'; exit 0; browserslist --update-db",
-    "bl:check": "browserslist"
+    "bl:check": "browserslist",
+    "nvm:latest": "nvm install node --reinstall-packages-from=current",
+    "post:nvm:latest": "nvm alias default node",
+    "eslint": "eslint 'src/**/*'",
+    "eslint:fix": "pnpm eslint -- --fix"
   },
   "jsync": {
     "root": false
@@ -99,19 +98,19 @@
     "linux"
   ],
   "engines": {
-    "node": ">=16.5",
+    "node": ">=16.9",
     "npm": ">=7.18.1",
     "pnpm": ">=6.9"
   },
   "config": {
     "PATH_DIST": "./dist",
-    "PATH_SRC": ".",
+    "PATH_SRC": "./src",
     "NODE_ENV": "development",
-    "TEST_FILES": "'**/*.test.mjs'",
-    "DIRS_TO_TRANSPILE": "esbuild/*.mjs webpack/*.{c,m}js webpack/loader/*.{c,m}js webpack/bff/*.{c,m}js",
+    "DIRS_TO_TRANSPILE": "src/esbuild/*.mjs src/webpack/*.{c,m}js src/webpack/loader/*.{c,m}js src/webpack/bff/*.{c,m}js",
     "REMOVED_BABEL_OPTIONS": "--copy-files",
     "REMOVED_NODE_OPTIONS": "",
-    "NODE_OPTIONS": "--es-module-specifier-resolution=node --experimental-specifier-resolution=node --experimental-wasm-modules --trace-warnings --experimental-top-level-await --enable-source-maps --experimental-vm-modules --experimental-worker --experimental-import-meta-resolve --experimental-report --trace-exit --heapsnapshot-near-heap-limit=3 --trace-uncaught --no-insecure-http-parser --report-uncaught-exception --use-largepages=on --experimental-abortcontroller --report-on-fatalerror --experimental-json-modules --trace-sigint --abort-on-uncaught-exception --experimental-modules"
+    "NODE_OPTIONS": "--pending-deprecation --experimental-wasm-modules --trace-warnings --experimental-top-level-await --enable-source-maps --experimental-vm-modules --experimental-worker --experimental-import-meta-resolve --experimental-report --trace-exit --heapsnapshot-near-heap-limit=3 --trace-uncaught --deprecation --trace-deprecation --no-insecure-http-parser --report-uncaught-exception --use-largepages=on --warnings --experimental-abortcontroller --report-on-fatalerror --experimental-json-modules --trace-sigint --abort-on-uncaught-exception --es-module-specifier-resolution=node --experimental-specifier-resolution=node --experimental-modules",
+    "BABEL_SHOW_CONFIG_FOR": "e.g. BABEL_SHOW_CONFIG_FOR=absolute/path/to/file somePkgJsonScriptName"
   },
   "devDependencies": {
     "@babel/cli": "7.14.8",
@@ -146,6 +145,7 @@
     "css-loader": "6.2.0",
     "esbuild": "0.12.20",
     "esbuild-loader": "2.15.0",
+    "esbuild-plugin-manifest": "0.4.6",
     "eslint": "7.32.0",
     "eslint-plugin-flowtype-errors": "4.4.0",
     "eslint-plugin-html": "6.1.2",
@@ -175,7 +175,9 @@
     "webpack": "5.51.1",
     "webpack-dev-middleware-2": "5.0.2",
     "webpack-hot-middleware-2": "2.25.2",
-    "yaml-eslint-parser": "0.4.1"
+    "yaml-eslint-parser": "0.4.1",
+    "tap": "15.0.9",
+    "tapromise": "1.1.2"
   },
   "peerDependencies": {
     "@babel/cli": "7.14.8",
@@ -209,6 +211,7 @@
     "css-loader": "6.2.0",
     "esbuild": "0.12.20",
     "esbuild-loader": "2.15.0",
+    "esbuild-plugin-manifest": "0.4.6",
     "eslint": "7.31.0",
     "eslint-plugin-flowtype-errors": "4.4.0",
     "eslint-plugin-html": "6.1.2",
