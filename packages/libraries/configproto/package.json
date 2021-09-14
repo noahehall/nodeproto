@@ -53,7 +53,9 @@
     "js:to:cjs": "for f in ./cjs/*.js; do mv -- \"$f\" \"${f%.js}.cjs\"; done",
     "cjs:swc:debug": "pnpm cjs:swc -- --sync",
     "bl:update": "echo 'doesnt work with pnpm'; exit 0; browserslist --update-db",
-    "bl:check": "browserslist"
+    "bl:check": "browserslist",
+    "nvm:latest": "nvm install node --reinstall-packages-from=current",
+    "post:nvm:latest": "nvm alias default node"
   },
   "jsync": {
     "root": false
@@ -99,19 +101,20 @@
     "linux"
   ],
   "engines": {
-    "node": ">=16.5",
+    "node": ">=16.9",
     "npm": ">=7.18.1",
     "pnpm": ">=6.9"
   },
   "config": {
     "PATH_DIST": "./dist",
-    "PATH_SRC": ".",
+    "PATH_SRC": "./src",
     "NODE_ENV": "development",
     "TEST_FILES": "'**/*.test.mjs'",
     "DIRS_TO_TRANSPILE": "esbuild/*.mjs webpack/*.{c,m}js webpack/loader/*.{c,m}js webpack/bff/*.{c,m}js",
     "REMOVED_BABEL_OPTIONS": "--copy-files",
     "REMOVED_NODE_OPTIONS": "",
-    "NODE_OPTIONS": "--es-module-specifier-resolution=node --experimental-specifier-resolution=node --experimental-wasm-modules --trace-warnings --experimental-top-level-await --enable-source-maps --experimental-vm-modules --experimental-worker --experimental-import-meta-resolve --experimental-report --trace-exit --heapsnapshot-near-heap-limit=3 --trace-uncaught --no-insecure-http-parser --report-uncaught-exception --use-largepages=on --experimental-abortcontroller --report-on-fatalerror --experimental-json-modules --trace-sigint --abort-on-uncaught-exception --experimental-modules"
+    "NODE_OPTIONS": "--pending-deprecation --experimental-wasm-modules --trace-warnings --experimental-top-level-await --enable-source-maps --experimental-vm-modules --experimental-worker --experimental-import-meta-resolve --experimental-report --trace-exit --heapsnapshot-near-heap-limit=3 --trace-uncaught --deprecation --trace-deprecation --no-insecure-http-parser --report-uncaught-exception --use-largepages=on --warnings --experimental-abortcontroller --report-on-fatalerror --experimental-json-modules --trace-sigint --abort-on-uncaught-exception --es-module-specifier-resolution=node --experimental-specifier-resolution=node --experimental-modules",
+    "BABEL_SHOW_CONFIG_FOR": "e.g. BABEL_SHOW_CONFIG_FOR=absolute/path/to/file somePkgJsonScriptName"
   },
   "devDependencies": {
     "@babel/cli": "7.14.8",
@@ -176,7 +179,9 @@
     "webpack": "5.51.1",
     "webpack-dev-middleware-2": "5.0.2",
     "webpack-hot-middleware-2": "2.25.2",
-    "yaml-eslint-parser": "0.4.1"
+    "yaml-eslint-parser": "0.4.1",
+    "tap": "15.0.9",
+    "tapromise": "1.1.2"
   },
   "peerDependencies": {
     "@babel/cli": "7.14.8",
