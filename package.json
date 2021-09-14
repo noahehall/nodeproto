@@ -61,7 +61,7 @@
     "README.md"
   ],
   "engines": {
-    "node": ">=16.5",
+    "node": ">=16.9",
     "npm": ">=7.18.1",
     "pnpm": ">=6.9"
   },
@@ -75,7 +75,9 @@
   "scripts": {
     "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
     "ultra": "ultra",
-    "upgrade": "pnpm upgrade -L"
+    "upgrade": "pnpm upgrade -L",
+    "nvm:latest": "nvm install node --reinstall-packages-from=current",
+    "post:nvm:latest": "nvm alias default node"
   },
   "jsync": {
     "root": true
