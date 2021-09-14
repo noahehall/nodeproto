@@ -61,7 +61,7 @@
     "README.md"
   ],
   "engines": {
-    "node": ">=16.5",
+    "node": ">=16.9",
     "npm": ">=7.18.1",
     "pnpm": ">=6.9"
   },
@@ -75,13 +75,19 @@
   "scripts": {
     "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
     "ultra": "ultra",
-    "upgrade": "pnpm upgrade -L"
+    "upgrade": "pnpm upgrade -L",
+    "nvm:latest": "nvm install node --reinstall-packages-from=current",
+    "post:nvm:latest": "nvm alias default node",
+    "eslint": "eslint 'src/**/*'",
+    "eslint:fix": "pnpm eslint -- --fix",
+    "cp:flow": "cp node_modules/@nodeproto/configproto/.flowconfig .",
+    "test": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" uvu ./src test.mjs",
+    "test:help": "uvu --help",
+    "test:ing": "pnpm test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"clear; pnpm test\""
   },
   "jsync": {
     "root": true
   },
   "devDependencies": {
-    "tap": "15.0.9",
-    "tapromise": "1.1.2"
   }
 }

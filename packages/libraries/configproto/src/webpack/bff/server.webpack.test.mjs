@@ -1,7 +1,6 @@
 import { fileURLToPath } from 'url';
 import { getOpts as reactDevOpts } from '../react.dev.webpack.config.test.mjs';
 import { getOpts as reactEsbuildOpts } from '../react.esbuild.webpack.config.test.mjs';
-import { promisify } from 'util';
 import { suite } from 'uvu';
 import * as assert from 'uvu/assert';
 
@@ -12,8 +11,6 @@ import reactEsbuildWebpackConfig from '../react.esbuild.webpack.config.mjs';
 import webpackServer from './server.webpack.mjs';
 
 const thisDir = path.dirname(fileURLToPath(import.meta.url));
-
-const get = promisify(http.get);
 
 const getOpts = () => ({
   useConfig: {},
