@@ -3,12 +3,7 @@ lockfileVersion: 5.3
 importers:
 
   .:
-    specifiers:
-      tap: 15.0.9
-      tapromise: 1.1.2
-    devDependencies:
-      tap: 15.0.9
-      tapromise: 1.1.2
+    specifiers: {}
 
   packages/apps/client:
     specifiers:
