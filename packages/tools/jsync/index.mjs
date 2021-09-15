@@ -1,4 +1,4 @@
-import wtf from '@nodeproto/wtf';
+import { wtf } from '@nodeproto/wtf';
 
 const isObject = (v) => typeof v === 'object' && v !== null;
 const notArrayOrObject = (v) => !isObject(v) && !Array.isArray(v);

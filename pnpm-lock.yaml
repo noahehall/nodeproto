@@ -535,11 +535,13 @@ importers:
     specifiers:
       '@folder/readdir': 3.1.0
       '@folder/xdg': 3.1.2
+      '@nodeproto/configproto': workspace:0.0.0
       '@nodeproto/jsync': workspace:0.0.0
       contains-path: 1.0.0
       dirent: 2.0.1
       env-cmd: 10.1.0
       es-main: 1.0.2
+      eslint: 7.32.0
       fs-extra: 10.0.0
       global-dirs: 3.0.0
       jsonc-simple-parser: 2.2.0
@@ -568,7 +570,9 @@ importers:
       ultra-runner: 3.10.5
       yargs: 17.0.1
     devDependencies:
+      '@nodeproto/configproto': link:../../libraries/configproto
       '@nodeproto/jsync': link:../jsync
+      eslint: 7.32.0
 
 packages:
 
