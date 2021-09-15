@@ -3,9 +3,10 @@
  * @see https://github.com/Dexus/pem/blob/master/test/pem.spec.js
  */
 
-import { fsproto } from '@nodeproto/wtf';
+import { fsProto } from '@nodeproto/wtf';
 import path from 'path';
 import pem from 'pem';
+
 
 export const getDevCert = async ({
   days = 7,
@@ -17,7 +18,7 @@ export const getDevCert = async ({
   commonName = `*.${domain}`,
 } = {}) => {
   // where to save dev certs
-  if (!tmpDir) process.env.PEMJS_TMPDIR = `${path.dirname(fsproto.parentUri(import.meta))}/certs`;
+  if (!tmpDir) process.env.PEMJS_TMPDIR = `${path.dirname(fsProto.parentUri(import.meta))}/certs`;
 
   // get cert and key with name DOMAIN.serviceKey & DOMAIN.certificate
   let certificate; let clientKey; let csr; let serviceKey; const
@@ -35,7 +36,7 @@ export const getDevCert = async ({
       clientKey,
       csr,
       serviceKey,
-    ] = await fsproto.readFiles([
+    ] = await fsProto.readFiles([
       { filename: names.certificate },
       { filename: names.clientKey },
       { filename: names.csr },
@@ -77,7 +78,7 @@ export const getDevCert = async ({
       return {};
     } else if (!certificate || !serviceKey || !csr || !clientKey) throw new Error('@noahedwardhall needs to fix @nodeproto/lib/envproto');
 
-    return fsproto.writeFiles([
+    return fsProto.writeFiles([
       { filename: names.certificate, data: certificate },
       { filename: names.clientKey, data: clientKey },
       { filename: names.csr, data: csr },

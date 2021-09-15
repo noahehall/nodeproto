@@ -80,6 +80,7 @@
     "post:nvm:latest": "nvm alias default node",
     "eslint": "eslint 'src/**/*'",
     "eslint:fix": "pnpm eslint -- --fix",
+    "postinstall": "cp node_modules/@nodeproto/configproto/.flowconfig .",
     "test": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" uvu ./src test.mjs",
     "test:help": "uvu --help",
     "test:ing": "pnpm test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"clear; pnpm test\""
