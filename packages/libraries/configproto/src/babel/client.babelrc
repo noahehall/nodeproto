@@ -24,11 +24,6 @@
           }
         ],
         [
-          // @babel/plugin-syntax-jsx
-          // @babel/plugin-transform-react-jsx
-          // @babel/plugin-transform-react-display-name
-          // @babel/plugin-transform-react-jsx-self
-          // @babel/plugin-transform-react-jsx-source
           "@babel/preset-react", {
             // runtime: "classic", // enables other commented options
             // "pragma": "dom",
@@ -74,3 +69,8 @@
     }
   ]
 }
+          // @babel/plugin-syntax-jsx
+          // @babel/plugin-transform-react-jsx
+          // @babel/plugin-transform-react-display-name
+          // @babel/plugin-transform-react-jsx-self
+          // @babel/plugin-transform-react-jsx-source

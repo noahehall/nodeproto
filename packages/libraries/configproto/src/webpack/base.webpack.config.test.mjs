@@ -9,7 +9,7 @@ import testCompiler from './test.compiler.mjs';
 
 export const getConfig = (overrides = {}) => ({
   builtinModules: [],
-  entry: ['./webpack/fixtures/esm.mjs'],
+  entry: ['./src/webpack/fixtures/esm.mjs'],
   mode: 'development',
   pathDist: thisDir + '/dist',
   pathSrc: thisDir,
