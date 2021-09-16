@@ -1,2 +1,2 @@
-export * from './src/getDirs.mjs';
-export * from './src/fsProto.mjs';
+export * from './src/dirs.mjs';
+export * from './src/fsproto.mjs';

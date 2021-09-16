@@ -6,10 +6,9 @@
   "jsync": {
     "root": false
   },
-  "directories": [
-    "src",
-    "dist"
-  ],
+  "directories": {
+    "src": "./src"
+  },
   "config": {
     "NODE_ENV": "development",
     "NODE_OPTIONS": "--pending-deprecation --experimental-wasm-modules --trace-warnings --experimental-top-level-await --enable-source-maps --experimental-vm-modules --experimental-worker --experimental-import-meta-resolve --experimental-report --trace-exit --heapsnapshot-near-heap-limit=3 --trace-uncaught --deprecation --trace-deprecation --no-insecure-http-parser --report-uncaught-exception --use-largepages=on --warnings --experimental-abortcontroller --report-on-fatalerror --experimental-json-modules --trace-sigint --abort-on-uncaught-exception --es-module-specifier-resolution=node --experimental-specifier-resolution=node --experimental-modules",
@@ -37,7 +36,7 @@
   },
   "scripts": {
     "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
-    "postinstall": "cp node_modules/@nodeproto/configproto/.flowconfig .",
+    "cp:flow": "cp node_modules/@nodeproto/configproto/.flowconfig .",
     "ultra": "ultra",
     "upgrade": "pnpm upgrade -L",
     "nvm:latest": "nvm install node --reinstall-packages-from=current",

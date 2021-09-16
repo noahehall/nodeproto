@@ -12,7 +12,7 @@ import shelljs from 'shelljs';
 import symlinkDir from 'symlink-dir';
 import xdg from '@folder/xdg';
 
-const isCjs = typeof __filename === 'undefined';
+const isCjs = typeof require === 'undefined';
 const filename = (importMetaUrl = import.meta?.url) => isCjs
   ? fileURLToPath(importMetaUrl)
   : __filename;
@@ -96,4 +96,4 @@ export const getDirs = (overrides = {}) => {
   };
 };
 
-export const wtf = getDirs();
+export const dirs = getDirs();

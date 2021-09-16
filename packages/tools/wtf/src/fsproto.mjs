@@ -44,7 +44,7 @@ export const resolve = async (
   : path.join(path.dirname(parent), fileToImport)
 );
 
-const getFsProto = (disk = true) => {
+const getfsproto = (disk = true) => {
   const fs = disk ? fse : memfs;
 
   return {
@@ -84,5 +84,5 @@ const getFsProto = (disk = true) => {
 // TODO: clean this up
 // while we should use both of these exports
 // there are efficiencies to gain with the proxy API
-export const fsProto = getFsProto(true);
-export const memfsProto = getFsProto(false);
+export const fsproto = getfsproto(true);
+export const memfsproto = getfsproto(false);

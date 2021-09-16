@@ -2,10 +2,10 @@
   "name": "@nodeproto/configproto",
   "version": "0.0.0",
   "description": "@nodeproto/configproto - reusable configs",
-  "directories": [
-    "dist",
-    "src"
-  ],
+  "directories": {
+    "dist": "./dist",
+    "src": "./src"
+  },
   "main": "./src/cjs/index.cjs",
   "exports": {
     ".": {
@@ -38,7 +38,7 @@
   "scripts": {
     "test": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" uvu ./src test.mjs",
     "test:help": "uvu --help",
-    "test:ing": "pnpm test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"pnpm test\"",
+    "test:ing": "pnpm test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"clear; pnpm test\"",
     "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
     "ultra": "ultra",
     "upgrade": "pnpm upgrade -L",
@@ -52,7 +52,8 @@
     "nvm:latest": "nvm install node --reinstall-packages-from=current",
     "post:nvm:latest": "nvm alias default node",
     "eslint": "eslint 'src/**/*'",
-    "eslint:fix": "pnpm eslint -- --fix"
+    "eslint:fix": "pnpm eslint -- --fix",
+    "cp:flow": "cp node_modules/@nodeproto/configproto/.flowconfig ."
   },
   "jsync": {
     "root": false
@@ -198,7 +199,6 @@
     "@babel/runtime": "7.14.8",
     "@babel/traverse": "7.14.8",
     "@emotion/babel-plugin": "11.3.0",
-    "@nodeproto/jsync": "workspace:*",
     "@swc/cli": "0.1.46",
     "@swc/core": "1.2.75",
     "@swc/helpers": "0.2.12",

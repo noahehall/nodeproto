@@ -5,8 +5,8 @@
   "main": "index.mjs",
   "exports": {
     ".": "./index.mjs",
-    "./getDirs": "./src/getDirs.mjs",
-    "./fsProto": "./src/fsProto.mjs"
+    "./dirs": "./src/dirs.mjs",
+    "./fsproto": "./src/fsproto.mjs"
   },
   "jsync": {
     "root": false
@@ -28,10 +28,6 @@
     "symlink-dir": "5.0.1",
     "ultra-runner": "3.10.5",
     "yargs": "17.0.1"
-  },
-  "peerDependencies": {
-    "@nodeproto/configproto": "workspace:0.0.0",
-    "@nodeproto/jsync": "workspace:0.0.0"
   },
   "author": {
     "name": "theDRAGON",
@@ -91,7 +87,7 @@
     "test": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" uvu ./src test.mjs",
     "test:help": "uvu --help",
     "test:ing": "pnpm test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"clear; pnpm test\"",
-    "postinstall": "cp node_modules/@nodeproto/configproto/.flowconfig ."
+    "cp:flow": "cp node_modules/@nodeproto/configproto/.flowconfig ."
   },
   "config": {
     "NODE_OPTIONS": "--pending-deprecation --experimental-wasm-modules --trace-warnings --experimental-top-level-await --enable-source-maps --experimental-vm-modules --experimental-worker --experimental-import-meta-resolve --experimental-report --trace-exit --heapsnapshot-near-heap-limit=3 --trace-uncaught --deprecation --trace-deprecation --no-insecure-http-parser --report-uncaught-exception --use-largepages=on --warnings --experimental-abortcontroller --report-on-fatalerror --experimental-json-modules --trace-sigint --abort-on-uncaught-exception --es-module-specifier-resolution=node --experimental-specifier-resolution=node --experimental-modules",
@@ -101,7 +97,6 @@
     "BABEL_SHOW_CONFIG_FOR": "e.g. BABEL_SHOW_CONFIG_FOR=absolute/path/to/file somePkgJsonScriptName"
   },
   "devDependencies": {
-    "@nodeproto/configproto": "workspace:0.0.0",
     "@nodeproto/jsync": "workspace:0.0.0",
     "eslint": "7.32.0"
   }

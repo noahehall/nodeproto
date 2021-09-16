@@ -3,10 +3,10 @@
  * @see https://github.com/Dexus/pem/blob/master/test/pem.spec.js
  */
 
-import { fsProto } from '@nodeproto/wtf';
+import { fsproto, parentUri } from '@nodeproto/wtf/fsproto';
+
 import path from 'path';
 import pem from 'pem';
-
 
 export const getDevCert = async ({
   days = 7,
@@ -18,17 +18,22 @@ export const getDevCert = async ({
   commonName = `*.${domain}`,
 } = {}) => {
   // where to save dev certs
-  if (!tmpDir) process.env.PEMJS_TMPDIR = `${path.dirname(fsProto.parentUri(import.meta))}/certs`;
-
-  // get cert and key with name DOMAIN.serviceKey & DOMAIN.certificate
-  let certificate; let clientKey; let csr; let serviceKey; const
-    msgs = [];
-  const names = {
-    certificate: `${process.env.PEMJS_TMPDIR}/` + `${domain}.certificate`,
-    clientKey: `${process.env.PEMJS_TMPDIR}/` + `${domain}.clientKey`,
-    csr: `${process.env.PEMJS_TMPDIR}/` + `${domain}.csr`,
-    serviceKey: `${process.env.PEMJS_TMPDIR}/` + `${domain}.serviceKey`,
-  };
+  if (!tmpDir) process.env.PEMJS_TMPDIR = `${path.dirname(parentUri(import.meta))}/certs`;
+  let
+    certificate,
+    clientKey,
+    csr,
+    serviceKey
+  ;
+  const
+    msgs = [],
+    names = {
+      certificate: `${process.env.PEMJS_TMPDIR}/` + `${domain}.certificate`,
+      clientKey: `${process.env.PEMJS_TMPDIR}/` + `${domain}.clientKey`,
+      csr: `${process.env.PEMJS_TMPDIR}/` + `${domain}.csr`,
+      serviceKey: `${process.env.PEMJS_TMPDIR}/` + `${domain}.serviceKey`,
+    }
+  ;
 
   try {
     ([
@@ -36,7 +41,7 @@ export const getDevCert = async ({
       clientKey,
       csr,
       serviceKey,
-    ] = await fsProto.readFiles([
+    ] = await fsproto.readFiles([
       { filename: names.certificate },
       { filename: names.clientKey },
       { filename: names.csr },
@@ -78,7 +83,7 @@ export const getDevCert = async ({
       return {};
     } else if (!certificate || !serviceKey || !csr || !clientKey) throw new Error('@noahedwardhall needs to fix @nodeproto/lib/envproto');
 
-    return fsProto.writeFiles([
+    return fsproto.writeFiles([
       { filename: names.certificate, data: certificate },
       { filename: names.clientKey, data: clientKey },
       { filename: names.csr, data: csr },
