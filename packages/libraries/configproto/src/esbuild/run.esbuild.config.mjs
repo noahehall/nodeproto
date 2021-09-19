@@ -3,49 +3,44 @@ import esbuild from 'esbuild';
 
 // for auto starting in dev
 let servers = undefined;
-export const stopDev = async () => isDev && servers?.length && servers.forEach(s => s.close());
+export const stopDev = async () => servers?.length && servers.forEach(s => s.close());
 
-export const startDev = async () => {
-  if (isBuild) return;
+const startDev = async results => {
+  console.info('\n\n wtf is results', results);
 
-  await (stopDev());
+  // return fsproto.fs.readFile(manifestUri, 'utf-8')
+  //   .then(manifest => import('../' + JSON.parse(manifest)[appInputFilename]))
+  //   .then(async newServers => {
+  //     if (newServers) servers = await newServers.runApp();
 
-  return fsproto.fs.readFile(manifestUri, 'utf-8')
-    .then(manifest => import('../' + JSON.parse(manifest)[appInputFilename]))
-    .then(async newServers => {
-      if (newServers) servers = await newServers.runApp();
-
-      return servers;
-    });
+  //     return servers;
+  //   });
 };
 
-// TODO
+const logResults = async ({ errors, warnings, results }) => {
+  if (errors.length || warnings.length) {
+    await stopDev();
+    throw new Error({ errors, warnings });
+  }
+  else
+    console.info('\n\n finished build\n', Object.keys(results.metafile.outputs));
+}
+
 export const esrunConfig = async config => {
   const newConfig = {
     ...config,
     watch: {
-      async onRebuild(error, result) {
-        buildAndRun({ bff, ...result });
-
-        if (error) console.error(error);
+      async onRebuild(errors, results) {
+        await logResults({ errors, results});
+        await startDev(results);
       }
     },
   };
 
+  const ({ errors, warnings, ...results }) = await esbuild.build(config);
 
-  // TODO: all about auto starting an http based node app
-  /*
-    ({  errors, warnings, ...result }) => {
-
-    console.info('\n\n finished build\n', Object.keys(result.metafile.outputs));
-
-    if (errors.length || warnings.length)
-      console.warn('\n\n build notifications', { errors, warnings });
-
-    if (bff) startDev();
-    else result.stop();
-  };
-  */
+  await logResults({ errors, warnings, results });
+  await startDev(results);
 }
 
 export const esbuildConfig = async config =>
