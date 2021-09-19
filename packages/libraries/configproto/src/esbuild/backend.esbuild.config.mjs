@@ -1,9 +1,8 @@
-/**
- * @nodeproto/configproto - esbuild config file
- * full featured esbuild configuration for backend apps
- */
 import { builtinModules } from 'module';
-import { envproto, esproto, fsproto } from '@nodeproto/utils';
+
+import envproto from '@nodeproto/envproto';
+import fsproto from '@nodeproto/wtf/fsproto'
+import popCopy from './plugins/popCopy.esbuild.plugin.mjs';
 
 import esbuild from 'esbuild';
 import fs from 'fs';
@@ -19,8 +18,8 @@ const outdir = path.resolve('dist');
 const manifestUri = outdir + '/' + manifestFilename;
 
 const conditions = process.execArgv.filter(x => x.startsWith('--conditions'));
-const isBuild = !!conditions.filter(x => x.endsWith('build')).length;
-const isDev = !isBuild; // cant be both dev and build
+const isBuild = process.env.IS_BUILD
+const isDev = process.env.NODE_ENV === 'development';
 
 // for auto starting in dev
 let servers = undefined;
@@ -83,7 +82,7 @@ const esbuildConfig = {
   outdir,
   outExtension: { '.js': '.cjs' },
   platform: 'node',
-  plugins: [ esproto.popCopy(popCopyConfig), manifestPlugin(manifestPluginConfig) ],
+  plugins: [ popCopy(popCopyConfig), manifestPlugin(manifestPluginConfig) ],
   resolveExtensions: ['.mjs', '.js', '.cjs', '.json'],
   sourcemap: true,
   target: ['node14.17.0'], // LTS

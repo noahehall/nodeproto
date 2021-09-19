@@ -16,6 +16,10 @@
     "./browserslist": "./src/browserslist/.browserslistrc",
     "./flowconfig": "./.flowconfig",
     "./package.json": "./package.json",
+    "./esbuild/plugin/*": {
+      "import": "./src/esbuild/plugin/*.esbuild.plugin.mjs",
+      "default": "./src/cjs/*.esbuild.plugin.cjs"
+    },
     "./esbuild/*": {
       "import": "./src/esbuild/*.esbuild.config.mjs",
       "default": "./src/cjs/*.esbuild.config.cjs"
@@ -38,7 +42,7 @@
   "scripts": {
     "test": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" uvu ./src test.mjs",
     "test:help": "uvu --help",
-    "test:ing": "pnpm test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"clear; pnpm test\"",
+    "test:ing": "clear; pnpm test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"clear; pnpm test\"",
     "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
     "ultra": "ultra",
     "upgrade": "pnpm upgrade -L",
@@ -107,7 +111,7 @@
     "PATH_DIST": "./dist",
     "PATH_SRC": "./src",
     "NODE_ENV": "development",
-    "DIRS_TO_TRANSPILE": "src/esbuild/*.mjs src/webpack/*.{c,m}js src/webpack/loader/*.{c,m}js src/webpack/bff/*.{c,m}js",
+    "DIRS_TO_TRANSPILE": "src/esbuild/*.mjs src/esbuild/plugins/*.esbuild.plugin.mjs src/webpack/*.{c,m}js src/webpack/loader/*.{c,m}js src/webpack/bff/*.{c,m}js",
     "REMOVED_BABEL_OPTIONS": "--copy-files",
     "REMOVED_NODE_OPTIONS": "",
     "NODE_OPTIONS": "--pending-deprecation --experimental-wasm-modules --trace-warnings --experimental-top-level-await --enable-source-maps --experimental-vm-modules --experimental-worker --experimental-import-meta-resolve --experimental-report --trace-exit --heapsnapshot-near-heap-limit=3 --trace-uncaught --deprecation --trace-deprecation --no-insecure-http-parser --report-uncaught-exception --use-largepages=on --warnings --experimental-abortcontroller --report-on-fatalerror --experimental-json-modules --trace-sigint --abort-on-uncaught-exception --es-module-specifier-resolution=node --experimental-specifier-resolution=node --experimental-modules",
@@ -142,6 +146,7 @@
     "babel-plugin-transform-flow-strip-types": "6.22.0",
     "browserslist": "4.16.8",
     "bundle-stats-webpack-plugin": "3.0.1",
+    "chokidar-cli": "3.0.0",
     "core-js": "3.16.3",
     "css-loader": "6.2.0",
     "esbuild": "0.12.20",
@@ -169,6 +174,8 @@
     "string-replace-loader": "3.0.3",
     "style-loader": "3.2.1",
     "svg-url-loader": "7.1.1",
+    "tap": "15.0.9",
+    "tapromise": "1.1.2",
     "ultra-runner": "3.10.5",
     "url-loader": "4.1.1",
     "uvu": "0.5.1",
@@ -176,9 +183,7 @@
     "webpack": "5.51.1",
     "webpack-dev-middleware-2": "5.0.2",
     "webpack-hot-middleware-2": "2.25.2",
-    "yaml-eslint-parser": "0.4.1",
-    "tap": "15.0.9",
-    "tapromise": "1.1.2"
+    "yaml-eslint-parser": "0.4.1"
   },
   "peerDependencies": {
     "@babel/cli": "7.14.8",
