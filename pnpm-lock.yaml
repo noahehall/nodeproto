@@ -186,6 +186,7 @@ importers:
       '@babel/runtime': 7.14.8
       '@babel/traverse': 7.15.0
       '@emotion/babel-plugin': 11.3.0
+      '@nodeproto/envproto': workspace:0.0.0
       '@nodeproto/jsync': workspace:*
       '@swc/cli': 0.1.46
       '@swc/core': 1.2.75
@@ -234,6 +235,8 @@ importers:
       webpack-dev-middleware-2: 5.0.2
       webpack-hot-middleware-2: 2.25.2
       yaml-eslint-parser: 0.4.1
+    dependencies:
+      '@nodeproto/envproto': link:../envproto
     devDependencies:
       '@babel/cli': 7.14.8_@babel+core@7.15.0
       '@babel/core': 7.15.0

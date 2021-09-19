@@ -11,9 +11,22 @@
  */
 
 import path from 'path';
-import wtf from '@nodeproto/wtf';
+import fsproto from '@nodeproto/wtf/fsproto';
 
-const { fs } = wtf;
+
+const { fs } = fsproto;
+
+// TODO: use to be in some other file
+export const popCopyConfig = {
+  options: [
+    {
+      endingWith: /openapi\.(yml|yaml)$/,
+      indir: (await fsproto.resolve('../app', import.meta.url)).replace('file://', ''),
+      outdir,
+      recurse: true,
+    },
+  ],
+};
 // cache mapping { filepath: { input, output} }
 // for us to return the previous output if the input hasnt change
 // ALWAYS use the filepath as key
