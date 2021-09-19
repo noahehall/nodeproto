@@ -1,8 +1,8 @@
-import { suite } from 'uvu';
-import * as assert from 'uvu/assert';
-
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
+
+import t from '@nodeproto/configproto/test';
+const { suite, assert } = t;
 
 const test = suite('configproto:import');
 
@@ -11,32 +11,27 @@ test('babel', () => {
   assert.throws(
     () => require('@nodeproto/configproto/babel/base'),
     /Unexpected token/,
-    'import base.babelrc'
   );
 
   assert.throws(
     () => require('@nodeproto/configproto/babel/client'),
     /Unexpected token/,
-    'import client.babelrc'
   );
 
   assert.throws(
     () => require('@nodeproto/configproto/babel/flow'),
     /Unexpected token/,
-    'import flow.baberc'
   );
 
   assert.throws(
     () => require('@nodeproto/configproto/babel/node'),
     /Unexpected token/,
-    'import node.babelrc'
   );
 
   // TODO: need a real integration test for this
   assert.throws(
     () => require('@nodeproto/configproto/babel/ssr'),
     /Unexpected token/,
-    'import ssr.babelrc'
   );
 });
 
@@ -45,21 +40,18 @@ test('browserslist', () => {
   assert.throws(
     () => require('@nodeproto/configproto/browserslist'),
     /Invalid or unexpected token/,
-    'import browsreslist'
   );
 });
 
 // TODO: havent converted esbuild yet
 test.skip('esbuild', async () => {
-  assert.type(
+  assert.isObject(
     await import('@nodeproto/configproto/esbuild/backend'),
-    'object',
     'import backend.esbuild.config.mjs'
   );
 
-  assert.type(
+  assert.isObject(
     await import('@nodeproto/configproto/esbuild/library'),
-    'object',
     'import library.esbuild.config.mjs'
   );
 
@@ -71,7 +63,6 @@ test('eslint', () => {
   assert.throws(
     () => require('@nodeproto/configproto/eslint'),
     /Invalid or unexpected token/,
-    'import base.eslintrc.yml'
   );
 });
 
@@ -80,7 +71,6 @@ test('flowconfig', () => {
   assert.throws(
     () => require('@nodeproto/configproto/flowconfig'),
     /Unexpected token/,
-    'import flowconfig'
   );
 });
 
@@ -89,58 +79,49 @@ test('swc', () => {
   assert.throws(
     () => require('@nodeproto/configproto/swc/node'),
     /Unexpected token/,
-    'import node.swcrc'
   );
 });
 
 
 test('webpack', async () => {
-  assert.type(
+  assert.isObject(
     await import('@nodeproto/configproto/webpack/bff/server'),
-    'object',
     'import server.webpack.mjs'
   );
 
-  assert.type(
+  assert.isObject(
     await import('@nodeproto/configproto/webpack/loader/FlowTypeCleaner'),
-    'object',
     'import FlowTypeCleaner.cjs'
   );
 
-  assert.type(
+  assert.isObject(
     await import('@nodeproto/configproto/webpack/base'),
-    'object',
     'import base.webpack.config.mjs'
   );
 
-  assert.type(
+  assert.isObject(
     await import('@nodeproto/configproto/webpack/build'),
-    'object',
     'import build.webpack.config.mjs'
   );
 
   // TODO: need to convert
-  // assert.type(
+  // assert.isObject(
   //   await import('@nodeproto/configproto/webpack/prod'),
-  //   'object',
   //   'import prod.webpack.config.mjs'
   // );
 
-  assert.type(
+  assert.isObject(
     await import('@nodeproto/configproto/webpack/react.dev'),
-    'object',
     'import react.dev.webpack.config.mjs'
   );
 
-  assert.type(
+  assert.isObject(
     await import('@nodeproto/configproto/webpack/react.esbuild'),
-    'object',
     'import react.esbuild.webpack.config.mjs'
   );
 
-  assert.type(
+  assert.isObject(
     await import('@nodeproto/configproto/webpack/setup'),
-    'object',
     'import setup.webpack.config.mjs'
   );
 });

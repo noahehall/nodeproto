@@ -43,11 +43,12 @@
     "start:webpack:server": "node integration/configproto/webpack.server.mjs",
     "start:react": "concurrently pnpm:start:webpack:server pnpm:start:reactdevtools",
     "test": "uvu ./integration test.mjs -i node_modules",
-    "test:ing": "pnpm test; chokidar \"integration/**/*(?:.test)?.(m|c)?js\" -c \"pnpm test\"",
-    "test:focus": "pnpm test:configproto:esbuild:build",
+    "test:ing": "pnpm test; chokidar \"integration/**/*(?:.test)?.(m|c)?js\" -c \"clear; pnpm test\"",
+    "test:focus": "clear; pnpm test:configproto:esbuild:run",
     "test:help": "uvu --help",
     "test:configproto:webpack:react:esbuild:build": "node integration/configproto/webpack.react.esbuild.config.mjs",
     "test:configproto:esbuild:build": "node integration/configproto/esbuild.build.config.mjs",
+    "test:configproto:esbuild:run": "node integration/configproto/esbuild.run.config.mjs",
     "test:configproto:webpack:react:dev:build": "node integration/configproto/webpack.react.dev.config.mjs",
     "test:configproto:babel:copypasta": "babel copypasta -d dist/cjs/copypasta --copy-files --out-file-extension .cjs",
     "test:configproto:eslint": "eslint './**/*'",
@@ -69,6 +70,7 @@
     "@nodeproto/configproto": "workspace:*",
     "@nodeproto/envproto": "workspace:0.0.0",
     "@nodeproto/jsync": "workspace:0.0.0",
+    "@nodeproto/wtf": "workspace:0.0.0",
     "babel-loader": "8.2.2",
     "babel-register-esm": "1.1.0",
     "bundle-stats-webpack-plugin": "3.0.1",
@@ -83,7 +85,9 @@
     "eslint": "7.32.0",
     "file-loader": "6.2.0",
     "flow-bin": "0.158.0",
+    "http-terminator": "3.0.0",
     "jssm": "5.35.4",
+    "koa": "2.13.1",
     "memfs": "3.2.2",
     "react": "18.0.0-alpha-edfe50510-20210823",
     "react-devtools": "4.14.0",
@@ -101,7 +105,6 @@
   },
   "dependencies": {
     "@babel/runtime": "7.14.8",
-    "@nodeproto/wtf": "workspace:0.0.0",
     "html-webpack-plugin": "5.3.2"
   }
 }

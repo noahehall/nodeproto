@@ -1,54 +1,73 @@
 import esbuild from 'esbuild';
+import { fsproto } from '@nodeproto/wtf/fsproto';
 
+const servers = new Map();
 
-// for auto starting in dev
-let servers = undefined;
-export const stopDev = async () => isDev && servers?.length && servers.forEach(s => s.close());
+const stopDev = async config => {
+  const app = servers.get(config.entryPoints);
 
-export const startDev = async () => {
-  if (isBuild) return;
+  if (!app) return;
 
-  await (stopDev());
+  const { httpTerminator, server, controller } = app;
 
-  return fsproto.fs.readFile(manifestUri, 'utf-8')
-    .then(manifest => import('../' + JSON.parse(manifest)[appInputFilename]))
-    .then(async newServers => {
-      if (newServers) servers = await newServers.runApp();
+  if (httpTerminator) await httpTerminator.terminate();
+  else if (controller) await controller.abort();
+  else if (server) await server.close();
+  else throw new Error ('retrieved app doenst contain httpTerminator|server|controller properties');
+}
 
-      return servers;
-    });
+const startDev = async config => {
+  await stopDev(config);
+
+  let manifest, server;
+
+  try {
+    // will break if consumer uses a different manifest name
+    manifest = JSON.parse(await fsproto.fs.readFile(config.outdir + '/' + 'manifest.json', 'utf-8'));
+
+    // will likely break if consumer has multiple entyrpoints and hte first isnt the server
+    const serverPath = config.outdir + '/' + Object.values(manifest)[0].split('/').pop();
+
+    server = await import(serverPath);
+
+    if (!server.runApp) throw new Error('server does not contain runApp fn');
+
+    servers.set(config.entryPoints, await server.runApp());
+  } catch (e) {
+    console.error('\n\n error starting server', config, manifest, server);
+
+    throw new Error(e);
+  }
+
+  return
 };
 
-// TODO
-export const esrunConfig = async config => {
-  const newConfig = {
-    ...config,
-    watch: {
-      async onRebuild(error, result) {
-        buildAndRun({ bff, ...result });
+const logResults = async ({ errors = [], warnings = [], metafile }) => {
+  if (warnings.length) console.info('\n\n build warnings', warnings);
+  if (errors.length) throw new Error(errors);
 
-        if (error) console.error(error);
+  console.info('\n\n finished build\n', Object.keys(metafile.outputs));
+}
+
+export const esrunConfig = async conf => {
+  const config = {
+    ...conf,
+    watch: {
+      async onRebuild(errors, results) {
+        if (errors) throw new Error(errors);
+
+        logResults(results);
+
+        await startDev(conf);
       }
     },
   };
 
+  const results = await esbuild.build(config);
 
-  // TODO: all about auto starting an http based node app
-  /*
-    ({  errors, warnings, ...result }) => {
-
-    console.info('\n\n finished build\n', Object.keys(result.metafile.outputs));
-
-    if (errors.length || warnings.length)
-      console.warn('\n\n build notifications', { errors, warnings });
-
-    if (bff) startDev();
-    else result.stop();
-  };
-  */
+  logResults(results);
+  await startDev(config);
 }
 
 export const esbuildConfig = async config =>
-  esbuild.build(config).then(result => {
-    console.info('\n\n done', result);
-  });
+  esbuild.build(config).then(results => logResults(results));

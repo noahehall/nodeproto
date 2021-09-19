@@ -1,11 +1,12 @@
 import { fileURLToPath } from 'url';
-import { suite } from 'uvu';
-import * as assert from 'uvu/assert';
 
 import baseWebpackConfig from './base.webpack.config.mjs';
 import path from 'path';
 import setupWebpackConfig from './setup.webpack.config.mjs';
+import t from '#t';
 import testCompiler from './test.compiler.mjs';
+
+const { assert } = t;
 
 export const getConfig = (overrides = {}) => ({
   builtinModules: [],
@@ -21,7 +22,7 @@ export const getConfig = (overrides = {}) => ({
 // TODO: test with pack.resolve which should give you the abs path of whatever
 const thisDir = path.dirname(fileURLToPath(import.meta.url));
 
-const test = suite('base.webpack.config.mjs');
+const test = t.suite('base.webpack.config.mjs');
 
 test('throws', () => {
   let config = getConfig();
@@ -53,15 +54,13 @@ test('throws', () => {
 });
 
 test('is okay', () => {
-  assert.type(
+  assert.isObject(
     baseWebpackConfig(getConfig()),
-    'object',
     'returns object without setup.webpack.config.mjs'
   );
 
-  assert.type(
+  assert.isObject(
     baseWebpackConfig(getConfig(setupWebpackConfig())),
-    'object',
     'returns object with setup.webpack.config.mjs'
   );
 });
@@ -69,21 +68,19 @@ test('is okay', () => {
 test('compilation', async () => {
   const data = getConfig();
 
-  assert.type(
+  assert.isObject(
     await testCompiler(baseWebpackConfig(data)),
-    'object',
     'compiles successfully without setup.webpack.config.mjs'
   );
 
   const { config, pack } = setupWebpackConfig();
 
-  assert.type(
+  assert.isObject(
     pack,
-    'object',
     'provides pack object'
   );
 
-  assert.type(
+  assert.isObject(
     await testCompiler(baseWebpackConfig({
       builtinModules: pack.builtinModules,
       entry: data.entry,
@@ -92,19 +89,7 @@ test('compilation', async () => {
 
       ...config
     })),
-    'object',
     'compiles successfully with setup.webpack.config.mjs'
-  );
-});
-
-// help determining what error is
-test.skip('throws', () => {
-  const config = getConfig();
-  delete config.mode;
-
-  // this should throw and reveal error in console
-  assert.ok(
-    baseWebpackConfig(config)
   );
 });
 

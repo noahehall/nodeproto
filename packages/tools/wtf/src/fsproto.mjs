@@ -16,11 +16,16 @@ const r = (t, msg = 'is required') => { throw new Error(`${t}: ${msg}`); };
  */
 export const isMain = (
   requireMain, // will be undefined in esm
-  importMeta = r('importMeta: import.meta')
-) => typeof requireMain !== 'undefined'
+  importMeta,
+) => {
+  if (!requireMain && !importMeta) return false;
+
+  return requireMain
     ? requireMain == module
     : esMain(importMeta);
+}
 
+// TODO: Uncaught SyntaxError: Cannot use 'import.meta' outside a module
 export const parentUri = (importMeta = import.meta) => (
   importMeta?.url
     ? fileURLToPath(importMeta.url)

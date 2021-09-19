@@ -1,56 +1,36 @@
-import { suite } from 'uvu';
-import * as assert from 'uvu/assert';
-
-import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
+import t from '@nodeproto/configproto/test';
+const { suite, assert } = t;
 
 const test = suite('wtf:import');
 
 test('imports', async () => {
-  assert.type(
+  const fsprotoExpected = [
+    'fsproto',
+    'getFsproto',
+    'isMain',
+    'memfsproto',
+    'parentUri',
+    'resolve',
+  ];
+
+  assert.hasAllKeys(
     await import('@nodeproto/wtf/fsproto'),
-    'object',
-    'import @nodeproto/wtf/fsproto'
+    fsprotoExpected
   );
 
-  assert.type(
+  const dirsExpected = [
+    'dirs',
+    'getDirs',
+  ];
+  assert.hasAllKeys(
     await import('@nodeproto/wtf/dirs'),
-    'object',
-    'import @nodeproto/wtf/dirs'
+    dirsExpected
   );
 
-  assert.type(
+  assert.hasAllKeys(
     await import('@nodeproto/wtf'),
-    'object',
-    'import @nodeproto/wtf'
+    fsprotoExpected.concat(dirsExpected)
   );
-
-  const
-    wtf = await import('@nodeproto/wtf'),
-    fsproto = await import('@nodeproto/wtf/fsproto'),
-    dirs = await import('@nodeproto/wtf/dirs')
-  ;
-
-  const wtfExports = Object.keys(wtf);
-
-  assert.is(
-    Object.keys(fsproto).every(fsprotoExport => wtfExports.includes(fsprotoExport)),
-    true,
-    'wtf contains all of fsproto exports'
-  );
-
-  assert.is(
-    Object.keys(dirs).every(dirsExport => wtfExports.includes(dirsExport)),
-    true,
-    'wtf contains all of fsproto exports'
-  );
-});
-
-// figure out what the actual error is
-// while not directly importable via node code
-// various modules will need to require/import stuff
-test.skip('whats the error', () => {
-  assert.ok(require('@nodeproto/configproto/flowconfig'));
 });
 
 test.run();
