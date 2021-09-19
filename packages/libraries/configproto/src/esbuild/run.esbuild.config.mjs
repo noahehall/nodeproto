@@ -1,13 +1,15 @@
 import esbuild from 'esbuild';
 
-
+// TODO: these module globals restricts us to running 1 server at a time
 // for auto starting in dev
-let servers = undefined;
-export const stopDev = async () => servers?.length && servers.forEach(s => s.close());
+let servers, manifest, manifestUri, appInputFilename;
+
+const stopDev = async () => servers?.length && servers.forEach(s => s.close());
 
 const startDev = async results => {
   console.info('\n\n wtf is results', results);
 
+  // @see https://github.com/noahehall/nodeproto/blob/dev/apps/pkgcheck/lib/esbuild.config.mjs
   // return fsproto.fs.readFile(manifestUri, 'utf-8')
   //   .then(manifest => import('../' + JSON.parse(manifest)[appInputFilename]))
   //   .then(async newServers => {
@@ -17,13 +19,12 @@ const startDev = async results => {
   //   });
 };
 
-const logResults = async ({ errors, warnings, results }) => {
-  if (errors.length || warnings.length) {
-    await stopDev();
-    throw new Error({ errors, warnings });
-  }
-  else
-    console.info('\n\n finished build\n', Object.keys(results.metafile.outputs));
+const logResults = async ({ errors = [], warnings = [], results }) => {
+  await stopDev();
+  if (warnings.length) console.info('\n\n build warnings', warnings);
+  if (errors.length) throw new Error(errors);
+
+  console.info('\n\n finished build\n', Object.keys(results.metafile.outputs));
 }
 
 export const esrunConfig = async config => {
@@ -37,7 +38,7 @@ export const esrunConfig = async config => {
     },
   };
 
-  const ({ errors, warnings, ...results }) = await esbuild.build(config);
+  const { errors, warnings, ...results } = await esbuild.build(newConfig);
 
   await logResults({ errors, warnings, results });
   await startDev(results);
