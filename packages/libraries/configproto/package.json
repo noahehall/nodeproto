@@ -20,6 +20,10 @@
       "import": "./src/esbuild/plugin/*.esbuild.plugin.mjs",
       "default": "./src/cjs/*.esbuild.plugin.cjs"
     },
+    "./esbuild": {
+      "import": "./src/esbuild/index.esbuild.config.mjs",
+      "default": "./src/cjs/index.esbuild.config.cjs"
+    },
     "./esbuild/*": {
       "import": "./src/esbuild/*.esbuild.config.mjs",
       "default": "./src/cjs/*.esbuild.config.cjs"
@@ -33,6 +37,10 @@
     "./webpack/bff/*": {
       "import": "./src/webpack/bff/*.webpack.mjs",
       "default": "./src/cjs/*.webpack.cjs"
+    },
+    "./webpack": {
+      "import": "./src/webpack/index.webpack.config.mjs",
+      "default": "./src/cjs/index.webpack.config.cjs"
     },
     "./webpack/*": {
       "import": "./src/webpack/*.webpack.config.mjs",
@@ -365,5 +373,8 @@
     }
   },
   "repository": "git://github.com/noahehall/nodeproto.git",
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "@nodeproto/envproto": "workspace:0.0.0"
+  }
 }
