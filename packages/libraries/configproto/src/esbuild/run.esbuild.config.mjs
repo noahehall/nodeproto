@@ -44,6 +44,6 @@ export const esrunConfig = async config => {
 }
 
 export const esbuildConfig = async config =>
-  esbuild.build(config).then(result => {
-    console.info('\n\n done', result);
+  esbuild.build(config).then(results => {
+    logResults(results);
   });
