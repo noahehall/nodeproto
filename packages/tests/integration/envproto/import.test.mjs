@@ -1,21 +1,24 @@
-import { suite } from 'uvu';
-import * as assert from 'uvu/assert';
+import t from '@nodeproto/configproto/test';
+const { suite, assert } = t;
 
 const test = suite('envproto:imports');
 
 test('imports', async () => {
-  assert.type(
+  assert.hasAllKeys(
     await import('@nodeproto/envproto'),
-    'object',
-    'import @nodeproto/envproto'
+    [
+      'buildEnv',
+      'clearBaseEnv',
+      'getConditions',
+      'getDevCert',
+      'parsed',
+      'syncConfigWithEnv',
+      'syncEnvAndConfig',
+      'syncEnvWithConfig',
+      'updateBaseEnv',
+      'wrapValue'
+    ]
   );
-});
-
-// figure out what the actual error is
-// while not directly importable via node code
-// various modules will need to require/import stuff
-test.skip('whats the error', async () => {
-  assert.ok(await import('@nodeproto/configproto/flowconfig'));
 });
 
 test.run();

@@ -1,10 +1,11 @@
 import { fileURLToPath } from 'url';
-import { suite } from 'uvu';
-import * as assert from 'uvu/assert';
 
 import path from 'path';
 import reactEsbuildWebpackConfig from './react.esbuild.webpack.config.mjs';
 import testCompiler from './test.compiler.mjs';
+import t from '#t';
+
+const { assert } = t;
 
 const thisDir = path.dirname(fileURLToPath(import.meta.url));
 
@@ -16,7 +17,7 @@ export const getOpts = (overrides) => ({
   ...overrides
 });
 
-const test = suite('react.esbuild.webpack.config.mjs');
+const test = t.suite('react.esbuild.webpack.config.mjs');
 
 test('throws', () => {
   let opts = getOpts();
@@ -48,9 +49,8 @@ test('throws', () => {
 });
 
 test('is okay', () => {
-  assert.type(
+  assert.isObject(
     reactEsbuildWebpackConfig(getOpts()),
-    'object',
     'returns config object'
   );
 });
@@ -60,54 +60,41 @@ test('compilation', async () => {
     entry: thisDir + '/fixtures/esm.mjs',
   });
 
-  assert.type(
+  assert.isObject(
     await testCompiler(reactEsbuildWebpackConfig(opts)),
-    'object',
     'compiles esm successfuly'
   );
 
-  assert.type(
+  assert.isObject(
     await testCompiler(reactEsbuildWebpackConfig({
       ...opts,
       entry: thisDir + '/fixtures/commonjs.cjs',
     })),
-    'object',
     'compiles cjs successfuly'
   );
 
-  assert.type(
+  assert.isObject(
     await testCompiler(reactEsbuildWebpackConfig({
       ...opts,
       entry: thisDir + '/fixtures/react.jsx',
     })),
-    'object',
     'compiles jsx successfuly'
   );
 
-  assert.type(
+  assert.isObject(
     await testCompiler(reactEsbuildWebpackConfig({
       ...opts,
       entry: thisDir + '/fixtures/auto.js',
     })),
-    'object',
     'interprets js and compiles successfuly'
   );
 
-  assert.type(
+  assert.isObject(
     await testCompiler(reactEsbuildWebpackConfig({
       ...opts,
       entry: thisDir + '/fixtures/flow.mjs',
     })),
-    'object',
     'removes flowtypes and compiles esm successfuly'
-  );
-});
-
-// help determining what error is
-test.skip('throws', () => {
-  // this should throw and reveal error in console
-  assert.ok(
-    reactEsbuildWebpackConfig({ pkgJsonPath: './doesnt.exist.here.json' })
   );
 });
 

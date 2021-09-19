@@ -1,14 +1,14 @@
 import { fileURLToPath } from 'url';
 import { getOpts as reactDevOpts } from '../react.dev.webpack.config.test.mjs';
 import { getOpts as reactEsbuildOpts } from '../react.esbuild.webpack.config.test.mjs';
-import { suite } from 'uvu';
-import * as assert from 'uvu/assert';
 
-import http from 'http';
 import path from 'path';
 import reactDevWebpackConfig from '../react.dev.webpack.config.mjs';
 import reactEsbuildWebpackConfig from '../react.esbuild.webpack.config.mjs';
+import t from '#t';
 import webpackServer from './server.webpack.mjs';
+
+const { assert, get } = t;
 
 const thisDir = path.dirname(fileURLToPath(import.meta.url));
 
@@ -18,19 +18,18 @@ const getOpts = () => ({
 });
 
 
-const test = suite('server.webpack.mjs');
+const test = t.suite('server.webpack.mjs');
 
 async function assertWebpackServerStateAndResponse(server, name) {
   return new Promise(resolve => {
     server.webpackDevMiddlewareInstance.waitUntilValid(() => {
-      http.get(`http:${server.config.host}:${server.config.port}`, res => {
-          // if (res.statusCode !== 200) throw new Error(`Expected 200 response, got ${res.statusCode}`);
-
+      get(`http:${server.config.host}:${server.config.port}`, res => {
           // compiles
-          assert.is(server.webpackDevMiddlewareInstance.context.stats.compilation.errors.length, 0, `${name} server compiles without errors`);
+          assert.lengthOf(server.webpackDevMiddlewareInstance.context.stats.compilation.errors, 0, `${name} server compiles without errors`);
           // response
-          assert.is(res.statusCode, 200, `${name} server returns 200 statusCode`);
-          assert.is(res.headers['content-type'].includes('text/html'), true, `${name} server returns text/html`);
+          assert.deepEqual(res.statusCode, 200, `${name} server returns 200 statusCode`);
+
+          assert.include(res.headers['content-type'], 'text/html; charset=utf-8');
 
           resolve(true);
         });
@@ -58,14 +57,14 @@ test('server init & shutdown: react.dev.webpack.config', () => {
   });
 
   esm.server.on('listening', async () => {
-    assert.is(esm.server.listening, true, 'esm server is running');
+    assert.isTrue(esm.server.listening, true, 'esm server is running');
 
     await assertWebpackServerStateAndResponse(esm, 'react:dev:esm');
 
     esm.controller.abort();
     await esm.webpackDevMiddlewareInstance.close();
 
-    assert.is(esm.server.listening, false, 'esm server isnt running');
+    assert.isFalse(esm.server.listening, false, 'esm server isnt running');
   });
 
   const cjs = webpackServer({
@@ -76,14 +75,14 @@ test('server init & shutdown: react.dev.webpack.config', () => {
   });
 
   cjs.server.on('listening', async () => {
-    assert.is(cjs.server.listening, true, 'cjs server is running');
+    assert.isTrue(cjs.server.listening, true, 'cjs server is running');
 
     await assertWebpackServerStateAndResponse(cjs, 'react:dev:cjs');
 
     cjs.controller.abort();
     await cjs.webpackDevMiddlewareInstance.close();
 
-    assert.is(cjs.server.listening, false, 'cjs server isnt running');
+    assert.isFalse(cjs.server.listening, false, 'cjs server isnt running');
   });
 
   // yea i've never used jsx extension
@@ -114,14 +113,14 @@ test('server init & shutdown: react.dev.webpack.config', () => {
   });
 
   auto.server.on('listening', async () => {
-    assert.is(auto.server.listening, true, 'auto server is running');
+    assert.isTrue(auto.server.listening, true, 'auto server is running');
 
     await assertWebpackServerStateAndResponse(auto, 'react:dev:auto');
 
     auto.controller.abort();
     await auto.webpackDevMiddlewareInstance.close();
 
-    assert.is(auto.server.listening, false, 'auto server isnt running');
+    assert.isFalse(auto.server.listening, false, 'auto server isnt running');
   });
 
   const flow = webpackServer({
@@ -132,14 +131,14 @@ test('server init & shutdown: react.dev.webpack.config', () => {
   });
 
   flow.server.on('listening', async () => {
-    assert.is(flow.server.listening, true, 'flow server is running');
+    assert.isTrue(flow.server.listening, true, 'flow server is running');
 
     await assertWebpackServerStateAndResponse(flow, 'react:dev:flow');
 
     flow.controller.abort();
     await flow.webpackDevMiddlewareInstance.close();
 
-    assert.is(flow.server.listening, false, 'flow server isnt running');
+    assert.isFalse(flow.server.listening, false, 'flow server isnt running');
   });
 });
 
@@ -152,14 +151,14 @@ test('server init & shutdown: react.esbuild.webpack.config', () => {
   });
 
   esm.server.on('listening', async () => {
-    assert.is(esm.server.listening, true, 'esm server is running');
+    assert.isTrue(esm.server.listening, true, 'esm server is running');
 
     await assertWebpackServerStateAndResponse(esm, 'react:esbuild:esm');
 
     esm.controller.abort();
     await esm.webpackDevMiddlewareInstance.close();
 
-    assert.is(esm.server.listening, false, 'esm server isnt running');
+    assert.isFalse(esm.server.listening, false, 'esm server isnt running');
   });
 
   const cjs = webpackServer({
@@ -170,14 +169,14 @@ test('server init & shutdown: react.esbuild.webpack.config', () => {
   });
 
   cjs.server.on('listening', async () => {
-    assert.is(cjs.server.listening, true, 'cjs server is running');
+    assert.isTrue(cjs.server.listening, true, 'cjs server is running');
 
     await assertWebpackServerStateAndResponse(cjs, 'react:esbuild:cjs');
 
     cjs.controller.abort();
     await cjs.webpackDevMiddlewareInstance.close();
 
-    assert.is(cjs.server.listening, false, 'cjs server isnt running');
+    assert.isFalse(cjs.server.listening, false, 'cjs server isnt running');
   });
 
   const jsx = webpackServer({
@@ -188,14 +187,14 @@ test('server init & shutdown: react.esbuild.webpack.config', () => {
   });
 
   jsx.server.on('listening', async () => {
-    assert.is(jsx.server.listening, true, 'jsx server is running');
+    assert.isTrue(jsx.server.listening, true, 'jsx server is running');
 
     await assertWebpackServerStateAndResponse(jsx, 'react:esbuild:jsx');
 
     jsx.controller.abort();
     await jsx.webpackDevMiddlewareInstance.close();
 
-    assert.is(jsx.server.listening, false, 'jsx server isnt running');
+    assert.isFalse(jsx.server.listening, false, 'jsx server isnt running');
   });
 
   const auto = webpackServer({
@@ -206,14 +205,14 @@ test('server init & shutdown: react.esbuild.webpack.config', () => {
   });
 
   auto.server.on('listening', async () => {
-    assert.is(auto.server.listening, true, 'auto server is running');
+    assert.isTrue(auto.server.listening, true, 'auto server is running');
 
     await assertWebpackServerStateAndResponse(auto, 'react:esbuild:auto');
 
     auto.controller.abort();
     await auto.webpackDevMiddlewareInstance.close();
 
-    assert.is(auto.server.listening, false, 'auto server isnt running');
+    assert.isFalse(auto.server.listening, false, 'auto server isnt running');
   });
 
   const flow = webpackServer({
@@ -224,23 +223,15 @@ test('server init & shutdown: react.esbuild.webpack.config', () => {
   });
 
   flow.server.on('listening', async () => {
-    assert.is(flow.server.listening, true, 'flow server is running');
+    assert.isTrue(flow.server.listening, true, 'flow server is running');
 
     await assertWebpackServerStateAndResponse(flow, 'react:esbuild:flow');
 
     flow.controller.abort();
     await flow.webpackDevMiddlewareInstance.close();
 
-    assert.is(flow.server.listening, false, 'flow server isnt running');
+    assert.isFalse(flow.server.listening, false, 'flow server isnt running');
   });
-});
-
-// help determining what error is
-test.skip('throws', () => {
-  // this should throw and reveal error in console
-  assert.ok(
-    webpackServer({ pkgJsonPath: './doesnt.exist.here.json' })
-  );
 });
 
 test.run();

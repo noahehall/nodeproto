@@ -1,14 +1,14 @@
 // @flow
 // import * as flowFixtures from './fixtures/flow.mjs';
 import { fileURLToPath } from 'url';
-import { suite } from 'uvu';
-import * as assert from 'uvu/assert';
 
 import FlowTypeCleaner from './FlowTypeCleaner.cjs';
 import implementation from 'esbuild';
 import path from 'path';
 import testCompiler, { createConfig } from '../test.compiler.mjs';
+import t from '#t';
 
+const { assert } = t;
 
 // @see https://webpack.js.org/contribute/writing-a-loader/#absolute-paths
 // dont use absolute paths as it breaks hashing
@@ -67,7 +67,7 @@ const getConfig = (i = r('index')) => ({
   },
 });
 
-const test = suite('FlowTypeCleaner');
+const test = t.suite('FlowTypeCleaner');
 
 const result = FlowTypeCleaner(`
   // @flow
@@ -75,19 +75,19 @@ const result = FlowTypeCleaner(`
 `);
 
 test('is function', () => {
-  assert.type(FlowTypeCleaner, 'function');
+  assert.isFunction(FlowTypeCleaner);
 });
 
 test('returns string', () => {
-  assert.type(result, 'string', 'should return a string');
+  assert.isString(result);
 });
 
 test('removes @flow from source', () => {
-  assert.not(result.includes('@flow'), 'should remove string @flow');
+  assert.notInclude(result, '@flow');
 });
 
 test('removes types from source', () => {
-  assert.not(result.includes(': string'), 'should remove string type');
+  assert.notInclude(result, ': string');
 });
 
 test('creates config', () => {
@@ -95,21 +95,21 @@ test('creates config', () => {
 });
 
 test('sanity check with external cjs loader', async () => {
-  assert.type(await testCompiler(getConfig(0)), 'object');
+  assert.isObject(await testCompiler(getConfig(0)));
 });
 
 test('FlowTypeCleaner', async () => {
-  assert.type(await testCompiler(getConfig(1)), 'object');
+  assert.isObject(await testCompiler(getConfig(1)));
 });
 
 test('webpack + FlowTypeCleaner', async () => {
   const result = await testCompiler(getConfig(1));
-  assert.type(result, 'object');
+  assert.isObject(result);
 });
 
 test('webpack + FlowTypeCleaner + esbuild-loader', async () => {
   const result = await testCompiler(getConfig(2));
-  assert.type(result, 'object');
+  assert.isObject(result);
 });
 
 test.run();

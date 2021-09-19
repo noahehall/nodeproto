@@ -54,7 +54,7 @@ export default function webpackServer({
     app,
     compiler,
     config,
-    // controller.abort() -> prohibit incoming connections to koa http server;
+    // controller.abort() -> generally should shutdown server, but prefer httpTerminate;
     controller,
     // likely you want to use this in a real env
     // especially if you expect there to be an unknown amount of connections

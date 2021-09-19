@@ -1,10 +1,11 @@
 import { fileURLToPath } from 'url';
-import { suite } from 'uvu';
-import * as assert from 'uvu/assert';
 
 import path from 'path';
 import reactDevWebpackConfig from './react.dev.webpack.config.mjs';
+import t from '#t';
 import testCompiler from './test.compiler.mjs';
+
+const { assert } = t;
 
 const thisDir = path.dirname(fileURLToPath(import.meta.url));
 
@@ -18,7 +19,7 @@ export const getOpts = (overrides) => ({
   ...overrides
 });
 
-const test = suite('react.dev.webpack.config.mjs');
+const test = t.suite('react.dev.webpack.config.mjs');
 
 test('throws', () => {
   let opts = getOpts();
@@ -41,9 +42,8 @@ test('throws', () => {
 });
 
 test('is okay', () => {
-  assert.type(
+  assert.isObject(
     reactDevWebpackConfig(getOpts()),
-    'object',
     'returns config object'
   );
 });
@@ -53,24 +53,22 @@ test('compilation', async () => {
     entry: [thisDir + '/fixtures/esm.mjs'],
   });
 
-  assert.type(
+  assert.isObject(
     await testCompiler(reactDevWebpackConfig(opts)),
-    'object',
     'compiles esm successfuly'
   );
 
-  assert.type(
+  assert.isObject(
     await testCompiler(reactDevWebpackConfig({
       ...opts,
       entry: [thisDir + '/fixtures/commonjs.cjs'],
     })),
-    'object',
     'compiles cjs successfuly'
   );
 
   // TODO: i've never used .jsx extension
   // add @babel/preset-react to base.webpack.config.mjs if that changes
-  // assert.type(
+  // assert.isObject(
   //   await testCompiler(reactDevWebpackConfig({
   //     ...opts,
   //     entry: [thisDir + '/fixtures/react.jsx'],
@@ -79,32 +77,22 @@ test('compilation', async () => {
   //   'compiles jsx successfuly'
   // );
 
-  assert.type(
+  assert.isObject(
     await testCompiler(reactDevWebpackConfig({
       ...opts,
       entry: [thisDir + '/fixtures/auto.js'],
     })),
-    'object',
     'interprets js and compiles successfuly'
   );
 
-  assert.type(
+  assert.isObject(
     await testCompiler(reactDevWebpackConfig({
       ...opts,
       entry: [thisDir + '/fixtures/flow.mjs'],
     })),
-    'object',
     'removes flowtypes and compiles esm successfuly'
   );
 });
 
-// help determining what error is
-test.skip('throws', () => {
-  // this should throw and reveal error in console
-
-  assert.ok(
-    reactDevWebpackConfig({ pkgJsonPath: './doesnt.exist.here.json' })
-  );
-});
 
 test.run();

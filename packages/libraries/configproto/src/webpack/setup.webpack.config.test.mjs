@@ -1,9 +1,9 @@
-import { suite } from 'uvu';
-import * as assert from 'uvu/assert';
-
 import setupWebpackConfig from './setup.webpack.config.mjs';
+import t from '#t';
 
-const test = suite('setup.webpack.config.mjs');
+const { assert } = t;
+
+const test = t.suite('setup.webpack.config.mjs');
 
 test('throws', () => {
   assert.throws(
@@ -16,24 +16,14 @@ test('throws', () => {
 test('is okay', () => {
   const { pack, config } = setupWebpackConfig();
 
-  assert.type(
+  assert.isObject(
     config,
-    'object',
     'returns config object suitable for a webpack compilation'
   );
 
-  assert.type(
+  assert.isObject(
     pack,
-    'object',
     'returns pack object with environment data & fns'
-  );
-});
-
-// help determining what error is
-test.skip('throws', () => {
-  // this should throw and reveal error in console
-  assert.ok(
-    setupWebpackConfig({ pkgJsonPath: './doesnt.exist.here.json' })
   );
 });
 
