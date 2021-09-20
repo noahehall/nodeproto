@@ -1,5 +1,5 @@
 // @flow
-// import * as flowFixtures from './fixtures/flow.mjs';
+
 import { fileURLToPath } from 'url';
 
 import FlowTypeCleaner from './FlowTypeCleaner.cjs';
@@ -10,19 +10,21 @@ import t from '#t';
 
 const { assert } = t;
 
+const fixtures = '../../test/fixtures/';
+
 // @see https://webpack.js.org/contribute/writing-a-loader/#absolute-paths
 // dont use absolute paths as it breaks hashing
 const config = {
   // eslint-disable-next-line flowtype-errors/show-errors
   context: path.dirname(fileURLToPath(import.meta.url)),
-  entry: '../fixtures/flow.mjs',
+  entry: fixtures + 'flow.mjs',
   module: {
     rules: [
       {
         test: /\.mjs$/,
         type: 'javascript/esm',
         use: {
-          loader: '../fixtures/fakeLoader.cjs',
+          loader: fixtures + 'fakeLoader.cjs',
           options: {},
         },
       },

@@ -3,7 +3,7 @@ import { fsproto } from '@nodeproto/wtf/fsproto';
 
 const servers = new Map();
 
-const stopDev = async config => {
+export const stopDev = async config => {
   const app = servers.get(config.entryPoints);
 
   if (!app) return;
@@ -13,7 +13,7 @@ const stopDev = async config => {
   if (httpTerminator) await httpTerminator.terminate();
   else if (controller) await controller.abort();
   else if (server) await server.close();
-  else throw new Error ('retrieved app doenst contain httpTerminator|server|controller properties');
+  else throw new Error('retrieved app doenst contain httpTerminator|server|controller properties');
 }
 
 const startDev = async config => {
@@ -38,8 +38,6 @@ const startDev = async config => {
 
     throw new Error(e);
   }
-
-  return
 };
 
 const logResults = async ({ errors = [], warnings = [], metafile }) => {

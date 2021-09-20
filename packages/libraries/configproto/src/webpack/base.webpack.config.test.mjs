@@ -10,7 +10,7 @@ const { assert } = t;
 
 export const getConfig = (overrides = {}) => ({
   builtinModules: [],
-  entry: ['./src/webpack/fixtures/esm.mjs'],
+  entry: ['./src/test/fixtures/esm.mjs'],
   mode: 'development',
   pathDist: thisDir + '/dist',
   pathSrc: thisDir,

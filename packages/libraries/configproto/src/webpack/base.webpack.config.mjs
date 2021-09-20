@@ -68,7 +68,10 @@ const generateLoaders = ({
 
   jsLoader: {
     exclude: /node_modules/,
-    include: [pathSrc],
+    // be careful if you do this
+    // you will be hunting for a bug wondering why some files are throwing errors
+    // instead of being compiled if you import a file outside of the pathSrc
+    // include: [pathSrc],
     test: /\.(c|m)?jsx?$/,
     type: 'javascript/auto',
     use: [
@@ -133,7 +136,7 @@ export default function baseWebpackConfig ({
 
   // other shit
   basePlugins = defaultPlugins,
-  context = process.cwd(),
+  context = process.cwd(), // you generally want to pass this in and not rely on process.cwd()
   entryPush = [],
   entryUnshift = [],
   extensions = ['.mjs','.js','.jsx', '.jsx','.json'],

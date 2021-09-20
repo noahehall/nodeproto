@@ -1,5 +1,4 @@
-// useful reference when creating new tetss
-// wish more people did this as no one fkn remembers the syntax, ever
+// useful reference when creating new tests
 
 import t from '#t';
 
@@ -21,7 +20,7 @@ test('reference assertions', () => {
   assert.isOk('truthy test');
   assert.isTrue(true); // you get the idea, isPoop
   assert.isObject({});
-  assert.instanceOf(new assert, assert)
+  // assert.instanceOf(new assert, assert)
   assert.isEmpty([]);
   assert.isEmpty('');
   assert.isEmpty(new Map);
@@ -37,7 +36,7 @@ test('reference assertions', () => {
   assert.include([1,2,3], 2, 'array contains value');
   assert.include('foobar', 'foo', 'string contains substring');
   assert.include({ foo: 'bar', hello: 'universe' }, { foo: 'bar' }, 'object contains property')
-  assert.deepInclude({foo: obj1, bar: obj2}, {foo: {a: 1}}); // really useful
+  assert.deepInclude({foo: {a: 1}, bar: {b:1}}, {foo: {a: 1}}); // really useful
 
   assert.match('foobar', /^foo/, 'regexp matches');
 
@@ -63,9 +62,11 @@ test('reference assertions', () => {
   assert.includeMembers([ 1, 2, 3 ], [ 2, 1, 2 ], 'include members');
 
   // errors
-  assert.throws(fn, /Error thrown must have a msg that matches this/);
-  assert.doesNotThrow(fn, 'Any Error thrown must not have this message');
+  assert.throws(() => { throw new Error('thrown must have a msg')}, / have a msg/);
+  assert.doesNotThrow(() => { throw new Error('poop') }, 'Any Error thrown must not have this message');
 
   // comparisons
   assert.operator(1, '<', 2, 'everything is ok');
-})
+});
+
+test.run();

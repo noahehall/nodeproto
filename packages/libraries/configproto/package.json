@@ -11,7 +11,8 @@
     "#t": {
       "import": "./src/test/t.mjs",
       "default": "./src/cjs/t.cjs"
-    }
+    },
+    "#fixtures/*": "./src/test/fixtures/*"
   },
   "exports": {
     ".": {
