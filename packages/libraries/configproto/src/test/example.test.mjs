@@ -11,6 +11,9 @@ const test = t.suite('example test file');
 test('reference assertions', () => {
   assert(true === true);
 
+  // promises, can be used with any method below
+  return assert.eventually.equal(Promise.resolve(2 + 2), 4, "This had better be true, eventually");
+
   // put not infront of anything
   assert.isNotOk(0);
 

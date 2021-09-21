@@ -13,11 +13,10 @@ chai.config.includeStack = true;
 chai.config.showDiff = true;
 chai.truncateThreshold = 0; // show everything
 
-// // @see https://github.com/domenic/sinon-chai
-sinon.assert.expose(chai.assert, { prefix: ''});
-chai.use(chaiNock);
-chai.use(chaiExclude);
-chai.use(chaiAsPromised);
+sinon.assert.expose(chai.assert, { prefix: ''}); // @see https://github.com/domenic/sinon-chai
+chai.use(chaiNock); // https://github.com/chrisandrews7/chai-nock#readme
+chai.use(chaiExclude); // https://github.com/mesaugat/chai-exclude#examples
+chai.use(chaiAsPromised); // https://github.com/domenic/chai-as-promised#assert-interface
 
 export default {
   assert: chai.assert, // https://www.chaijs.com/api/assert/

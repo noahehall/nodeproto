@@ -33,6 +33,8 @@ const startDev = async config => {
     if (!server.runApp) throw new Error('server does not contain runApp fn');
 
     servers.set(config.entryPoints, await server.runApp());
+
+    return servers;
   } catch (e) {
     console.error('\n\n error starting server', config, manifest, server);
 
@@ -41,13 +43,16 @@ const startDev = async config => {
 };
 
 const logResults = ({ errors = [], warnings = [], metafile }) => {
-  if (warnings.length) console.info('\n\n build warnings', warnings);
+  if (warnings.length) console.warn('\n\n build warnings', warnings);
   if (errors.length) throw new Error(errors);
 
   console.info('\n\n finished build\n', Object.keys(metafile.outputs));
 
   return true;
 }
+
+export const esbuildConfig = async config =>
+  esbuild.build(config).then(results => (logResults(results), results));
 
 export const esrunConfig = async conf => {
   const config = {
@@ -63,11 +68,6 @@ export const esrunConfig = async conf => {
     },
   };
 
-  const results = await esbuild.build(config);
-
-  logResults(results);
+  await esbuildConfig(config);
   await startDev(config);
 }
-
-export const esbuildConfig = async config =>
-  esbuild.build(config).then(results => logResults(results));

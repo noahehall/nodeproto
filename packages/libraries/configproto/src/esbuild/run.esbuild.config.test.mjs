@@ -1,10 +1,10 @@
 import {
-  stopDev,
   esrunConfig,
   esbuildConfig,
 } from './run.esbuild.config.mjs';
 import { createEsbuildConfig } from './create.esbuild.config.mjs';
 import t from '#t';
+import path from 'path';
 
 const { assert } = t;
 
@@ -12,19 +12,47 @@ const test = t.suite('run.esbuild.config.test.mjs');
 
 const getConfig = props => ({
   entry: '',
-  outdir: '',
-  pkgJson: '',
+  outdir: './dist',
+  pkgJson: {},
   write: false,
 
   ...props
 });
 
-test('esbuildConfig', () => {
-  assert(true === true);
+test('esbuildConfig', async () => {
+  [
+    './src/test/fixtures/auto.js',
+    './src/test/fixtures/commonjs.cjs',
+    './src/test/fixtures/esm.mjs',
+    // TODO: remove flow types with esbuild
+    // https://github.com/dalcib/esbuild-plugin-flow
+    // https://github.com/evanw/esbuild/issues/79
+    // https://medium.com/flow-type/clarity-on-flows-direction-and-open-source-engagement-e721a4eb4d8b
+    // './src/test/fixtures/flow.mjs',
+    './src/test/fixtures/react.jsx',
+  ].forEach(entry => assert.eventually.hasAllKeys(
+    esbuildConfig(createEsbuildConfig(getConfig({ entry }))),
+    [ 'errors', 'metafile', 'outputFiles', 'warnings' ],
+    `compiles ${entry.split('.').pop()} files`
+  ));
+
 });
 
-test('esrunConfig', () => {
-  assert(true === true);
+// TODO: see integration test, skipping full unit tests for now
+test('esrunConfig', async () => {
+  assert(true === true)
+  // [
+  //   './src/test/fixtures/auto.js',
+  //   // './src/test/fixtures/commonjs.cjs',
+  //   // './src/test/fixtures/esm.mjs',
+  //   // TODO: see esbuildConfig test comments
+  //   // './src/test/fixtures/flow.mjs',
+  //   // './src/test/fixtures/react.jsx',
+  // ].forEach(entry => assert.throws(
+  //   () => Promise.resolve(esrunConfig(createEsbuildConfig(getConfig({ entry, write: true })))),
+  //   /poop/,
+  //   `compiles ${entry.split('.').pop()} files`
+  // ));
 });
 
 // test('reference assertions', () => {
