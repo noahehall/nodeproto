@@ -37,7 +37,6 @@
   "scripts": {
     "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
     "cp:flow": "cp node_modules/@nodeproto/configproto/.flowconfig .",
-    "ultra": "ultra",
     "upgrade": "pnpm upgrade -L",
     "nvm:latest": "nvm install node --reinstall-packages-from=current",
     "post:nvm:latest": "nvm alias default node",

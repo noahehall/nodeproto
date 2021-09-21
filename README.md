@@ -1,17 +1,70 @@
 # categorize these before merge to master
 
+scripts
+
+- reqs
+  - use nvm, or atleast somethign similar
+
+- setup
+  - `corepack enable` installs pnpm as specified in `pkgjson.packageManager`
+  - sync global version `corepack prepare pnpm@6.15.1 --activate`
+
+- run cmds from root dir
+  - generally you want two terminals for the best experience
+    - terminal 1: `pnpx ultra --monitor`
+    - terminal 2: see any of the cmds below
+    - [always use pnpx with ultra](https://github.com/folke/ultra-runner#rocket-usage)
+  - run cmd in specific pkg `pnpx ultra -r --filter "@nodeproto/configproto" test`
+  - run cmd in specific pkg + dependencies `pnpx ultra -r --filter "+@nodeproto/configproto" test`
+    - note the `+` before the pkg name
+    - dependencies: other monorepo pkgs, not node_modules
+  - run cmd in all pkgs matching scope `pnpx ultra -r --filter "@nodeproto/*" test`
+    - in a monorepo with a single scope, this will run all pkgs
+  - run cmd in all subdirectory `pnpx ultra -r --filter "packages/libraries/*" test`
+  - run cmd in all pkgs `pnpx ultra -r test`
+- **TODO** default cmds available to all (appropriate) pkgs
+  - test|test:ci|test:integration|test:e2e|test:ing (unit)|test:ing:e2e
+    - ci - no concurrency (nothing should be concurrent in ci)
+    - integration see @nodeproto/tests/integration
+    - e2e see @nodeproto/tests/e2e
+    - test:ing i.e. watch
+  - build|build:prod
+    - depending on the pkg, this could utilize swc, esbuild, or webpack (in increasing order of complexity, with decreasing order of build efficiency)
+    - e.g. swc > esbuild > webpack build speed
+    - but webpack > esbuild > swc in terms of managed complexity and flexibility
+  - lint (should fix by defualt)
+    - eslint
+  - jsync
+    - sync package/package.json with root/package.json
+  - start:native:dev|start:native:prod|start:cloud:dev|start:cloud:prod
+    - native - baremetal
+    - cloud - docker
+  - provided by ultra
+    - `pnpx ultra --info` see package dependencies
+    - `pnpx ultra --list` see package scripts
+    - `pnpx ultra --monitor` monitor node processes in real time
+      - i generally just keep this running in a second terminal
+
 tests
 
 - generally unit tests are located next to their source files
 - integration & e2e tests are in `packages/tests`
   - check `packages/tests/integration` for runnable & reference implementations
   - TODO: e2e tests will be in `packages/tests/e2e`
-- [watchlist for uvu tests](https://github.com/lukeed/watchlist)
-  - maybe just stick to chokidar
-  - this always clears console
 - [uvu until we break it](https://github.com/lukeed/uvu)
 
 other shit
+
+- thoughts on micro frontends
+  - if you're current dev experience is crap, i can totally see why you would go through the trouble of a single spa
+  - if you're in a wonderfully designed monorepo, utilizing the latest version of git, with an awesome devops workflow, we'll keep the jokes between us
+
+- thoughts on precommit hooks
+  - prefer pre-merge|rebase hooks
+    - <https://git-scm.com/docs/githooks#_pre_merge_commit>
+    - <https://git-scm.com/docs/githooks#_pre_rebase>
+  - i generally dislike anything that slows down development when another non-slow-me-down paradigm exists
+    - i understand this is a losing battle, so likely i will implement a `pre-push` hook to meet the community halfway
 
 - [npmrc pnpm specific](https://pnpm.io/npmrc)
 - [update pnpm publishConfig before publishing](https://pnpm.io/package_json)

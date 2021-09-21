@@ -74,7 +74,6 @@
   },
   "scripts": {
     "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
-    "ultra": "ultra",
     "upgrade": "pnpm upgrade -L",
     "nvm:latest": "nvm install node --reinstall-packages-from=current",
     "post:nvm:latest": "nvm alias default node",
@@ -88,6 +87,11 @@
   "jsync": {
     "root": true
   },
+  "ultra": {
+    "concurrent": ["eslint", "test", "cp:flow"]
+  },
+  "packageManager": "pnpm@6.15.1",
   "devDependencies": {
+    "ultra-runner": "3.10.5"
   }
 }

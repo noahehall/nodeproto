@@ -12,17 +12,22 @@
     "check": "NODE_OPTIONS=$npm_package_config_NODE_OPTIONS node index.mjs --check",
     "run": "NODE_OPTIONS=$npm_package_config_NODE_OPTIONS node index.mjs --run",
     "inception": "NODE_OPTIONS=$npm_package_config_NODE_OPTIONS node index.mjs --inception",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" uvu ./src test.mjs",
     "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
-    "ultra": "ultra",
-    "upgrade": "pnpm upgrade -L"
+    "upgrade": "pnpm upgrade -L",
+    "nvm:latest": "nvm install node --reinstall-packages-from=current",
+    "post:nvm:latest": "nvm alias default node",
+    "eslint": "eslint 'src/**/*'",
+    "eslint:fix": "pnpm eslint -- --fix",
+    "cp:flow": "cp node_modules/@nodeproto/configproto/.flowconfig .",
+    "test:help": "uvu --help",
+    "test:ing": "clear; pnpm test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"clear; pnpm test\""
   },
   "dependencies": {
     "@nodeproto/wtf": "workspace:*",
     "chalk": "4.1.1",
     "chokidar": "3.5.2",
     "env-cmd": "10.1.0",
-    "ultra-runner": "3.10.5",
     "yargs": "17.0.1"
   },
   "jsync": {
@@ -70,19 +75,25 @@
     "linux"
   ],
   "engines": {
-    "node": ">=16.5",
+    "node": ">=16.9",
     "npm": ">=7.18.1",
     "pnpm": ">=6.9"
   },
   "config": {
     "NODE_OPTIONS": "--pending-deprecation --experimental-wasm-modules --trace-warnings --experimental-top-level-await --enable-source-maps --experimental-vm-modules --experimental-worker --experimental-import-meta-resolve --experimental-report --trace-exit --heapsnapshot-near-heap-limit=3 --trace-uncaught --deprecation --trace-deprecation --no-insecure-http-parser --report-uncaught-exception --use-largepages=on --warnings --experimental-abortcontroller --report-on-fatalerror --experimental-json-modules --trace-sigint --abort-on-uncaught-exception --es-module-specifier-resolution=node --experimental-specifier-resolution=node --experimental-modules",
-    "NODE_ENV": "development"
+    "NODE_ENV": "development",
+    "PATH_DIST": "./dist",
+    "PATH_SRC": "./src",
+    "BABEL_SHOW_CONFIG_FOR": "e.g. BABEL_SHOW_CONFIG_FOR=absolute/path/to/file somePkgJsonScriptName"
   },
   "repository": "git://github.com/noahehall/nodeproto.git",
   "devDependencies": {
-    "@nodeproto/jsync": "workspace:*"
+    "@nodeproto/jsync": "workspace:*",
+    "ultra-runner": "3.10.5",
+    "uvu": "0.5.1"
   },
   "peerDependencies": {
     "@nodeproto/jsync": "workspace:*"
-  }
+  },
+  "packageManager": "pnpm@6.15.1"
 }

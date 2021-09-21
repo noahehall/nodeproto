@@ -63,7 +63,6 @@
     "test:help": "uvu --help",
     "test:ing": "clear; pnpm test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"clear; pnpm test\"",
     "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
-    "ultra": "ultra",
     "upgrade": "pnpm upgrade -L",
     "d": "rm -rf cjs/*",
     "cjs:babel": "pnpm d && NODE_OPTIONS=$npm_package_config_NODE_OPTIONS babel $npm_package_config_DIRS_TO_TRANSPILE -d src/cjs --out-file-extension .cjs --ignore 'src/**/*.test.mjs' --ignore src/webpack/test.compiler.mjs",
@@ -197,7 +196,6 @@
     "svg-url-loader": "7.1.1",
     "tap": "15.0.9",
     "tapromise": "1.1.2",
-    "ultra-runner": "3.10.5",
     "url-loader": "4.1.1",
     "uvu": "0.5.1",
     "watchlist": "0.3.1",
@@ -257,7 +255,6 @@
     "string-replace-loader": "3.0.3",
     "style-loader": "3.2.1",
     "svg-url-loader": "7.1.1",
-    "ultra-runner": "3.10.5",
     "url-loader": "4.1.1",
     "webpack": "5.46.0",
     "webpack-dev-middleware-2": "5.0.2",
@@ -374,9 +371,6 @@
       "optional": true
     },
     "flow-bin": {
-      "optional": true
-    },
-    "ultra-runner": {
       "optional": true
     },
     "webpack": {

@@ -6,7 +6,6 @@
   },
   "scripts": {
     "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
-    "ultra": "ultra",
     "start": "NODE_OPTIONS=$npm_package_config_NODE_OPTIONS node index.mjs",
     "verbose": "NODE_ENV=verbose node index.mjs",
     "upgrade": "pnpm upgrade -L",
@@ -18,17 +17,14 @@
     "jsync": "node ./bin/jsync.js",
     "test": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" uvu ./src test.mjs",
     "test:help": "uvu --help",
-    "test:ing": "pnpm test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"clear; pnpm test\""
+    "test:ing": "clear; pnpm test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"clear; pnpm test\""
   },
   "dependencies": {
     "@nodeproto/wtf": "workspace:*",
     "env-cmd": "10.1.0",
     "eslint": "7.32.0",
     "flow-bin": "0.157.0",
-    "react": "18.0.0-alpha-419cc9c37-20210726",
-    "react-dom": "18.0.0-alpha-419cc9c37-20210726",
-    "ultra-runner": "3.10.5",
-    "yargs": "17.0.1"
+    "ultra-runner": "3.10.5"
   },
   "jsync": {
     "root": false
@@ -90,7 +86,8 @@
   },
   "repository": "git://github.com/noahehall/nodeproto.git",
   "devDependencies": {
-    "tap": "15.0.9",
-    "tapromise": "1.1.2"
-  }
+    "ultra-runner": "3.10.5",
+    "uvu": "0.5.1"
+  },
+  "packageManager": "pnpm@6.15.1"
 }
