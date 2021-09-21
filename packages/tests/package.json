@@ -4,11 +4,6 @@
     "email": "noahedwardhall+souls@gmail.com",
     "url": "https://github.com/noahehall"
   },
-  "engines": {
-    "node": ">=16.5",
-    "npm": ">=7.18.1",
-    "pnpm": ">=6.9"
-  },
   "directories": {
     "dist": "./dist"
   },
@@ -37,7 +32,6 @@
     "flow": "flow",
     "cp:flow": "cp node_modules/@nodeproto/configproto/.flowconfig .",
     "about": "npm run-script",
-    "ultra": "ultra",
     "serve": "npx serve",
     "start:reactdevtools": "react-devtools",
     "start:webpack:server": "node integration/configproto/webpack.server.mjs",
@@ -95,7 +89,6 @@
     "string-replace-loader": "3.0.3",
     "style-loader": "3.2.1",
     "svg-url-loader": "7.1.1",
-    "ultra-runner": "3.10.5",
     "url-loader": "4.1.1",
     "uvu": "0.5.1",
     "webpack": "5.51.1",

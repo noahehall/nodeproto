@@ -6,10 +6,16 @@
   "scripts": {
     "start": "NODE_OPTIONS=$npm_package_config_NODE_OPTIONS web-ext run --bc -t firefox-desktop --url about.pinterest.com",
     "start:c": "web-ext run --bc -t chromium",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" uvu ./src test.mjs",
     "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
-    "ultra": "ultra",
-    "upgrade": "pnpm upgrade -L"
+    "upgrade": "pnpm upgrade -L",
+    "nvm:latest": "nvm install node --reinstall-packages-from=current",
+    "post:nvm:latest": "nvm alias default node",
+    "eslint": "eslint 'src/**/*'",
+    "eslint:fix": "pnpm eslint -- --fix",
+    "cp:flow": "cp node_modules/@nodeproto/configproto/.flowconfig .",
+    "test:help": "uvu --help",
+    "test:ing": "clear; pnpm test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"clear; pnpm test\""
   },
   "author": {
     "name": "theDRAGON",
@@ -19,6 +25,8 @@
   "license": "SEE LICENSE IN LICENSE.md",
   "devDependencies": {
     "@nodeproto/jsync": "workspace:*",
+    "ultra-runner": "3.10.5",
+    "uvu": "0.5.1",
     "web-ext": "^6.2.0"
   },
   "peerDependencies": {
@@ -61,23 +69,21 @@
     "darwin",
     "linux"
   ],
-  "engines": {
-    "node": ">=16.5",
-    "npm": ">=7.18.1",
-    "pnpm": ">=6.9"
-  },
   "config": {
     "NODE_OPTIONS": "--pending-deprecation --experimental-wasm-modules --trace-warnings --experimental-top-level-await --enable-source-maps --experimental-vm-modules --experimental-worker --experimental-import-meta-resolve --experimental-report --trace-exit --heapsnapshot-near-heap-limit=3 --trace-uncaught --deprecation --trace-deprecation --no-insecure-http-parser --report-uncaught-exception --use-largepages=on --warnings --experimental-abortcontroller --report-on-fatalerror --experimental-json-modules --trace-sigint --abort-on-uncaught-exception --es-module-specifier-resolution=node --experimental-specifier-resolution=node --experimental-modules",
-    "NODE_ENV": "development"
+    "NODE_ENV": "development",
+    "PATH_DIST": "./dist",
+    "PATH_SRC": "./src",
+    "BABEL_SHOW_CONFIG_FOR": "e.g. BABEL_SHOW_CONFIG_FOR=absolute/path/to/file somePkgJsonScriptName"
   },
   "dependencies": {
     "download": "8.0.0",
     "env-cmd": "10.1.0",
     "express": "4.17.1",
     "safe-compare": "1.1.4",
-    "ultra-runner": "3.10.5",
     "yargs": "17.0.1"
   },
   "repository": "git://github.com/noahehall/nodeproto.git",
-  "type": "module"
+  "type": "module",
+  "packageManager": "pnpm@6.15.1"
 }

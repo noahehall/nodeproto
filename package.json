@@ -60,11 +60,6 @@
     "pnpm-workspace.yaml",
     "README.md"
   ],
-  "engines": {
-    "node": ">=16.9",
-    "npm": ">=7.18.1",
-    "pnpm": ">=6.9"
-  },
   "config": {
     "PATH_DIST": "./dist",
     "PATH_SRC": "./src",
@@ -74,20 +69,30 @@
   },
   "scripts": {
     "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
-    "ultra": "ultra",
-    "upgrade": "pnpm upgrade -L",
+    "config:list": "pnpm config list --json",
+    "cp:flow": "cp node_modules/@nodeproto/configproto/.flowconfig .",
+    "eslint:fix": "pnpm eslint -- --fix",
+    "eslint": "eslint 'src/**/*'",
     "nvm:latest": "nvm install node --reinstall-packages-from=current",
     "post:nvm:latest": "nvm alias default node",
-    "eslint": "eslint 'src/**/*'",
-    "eslint:fix": "pnpm eslint -- --fix",
-    "cp:flow": "cp node_modules/@nodeproto/configproto/.flowconfig .",
-    "test": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" uvu ./src test.mjs",
     "test:help": "uvu --help",
-    "test:ing": "clear; pnpm test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"clear; pnpm test\""
+    "test:ing": "clear; pnpm test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"clear; pnpm test\"",
+    "test": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" uvu ./src test.mjs",
+    "upgrade": "pnpm upgrade -L"
   },
   "jsync": {
     "root": true
   },
+  "ultra": {
+    "concurrent": [
+      "eslint",
+      "test",
+      "cp:flow"
+    ]
+  },
+  "packageManager": "pnpm@6.15.1",
   "devDependencies": {
+    "@changesets/cli": "2.17.0",
+    "ultra-runner": "3.10.5"
   }
 }

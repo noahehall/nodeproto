@@ -1,17 +1,150 @@
 # categorize these before merge to master
 
+scripts
+
+- debugging
+  - [remove pnpm](https://pnpm.io/uninstall)
+  - then fall through setup below
+
+- setup `@nodeproto` for development
+  - install pnpm `curl -fsSL https://get.pnpm.io/install.sh | sh -`
+  - install pnpm tab-completion `pnpm install-completion`
+  - install node `pnpm env use --global 16`
+    - FYI: as soon as 17 drops, we will be on it
+  - install root dependencies `pnpm install`
+  - install package dependencies `pnpm -r exec pnpm install`
+    - ignore the cyclic dependencies, will resolve that later
+  - verify tests `pnpm exec ultra -r test`
+
+- development
+  - `corepack enable` installs pnpm as specified in `pkgjson.packageManager`
+  - sync global version `corepack prepare pnpm@6.15.1 --activate`
+
+- [publishing a new version](https://pnpm.io/using-changesets)
+  - create a new changeset `pnpm changeset`
+  - version bump `pnpm changeset version`
+  - update lockfile and rebuild pkgs `pnpm install`
+  - commit changes
+  - [should automate this via github action](https://pnpm.io/using-changesets#using-github-actions)
+
+- publish packages `pnpm publish -r`
+    -
+
+- run cmds from root dir
+  - generally you want two terminals for the best experience
+    - terminal 1: `pnpm exec ultra --monitor`
+    - terminal 2: see any of the cmds below
+    - [always use pnpm exec with ultra](https://github.com/folke/ultra-runner#rocket-usage)
+  - run cmd in specific pkg `pnpm exec ultra -r --filter "@nodeproto/configproto" test`
+  - run cmd in specific pkg + dependencies `pnpm exec ultra -r --filter "+@nodeproto/configproto" test`
+    - note the `+` before the pkg name
+    - dependencies: other monorepo pkgs, not node_modules
+  - run cmd in all pkgs matching scope `pnpm exec ultra -r --filter "@nodeproto/*" test`
+    - in a monorepo with a single scope, this will run all pkgs
+  - run cmd in all subdirectory `pnpm exec ultra -r --filter "packages/libraries/*" test`
+  - run cmd in all pkgs `pnpm exec ultra -r test`
+
+- **TODO** default cmds available to all (appropriate) pkgs
+  - test|test:ci|test:integration|test:e2e|test:ing (unit)|test:ing:e2e
+    - ci - no concurrency (nothing should be concurrent in ci)
+    - integration see @nodeproto/tests/integration
+    - e2e see @nodeproto/tests/e2e
+    - test:ing i.e. watch
+  - build|build:prod
+    - depending on the pkg, this could utilize swc, esbuild, or webpack (in increasing order of complexity, with decreasing order of build efficiency)
+    - e.g. swc > esbuild > webpack build speed
+    - but webpack > esbuild > swc in terms of managed complexity and flexibility
+  - lint (should fix by defualt)
+    - eslint
+  - jsync
+    - sync package/package.json with root/package.json
+  - start:native:dev|start:native:prod|start:cloud:dev|start:cloud:prod
+    - native - baremetal
+    - cloud - docker
+- cmds provided by ultra
+  - `pnpm exec ultra --info` see package dependencies
+  - `pnpm exec ultra --list` see package scripts
+  - `pnpm exec ultra --monitor` monitor node processes in real time
+    - i generally just keep this running in a second terminal
+- easy to forget syntax of pnpm
+  - `pnpm add PKG`
+    - @nodeproto/PKG add an internal pkg to another pkg
+    - ./somedir/or/somefile.tar (a dir or file)
+    - <git remote url>
+      - latest commit from master `kevva/is-positive`
+      - specific commit `kevva/is-positive#97edff6f525f192a3f83cea1944765f769ae2678`
+      - specific branch `kevva/is-positive#master`
+    - <https://github.com/indexzero/forever/tarball/v0.5.6>
+    - -D dev deps
+    - -O optional deps
+    - -P dep (this is defualt)
+    - --save-peer both dev and peer deps
+    - --global (dont do it, just use pnpm exec)
+  - [pnpm install](https://pnpm.io/cli/install)
+  - pnpm -r exec pnpm up latest
+    - upgrade all packages to their latest
+      - fks up react alpha
+  - [pnpm remove](https://pnpm.io/cli/remove)
+  - [pnpm link](https://pnpm.io/cli/link)
+  - [pnpm unlink](https://pnpm.io/cli/unlink)
+  - [pnpm import](https://pnpm.io/cli/import)
+    - useful when migrating from another pkg manager, e.g. yarn|npm
+  - [pnpm fetch](https://pnpm.io/cli/fetch)
+    - useful when building a docker image
+  - [pnpm audit](https://pnpm.io/cli/audit)
+  - [pnpm list](https://pnpm.io/cli/list)
+  - [pnpm outdated](https://pnpm.io/cli/outdated)
+  - [pnpm why](https://pnpm.io/cli/why)
+  - [pnpm run](https://pnpm.io/cli/run)
+    - doesnt run pre/post scripts, however ultra does
+  - [pnpm publish](https://pnpm.io/cli/publish)
+  - [pnpm pack](https://pnpm.io/cli/pack)
+  - [pnpm recursive](https://pnpm.io/cli/recursive)
+  - [pnpm server](https://pnpm.io/cli/server)
+  - [pnpm store](https://pnpm.io/cli/store)
+
 tests
 
 - generally unit tests are located next to their source files
 - integration & e2e tests are in `packages/tests`
   - check `packages/tests/integration` for runnable & reference implementations
   - TODO: e2e tests will be in `packages/tests/e2e`
-- [watchlist for uvu tests](https://github.com/lukeed/watchlist)
-  - maybe just stick to chokidar
-  - this always clears console
 - [uvu until we break it](https://github.com/lukeed/uvu)
 
 other shit
+
+- add the pnpm logo: <https://pnpm.io/logos>
+
+- thoughts on micro frontends
+  - if you're current dev experience is crap, i can totally see why you would go through the trouble of a single spa
+  - if you're in a wonderfully designed monorepo, utilizing the latest version of git, with an awesome devops workflow, we'll keep the jokes between us
+
+- thoughts on precommit hooks
+  - prefer pre-merge|rebase hooks
+    - <https://git-scm.com/docs/githooks#_pre_merge_commit>
+    - <https://git-scm.com/docs/githooks#_pre_rebase>
+  - i generally dislike anything that slows down development when another non-slow-me-down paradigm exists
+    - i understand this is a losing battle, so likely i will implement a `pre-push` hook to meet the community halfway
+
+- thoughts on meta, yarn, npm, pnpm: and why i chose pnpm and where ultra-runner + loop fits in
+  - <https://pnpm.io/motivation>
+  - <https://pnpm.io/cli/exec>
+  - <https://pnpm.io/cli/dlx>
+  - <https://pnpm.io/filtering>
+  - <https://pnpm.io/cli/env>
+  - <https://pnpm.io/package_json>
+  - <https://pnpm.io/npmrc>
+  - <https://pnpm.io/pnpm-workspace_yaml>
+  - <https://pnpm.io/pnpmfile>
+  - <https://pnpm.io/aliases>
+  - <https://medium.com/pnpm/pnpm-vs-lerna-filtering-in-a-multi-package-repository-1f68bc644d6a>
+  - we actually dont need ultra runner, you can run all cmds above via `pnpm -r CMD` + filtering, parallelism, etc.
+    - however: have you seen the heavenly output of ultra-runner?
+  - we actually dont need loop, however... **TODO**
+
+- thoughts on cloud native
+  - definitely the way to go.... after everything works on baremetal
+  - im 100% for virtualization, but baremetal is still best for debugging
 
 - [npmrc pnpm specific](https://pnpm.io/npmrc)
 - [update pnpm publishConfig before publishing](https://pnpm.io/package_json)

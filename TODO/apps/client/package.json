@@ -20,11 +20,6 @@
     "dist": "./dist",
     "lib": "./lib"
   },
-  "engines": {
-    "node": ">=16.5",
-    "npm": ">=7.18.1",
-    "pnpm": ">=6.9"
-  },
   "os": [
     "darwin",
     "linux"
