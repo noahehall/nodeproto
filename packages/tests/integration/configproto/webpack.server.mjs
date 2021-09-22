@@ -1,6 +1,6 @@
+// import { webpackConfig as reactEsbuildWebpackConfig } from './webpack.react.esbuild.config.mjs';
 import { serverWebpack as webpackServer } from '@nodeproto/configproto';
 import { webpackConfig as reactDevWebpackConfig } from './webpack.react.dev.config.mjs';
-import { webpackConfig as reactEsbuildWebpackConfig } from './webpack.react.esbuild.config.mjs';
 
 import esMain from 'es-main';
 

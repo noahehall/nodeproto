@@ -40,14 +40,6 @@ const generateLoaders = ({
     ],
   },
 
-  // @see https://github.com/webpack/webpack/issues/11467
-  esmLoader: {
-    test: /\.m?js$/,
-    type: 'javascript/auto',
-    // include: /node_modules/,
-    resolve: { fullySpecified: false },
-  },
-
   fontLoader: {
     test: /\.(eot|otf|ttf|woff|woff2)$/,
     use: 'file-loader',
@@ -64,27 +56,6 @@ const generateLoaders = ({
         },
       }
     ],
-  },
-
-  jsLoader: {
-    exclude: /node_modules/,
-    // be careful if you do this
-    // you will be hunting for a bug wondering why some files are throwing errors
-    // instead of being compiled if you import a file outside of the pathSrc
-    // include: [pathSrc],
-    test: /\.(c|m)?jsx?$/,
-    type: 'javascript/auto',
-    use: [
-      {
-        loader: 'babel-loader',
-        options: {
-          sourceType: "unambiguous",
-          // TODO: likely wont work with cjs
-          configFile: fileURLToPath(new URL('../babel/flow.babelrc', import.meta.url))
-        },
-      },
-      stringReplaceLoader,
-    ]
   },
 
   svgLoader: {
@@ -109,6 +80,35 @@ const generateLoaders = ({
         limit: 10000,
       },
     },
+  },
+
+  // @see https://github.com/webpack/webpack/issues/11467
+  esmLoader: {
+    test: /\.m?js$/,
+    type: 'javascript/auto',
+    // include: /node_modules/,
+    resolve: { fullySpecified: false },
+  },
+
+  jsLoader: {
+    exclude: /node_modules/,
+    // be careful if you do this
+    // you will be hunting for a bug wondering why some files are throwing errors
+    // instead of being compiled if you import a file outside of the pathSrc
+    // include: [pathSrc],
+    test: /\.(c|m)?jsx?$/,
+    type: 'javascript/auto',
+    use: [
+      {
+        loader: 'babel-loader',
+        options: {
+          sourceType: "unambiguous",
+          // TODO: likely wont work with cjs
+          configFile: fileURLToPath(new URL('../babel/flow.babelrc', import.meta.url))
+        },
+      },
+      stringReplaceLoader,
+    ]
   },
 });
 

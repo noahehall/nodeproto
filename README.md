@@ -30,6 +30,10 @@ scripts
 - publish packages `pnpm publish -r`
     -
 
+- upgrades
+  - run `pnpm -r exec pnpm outdated` to see any outdated packages
+    - we want to remain on the bleeding edge
+
 - run cmds from root dir
   - generally you want two terminals for the best experience
     - terminal 1: `pnpm exec ultra --monitor`
