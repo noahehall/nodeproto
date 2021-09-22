@@ -13,7 +13,10 @@
     "NODE_ENV": "development",
     "REACT_APP_FILE": "./app/app.mjs",
     "REACT_APP_ID": "root",
-    "NODE_OPTIONS": "--trace-exit --trace-sigint --experimental-specifier-resolution=node --trace-uncaught --trace-warnings --experimental-import-meta-resolve --enable-source-maps --experimental-json-modules --preserve-symlinks-main --preserve-symlinks"
+    "NODE_OPTIONS": "--pending-deprecation --experimental-wasm-modules --trace-warnings --experimental-top-level-await --enable-source-maps --experimental-vm-modules --experimental-worker --experimental-import-meta-resolve --experimental-report --trace-exit --heapsnapshot-near-heap-limit=3 --trace-uncaught --deprecation --trace-deprecation --no-insecure-http-parser --report-uncaught-exception --use-largepages=on --warnings --experimental-abortcontroller --report-on-fatalerror --experimental-json-modules --trace-sigint --abort-on-uncaught-exception --es-module-specifier-resolution=node --experimental-specifier-resolution=node --experimental-modules",
+    "PATH_DIST": "./dist",
+    "PATH_SRC": "./src",
+    "BABEL_SHOW_CONFIG_FOR": "e.g. BABEL_SHOW_CONFIG_FOR=absolute/path/to/file somePkgJsonScriptName"
   },
   "directories": {
     "app": "./app",
@@ -31,6 +34,16 @@
     "start:reactdevtools": "react-devtools",
     "start": "concurrently npm:start:dev npm:start:reactdevtools",
     "start:client": "npm start",
+    "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
+    "config:list": "pnpm config list --json",
+    "cp:flow": "cp node_modules/@nodeproto/configproto/.flowconfig .",
+    "eslint:fix": "pnpm eslint -- --fix",
+    "eslint": "eslint 'src/**/*'",
+    "pkg:deps": "pnpm exec ultra --info",
+    "test:help": "uvu --help",
+    "test:ing": "clear; pnpm test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"clear; pnpm test\"",
+    "test": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" uvu ./src test.mjs",
+    "upgrade": "pnpm upgrade -L"
   },
   "jsync": {
     "root": false
@@ -49,9 +62,9 @@
     "milligram": "1.4.1",
     "modernizr": "3.11.7",
     "normalize.css": "8.0.1",
-    "react": "17.0.2",
+    "react": "18.0.0-alpha-edfe50510-20210823",
     "react-aria": "3.8.0",
-    "react-dom": "17.0.2",
+    "react-dom": "18.0.0-alpha-419cc9c37-20210726",
     "react-helmet": "6.1.0",
     "react-icons": "4.2.0",
     "react-is": "17.0.2",
@@ -75,7 +88,9 @@
     "@babel/preset-modules": "0.1.4",
     "@babel/preset-react": "7.14.5",
     "@babel/traverse": "7.14.8",
+    "@changesets/cli": "2.17.0",
     "@nodeproto/jsync": "workspace:*",
+    "@nodeproto/tests": "workspace:0.0.0",
     "babel-loader": "8.2.2",
     "babel-plugin-styled-components": "1.13.2",
     "babel-plugin-tailcall-optimization": "2.0.0",
@@ -109,11 +124,13 @@
     "style-loader": "3.2.1",
     "svg-url-loader": "7.1.1",
     "tap-spec": "5.0.0",
+    "ultra-runner": "3.10.5",
     "url-loader": "4.1.1",
     "webpack": "5.46.0",
     "webpack-dev-middleware-2": "5.0.2",
     "webpack-hot-middleware-2": "2.25.2",
-    "workbox-webpack-plugin": "6.1.5"
+    "workbox-webpack-plugin": "6.1.5",
+    "uvu": "0.5.1"
   },
   "author": {
     "name": "theDRAGON",
@@ -153,7 +170,12 @@
     "webpack5"
   ],
   "repository": "git://github.com/noahehall/nodeproto.git",
-  "peerDependencies": {
-    "@nodeproto/jsync": "workspace:*"
-  }
+  "ultra": {
+    "concurrent": [
+      "eslint",
+      "test",
+      "cp:flow"
+    ]
+  },
+  "packageManager": "pnpm@6.15.1"
 }
