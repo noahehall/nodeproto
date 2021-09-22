@@ -23,8 +23,6 @@
     "jsonc-simple-parser": "2.2.0",
     "memfs": "3.2.2",
     "mkdirp": "1.0.4",
-    "picomatch": "2.3.0",
-    "shelljs": "0.8.4",
     "symlink-dir": "5.0.1",
     "ultra-runner": "3.10.5",
     "yargs": "17.0.1"
@@ -91,11 +89,11 @@
     "BABEL_SHOW_CONFIG_FOR": "e.g. BABEL_SHOW_CONFIG_FOR=absolute/path/to/file somePkgJsonScriptName"
   },
   "devDependencies": {
+    "@changesets/cli": "2.17.0",
     "@nodeproto/jsync": "workspace:0.0.0",
     "eslint": "7.32.0",
-    "uvu": "0.5.1",
     "ultra-runner": "3.10.5",
-    "@changesets/cli": "2.17.0"
+    "uvu": "0.5.1"
   },
   "packageManager": "pnpm@6.15.1",
   "ultra": {

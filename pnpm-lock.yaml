@@ -190,6 +190,18 @@ importers:
       ultra-runner: 3.10.5
       uvu: 0.5.1
 
+  packages/shared:
+    specifiers:
+      '@folder/readdir': 3.1.0
+      jsonc-simple-parser: 2.2.0
+      picomatch: 2.3.0
+      shelljs: 0.8.4
+    dependencies:
+      '@folder/readdir': 3.1.0
+      jsonc-simple-parser: 2.2.0
+      picomatch: 2.3.0
+      shelljs: 0.8.4
+
   packages/tests:
     specifiers:
       '@babel/cli': 7.14.8
@@ -324,7 +336,7 @@ importers:
   packages/tools/jsync:
     specifiers:
       '@changesets/cli': 2.17.0
-      '@nodeproto/wtf': workspace:*
+      '@nodeproto/shared': workspace:0.0.0
       env-cmd: 10.1.0
       eslint: 7.32.0
       flow-bin: 0.157.0
@@ -332,7 +344,7 @@ importers:
       ultra-runner: 3.10.5
       uvu: 0.5.1
     dependencies:
-      '@nodeproto/wtf': link:../wtf
+      '@nodeproto/shared': link:../../shared
       env-cmd: 10.1.0
       eslint: 7.32.0
       flow-bin: 0.157.0
@@ -358,8 +370,6 @@ importers:
       jsonc-simple-parser: 2.2.0
       memfs: 3.2.2
       mkdirp: 1.0.4
-      picomatch: 2.3.0
-      shelljs: 0.8.4
       symlink-dir: 5.0.1
       ultra-runner: 3.10.5
       uvu: 0.5.1
@@ -376,8 +386,6 @@ importers:
       jsonc-simple-parser: 2.2.0
       memfs: 3.2.2
       mkdirp: 1.0.4
-      picomatch: 2.3.0
-      shelljs: 0.8.4
       symlink-dir: 5.0.1
       ultra-runner: 3.10.5
       yargs: 17.0.1

@@ -22,7 +22,7 @@
     "pkg:deps": "pnpm exec ultra --info"
   },
   "dependencies": {
-    "@nodeproto/wtf": "workspace:*",
+    "@nodeproto/shared": "workspace:0.0.0",
     "env-cmd": "10.1.0",
     "eslint": "7.32.0",
     "flow-bin": "0.157.0",
@@ -84,9 +84,9 @@
   },
   "repository": "git://github.com/noahehall/nodeproto.git",
   "devDependencies": {
+    "@changesets/cli": "2.17.0",
     "ultra-runner": "3.10.5",
-    "uvu": "0.5.1",
-    "@changesets/cli": "2.17.0"
+    "uvu": "0.5.1"
   },
   "packageManager": "pnpm@6.15.1",
   "ultra": {

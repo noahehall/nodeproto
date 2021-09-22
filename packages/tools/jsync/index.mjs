@@ -1,6 +1,7 @@
-import { dirs }from '@nodeproto/wtf';
+import { wtf as wtfShared } from '@nodeproto/shared';
 import fs from 'fs-extra';
 
+const { dirname, getPkgJson, getPkgJsonc } = wtfShared;
 const isObject = (v) => typeof v === 'object' && v !== null;
 const notArrayOrObject = (v) => !isObject(v) && !Array.isArray(v);
 
@@ -23,9 +24,9 @@ const V = {}; // container for all the json segments
 let JSYNC_DEFAULT_CONFIG = process.env.JSYNC_DEFAULT_CONFIG;
 
 if (!JSYNC_DEFAULT_CONFIG) {
-  const diskPath = dirs.dirname(import.meta.url);
-  const { file: thisPkgJson, path: thisPkgJsonPath } = (await dirs.getPkgJson(diskPath));
-  const { file: thisPkgJsonc, path: thisPkgJsoncPath } = (await dirs.getPkgJsonc(diskPath));
+  const diskPath = dirname(import.meta.url);
+  const { file: thisPkgJson, path: thisPkgJsonPath } = (await getPkgJson(diskPath));
+  const { file: thisPkgJsonc, path: thisPkgJsoncPath } = (await getPkgJsonc(diskPath));
 
   JSYNC_DEFAULT_CONFIG = thisPkgJsonc.jsync;
 }
@@ -36,7 +37,7 @@ const getRootPkgFiles = async ({
 }) => {
   if (!maxLookups) throwIt(`unable to find root packageFile in getRootPkgFiles`)
 
-  const { file: json, path: jsonPath } = await dirs.getPkgJson(currentDir);
+  const { file: json, path: jsonPath } = await getPkgJson(currentDir);
 
   return (json?.jsync?.root)
     ? { json, jsonPath }
@@ -50,7 +51,7 @@ const finalizeJsyncConfig = (main, overrides) => ({ ...main, ...overrides });
 
 // TODO: confirm env
 const childPkgJsonPath = process.env.CHILD_PKG_JSON_PATH || process.cwd();
-const childPkgJson = await dirs.getPkgJson(childPkgJsonPath);
+const childPkgJson = await getPkgJson(childPkgJsonPath);
 logIt('\n\n child pkgjson', childPkgJson)
 
 // finalize child jsync config
