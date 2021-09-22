@@ -1,0 +1,13 @@
+{
+  "name": "@nodeproto/shared",
+  "type": "module",
+  "private": true,
+  "version": "0.0.0",
+  "exports": "./index.mjs",
+  "dependencies": {
+    "@folder/readdir": "3.1.0",
+    "jsonc-simple-parser": "2.2.0",
+    "picomatch": "2.3.0",
+    "shelljs": "0.8.4"
+  }
+}

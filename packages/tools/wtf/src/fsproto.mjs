@@ -25,7 +25,6 @@ export const isMain = (
     : esMain(importMeta);
 }
 
-// TODO: Uncaught SyntaxError: Cannot use 'import.meta' outside a module
 export const parentUri = (importMeta = import.meta) => (
   importMeta?.url
     ? fileURLToPath(importMeta.url)

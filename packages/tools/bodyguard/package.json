@@ -15,7 +15,9 @@
     "eslint:fix": "pnpm eslint -- --fix",
     "cp:flow": "cp node_modules/@nodeproto/configproto/.flowconfig .",
     "test:help": "uvu --help",
-    "test:ing": "clear; pnpm test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"clear; pnpm test\""
+    "test:ing": "clear; pnpm test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"clear; pnpm test\"",
+    "config:list": "pnpm config list --json",
+    "pkg:deps": "pnpm exec ultra --info"
   },
   "author": {
     "name": "theDRAGON",
@@ -27,7 +29,8 @@
     "@nodeproto/jsync": "workspace:*",
     "ultra-runner": "3.10.5",
     "uvu": "0.5.1",
-    "web-ext": "^6.2.0"
+    "web-ext": "^6.2.0",
+    "@changesets/cli": "2.17.0"
   },
   "peerDependencies": {
     "@nodeproto/jsync": "workspace:*"
@@ -85,5 +88,12 @@
   },
   "repository": "git://github.com/noahehall/nodeproto.git",
   "type": "module",
-  "packageManager": "pnpm@6.15.1"
+  "packageManager": "pnpm@6.15.1",
+  "ultra": {
+    "concurrent": [
+      "eslint",
+      "test",
+      "cp:flow"
+    ]
+  }
 }
