@@ -1,4 +1,5 @@
-import { dirs, fsproto }from '@nodeproto/wtf';
+import { dirs }from '@nodeproto/wtf';
+import fs from 'fs-extra';
 
 const isObject = (v) => typeof v === 'object' && v !== null;
 const notArrayOrObject = (v) => !isObject(v) && !Array.isArray(v);
@@ -198,4 +199,4 @@ newChildJson = { ...childPkgJson.file, ...newChildJson };
 
 logIt('\n\n new child json', newChildJson);
 
-await fsproto.fs.outputJson(childPkgJsonPath + '/package.json', newChildJson, { spaces: 2 });
+await fs.outputJson(childPkgJsonPath + '/package.json', newChildJson, { spaces: 2 });

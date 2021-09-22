@@ -1,5 +1,4 @@
 import manifestPlugin from 'esbuild-plugin-manifest';
-import * as envproto from '@nodeproto/envproto';
 
 const r = (t, msg = 'is required') => { throw new Error(`${t}: ${msg}`)};
 
@@ -40,7 +39,9 @@ export function createEsbuildConfig ({
   const manifestUri = outdir + '/' + manifestFilename;
 
   const define = {
-    ...envproto.syncEnvWithConfig(pkgJson).processEnv,
+    // TODO: create example of using envproto with configproto
+    // ^ we cannot have cyclic dependencies
+    // ...envproto.syncEnvWithConfig(pkgJson).processEnv,
     ...replaceEntryVars
   };
 
