@@ -29,6 +29,7 @@ importers:
       '@babel/preset-react': 7.14.5
       '@babel/runtime': 7.14.8
       '@babel/traverse': 7.15.0
+      '@changesets/cli': 2.17.0
       '@emotion/babel-plugin': 11.3.0
       '@nodeproto/jsync': workspace:*
       '@nodeproto/wtf': workspace:0.0.0
@@ -77,6 +78,7 @@ importers:
       svg-url-loader: 7.1.1
       tap: 15.0.9
       tapromise: 1.1.2
+      ultra-runner: 3.10.5
       url-loader: 4.1.1
       uvu: 0.5.1
       watchlist: 0.3.1
@@ -108,6 +110,7 @@ importers:
       '@babel/preset-react': 7.14.5_@babel+core@7.15.0
       '@babel/runtime': 7.14.8
       '@babel/traverse': 7.15.0
+      '@changesets/cli': 2.17.0
       '@emotion/babel-plugin': 11.3.0_@babel+core@7.15.0
       '@nodeproto/jsync': link:../../tools/jsync
       '@nodeproto/wtf': link:../../tools/wtf
@@ -151,6 +154,7 @@ importers:
       svg-url-loader: 7.1.1_webpack@5.51.1
       tap: 15.0.9_flow-remove-types@2.158.0
       tapromise: 1.1.2
+      ultra-runner: 3.10.5
       url-loader: 4.1.1_file-loader@6.2.0+webpack@5.51.1
       uvu: 0.5.1
       watchlist: 0.3.1
@@ -161,6 +165,7 @@ importers:
 
   packages/libraries/envproto:
     specifiers:
+      '@changesets/cli': 2.17.0
       '@nodeproto/configproto': workspace:0.0.0
       '@nodeproto/jsync': workspace:*
       '@nodeproto/wtf': workspace:*
@@ -168,6 +173,7 @@ importers:
       dotenv: 10.0.0
       env-cmd: 10.1.0
       pem: 1.14.4
+      ultra-runner: 3.10.5
       uvu: 0.5.1
       yargs: 17.1.1
     dependencies:
@@ -178,8 +184,10 @@ importers:
       pem: 1.14.4
       yargs: 17.1.1
     devDependencies:
+      '@changesets/cli': 2.17.0
       '@nodeproto/jsync': link:../../tools/jsync
       chokidar-cli: 3.0.0
+      ultra-runner: 3.10.5
       uvu: 0.5.1
 
   packages/tests:
@@ -267,6 +275,7 @@ importers:
 
   packages/tools/bodyguard:
     specifiers:
+      '@changesets/cli': 2.17.0
       '@nodeproto/jsync': workspace:*
       download: 8.0.0
       env-cmd: 10.1.0
@@ -283,6 +292,7 @@ importers:
       safe-compare: 1.1.4
       yargs: 17.0.1
     devDependencies:
+      '@changesets/cli': 2.17.0
       '@nodeproto/jsync': link:../jsync
       ultra-runner: 3.10.5
       uvu: 0.5.1
@@ -290,6 +300,7 @@ importers:
 
   packages/tools/inception:
     specifiers:
+      '@changesets/cli': 2.17.0
       '@nodeproto/jsync': workspace:*
       '@nodeproto/wtf': workspace:*
       chalk: 4.1.1
@@ -305,12 +316,14 @@ importers:
       env-cmd: 10.1.0
       yargs: 17.0.1
     devDependencies:
+      '@changesets/cli': 2.17.0
       '@nodeproto/jsync': link:../jsync
       ultra-runner: 3.10.5
       uvu: 0.5.1
 
   packages/tools/jsync:
     specifiers:
+      '@changesets/cli': 2.17.0
       '@nodeproto/wtf': workspace:*
       env-cmd: 10.1.0
       eslint: 7.32.0
@@ -326,6 +339,7 @@ importers:
       fs-extra: 10.0.0
       ultra-runner: 3.10.5
     devDependencies:
+      '@changesets/cli': 2.17.0
       uvu: 0.5.1
 
   packages/tools/wtf:
