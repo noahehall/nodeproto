@@ -51,6 +51,7 @@
   "dependencies": {
     "@babel/runtime-corejs3": "7.14.8",
     "@messageformat/react": "1.0.0",
+    "@nodeproto/configproto": "workspace:0.0.0",
     "@reach/router": "github:noahehall/router",
     "animate.css": "4.1.1",
     "clsx": "1.1.1",
@@ -126,11 +127,11 @@
     "tap-spec": "5.0.0",
     "ultra-runner": "3.10.5",
     "url-loader": "4.1.1",
+    "uvu": "0.5.1",
     "webpack": "5.46.0",
     "webpack-dev-middleware-2": "5.0.2",
     "webpack-hot-middleware-2": "2.25.2",
-    "workbox-webpack-plugin": "6.1.5",
-    "uvu": "0.5.1"
+    "workbox-webpack-plugin": "6.1.5"
   },
   "author": {
     "name": "theDRAGON",
