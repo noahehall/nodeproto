@@ -24,6 +24,7 @@
     "env-cmd": "10.1.0",
     "eslint": "7.32.0",
     "flow-bin": "0.157.0",
+    "fs-extra": "10.0.0",
     "ultra-runner": "3.10.5"
   },
   "jsync": {
