@@ -157,7 +157,6 @@
     "@swc/cli": "0.1.46",
     "@swc/core": "1.2.75",
     "@swc/helpers": "0.2.12",
-    "babel-loader": "8.2.2",
     "babel-plugin-tailcall-optimization": "2.0.0",
     "babel-plugin-transform-export-default-name": "2.1.0",
     "babel-plugin-transform-flow-strip-types": "6.22.0",
@@ -193,7 +192,6 @@
     "react-devtools": "4.14.0",
     "schema-utils": "3.1.1",
     "sinon": "11.1.1",
-    "string-replace-loader": "3.0.3",
     "style-loader": "3.2.1",
     "svg-url-loader": "7.1.1",
     "ultra-runner": "3.10.5",
@@ -215,7 +213,13 @@
   },
   "packageManager": "pnpm@6.15.1",
   "devDependencies": {
+    "babel-loader": "8.2.2",
     "react": "18.0.0-alpha-edfe50510-20210823",
-    "react-dom": "18.0.0-alpha-419cc9c37-20210726"
+    "react-dom": "18.0.0-alpha-419cc9c37-20210726",
+    "string-replace-loader": "3.0.3"
+  },
+  "peerDependencies": {
+    "babel-loader": "8.2.2",
+    "string-replace-loader": "3.0.3"
   }
 }
