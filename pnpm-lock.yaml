@@ -25,7 +25,6 @@ importers:
       '@babel/preset-flow': 7.14.5
       '@babel/preset-modules': 0.1.4
       '@babel/preset-react': 7.14.5
-      '@babel/runtime-corejs3': 7.14.8
       '@babel/traverse': 7.14.8
       '@changesets/cli': 2.17.0
       '@messageformat/react': 1.0.0
@@ -42,7 +41,6 @@ importers:
       bundle-stats-webpack-plugin: 3.0.1
       clsx: 1.1.1
       concurrently: 6.2.0
-      core-js: ~3.15.2
       css-loader: 6.2.0
       env-cmd: 10.1.0
       eslint: ~7.31.0
@@ -64,7 +62,6 @@ importers:
       immutability-helper: 3.1.1
       jsdoc-to-markdown: 7.0.1
       jsonfile: 6.1.0
-      koa: 2.13.1
       lighthouse: 8.1.0
       milligram: 1.4.1
       modernizr: 3.11.7
@@ -94,20 +91,16 @@ importers:
       webpack-dev-middleware-2: 5.0.2
       webpack-hot-middleware-2: 2.25.2
       workbox-webpack-plugin: 6.1.5
-      yargs: 17.0.1
     dependencies:
-      '@babel/runtime-corejs3': 7.14.8
       '@messageformat/react': 1.0.0_04db1d1c2ad077c95e37d47a70ed6937
       '@nodeproto/configproto': link:../../libraries/configproto
       '@nodeproto/wtf': link:../../tools/wtf
       '@reach/router': github.com/noahehall/router/7f39668ed7301a137885136eef9a403afcefe700_d98c5f88b99c506c5529e2ef41bda276
       animate.css: 4.1.1
       clsx: 1.1.1
-      core-js: 3.15.2
       env-cmd: 10.1.0
       history: 5.0.0
       immutability-helper: 3.1.1
-      koa: 2.13.1
       milligram: 1.4.1
       modernizr: 3.11.7
       normalize.css: 8.0.1
@@ -122,7 +115,6 @@ importers:
       reakit: 1.3.8_d98c5f88b99c506c5529e2ef41bda276
       styled-components: 5.3.0_1ce25cd8a6d91c0387e6c46703115b77
       ultra-runner: 3.10.5
-      yargs: 17.0.1
     devDependencies:
       '@babel/core': 7.14.8
       '@babel/eslint-parser': 7.14.7_@babel+core@7.14.8+eslint@7.31.0
@@ -2721,14 +2713,6 @@ packages:
       '@babel/plugin-transform-react-jsx': 7.14.9_@babel+core@7.14.8
       '@babel/plugin-transform-react-jsx-development': 7.14.5_@babel+core@7.14.8
       '@babel/plugin-transform-react-pure-annotations': 7.14.5_@babel+core@7.14.8
-
-  /@babel/runtime-corejs3/7.14.8:
-    resolution: {integrity: sha512-4dMD5QRBkumn45oweR0SxoNtt15oz3BUBAQ8cIx7HJqZTtE8zjpM0My8aHJHVnyf4XfRg6DNzaE1080WLBiC1w==}
-    engines: {node: '>=6.9.0'}
-    dependencies:
-      core-js-pure: 3.15.2
-      regenerator-runtime: 0.13.9
-    dev: false
 
   /@babel/runtime/7.13.9:
     resolution: {integrity: sha512-aY2kU+xgJ3dJ1eU6FMB9EH8dIe8dmusF1xEku52joLvw6eAFN0AI+WxCLDnpev2LEejWBAy2sBvBOBAjI3zmvA==}
@@ -7325,7 +7309,7 @@ packages:
       loader-utils: 1.4.0
       make-dir: 3.1.0
       schema-utils: 2.7.1
-      webpack: 5.51.1
+      webpack: 5.51.1_webpack-cli@4.8.0
     dev: true
 
   /babel-loader/8.2.2_ebf1dd6afc3fb7d01e7aaa2e8ca14cbf:
@@ -7839,7 +7823,7 @@ packages:
       '@bundle-stats/utils': 3.0.1_core-js@3.16.3+lodash@4.17.21
       core-js: 3.16.3
       lodash: 4.17.21
-      webpack: 5.51.1
+      webpack: 5.51.1_webpack-cli@4.8.0
     dev: true
 
   /bunyan/1.8.15:
@@ -8692,11 +8676,6 @@ packages:
       browserslist: 4.16.8
       semver: 7.0.0
 
-  /core-js-pure/3.15.2:
-    resolution: {integrity: sha512-D42L7RYh1J2grW8ttxoY1+17Y4wXZeKe7uyplAI3FkNQyI5OgBIAjUfFiTPfL1rs0qLpxaabITNbjKl1Sp82tA==}
-    requiresBuild: true
-    dev: false
-
   /core-js/1.2.7:
     resolution: {integrity: sha1-ZSKUwUZR2yj6k70tX/KYOk8IxjY=}
     deprecated: core-js@<3.3 is no longer maintained and not recommended for usage due to the number of issues. Because of the V8 engine whims, feature detection in old core-js versions could cause a slowdown up to 100x even if nothing is polyfilled. Please, upgrade your dependencies to the actual version of core-js.
@@ -8841,7 +8820,7 @@ packages:
       postcss-modules-values: 4.0.0_postcss@8.3.6
       postcss-value-parser: 4.1.0
       semver: 7.3.5
-      webpack: 5.51.1
+      webpack: 5.51.1_webpack-cli@4.8.0
     dev: true
 
   /css-select/4.1.3:
@@ -9642,7 +9621,7 @@ packages:
       loader-utils: 2.0.0
       tapable: 2.2.0
       type-fest: 1.4.0
-      webpack: 5.51.1
+      webpack: 5.51.1_webpack-cli@4.8.0
       webpack-sources: 2.3.1
     dev: true
 
@@ -10443,7 +10422,7 @@ packages:
     dependencies:
       loader-utils: 2.0.0
       schema-utils: 3.1.1
-      webpack: 5.51.1
+      webpack: 5.51.1_webpack-cli@4.8.0
     dev: true
 
   /file-set/4.0.2:
@@ -11491,7 +11470,7 @@ packages:
       lodash: 4.17.21
       pretty-error: 3.0.4
       tapable: 2.2.0
-      webpack: 5.51.1
+      webpack: 5.51.1_webpack-cli@4.8.0
     dev: false
 
   /htmlparser2/6.1.0:
@@ -16735,7 +16714,7 @@ packages:
     dependencies:
       loader-utils: 2.0.0
       schema-utils: 3.1.1
-      webpack: 5.51.1
+      webpack: 5.51.1_webpack-cli@4.8.0
     dev: true
 
   /string-similarity/4.0.4:
@@ -16937,7 +16916,7 @@ packages:
     peerDependencies:
       webpack: ^5.0.0
     dependencies:
-      webpack: 5.51.1
+      webpack: 5.51.1_webpack-cli@4.8.0
     dev: true
 
   /styled-components/5.3.0_1ce25cd8a6d91c0387e6c46703115b77:
@@ -17022,7 +17001,7 @@ packages:
     dependencies:
       file-loader: 6.2.0_webpack@5.51.1
       loader-utils: 2.0.0
-      webpack: 5.51.1
+      webpack: 5.51.1_webpack-cli@4.8.0
     dev: true
 
   /symbol-observable/1.2.0:
@@ -17328,7 +17307,7 @@ packages:
       serialize-javascript: 6.0.0
       source-map: 0.6.1
       terser: 5.7.1
-      webpack: 5.51.1
+      webpack: 5.51.1_webpack-cli@4.8.0
     dev: true
 
   /terser/4.8.0:
@@ -18023,7 +18002,7 @@ packages:
       loader-utils: 2.0.0
       mime-types: 2.1.32
       schema-utils: 3.1.1
-      webpack: 5.51.1
+      webpack: 5.51.1_webpack-cli@4.8.0
     dev: true
 
   /url-parse-lax/1.0.0:
@@ -18363,7 +18342,7 @@ packages:
       mime-types: 2.1.32
       range-parser: 1.2.1
       schema-utils: 3.1.1
-      webpack: 5.51.1
+      webpack: 5.51.1_webpack-cli@4.8.0
     dev: true
 
   /webpack-hot-middleware-2/2.25.2:

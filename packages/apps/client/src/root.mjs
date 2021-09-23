@@ -13,8 +13,8 @@ const render = (Comp) => {
     // <React.StrictMode>
       <ErrorBoundary>
         <Comp />
-      </ErrorBoundary>
-    {/* </React.StrictMode>, */}
+      </ErrorBoundary>,
+    // {/* </React.StrictMode>, */}
     document.getElementById(),
   );
 }

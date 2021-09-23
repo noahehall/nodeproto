@@ -3,18 +3,10 @@
 // else we will have to add hella .babelrc files to subdirs and run cmds with `--root-mode upward`
 // however we have added babelrcRoots to this config to load subdir .babelrc files if they exist
 {
-  "extends": "@nodeproto/configproto/babel/node",
+  "extends": "@nodeproto/configproto/babel/client",
   "babelrc": true,
   "babelrcRoots": [
     ".",
     "src/*"
   ]
-  // TODO doesnt work
-  // relying on subdir .babelrc.json instead
-  // "overrides": [
-  //   {
-  //     "test": ["*/*.jsx", "copypasta/reactHelloWorld/*"],
-  //     "extends": "@nodeproto/configproto/babel/client"
-  //   }
-  // ]
 }
