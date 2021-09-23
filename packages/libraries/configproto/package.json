@@ -203,7 +203,7 @@
     "@changesets/cli": "2.17.0",
     "ultra-runner": "3.10.5"
   },
-  "peerDependencies": {
+  "dependencies": {
     "@babel/cli": "7.14.8",
     "@babel/core": "7.14.8",
     "@babel/eslint-parser": "7.14.7",
@@ -258,136 +258,15 @@
     "webpack": "5.46.0",
     "webpack-dev-middleware-2": "5.0.2",
     "webpack-hot-middleware-2": "2.25.2",
-    "yaml-eslint-parser": "0.4.1"
-  },
-  "peerDependenciesMeta": {
-    "@babel/plugin-transform-flow-strip-types": {
-      "optional": true
-    },
-    "babel-loader": {
-      "optional": true
-    },
-    "@babel/cli": {
-      "optional": true
-    },
-    "@babel/core": {
-      "optional": true
-    },
-    "@babel/eslint-parser": {
-      "optional": true
-    },
-    "@babel/eslint-plugin": {
-      "optional": true
-    },
-    "@babel/parser": {
-      "optional": true
-    },
-    "@babel/plugin-proposal-throw-expressions": {
-      "optional": true
-    },
-    "@babel/plugin-syntax-top-level-await": {
-      "optional": true
-    },
-    "@babel/plugin-transform-react-constant-elements": {
-      "optional": true
-    },
-    "@babel/plugin-transform-react-inline-elements": {
-      "optional": true
-    },
-    "@babel/plugin-transform-runtime": {
-      "optional": true
-    },
-    "@babel/preset-env": {
-      "optional": true
-    },
-    "@babel/preset-flow": {
-      "optional": true
-    },
-    "@babel/preset-react": {
-      "optional": true
-    },
-    "@babel/runtime": {
-      "optional": true
-    },
-    "@babel/traverse": {
-      "optional": true
-    },
-    "@emotion/babel-plugin": {
-      "optional": true
-    },
-    "@nodeproto/jsync": {
-      "optional": true
-    },
-    "@swc/cli": {
-      "optional": true
-    },
-    "@swc/core": {
-      "optional": true
-    },
-    "@swc/helpers": {
-      "optional": true
-    },
-    "babel-plugin-tailcall-optimization": {
-      "optional": true
-    },
-    "babel-plugin-transform-flow-strip-types": {
-      "optional": true
-    },
-    "browserslist": {
-      "optional": true
-    },
-    "core-js": {
-      "optional": true
-    },
-    "esbuild": {
-      "optional": true
-    },
-    "esbuild-loader": {
-      "optional": true
-    },
-    "eslint": {
-      "optional": true
-    },
-    "eslint-plugin-flowtype-errors": {
-      "optional": true
-    },
-    "eslint-plugin-html": {
-      "optional": true
-    },
-    "eslint-plugin-json": {
-      "optional": true
-    },
-    "eslint-plugin-markdown": {
-      "optional": true
-    },
-    "eslint-plugin-react": {
-      "optional": true
-    },
-    "eslint-plugin-react-hooks": {
-      "optional": true
-    },
-    "eslint-plugin-yml": {
-      "optional": true
-    },
-    "flow-bin": {
-      "optional": true
-    },
-    "webpack": {
-      "optional": true
-    },
-    "yaml-eslint-parser": {
-      "optional": true
-    }
-  },
-  "repository": "git://github.com/noahehall/nodeproto.git",
-  "type": "module",
-  "dependencies": {
+    "yaml-eslint-parser": "0.4.1",
     "chai-as-promised": "7.1.1",
     "chai-exclude": "2.0.3",
     "chai-nock": "1.3.0",
     "nock": "13.1.3",
     "sinon": "11.1.1"
   },
+  "repository": "git://github.com/noahehall/nodeproto.git",
+  "type": "module",
   "ultra": {
     "concurrent": [
       "eslint",

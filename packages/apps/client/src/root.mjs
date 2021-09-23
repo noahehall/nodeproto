@@ -6,13 +6,16 @@ import ReactDOM from 'react-dom'
 const render = (Comp) => {
   console.log('rendering app');
 
-  ReactDOM.render(
-    <React.StrictMode>
+  const container = document.getElementById('root');
+  const root = ReactDOM.createRoot(container);
+
+  root.render(
+    // <React.StrictMode>
       <ErrorBoundary>
         <Comp />
       </ErrorBoundary>
-    </React.StrictMode>,
-    document.getElementById(process.env.REACT_APP_ID),
+    {/* </React.StrictMode>, */}
+    document.getElementById(),
   );
 }
 
