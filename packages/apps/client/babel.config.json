@@ -3,7 +3,7 @@
 // else we will have to add hella .babelrc files to subdirs and run cmds with `--root-mode upward`
 // however we have added babelrcRoots to this config to load subdir .babelrc files if they exist
 {
-  "extends": "@nodeproto/configproto/babel/client",
+  "extends": "@nodeproto/configproto/babel/node",
   "babelrc": true,
   "babelrcRoots": [
     ".",

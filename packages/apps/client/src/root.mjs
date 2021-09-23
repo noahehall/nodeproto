@@ -10,11 +10,11 @@ const render = (Comp) => {
   const root = ReactDOM.createRoot(container);
 
   root.render(
-    // <React.StrictMode>
+    <React.StrictMode>
       <ErrorBoundary>
         <Comp />
       </ErrorBoundary>,
-    // {/* </React.StrictMode>, */}
+    </React.StrictMode>,
     document.getElementById(),
   );
 }

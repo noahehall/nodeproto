@@ -1,14 +1,16 @@
 # @nodeproto/configproto - reusable configs
 
-- this package relies heavily on nodejs packages via package.json exports configuration
-
 ## TLDR
 
-- transpile files: `pnpm cjs`
-- transpile files with ultra: `pnpm ultra -- cjs`
-- you generally want the following env vars set
-  - `BROWSERSLIST_ENV=@see ./browserslist/index.cjs`
-  - `BROWSERSLIST_DANGEROUS_EXTEND=1` for shared configs
+- install
+  - `pnpm add -D @nodeproto/configproto`
+
+- developing
+  - transpile files: `pnpm cjs`
+  - transpile files with ultra: `pnpm ultra -- cjs`
+  - you generally want the following env vars set
+    - `BROWSERSLIST_ENV=@see ./browserslist/index.cjs`
+    - `BROWSERSLIST_DANGEROUS_EXTEND=1` for shared configs
 
 ## links
 
