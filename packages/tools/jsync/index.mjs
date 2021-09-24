@@ -200,4 +200,25 @@ newChildJson = { ...childPkgJson.file, ...newChildJson };
 
 logIt('\n\n new child json', newChildJson);
 
-await fs.outputJson(childPkgJsonPath + '/package.json', newChildJson, { spaces: 2 });
+// @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare
+const sortSimpleThenComplexDataTypes = (a, b) => {
+  // sort simple types before complex types
+  if (notArrayOrObject(a[1]) && notArrayOrObject(b[1])) {
+    return a[0].localeCompare(b[0])
+  }
+
+  // sort the simple type before the complex type
+  if (notArrayOrObject(a[1])) return -1
+  else if (notArrayOrObject(b[1])) return 1
+  // sort complex types alphabetically
+  else return a[0].localeCompare(b[0])
+}
+// @see https://stackoverflow.com/questions/5467129/sort-javascript-object-by-key
+await fs.outputJson(
+  childPkgJsonPath + '/package.json',
+  Object.entries(newChildJson).sort(sortSimpleThenComplexDataTypes).reduce(
+    (obj, [key, value]) => (obj[key] = value, obj),
+    {}
+  ),
+  { spaces: 2 }
+);

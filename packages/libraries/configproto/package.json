@@ -77,7 +77,9 @@
     "eslint:fix": "pnpm eslint -- --fix",
     "cp:flow": "cp node_modules/@nodeproto/configproto/.flowconfig .",
     "config:list": "pnpm config list --json",
-    "pkg:deps": "pnpm exec ultra --info"
+    "pkg:deps": "pnpm exec ultra --info",
+    "proto": "pnpm exec ultra -r --filter",
+    "repo:install": "pnpm -r exec pnpm install"
   },
   "jsync": {
     "root": false
