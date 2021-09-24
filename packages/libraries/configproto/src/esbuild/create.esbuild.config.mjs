@@ -18,7 +18,7 @@ export function createEsbuildConfig ({
   metafile = true,
   outExtension = { '.js': '.cjs' },
   platform = 'node',
-  plugins = [/*popCopy(popCopyConfig),*/],
+  plugins = [],
   replaceEntryVars = {}, // passed to define
   resolveExtensions = ['.mjs', '.js', '.cjs', '.json'],
   sourcemap = true,
