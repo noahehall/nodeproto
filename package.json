@@ -75,6 +75,7 @@
     "eslint": "eslint 'src/**/*'",
     "pkg:deps": "pnpm exec ultra --info",
     "proto": "pnpm exec ultra -r --filter",
+    "repo:install": "pnpm -r exec pnpm install",
     "test:help": "uvu --help",
     "test:ing": "clear; pnpm test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"clear; pnpm test\"",
     "test": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" uvu ./src test.mjs",

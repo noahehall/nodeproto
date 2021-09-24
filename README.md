@@ -21,7 +21,7 @@ scripts
     - ~~sync global version `corepack prepare pnpm@6.15.1 --activate`~~
   - setup application
     - install root dependencies `pnpm install`
-    - install package dependencies `pnpm -r exec pnpm install`
+    - install all monorepo packages dependencies `pnpm repo:install`
       - ignore the cyclic dependencies, will resolve that later
     - verify tests `pnpm exec ultra -r test`
 
