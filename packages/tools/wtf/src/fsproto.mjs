@@ -31,6 +31,7 @@ export const parentUri = (importMeta = import.meta) => (
     : module.filename
 );
 
+// TODO: breaks if --experimental-import-meta-resolve is set
 // directory where the code is being run
 // export const cwd = path.resolve('', path.dirname(parentUri()));
 // @see https://github.com/stefanpenner/mjs-dirname/blob/main/index.mjs

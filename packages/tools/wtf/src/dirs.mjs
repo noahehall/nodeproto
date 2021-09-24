@@ -9,7 +9,7 @@ import path from 'path';
 import symlinkDir from 'symlink-dir';
 import xdg from '@folder/xdg';
 
-const { internal, external } = wtfShared;
+const { external, ...internal } = wtfShared;
 
 export const getDirs = (overrides = {}) => {
   return {

@@ -41,7 +41,7 @@ scripts
 
 - run cmds from root dir
   - generally you want two terminals for the best experience
-    - terminal 1: `pnpm exec ultra --monitor`
+    - terminal 1: `pnpm monitor`
     - terminal 2: see any of the cmds below
     - [always use pnpm exec with ultra](https://github.com/folke/ultra-runner#rocket-usage)
   - run cmd in specific pkg `pnpm proto @nodeproto/client start`
@@ -82,7 +82,7 @@ scripts
   - `pnpm exec ultra --list` see package scripts
   - `pnpm exec ultra --monitor` monitor node processes in real time
     - i generally just keep this running in a second terminal
-- easy to forget syntax of pnpm
+- easy to forget syntax of pnpm (TODO: move this to theBookOfNoah)
   - `pnpm add PKG`
     - @nodeproto/PKG add an internal pkg to another pkg
     - ./somedir/or/somefile.tar (a dir or file)

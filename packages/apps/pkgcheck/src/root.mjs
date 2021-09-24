@@ -1,6 +1,6 @@
-'use strict';
+import { fsproto } from '@nodeproto/wtf/fsproto';
+import envproto from '@nodeproto/envproto';
 
-import { fsproto, envproto } from '@nodeproto/utils';
 import App from './app/app.mjs';
 import http from 'http';
 import https from 'https';
@@ -33,8 +33,5 @@ export const runApp = async () => {
   return servers;
 }
 
-
-if (fsproto.isMain(typeof require !== 'undefined' && require.main, import.meta)) runApp();
-
-
-
+const iscjs = typeof require !== 'undefined';
+if (fsproto.isMain(iscjs && require.main, import.meta)) runApp();
