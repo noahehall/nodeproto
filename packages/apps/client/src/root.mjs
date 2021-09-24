@@ -1,25 +1,28 @@
+// @flow
+
 import App from './components/screens/App/AppScreen.mjs'
 import ErrorBoundary from './components/composite/Errors/ErrorBoundary.mjs'
-import React from 'react'
+import React from 'react';
 import ReactDOM from 'react-dom'
 
-const render = (Comp) => {
-  console.log('rendering app');
+const containerID: string = 'root';
+const container = document.getElementById('root');
 
-  const container = document.getElementById('root');
+const render = (Comp) => {
+  console.info('rendering app'); // TODO: need to add logging logic
+
   const root = ReactDOM.createRoot(container);
 
   root.render(
-    <React.StrictMode>
+    // <React.StrictMode>
       <ErrorBoundary>
         <Comp />
-      </ErrorBoundary>,
-    </React.StrictMode>,
-    document.getElementById(),
+      </ErrorBoundary>
+    // </React.StrictMode>
   );
 }
 
-render(App)
+render(App);
 
 if (typeof window !== 'undefined') {
   window.addEventListener(

@@ -16,5 +16,5 @@ export const webpackConfig = reactDevWebpackConfig({
   pack,
 });
 
-// output to disk if this is run directly, and not imported
+// if this file is run directly, it will build and output to disk
 if (isMain(false, import.meta)) buildWebpackConfig(webpackConfig);

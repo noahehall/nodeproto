@@ -31,9 +31,9 @@
     "hint": "hint http://localhost:8080",
     "lighthouse": "lighthouse http://localhost:8080 --output-path ./doc/lighthouse/localhost.html",
     "browsertime": "browsertime http://localhost:8080",
-    "start:dev": "node webpack.server.mjs",
+    "start:dev": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" node webpack.server.mjs",
     "start:reactdevtools": "react-devtools",
-    "start": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" concurrently npm:start:dev npm:start:reactdevtools",
+    "start": "concurrently pnpm:start:dev pnpm:start:reactdevtools",
     "start:client": "npm start",
     "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
     "config:list": "pnpm config list --json",
@@ -83,6 +83,7 @@
     "babel-plugin-styled-components": "1.13.2",
     "browsertime": "13.1.2",
     "concurrently": "6.2.0",
+    "css-loader": "6.2.0",
     "eslint": "~7.31.0",
     "flow-bin": "0.156.0",
     "flow-typed": "3.3.1",
@@ -90,9 +91,11 @@
     "lighthouse": "8.1.0",
     "react-devtools": "4.14.0",
     "string-replace-loader": "3.0.3",
+    "style-loader": "3.2.1",
     "ultra-runner": "3.10.5",
     "uvu": "0.5.1",
-    "webpack": "5.46.0"
+    "webpack": "5.46.0",
+    "webpack-hot-middleware-2": "2.25.2"
   },
   "author": {
     "name": "theDRAGON",
