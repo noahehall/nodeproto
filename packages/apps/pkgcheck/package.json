@@ -1,0 +1,131 @@
+{
+  "name": "@nodeproto/pkgcheck",
+  "version": "0.0.0",
+  "main": "./dist/index.cjs",
+  "type": "module",
+  "exports": {
+    "./dist/index.cjs": "./dist/index.cjs",
+    ".": {
+      "import": "./src/index.mjs",
+      "default": "./dist/index.cjs"
+    }
+  },
+  "config": {
+    "PKGCHECK_HTTP_PORT": "3000",
+    "PKGCHECK_HTTPS_PORT": "4430",
+    "NODE_ENV": "development",
+    "PATH_DIST": "./dist",
+    "PATH_SRC": "./src",
+    "BABEL_SHOW_CONFIG_FOR": "e.g. BABEL_SHOW_CONFIG_FOR=absolute/path/to/file somePkgJsonScriptName",
+    "NODE_OPTIONS": "--pending-deprecation --experimental-wasm-modules --trace-warnings --experimental-top-level-await --enable-source-maps --experimental-vm-modules --experimental-worker --experimental-import-meta-resolve --experimental-report --trace-exit --heapsnapshot-near-heap-limit=3 --trace-uncaught --deprecation --trace-deprecation --no-insecure-http-parser --report-uncaught-exception --use-largepages=on --warnings --experimental-abortcontroller --report-on-fatalerror --experimental-json-modules --trace-sigint --abort-on-uncaught-exception --es-module-specifier-resolution=node --experimental-specifier-resolution=node --experimental-modules"
+  },
+  "directories": {
+    "src": "./src",
+    "bin": "./bin",
+    "dist": "./dist"
+  },
+  "os": [
+    "darwin",
+    "linux"
+  ],
+  "scripts": {
+    "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
+    "rm:dist": "rm -rf dist",
+    "prebuild": "pnpm run rm:dist",
+    "build": "env-cmd node --conditions=build lib/esbuild.config.mjs",
+    "prestart:pkgcheck": "pnpm run rm:dist",
+    "start:pkgcheck": "env-cmd node --conditions=development lib/esbuild.config.mjs",
+    "start:native": "env-cmd node --conditions=development main.mjs",
+    "start": "pnpm run start:pkgcheck",
+    "config:list": "pnpm config list --json",
+    "cp:flow": "cp node_modules/@nodeproto/configproto/.flowconfig .",
+    "pkg:deps": "pnpm exec ultra --info",
+    "proto": "pnpm exec ultra -r --filter",
+    "repo:install": "pnpm -r exec pnpm install",
+    "test:help": "uvu --help",
+    "test:ing": "clear; pnpm test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"clear; pnpm test\"",
+    "test": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" uvu ./src test.mjs",
+    "upgrade": "pnpm upgrade -L"
+  },
+  "jsync": {
+    "root": false
+  },
+  "dependencies": {
+    "@changesets/cli": "2.17.0",
+    "@koa/cors": "3.1.0",
+    "@nodeproto/envproto": "workspace:0.0.0",
+    "@nodeproto/jsync": "workspace:0.0.0",
+    "@nodeproto/wtf": "workspace:0.0.0",
+    "@tinyhttp/etag": "1.3.0",
+    "cls-rtracer": "2.6.0",
+    "env-cmd": "10.1.0",
+    "es-main": "1.0.2",
+    "js-yaml": "3.14.1",
+    "koa": "2.13.1",
+    "koa-body": "4.2.0",
+    "koa-bodyparser": "4.3.0",
+    "koa-charset": "2.0.0",
+    "koa-compose": "4.1.0",
+    "koa-csrf": "3.0.8",
+    "koa-helmet": "6.1.0",
+    "koa-jwt": "4.0.1",
+    "koa-oas3": "2.3.0",
+    "koa-passport": "4.1.4",
+    "koa-qs": "3.0.0",
+    "koa-ratelimit": "5.0.0",
+    "koa-session": "6.2.0",
+    "koa-sslify": "5.0.0",
+    "koa-tree-router": "https://github.com/noahehall/koa-tree-router",
+    "ultra-runner": "3.10.5",
+    "uvu": "0.5.1"
+  },
+  "devDependencies": {
+    "eslint": "7.29"
+  },
+  "author": {
+    "name": "theDRAGON",
+    "email": "noahedwardhall+souls@gmail.com",
+    "url": "https://github.com/noahehall"
+  },
+  "bugs": "https://github.com/noahehall/nodeproto/issues",
+  "homepage": "https://github.com/noahehall/nodeproto",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "repository": "git://github.com/noahehall/nodeproto.git",
+  "description": "bleeding-edge repo for prototyping end-to-end, complex, and secure applications and microservices",
+  "private": true,
+  "keywords": [
+    "@nirv",
+    "@nodeproto",
+    "api",
+    "bodyguard",
+    "docker",
+    "esbuild",
+    "fullstack",
+    "grafana",
+    "haproxy",
+    "inception",
+    "jsync",
+    "koa",
+    "micro service",
+    "microservice",
+    "nirv",
+    "nodeproto",
+    "openapi",
+    "pnpm",
+    "prometheus",
+    "prototype",
+    "react",
+    "ssl",
+    "starter",
+    "swagger",
+    "webpack5"
+  ],
+  "ultra": {
+    "concurrent": [
+      "eslint",
+      "test",
+      "cp:flow"
+    ]
+  },
+  "packageManager": "pnpm@6.15.1"
+}
