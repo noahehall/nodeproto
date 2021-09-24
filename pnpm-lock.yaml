@@ -29,6 +29,7 @@ importers:
       browsertime: 13.1.2
       clsx: 1.1.1
       concurrently: 6.2.0
+      css-loader: 6.2.0
       env-cmd: 10.1.0
       eslint: ~7.31.0
       flow-bin: 0.156.0
@@ -51,10 +52,12 @@ importers:
       react-stately: 3.7.0
       reakit: 1.3.8
       string-replace-loader: 3.0.3
+      style-loader: 3.2.1
       styled-components: 5.3.0
       ultra-runner: 3.10.5
       uvu: 0.5.1
       webpack: 5.46.0
+      webpack-hot-middleware-2: 2.25.2
     dependencies:
       '@babel/runtime': 7.14.8
       '@messageformat/react': 1.0.0_04db1d1c2ad077c95e37d47a70ed6937
@@ -88,6 +91,7 @@ importers:
       babel-plugin-styled-components: 1.13.2_styled-components@5.3.0
       browsertime: 13.1.2
       concurrently: 6.2.0
+      css-loader: 6.2.0_webpack@5.46.0
       eslint: 7.31.0
       flow-bin: 0.156.0
       flow-typed: 3.3.1
@@ -95,9 +99,11 @@ importers:
       lighthouse: 8.1.0
       react-devtools: 4.14.0
       string-replace-loader: 3.0.3_webpack@5.46.0
+      style-loader: 3.2.1_webpack@5.46.0
       ultra-runner: 3.10.5
       uvu: 0.5.1
       webpack: 5.46.0
+      webpack-hot-middleware-2: 2.25.2
 
   packages/libraries/configproto:
     specifiers:
@@ -240,13 +246,13 @@ importers:
       uvu: 0.5.1
       webpack: 5.46.0
       webpack-dev-middleware-2: 5.0.2_webpack@5.46.0
-      webpack-hot-middleware-2: 2.25.2
       yaml-eslint-parser: 0.4.1
     devDependencies:
       babel-loader: 8.2.2_ebf1dd6afc3fb7d01e7aaa2e8ca14cbf
       react: 18.0.0-alpha-edfe50510-20210823
       react-dom: 18.0.0-alpha-419cc9c37-20210726_04db1d1c2ad077c95e37d47a70ed6937
       string-replace-loader: 3.0.3_webpack@5.46.0
+      webpack-hot-middleware-2: 2.25.2
 
   packages/libraries/envproto:
     specifiers:
@@ -5987,6 +5993,7 @@ packages:
     resolution: {integrity: sha1-gTWEAhliqenm/QOflA0S9WynhZ4=}
     engines: {'0': node >= 0.8.0}
     hasBin: true
+    dev: true
 
   /ansi-regex/2.1.1:
     resolution: {integrity: sha1-w7M6te42DYbg5ijwRorn7yfWVN8=}
@@ -7637,7 +7644,6 @@ packages:
       postcss-value-parser: 4.1.0
       semver: 7.3.5
       webpack: 5.46.0
-    dev: false
 
   /css-loader/6.2.0_webpack@5.51.1:
     resolution: {integrity: sha512-/rvHfYRjIpymZblf49w8jYcRo2y9gj6rV8UroHGmBxKrIyGLokpycyKzp9OkitvqT29ZSpzJ0Ic7SpnJX3sC8g==}
@@ -10004,6 +10010,7 @@ packages:
 
   /html-entities/2.3.2:
     resolution: {integrity: sha512-c3Ab/url5ksaT0WyleslpBEthOzWhrjQbg75y7XUsfSzi3Dgzt0l8w5e7DylRn15MTlMMD58dTfzddNS2kcAjQ==}
+    dev: true
 
   /html-minifier-terser/5.1.1:
     resolution: {integrity: sha512-ZPr5MNObqnV/T9akshPKbVgyOqLmy+Bxo7juKCfTfnjNniTAMdy4hz21YQqoofMBJD2kdREaqPPdThoR78Tgxg==}
@@ -13205,6 +13212,7 @@ packages:
     resolution: {integrity: sha512-wkvS7mL/JMugcup3/rMitHmd9ecIGd2lhFhK9N3UUQ450h66d1r3Y9nvXzQAW1Lq+wyx61k/1pfKS5KuKiyEbg==}
     engines: {node: '>=0.4.x'}
     deprecated: The querystring API is considered Legacy. new code should use the URLSearchParams API instead.
+    dev: true
 
   /queue-microtask/1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
@@ -14819,7 +14827,6 @@ packages:
       webpack: ^5.0.0
     dependencies:
       webpack: 5.46.0
-    dev: false
 
   /style-loader/3.2.1_webpack@5.51.1:
     resolution: {integrity: sha512-1k9ZosJCRFaRbY6hH49JFlRB0fVSbmnyq1iTPjNxUmGVjBNEmwrrHPenhlp+Lgo51BojHSf6pl2FcqYaN3PfVg==}
@@ -15979,6 +15986,7 @@ packages:
       html-entities: 2.3.2
       querystring: 0.2.1
       strip-ansi: 6.0.0
+    dev: true
 
   /webpack-merge/5.8.0:
     resolution: {integrity: sha512-/SaI7xY0831XwP6kzuwhKWVKDP9t1QY1h65lAFLbZqMPIuYcD9QAW4u9STIbU9kaJbPBB/geU/gLr1wDjOhQ+Q==}

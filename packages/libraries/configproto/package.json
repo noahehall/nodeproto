@@ -199,7 +199,6 @@
     "uvu": "0.5.1",
     "webpack": "5.46.0",
     "webpack-dev-middleware-2": "5.0.2",
-    "webpack-hot-middleware-2": "2.25.2",
     "yaml-eslint-parser": "0.4.1"
   },
   "repository": "git://github.com/noahehall/nodeproto.git",
@@ -216,10 +215,12 @@
     "babel-loader": "8.2.2",
     "react": "18.0.0-alpha-edfe50510-20210823",
     "react-dom": "18.0.0-alpha-419cc9c37-20210726",
-    "string-replace-loader": "3.0.3"
+    "string-replace-loader": "3.0.3",
+    "webpack-hot-middleware-2": "2.25.2"
   },
   "peerDependencies": {
     "babel-loader": "8.2.2",
-    "string-replace-loader": "3.0.3"
+    "string-replace-loader": "3.0.3",
+    "webpack-hot-middleware-2": "2.25.2"
   }
 }
