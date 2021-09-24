@@ -1,0 +1,98 @@
+{
+  "name": "@nodeproto/gateway",
+  "version": "0.0.0",
+  "bin": {
+    "bin": "./usr/bin"
+  },
+  "config": {
+    "GATEWAY_USER": "haproxy",
+    "GATEWAY_GROUP": "haproxy",
+    "GATEWAY_CHROOT_DIR": "./var/lib/haproxy",
+    "GATEWAY_STATS_SOCK": "./run/haproxy/admin.sock",
+    "PATH_DIST": "./dist",
+    "PATH_SRC": "./src",
+    "BABEL_SHOW_CONFIG_FOR": "e.g. BABEL_SHOW_CONFIG_FOR=absolute/path/to/file somePkgJsonScriptName",
+    "NODE_ENV": "development",
+    "NODE_OPTIONS": "--pending-deprecation --experimental-wasm-modules --trace-warnings --experimental-top-level-await --enable-source-maps --experimental-vm-modules --experimental-worker --experimental-import-meta-resolve --experimental-report --trace-exit --heapsnapshot-near-heap-limit=3 --trace-uncaught --deprecation --trace-deprecation --no-insecure-http-parser --report-uncaught-exception --use-largepages=on --warnings --experimental-abortcontroller --report-on-fatalerror --experimental-json-modules --trace-sigint --abort-on-uncaught-exception --es-module-specifier-resolution=node --experimental-specifier-resolution=node --experimental-modules"
+  },
+  "scripts": {
+    "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
+    "build": "",
+    "linkandsetowner": "src/usr/bin/linkandsetowner.sh",
+    "start": "src/usr/bin/startdefault.sh",
+    "start:gateway": "pnpm start",
+    "start:client": "pnpm start",
+    "start:pkgcheck": "pnpm start",
+    "config:list": "pnpm config list --json",
+    "cp:flow": "cp node_modules/@nodeproto/configproto/.flowconfig .",
+    "eslint:fix": "pnpm eslint -- --fix",
+    "eslint": "eslint 'src/**/*'",
+    "pkg:deps": "pnpm exec ultra --info",
+    "test:help": "uvu --help",
+    "test:ing": "clear; pnpm test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"clear; pnpm test\"",
+    "test": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" uvu ./src test.mjs",
+    "upgrade": "pnpm upgrade -L"
+  },
+  "jsync": {
+    "root": false
+  },
+  "devDependencies": {
+    "@nodeproto/jsync": "workspace:0.0.0"
+  },
+  "author": {
+    "name": "theDRAGON",
+    "email": "noahedwardhall+souls@gmail.com",
+    "url": "https://github.com/noahehall"
+  },
+  "bugs": "https://github.com/noahehall/nodeproto/issues",
+  "homepage": "https://github.com/noahehall/nodeproto",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "repository": "git://github.com/noahehall/nodeproto.git",
+  "description": "bleeding-edge repo for prototyping end-to-end, complex, and secure applications and microservices",
+  "private": true,
+  "type": "module",
+  "keywords": [
+    "@nirv",
+    "@nodeproto",
+    "api",
+    "bodyguard",
+    "docker",
+    "esbuild",
+    "fullstack",
+    "grafana",
+    "haproxy",
+    "inception",
+    "jsync",
+    "koa",
+    "micro service",
+    "microservice",
+    "nirv",
+    "nodeproto",
+    "openapi",
+    "pnpm",
+    "prometheus",
+    "prototype",
+    "react",
+    "ssl",
+    "starter",
+    "swagger",
+    "webpack5"
+  ],
+  "os": [
+    "darwin",
+    "linux"
+  ],
+  "ultra": {
+    "concurrent": [
+      "eslint",
+      "test",
+      "cp:flow"
+    ]
+  },
+  "packageManager": "pnpm@6.15.1",
+  "dependencies": {
+    "@changesets/cli": "2.17.0",
+    "ultra-runner": "3.10.5",
+    "uvu": "0.5.1"
+  }
+}

@@ -19,7 +19,8 @@
     "test:help": "uvu --help",
     "test:ing": "clear; pnpm test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"clear; pnpm test\"",
     "config:list": "pnpm config list --json",
-    "pkg:deps": "pnpm exec ultra --info"
+    "pkg:deps": "pnpm exec ultra --info",
+    "proto": "pnpm exec ultra -r --filter"
   },
   "dependencies": {
     "@nodeproto/shared": "workspace:0.0.0",
@@ -27,7 +28,9 @@
     "eslint": "7.32.0",
     "flow-bin": "0.157.0",
     "fs-extra": "10.0.0",
-    "ultra-runner": "3.10.5"
+    "ultra-runner": "3.10.5",
+    "@changesets/cli": "2.17.0",
+    "uvu": "0.5.1"
   },
   "jsync": {
     "root": false

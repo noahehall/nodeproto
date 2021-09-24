@@ -34,7 +34,7 @@
     "start:dev": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" node webpack.server.mjs",
     "start:reactdevtools": "react-devtools",
     "start": "concurrently pnpm:start:dev pnpm:start:reactdevtools",
-    "start:client": "npm start",
+    "start:client": "pnpm start",
     "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
     "config:list": "pnpm config list --json",
     "cp:flow": "cp node_modules/@nodeproto/configproto/.flowconfig .",

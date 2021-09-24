@@ -1,24 +1,29 @@
-# categorize these before merge to master
+# categorize these before deleting previous main branch `dev`
 
 scripts
 
-- debugging
+- start from scratch (if getting pnpm|node errors)
   - [remove pnpm](https://pnpm.io/uninstall)
   - then fall through setup below
 
 - setup `@nodeproto` for development
-  - install pnpm `curl -fsSL https://get.pnpm.io/install.sh | sh -`
-  - install pnpm tab-completion `pnpm install-completion`
-  - install node `pnpm env use --global 16`
-    - FYI: as soon as 17 drops, we will be on it
-  - install root dependencies `pnpm install`
-  - install package dependencies `pnpm -r exec pnpm install`
-    - ignore the cyclic dependencies, will resolve that later
-  - verify tests `pnpm exec ultra -r test`
-
-- development
-  - `corepack enable` installs pnpm as specified in `pkgjson.packageManager`
-  - sync global version `corepack prepare pnpm@6.15.1 --activate`
+  - use pnpm to install node
+    - install pnpm `curl -fsSL https://get.pnpm.io/install.sh | sh -`
+    - install pnpm tab-completion `pnpm install-completion`
+    - source your shell (e.g. bashrc `. ~/.bashrc`)
+    - install node `pnpm env use --global 16`
+      - FYI: as soon as 17 drops, we will be on it
+  - now that node is installed, use corepack to manage pnpm
+    - dont do this step until corepack is useable, or manageable via pnpm env (not sure which is the issue)
+    - ~~install corepack `pnpm install -g corepack`~~
+    - ~~update `packageManager` in `root/package.json` to the version of pnpm installed earlier~~
+    - ~~manage pnpm via corepack `corepack enable`~~
+    - ~~sync global version `corepack prepare pnpm@6.15.1 --activate`~~
+  - setup application
+    - install root dependencies `pnpm install`
+    - install package dependencies `pnpm -r exec pnpm install`
+      - ignore the cyclic dependencies, will resolve that later
+    - verify tests `pnpm exec ultra -r test`
 
 - [publishing a new version](https://pnpm.io/using-changesets)
   - create a new changeset `pnpm changeset`
@@ -28,7 +33,7 @@ scripts
   - [should automate this via github action](https://pnpm.io/using-changesets#using-github-actions)
 
 - publish packages `pnpm publish -r`
-    -
+  - TODO
 
 - upgrades
   - run `pnpm -r exec pnpm outdated` to see any outdated packages
@@ -39,14 +44,21 @@ scripts
     - terminal 1: `pnpm exec ultra --monitor`
     - terminal 2: see any of the cmds below
     - [always use pnpm exec with ultra](https://github.com/folke/ultra-runner#rocket-usage)
-  - run cmd in specific pkg `pnpm exec ultra -r --filter "@nodeproto/configproto" test`
-  - run cmd in specific pkg + dependencies `pnpm exec ultra -r --filter "+@nodeproto/configproto" test`
+  - run cmd in specific pkg `pnpm proto @nodeproto/client start`
+  - run cmd in specific pkg + dependencies `pnpm proto +@nodeproto/configproto test`
     - note the `+` before the pkg name
     - dependencies: other monorepo pkgs, not node_modules
-  - run cmd in all pkgs matching scope `pnpm exec ultra -r --filter "@nodeproto/*" test`
-    - in a monorepo with a single scope, this will run all pkgs
-  - run cmd in all subdirectory `pnpm exec ultra -r --filter "packages/libraries/*" test`
+  - run cmd in all pkgs matching scope `pnpm proto "@nodeproto/*" test`
+    - will run all packages with scope @nodeproto
+  - run cmd in all subdirectory `pnpm proto "packages/libraries/*" test`
   - run cmd in all pkgs `pnpm exec ultra -r test`
+  - run specific package behind gateway
+    - `pnpm exec ultra -r start:client` open browser to `localhost:7777`
+      - generally check `packages/apps/gateway/package.json` to see scripts
+        - you want to add the start:PKG cmd in the gateway so ultra runs them both
+  - run all packages behind gateway
+    - `pnpm exec ultra -r start`
+      - generall all pkgs should have a `start` script
 
 - **TODO** default cmds available to all (appropriate) pkgs
   - test|test:ci|test:integration|test:e2e|test:ing (unit)|test:ing:e2e
