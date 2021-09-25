@@ -2,6 +2,11 @@ import manifestPlugin from 'esbuild-plugin-manifest';
 
 const r = (t, msg = 'is required') => { throw new Error(`${t}: ${msg}`)};
 
+const getPkgDeps = pkgJson => console.info(pkgJson) || Object.keys({
+  ...(pkgJson.dependencies || {}),
+  ...(pkgJson.devDependencies || {})
+});
+
 export function createEsbuildConfig ({
   entry = r('entry: string'),
   outdir = r('outdir: string'), // fsproto.resolve('dist')
@@ -9,8 +14,10 @@ export function createEsbuildConfig ({
 
   // defaults
   assetNames = 'assets/[name]-[hash]',
+  bff = false, // starts server
   builtinModules = [], // import { builtinModules } from 'module';
   bundle = true,
+  external = [], // generally you shouldnt package your deps
   isBuild = process.env.IS_BUILD,
   isDev = process.env.NODE_ENV !== 'production',
   isProd = !isDev,
@@ -19,12 +26,12 @@ export function createEsbuildConfig ({
   outExtension = { '.js': '.cjs' },
   platform = 'node',
   plugins = [],
+  removePkgDependencies = true,
   replaceEntryVars = {}, // passed to define
   resolveExtensions = ['.mjs', '.js', '.cjs', '.json'],
   sourcemap = true,
-  target = ['node14.17.0'], // LTS
+  target = ['node14'], // LTS
   watch = false,
-  bff = false, // starts server
   write = true,
 
   // dependent
@@ -53,12 +60,13 @@ export function createEsbuildConfig ({
   };
 
   return {
+    preserveSymlinks: false,
     assetNames,
     bundle,
     define,
     entryNames,
     entryPoints: [entry],
-    external: builtinModules,
+    external: external.concat(builtinModules).concat(removePkgDependencies ? getPkgDeps(pkgJson) : []),
     metafile,
     minify,
     outdir,
@@ -70,7 +78,7 @@ export function createEsbuildConfig ({
     resolveExtensions,
     sourcemap,
     target,
-    watch: false,
+    watch,
     write,
 
     ...overrides

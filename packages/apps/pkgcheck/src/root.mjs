@@ -1,7 +1,7 @@
-import { fsproto } from '@nodeproto/wtf/fsproto';
-import envproto from '@nodeproto/envproto';
+import { isMain } from '@nodeproto/wtf';
+import { getDevCert } from '@nodeproto/envproto';
 
-import App from './app/app.mjs';
+import App from './app.mjs';
 import http from 'http';
 import https from 'https';
 
@@ -19,7 +19,7 @@ export const runApp = async () => {
     ));
 
   if (sport) {
-    const { clientKey: key, certificate: cert } = await envproto.getDevCert();
+    const { clientKey: key, certificate: cert } = await getDevCert();
 
     if (!key || !cert) console.error('\n\n did not receive dev certs', typeof key, typeof cert);
     else servers.push(https.createServer(
@@ -34,4 +34,4 @@ export const runApp = async () => {
 }
 
 const iscjs = typeof require !== 'undefined';
-if (fsproto.isMain(iscjs && require.main, import.meta)) runApp();
+if (isMain(iscjs && require.main, import.meta)) runApp();

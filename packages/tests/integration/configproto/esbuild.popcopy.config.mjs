@@ -5,6 +5,7 @@ import {
   esbuildPluginPopCopyConfig,
 } from '@nodeproto/configproto/esbuild';
 import { fsproto, parentUri, resolve } from '@nodeproto/wtf/fsproto';
+import { builtinModules } from 'module';
 
 const outdir = await resolve('../../dist/copypasta/node/nodeFixtures', parentUri(import.meta));
 
@@ -15,10 +16,13 @@ const popCopyConfig = esbuildPluginPopCopyConfig({
 });
 
 const configOpts = {
-  entry: await resolve('../../copypasta/node/nodeFixtures.js', parentUri(import.meta)),
+  entry: await resolve('../../copypasta/node/api.mjs', parentUri(import.meta)),
   outdir,
-  pkgJson: fsproto.fs.readJsonSync('../../package.json'),
-  plugins: [esbuildPluginPopCopy(popCopyConfig)]
+  pkgJson: fsproto.fs.readJsonSync('./package.json'),
+  plugins: [esbuildPluginPopCopy(popCopyConfig)],
+  builtinModules,
 };
 
-await esbuildConfig(createEsbuildConfig(configOpts));
+const config = createEsbuildConfig(configOpts);
+// console.info(config.external)
+await esbuildConfig(config);

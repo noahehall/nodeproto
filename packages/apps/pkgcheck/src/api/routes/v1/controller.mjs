@@ -4,7 +4,7 @@
  * TODO: https://github.com/steambap/koa-tree-router/issues/19
  */
 
-import { fsproto } from '@nodeproto/utils';
+import { resolve } from '@nodeproto/wtf/fsproto';
 
 // import handlers
 import * as demo from './demo/index.mjs';
@@ -16,7 +16,7 @@ export default async function v1Controller (v1RouterGroup, app) {
       * map v1 paths to handlers
     */
     // @see https://nodejs.org/api/esm.html#esm_import_meta_resolve_specifier_parent
-    const openApiUri = await fsproto.resolve('./v1openapi.yaml');
+    const openApiUri = await resolve('./v1openapi.yaml', import.meta);
 
     v1RouterGroup.get(
       '/',

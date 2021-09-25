@@ -4,21 +4,28 @@ import {
   esbuildPluginPopCopy,
   esbuildPluginPopCopyConfig,
 } from '@nodeproto/configproto/esbuild';
-import { fsproto, parentUri, resolve } from '@nodeproto/wtf/fsproto';
+import { fsproto, isMain, dirs } from '@nodeproto/wtf';
+import { builtinModules } from 'module'
 
-const outdir = await resolve('./dist', parentUri(import.meta));
+const basedir = dirs.dirname(import.meta.url);
+const outdir = basedir + '/dist';
 
 const popCopyConfig = esbuildPluginPopCopyConfig({
   endingWith: /openapi\.(yml|yaml)$/,
-  indir: await resolve('./src', parentUri(import.meta)),
+  indir: basedir + '/src/api',
   outdir,
 });
 
 const configOpts = {
-  entry: await resolve('./src/root.mjs', parentUri(import.meta)),
+  // absWorkingDir: basedir,
+  entry: basedir + '/src/root.mjs',
   outdir,
   pkgJson: fsproto.fs.readJsonSync('./package.json'),
-  plugins: [esbuildPluginPopCopy(popCopyConfig)]
+  plugins: [esbuildPluginPopCopy(popCopyConfig)],
+  builtinModules,
+  // format: 'cjs',
+  // outExtension: {},
+  // target: ['node16']
 };
 
 await esrunConfig(createEsbuildConfig(configOpts));
