@@ -2,15 +2,11 @@
 
 - you should prefer swc for is simplicity and raw speed
 - use whenever you:
-  - dont need a particular babel plugin or swc is too buggy
+  - simple mjs > cjs transpilations
+  - dont need esbuild/webpack
   - dont use flow
     - if you do
       - you need to double transpile (flow-remove-types > swc)
-      - you need to configure eslint + flow (see eslint docs in this repo)
-  - [dont use eslint](https://github.com/swc-project/swc/issues/246)
-    - if you do: you need to run eslint as a separate build step
-    -
-
 
 # NOTES
 
@@ -32,8 +28,8 @@
       - "expression": false,
       - "ie8": false,
       - "keep_fnames": false,
-      -  "module": false, // all files are treated as module
-   -  mangle
+      - "module": false, // all files are treated as module
+  - mangle
       -"keep_fnames": false,
       "ie8": false, // ignored
       "safari10": false, // not implemented
