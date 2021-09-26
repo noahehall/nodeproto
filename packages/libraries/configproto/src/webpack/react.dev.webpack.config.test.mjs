@@ -1,9 +1,9 @@
 import { fileURLToPath } from 'url';
 
 import path from 'path';
-import reactDevWebpackConfig from './react.dev.webpack.config.mjs';
+import reactDevWebpackConfig from './react.dev.webpack.config';
 import t from '#t';
-import testCompiler from './test.compiler.mjs';
+import testCompiler from './test.compiler';
 
 const { assert } = t;
 

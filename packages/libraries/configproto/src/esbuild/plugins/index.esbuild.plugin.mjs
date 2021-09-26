@@ -1,1 +1,1 @@
-export * from './popCopy.esbuild.plugin.mjs';
+export * from './popCopy.esbuild.plugin';

@@ -1,17 +1,16 @@
 // @see https://webpack.js.org/contribute/writing-a-loader/#testing
+// TODO: move this file into #t
 
 import { createFsFromVolume, Volume } from 'memfs';
 
 import path from 'path';
 import webpack from 'webpack';
 
-const __dirname = path.resolve('./dist/tests');
-
 export const createConfig = ({ entry, ...loader } = {}) => ({
   // context: __dirname,
   entry,
   output: {
-    path: path.resolve(__dirname),
+    path: path.resolve('./dist/tests'),
     filename: 'bundle.js',
   },
   ...loader

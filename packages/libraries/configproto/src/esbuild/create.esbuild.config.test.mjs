@@ -1,9 +1,9 @@
 import t from '#t';
-import { createEsbuildConfig } from './create.esbuild.config.mjs';
+import { createEsbuildConfig } from './create.esbuild.config';
 
 const { assert } = t;
 
-const test = t.suite('create.esbuild.config.mjs');
+const test = t.suite('create.esbuild.config');
 
 const getConfig = props => ({
   entry: '',

@@ -1,8 +1,8 @@
-import { getDevCert } from './ssl.mjs';
+import { getDevCert } from './ssl';
 import { suite } from 'uvu';
 import * as assert from 'uvu/assert';
 
-const test = suite('@nodeproto/envproto/ssl.mjs');
+const test = suite('@nodeproto/envproto/ssl');
 
 const getOpts = (overrides = {}) => ({
   days: 7,

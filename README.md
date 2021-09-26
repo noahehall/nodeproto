@@ -25,6 +25,21 @@ scripts
       - ignore the cyclic dependencies, will resolve that later
     - verify tests `pnpm exec ultra -r test`
 
+- idiosyncrasies (there like opinions, all frameworks have them)
+  - `mjs` interopability with `cjs`
+    - I could not find any solution (wtf node?) with a good developer experience, thus i settled on this custom approach based on nodejs docs
+    - generally you need to enable `--experimental-specifier-resolution=node` to run `mjs` files as we dont specify an extension when importing anything
+    - when we build for cjs
+      - for libraries & tools
+        - we use `swc` to compile source files to `dist/dir` in each package
+        - we copy `commonjs.json` to `/dist/package.json` which sets `type="commonjs"`
+        - swc will convert `mjs` files to `js` files in the `dist` dir
+        - and sine we dont specify the extension in the mjs files, in addition to setting `type=commonjs` in the dist dir, everything works as expected whether in commonjs land or esm land
+      - for node applications
+        - TODO
+      - for client applications
+        - TODO
+
 - [publishing a new version](https://pnpm.io/using-changesets)
   - create a new changeset `pnpm changeset`
   - version bump `pnpm changeset version`

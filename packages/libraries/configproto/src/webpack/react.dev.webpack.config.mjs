@@ -1,7 +1,7 @@
 // was originally client/lib/webpack.dev.config.mjs
 // TODO: use to have dependency on envproto
 
-import baseWebpackConfig from './base.webpack.config.mjs';
+import baseWebpackConfig from './base.webpack.config';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import webpack from 'webpack';
 
