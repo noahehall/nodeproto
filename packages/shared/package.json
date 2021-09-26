@@ -3,11 +3,19 @@
   "type": "module",
   "private": true,
   "version": "0.0.0",
-  "exports": "./index.mjs",
+  "exports": {
+    "import": "./index.mjs",
+    "default": "./dist/index.cjs"
+  },
+  "main": "./dist/index.cjs",
   "dependencies": {
     "@folder/readdir": "3.1.0",
     "jsonc-simple-parser": "2.2.0",
     "picomatch": "2.3.0",
     "shelljs": "0.8.4"
+  },
+  "devDependencies": {
+    "@swc/cli": "0.1.46",
+    "@swc/core": "1.2.75"
   }
 }

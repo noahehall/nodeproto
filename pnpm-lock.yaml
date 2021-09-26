@@ -360,6 +360,8 @@ importers:
   packages/shared:
     specifiers:
       '@folder/readdir': 3.1.0
+      '@swc/cli': 0.1.46
+      '@swc/core': 1.2.75
       jsonc-simple-parser: 2.2.0
       picomatch: 2.3.0
       shelljs: 0.8.4
@@ -368,6 +370,9 @@ importers:
       jsonc-simple-parser: 2.2.0
       picomatch: 2.3.0
       shelljs: 0.8.4
+    devDependencies:
+      '@swc/cli': 0.1.46_@swc+core@1.2.75
+      '@swc/core': 1.2.75
 
   packages/tests:
     specifiers:
@@ -4146,7 +4151,6 @@ packages:
 
   /@napi-rs/triples/1.0.3:
     resolution: {integrity: sha512-jDJTpta+P4p1NZTFVLHJ/TLFVYVcOqv6l8xwOeBKNPMgY/zDYH/YH7SJbvrr/h1RcS9GzbPcLKGzpuK9cV56UA==}
-    dev: false
 
   /@nicolo-ribaudo/chokidar-2/2.1.8-no-fsevents.2:
     resolution: {integrity: sha512-Fb8WxUFOBQVl+CX4MWet5o7eCc6Pj04rXIwVKZ6h1NnqTo45eOQW6aWyhG25NIODvWFwTDMwBsYxrQ3imxpetg==}
@@ -4169,7 +4173,6 @@ packages:
     resolution: {integrity: sha512-R5wEmm8nbuQU0YGGmYVjEc0OHtYsuXdpRG+Ut/3wZ9XAvQWyThN08bTh2cBJgoZxHQUPtvRfeQuxcAgLuiBISg==}
     dependencies:
       '@napi-rs/triples': 1.0.3
-    dev: false
 
   /@nodelib/fs.scandir/2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -5405,7 +5408,6 @@ packages:
       fast-glob: 3.2.7
       slash: 3.0.0
       source-map: 0.7.3
-    dev: false
 
   /@swc/core-android-arm64/1.2.75:
     resolution: {integrity: sha512-YT/B+PLfbJWmNDynDPC+mn1KnktXPRUu1EFmQOhyaqD/EKmgoHTzZ5fxElz2Ao4Xt6Wm2xOHO4J51xEZKuoAgQ==}
@@ -5413,7 +5415,6 @@ packages:
     cpu: [arm64]
     os: [android]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@swc/core-darwin-arm64/1.2.75:
@@ -5422,7 +5423,6 @@ packages:
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@swc/core-darwin-x64/1.2.75:
@@ -5431,7 +5431,6 @@ packages:
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@swc/core-freebsd-x64/1.2.75:
@@ -5440,7 +5439,6 @@ packages:
     cpu: [x64]
     os: [freebsd]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@swc/core-linux-arm-gnueabihf/1.2.75:
@@ -5449,7 +5447,6 @@ packages:
     cpu: [arm]
     os: [linux]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@swc/core-linux-arm64-gnu/1.2.75:
@@ -5458,7 +5455,6 @@ packages:
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@swc/core-linux-arm64-musl/1.2.75:
@@ -5467,7 +5463,6 @@ packages:
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@swc/core-linux-x64-gnu/1.2.75:
@@ -5476,7 +5471,6 @@ packages:
     cpu: [x64]
     os: [linux]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@swc/core-linux-x64-musl/1.2.75:
@@ -5485,7 +5479,6 @@ packages:
     cpu: [x64]
     os: [linux]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@swc/core-win32-arm64-msvc/1.2.75:
@@ -5494,7 +5487,6 @@ packages:
     cpu: [arm64]
     os: [win32]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@swc/core-win32-ia32-msvc/1.2.75:
@@ -5503,7 +5495,6 @@ packages:
     cpu: [ia32]
     os: [win32]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@swc/core-win32-x64-msvc/1.2.75:
@@ -5512,7 +5503,6 @@ packages:
     cpu: [x64]
     os: [win32]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@swc/core/1.2.75:
@@ -5533,7 +5523,6 @@ packages:
       '@swc/core-win32-arm64-msvc': 1.2.75
       '@swc/core-win32-ia32-msvc': 1.2.75
       '@swc/core-win32-x64-msvc': 1.2.75
-    dev: false
 
   /@swc/helpers/0.2.12:
     resolution: {integrity: sha512-hsPGC/U/0xe/WghMeSgyFsq9nNPfA5oY1Il2AaeAJcu/vTm4Bv8o9ev4eAgxcA61i5WWp72amN20XVyxWwM5aQ==}
