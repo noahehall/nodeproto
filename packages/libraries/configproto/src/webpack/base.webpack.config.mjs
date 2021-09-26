@@ -1,5 +1,12 @@
 import { BundleStatsWebpackPlugin } from 'bundle-stats-webpack-plugin';
+import { dirs } from '@nodeproto/wtf';
 import { fileURLToPath } from 'url';
+
+import path from 'path';
+
+const getConfigFile = () => dirs.isEsm()
+  ? fileURLToPath(new URL('../babel/flow.babelrc', import.meta.url))
+  : path.resolve(__dirname, '../babel/flow.babelrc');
 
 // likely not needed as we continue to integrate flow
 const t = (msg = 'required', p = 'error in baseWebpackConfig: ') => { throw new Error(`${p}${msg}`); };
@@ -21,6 +28,7 @@ const defaultPlugins = [
 const generateLoaders = ({
   pathSrc,
   stringReplaceLoader,
+  configFile,
 }) => ({
   cssExternalLoader: {
     test: /\.css$/,
@@ -104,7 +112,7 @@ const generateLoaders = ({
         options: {
           sourceType: "unambiguous",
           // TODO: likely wont work with cjs
-          configFile: fileURLToPath(new URL('../babel/flow.babelrc', import.meta.url))
+          configFile: configFile || getConfigFile(),
         },
       },
       stringReplaceLoader,
@@ -130,6 +138,7 @@ export default function baseWebpackConfig ({
   builtinModules = pack.builtinModules || [], // TODO: update tests this shouldnt be required
   ifDev = pack.ifDev,
   ifProd = pack.ifProd,
+  configFile = false, // todo: absolute path to a babelConfigFile
   pathDist = pack.pathDist || r('pathDist: String'),
   pathSrc = pack.pathSrc || r('pathSrc: String'),
   pkgJson = pack.pkgJson || {},
@@ -180,7 +189,7 @@ export default function baseWebpackConfig ({
     externals: builtinModules.concat(externals),
     mode,
     // use to be [generateLoaders...]
-    module: { rules: Object.values(generateLoaders({ pathSrc, stringReplaceLoader })).filter(x => x) },
+    module: { rules: Object.values(generateLoaders({ pathSrc, stringReplaceLoader, configFile })).filter(x => x) },
     optimization,
     output: {
       path: pathDist,

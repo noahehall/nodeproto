@@ -1,8 +1,8 @@
 import { fileURLToPath } from 'url';
 
 import path from 'path';
-import reactEsbuildWebpackConfig from './react.esbuild.webpack.config.mjs';
-import testCompiler from './test.compiler.mjs';
+import reactEsbuildWebpackConfig from './react.esbuild.webpack.config';
+import testCompiler from './test.compiler';
 import t from '#t';
 
 const { assert } = t;
@@ -19,7 +19,7 @@ export const getOpts = (overrides) => ({
   ...overrides
 });
 
-const test = t.suite('react.esbuild.webpack.config.mjs');
+const test = t.suite('react.esbuild.webpack.config');
 
 test('throws', () => {
   let opts = getOpts();

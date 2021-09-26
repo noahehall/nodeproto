@@ -24,11 +24,6 @@
     Use peer dependencies.
 */
 
-// @see https://github.com/tapjs/node-tap/blob/main/test/test.mjs
-// import * as module from 'module';
-// const { createRequire } = module;
-// const require = createRequire(import.meta.url);
-// const flowRemoveTypes = require('flow-remove-types');
 const { validate } = require('schema-utils');
 const flowRemoveTypes = require('flow-remove-types'); // TODO: wtf happened to eslint/sort-imports ?
 

@@ -9,9 +9,9 @@ import {
   syncEnvWithConfig,
   updateBaseEnv,
   wrapValue,
-} from './env.mjs';
+} from './env';
 
-const test = suite('env.mjs');
+const test = suite('@nodeproto/envproto/env');
 
 test.before.each(() => clearBaseEnv());
 

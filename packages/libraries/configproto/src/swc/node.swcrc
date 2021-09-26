@@ -1,5 +1,6 @@
 {
   "test": ".*.mjs$",
+  "exclude": [".*.test.mjs$", ".*.md$"],
   "env": {
     "mode": "entry",
     "coreJs": 3,
@@ -14,7 +15,7 @@
     "strict": false,
     "strictMode": true,
     "lazy": false,
-    "noInterop": true
+    "noInterop": false
   },
   "minify": true,
   "jsc": {
@@ -33,7 +34,7 @@
     "transform": null,
     "target": "es5",
     "loose": true,
-    "externalHelpers": true,
+    "externalHelpers": false,
     "minify": {
       "compress": {
         "collapse_vars": true,

@@ -1,19 +1,12 @@
 import { fileURLToPath } from 'url';
 import { fs as memfs } from 'memfs';
 
-import esMain from 'es-main';
+import esMain from './esmain';
 import fse from 'fs-extra';
 import path from 'path';
 
 const r = (t, msg = 'is required') => { throw new Error(`${t}: ${msg}`); };
 
-/**
- * determine if some file was invoked on CLI
- *
- * @param mod module
- * @param importMeta import.meta
- * @returns bool true if file was run directly
- */
 export const isMain = (
   requireMain, // will be undefined in esm
   importMeta,
@@ -25,27 +18,19 @@ export const isMain = (
     : esMain(importMeta);
 }
 
-export const parentUri = (importMeta = import.meta) => (
+export const parentUri = (importMeta) => (
   importMeta?.url
     ? fileURLToPath(importMeta.url)
     : module.filename
 );
 
 // TODO: breaks if --experimental-import-meta-resolve is set
-// directory where the code is being run
-// export const cwd = path.resolve('', path.dirname(parentUri()));
-// @see https://github.com/stefanpenner/mjs-dirname/blob/main/index.mjs
-/**
- *
- * @param fileToImport filename
- * @param parent absolute path of the parent
- * @returns
- */
 export const resolve = async (
   fileToImport = r('fileToImport: string'),
-  parent = parentUri()
-) => (import.meta?.resolve
-  ? await import.meta.resolve(fileToImport, parent)
+  parent = parentUri(),
+  importMeta
+) => (importMeta?.resolve
+  ? await importMeta.resolve(fileToImport, parent)
   : path.join(path.dirname(parent), fileToImport)
 );
 

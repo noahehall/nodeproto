@@ -1,12 +1,12 @@
 import { resolve } from '@nodeproto/wtf';
-import * as popCopy from './popCopy.esbuild.plugin.mjs';
+import * as popCopy from './popCopy.esbuild.plugin';
 import fs from 'fs';
 import path from 'path';
 import t from '#t';
 
 const { assert, sinon } = t;
 
-const test = t.suite('popCopy.esbuild.plugin.test.mjs');
+const test = t.suite('popCopy.esbuild.plugin.test');
 
 const fstubs = {};
 
