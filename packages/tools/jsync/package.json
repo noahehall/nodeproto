@@ -1,52 +1,47 @@
 {
+  "bugs": "https://github.com/noahehall/nodeproto/issues",
   "description": "@nodeproto/jsync - sync package.json files in a monorepo",
-  "version": "0.0.0",
-  "bin": {
-    "jsync": "./bin/jsync.js"
-  },
-  "scripts": {
-    "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
-    "start": "NODE_OPTIONS=$npm_package_config_NODE_OPTIONS node index.mjs",
-    "verbose": "NODE_ENV=verbose node index.mjs",
-    "upgrade": "pnpm upgrade -L",
-    "nvm:latest": "nvm install node --reinstall-packages-from=current",
-    "post:nvm:latest": "nvm alias default node",
-    "eslint": "eslint 'src/**/*'",
-    "eslint:fix": "pnpm eslint -- --fix",
-    "cp:flow": "cp node_modules/@nodeproto/configproto/.flowconfig .",
-    "jsync": "node ./bin/jsync.js",
-    "test": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" uvu ./src test.mjs",
-    "test:help": "uvu --help",
-    "test:ing": "clear; pnpm test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"clear; pnpm test\"",
-    "config:list": "pnpm config list --json",
-    "pkg:deps": "pnpm exec ultra --info",
-    "proto": "pnpm exec ultra -r --filter"
-  },
-  "dependencies": {
-    "@nodeproto/shared": "workspace:0.0.0",
-    "env-cmd": "10.1.0",
-    "eslint": "7.32.0",
-    "flow-bin": "0.157.0",
-    "fs-extra": "10.0.0",
-    "ultra-runner": "3.10.5",
-    "@changesets/cli": "2.17.0",
-    "uvu": "0.5.1"
-  },
-  "jsync": {
-    "root": false
-  },
-  "type": "module",
+  "homepage": "https://github.com/noahehall/nodeproto",
+  "license": "SEE LICENSE IN LICENSE.md",
   "main": "index.mjs",
   "name": "@nodeproto/jsync",
+  "packageManager": "pnpm@6.15.1",
+  "private": true,
+  "repository": "git://github.com/noahehall/nodeproto.git",
+  "type": "module",
+  "version": "0.0.0",
   "author": {
     "name": "theDRAGON",
     "email": "noahedwardhall+souls@gmail.com",
     "url": "https://github.com/noahehall"
   },
-  "bugs": "https://github.com/noahehall/nodeproto/issues",
-  "homepage": "https://github.com/noahehall/nodeproto",
-  "license": "SEE LICENSE IN LICENSE.md",
-  "private": true,
+  "bin": {
+    "jsync": "./bin/jsync.js"
+  },
+  "config": {
+    "NODE_OPTIONS": "--enable-source-maps --heapsnapshot-near-heap-limit=3 --use-largepages=on --pending-deprecation --trace-sigint --trace-warnings --trace-exit --report-uncaught-exception --report-on-fatalerror --abort-on-uncaught-exception --experimental-specifier-resolution=node --experimental-json-modules --experimental-top-level-await --experimental-vm-modules --experimental-import-meta-resolve",
+    "NODE_ENV": "development",
+    "BABEL_SHOW_CONFIG_FOR": "e.g. BABEL_SHOW_CONFIG_FOR=absolute/path/to/file somePkgJsonScriptName",
+    "PATH_DIST": "./dist",
+    "PATH_SRC": "./src",
+    "DIRS_TO_TRANSPILE": "./src"
+  },
+  "dependencies": {
+    "@nodeproto/shared": "workspace:0.0.0",
+    "env-cmd": "10.1.0",
+    "fs-extra": "10.0.0",
+    "ultra-runner": "3.10.5"
+  },
+  "devDependencies": {
+    "@changesets/cli": "2.17.0",
+    "@swc/cli": "0.1.46",
+    "@swc/core": "1.2.75",
+    "uvu": "0.5.1",
+    "eslint": "7.32.0"
+  },
+  "jsync": {
+    "root": false
+  },
   "keywords": [
     "@nirv",
     "@nodeproto",
@@ -78,20 +73,27 @@
     "darwin",
     "linux"
   ],
-  "config": {
-    "NODE_OPTIONS": "--pending-deprecation --experimental-wasm-modules --trace-warnings --experimental-top-level-await --enable-source-maps --experimental-vm-modules --experimental-worker --experimental-import-meta-resolve --experimental-report --trace-exit --heapsnapshot-near-heap-limit=3 --trace-uncaught --deprecation --trace-deprecation --no-insecure-http-parser --report-uncaught-exception --use-largepages=on --warnings --experimental-abortcontroller --report-on-fatalerror --experimental-json-modules --trace-sigint --abort-on-uncaught-exception --es-module-specifier-resolution=node --experimental-specifier-resolution=node --experimental-modules",
-    "NODE_ENV": "development",
-    "BABEL_SHOW_CONFIG_FOR": "e.g. BABEL_SHOW_CONFIG_FOR=absolute/path/to/file somePkgJsonScriptName",
-    "PATH_DIST": "./dist",
-    "PATH_SRC": "./src"
+  "scripts": {
+    "jsync": "node --experimental-specifier-resolution=node ./bin/jsync.js",
+    "proto": "pnpm exec ultra -r --filter",
+    "repo:about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
+    "repo:config:list": "pnpm config list --json",
+    "repo:cp:flow": "cp node_modules/@nodeproto/configproto/.flowconfig .",
+    "repo:deps": "pnpm exec ultra --info",
+    "repo:install": "pnpm -r exec pnpm install",
+    "repo:monitor": "pnpm exec ultra --monitor",
+    "repo:nuke": "pnpm repo:rm:dist; pnpm repo:rm:nodemodules",
+    "repo:rm:dist": "rm -rf dist/*",
+    "repo:rm:nodemodules": "rm -rf node_modules",
+    "repo:upgrade": "pnpm upgrade -L",
+    "start": "NODE_OPTIONS=$npm_package_config_NODE_OPTIONS node index.mjs",
+    "verbose": "NODE_ENV=verbose node index.mjs",
+    "repo:eslint:fix": "pnpm repo:eslint -- --fix",
+    "repo:eslint": "eslint 'src/**/*'",
+    "repo:test:help": "uvu --help",
+    "repo:test:ing": "pnpm repo:test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"pnpm repo:test\"",
+    "repo:test": "clear; NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" uvu ./src test.mjs"
   },
-  "repository": "git://github.com/noahehall/nodeproto.git",
-  "devDependencies": {
-    "@changesets/cli": "2.17.0",
-    "ultra-runner": "3.10.5",
-    "uvu": "0.5.1"
-  },
-  "packageManager": "pnpm@6.15.1",
   "ultra": {
     "concurrent": [
       "eslint",

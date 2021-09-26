@@ -1,14 +1,14 @@
 import {
   esrunConfig,
   esbuildConfig,
-} from './run.esbuild.config.mjs';
-import { createEsbuildConfig } from './create.esbuild.config.mjs';
+} from './run.esbuild.config';
+import { createEsbuildConfig } from './create.esbuild.config';
 import t from '#t';
 import path from 'path';
 
 const { assert } = t;
 
-const test = t.suite('run.esbuild.config.test.mjs');
+const test = t.suite('run.esbuild.config.test');
 
 const getConfig = props => ({
   entry: '',

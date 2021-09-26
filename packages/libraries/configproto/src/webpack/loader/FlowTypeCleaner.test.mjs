@@ -5,7 +5,7 @@ import { fileURLToPath } from 'url';
 import FlowTypeCleaner from './FlowTypeCleaner.cjs';
 import implementation from 'esbuild';
 import path from 'path';
-import testCompiler, { createConfig } from '../test.compiler.mjs';
+import testCompiler, { createConfig } from '../test.compiler';
 import t from '#t';
 
 const { assert } = t;

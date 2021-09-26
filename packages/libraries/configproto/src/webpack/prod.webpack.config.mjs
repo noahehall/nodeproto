@@ -1,6 +1,6 @@
 // TODO: need to update to new architecture
-import * as pack from './webpack.setup.mjs';
-import webpackBaseConfig from './webpack.base.config.mjs';
+import * as pack from './webpack.setup';
+import webpackBaseConfig from './webpack.base.config';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 // @see https://webpack.js.org/guides/production/

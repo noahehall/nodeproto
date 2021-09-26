@@ -2,7 +2,7 @@ import manifestPlugin from 'esbuild-plugin-manifest';
 
 const r = (t, msg = 'is required') => { throw new Error(`${t}: ${msg}`)};
 
-const getPkgDeps = pkgJson => console.info(pkgJson) || Object.keys({
+const getPkgDeps = pkgJson => Object.keys({
   ...(pkgJson.dependencies || {}),
   ...(pkgJson.devDependencies || {})
 });

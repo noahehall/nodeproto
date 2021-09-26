@@ -1,9 +1,9 @@
-import setupWebpackConfig from './setup.webpack.config.mjs';
+import setupWebpackConfig from './setup.webpack.config';
 import t from '#t';
 
 const { assert } = t;
 
-const test = t.suite('setup.webpack.config.mjs');
+const test = t.suite('setup.webpack.config');
 
 test('throws', () => {
   assert.throws(

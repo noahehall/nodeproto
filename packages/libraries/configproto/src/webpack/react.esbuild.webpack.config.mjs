@@ -3,14 +3,20 @@
 
 import { ESBuildMinifyPlugin } from 'esbuild-loader';
 import { fileURLToPath } from 'url';
+import { dirs } from '@nodeproto/wtf';
+
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import implementation from 'esbuild';
 import webpack from 'webpack';
 
 const { ProvidePlugin } = webpack;
 
+const getConfigFile = () => dirs.isEsm()
+  ? fileURLToPath(new URL('../babel/flow.babelrc', import.meta.url))
+  : path.resolve(__dirname, '../babel/flow.babelrc');
+
 const isR = arg => {
-  throw new Error(`${arg} is required in react.esbuild.webpack.config.mjs`);
+  throw new Error(`${arg} is required in react.esbuild.webpack.config`);
 };
 
 // @see https://github.com/privatenumber/esbuild-loader-examples
@@ -19,6 +25,7 @@ export default function reactEsbuildWebpackConfig ({
   entry = isR('entry'),
   htmlOptions = isR('htmlOptions'),
   outputDir = isR('outputDir'),
+  configFile = false, // todo: absolute path to a babelConfigFile
   pack,
 
   ...options
@@ -45,7 +52,7 @@ export default function reactEsbuildWebpackConfig ({
               options: {
                 sourceType: "unambiguous",
                 // TODO: likely wont work with cjs
-                configFile: fileURLToPath(new URL('../babel/flow.babelrc', import.meta.url))
+                configFile: configFile || getConfigFile(),
               },
             },
           ],

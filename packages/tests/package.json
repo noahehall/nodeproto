@@ -1,62 +1,35 @@
 {
+  "bugs": "https://github.com/noahehall/nodeproto/issues",
+  "description": "@nodeproto/tests - various monorepo-level tests to be used as reference for consumer integrations. exports a no-frills testrunner for node",
+  "homepage": "https://github.com/noahehall/nodeproto",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "name": "@nodeproto/tests",
+  "packageManager": "pnpm@6.15.1",
+  "private": true,
+  "repository": "git://github.com/noahehall/nodeproto.git",
+  "type": "module",
+  "version": "0.0.0",
   "author": {
     "name": "theDRAGON",
     "email": "noahedwardhall+souls@gmail.com",
     "url": "https://github.com/noahehall"
   },
-  "directories": {
-    "dist": "./dist"
-  },
-  "files": [
-    "./index.mjs"
-  ],
-  "exports": {
-    ".": "./index.mjs",
-    "./package.json": "./package.json"
-  },
-  "bugs": "https://github.com/noahehall/nodeproto/issues",
-  "repository": "git://github.com/noahehall/nodeproto.git",
-  "homepage": "https://github.com/noahehall/nodeproto",
-  "license": "SEE LICENSE IN LICENSE.md",
-  "name": "@nodeproto/tests",
-  "version": "0.0.0",
-  "description": "@nodeproto/tests - various monorepo-level tests to be used as reference for consumer integrations. exports a no-frills testrunner for node",
   "config": {
     "PATH_DIST": "./dist",
-    "PATH_SRC": ".",
+    "PATH_SRC": "./src",
     "BABEL_ESM_LOADER": "--loader babel-register-esm",
     "BABEL_SHOW_CONFIG_FOR": "e.g. BABEL_SHOW_CONFIG_FOR=absolute/path/to/file as lead to some pkgjson script",
-    "DEBUG_FILE": "copypasta/react/helloworld/index.jsx"
+    "DEBUG_FILE": "copypasta/react/helloworld/index.jsx",
+    "DIRS_TO_TRANSPILE": "./src",
+    "NODE_ENV": "development",
+    "NODE_OPTIONS": "--enable-source-maps --heapsnapshot-near-heap-limit=3 --use-largepages=on --pending-deprecation --trace-sigint --trace-warnings --trace-exit --report-uncaught-exception --report-on-fatalerror --abort-on-uncaught-exception --experimental-specifier-resolution=node --experimental-json-modules --experimental-top-level-await --experimental-vm-modules --experimental-import-meta-resolve"
   },
-  "scripts": {
-    "about": "npm run-script",
-    "cp:flow": "cp node_modules/@nodeproto/configproto/.flowconfig .",
-    "flow": "flow",
-    "serve": "npx serve",
-    "start:react": "concurrently pnpm:start:webpack:server pnpm:start:reactdevtools",
-    "start:reactdevtools": "react-devtools",
-    "start:webpack:server": "node integration/configproto/webpack.server.mjs",
-    "test:configproto:babel:copypasta": "babel copypasta -d dist/cjs/copypasta --copy-files --out-file-extension .cjs",
-    "test:configproto:esbuild:build": "node integration/configproto/esbuild.build.config.mjs",
-    "test:configproto:esbuild:popcopy": "rm -rf ./dist/copypasta/node/nodeFixtures/* && node integration/configproto/esbuild.popcopy.config.mjs",
-    "test:configproto:esbuild:run": "node integration/configproto/esbuild.run.config.mjs",
-    "test:configproto:eslint:debug": "BABEL_SHOW_CONFIG_FOR=$npm_package_config_DEBUG_FILE pnpm test:configproto:eslint -- --debug",
-    "test:configproto:eslint:fix": "pnpm test:configproto:eslint -- --fix --ignore-pattern 'copypasta/**'",
-    "test:configproto:eslint": "eslint './**/*'",
-    "test:configproto:export:import": "node --experimental-modules ./integration/configproto/import.test.mjs",
-    "test:configproto:webpack:react:dev:build": "node integration/configproto/webpack.react.dev.config.mjs",
-    "test:configproto:webpack:react:esbuild:build": "node integration/configproto/webpack.react.esbuild.config.mjs",
-    "test:focus": "clear; pnpm test:configproto:esbuild:popcopy",
-    "test:help": "uvu --help",
-    "test:ing": "pnpm test; chokidar \"integration/**/*(?:.test)?.(m|c)?js\" -c \"clear; pnpm test\"",
-    "test": "uvu ./integration test.mjs -i node_modules"
+  "dependencies": {
+    "@babel/runtime": "7.14.8",
+    "html-webpack-plugin": "5.3.2",
+    "regenerator-runtime": "0.13.9",
+    "ultra-runner": "3.10.5"
   },
-  "private": true,
-  "type": "module",
-  "os": [
-    "darwin",
-    "linux"
-  ],
   "devDependencies": {
     "@babel/cli": "7.14.8",
     "@babel/core": "7.15.0",
@@ -93,10 +66,92 @@
     "webpack": "5.51.1",
     "webpack-cli": "4.8.0",
     "webpack-dev-middleware-2": "5.0.2",
-    "webpack-hot-middleware-2": "2.25.2"
+    "webpack-hot-middleware-2": "2.25.2",
+    "@changesets/cli": "2.17.0",
+    "@swc/cli": "0.1.46",
+    "@swc/core": "1.2.75"
   },
-  "dependencies": {
-    "@babel/runtime": "7.14.8",
-    "html-webpack-plugin": "5.3.2"
+  "directories": {
+    "dist": "./dist"
+  },
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "jsync": {
+    "root": false
+  },
+  "keywords": [
+    "@nirv",
+    "@nodeproto",
+    "api",
+    "bodyguard",
+    "docker",
+    "esbuild",
+    "fullstack",
+    "grafana",
+    "haproxy",
+    "inception",
+    "jsync",
+    "koa",
+    "micro service",
+    "microservice",
+    "nirv",
+    "nodeproto",
+    "openapi",
+    "pnpm",
+    "prometheus",
+    "prototype",
+    "react",
+    "ssl",
+    "starter",
+    "swagger",
+    "webpack5"
+  ],
+  "os": [
+    "darwin",
+    "linux"
+  ],
+  "scripts": {
+    "flow": "flow",
+    "jsync": "NODE_OPTIONS=\"--experimental-specifier-resolution=node\" jsync",
+    "proto": "pnpm exec ultra -r --filter",
+    "repo:about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
+    "repo:config:list": "pnpm config list --json",
+    "repo:cp:flow": "cp node_modules/@nodeproto/configproto/.flowconfig .",
+    "repo:deps": "pnpm exec ultra --info",
+    "repo:eslint:fix": "pnpm repo:eslint -- --fix",
+    "repo:eslint": "eslint 'src/**/*'",
+    "repo:install": "pnpm -r exec pnpm install",
+    "repo:monitor": "pnpm exec ultra --monitor",
+    "repo:nuke": "pnpm repo:rm:dist; pnpm repo:rm:nodemodules",
+    "repo:rm:dist": "rm -rf dist/*",
+    "repo:rm:nodemodules": "rm -rf node_modules",
+    "repo:test:help": "uvu --help",
+    "repo:test:ing": "pnpm repo:test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"pnpm repo:test\"",
+    "repo:test": "clear; NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" uvu ./src test.mjs",
+    "repo:upgrade": "pnpm upgrade -L",
+    "serve": "npx serve",
+    "start:react": "concurrently pnpm:start:webpack:server pnpm:start:reactdevtools",
+    "start:reactdevtools": "react-devtools",
+    "start:webpack:server": "node --experimental-specifier-resolution=node integration/configproto/webpack.server.mjs",
+    "test:configproto:babel:copypasta": "babel copypasta -d dist/cjs/copypasta --copy-files --out-file-extension .cjs",
+    "test:configproto:esbuild:build": "node --experimental-specifier-resolution=node integration/configproto/esbuild.build.config.mjs",
+    "test:configproto:esbuild:popcopy": "rm -rf ./dist/copypasta/node/nodeFixtures/* && node --experimental-specifier-resolution=node integration/configproto/esbuild.popcopy.config.mjs",
+    "test:configproto:esbuild:run": "node --experimental-specifier-resolution=node integration/configproto/esbuild.run.config.mjs",
+    "test:configproto:eslint:debug": "BABEL_SHOW_CONFIG_FOR=$npm_package_config_DEBUG_FILE pnpm test:configproto:eslint -- --debug",
+    "test:configproto:eslint:fix": "pnpm test:configproto:eslint -- --fix --ignore-pattern 'copypasta/**'",
+    "test:configproto:eslint": "eslint './**/*'",
+    "test:configproto:export:import": "node --experimental-specifier-resolution=node ./integration/configproto/import.test.mjs",
+    "test:configproto:webpack:react:dev:build": "node --experimental-specifier-resolution=node integration/configproto/webpack.react.dev.config.mjs",
+    "test:configproto:webpack:react:esbuild:build": "node --experimental-specifier-resolution=node integration/configproto/webpack.react.esbuild.config.mjs",
+    "test:focus": "clear; pnpm test:configproto:esbuild:popcopy"
+  },
+  "ultra": {
+    "concurrent": [
+      "eslint",
+      "test",
+      "cp:flow"
+    ]
   }
 }

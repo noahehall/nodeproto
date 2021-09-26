@@ -1,10 +1,10 @@
 import { fileURLToPath } from 'url';
 
-import baseWebpackConfig from './base.webpack.config.mjs';
+import baseWebpackConfig from './base.webpack.config';
 import path from 'path';
-import setupWebpackConfig from './setup.webpack.config.mjs';
+import setupWebpackConfig from './setup.webpack.config';
 import t from '#t';
-import testCompiler from './test.compiler.mjs';
+import testCompiler from './test.compiler';
 
 const { assert } = t;
 

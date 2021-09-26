@@ -5,7 +5,7 @@
 // import webpackDevConfig from './webpack.dev.config.mjs';
 // import webpackProdConfig from './webpack.prod.config.mjs';
 
-import testCompiler from './test.compiler.mjs';
+import testCompiler from './test.compiler';
 import webpack from 'webpack';
 
 const handleConfigErrors = ({

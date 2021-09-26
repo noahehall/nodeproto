@@ -1,12 +1,12 @@
-import { getConfig } from './base.webpack.config.test.mjs';
+import { getConfig } from './base.webpack.config.test';
 
-import baseWebpackConfig from './base.webpack.config.mjs';
-import buildWebpackConfig from './build.webpack.config.mjs';
+import baseWebpackConfig from './base.webpack.config';
+import buildWebpackConfig from './build.webpack.config';
 import t from '#t';
 
 const { assert } = t;
 
-const test = t.suite('build.webpack.config.mjs');
+const test = t.suite('build.webpack.config');
 
 test('compilation', async () => {
   const useConfig = getConfig();

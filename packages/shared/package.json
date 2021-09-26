@@ -3,11 +3,44 @@
   "type": "module",
   "private": true,
   "version": "0.0.0",
-  "exports": "./index.mjs",
+  "directories": {
+    "./src": "./src",
+    "./dist": "./dist"
+  },
+  "exports": {
+    ".": {
+      "import": "./src/index.mjs",
+      "default": "./dist/index.js"
+    },
+    "./wtf": {
+      "import": "./src/wtf/index.mjs",
+      "default": "./dist/wtf/index.js"
+    },
+    "./wtf/*": {
+      "import": "./src/wtf/*.mjs",
+      "default": "./dist/wtf/*.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "config": {
+    "NODE_OPTIONS": "--experimental-specifier-resolution=node",
+    "DIRS_TO_TRANSPILE": "./src",
+    "PATH_DIST": "./dist"
+  },
+  "scripts": {
+    "repo:rm:dist": "rm -rf ./dist/*",
+    "build": "clear; pnpm repo:rm:dist && pnpm commonjs:json && swc $npm_package_config_DIRS_TO_TRANSPILE -d $npm_package_config_PATH_DIST --config-file ./node.swcrc --env-name='production' --copy-files",
+    "commonjs:json": "cp commonjs.json ./dist/package.json"
+  },
   "dependencies": {
     "@folder/readdir": "3.1.0",
     "jsonc-simple-parser": "2.2.0",
     "picomatch": "2.3.0",
+    "regenerator-runtime": "0.13.9",
     "shelljs": "0.8.4"
+  },
+  "devDependencies": {
+    "@swc/cli": "0.1.46",
+    "@swc/core": "1.2.75"
   }
 }
