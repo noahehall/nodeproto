@@ -1,0 +1,141 @@
+{
+  "bugs": "https://github.com/noahehall/nodeproto/issues",
+  "description": "@nodeproto/wtf - Where the file? file and directory management",
+  "homepage": "https://github.com/noahehall/nodeproto",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "main": "index.mjs",
+  "name": "@nodeproto/wtf",
+  "packageManager": "pnpm@6.15.1",
+  "private": true,
+  "repository": "git://github.com/noahehall/nodeproto.git",
+  "type": "module",
+  "version": "0.0.0",
+  "author": {
+    "name": "theDRAGON",
+    "email": "noahedwardhall+souls@gmail.com",
+    "url": "https://github.com/noahehall"
+  },
+  "config": {
+    "NODE_OPTIONS": "--enable-source-maps --heapsnapshot-near-heap-limit=3 --use-largepages=on --pending-deprecation --trace-sigint --trace-warnings --trace-exit --report-uncaught-exception --report-on-fatalerror --abort-on-uncaught-exception --experimental-specifier-resolution=node --experimental-json-modules --experimental-top-level-await --experimental-vm-modules --experimental-import-meta-resolve",
+    "NODE_ENV": "production",
+    "PATH_DIST": "./dist",
+    "PATH_SRC": "./src",
+    "BABEL_SHOW_CONFIG_FOR": "e.g. BABEL_SHOW_CONFIG_FOR=absolute/path/to/file somePkgJsonScriptName",
+    "DIRS_TO_TRANSPILE": "./src"
+  },
+  "dependencies": {
+    "@folder/readdir": "3.1.0",
+    "@folder/xdg": "3.1.2",
+    "@nodeproto/shared": "workspace:0.0.0",
+    "contains-path": "1.0.0",
+    "dirent": "2.0.1",
+    "env-cmd": "10.1.0",
+    "fs-extra": "10.0.0",
+    "global-dirs": "3.0.0",
+    "jsonc-simple-parser": "2.2.0",
+    "memfs": "3.2.2",
+    "mkdirp": "1.0.4",
+    "regenerator-runtime": "0.13.9",
+    "symlink-dir": "5.0.1",
+    "ultra-runner": "3.10.5"
+  },
+  "devDependencies": {
+    "@changesets/cli": "2.17.0",
+    "@nodeproto/configproto": "workspace:0.0.0",
+    "@nodeproto/jsync": "workspace:0.0.0",
+    "@nodeproto/testproto": "workspace:0.0.0",
+    "@swc/cli": "0.1.46",
+    "@swc/core": "1.2.75",
+    "chokidar": "3.5.2",
+    "eslint": "7.32.0",
+    "uvu": "0.5.1",
+    "chokidar-cli": "3.0.0"
+  },
+  "engines": {
+    "node": ">=16.10.0"
+  },
+  "exports": {
+    ".": {
+      "import": "./src/index.mjs",
+      "default": "./dist/index.js"
+    },
+    "./dirs": {
+      "import": "./src/dirs.mjs",
+      "default": "./dist/dirs.js"
+    },
+    "./fsproto": {
+      "import": "./src/fsproto.mjs",
+      "default": "./dist/fsproto.js"
+    }
+  },
+  "jsync": {
+    "root": false
+  },
+  "keywords": [
+    "@nirv",
+    "@nodeproto",
+    "api",
+    "bodyguard",
+    "docker",
+    "esbuild",
+    "fullstack",
+    "grafana",
+    "haproxy",
+    "inception",
+    "jsync",
+    "koa",
+    "micro service",
+    "microservice",
+    "nirv",
+    "nodeproto",
+    "openapi",
+    "pnpm",
+    "prometheus",
+    "prototype",
+    "react",
+    "ssl",
+    "starter",
+    "swagger",
+    "webpack5"
+  ],
+  "os": [
+    "darwin",
+    "linux"
+  ],
+  "scripts": {
+    "build": "pnpm repo:rm:dist && pnpm repo:cp:cjs && swc $npm_package_config_DIRS_TO_TRANSPILE -d $npm_package_config_PATH_DIST --config-file ./node_modules/@nodeproto/configproto/src/swc/node.swcrc --copy-files",
+    "commonjs:json": "cp commonjs.json ./dist/package.json",
+    "proto": "pnpm exec ultra -r --filter",
+    "jsync": "jsync",
+    "repo:about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
+    "repo:config:list": "pnpm config list --json",
+    "repo:cp:flow": "rm -f .flowconfig && cp ./node_modules/@nodeproto/configproto/src/flowtype/.flowconfig .",
+    "repo:cp:eslint": "rm -f .eslintrc.yml && ln -s ../../libraries/configproto/.eslintrc.yml .",
+    "repo:cp:commonjs": "rm -f commonjs.json && ln -s ../../libraries/configproto/commonjs.json .",
+    "repo:cp:browserslist": "rm -f .browserslistrc && cp ./node_modules/@nodeproto/configproto/src/browserslist/.browserslistrc .",
+    "repo:deps": "pnpm exec ultra --info",
+    "repo:eslint:fix": "pnpm repo:eslint -- --fix",
+    "repo:eslint": "eslint 'src/**/*'",
+    "repo:install": "pnpm -r exec pnpm install",
+    "repo:monitor": "pnpm exec ultra --monitor",
+    "repo:nuke": "pnpm repo:rm:dist; pnpm repo:rm:nodemodules",
+    "repo:rm:dist": "rm -rf dist/*",
+    "repo:rm:nodemodules": "rm -rf node_modules",
+    "repo:test:help": "uvu --help",
+    "repo:test:ing": "pnpm repo:test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"pnpm repo:test\"",
+    "repo:test": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" uvu ./src \"test.(m|c)?js\"",
+    "repo:upgrade": "pnpm upgrade -L",
+    "proto:all": "pnpm exec ultra -r",
+    "proto:slice": "pnpm exec ultra -r --filter",
+    "repo:cp:cjs": "rm -f ./dist/package.json && mkdir -p dist && cp ./node_modules/@nodeproto/configproto/src/node/cjs.json ./dist/package.json",
+    "repo:cp:configproto": "pnpm repo:cp:flow; pnpm repo:cp:cjs; pnpm repo:cp:browserslist",
+    "repo:testing": "pnpm repo:test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"pnpm repo:test\""
+  },
+  "ultra": {
+    "concurrent": [
+      "eslint",
+      "test",
+      "cp:flow"
+    ]
+  }
+}

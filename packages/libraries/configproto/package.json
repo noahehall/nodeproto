@@ -1,40 +1,33 @@
 {
-  "bugs": "https://github.com/noahehall/nodeproto/issues",
-  "description": "@nodeproto/configproto - reusable configs",
-  "homepage": "https://github.com/noahehall/nodeproto",
-  "license": "SEE LICENSE IN LICENSE.md",
-  "main": "./dist/index.js",
   "name": "@nodeproto/configproto",
-  "packageManager": "pnpm@6.15.1",
+  "version": "0.0.0",
+  "description": "static configuration files",
   "private": true,
+  "bugs": "https://github.com/noahehall/nodeproto/issues",
   "repository": "git://github.com/noahehall/nodeproto.git",
   "type": "module",
-  "version": "0.0.0",
   "author": {
     "name": "theDRAGON",
     "email": "noahedwardhall+souls@gmail.com",
     "url": "https://github.com/noahehall"
   },
-  "config": {
-    "PATH_DIST": "./dist",
-    "PATH_SRC": "./src",
-    "NODE_ENV": "development",
-    "DIRS_TO_TRANSPILE": "./src",
-    "REMOVED_BABEL_OPTIONS": "--copy-files",
-    "REMOVED_NODE_OPTIONS": "",
-    "NODE_OPTIONS": "--enable-source-maps --heapsnapshot-near-heap-limit=3 --use-largepages=on --pending-deprecation --trace-sigint --trace-warnings --trace-exit --report-uncaught-exception --report-on-fatalerror --abort-on-uncaught-exception --experimental-specifier-resolution=node --experimental-json-modules --experimental-top-level-await --experimental-vm-modules --experimental-import-meta-resolve",
-    "BABEL_SHOW_CONFIG_FOR": "e.g. BABEL_SHOW_CONFIG_FOR=absolute/path/to/file somePkgJsonScriptName"
+  "directories": {
+    "src": "./src"
+  },
+  "exports": {
+    "./babel/*": "./src/babel/*.babelrc",
+    "./browserslist": "./src/browserslist/.browserslistrc",
+    "./flowconfig": "./src/flowtype/.flowconfig",
+    "./eslint": "./src/eslint/.eslintrc.yml",
+    "./eslint/*": "./src/eslint/*.eslintrc.yml",
+    "./fixtures/*": "./src/fixtures/*",
+    "./node/*": "./src/node/*",
+    "./swc": "./src/swc/node.swcrc",
+    "./swc/*": "./src/swc/*.swcrc"
   },
   "dependencies": {
-    "@babel/cli": "7.14.8",
-    "@babel/core": "7.14.8",
-    "@babel/eslint-parser": "7.14.7",
-    "@babel/eslint-plugin": "7.14.5",
-    "@babel/parser": "7.14.8",
     "@babel/plugin-proposal-throw-expressions": "7.14.5",
     "@babel/plugin-syntax-jsx": "7.14.5",
-    "@babel/plugin-syntax-top-level-await": "7.14.5",
-    "@babel/plugin-transform-flow-strip-types": "7.14.5",
     "@babel/plugin-transform-react-constant-elements": "7.14.5",
     "@babel/plugin-transform-react-inline-elements": "7.14.5",
     "@babel/plugin-transform-runtime": "7.14.5",
@@ -42,195 +35,8 @@
     "@babel/preset-flow": "7.14.5",
     "@babel/preset-react": "7.14.5",
     "@babel/runtime": "7.14.8",
-    "@babel/traverse": "7.14.8",
-    "@changesets/cli": "2.17.0",
     "@emotion/babel-plugin": "11.3.0",
-    "@nodeproto/jsync": "workspace:0.0.0",
-    "@nodeproto/wtf": "workspace:0.0.0",
-    "@swc/cli": "0.1.46",
-    "@swc/core": "1.2.75",
-    "@swc/helpers": "0.2.12",
     "babel-plugin-tailcall-optimization": "2.0.0",
-    "babel-plugin-transform-export-default-name": "2.1.0",
-    "babel-plugin-transform-flow-strip-types": "6.22.0",
-    "browserslist": "4.16.6",
-    "bundle-stats-webpack-plugin": "3.0.1",
-    "chai": "4.3.4",
-    "chai-as-promised": "7.1.1",
-    "chai-exclude": "2.0.3",
-    "chai-nock": "1.3.0",
-    "chokidar-cli": "3.0.0",
-    "core-js": "3.15.2",
-    "css-loader": "6.2.0",
-    "esbuild": "0.12.20",
-    "esbuild-loader": "2.15.0",
-    "esbuild-plugin-manifest": "0.4.6",
-    "eslint": "7.31.0",
-    "eslint-plugin-flowtype-errors": "4.4.0",
-    "eslint-plugin-html": "6.1.2",
-    "eslint-plugin-json": "3.1.0",
-    "eslint-plugin-markdown": "2.2.0",
-    "eslint-plugin-react": "7.24.0",
-    "eslint-plugin-react-hooks": "4.2.0",
-    "eslint-plugin-yml": "0.10.0",
-    "file-loader": "6.2.0",
-    "flow": "0.2.3",
-    "flow-bin": "0.158.0",
-    "flow-remove-types": "2.158.0",
-    "html-webpack-plugin": "5.3.2",
-    "http-terminator": "3.0.0",
-    "koa": "2.13.1",
-    "memfs": "3.2.2",
-    "nock": "13.1.3",
-    "react-devtools": "4.14.0",
-    "schema-utils": "3.1.1",
-    "sinon": "11.1.1",
-    "style-loader": "3.2.1",
-    "svg-url-loader": "7.1.1",
-    "ultra-runner": "3.10.5",
-    "url-loader": "4.1.1",
-    "uvu": "0.5.1",
-    "webpack": "5.46.0",
-    "webpack-dev-middleware-2": "5.0.2",
-    "yaml-eslint-parser": "0.4.1",
-    "regenerator-runtime": "0.13.9"
-  },
-  "devDependencies": {
-    "babel-loader": "8.2.2",
-    "react": "18.0.0-alpha-edfe50510-20210823",
-    "react-dom": "18.0.0-alpha-419cc9c37-20210726",
-    "string-replace-loader": "3.0.3",
-    "webpack-hot-middleware-2": "2.25.2",
-    "@changesets/cli": "2.17.0",
-    "@swc/cli": "0.1.46",
-    "@swc/core": "1.2.75",
-    "eslint": "7.32.0",
-    "uvu": "0.5.1"
-  },
-  "directories": {
-    "dist": "./dist",
-    "src": "./src"
-  },
-  "exports": {
-    ".": {
-      "import": "./src/index.mjs",
-      "default": "./dist/index.js"
-    },
-    "./babel/*": "./src/babel/*.babelrc",
-    "./browserslist": "./src/browserslist/.browserslistrc",
-    "./flowconfig": "./.flowconfig",
-    "./package.json": "./package.json",
-    "./esbuild/plugin/*": {
-      "import": "./src/esbuild/plugin/*.esbuild.plugin.mjs",
-      "default": "./dist/esbuild/plugin/*.esbuild.plugin.js"
-    },
-    "./esbuild": {
-      "import": "./src/esbuild/index.esbuild.config.mjs",
-      "default": "./dist/esbuild/index.esbuild.config.js"
-    },
-    "./esbuild/*": {
-      "import": "./src/esbuild/*.esbuild.config.mjs",
-      "default": "./dist/esbuild/*.esbuild.config.js"
-    },
-    "./eslint": "./src/eslint/base.eslintrc.yml",
-    "./eslint/*": "./src/eslint/*.eslintrc.yml",
-    "./swc/*": "./src/swc/*.swcrc",
-    "./test": {
-      "import": "./src/test/t.mjs",
-      "default": "./dist/test/t.js"
-    },
-    "./webpack/loader/*": "./src/webpack/loader/*.cjs",
-    "./webpack/bff/*": {
-      "import": "./src/webpack/bff/*.webpack.mjs",
-      "default": "./dist/webpack/bff/*.webpack.js"
-    },
-    "./webpack": {
-      "import": "./src/webpack/index.webpack.config.mjs",
-      "default": "./dist/webpack/index.webpack.config.js"
-    },
-    "./webpack/*": {
-      "import": "./src/webpack/*.webpack.config.mjs",
-      "default": "./dist/webpack/*.webpack.config.js"
-    }
-  },
-  "imports": {
-    "#t": {
-      "import": "./src/test/t.mjs",
-      "default": "./dist/test/t.js"
-    },
-    "#fixtures/*": "./src/test/fixtures/*"
-  },
-  "jsync": {
-    "root": false
-  },
-  "keywords": [
-    "@nirv",
-    "@nodeproto",
-    "api",
-    "bodyguard",
-    "docker",
-    "esbuild",
-    "fullstack",
-    "grafana",
-    "haproxy",
-    "inception",
-    "jsync",
-    "koa",
-    "micro service",
-    "microservice",
-    "nirv",
-    "nodeproto",
-    "openapi",
-    "pnpm",
-    "prometheus",
-    "prototype",
-    "react",
-    "ssl",
-    "starter",
-    "swagger",
-    "webpack5"
-  ],
-  "os": [
-    "darwin",
-    "linux"
-  ],
-  "peerDependencies": {
-    "babel-loader": "8.2.2",
-    "string-replace-loader": "3.0.3",
-    "webpack-hot-middleware-2": "2.25.2"
-  },
-  "scripts": {
-    "build": "pnpm cjs:swc",
-    "build:debug": "pnpm cjs:swc:debug",
-    "commonjs:json": "cp commonjs.json ./dist/package.json",
-    "cjs:babel": "clear; pnpm repo:rm:dist && NODE_OPTIONS=$npm_package_config_NODE_OPTIONS babel $npm_package_config_DIRS_TO_TRANSPILE -d $npm_package_config_PATH_DIST --out-file-extension .js --ignore 'src/**/*.test.mjs' --ignore src/webpack/test.compiler.mjs",
-    "cjs:swc": "clear; pnpm repo:rm:dist && pnpm commonjs:json &&NODE_OPTIONS=$npm_package_config_NODE_OPTIONS swc $npm_package_config_DIRS_TO_TRANSPILE -d $npm_package_config_PATH_DIST --config-file ./src/swc/node.swcrc --env-name='production' --copy-files",
-    "js:to:cjs": "for f in ./dist/**/*.js; do mv -- \"$f\" \"${f%.js}.cjs\"; done",
-    "cjs:swc:debug": "pnpm cjs:swc -- --sync",
-    "bl:update": "echo 'doesnt work with pnpm'; exit 0; browserslist --update-db",
-    "bl:check": "browserslist",
-    "proto": "pnpm exec ultra -r --filter",
-    "repo:install": "pnpm -r exec pnpm install",
-    "repo:about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
-    "repo:config:list": "pnpm config list --json",
-    "repo:cp:flow": "cp node_modules/@nodeproto/configproto/.flowconfig .",
-    "repo:deps": "pnpm exec ultra --info",
-    "repo:eslint:fix": "pnpm repo:eslint -- --fix",
-    "repo:eslint": "eslint 'src/**/*'",
-    "repo:monitor": "pnpm exec ultra --monitor",
-    "repo:nuke": "pnpm repo:rm:dist; pnpm repo:rm:nodemodules",
-    "repo:rm:dist": "rm -rf dist/*",
-    "repo:rm:nodemodules": "rm -rf node_modules",
-    "repo:test:help": "uvu --help",
-    "repo:test:ing": "pnpm repo:test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"pnpm repo:test\"",
-    "repo:test": "clear; NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" uvu ./src test.mjs",
-    "repo:upgrade": "pnpm upgrade -L"
-  },
-  "ultra": {
-    "concurrent": [
-      "eslint",
-      "test",
-      "cp:flow"
-    ]
+    "babel-plugin-transform-export-default-name": "2.1.0"
   }
 }

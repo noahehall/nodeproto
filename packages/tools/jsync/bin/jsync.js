@@ -7,4 +7,4 @@
  */
 
 console.info('\nrunning jsync\n')
-import('../index.mjs');
+import('../src/index.mjs');

@@ -1,0 +1,81 @@
+{
+  "bugs": "https://github.com/noahehall/nodeproto/issues",
+  "description": "@nodeproto/testproto - unit, integration, and e2e testing infrastructure crafted for monorepos",
+  "homepage": "https://github.com/noahehall/nodeproto",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "main": "./dist/index.js",
+  "name": "@nodeproto/testproto",
+  "packageManager": "pnpm@6.15.1",
+  "private": true,
+  "repository": "git://github.com/noahehall/nodeproto.git",
+  "type": "module",
+  "version": "0.0.0",
+  "author": {
+    "name": "theDRAGON",
+    "email": "noahedwardhall+souls@gmail.com",
+    "url": "https://github.com/noahehall"
+  },
+  "config": {
+    "NODE_ENV": "production",
+    "NODE_OPTIONS": "--enable-source-maps --heapsnapshot-near-heap-limit=3 --use-largepages=on --pending-deprecation --trace-sigint --trace-warnings --trace-exit --report-uncaught-exception --report-on-fatalerror --abort-on-uncaught-exception --experimental-specifier-resolution=node --experimental-json-modules --experimental-top-level-await --experimental-vm-modules --experimental-import-meta-resolve",
+    "PATH_DIST": "./dist",
+    "PATH_SRC": "./src",
+    "DIRS_TO_TRANSPILE": "./src"
+  },
+  "dependencies": {
+    "chai": "4.3.4",
+    "chai-as-promised": "7.1.1",
+    "chai-exclude": "2.0.3",
+    "chai-nock": "1.3.0",
+    "nock": "13.1.3",
+    "sinon": "11.1.1",
+    "ultra-runner": "3.10.5"
+  },
+  "devDependencies": {
+    "@babel/core": "7.15.0",
+    "@babel/eslint-parser": "7.14.7",
+    "@babel/eslint-plugin": "7.14.5",
+    "@nodeproto/configproto": "workspace:0.0.0",
+    "@swc/cli": "0.1.46",
+    "@swc/core": "1.2.75",
+    "browserslist": "4.16.8",
+    "eslint-plugin-flowtype-errors": "4.4.0",
+    "eslint-plugin-html": "6.1.2",
+    "eslint-plugin-import": "2.23.4",
+    "eslint-plugin-json": "3.1.0",
+    "eslint-plugin-markdown": "2.2.0",
+    "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-promise": "5.1.0",
+    "eslint-plugin-react": "7.24.0",
+    "eslint-plugin-react-hooks": "4.2.0",
+    "eslint-plugin-yml": "0.10.0",
+    "flow-bin": "0.158.0",
+    "uvu": "0.5.1"
+  },
+  "exports": {
+    ".": {
+      "import": "./src/index.mjs",
+      "default": "./dist/index.js"
+    }
+  },
+  "peerDependencies": {
+    "uvu": "0.5.1"
+  },
+  "engines": {
+    "node": ">=16.10.0"
+  },
+  "scripts": {
+    "build": "pnpm repo:rm:dist && pnpm repo:cp:cjs && swc $npm_package_config_DIRS_TO_TRANSPILE -d $npm_package_config_PATH_DIST --config-file ./node_modules/@nodeproto/configproto/src/swc/node.swcrc --copy-files",
+    "repo:cp:browserslist": "rm -f .browserslistrc && cp ./node_modules/@nodeproto/configproto/src/browserslist/.browserslistrc .",
+    "repo:cp:cjs": "rm -f ./dist/package.json && mkdir -p dist && cp ./node_modules/@nodeproto/configproto/src/node/cjs.json ./dist/package.json",
+    "repo:cp:configproto": "pnpm repo:cp:flow; pnpm repo:cp:cjs; pnpm repo:cp:browserslist",
+    "repo:cp:flow": "rm -f .flowconfig && cp ./node_modules/@nodeproto/configproto/src/flowtype/.flowconfig .",
+    "repo:eslint:fix": "pnpm repo:eslint -- --fix",
+    "repo:eslint": "eslint 'src/**/*'",
+    "repo:rm:dist": "rm -rf dist/*",
+    "repo:test:help": "uvu --help",
+    "repo:testing": "pnpm repo:test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"pnpm repo:test\"",
+    "repo:test": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" uvu ./src test.mjs",
+    "repo:upgrade": "pnpm upgrade -L"
+  }
+}

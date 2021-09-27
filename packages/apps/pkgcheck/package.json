@@ -104,6 +104,7 @@
   "scripts": {
     "build": "clear; pnpm repo:rm:dist && NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" node esbuild.build.config.mjs && pnpm commonjs:json",
     "commonjs:json": "cp commonjs.json ./dist/package.json",
+    "jsync": "jsync",
     "proto": "pnpm exec ultra -r --filter",
     "repo:about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
     "repo:config:list": "pnpm config list --json",
@@ -118,10 +119,11 @@
     "repo:rm:nodemodules": "rm -rf node_modules",
     "repo:test:help": "uvu --help",
     "repo:test:ing": "pnpm repo:test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"pnpm repo:test\"",
-    "repo:test": "clear; NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" uvu ./src test.mjs",
+    "repo:test": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" uvu ./src test.mjs",
     "repo:upgrade": "pnpm upgrade -L",
     "start:pkgcheck": "clear; pnpm repo:rm:dist && NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" node esbuild.run.config.mjs",
-    "start": "pnpm start:pkgcheck"
+    "start": "pnpm start:pkgcheck",
+    "proto:all": "pnpm exec ultra -r"
   },
   "ultra": {
     "concurrent": [

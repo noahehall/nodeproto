@@ -1,0 +1,171 @@
+# @nodeproto/configproto - base eslint config
+# @see https://eslint.org/docs/user-guide/configuring/language-options
+
+reportUnusedDisableDirectives: true
+ignorePatterns: ["**/dist/**"] # '**/node_modules/**', included by default
+
+# @see https://github.com/babel/babel/tree/main/eslint/babel-eslint-parser
+# @see https://github.com/babel/babel/blob/main/eslint/babel-eslint-config-internal/index.js
+# dont use /experimental-worker like in ^
+parser: "@babel/eslint-parser"
+parserOptions:
+  allowImportExportEverywhere: false
+  ecmaVersion: 12
+  requireConfigFile: false # permit linting files without a babelrc
+  sourceType: module
+  ecmaFeatures:
+    globalReturn: true
+    impliedStrict: true
+    jsx: true
+  # set babelOptions when extending if dont want to use a babel config/using webpack + babel-loader
+
+# @see https://eslint.org/docs/user-guide/configuring/language-options#specifying-environments
+env:
+  es2021: true
+  node: true
+  shelljs: true
+
+
+plugins:
+  - "@babel"
+  - flowtype-errors
+  - html
+  - markdown
+  - node
+  - promise
+  - yml
+
+extends:
+  # general plugins up here
+  - "eslint:recommended"
+  - "plugin:node/recommended"
+  - "plugin:promise/recommended"
+
+  # priority plugins here
+  - plugin:markdown/recommended
+  - plugin:yml/standard
+  - plugin:json/recommended-with-comments
+
+settings:
+  # @see https://github.com/BenoitZugmeyer/eslint-plugin-html
+  # .erb, .handlebars, .hbs, .htm, .html, .mustache, .nunjucks, .php, .tag, .twig, .we
+  html/html-extensions: [.html, .htm]
+  html/xml-extensions: [.xhtml, .xml]
+  html/indent: "+2"
+  html/report-bad-indent: error
+
+  # flowtype:
+  #   onlyFilesWithFlowAnnotation: true
+  # @see https://github.com/import-js/eslint-plugin-import#settings
+  # parse these as modules and inspect them for exports
+  # throws error if no export is found
+  # import/extensions:
+    # - .jsx
+    # - .mjs
+  # all dirs that contain monorepos packages
+  # will be trated as external ones no matter which resolver is used
+  # import/external-module-folders:
+  #   - node_modules
+  #   - packages/libraries
+  #   - packages/apps
+  #   - packages/tests
+  #   - packages/tools
+
+
+# todo
+# @see https://eslint.org/docs/user-guide/configuring/language-options#specifying-environments
+# globals:
+# flow
+# $Keys: true
+# Iterator: true
+
+# glob-based configuration
+overrides:
+  - files: ["**/*.cjs"]
+    parserOptions:
+      sourceType: script
+  - files: ["**/*.yaml", "**/*.yml"]
+    parser: yaml-eslint-parser
+  # @see https://github.com/eslint/eslint-plugin-markdown
+  - files: ["**/*.md"]
+    processor: markdown/markdown
+    rules:
+      "@babel/no-unused-expressions": 'off'
+      # import/no-unresolved: 'off'
+      no-console: 'off'
+      no-undef: 'off'
+      no-unused-vars: 'off'
+      padded-blocks: 'off'
+      no-inline-html: 'off'
+      # MD033/no-inline-html: off not sure which of these work, review markdownlint
+      # MD033: off
+
+# any enabled @babel rule requires you to turn off the same eslint rule, e.g. see semi
+rules:
+  # great rules here
+  "@babel/new-cap": error
+  "@babel/no-invalid-this": error
+  "@babel/no-unused-expressions": error
+  "@babel/object-curly-spacing": [error, always]
+  "@babel/semi": [error, always] # love ending semi - read this https://eslint.org/docs/rules/semi
+  function-call-argument-newline: [error, consistent]
+  no-multiple-empty-lines: error
+  no-throw-literal: error
+  no-undef: error
+  no-unused-vars: error
+  node/no-unpublished-require: warn
+  padded-blocks: [error, never]
+  prefer-named-capture-group: off # performance
+  prefer-object-spread: error
+
+  sort-imports:
+    - error
+    - ignoreCase: true
+      ignoreDeclarationSort: false
+      allowSeparatedGroups: true
+      memberSyntaxSortOrder:
+        - single # import { poop }
+        - all # import * as poop
+        - none # import poop
+        - multiple # import { p, o, o, p } # usually on more than one line so hard to sort in vscode
+  sort-keys:
+    - error
+    - asc
+    - caseSensitive: false
+      minKeys: 4
+      natural: true
+
+  max-lines-per-function:
+    - error
+    - skipBlankLines: true
+      skipComments: true
+      max: 120 # too many fkn functions is a code smell too
+  no-console:
+    - error # console.log
+    - allow:
+        - warn
+        - error
+        - info
+        - table
+        - assert
+
+  # flow specific rules
+  flowtype-errors/show-errors: error
+
+
+
+  # dumb fkn rules here
+  arrow-parens: 'off'
+  capitalized-comments: 'off'
+  comma-dangle: 'off' # love trailing commas
+  id-length: 'off' # we support junior devs without hampering others
+  line-comment-position: 'off'
+  multiline-comment-style: 'off'
+  no-inline-comments: 'off'
+  no-ternary: 'off'
+  semi: 'off'
+
+  # doesnt seem to work right - but would be great if it did
+  node/no-unpublished-import: 'off'
+  node/no-missing-require: 'off'
+  node/no-missing-import: 'off'

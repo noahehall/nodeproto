@@ -1,0 +1,62 @@
+{
+  "name": "@nodeproto/shared",
+  "type": "module",
+  "private": true,
+  "version": "0.0.0",
+  "directories": {
+    "./src": "./src",
+    "./dist": "./dist"
+  },
+  "exports": {
+    ".": {
+      "import": "./src/index.mjs",
+      "default": "./dist/index.js"
+    },
+    "./wtf": {
+      "import": "./src/wtf/index.mjs",
+      "default": "./dist/wtf/index.js"
+    },
+    "./wtf/*": {
+      "import": "./src/wtf/*.mjs",
+      "default": "./dist/wtf/*.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "engines": {
+    "node": ">=16.10.0"
+  },
+  "config": {
+    "NODE_ENV": "production",
+    "NODE_OPTIONS": "--enable-source-maps --heapsnapshot-near-heap-limit=3 --use-largepages=on --pending-deprecation --trace-sigint --trace-warnings --trace-exit --report-uncaught-exception --report-on-fatalerror --abort-on-uncaught-exception --experimental-specifier-resolution=node --experimental-json-modules --experimental-top-level-await --experimental-vm-modules --experimental-import-meta-resolve",
+    "PATH_DIST": "./dist",
+    "PATH_SRC": "./src",
+    "DIRS_TO_TRANSPILE": "./src"
+  },
+  "scripts": {
+    "build": "pnpm repo:rm:dist && pnpm repo:cp:cjs && swc $npm_package_config_DIRS_TO_TRANSPILE -d $npm_package_config_PATH_DIST --config-file ./node_modules/@nodeproto/configproto/src/swc/node.swcrc --copy-files",
+    "repo:cp:browserslist": "rm -f .browserslistrc && cp ./node_modules/@nodeproto/configproto/src/browserslist/.browserslistrc .",
+    "repo:cp:cjs": "rm -f ./dist/package.json && mkdir -p dist && cp ./node_modules/@nodeproto/configproto/src/node/cjs.json ./dist/package.json",
+    "repo:cp:configproto": "pnpm repo:cp:flow; pnpm repo:cp:cjs; pnpm repo:cp:browserslist",
+    "repo:cp:flow": "rm -f .flowconfig && cp ./node_modules/@nodeproto/configproto/src/flowtype/.flowconfig .",
+    "repo:eslint:fix": "pnpm repo:eslint -- --fix",
+    "repo:eslint": "eslint 'src/**/*'",
+    "repo:rm:dist": "rm -rf dist/*",
+    "repo:test:help": "uvu --help",
+    "repo:testing": "pnpm repo:test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"pnpm repo:test\"",
+    "repo:test": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" uvu ./src test.mjs",
+    "repo:upgrade": "pnpm upgrade -L"
+  },
+  "dependencies": {
+    "@folder/readdir": "3.1.0",
+    "jsonc-simple-parser": "2.2.0",
+    "picomatch": "2.3.0",
+    "regenerator-runtime": "0.13.9",
+    "shelljs": "0.8.4"
+  },
+  "devDependencies": {
+    "@nodeproto/configproto": "workspace:0.0.0",
+    "@nodeproto/testproto": "workspace:0.0.0",
+    "@swc/cli": "0.1.46",
+    "@swc/core": "1.2.75"
+  }
+}
