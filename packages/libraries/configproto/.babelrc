@@ -1,3 +1,0 @@
-{
-  "extends": "./src/babel/node.babelrc"
-}

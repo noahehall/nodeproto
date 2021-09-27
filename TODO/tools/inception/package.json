@@ -1,0 +1,92 @@
+{
+  "name": "@nodeproto/inception",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "directories": {
+    "bin": {
+      "inception": "bin/inception.sh"
+    }
+  },
+  "scripts": {
+    "check": "NODE_OPTIONS=$npm_package_config_NODE_OPTIONS node index.mjs --check",
+    "run": "NODE_OPTIONS=$npm_package_config_NODE_OPTIONS node index.mjs --run",
+    "inception": "NODE_OPTIONS=$npm_package_config_NODE_OPTIONS node index.mjs --inception"
+  },
+  "dependencies": {
+    "@nodeproto/wtf": "workspace:*",
+    "chalk": "4.1.1",
+    "chokidar": "3.5.2",
+    "env-cmd": "10.1.0",
+    "yargs": "17.0.1"
+  },
+  "jsync": {
+    "root": false
+  },
+  "main": "index.mjs",
+  "author": {
+    "name": "theDRAGON",
+    "email": "noahedwardhall+souls@gmail.com",
+    "url": "https://github.com/noahehall"
+  },
+  "bugs": "https://github.com/noahehall/nodeproto/issues",
+  "homepage": "https://github.com/noahehall/nodeproto",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "description": "@nodeproto/inception - link package(s) anywhere on disk to any other pkg for local development",
+  "keywords": [
+    "@nirv",
+    "@nodeproto",
+    "api",
+    "bodyguard",
+    "docker",
+    "esbuild",
+    "fullstack",
+    "grafana",
+    "haproxy",
+    "inception",
+    "jsync",
+    "koa",
+    "micro service",
+    "microservice",
+    "nirv",
+    "nodeproto",
+    "openapi",
+    "pnpm",
+    "prometheus",
+    "prototype",
+    "react",
+    "ssl",
+    "starter",
+    "swagger",
+    "webpack5"
+  ],
+  "os": [
+    "darwin",
+    "linux"
+  ],
+  "config": {
+    "NODE_OPTIONS": "--pending-deprecation --experimental-wasm-modules --trace-warnings --experimental-top-level-await --enable-source-maps --experimental-vm-modules --experimental-worker --experimental-import-meta-resolve --experimental-report --trace-exit --heapsnapshot-near-heap-limit=3 --trace-uncaught --deprecation --trace-deprecation --no-insecure-http-parser --report-uncaught-exception --use-largepages=on --warnings --experimental-abortcontroller --report-on-fatalerror --experimental-json-modules --trace-sigint --abort-on-uncaught-exception --es-module-specifier-resolution=node --experimental-specifier-resolution=node --experimental-modules",
+    "NODE_ENV": "development",
+    "PATH_DIST": "./dist",
+    "PATH_SRC": "./src",
+    "BABEL_SHOW_CONFIG_FOR": "e.g. BABEL_SHOW_CONFIG_FOR=absolute/path/to/file somePkgJsonScriptName"
+  },
+  "repository": "git://github.com/noahehall/nodeproto.git",
+  "devDependencies": {
+    "@nodeproto/jsync": "workspace:*",
+    "ultra-runner": "3.10.5",
+    "uvu": "0.5.1",
+    "@changesets/cli": "2.17.0"
+  },
+  "peerDependencies": {
+    "@nodeproto/jsync": "workspace:*"
+  },
+  "packageManager": "pnpm@6.15.1",
+  "ultra": {
+    "concurrent": [
+      "eslint",
+      "test",
+      "cp:flow"
+    ]
+  }
+}

@@ -1,5 +1,9 @@
 # categorize these before deleting previous main branch `dev`
 
+expect breaking changes until we release a version
+
+![@nodeproto architecture](/doc/architecture.png)
+
 scripts
 
 - start from scratch (if getting pnpm|node errors)
@@ -13,8 +17,8 @@ scripts
     - source your shell (e.g. bashrc `. ~/.bashrc`)
     - install node `pnpm env use --global 16`
       - FYI: as soon as 17 drops, we will be on it
-  - now that node is installed, use corepack to manage pnpm
-    - dont do this step until corepack is useable, or manageable via pnpm env (not sure which is the issue)
+  - ~~now that node is installed, use corepack to manage pnpm~~
+    - ~~dont do this step until corepack is useable, or manageable via pnpm env (not sure which is the issue)~~
     - ~~install corepack `pnpm install -g corepack`~~
     - ~~update `packageManager` in `root/package.json` to the version of pnpm installed earlier~~
     - ~~manage pnpm via corepack `corepack enable`~~
@@ -56,7 +60,7 @@ scripts
   - run `pnpm -r exec pnpm outdated` to see any outdated packages
     - we want to remain on the bleeding edge
 
-- run cmds from root dir
+- global cmds: can be run from anywhere within the monorepo
   - generally you want two terminals for the best experience
     - terminal 1: `pnpm repo:monitor`
     - terminal 2: see any of the cmds below

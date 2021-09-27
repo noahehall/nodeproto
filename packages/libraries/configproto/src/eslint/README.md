@@ -11,7 +11,7 @@
 # TLDR
 
 - extending a config (use the full path)
-  - `extends: './node_modules/@nodeproto/configproto/eslint/base.eslintrc.yml'`
+  - `extends: './node_modules/@nodeproto/configproto/.eslintrc.yml'`
 - linting all subdirectories via pkg.json script
   - our configs ignore node_modules & dist dirs by default
   - `eslint": "eslint './**/*'",`
