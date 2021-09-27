@@ -22,8 +22,10 @@ scripts
   - setup application
     - install root dependencies `pnpm install`
     - install all monorepo packages dependencies `pnpm repo:install`
-      - ignore the cyclic dependencies, will resolve that later
-    - verify tests `pnpm exec ultra -r test`
+    - verify tests `pnpm exec ultra -r repo:test`
+      - TODO: this currently fails but works if run from within each pkg
+  - make any changes you want in `root/package.json` then sync them to monorepo packages
+    - `pnpm repo:install && pnpm exec ultra -r jsync`
 
 - idiosyncrasies (there like opinions, all frameworks have them)
   - `mjs` interopability with `cjs`
@@ -56,19 +58,20 @@ scripts
 
 - run cmds from root dir
   - generally you want two terminals for the best experience
-    - terminal 1: `pnpm monitor`
+    - terminal 1: `pnpm repo:monitor`
     - terminal 2: see any of the cmds below
     - [always use pnpm exec with ultra](https://github.com/folke/ultra-runner#rocket-usage)
   - run cmd in specific pkg `pnpm proto @nodeproto/client start`
-  - run cmd in specific pkg + dependencies `pnpm proto +@nodeproto/configproto test`
+  - run cmd in specific pkg + dependencies `pnpm proto +@nodeproto/configproto repo"test`
     - note the `+` before the pkg name
     - dependencies: other monorepo pkgs, not node_modules
-  - run cmd in all pkgs matching scope `pnpm proto "@nodeproto/*" test`
+  - run cmd in all pkgs matching scope `pnpm proto "@nodeproto/*" repo:test`
     - will run all packages with scope @nodeproto
-  - run cmd in all subdirectory `pnpm proto "packages/libraries/*" test`
-  - run cmd in all pkgs `pnpm exec ultra -r test`
+  - run cmd in all subdirectory `pnpm proto "packages/libraries/*" repo:test`
+  - run cmd in all pkgs `pnpm exec ultra -r repo:test`
   - run specific package behind gateway
     - `pnpm exec ultra -r start:client` open browser to `localhost:7777`
+      - TODO: client needs to wait for webpack to complete compiling or it throws abort error?
       - generally check `packages/apps/gateway/package.json` to see scripts
         - you want to add the start:PKG cmd in the gateway so ultra runs them both
   - run all packages behind gateway
