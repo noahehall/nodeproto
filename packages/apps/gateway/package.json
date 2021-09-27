@@ -1,6 +1,19 @@
 {
+  "bugs": "https://github.com/noahehall/nodeproto/issues",
+  "description": "bleeding-edge repo for prototyping end-to-end, complex, and secure applications and microservices",
+  "homepage": "https://github.com/noahehall/nodeproto",
+  "license": "SEE LICENSE IN LICENSE.md",
   "name": "@nodeproto/gateway",
+  "packageManager": "pnpm@6.15.1",
+  "private": true,
+  "repository": "git://github.com/noahehall/nodeproto.git",
+  "type": "module",
   "version": "0.0.0",
+  "author": {
+    "name": "theDRAGON",
+    "email": "noahedwardhall+souls@gmail.com",
+    "url": "https://github.com/noahehall"
+  },
   "bin": {
     "bin": "./usr/bin"
   },
@@ -13,44 +26,28 @@
     "PATH_SRC": "./src",
     "BABEL_SHOW_CONFIG_FOR": "e.g. BABEL_SHOW_CONFIG_FOR=absolute/path/to/file somePkgJsonScriptName",
     "NODE_ENV": "development",
-    "NODE_OPTIONS": "--pending-deprecation --experimental-wasm-modules --trace-warnings --experimental-top-level-await --enable-source-maps --experimental-vm-modules --experimental-worker --experimental-import-meta-resolve --experimental-report --trace-exit --heapsnapshot-near-heap-limit=3 --trace-uncaught --deprecation --trace-deprecation --no-insecure-http-parser --report-uncaught-exception --use-largepages=on --warnings --experimental-abortcontroller --report-on-fatalerror --experimental-json-modules --trace-sigint --abort-on-uncaught-exception --es-module-specifier-resolution=node --experimental-specifier-resolution=node --experimental-modules"
+    "NODE_OPTIONS": "--enable-source-maps --heapsnapshot-near-heap-limit=3 --use-largepages=on --pending-deprecation --trace-sigint --trace-warnings --trace-exit --report-uncaught-exception --report-on-fatalerror --abort-on-uncaught-exception --experimental-specifier-resolution=node --experimental-json-modules --experimental-top-level-await --experimental-vm-modules --experimental-import-meta-resolve",
+    "DIRS_TO_TRANSPILE": "./src"
   },
-  "scripts": {
-    "about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
-    "build": "",
-    "linkandsetowner": "src/usr/bin/linkandsetowner.sh",
-    "start": "src/usr/bin/startdefault.sh",
-    "start:gateway": "pnpm start",
-    "start:client": "pnpm start",
-    "start:pkgcheck": "pnpm start",
-    "config:list": "pnpm config list --json",
-    "cp:flow": "cp node_modules/@nodeproto/configproto/.flowconfig .",
-    "eslint:fix": "pnpm eslint -- --fix",
-    "eslint": "eslint 'src/**/*'",
-    "pkg:deps": "pnpm exec ultra --info",
-    "test:help": "uvu --help",
-    "test:ing": "clear; pnpm test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"clear; pnpm test\"",
-    "test": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" uvu ./src test.mjs",
-    "upgrade": "pnpm upgrade -L"
+  "dependencies": {
+    "@changesets/cli": "2.17.0",
+    "regenerator-runtime": "0.13.9",
+    "ultra-runner": "3.10.5",
+    "uvu": "0.5.1"
+  },
+  "devDependencies": {
+    "@changesets/cli": "2.17.0",
+    "@nodeproto/jsync": "workspace:0.0.0",
+    "@nodeproto/test": "workspace:0.0.0",
+    "@swc/cli": "0.1.46",
+    "@swc/core": "1.2.75",
+    "chokidar": "3.5.2",
+    "eslint": "7.32.0",
+    "uvu": "0.5.1"
   },
   "jsync": {
     "root": false
   },
-  "devDependencies": {
-    "@nodeproto/jsync": "workspace:0.0.0"
-  },
-  "author": {
-    "name": "theDRAGON",
-    "email": "noahedwardhall+souls@gmail.com",
-    "url": "https://github.com/noahehall"
-  },
-  "bugs": "https://github.com/noahehall/nodeproto/issues",
-  "homepage": "https://github.com/noahehall/nodeproto",
-  "license": "SEE LICENSE IN LICENSE.md",
-  "repository": "git://github.com/noahehall/nodeproto.git",
-  "description": "bleeding-edge repo for prototyping end-to-end, complex, and secure applications and microservices",
-  "private": true,
-  "type": "module",
   "keywords": [
     "@nirv",
     "@nodeproto",
@@ -82,17 +79,38 @@
     "darwin",
     "linux"
   ],
+  "scripts": {
+    "jsync": "jsync",
+    "build": "",
+    "linkandsetowner": "src/usr/bin/linkandsetowner.sh",
+    "start": "src/usr/bin/startdefault.sh",
+    "start:gateway": "pnpm start",
+    "start:client": "pnpm start",
+    "start:pkgcheck": "pnpm start",
+    "config:list": "pnpm config list --json",
+    "proto": "pnpm exec ultra -r --filter",
+    "proto:all": "pnpm exec ultra -r",
+    "repo:about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
+    "repo:config:list": "pnpm config list --json",
+    "repo:cp:flow": "cp node_modules/@nodeproto/configproto/.flowconfig .",
+    "repo:deps": "pnpm exec ultra --info",
+    "repo:eslint:fix": "pnpm repo:eslint -- --fix",
+    "repo:eslint": "eslint 'src/**/*'",
+    "repo:install": "pnpm -r exec pnpm install",
+    "repo:monitor": "pnpm exec ultra --monitor",
+    "repo:nuke": "pnpm repo:rm:dist; pnpm repo:rm:nodemodules",
+    "repo:rm:dist": "rm -rf dist/*",
+    "repo:rm:nodemodules": "rm -rf node_modules",
+    "repo:test:help": "uvu --help",
+    "repo:test:ing": "pnpm repo:test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"pnpm repo:test\"",
+    "repo:test": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" uvu ./src test.mjs",
+    "repo:upgrade": "pnpm upgrade -L"
+  },
   "ultra": {
     "concurrent": [
       "eslint",
       "test",
       "cp:flow"
     ]
-  },
-  "packageManager": "pnpm@6.15.1",
-  "dependencies": {
-    "@changesets/cli": "2.17.0",
-    "ultra-runner": "3.10.5",
-    "uvu": "0.5.1"
   }
 }

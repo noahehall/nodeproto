@@ -11,8 +11,8 @@ import pem from 'pem';
 const fsproto = getFsproto(process.env.IS_TEST);
 
 const getRequireOrImport = () => typeof require !== 'undefined'
-  ? require.main
-  : '.'
+  ? require.main // eslint-disable-line
+  : '.';
 
 // console.info('\n\n wtf is getRequireOrImport', getRequireOrImport());
 

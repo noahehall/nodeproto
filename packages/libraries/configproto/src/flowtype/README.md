@@ -3,7 +3,6 @@
 - flow > typescript
   - flow integrates into your workflow,
   - typescript cannabolizes your workflow
-  - keep the `.flowconfig` in the root dir as we are unable to extend
 
 - recommendations
   - [eslit-plugin-flowtype-errors](https://github.com/amilajack/eslint-plugin-flowtype-errors/wiki/Getting-Started)

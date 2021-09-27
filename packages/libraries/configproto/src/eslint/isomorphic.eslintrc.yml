@@ -1,0 +1,47 @@
+extends:
+  - ./.eslintrc.yml
+  - plugin:react/jsx-runtime
+  - plugin:react-hooks/recommended
+
+plugins:
+  - react
+
+settings:
+  # @see https://github.com/yannickcr/eslint-plugin-react
+  react:
+    createClass: createReactClass
+    pragma: React
+    fragment: Fragment
+    version: detect
+    flowVersion: 0.158.0
+    componentWrapperFunctions:
+      - styled
+    linkComponents:
+      - name: Link
+        linkAttribute: to
+
+env:
+  browser: true
+  serviceworker: true
+  webextensions: true
+  worker: true
+
+rules:
+  # react specific
+  jsx-quotes: [error, prefer-single]
+  react-hooks/exhaustive-deps: warn
+  react-hooks/rules-of-hooks: error
+  react/display-name: error
+  react/forbid-component-props: [error, {forbid: [reactsucks, angularisgreat]}]
+  react/jsx-indent-props: [error, 2]
+  react/jsx-indent: [error, 2]
+  react/jsx-max-depth: [error, {max: 5}]
+  react/jsx-max-props-per-line: [error, {maximum: 3, when: multiline}]
+  react/jsx-no-literals: warn
+  react/jsx-one-expression-per-line: [error, {allow: single-child}]
+
+  # dumb rules
+  react/destructuring-assignment: 'off'
+  react/jsx-filename-extension: 'off'
+  react/jsx-props-no-spreading: 'off'
+  react/prop-types: 'off' # not a fan, dont care if you are

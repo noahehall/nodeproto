@@ -77,7 +77,8 @@
     "webpack": "5.46.0",
     "webpack-hot-middleware-2": "2.25.2",
     "@swc/cli": "0.1.46",
-    "@swc/core": "1.2.75"
+    "@swc/core": "1.2.75",
+    "chokidar": "3.5.2"
   },
   "directories": {
     "app": "./app",
@@ -127,6 +128,7 @@
     "start": "concurrently pnpm:start:dev pnpm:start:reactdevtools",
     "start:client": "pnpm start",
     "proto": "pnpm exec ultra -r --filter",
+    "jsync": "jsync",
     "repo:about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
     "repo:config:list": "pnpm config list --json",
     "repo:cp:flow": "cp node_modules/@nodeproto/configproto/.flowconfig .",
@@ -141,7 +143,8 @@
     "repo:test:help": "uvu --help",
     "repo:test:ing": "pnpm repo:test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"pnpm repo:test\"",
     "repo:test": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" uvu ./src test.mjs",
-    "repo:upgrade": "pnpm upgrade -L"
+    "repo:upgrade": "pnpm upgrade -L",
+    "proto:all": "pnpm exec ultra -r"
   },
   "sideEffects": [
     "./app/components/**/*.js",
