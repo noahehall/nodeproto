@@ -24,6 +24,7 @@ export const parentUri = (importMeta) => (
     : module.filename
 );
 
+// lol we need to just fix this
 // TODO: breaks if --experimental-import-meta-resolve is set
 export const resolve = async (
   fileToImport = r('fileToImport: string'),
