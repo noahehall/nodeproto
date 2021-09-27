@@ -1,12 +1,12 @@
 import { isMain } from '@nodeproto/wtf';
-import { getDevCert } from '@nodeproto/envproto';
+// import { getDevCert } from '@nodeproto/envproto';
 
 import App from './app.mjs';
 import http from 'http';
 import https from 'https';
 
 const port = process.env.PKGCHECK_HTTP_PORT;
-const sport = process.env.PKGCHECK_HTTPS_PORT;
+const sport = false; //process.env.PKGCHECK_HTTPS_PORT;
 
 export const runApp = async () => {
   if (!port && !sport) throw 'PKGCHECK_HTTP_PORT or PKGHECK_HTTPS_PORT must be set in env';

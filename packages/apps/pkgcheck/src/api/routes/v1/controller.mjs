@@ -16,7 +16,9 @@ export default async function v1Controller (v1RouterGroup, app) {
       * map v1 paths to handlers
     */
     // @see https://nodejs.org/api/esm.html#esm_import_meta_resolve_specifier_parent
-    const openApiUri = await resolve('./v1openapi.yaml', import.meta);
+    const openApiUri = await resolve('./v1openapi.yaml'/*, import.meta*/);
+
+    console.log('\n\n openApiUri', openApiUri);
 
     v1RouterGroup.get(
       '/',

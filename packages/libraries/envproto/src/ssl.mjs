@@ -10,6 +10,10 @@ import pem from 'pem';
 
 const fsproto = getFsproto(process.env.IS_TEST);
 
+const getRequireOrImport = typeof require !== 'undefined'
+  ? require.main
+  : import.meta
+
 export const getDevCert = async ({
   days = 7,
   domain = process.env.DEV_DOMAIN || 'localhost',
@@ -21,7 +25,7 @@ export const getDevCert = async ({
   commonName = `*.${domain}`,
 } = {}) => {
   // where to save dev certs
-  if (!tmpDir) process.env.PEMJS_TMPDIR = `${path.dirname(parentUri(import.meta))}/certs`;
+  if (!tmpDir) process.env.PEMJS_TMPDIR = `${path.dirname(parentUri(getRequireOrImport()))}/certs`;
   let
     certificate,
     clientKey,

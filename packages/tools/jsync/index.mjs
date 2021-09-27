@@ -88,12 +88,10 @@ logIt('\n\n values to force', V[VTF])
 
 // these values will never be spread into child.package.json
 const valuesToNeverSpread = new Set([...V[VTI]].concat([...V[VTF]]));
+
 // these values will be spread into child from root
 // values to spread
-V[VTS] = new Set(
-  spreadRootValues
-    .filter(v => !valuesToNeverSpread.has(v))
-);
+V[VTS] = new Set(spreadRootValues.filter(v => !valuesToNeverSpread.has(v)));
 logIt('\n\n values to spread', V[VTS]);
 
 const getJsonFieldCategory = k => (
@@ -116,7 +114,7 @@ const segmentJsonFieldsByCategory = (json = rootJson) => (
         {
           [category]: acc[category].concat(k) // injected into acc
         })
-      ), // end object assign[=----------------------------------------------------------------------
+      ), // end object assign
       { [VTS]: [], [VTI]: [], [VTF]: [] } // base accumulator
   ) // end reduce
 );
