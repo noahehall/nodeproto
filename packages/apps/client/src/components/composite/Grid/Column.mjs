@@ -1,22 +1,22 @@
 
-import React from 'react'
-import styled from 'styled-components'
-import clsx from 'clsx'
+import React from 'react';
+import styled from 'styled-components';
+import clsx from 'clsx';
 import {
   unstable_GridCell as GridCell,
   unstable_useGridState as useGridState,
-} from 'reakit/Grid'
+} from 'reakit/Grid';
 
 const StyledCell = styled(GridCell)`
 
-`
+`;
 
 export function ScreenColumn ({
   className,
 
   ...props
 }) {
-  const grid = useGridState()
+  const grid = useGridState();
 
   return (
     <StyledCell
@@ -27,7 +27,7 @@ export function ScreenColumn ({
     >
       {props.children}
     </StyledCell>
-  )
+  );
 }
 
-if (module?.hot?.accept) module.hot.accept()
+if (module?.hot?.accept) module.hot.accept();

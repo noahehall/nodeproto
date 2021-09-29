@@ -1,19 +1,19 @@
 
 /* eslint-disable comma-dangle */
 
-import clsx from 'clsx'
-import ErrorBoundary from '../Errors/ErrorBoundary.mjs'
-import React from 'react'
-import styled from 'styled-components'
+import clsx from 'clsx';
+import ErrorBoundary from '../Errors/ErrorBoundary.mjs';
+import React from 'react';
+import styled from 'styled-components';
 import {
   unstable_Grid as Grid,
   unstable_useGridState as useGridState,
-} from 'reakit/Grid'
+} from 'reakit/Grid';
 
 const StyledGrid = styled(Grid)`
   /* display: flex;
   flex-flow: nowrap column; */
-`
+`;
 
 export function ScreenGridNative ({
   isFor = 'Nirv',
@@ -21,7 +21,7 @@ export function ScreenGridNative ({
 
   ...props
 }) {
-  const grid = useGridState()
+  const grid = useGridState();
 
   return (
     <StyledGrid
@@ -32,11 +32,11 @@ export function ScreenGridNative ({
     >
       {props.children}
     </StyledGrid>
-  )
+  );
 }
 
 export function ScreenGrid (props) {
-  return <ErrorBoundary><ScreenGridNative {...props} /></ErrorBoundary>
+  return <ErrorBoundary><ScreenGridNative {...props} /></ErrorBoundary>;
 }
 
-if (module?.hot?.accept) module.hot.accept()
+if (module?.hot?.accept) module.hot.accept();

@@ -6,17 +6,17 @@ import { DisplayError } from './DisplayError.mjs';
 
 export default class ErrorBoundary extends React.Component {
   constructor (props) {
-    super(props)
-    this.state = {}
+    super(props);
+    this.state = {};
   }
 
   static getDerivedStateFromError (error) {
     // Update state so the next render will show the fallback UI.
-    return { error }
+    return { error };
   }
 
   componentDidCatch (error, errorInfo) {
-    console.error(errorInfo)
+    console.error(errorInfo);
   }
 
   render () {
@@ -27,8 +27,8 @@ export default class ErrorBoundary extends React.Component {
           this.props.children,
           this.props
         )
-    )
+    );
   }
 }
 
-if (module?.hot?.accept) module.hot.accept()
+if (module?.hot?.accept) module.hot.accept();

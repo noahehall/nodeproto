@@ -2,8 +2,9 @@
 // copypasta
 
 import { fileURLToPath } from 'url';
-import process from 'process';
+
 import path from 'path';
+import process from 'process';
 
 export function stripExt(name) {
   const extension = path.extname(name);

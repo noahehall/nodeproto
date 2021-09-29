@@ -17,7 +17,7 @@ export function DisplayError ({
     <h2>Error Info</h2>
 
     <JsonPretty data={errorInfo} theme={JSONPrettyMonTheme} />
-  </section>)
+  </section>);
 }
 
-if (module?.hot?.accept) module.hot.accept()
+if (module?.hot?.accept) module.hot.accept();

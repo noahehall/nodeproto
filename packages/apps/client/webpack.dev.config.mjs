@@ -2,9 +2,9 @@ import {
   buildWebpackConfig,
   reactDevWebpackConfig,
   setupWebpackConfig,
-  } from '@nodeproto/configproto';
+  } from '@nodeproto/buildproto';
 
-import { isMain } from '@nodeproto/wtf/fsproto';
+import { dirs, isMain } from '@nodeproto/wtf';
 
 const { pack, config } = setupWebpackConfig();
 
@@ -17,4 +17,4 @@ export const webpackConfig = reactDevWebpackConfig({
 });
 
 // if this file is run directly, it will build and output to disk
-if (isMain(false, import.meta)) buildWebpackConfig(webpackConfig);
+if (isMain(dirs.isEsm() ? import.meta : require.main)) buildWebpackConfig(webpackConfig);
