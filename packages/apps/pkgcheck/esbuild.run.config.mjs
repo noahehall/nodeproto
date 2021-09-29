@@ -3,7 +3,7 @@ import {
   esrunConfig,
   esbuildPluginPopCopy,
   esbuildPluginPopCopyConfig,
-} from '@nodeproto/configproto/esbuild';
+} from '@nodeproto/buildproto/esbuild';
 import { fsproto, isMain, dirs } from '@nodeproto/wtf';
 import { builtinModules } from 'module'
 

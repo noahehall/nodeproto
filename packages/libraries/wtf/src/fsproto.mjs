@@ -6,25 +6,26 @@ import esMain from './esmain';
 import fse from 'fs-extra';
 import path from 'path';
 
-const r = (t, msg = 'is required') => { throw new Error(`${t}: ${msg}`); };
+// TODO: this throws in consumers if we dont export it...?
+export const isR = (t, msg = 'is isRuired') => { throw new Error(`${t}: ${msg}`); };
 
 export const isMain = (
-  importMetaOrRequireMain = r('importMetaOrRequireMain'),
+  importMetaOrisRuireMain = isR('importMetaOrisRuireMain'),
 ) => wtfShared.isEsm()
-  ? esMain(importMetaOrRequireMain)
-  : importMetaOrRequireMain == module; // eslint-disable-line no-undef
+  ? esMain(importMetaOrisRuireMain)
+  : importMetaOrisRuireMain == module; // eslint-disable-line no-undef
 
 
-export const urlToPath = (importMetaUrlOrPath = r('importMetaUrlOrPath')) => fileURLToPath(importMetaUrlOrPath);
+export const urlToPath = (importMetaUrlOrPath = isR('importMetaUrlOrPath')) => fileURLToPath(importMetaUrlOrPath);
 
 
 export const resolve = async (
-  fileToImport = r('fileToImport: string'),
-  importMetaOrPath = r('importMetaOrPath: import.meta | string')
+  fileToImport = isR('fileToImport: string'),
+  importMetaOrPath = isR('importMetaOrPath: import.meta | string')
 ) => {
   if (wtfShared.isEsm()) {
     if (!importMetaOrPath.resolve)
-      throw new Error('import.meta required in esm: resolve(file, import.meta)');
+      throw new Error('import.meta isRuired in esm: resolve(file, import.meta)');
 
     return urlToPath(await importMetaOrPath.resolve(fileToImport, importMetaOrPath.url));
   }

@@ -163,9 +163,11 @@ importers:
     specifiers:
       '@changesets/cli': 2.17.0
       '@koa/cors': 3.1.0
+      '@nodeproto/buildproto': workspace:0.0.0
       '@nodeproto/configproto': workspace:0.0.0
       '@nodeproto/envproto': workspace:0.0.0
       '@nodeproto/jsync': workspace:0.0.0
+      '@nodeproto/testproto': workspace:0.0.0
       '@nodeproto/wtf': workspace:0.0.0
       '@swc/cli': 0.1.46
       '@swc/core': 1.2.75
@@ -223,8 +225,10 @@ importers:
       ultra-runner: 3.10.5
     devDependencies:
       '@changesets/cli': 2.17.0
+      '@nodeproto/buildproto': link:../../libraries/buildproto
       '@nodeproto/configproto': link:../../libraries/configproto
       '@nodeproto/jsync': link:../../tools/jsync
+      '@nodeproto/testproto': link:../../libraries/testproto
       '@swc/cli': 0.1.46_@swc+core@1.2.75+chokidar@3.5.2
       '@swc/core': 1.2.75
       chokidar: 3.5.2
