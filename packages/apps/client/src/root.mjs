@@ -1,9 +1,9 @@
 // @flow
 
-import App from './components/screens/App/AppScreen.mjs'
-import ErrorBoundary from './components/composite/Errors/ErrorBoundary.mjs'
+import App from './components/screens/App/AppScreen.mjs';
+import ErrorBoundary from './components/composite/Errors/ErrorBoundary.mjs';
 import React from 'react';
-import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom';
 
 const containerID: string = 'root';
 const container = document.getElementById('root');
@@ -15,12 +15,12 @@ const render = (Comp) => {
 
   root.render(
     // <React.StrictMode>
-      <ErrorBoundary>
-        <Comp />
-      </ErrorBoundary>
+    <ErrorBoundary>
+      <Comp />
+    </ErrorBoundary>
     // </React.StrictMode>
   );
-}
+};
 
 render(App);
 
@@ -33,13 +33,13 @@ if (typeof window !== 'undefined') {
       console.error(
         '\n\n unahndled exception occured',
         e
-      )
+      );
     }
-  )
+  );
 }
 // should be disabled here as each screen (perhaps even deeper)
 // should handle HMR for their component hierarchies
-if (module?.hot?.accept) module.hot.accept()
+if (module?.hot?.accept) module.hot.accept();
 // if (module.hot) module.hot.accept('./components/screens/App', () => {
 //   render(require('./components/screens/App').default)
 // })

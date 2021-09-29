@@ -25,11 +25,11 @@ scripts
     - ~~sync global version `corepack prepare pnpm@6.15.1 --activate`~~
   - setup application
     - install root dependencies `pnpm install`
-    - install all monorepo packages dependencies `pnpm repo:install`
-    - verify tests `pnpm exec ultra -r repo:test`
+    - install dependencies for all packages/* `pnpm repo:install`
+    - ~~run all tests in all packages `pnpm repo:test`~~
       - TODO: this currently fails but works if run from within each pkg
   - make any changes you want in `root/package.json` then sync them to monorepo packages
-    - `pnpm repo:install && pnpm exec ultra -r jsync`
+    - `pnpm proto jsync`
 
 - idiosyncrasies (there like opinions, all frameworks have them)
   - `mjs` interopability with `cjs`
