@@ -214,11 +214,23 @@ const sortSimpleThenComplexDataTypes = (a, b) => {
   // sort complex types alphabetically
   else return a[0].localeCompare(b[0]);
 };
+
+const sortArraysAndObjects = value => (
+  notArrayOrObject(value)
+    ? value
+    : Array.isArray(value)
+      ? value.sort((a, b) => a.localeCompare(b))
+      : Object.entries(value).sort((a, b) => a[0].localeCompare(b[0])).reduce(
+        (obj, [key, value]) => (obj[key] = value, obj),
+        {}
+      )
+);
+
 // @see https://stackoverflow.com/questions/5467129/sort-javascript-object-by-key
 await fs.outputJson(
   childPkgJsonPath + '/package.json',
   Object.entries(newChildJson).sort(sortSimpleThenComplexDataTypes).reduce(
-    (obj, [key, value]) => (obj[key] = value, obj),
+    (obj, [key, value]) => (obj[key] = sortArraysAndObjects(value), obj),
     {}
   ),
   { spaces: 2 }

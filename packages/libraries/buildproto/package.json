@@ -11,19 +11,19 @@
   "type": "module",
   "version": "0.0.0",
   "author": {
-    "name": "theDRAGON",
     "email": "noahedwardhall+souls@gmail.com",
+    "name": "theDRAGON",
     "url": "https://github.com/noahehall"
   },
   "config": {
+    "BABEL_SHOW_CONFIG_FOR": "e.g. BABEL_SHOW_CONFIG_FOR=absolute/path/to/file somePkgJsonScriptName",
+    "DIRS_TO_TRANSPILE": "./src",
+    "NODE_ENV": "production",
+    "NODE_OPTIONS": "--enable-source-maps --heapsnapshot-near-heap-limit=3 --use-largepages=on --pending-deprecation --trace-sigint --trace-warnings --trace-exit --report-uncaught-exception --report-on-fatalerror --abort-on-uncaught-exception --experimental-specifier-resolution=node --experimental-json-modules --experimental-top-level-await --experimental-vm-modules --experimental-import-meta-resolve",
     "PATH_DIST": "./dist",
     "PATH_SRC": "./src",
-    "NODE_ENV": "production",
-    "DIRS_TO_TRANSPILE": "./src",
     "REMOVED_BABEL_OPTIONS": "--copy-files",
-    "REMOVED_NODE_OPTIONS": "",
-    "NODE_OPTIONS": "--enable-source-maps --heapsnapshot-near-heap-limit=3 --use-largepages=on --pending-deprecation --trace-sigint --trace-warnings --trace-exit --report-uncaught-exception --report-on-fatalerror --abort-on-uncaught-exception --experimental-specifier-resolution=node --experimental-json-modules --experimental-top-level-await --experimental-vm-modules --experimental-import-meta-resolve",
-    "BABEL_SHOW_CONFIG_FOR": "e.g. BABEL_SHOW_CONFIG_FOR=absolute/path/to/file somePkgJsonScriptName"
+    "REMOVED_NODE_OPTIONS": ""
   },
   "dependencies": {
     "@babel/cli": "7.14.8",
@@ -102,11 +102,6 @@
       "import": "./src/index.mjs",
       "default": "./dist/index.js"
     },
-    "./package.json": "./package.json",
-    "./esbuild/plugin/*": {
-      "import": "./src/esbuild/plugin/*.esbuild.plugin.mjs",
-      "default": "./dist/esbuild/plugin/*.esbuild.plugin.js"
-    },
     "./esbuild": {
       "import": "./src/esbuild/index.esbuild.config.mjs",
       "default": "./dist/esbuild/index.esbuild.config.js"
@@ -115,11 +110,11 @@
       "import": "./src/esbuild/*.esbuild.config.mjs",
       "default": "./dist/esbuild/*.esbuild.config.js"
     },
-    "./webpack/loader/*": "./src/webpack/loader/*.cjs",
-    "./webpack/bff/*": {
-      "import": "./src/webpack/bff/*.webpack.mjs",
-      "default": "./dist/webpack/bff/*.webpack.js"
+    "./esbuild/plugin/*": {
+      "import": "./src/esbuild/plugin/*.esbuild.plugin.mjs",
+      "default": "./dist/esbuild/plugin/*.esbuild.plugin.js"
     },
+    "./package.json": "./package.json",
     "./webpack": {
       "import": "./src/webpack/index.webpack.config.mjs",
       "default": "./dist/webpack/index.webpack.config.js"
@@ -127,7 +122,12 @@
     "./webpack/*": {
       "import": "./src/webpack/*.webpack.config.mjs",
       "default": "./dist/webpack/*.webpack.config.js"
-    }
+    },
+    "./webpack/bff/*": {
+      "import": "./src/webpack/bff/*.webpack.mjs",
+      "default": "./dist/webpack/bff/*.webpack.js"
+    },
+    "./webpack/loader/*": "./src/webpack/loader/*.cjs"
   },
   "jsync": {
     "root": false
@@ -169,17 +169,17 @@
     "webpack-hot-middleware-2": "2.25.2"
   },
   "scripts": {
-    "jsync": "jsync",
+    "bl:check": "browserslist",
+    "bl:update": "echo 'doesnt work with pnpm'; exit 0; browserslist --update-db",
     "build": "pnpm cjs:swc",
     "build:debug": "pnpm cjs:swc:debug",
     "cjs:babel": "clear; pnpm repo:rm:dist && NODE_OPTIONS=$npm_package_config_NODE_OPTIONS babel $npm_package_config_DIRS_TO_TRANSPILE -d $npm_package_config_PATH_DIST --out-file-extension .js --ignore 'src/**/*.test.mjs' --ignore src/webpack/test.compiler.mjs",
     "cjs:swc": "pnpm repo:rm:dist && pnpm repo:cp:cjs && swc $npm_package_config_DIRS_TO_TRANSPILE -d $npm_package_config_PATH_DIST --config-file ./node_modules/@nodeproto/configproto/src/swc/node.swcrc --copy-files",
-    "js:to:cjs": "for f in ./dist/**/*.js; do mv -- \"$f\" \"${f%.js}.cjs\"; done",
     "cjs:swc:debug": "pnpm cjs:swc -- --sync",
-    "bl:update": "echo 'doesnt work with pnpm'; exit 0; browserslist --update-db",
-    "bl:check": "browserslist",
-    "proto:slice": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" pnpm exec ultra -r --filter",
+    "js:to:cjs": "for f in ./dist/**/*.js; do mv -- \"$f\" \"${f%.js}.cjs\"; done",
+    "jsync": "jsync",
     "proto": "pnpm exec ultra -r",
+    "proto:slice": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" pnpm exec ultra -r --filter",
     "repo:about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
     "repo:config:list": "pnpm config list --json",
     "repo:cp:browserslist": "rm -f .browserslistrc && cp ./node_modules/@nodeproto/configproto/src/browserslist/.browserslistrc .",
@@ -187,15 +187,16 @@
     "repo:cp:configproto": "pnpm repo:cp:flow; pnpm repo:cp:cjs; pnpm repo:cp:browserslist",
     "repo:cp:flow": "rm -f .flowconfig && cp ./node_modules/@nodeproto/configproto/src/flowtype/.flowconfig .",
     "repo:deps": "pnpm exec ultra --info",
-    "repo:eslint:fix": "pnpm repo:eslint -- --fix",
     "repo:eslint": "eslint 'src/**/*'",
+    "repo:eslint:fix": "pnpm repo:eslint -- --fix",
+    "repo:flow": "pnpm exec flow",
     "repo:install": "pnpm -r exec pnpm install",
     "repo:monitor": "pnpm exec ultra --monitor",
     "repo:nuke": "pnpm repo:rm:dist; pnpm repo:rm:nodemodules",
     "repo:rm:dist": "rm -rf dist/*",
     "repo:rm:nodemodules": "rm -rf node_modules",
-    "repo:test:help": "uvu --help",
     "repo:test": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" uvu ./src \"test.(m|c)?js\"",
+    "repo:test:help": "uvu --help",
     "repo:testing": "pnpm repo:test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"pnpm repo:test\"",
     "repo:upgrade": "pnpm upgrade -L"
   },

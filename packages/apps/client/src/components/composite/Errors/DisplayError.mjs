@@ -1,3 +1,4 @@
+// @flow
 
 import React from 'react';
 import JsonPretty from 'react-json-pretty';

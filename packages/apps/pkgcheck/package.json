@@ -11,19 +11,19 @@
   "type": "module",
   "version": "0.0.0",
   "author": {
-    "name": "theDRAGON",
     "email": "noahedwardhall+souls@gmail.com",
+    "name": "theDRAGON",
     "url": "https://github.com/noahehall"
   },
   "config": {
-    "PKGCHECK_HTTP_PORT": "3000",
-    "PKGCHECK_HTTPS_PORT": "4430",
+    "BABEL_SHOW_CONFIG_FOR": "e.g. BABEL_SHOW_CONFIG_FOR=absolute/path/to/file somePkgJsonScriptName",
+    "DIRS_TO_TRANSPILE": "./src",
     "NODE_ENV": "production",
+    "NODE_OPTIONS": "--enable-source-maps --heapsnapshot-near-heap-limit=3 --use-largepages=on --pending-deprecation --trace-sigint --trace-warnings --trace-exit --report-uncaught-exception --report-on-fatalerror --abort-on-uncaught-exception --experimental-specifier-resolution=node --experimental-json-modules --experimental-top-level-await --experimental-vm-modules --experimental-import-meta-resolve",
     "PATH_DIST": "./dist",
     "PATH_SRC": "./src",
-    "BABEL_SHOW_CONFIG_FOR": "e.g. BABEL_SHOW_CONFIG_FOR=absolute/path/to/file somePkgJsonScriptName",
-    "NODE_OPTIONS": "--enable-source-maps --heapsnapshot-near-heap-limit=3 --use-largepages=on --pending-deprecation --trace-sigint --trace-warnings --trace-exit --report-uncaught-exception --report-on-fatalerror --abort-on-uncaught-exception --experimental-specifier-resolution=node --experimental-json-modules --experimental-top-level-await --experimental-vm-modules --experimental-import-meta-resolve",
-    "DIRS_TO_TRANSPILE": "./src"
+    "PKGCHECK_HTTP_PORT": "3000",
+    "PKGCHECK_HTTPS_PORT": "4430"
   },
   "dependencies": {
     "@koa/cors": "3.1.0",
@@ -66,9 +66,9 @@
     "uvu": "0.5.1"
   },
   "directories": {
-    "src": "./src",
     "bin": "./bin",
-    "dist": "./dist"
+    "dist": "./dist",
+    "src": "./src"
   },
   "engines": {
     "node": ">=16.10.0"
@@ -109,11 +109,9 @@
   ],
   "scripts": {
     "build": "clear; pnpm repo:rm:dist && NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" node esbuild.build.config.mjs && pnpm repo:cp:cjs",
-    "start:pkgcheck": "clear; pnpm repo:rm:dist && NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" node esbuild.run.config.mjs",
-    "start": "pnpm start:pkgcheck",
     "jsync": "jsync",
-    "proto:slice": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" pnpm exec ultra -r --filter",
     "proto": "pnpm exec ultra -r",
+    "proto:slice": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" pnpm exec ultra -r --filter",
     "repo:about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
     "repo:config:list": "pnpm config list --json",
     "repo:cp:browserslist": "rm -f .browserslistrc && cp ./node_modules/@nodeproto/configproto/src/browserslist/.browserslistrc .",
@@ -121,18 +119,21 @@
     "repo:cp:configproto": "pnpm repo:cp:flow; pnpm repo:cp:cjs; pnpm repo:cp:browserslist",
     "repo:cp:flow": "rm -f .flowconfig && cp ./node_modules/@nodeproto/configproto/src/flowtype/.flowconfig .",
     "repo:deps": "pnpm exec ultra --info",
-    "repo:eslint:fix": "pnpm repo:eslint -- --fix",
     "repo:eslint": "eslint 'src/**/*'",
+    "repo:eslint:fix": "pnpm repo:eslint -- --fix",
+    "repo:flow": "pnpm exec flow",
     "repo:install": "pnpm -r exec pnpm install",
     "repo:monitor": "pnpm exec ultra --monitor",
     "repo:nuke": "pnpm repo:rm:dist; pnpm repo:rm:nodemodules",
     "repo:rm:dist": "rm -rf dist/*",
     "repo:rm:nodemodules": "rm -rf node_modules",
+    "repo:test": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" uvu ./src \"test.(m|c)?js\"",
     "repo:test:help": "uvu --help",
     "repo:test:ing": "pnpm repo:test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"pnpm repo:test\"",
-    "repo:test": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" uvu ./src \"test.(m|c)?js\"",
     "repo:testing": "pnpm repo:test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"pnpm repo:test\"",
-    "repo:upgrade": "pnpm upgrade -L"
+    "repo:upgrade": "pnpm upgrade -L",
+    "start": "pnpm start:pkgcheck",
+    "start:pkgcheck": "clear; pnpm repo:rm:dist && NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" node esbuild.run.config.mjs"
   },
   "ultra": {
     "concurrent": [

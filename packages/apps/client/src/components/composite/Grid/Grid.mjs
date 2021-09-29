@@ -1,5 +1,4 @@
-
-/* eslint-disable comma-dangle */
+// @flow
 
 import clsx from 'clsx';
 import ErrorBoundary from '../Errors/ErrorBoundary.mjs';
@@ -39,4 +38,4 @@ export function ScreenGrid (props) {
   return <ErrorBoundary><ScreenGridNative {...props} /></ErrorBoundary>;
 }
 
-if (module?.hot?.accept) module.hot.accept();
+if (module.hot?.accept) module.hot.accept();

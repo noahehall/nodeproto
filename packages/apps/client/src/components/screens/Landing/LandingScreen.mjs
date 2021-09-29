@@ -1,3 +1,4 @@
+// @flow
 
 /*
  * Landing Screen
@@ -26,7 +27,7 @@ export default function LandingScreen (props) {
 
       <ScreenRow>
         <ScreenColumn>
-          <h1 className='animate__animated animate__backInUp'>@nodeproto: build prototypes, fast.</h1>
+          <h1 className='animate__animated animate__backInUp'>@nodeproto: build prototypes, faster.</h1>
         </ScreenColumn>
       </ScreenRow>
 

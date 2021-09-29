@@ -1,5 +1,4 @@
-
-/* eslint-disable comma-dangle */
+// @flow
 
 import clsx from 'clsx';
 import React from 'react';
@@ -31,4 +30,4 @@ export function ScreenRow ({
   );
 }
 
-if (module?.hot?.accept) module.hot.accept();
+if (module.hot?.accept) module.hot.accept();

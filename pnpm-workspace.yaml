@@ -1,6 +1,4 @@
 packages:
   - 'packages/apps/*'
   - 'packages/libraries/*'
-  - 'packages/shared'
-  - 'packages/tests'
   - 'packages/tools/*'

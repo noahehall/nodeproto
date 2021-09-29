@@ -2,7 +2,7 @@
 
 import App from './components/screens/App/AppScreen.mjs';
 import ErrorBoundary from './components/composite/Errors/ErrorBoundary.mjs';
-import React from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 
 const containerID: string = 'root';

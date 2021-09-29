@@ -1,24 +1,21 @@
-; wtf! https://github.com/facebook/flow/issues/153
-; https://github.com/TiddoLangerak/flow-json-config#readme
+💩  @see https://flow.org/en/docs/config/
+💩  wtf! https://github.com/facebook/flow/issues/153
+💩  https://github.com/TiddoLangerak/flow-json-config#readme
 ; @nodeproto: the ultimate flowconfig
 ; @todo: https://github.com/flow-typed/flow-typed
 ; @todo: https://github.com/flow-typed/flow-typed/wiki/Importing-And-Using-Type-Definitions
-;
 [declarations]
 <PROJECT_ROOT>/flow-typed/.*
 
-[ignore]
-<PROJECT_ROOT>/.rush/.*
+[untyped]
 <PROJECT_ROOT>/browsertime*/.*
 <PROJECT_ROOT>/bundle*/.*
 <PROJECT_ROOT>/doc/.*
 <PROJECT_ROOT>/hint*/.*
+<PROJECT_ROOT>/dist/.*
 
-[include]
-
-[libs]
-<PROJECT_ROOT>/flow-typed/.*
 [lints]
+all=warn
 
 [options]
 all=false
@@ -55,13 +52,3 @@ suppress_type=$FlowTODO
 ; types_first=false throws err
 ; well_formed_exports=true
 ; esproposal.class_static_fields=true throws err
-
-[strict]
-
-[untyped]
-<PROJECT_ROOT>/dist/.*
-; <PROJECT_ROOT>/node_modules/.*
-<PROJECT_ROOT>/*\.test\.(c|m)js
-
-[version]
-0.158.0
