@@ -1,3 +1,4 @@
+// @flow
 
 /*
  * Landing Screen
@@ -5,14 +6,14 @@
  * This is the first thing players see of our App, at the '/' route
  */
 
+import { Anchor } from '../../composite/Clickable/Thing.mjs';
 import { Helmet } from 'react-helmet';
-import React from 'react';
+import { ScreenColumn } from '../../composite/Grid/Column.mjs';
 import { ScreenGrid } from '../../composite/Grid/Grid.mjs';
 import { ScreenRow } from '../../composite/Grid/Row.mjs';
-import { ScreenColumn } from '../../composite/Grid/Column.mjs';
-import { Anchor } from '../../composite/Clickable/Thing.mjs';
+import * as React from 'react';
 
-export default function LandingScreen (props) {
+export default function LandingScreen (props: {}): React.Node {
   return (
     <ScreenGrid {...props} isFor='Landing'>
       <Helmet>
@@ -26,7 +27,7 @@ export default function LandingScreen (props) {
 
       <ScreenRow>
         <ScreenColumn>
-          <h1 className='animate__animated animate__backInUp'>@nodeproto: build prototypes, fast.</h1>
+          <h1 className='animate__animated animate__backInUp'>@nodeproto: build prototypes, faster.</h1>
         </ScreenColumn>
       </ScreenRow>
 

@@ -73,6 +73,8 @@
   "scripts": {
     "proto:slice": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" pnpm exec ultra -r --filter",
     "proto": "pnpm exec ultra -r",
+    "repo:flow": "pnpm exec flow",
+    "repo:flow:status": "pnpm exec flow status",
     "repo:cp:browserslist": "rm -f .browserslistrc && cp ./node_modules/@nodeproto/configproto/src/browserslist/.browserslistrc .",
     "repo:cp:cjs": "rm -f ./dist/package.json && mkdir -p dist && cp ./node_modules/@nodeproto/configproto/src/node/cjs.json ./dist/package.json",
     "repo:cp:configproto": "pnpm repo:cp:flow; pnpm repo:cp:cjs; pnpm repo:cp:browserslist",
@@ -113,6 +115,8 @@
     "@swc/core": "1.2.75",
     "chokidar-cli": "3.0.0",
     "eslint": "7.32.0",
+    "flow-bin": "0.161.0",
+    "flow-remove-types": "2.158.0",
     "uvu": "0.5.1"
   }
 }

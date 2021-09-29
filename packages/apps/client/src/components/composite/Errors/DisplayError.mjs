@@ -1,9 +1,10 @@
+// @flow
 
-import React from 'react';
+import * as React from 'react';
 import JsonPretty from 'react-json-pretty';
 import JSONPrettyMonTheme from 'react-json-pretty/dist/monikai';
 
-export function DisplayError ({
+export default function DisplayError ({
   error,
   errorInfo
 }) {
@@ -20,4 +21,4 @@ export function DisplayError ({
   </section>);
 }
 
-if (module?.hot?.accept) module.hot.accept();
+if (module.hot.accept) module.hot.accept();

@@ -9,6 +9,8 @@ importers:
       '@swc/core': 1.2.75
       chokidar-cli: 3.0.0
       eslint: 7.32.0
+      flow-bin: 0.161.0
+      flow-remove-types: 2.158.0
       regenerator-runtime: 0.13.9
       ultra-runner: 3.10.5
       uvu: 0.5.1
@@ -21,6 +23,8 @@ importers:
       '@swc/core': 1.2.75
       chokidar-cli: 3.0.0
       eslint: 7.32.0
+      flow-bin: 0.161.0
+      flow-remove-types: 2.158.0
       uvu: 0.5.1
 
   packages/apps/client:
@@ -48,7 +52,7 @@ importers:
       css-loader: 6.2.0
       env-cmd: 10.1.0
       eslint: 7.32.0
-      flow-bin: 0.158.0
+      flow-bin: 0.161.0
       flow-typed: 3.3.1
       hint: 6.1.4
       history: 5.0.0
@@ -117,7 +121,7 @@ importers:
       concurrently: 6.2.0
       css-loader: 6.2.0_webpack@5.51.1
       eslint: 7.32.0
-      flow-bin: 0.158.0
+      flow-bin: 0.161.0
       flow-typed: 3.3.1
       hint: 6.1.4
       lighthouse: 8.1.0
@@ -9707,10 +9711,15 @@ packages:
     engines: {node: '>=0.10.0'}
     hasBin: true
 
+  /flow-bin/0.161.0:
+    resolution: {integrity: sha512-5BKQi+sjOXz67Kbc1teiBwd5e0Da6suW7S5oUCm9VclnzSZ3nlfNZUdrkvgJ5S4w5KDBDToEL7rREpn8rKF1zg==}
+    engines: {node: '>=0.10.0'}
+    hasBin: true
+    dev: true
+
   /flow-parser/0.158.0:
     resolution: {integrity: sha512-0hMsPkBTRrkII/0YiG9ehOxFXy4gOWdk8RSRze5WbfeKAQpL5kC2K4BmumyTfU9o5gr7/llgElF3UpSSrjzQAA==}
     engines: {node: '>=0.4.0'}
-    dev: false
 
   /flow-remove-types/2.158.0:
     resolution: {integrity: sha512-mLDU+B2LuiCg0KA9V0A5OdgI5evugWlHKqG+GLlNIrtOPEPO497p3PJAUxGD3SR+gJmtxCDdgL+qLZnw5op9bA==}
@@ -9720,7 +9729,6 @@ packages:
       flow-parser: 0.158.0
       pirates: 3.0.2
       vlq: 0.2.3
-    dev: false
 
   /flow-typed/3.3.1:
     resolution: {integrity: sha512-svxMNRJNTeKfOwBt/bPZvOrgkjpYH1nXC2v7dgbq4sZgZu/Slna6kAPD45fnOJ4D0TCS2B4yp6Nhc32AV1sxpQ==}
@@ -12825,7 +12833,6 @@ packages:
   /node-modules-regexp/1.0.0:
     resolution: {integrity: sha1-jZ2+KJZKSsVxLpExZCEHxx6Q7EA=}
     engines: {node: '>=0.10.0'}
-    dev: false
 
   /node-notifier/9.0.0:
     resolution: {integrity: sha512-SkwNwGnMMlSPrcoeH4CSo9XyWe72acAHEJGDdPdB+CyBVHsIYaTQ4U/1wk3URsyzC75xZLg2vzU2YaALlqDF1Q==}
@@ -13633,7 +13640,6 @@ packages:
     engines: {node: '>= 4'}
     dependencies:
       node-modules-regexp: 1.0.0
-    dev: false
 
   /pixelmatch/4.0.2:
     resolution: {integrity: sha1-j0fc7FARtHe2fbA8JDvB8wheiFQ=}
@@ -16605,7 +16611,6 @@ packages:
 
   /vlq/0.2.3:
     resolution: {integrity: sha512-DRibZL6DsNhIgYQ+wNdWDL2SL3bKPlVrRiBqV5yuMm++op8W4kGFtaQfCs4KEJn0wBZcHVHJ3eoywX8983k1ow==}
-    dev: false
 
   /vscode-json-languageservice/4.1.6:
     resolution: {integrity: sha512-DIKb3tcfRtb3tIE6g9SLOl5E9tNSt6kljH08Wa5RwFlVshtXGrDDzttchze4CYy9pJpE9mBtCbRHmLvY1Z1ZXA==}

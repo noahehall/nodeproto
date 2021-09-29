@@ -1,3 +1,5 @@
+// @flow
+
 import {
   buildWebpackConfig,
   reactDevWebpackConfig,
@@ -8,7 +10,7 @@ import { dirs, isMain } from '@nodeproto/wtf';
 
 const { pack, config } = setupWebpackConfig();
 
-export const webpackConfig = reactDevWebpackConfig({
+export const webpackConfig: Object = reactDevWebpackConfig({
   ...config,
   entry: [pack.resolve('./src/root.mjs')],
   htmlOptions: { template: pack.resolve('./src/index.html') },

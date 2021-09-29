@@ -10,8 +10,8 @@ ignorePatterns: ["**/dist/**"] # '**/node_modules/**', included by default
 parser: "@babel/eslint-parser"
 parserOptions:
   allowImportExportEverywhere: false
-  ecmaVersion: 12
-  requireConfigFile: false # permit linting files without a babelrc
+  ecmaVersion: latest
+  requireConfigFile: true # force a configFile so we dont have to always debug htis fkn issue (required for @babel/eslint-parser)
   sourceType: module
   ecmaFeatures:
     globalReturn: true
@@ -60,8 +60,8 @@ settings:
   # parse these as modules and inspect them for exports
   # throws error if no export is found
   # import/extensions:
-    # - .jsx
-    # - .mjs
+  # - .jsx
+  # - .mjs
   # all dirs that contain monorepos packages
   # will be trated as external ones no matter which resolver is used
   # import/external-module-folders:
@@ -90,15 +90,15 @@ overrides:
   - files: ["**/*.md"]
     processor: markdown/markdown
     rules:
-      "@babel/no-unused-expressions": 'off'
-      # import/no-unresolved: 'off'
-      no-console: 'off'
-      no-undef: 'off'
-      no-unused-vars: 'off'
-      padded-blocks: 'off'
-      no-inline-html: 'off'
-      # MD033/no-inline-html: off not sure which of these work, review markdownlint
-      # MD033: off
+      "@babel/no-unused-expressions": 0
+      # import/no-unresolved: 0
+      no-console: 0
+      no-undef: 0
+      no-unused-vars: 0
+      padded-blocks: 0
+      no-inline-html: 0
+      # MD033/no-inline-html: 0 not sure which of these work, review markdownlint
+      # MD033: 0
 
 # any enabled @babel rule requires you to turn off the same eslint rule, e.g. see semi
 rules:
@@ -115,7 +115,7 @@ rules:
   no-unused-vars: error
   node/no-unpublished-require: warn
   padded-blocks: [error, never]
-  prefer-named-capture-group: off # performance
+  prefer-named-capture-group: 0 # performance
   prefer-object-spread: error
 
   sort-imports:
@@ -153,19 +153,18 @@ rules:
   flowtype-errors/show-errors: error
 
 
-
   # dumb fkn rules here
-  arrow-parens: 'off'
-  capitalized-comments: 'off'
-  comma-dangle: 'off' # love trailing commas
-  id-length: 'off' # we support junior devs without hampering others
-  line-comment-position: 'off'
-  multiline-comment-style: 'off'
-  no-inline-comments: 'off'
-  no-ternary: 'off'
-  semi: 'off'
+  arrow-parens: 0
+  capitalized-comments: 0
+  comma-dangle: 0 # love trailing commas
+  id-length: 0 # we support junior devs without hampering others
+  line-comment-position: 0
+  multiline-comment-style: 0
+  no-inline-comments: 0
+  no-ternary: 0
+  semi: 0
 
   # doesnt seem to work right - but would be great if it did
-  node/no-unpublished-import: 'off'
-  node/no-missing-require: 'off'
-  node/no-missing-import: 'off'
+  node/no-unpublished-import: 0
+  node/no-missing-require: 0
+  node/no-missing-import: 0

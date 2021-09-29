@@ -1,22 +1,25 @@
-
-/* eslint-disable comma-dangle */
+// @flow
 
 import clsx from 'clsx';
-import React from 'react';
+import * as React from 'react';
 import styled from 'styled-components';
 import {
   unstable_GridRow as GridRow,
   unstable_useGridState as useGridState,
 } from 'reakit/Grid';
+
+// TODO: figure out this type
 const StyledRow = styled(GridRow)`
 
 `;
 
-export function ScreenRow ({
-  className,
+export type ScreenRowProps = {
+  className?: string,
+  children: React.Node,
+  props?: Array<any>,
+}
 
-  ...props
-}) {
+export function ScreenRow ({ className, children, ...props }: ScreenRowProps): React.Node {
   const grid = useGridState();
 
   return (
@@ -26,9 +29,9 @@ export function ScreenRow ({
         className
       )}
     >
-      {props.children}
+      {children}
     </StyledRow>
   );
 }
 
-if (module?.hot?.accept) module.hot.accept();
+if (module.hot?.accept) module.hot.accept();

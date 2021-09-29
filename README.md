@@ -2,6 +2,8 @@
 
 expect breaking changes until we release a version
 
+- [signature verification required for contributors](https://docs.github.com/en/authentication/managing-commit-signature-verification/about-commit-signature-verification)
+
 ![@nodeproto architecture](/doc/architecture.png)
 
 scripts
@@ -59,6 +61,15 @@ scripts
 - upgrades
   - run `pnpm -r exec pnpm outdated` to see any outdated packages
     - we want to remain on the bleeding edge
+
+- flowtyped
+  - `pnpm add --global flow-typed`
+  - run `flow-typed install` in all of your child pkgs to get type definition
+  - run `pnpm exec flow` to get near realtime type checking
+  - theres also a lame experimental-loader in root/src/loaders/flow.mjs
+    - lame because node experimental-loaders take way tooo long
+    - however, for files not processed via transpilers its a must (e.g. initalization files, check @packages/app/client)
+    - maybe `pnpm exec flow` is the way to go, but still try to figure out ow to automate this (to get parity with typescript)
 
 - global cmds: can be run from anywhere within the monorepo
   - generally you want two terminals for the best experience

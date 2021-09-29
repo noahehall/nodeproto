@@ -1,14 +1,10 @@
+// @flow
 
-/**
- * NotFoundPage
- *
- * This is the page we show when the user visits a url that doesn't have a route
- */
-
-import React from 'react';
+import * as React from 'react';
 import { ScreenGrid } from '../../composite/Grid/Grid.mjs';
 
-export default function NotFound () {
+
+export default function NotFound(arg: { default?: boolean }): React.Node {
   return (
     <ScreenGrid isFor='Not Found'>
       <h1>

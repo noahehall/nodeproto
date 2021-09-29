@@ -1,34 +1,44 @@
+// @flow
 
-import React from 'react';
+import * as React from 'react';
 import JsonPretty from 'react-json-pretty';
 import JSONPrettyMonTheme from 'react-json-pretty/dist/monikai';
-import { DisplayError } from './DisplayError.mjs';
+import DisplayError from './DisplayError.mjs';
 
-export default class ErrorBoundary extends React.Component {
-  constructor (props) {
+// i wonder if this has something to do with our babel plugins/react setup
+const { Component, cloneElement } = React.default;
+
+export type ErrorBoundaryProps = {
+  children?: React.Element<any>
+};
+
+export type ErrorBoundaryState = {
+  error: Error
+}
+
+export default class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
+  constructor (props: ErrorBoundaryProps) {
     super(props);
+
     this.state = {};
   }
 
-  static getDerivedStateFromError (error) {
+  static getDerivedStateFromError (error: {}): {} {
     // Update state so the next render will show the fallback UI.
     return { error };
   }
 
-  componentDidCatch (error, errorInfo) {
-    console.error(errorInfo);
+  componentDidCatch (error: Error, info: { componentStack: string, ...}) {
+    console.error(info);
   }
 
-  render () {
+  render(): React.Element<any> {
     return (
       this.state.error
         ? <DisplayError error={this.state.error} />
-        : React.cloneElement(
-          this.props.children,
-          this.props
-        )
+        : cloneElement(this.props.children, this.props)
     );
   }
 }
 
-if (module?.hot?.accept) module.hot.accept();
+if (module.hot.accept) module.hot.accept();

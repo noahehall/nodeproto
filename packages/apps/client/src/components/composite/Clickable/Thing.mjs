@@ -1,4 +1,5 @@
 // @flow
+
 import { Clickable } from 'reakit/Clickable';
 import { useButton } from 'react-aria';
 import clsx from 'clsx';
@@ -6,7 +7,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 
-const StyledAnchor: React.ComponentType<any> = styled(Clickable)`
+const StyledAnchor: React.ComponentType<React.Node> = styled(Clickable)`
 
 `;
 
@@ -29,7 +30,7 @@ export function Button (props: ButtonProps): React.Element<'button'> {
 }
 
 type AnchorProps = {
-  className: string,
+  className?: string,
   text?: string,
 }
 
@@ -46,4 +47,4 @@ export function Anchor (arg: AnchorProps = {}): React.Node {
 }
 
 // $FlowIgnore[prop-missing]
-if (module?.hot?.accept) module.hot.accept();
+if (module.hot.accept) module.hot.accept();

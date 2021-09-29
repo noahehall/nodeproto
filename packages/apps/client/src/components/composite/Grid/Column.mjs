@@ -1,5 +1,6 @@
+// @flow
 
-import React from 'react';
+import * as React from 'react';
 import styled from 'styled-components';
 import clsx from 'clsx';
 import {
@@ -11,11 +12,13 @@ const StyledCell = styled(GridCell)`
 
 `;
 
-export function ScreenColumn ({
-  className,
+export type ScreenColumnProps = {
+  className?: string,
+  children: React.Node,
+  props?: Array<any>,
+};
 
-  ...props
-}) {
+export function ScreenColumn ({ className, children, ...props }: ScreenColumnProps): React.Node {
   const grid = useGridState();
 
   return (
@@ -25,9 +28,9 @@ export function ScreenColumn ({
         className
       )}
     >
-      {props.children}
+      {children}
     </StyledCell>
   );
 }
 
-if (module?.hot?.accept) module.hot.accept();
+if (module.hot?.accept) module.hot.accept();

@@ -1,18 +1,11 @@
-
-/**
- *
- * App
- *
- * This component is the skeleton around the actual pages, and should only
- * contain code that should be seen on all pages. (e.g. navigation bar)
- */
+// @flow
 
 import { Helmet } from 'react-helmet';
 import { Router } from '@reach/router';
+import * as React from 'react';
 import GlobalStyle from './global-styles.mjs';
 import LandingScreen from '../Landing/LandingScreen.mjs';
 import NotFoundScreen from '../NotFound/NotFoundScreen.mjs';
-import React from 'react';
 import styled from 'styled-components';
 
 // css
@@ -40,7 +33,7 @@ const AppWrapper = styled.main`
   padding: 10px;
 `;
 
-export function App () {
+export function App (): React.Node {
   return (<OuterContainer id='outer-container'>
     <Helmet
       defaultTitle='NIRV'
