@@ -9,6 +9,7 @@ test('imports', async () => {
     'fsproto',
     'getFsproto',
     'isMain',
+    'isR',
     'memfsproto',
     'urlToPath',
     'resolve',

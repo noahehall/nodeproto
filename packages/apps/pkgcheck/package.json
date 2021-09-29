@@ -49,19 +49,21 @@
     "koa-session": "6.2.0",
     "koa-sslify": "5.0.0",
     "koa-tree-router": "github:noahehall/koa-tree-router",
-    "ultra-runner": "3.10.5",
-    "regenerator-runtime": "0.13.9"
+    "regenerator-runtime": "0.13.9",
+    "ultra-runner": "3.10.5"
   },
   "devDependencies": {
-    "@nodeproto/jsync": "workspace:0.0.0",
-    "@nodeproto/configproto": "workspace:0.0.0",
-    "eslint": "7.32.0",
     "@changesets/cli": "2.17.0",
+    "@nodeproto/buildproto": "workspace:0.0.0",
+    "@nodeproto/configproto": "workspace:0.0.0",
+    "@nodeproto/jsync": "workspace:0.0.0",
+    "@nodeproto/testproto": "workspace:0.0.0",
     "@swc/cli": "0.1.46",
     "@swc/core": "1.2.75",
     "chokidar": "3.5.2",
-    "uvu": "0.5.1",
-    "chokidar-cli": "3.0.0"
+    "chokidar-cli": "3.0.0",
+    "eslint": "7.32.0",
+    "uvu": "0.5.1"
   },
   "directories": {
     "src": "./src",
@@ -106,7 +108,7 @@
     "linux"
   ],
   "scripts": {
-    "build": "clear; pnpm repo:rm:dist && NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" node esbuild.build.config.mjs && pnpm commonjs:json",
+    "build": "clear; pnpm repo:rm:dist && NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" node esbuild.build.config.mjs && pnpm repo:cp:cjs",
     "start:pkgcheck": "clear; pnpm repo:rm:dist && NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" node esbuild.run.config.mjs",
     "start": "pnpm start:pkgcheck",
     "jsync": "jsync",

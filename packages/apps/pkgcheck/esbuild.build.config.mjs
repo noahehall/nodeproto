@@ -3,14 +3,12 @@ import {
   esbuildConfig,
   esbuildPluginPopCopy,
   esbuildPluginPopCopyConfig,
-} from '@nodeproto/configproto/esbuild';
+} from '@nodeproto/buildproto/esbuild';
 import { fsproto, isMain, dirs } from '@nodeproto/wtf';
 import { builtinModules } from 'module'
 
 const basedir = dirs.dirname(import.meta.url);
 const outdir = basedir + '/dist';
-
-console.info('\n\n wtf is outdir', outdir);
 
 const popCopyConfig = esbuildPluginPopCopyConfig({
   endingWith: /openapi\.(yml|yaml)$/,
