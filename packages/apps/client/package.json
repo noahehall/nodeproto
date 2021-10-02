@@ -153,7 +153,7 @@
     "repo:upgrade": "pnpm upgrade -L",
     "start": "concurrently pnpm:start:dev pnpm:start:reactdevtools",
     "start:client": "pnpm start",
-    "start:dev": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" node webpack.server.mjs",
+    "start:dev": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" node --experimental-loader ../../../src/loaders/flow.mjs webpack.server.mjs",
     "start:reactdevtools": "react-devtools"
   },
   "sideEffects": [
