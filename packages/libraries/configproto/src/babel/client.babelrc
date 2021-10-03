@@ -11,7 +11,7 @@
         [
           "@babel/preset-env", {
             "bugfixes": true,
-            "corejs": { "version": "3.15.2", "proposals": true },
+            "corejs": { "version": "3.16.3", "proposals": true },
             "debug": false,
             "forceAllTransforms": false, // set to true if only support es5/running through uglifyjs
             "ignoreBrowserslistConfig": false,
@@ -25,16 +25,20 @@
         ],
         [
           "@babel/preset-react", {
-            // runtime: "classic", // enables other commented options
-            // "pragma": "dom",
-            // "pragmaFrag": "DomFrag",
-            // "useBuiltIns": "true",
-            //useSpread: " true,
-
-            "throwIfNamespace": true,
-            "runtime": "automatic", // automatically import React shit at the top of files
+            // applies to both classic & automatic runtimes
+            "throwIfNamespace": false,
             "development": true, // TODO set to false via env
-            "importSource": "react" // only runtime: automatic
+
+            // uncomment for classic
+            // "runtime": "classic", // enables other commented options
+            // "pragma": "React.default.createElement",
+            // "pragmaFrag": "React.default.Fragment",
+            // "useBuiltIns": false,
+            // "useSpread": true
+
+            // uncomment for automatic runtime
+            "runtime": "automatic", // automatically import React shit at the top of files
+            "importSource": "react"
           }
         ]
       ],
