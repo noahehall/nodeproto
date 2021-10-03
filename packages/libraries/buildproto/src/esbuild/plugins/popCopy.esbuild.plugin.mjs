@@ -1,4 +1,5 @@
 // TODO: update these tests, for now just relying on the integration tests
+// TODO: doesnt recursively search all child directories, only the first
 /**
  * @see https://www.youtube.com/watch?v=zR7LOtMix9w
  * @see https://esbuild.github.io/plugins/

@@ -7,7 +7,7 @@ import fse from 'fs-extra';
 import path from 'path';
 
 // TODO: this throws in consumers if we dont export it...?
-export const isR = (t, msg = 'is isRuired') => { throw new Error(`${t}: ${msg}`); };
+export const isR = (t, msg = 'is required in @nodeproto/fsproto') => { throw new Error(`${t}: ${msg}`); };
 
 export const isMain = (
   importMetaOrisRuireMain = isR('importMetaOrisRuireMain'),
@@ -24,8 +24,11 @@ export const resolve = async (
   importMetaOrPath = isR('importMetaOrPath: import.meta | string')
 ) => {
   if (wtfShared.isEsm()) {
-    if (!importMetaOrPath.resolve)
-      throw new Error('import.meta isRuired in esm: resolve(file, import.meta)');
+    if (!importMetaOrPath.resolve) throw new Error(
+      'import.meta is required in esm: resolve(file, import.meta)' +
+      '\nensure to run node with --experimental-import-meta-resolve' +
+      '\n@see https://nodejs.org/api/esm.html#esm_import_meta_resolve_specifier_parent'
+    );
 
     return urlToPath(await importMetaOrPath.resolve(fileToImport, importMetaOrPath.url));
   }

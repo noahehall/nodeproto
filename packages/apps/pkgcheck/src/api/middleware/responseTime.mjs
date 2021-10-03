@@ -14,5 +14,5 @@ export default function responseTime (config, app) {
         Date.now() - start
       );
     }
-  }
+  };
 }

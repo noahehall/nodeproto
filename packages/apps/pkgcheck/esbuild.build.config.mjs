@@ -4,21 +4,21 @@ import {
   esbuildPluginPopCopy,
   esbuildPluginPopCopyConfig,
 } from '@nodeproto/buildproto/esbuild';
-import { fsproto, isMain, dirs } from '@nodeproto/wtf';
+import { fsproto, resolve, dirs } from '@nodeproto/wtf';
 import { builtinModules } from 'module'
+import path from 'path';
 
-const basedir = dirs.dirname(import.meta.url);
-const outdir = basedir + '/dist';
+const thisDir = dirs.dirname(import.meta.url);
+const outdir = thisDir + '/dist';
 
 const popCopyConfig = esbuildPluginPopCopyConfig({
   endingWith: /openapi\.(yml|yaml)$/,
-  indir: basedir + '/src/api',
+  indir: path.resolve(thisDir, './src/api/routes'),
   outdir,
 });
 
 const configOpts = {
-  // absWorkingDir: basedir,
-  entry: basedir + '/src/root.mjs',
+  entry: await resolve('./src/root.mjs', import.meta),
   outdir,
   pkgJson: fsproto.fs.readJsonSync('./package.json'),
   plugins: [esbuildPluginPopCopy(popCopyConfig)],

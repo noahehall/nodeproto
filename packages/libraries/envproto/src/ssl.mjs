@@ -3,7 +3,7 @@
  * @see https://github.com/Dexus/pem/blob/master/test/pem.spec.js
  */
 
-import { getFsproto, parentUri } from '@nodeproto/wtf/fsproto';
+import { getFsproto, dirs } from '@nodeproto/wtf';
 
 import path from 'path';
 import pem from 'pem';
@@ -11,8 +11,8 @@ import pem from 'pem';
 const fsproto = getFsproto(process.env.IS_TEST);
 
 const getRequireOrImport = () => typeof require !== 'undefined'
-  ? require.main // eslint-disable-line
-  : '.';
+  ? __filename // eslint-disable-line
+  : import.meta.url;
 
 // console.info('\n\n wtf is getRequireOrImport', getRequireOrImport());
 
@@ -27,7 +27,7 @@ export const getDevCert = async ({
   commonName = `*.${domain}`,
 } = {}) => {
   // where to save dev certs
-  if (!tmpDir) process.env.PEMJS_TMPDIR = `${path.dirname(parentUri(getRequireOrImport()))}/certs`;
+  if (!tmpDir) process.env.PEMJS_TMPDIR = `${dirs.dirname(getRequireOrImport())}/certs`;
   let
     certificate,
     clientKey,

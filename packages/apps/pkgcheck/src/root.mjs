@@ -1,12 +1,12 @@
-import { isMain } from '@nodeproto/wtf';
+import { isMain, dirs } from '@nodeproto/wtf';
 import { getDevCert } from '@nodeproto/envproto';
 
 import App from './app.mjs';
 import http from 'http';
 import https from 'https';
 
-const port = process.env.PKGCHECK_HTTP_PORT;
-const sport = process.env.PKGCHECK_HTTPS_PORT;
+const port = process.env.PKGCHECK_HTTP_PORT || 8080;
+const sport = process.env.PKGCHECK_HTTPS_PORT || 8443;
 
 export const runApp = async () => {
   if (!port && !sport) throw 'PKGCHECK_HTTP_PORT or PKGHECK_HTTPS_PORT must be set in env';
@@ -33,5 +33,8 @@ export const runApp = async () => {
   return servers;
 }
 
-const iscjs = typeof require !== 'undefined';
-if (isMain(iscjs && require.main, import.meta)) runApp();
+const getRequireOrImportMeta = () => dirs.isEsm() ? import.meta: require.main;
+
+if (isMain(getRequireOrImportMeta())) runApp().catch(e => {
+  console.info('\n\n got err in pkgcheck', e);
+});

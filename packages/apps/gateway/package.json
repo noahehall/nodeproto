@@ -31,34 +31,52 @@
     "PATH_SRC": "./src"
   },
   "dependencies": {
-    "@babel/runtime": "7.14.8",
-    "@changesets/cli": "2.17.0",
-    "regenerator-runtime": "0.13.9",
-    "ultra-runner": "3.10.5",
-    "uvu": "0.5.1"
+    "ultra-runner": "3.10.5"
   },
   "devDependencies": {
-    "@babel/core": "7.15.0",
-    "@babel/eslint-parser": "7.14.7",
     "@changesets/cli": "2.17.0",
     "@nodeproto/configproto": "workspace:0.0.0",
     "@nodeproto/jsync": "workspace:0.0.0",
-    "@nodeproto/shared": "workspace:0.0.0",
-    "@nodeproto/testproto": "workspace:0.0.0",
-    "@swc/cli": "0.1.46",
-    "@swc/core": "1.2.75",
-    "chokidar": "3.5.2",
     "chokidar-cli": "3.0.0",
     "eslint": "7.32.0",
     "flow-bin": "0.161.0",
     "flow-remove-types": "2.158.0",
     "uvu": "0.5.1"
   },
+  "directories": {
+    "doc": "./doc",
+    "packages": "./packages",
+    "src": "./src"
+  },
   "engines": {
     "node": ">=16.10.0"
   },
+  "files": [],
   "jsync": {
-    "root": false
+    "forceRootValues": [
+      "author",
+      "bugs",
+      "funding",
+      "homepage",
+      "license"
+    ],
+    "ignoreRootValues": [
+      "dependencies",
+      "devDependencies",
+      "files",
+      "*"
+    ],
+    "root": false,
+    "spreadRootValues": [
+      "config",
+      "cpu",
+      "engines",
+      "keywords",
+      "os",
+      "publishConfig",
+      "scripts",
+      "version"
+    ]
   },
   "keywords": [
     "@nirv",

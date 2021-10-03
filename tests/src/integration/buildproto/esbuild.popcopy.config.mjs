@@ -3,22 +3,24 @@ import {
   esbuildConfig,
   esbuildPluginPopCopy,
   esbuildPluginPopCopyConfig,
-} from '@nodeproto/configproto/esbuild';
-import { fsproto, parentUri, resolve } from '@nodeproto/wtf/fsproto';
+} from '@nodeproto/buildproto/esbuild';
+import { fsproto, resolve, dirs } from '@nodeproto/wtf';
 import { builtinModules } from 'module';
+import path from 'path';
 
-const outdir = await resolve('../../dist/copypasta/node/nodeFixtures', parentUri(import.meta));
+const thisDir = dirs.dirname(import.meta.url);
+const outdir = path.resolve(thisDir, '../../../dist/esbuild/popcopy');
 
 const popCopyConfig = esbuildPluginPopCopyConfig({
   endingWith: /openapi\.(yml|yaml)$/,
-  indir: await resolve('../../copypasta/node/openapi', parentUri(import.meta)),
+  indir: path.resolve(thisDir, '../../copypasta/node/openapi'),
   outdir,
 });
 
 const configOpts = {
-  entry: await resolve('../../copypasta/node/api.mjs', parentUri(import.meta)),
+  entry: await resolve('../../copypasta/node/api.mjs', import.meta),
   outdir,
-  pkgJson: fsproto.fs.readJsonSync('./package.json'),
+  pkgJson: fsproto.fs.readJsonSync(await resolve('../../../package.json', import.meta)),
   plugins: [esbuildPluginPopCopy(popCopyConfig)],
   builtinModules,
 };

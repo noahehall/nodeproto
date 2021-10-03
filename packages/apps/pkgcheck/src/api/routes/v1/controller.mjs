@@ -10,12 +10,15 @@ import { resolve, dirs } from '@nodeproto/wtf';
 import * as demo from './demo/index.mjs';
 import koaOas3 from '../../middleware/koaOas3.mjs';
 
+const getImportMetaOrFilename = () => dirs.isEsm() ? import.meta : __filename;
+
+
 export default async function v1Controller (v1RouterGroup, app) {
   try {
     /**
       * map v1 paths to handlers
     */
-    const openApiUri = await resolve('./v1openapi.yaml', dirs.isEsm() ? import.meta : __filename);
+    const openApiUri = await resolve('./v1openapi.yaml', getImportMetaOrFilename());
 
     console.log('\n\n openApiUri', openApiUri);
 

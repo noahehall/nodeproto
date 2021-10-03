@@ -1,3 +1,6 @@
+- github workflows
+  - <https://app.snyk.io/org/noahehall/>
+  -
 
 - start from scratch (if getting pnpm|node errors)
   - [remove pnpm](https://pnpm.io/uninstall)

@@ -8,6 +8,8 @@
 
 under activate development; expect breaking changes
 
+be sure to checkout `root/tests/integration` for how to use our internal magic
+
 ```sh
   # top for nodeproto
   $ pnpm repo:monitor
@@ -60,6 +62,11 @@ under activate development; expect breaking changes
 - haproxy
   - until we get docker setup make sure you have **haproxy 2.4** installed
   - see *apps/gateway* for instructions
+- library build process: a 3 step process (plans to for automation later)
+  1. sync with root `$ pnpm jsync`
+  2. copy static files `$ pnpm repo:cp:configproto`
+  3. build output files to dist `$ pnpm build`
+     - if there havent been any changes, you likely only need this last step
 
 </details>
 

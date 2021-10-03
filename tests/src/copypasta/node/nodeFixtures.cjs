@@ -32,3 +32,8 @@ module.exports = {
   readKey: readFixtureKey,
   readKeys: readFixtureKeys,
 };
+
+
+if (typeof require !== 'undefined' && require.main === module) {
+  console.info('\n\n haha im in cjs land');
+}

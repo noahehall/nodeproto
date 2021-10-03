@@ -43,7 +43,6 @@
     "@nodeproto/testproto": "workspace:0.0.0",
     "@swc/cli": "0.1.46",
     "@swc/core": "1.2.75",
-    "chokidar": "3.5.2",
     "chokidar-cli": "3.0.0",
     "eslint": "7.32.0",
     "flow-bin": "0.161.0",
@@ -59,8 +58,8 @@
     "node": ">=16.10.0"
   },
   "exports": {
-    "default": "./dist/index.js",
-    "import": "./src/index.mjs"
+    "import": "./src/index.mjs",
+    "default": "./dist/index.js"
   },
   "jsync": {
     "root": false

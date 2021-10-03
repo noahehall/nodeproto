@@ -52,8 +52,6 @@
     "eslint-plugin-yml": "0.10.0",
     "file-loader": "6.2.0",
     "html-webpack-plugin": "5.3.2",
-    "http-terminator": "3.0.0",
-    "koa": "2.13.1",
     "memfs": "3.2.2",
     "react-devtools": "4.14.0",
     "regenerator-runtime": "0.13.9",
@@ -81,6 +79,8 @@
     "eslint": "7.32.0",
     "flow-bin": "0.161.0",
     "flow-remove-types": "2.158.0",
+    "http-terminator": "3.0.0",
+    "koa": "2.13.1",
     "react": "18.0.0-alpha-edfe50510-20210823",
     "react-dom": "18.0.0-alpha-419cc9c37-20210726",
     "string-replace-loader": "3.0.3",
@@ -161,6 +161,8 @@
   ],
   "peerDependencies": {
     "babel-loader": "8.2.2",
+    "http-terminator": "3.0.0",
+    "koa": "2.13.1",
     "string-replace-loader": "3.0.3",
     "webpack-hot-middleware-2": "2.25.2"
   },

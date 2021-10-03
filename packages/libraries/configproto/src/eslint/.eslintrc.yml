@@ -1,5 +1,6 @@
 # @nodeproto/configproto - base eslint config
 # @see https://eslint.org/docs/user-guide/configuring/language-options
+# @see https://json.schemastore.org/eslintrc.json
 
 reportUnusedDisableDirectives: true
 ignorePatterns: ["**/dist/**"] # '**/node_modules/**', included by default
@@ -17,11 +18,13 @@ parserOptions:
     globalReturn: true
     impliedStrict: true
     jsx: true
+    modules: true
   # set babelOptions when extending if dont want to use a babel config/using webpack + babel-loader
 
 # @see https://eslint.org/docs/user-guide/configuring/language-options#specifying-environments
 env:
   es2021: true
+  es6: true
   node: true
   shelljs: true
 

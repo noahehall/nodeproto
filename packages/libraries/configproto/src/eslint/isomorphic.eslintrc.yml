@@ -22,7 +22,9 @@ settings:
 
 env:
   browser: true
+  es6: true
   serviceworker: true
+  shared-node-browser: true
   webextensions: true
   worker: true
 

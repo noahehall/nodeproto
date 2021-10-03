@@ -2,7 +2,7 @@
 
 import httpTerminator from 'http-terminator';
 import Koa from 'koa';
-import { isMain } from '@nodeproto/wtf/fsproto';
+import { isMain, dirs } from '@nodeproto/wtf';
 
 export async function runApp({
   APP_PORT,
@@ -16,7 +16,7 @@ export async function runApp({
   const app = new Koa();
 
   app.use(async ctx => {
-    ctx.body = 'Hello World on rebuild';
+    ctx.body = 'Hello World on rebuild2';
   });
 
   const controller = new AbortController();
@@ -49,6 +49,4 @@ export async function runApp({
   };
 }
 
-const hasRequire = typeof require !== 'undefined';
-
-if (isMain(hasRequire && require.main, !hasRequire && import.meta)) runApp();
+if (isMain(dirs.isEsm() ? require.main : import.meta)) runApp();

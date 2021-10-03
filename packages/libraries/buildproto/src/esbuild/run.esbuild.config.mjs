@@ -36,7 +36,7 @@ const startDev = async config => {
 
     return servers;
   } catch (e) {
-    console.error('\n\n error starting server', config, manifest, server);
+    console.error('\n\n error starting server', config, manifest, servers);
 
     throw new Error(e);
   }

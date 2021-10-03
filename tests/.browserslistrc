@@ -4,14 +4,19 @@
 # @see https://github.com/browserslist/browserslist#full-list
 
 [client]
-defaults
+> 1%
+last 2 versions
+Firefox ESR
 
 [node]
 node >= 14
 
-[ssr]
-defaults and node >= 14
-
 # es6 modules: set type="module" on the script tag in your html
 [es6]
 supports es6-module
+
+[development]
+last 2 versions
+
+[production]
+last 2 versions
