@@ -4,10 +4,14 @@ import * as React from 'react';
 import JsonPretty from 'react-json-pretty';
 import JSONPrettyMonTheme from 'react-json-pretty/dist/monikai';
 
+export type DisplayErrorProps = {
+  error: Error,
+  info?: { componentStack: string, ...}
+}
 export default function DisplayError ({
   error,
-  errorInfo
-}) {
+  info = {},
+}: DisplayErrorProps): React.Node {
   return (<section>
     <h1>Something went wrong.</h1>
 
@@ -17,7 +21,7 @@ export default function DisplayError ({
 
     <h2>Error Info</h2>
 
-    <JsonPretty data={errorInfo} theme={JSONPrettyMonTheme} />
+    <JsonPretty data={info} theme={JSONPrettyMonTheme} />
   </section>);
 }
 

@@ -9,7 +9,7 @@ import DisplayError from './DisplayError.mjs';
 const { Component, cloneElement } = React.default;
 
 export type ErrorBoundaryProps = {
-  children?: React.Element<any>
+  children: React.Element<any>
 };
 
 export type ErrorBoundaryState = {

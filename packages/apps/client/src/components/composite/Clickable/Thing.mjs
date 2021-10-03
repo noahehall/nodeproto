@@ -7,7 +7,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 
-const StyledAnchor: React.ComponentType<React.Node> = styled(Clickable)`
+const StyledAnchor = styled(Clickable)`
 
 `;
 
@@ -16,7 +16,8 @@ type ButtonProps = {
 }
 
 export function Button (props: ButtonProps): React.Element<'button'> {
-  const ref = React.useRef();
+  const ref: React.Ref<'button'> = React.useRef();
+
   const { buttonProps } = useButton(
     props,
     ref
@@ -31,7 +32,7 @@ export function Button (props: ButtonProps): React.Element<'button'> {
 
 type AnchorProps = {
   className?: string,
-  text?: string,
+  text?: string
 }
 
 export function Anchor (arg: AnchorProps = {}): React.Node {
