@@ -57,7 +57,7 @@
     "@reach/router": "https://github.com/noahehall/router",
     "animate.css": "4.1.1",
     "clsx": "1.1.1",
-    "core-js": "3.15.2",
+    "core-js": "3.17.3",
     "env-cmd": "10.1.0",
     "history": "5.0.0",
     "immutability-helper": "3.1.1",
