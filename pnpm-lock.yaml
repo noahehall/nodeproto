@@ -177,6 +177,9 @@ importers:
 
   packages/apps/pkgcheck:
     specifiers:
+      '@babel/core': 7.15.0
+      '@babel/eslint-parser': 7.14.7
+      '@babel/runtime': 7.14.8
       '@changesets/cli': 2.17.0
       '@koa/cors': 3.1.0
       '@nodeproto/buildproto': workspace:0.0.0
@@ -216,6 +219,7 @@ importers:
       ultra-runner: 3.10.5
       uvu: 0.5.1
     dependencies:
+      '@babel/runtime': 7.14.8
       '@koa/cors': 3.1.0
       '@nodeproto/envproto': link:../../libraries/envproto
       '@nodeproto/wtf': link:../../libraries/wtf
@@ -242,6 +246,8 @@ importers:
       regenerator-runtime: 0.13.9
       ultra-runner: 3.10.5
     devDependencies:
+      '@babel/core': 7.15.0
+      '@babel/eslint-parser': 7.14.7_@babel+core@7.15.0+eslint@7.32.0
       '@changesets/cli': 2.17.0
       '@nodeproto/buildproto': link:../../libraries/buildproto
       '@nodeproto/configproto': link:../../libraries/configproto
