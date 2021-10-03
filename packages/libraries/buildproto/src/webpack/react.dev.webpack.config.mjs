@@ -1,5 +1,4 @@
-// was originally client/lib/webpack.dev.config.mjs
-// TODO: use to have dependency on envproto
+// @flow
 
 import baseWebpackConfig from './base.webpack.config';
 import HtmlWebpackPlugin from 'html-webpack-plugin';

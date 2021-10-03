@@ -48,27 +48,26 @@
     "linux"
   ],
   "directories": {
-    "bin": "./bin",
     "doc": "./doc",
-    "packages": "./packages"
+    "packages": "./packages",
+    "src": "./src"
   },
   "files": [
-    "proto",
     ".eslintrc.yml",
     ".editorconfig",
     ".gitignore",
     ".npmrc",
-    ".nvmrc",
     "pnpm-lock.yaml",
     "pnpm-workspace.yaml",
     "README.md"
   ],
   "config": {
     "DIRS_TO_TRANSPILE": "./src",
+    "FLOW_LOADER": "./node_modules/@nodeproto/configproto/src/node/loaders/flow.mjs",
     "NODE_ENV": "production",
+    "NODE_OPTIONS": "--experimental-loader=\"./node_modules/@nodeproto/configproto/src/node/loaders/flow.mjs\" --experimental-specifier-resolution=node --experimental-json-modules --experimental-top-level-await --experimental-vm-modules --experimental-import-meta-resolve node --enable-source-maps --heapsnapshot-near-heap-limit=3 --use-largepages=on --pending-deprecation --trace-sigint --trace-warnings --trace-exit --report-uncaught-exception --report-on-fatalerror --abort-on-uncaught-exception",
     "PATH_DIST": "./dist",
-    "PATH_SRC": "./src",
-    "NODE_OPTIONS": "--enable-source-maps --heapsnapshot-near-heap-limit=3 --use-largepages=on --pending-deprecation --trace-sigint --trace-warnings --trace-exit --report-uncaught-exception --report-on-fatalerror --abort-on-uncaught-exception --experimental-specifier-resolution=node --experimental-json-modules --experimental-top-level-await --experimental-vm-modules --experimental-import-meta-resolve"
+    "PATH_SRC": "./src"
   },
   "scripts": {
     "proto:slice": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" pnpm exec ultra -r --filter",
@@ -84,7 +83,6 @@
     "repo:deps": "pnpm exec ultra --info",
     "repo:eslint:fix": "pnpm repo:eslint -- --fix",
     "repo:eslint": "eslint 'src/**/*'",
-    "repo:install": "pnpm -r exec pnpm install",
     "repo:monitor": "pnpm exec ultra --monitor",
     "repo:nuke": "pnpm repo:rm:dist; pnpm repo:rm:nodemodules",
     "repo:rm:dist": "rm -rf dist/*",
@@ -106,10 +104,13 @@
   },
   "packageManager": "pnpm@6.15.1",
   "dependencies": {
+    "@babel/runtime": "7.14.8",
     "regenerator-runtime": "0.13.9",
     "ultra-runner": "3.10.5"
   },
   "devDependencies": {
+    "@babel/core": "7.15.0",
+    "@babel/eslint-parser": "7.14.7",
     "@changesets/cli": "2.17.0",
     "@swc/cli": "0.1.46",
     "@swc/core": "1.2.75",

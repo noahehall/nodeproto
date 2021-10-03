@@ -1,3 +1,4 @@
+// @flow
 
 // export { default as prodWebpackConfig } from './prod.webpack.config.mjs';
 export { default as baseWebpackConfig } from './base.webpack.config';

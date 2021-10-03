@@ -15,14 +15,15 @@
     "url": "https://github.com/noahehall"
   },
   "config": {
-    "PATH_DIST": "./dist",
-    "PATH_SRC": "./src",
     "BABEL_ESM_LOADER": "--loader babel-register-esm",
     "BABEL_SHOW_CONFIG_FOR": "e.g. BABEL_SHOW_CONFIG_FOR=absolute/path/to/file as lead to some pkgjson script",
     "DEBUG_FILE": "copypasta/react/helloworld/index.jsx",
     "DIRS_TO_TRANSPILE": "./src",
+    "FLOW_LOADER": "./node_modules/@nodeproto/configproto/src/node/loaders/flow.mjs",
     "NODE_ENV": "production",
-    "NODE_OPTIONS": "--enable-source-maps --heapsnapshot-near-heap-limit=3 --use-largepages=on --pending-deprecation --trace-sigint --trace-warnings --trace-exit --report-uncaught-exception --report-on-fatalerror --abort-on-uncaught-exception --experimental-specifier-resolution=node --experimental-json-modules --experimental-top-level-await --experimental-vm-modules --experimental-import-meta-resolve"
+    "NODE_OPTIONS": "--enable-source-maps --heapsnapshot-near-heap-limit=3 --use-largepages=on --pending-deprecation --trace-sigint --trace-warnings --trace-exit --report-uncaught-exception --report-on-fatalerror --abort-on-uncaught-exception --experimental-specifier-resolution=node --experimental-json-modules --experimental-top-level-await --experimental-vm-modules --experimental-import-meta-resolve",
+    "PATH_DIST": "./dist",
+    "PATH_SRC": "./src"
   },
   "dependencies": {
     "@babel/runtime": "7.14.8",

@@ -1,7 +1,3 @@
-// all pkg cmds should run in this directory
-// permitting us to specify overrides for each subdir
-// else we will have to add hella .babelrc files to subdirs and run cmds with `--root-mode upward`
-// however we have added babelrcRoots to this config to load subdir .babelrc files if they exist
 {
   "extends": "@nodeproto/configproto/babel/node",
   "babelrc": true,

@@ -1,3 +1,5 @@
+// @flow
+
 import { BundleStatsWebpackPlugin } from 'bundle-stats-webpack-plugin';
 
 // likely not needed as we continue to integrate flow

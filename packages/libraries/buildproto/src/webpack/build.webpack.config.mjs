@@ -1,9 +1,4 @@
-/**
- * build any webpack config and output its files to disk|memfs
- */
-
-// import webpackDevConfig from './webpack.dev.config.mjs';
-// import webpackProdConfig from './webpack.prod.config.mjs';
+// @flow
 
 import testCompiler from './test.compiler';
 import webpack from 'webpack';

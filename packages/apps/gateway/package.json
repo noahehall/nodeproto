@@ -20,22 +20,26 @@
   "config": {
     "BABEL_SHOW_CONFIG_FOR": "e.g. BABEL_SHOW_CONFIG_FOR=absolute/path/to/file somePkgJsonScriptName",
     "DIRS_TO_TRANSPILE": "./src",
+    "FLOW_LOADER": "./node_modules/@nodeproto/configproto/src/node/loaders/flow.mjs",
     "GATEWAY_CHROOT_DIR": "./var/lib/haproxy",
     "GATEWAY_GROUP": "haproxy",
     "GATEWAY_STATS_SOCK": "./run/haproxy/admin.sock",
     "GATEWAY_USER": "haproxy",
     "NODE_ENV": "production",
-    "NODE_OPTIONS": "--enable-source-maps --heapsnapshot-near-heap-limit=3 --use-largepages=on --pending-deprecation --trace-sigint --trace-warnings --trace-exit --report-uncaught-exception --report-on-fatalerror --abort-on-uncaught-exception --experimental-specifier-resolution=node --experimental-json-modules --experimental-top-level-await --experimental-vm-modules --experimental-import-meta-resolve",
+    "NODE_OPTIONS": "--experimental-loader=\"./node_modules/@nodeproto/configproto/src/node/loaders/flow.mjs\" --experimental-specifier-resolution=node --experimental-json-modules --experimental-top-level-await --experimental-vm-modules --experimental-import-meta-resolve node --enable-source-maps --heapsnapshot-near-heap-limit=3 --use-largepages=on --pending-deprecation --trace-sigint --trace-warnings --trace-exit --report-uncaught-exception --report-on-fatalerror --abort-on-uncaught-exception",
     "PATH_DIST": "./dist",
     "PATH_SRC": "./src"
   },
   "dependencies": {
+    "@babel/runtime": "7.14.8",
     "@changesets/cli": "2.17.0",
     "regenerator-runtime": "0.13.9",
     "ultra-runner": "3.10.5",
     "uvu": "0.5.1"
   },
   "devDependencies": {
+    "@babel/core": "7.15.0",
+    "@babel/eslint-parser": "7.14.7",
     "@changesets/cli": "2.17.0",
     "@nodeproto/configproto": "workspace:0.0.0",
     "@nodeproto/jsync": "workspace:0.0.0",
@@ -46,6 +50,8 @@
     "chokidar": "3.5.2",
     "chokidar-cli": "3.0.0",
     "eslint": "7.32.0",
+    "flow-bin": "0.161.0",
+    "flow-remove-types": "2.158.0",
     "uvu": "0.5.1"
   },
   "engines": {
@@ -101,6 +107,7 @@
     "repo:eslint": "eslint 'src/**/*'",
     "repo:eslint:fix": "pnpm repo:eslint -- --fix",
     "repo:flow": "pnpm exec flow",
+    "repo:flow:status": "pnpm exec flow status",
     "repo:install": "pnpm -r exec pnpm install",
     "repo:monitor": "pnpm exec ultra --monitor",
     "repo:nuke": "pnpm repo:rm:dist; pnpm repo:rm:nodemodules",

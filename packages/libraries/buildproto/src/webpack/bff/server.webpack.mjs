@@ -1,3 +1,5 @@
+// @flow
+
 import httpTerminator from 'http-terminator';
 import Koa from 'koa';
 import middleware from 'webpack-dev-middleware-2';

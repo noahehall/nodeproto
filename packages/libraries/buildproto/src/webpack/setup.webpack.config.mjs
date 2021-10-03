@@ -1,8 +1,4 @@
-/**
-  * @nodeproto/configproto setup webpack config
-  * generates data & fns suitable for generating a webpack config
-  * generally you want to send this into base.webpack.config.mjs
-  */
+// @flow
 
 import { builtinModules } from 'module';
 import { readFileSync } from 'fs';

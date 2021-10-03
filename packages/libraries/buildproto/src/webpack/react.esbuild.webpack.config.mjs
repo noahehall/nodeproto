@@ -1,5 +1,6 @@
-import { ESBuildMinifyPlugin } from 'esbuild-loader';
+// @flow
 
+import { ESBuildMinifyPlugin } from 'esbuild-loader';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import implementation from 'esbuild';
 import webpack from 'webpack';
