@@ -1,5 +1,5 @@
 extends:
-  - ./.eslintrc.yml
+  - ./base.eslintrc.yml
   - plugin:react/jsx-runtime
   - plugin:react-hooks/recommended
 

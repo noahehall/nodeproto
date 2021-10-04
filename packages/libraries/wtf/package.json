@@ -51,12 +51,15 @@
     "@nodeproto/testproto": "workspace:0.0.0",
     "@swc/cli": "0.1.46",
     "@swc/core": "1.2.75",
-    "chokidar": "3.5.2",
     "chokidar-cli": "3.0.0",
     "eslint": "7.32.0",
     "flow-bin": "0.161.0",
     "flow-remove-types": "2.158.0",
     "uvu": "0.5.1"
+  },
+  "directories": {
+    "dist": "./dist",
+    "src": "./src"
   },
   "engines": {
     "node": ">=16.10.0"
@@ -75,6 +78,9 @@
       "default": "./dist/fsproto.js"
     }
   },
+  "files": [
+    "./.flowconfig"
+  ],
   "jsync": {
     "root": false
   },

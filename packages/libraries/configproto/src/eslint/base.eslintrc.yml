@@ -12,7 +12,7 @@ parser: "@babel/eslint-parser"
 parserOptions:
   allowImportExportEverywhere: false
   ecmaVersion: 12 # dont fkn use "latest", it breaks eslint, @see https://github.com/eslint/eslint-scope/issues/55
-  requireConfigFile: true # force a configFile so we dont have to always debug htis fkn issue (required for @babel/eslint-parser)
+  requireConfigFile: true # force a configFile so we dont have to always debug htis fkn issue (required for @babel/eslint-parser, else throws error)
   sourceType: module
   ecmaFeatures:
     globalReturn: true
@@ -20,6 +20,9 @@ parserOptions:
     jsx: true
     modules: true
   # set babelOptions when extending if dont want to use a babel config/using webpack + babel-loader
+  babelOptions:
+    rootMode: upward-optional
+    # configFile: you have to set this
 
 # @see https://eslint.org/docs/user-guide/configuring/language-options#specifying-environments
 env:

@@ -1,12 +1,17 @@
 # TLDR
 
+static configuratoin files
+
+- you **HAVE** to remember to update the versions in the config files
+- when upgrading dependencies
+
 ## errors
 
 - eslint
-  - in vscode
-    - be sure to add
+  - be sure to add
 
       ```yml
         parserOptions:
-          configFile: path/to/.babelrc
+          babelOptions:
+            configFile: path/to/.babelrc
       ```
