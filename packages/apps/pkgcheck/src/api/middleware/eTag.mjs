@@ -24,6 +24,6 @@ export default function eTag (config, app) {
     ctx.response.append(
       'ETag',
       tinyETag(ctx.response.body)
-    )
-  }
+    );
+  };
 }

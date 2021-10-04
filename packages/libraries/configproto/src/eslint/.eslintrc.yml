@@ -11,7 +11,7 @@ ignorePatterns: ["**/dist/**"] # '**/node_modules/**', included by default
 parser: "@babel/eslint-parser"
 parserOptions:
   allowImportExportEverywhere: false
-  ecmaVersion: latest
+  ecmaVersion: 12 # dont fkn use "latest", it breaks eslint/e
   requireConfigFile: true # force a configFile so we dont have to always debug htis fkn issue (required for @babel/eslint-parser)
   sourceType: module
   ecmaFeatures:

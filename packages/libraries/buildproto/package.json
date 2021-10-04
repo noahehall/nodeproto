@@ -170,9 +170,9 @@
     "build": "pnpm cjs:swc",
     "build:debug": "pnpm cjs:swc:debug",
     "cjs:babel": "clear; pnpm repo:rm:dist && NODE_OPTIONS=$npm_package_config_NODE_OPTIONS babel $npm_package_config_DIRS_TO_TRANSPILE -d $npm_package_config_PATH_DIST --out-file-extension .js --ignore 'src/**/*.test.mjs' --ignore src/webpack/test.compiler.mjs",
-    "clean": "pnpm repo:rm:dist && pnpm repo:cp:cjs",
     "cjs:swc": "pnpm clean && NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" swc $npm_package_config_DIRS_TO_TRANSPILE -d $npm_package_config_PATH_DIST --config-file ./node_modules/@nodeproto/configproto/src/swc/node.swcrc --copy-files",
     "cjs:swc:debug": "pnpm cjs:swc -- --sync",
+    "clean": "pnpm repo:rm:dist && pnpm repo:cp:cjs",
     "js:to:cjs": "for f in ./dist/**/*.js; do mv -- \"$f\" \"${f%.js}.cjs\"; done",
     "jsync": "jsync",
     "proto": "pnpm exec ultra -r",
@@ -193,6 +193,7 @@
     "repo:rm:dist": "rm -rf dist/*",
     "repo:rm:nodemodules": "rm -rf node_modules",
     "repo:test": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" uvu ./src \"test.(m|c)?js\"",
+    "repo:test:file": "node --experimental-specifier-resolution=node --experimental-import-meta-resolve $*",
     "repo:test:help": "uvu --help",
     "repo:testing": "pnpm repo:test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"pnpm repo:test\"",
     "repo:upgrade": "pnpm upgrade -L"

@@ -15,7 +15,7 @@ const CONFIG = {
     'OPTIONS'
   ],
   disableQuery: false,
-}
+};
 
 export default function koaCsrf (config = CONFIG, app) {
   return new CSRF(config);

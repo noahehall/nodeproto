@@ -4,7 +4,7 @@
  * TODO: https://github.com/steambap/koa-tree-router/issues/19
  */
 
-import { resolve, dirs } from '@nodeproto/wtf';
+import { dirs, resolve } from '@nodeproto/wtf';
 
 // import handlers
 import * as demo from './demo/index.mjs';
@@ -42,6 +42,6 @@ export default async function v1Controller (v1RouterGroup, app) {
     console.error(
       'v1Controller erroor:',
       e
-    )
+    );
   }
 }

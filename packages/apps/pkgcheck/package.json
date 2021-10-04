@@ -1,6 +1,7 @@
 {
   "bugs": "https://github.com/noahehall/nodeproto/issues",
   "description": "bleeding-edge repo for prototyping end-to-end, complex, and secure applications and microservices",
+  "exports": "./src/root.mjs",
   "homepage": "https://github.com/noahehall/nodeproto",
   "license": "SEE LICENSE IN LICENSE.md",
   "main": "./dist/index.cjs",

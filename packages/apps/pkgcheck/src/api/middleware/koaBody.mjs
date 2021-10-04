@@ -7,7 +7,7 @@ import bodyParser from 'koa-bodyparser';
 
 // handles forms
 export function koaBody (conf, app) {
-  return body()
+  return body();
 }
 
 // doesnt handle forms

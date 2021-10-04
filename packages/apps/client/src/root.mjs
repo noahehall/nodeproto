@@ -12,7 +12,7 @@ const render = (Comp) => {
   console.info('rendering app'); // TODO: need to add logging logic
 
   // $FlowFixMe[prop-missing] its using annotations from react@17
-  const root = ReactDOM.createRoot(container)
+  const root = ReactDOM.createRoot(container);
 
   root.render(
     // <React.StrictMode>

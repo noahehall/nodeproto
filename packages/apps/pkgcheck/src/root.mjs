@@ -1,4 +1,4 @@
-import { isMain, dirs } from '@nodeproto/wtf';
+import { dirs, isMain } from '@nodeproto/wtf';
 import { getDevCert } from '@nodeproto/envproto';
 
 import App from './app.mjs';
@@ -31,7 +31,7 @@ export const runApp = async () => {
   }
 
   return servers;
-}
+};
 
 const getRequireOrImportMeta = () => dirs.isEsm() ? import.meta: require.main;
 

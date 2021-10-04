@@ -76,5 +76,5 @@ export default function koaOas3 (
     app
   );
 
-  return async ctx => ctx.response.redirect(oas3Config.uiEndpoint)
+  return async ctx => ctx.response.redirect(oas3Config.uiEndpoint);
 }
