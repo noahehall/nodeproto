@@ -215,8 +215,8 @@ const sortSimpleThenComplexDataTypes = (a, b) => {
   else return a[0].localeCompare(b[0]);
 };
 
-const sortArraysAndObjects = value => (
-  notArrayOrObject(value)
+const sortArraysAndObjects = (key, value) => (
+  notArrayOrObject(value) || key === 'exports'
     ? value
     : Array.isArray(value)
       ? value.sort((a, b) => a.localeCompare(b))
@@ -230,7 +230,7 @@ const sortArraysAndObjects = value => (
 await fs.outputJson(
   childPkgJsonPath + '/package.json',
   Object.entries(newChildJson).sort(sortSimpleThenComplexDataTypes).reduce(
-    (obj, [key, value]) => (obj[key] = sortArraysAndObjects(value), obj),
+    (obj, [key, value]) => (obj[key] = sortArraysAndObjects(key, value), obj),
     {}
   ),
   { spaces: 2 }

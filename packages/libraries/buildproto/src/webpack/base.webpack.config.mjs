@@ -1,4 +1,4 @@
-// @flow
+// @flowtodo
 
 import { BundleStatsWebpackPlugin } from 'bundle-stats-webpack-plugin';
 

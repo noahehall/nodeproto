@@ -10,11 +10,9 @@ import pem from 'pem';
 
 const fsproto = getFsproto(process.env.IS_TEST);
 
-const getRequireOrImport = () => typeof require !== 'undefined'
+const getRequireOrImport = () => dirs.isCjs()
   ? __filename // eslint-disable-line
   : import.meta.url;
-
-// console.info('\n\n wtf is getRequireOrImport', getRequireOrImport());
 
 export const getDevCert = async ({
   days = 7,

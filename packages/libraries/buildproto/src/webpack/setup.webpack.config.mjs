@@ -1,4 +1,4 @@
-// @flow
+// @flowtodo
 
 import { builtinModules } from 'module';
 import { readFileSync } from 'fs';

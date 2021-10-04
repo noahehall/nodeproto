@@ -405,7 +405,6 @@ importers:
       '@nodeproto/wtf': workspace:*
       '@swc/cli': 0.1.46
       '@swc/core': 1.2.75
-      chokidar: 3.5.2
       chokidar-cli: 3.0.0
       dotenv: 10.0.0
       env-cmd: 10.1.0
@@ -433,9 +432,8 @@ importers:
       '@nodeproto/configproto': link:../configproto
       '@nodeproto/jsync': link:../../tools/jsync
       '@nodeproto/testproto': link:../testproto
-      '@swc/cli': 0.1.46_@swc+core@1.2.75+chokidar@3.5.2
+      '@swc/cli': 0.1.46_@swc+core@1.2.75
       '@swc/core': 1.2.75
-      chokidar: 3.5.2
       chokidar-cli: 3.0.0
       eslint: 7.32.0
       flow-bin: 0.161.0

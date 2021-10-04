@@ -12,7 +12,6 @@ import koaOas3 from '../../middleware/koaOas3.mjs';
 
 const getImportMetaOrFilename = () => dirs.isEsm() ? import.meta : __filename;
 
-
 export default async function v1Controller (v1RouterGroup, app) {
   try {
     /**

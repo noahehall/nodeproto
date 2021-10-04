@@ -4,6 +4,7 @@
   "homepage": "https://github.com/noahehall/nodeproto",
   "license": "SEE LICENSE IN LICENSE.md",
   "main": "./dist/index.js",
+  "module": "./src/index.mjs",
   "name": "@nodeproto/buildproto",
   "packageManager": "pnpm@6.15.1",
   "private": true,

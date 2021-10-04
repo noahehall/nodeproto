@@ -2,6 +2,12 @@
 
 - bleeding-edge monorepo for rapidly prototyping end-to-end, complex, and secure applications and microservices
 
+- for contributing:
+  - you should be intermediate/advanced with docker, node, shell scripting, flowtype (eww even typescript) and especially javascript
+- for consuming:
+  - you should be good at javascript
+  - drop your apps in `root/packages/apps/*` and start prototyping!
+
 ![@nodeproto architecture](/doc/architecture.png)
 
 ## TLDR
