@@ -1,4 +1,0 @@
-
-import * as React from 'react';
-
-declare export function App(): React.Node;

@@ -54,6 +54,8 @@
   "browserslistConfigFile": "../browserslist/.browserslistrc",
   "browserslistEnv": "ssr",
   "highlightCode": true,
+  "sourceMaps": true,
+  "sourceType": "module",
 
   "generatorOpts": {
     // never enable these; use a plugin instead

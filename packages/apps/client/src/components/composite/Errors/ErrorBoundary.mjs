@@ -1,22 +1,20 @@
 // @flow
 
-import * as React from 'react';
+import DisplayError from './DisplayError.mjs';
 import JsonPretty from 'react-json-pretty';
 import JSONPrettyMonTheme from 'react-json-pretty/dist/monikai';
-import DisplayError from './DisplayError.mjs';
 
-// i wonder if this has something to do with our babel plugins/react setup
-const { Component, cloneElement } = React.default;
+import * as React from 'react';
 
-export type ErrorBoundaryProps = {
-  children: React.Element<any>
+type ErrorBoundaryProps = {
+  children: Node
 };
 
-export type ErrorBoundaryState = {
+type ErrorBoundaryState = {
   error: Error
 }
 
-export default class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
+export default class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
   constructor (props: ErrorBoundaryProps) {
     super(props);
 
@@ -32,13 +30,13 @@ export default class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBo
     console.error(info);
   }
 
-  render(): React.Element<any> {
+  render(): React.Node {
     return (
       this.state.error
         ? <DisplayError error={this.state.error} />
-        : cloneElement(this.props.children, this.props)
+        : React.cloneElement(this.props.children, this.props)
     );
   }
 }
 
-if (module.hot.accept) module.hot.accept();
+if (module.hot.accept) module.hot.accept(); // eslint-disable-line no-undef

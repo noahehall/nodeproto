@@ -1,12 +1,15 @@
 # @nodeproto
 
-- bleeding-edge monorepo for rapidly prototyping end-to-end, complex, and secure applications and microservices
+- bleeding-edge type-first monorepo for rapidly prototyping end-to-end, complex, and secure applications and microservices
+
+- for understanding why @nodeproto exists
+  - [review our contributing docs](https://github.com/noahehall/nodeproto/blob/develop/CONTRIBUTING.md)
 
 - for contributing:
-  - you should be intermediate/advanced with docker, node, shell scripting, flowtype (eww even typescript) and especially javascript
+  - you should be intermediate/advanced with docker, node, shell scripting, [flowtype](https://github.com/facebook/flow/blob/main/lib/react.js) and especially javascript
+
 - for consuming:
   - you should be good at javascript
-  - drop your apps in `root/packages/apps/*` and start prototyping!
 
 ![@nodeproto architecture](/doc/architecture.png)
 
@@ -21,6 +24,8 @@ be sure to checkout `root/tests/integration` for how to use our internal magic
   $ pnpm repo:monitor
 
   # pnpm proto SOMECMD
+  # ^ run a command in ALL/SOME pkgs from anywhere within the monorepo
+
   # runs SOMECMD in all workspace packages
   $ pnpm proto pnpm outdated
   $ pnpm proto pnpm install
@@ -31,7 +36,8 @@ be sure to checkout `root/tests/integration` for how to use our internal magic
   $ pnpm proto build
   $ pnpm proto repo:cp:configproto
   $ pnpm proto repo:test
-  $ pnpm proto repo:eslint:fix
+  $ pnpm proto repo:eslint
+  $ pnpm proto repo:eslint:fix # eslint + flowtype-errors eslint plugin
   $ pnpm proto start:client # localhost:7777
   $ pnpm proto start:dev # localhost:8080
   $ pnpm proto start
@@ -39,6 +45,10 @@ be sure to checkout `root/tests/integration` for how to use our internal magic
   # pnpm proto:slice "filter" "cmd"
   # runs script|cmd in packages/directories matching filter
   $ pnpm proto "packages/libraries/*" repo:test
+
+  # pnpm CMD/PKGJSONSCRIPT
+  # ^ run a ./bin/CMD| pkg json script by in the current repo
+  pnpm repo:test... #i.e. any of the above cmds but without the proto
 
   # useful cmds provided by ultra
   $ pnpm exec ultra --info # see package dependencies

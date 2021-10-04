@@ -1,26 +1,26 @@
 {
   "browserslistEnv": "client",
   "extends": "./base.babelrc",
-  "sourceMaps": true,
-  "sourceType": "module",
+
   "overrides": [
     // will always use these options
     // because we dont specify a condition
     {
       "presets": [
         [
+          // https://babeljs.io/docs/en/babel-preset-env
           "@babel/preset-env", {
             "bugfixes": true,
             "corejs": { "version": "3.16.3", "proposals": true },
             "debug": false,
             "forceAllTransforms": false, // set to true if only support es5/running through uglifyjs
             "ignoreBrowserslistConfig": false,
-            "modules": "cjs",
+            "modules": "auto",
             "shippedProposals": true,
             "spec": false,
             // usage: automatically imports core-js modules in src
             // entry: you have to specify the imports of core-js in src
-            "useBuiltIns": "usage" // include corejs imports for each file based on the env transpiling to and the files src code
+            "useBuiltIns": "entry" // include corejs imports for each file based on the env transpiling to and the files src code
           }
         ],
         [

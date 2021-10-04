@@ -348,6 +348,7 @@ importers:
       babel-plugin-tailcall-optimization: 2.0.0
       babel-plugin-transform-export-default-name: 2.1.0
       core-js: 3.16.3
+      eslint-plugin-fb-flow: 0.0.4
       eslint-plugin-flowtype-errors: 4.4.0
       eslint-plugin-html: 6.1.2
       eslint-plugin-json: 3.1.0
@@ -387,6 +388,7 @@ importers:
       yaml-eslint-parser: 0.4.1
     devDependencies:
       '@octokit/core': 3.5.1
+      eslint-plugin-fb-flow: 0.0.4_eslint@7.32.0
       flow-bin: 0.161.0
       flow-typed: 3.3.1_@octokit+core@3.5.1
 
@@ -9004,6 +9006,15 @@ packages:
       eslint: 7.32.0
       eslint-utils: 2.1.0
       regexpp: 3.2.0
+    dev: true
+
+  /eslint-plugin-fb-flow/0.0.4_eslint@7.32.0:
+    resolution: {integrity: sha512-VWRoULiRkYqgeX4uCw2uIuu4v5DOhtWC+4fLM+qXX2mUtLf07znqhyTtxwIugnX8MgPczkaKmtDPrkuhvFmAoA==}
+    engines: {node: 12.x || 14.x || >= 16}
+    peerDependencies:
+      eslint: '>=6'
+    dependencies:
+      eslint: 7.32.0
     dev: true
 
   /eslint-plugin-flowtype-errors/4.4.0_eslint@7.32.0+flow-bin@0.158.0:

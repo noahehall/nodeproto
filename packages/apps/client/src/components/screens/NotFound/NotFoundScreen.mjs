@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { ScreenGrid } from '../../composite/Grid/Grid.mjs';
+import ScreenGrid from '../../composite/Grid/Grid.mjs';
 
 
 export default function NotFound(arg: { default?: boolean }): React.Node {

@@ -1,17 +1,15 @@
-// @flow
+// @flow strict
 
 import App from './components/screens/App/AppScreen.mjs';
 import ErrorBoundary from './components/composite/Errors/ErrorBoundary.mjs';
-import * as React from 'react';
 import ReactDOM from 'react-dom';
 
 const containerID: string = 'root';
-const container = document.getElementById('root');
+const container: HTMLElement | null = document.getElementById('root');
 
-const render = (Comp) => {
+const render = (Comp) : void => {
   console.info('rendering app'); // TODO: need to add logging logic
 
-  // $FlowFixMe[prop-missing] its using annotations from react@17
   const root = ReactDOM.createRoot(container);
 
   root.render(
@@ -40,4 +38,5 @@ if (typeof window !== 'undefined') {
 }
 // should be disabled here as each screen (perhaps even deeper)
 // should handle HMR for their component hierarchies
-if (module.hot.accept) module.hot.accept();
+// $FlowExpectedError
+if (module.hot.accept) module.hot.accept(); // eslint-disable-line no-undef

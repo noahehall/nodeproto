@@ -37,6 +37,7 @@ env:
 plugins:
   - "@babel"
   - flowtype-errors
+  - "fb-flow"
   - html
   - markdown
   - node
@@ -122,7 +123,7 @@ rules:
   no-multiple-empty-lines: error
   no-throw-literal: error
   no-undef: error
-  no-unused-vars: error
+  no-unused-vars: off # broken with flowtype-errors?
   node/no-unpublished-require: warn
   padded-blocks: [error, never]
   prefer-named-capture-group: 0 # performance
@@ -161,11 +162,19 @@ rules:
         - assert
 
   # flow specific rules
+  # flowtype-errors
   flowtype-errors/show-errors: error
   flowtype-errors/show-warnings: warn
   flowtype-errors/enforce-min-coverage:
     - error
     - 100
+
+  # fb-flow
+  fb-flow/use-indexed-access-type: error
+  fb-flow/use-exact-by-default-object-type: error
+  fb-flow/use-flow-enums: error
+  fb-flow/flow-enums-default-if-possible: error
+  fb-flow/no-flow-enums-object-mapping: error
 
 
   # dumb fkn rules here

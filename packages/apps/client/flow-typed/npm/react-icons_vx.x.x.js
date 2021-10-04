@@ -1,4 +1,4 @@
-// flow-typed signature: eeba1d085a94c501bcec8247d3efe21e
+// flow-typed signature: b7b0903562ce2de45471224e2b771371
 // flow-typed version: <<STUB>>/react-icons_v4.2.0/flow_v0.161.0
 
 /**
@@ -15,4 +15,450 @@
 
 declare module 'react-icons' {
   declare module.exports: any;
+}
+
+/**
+ * We include stubs for each file inside this npm package in case you need to
+ * require those files directly. Feel free to delete any files that aren't
+ * needed.
+ */
+declare module 'react-icons/ai/index.esm' {
+  declare module.exports: any;
+}
+
+declare module 'react-icons/ai' {
+  declare module.exports: any;
+}
+
+declare module 'react-icons/all' {
+  declare module.exports: any;
+}
+
+declare module 'react-icons/bi/index.esm' {
+  declare module.exports: any;
+}
+
+declare module 'react-icons/bi' {
+  declare module.exports: any;
+}
+
+declare module 'react-icons/bs/index.esm' {
+  declare module.exports: any;
+}
+
+declare module 'react-icons/bs' {
+  declare module.exports: any;
+}
+
+declare module 'react-icons/cg/index.esm' {
+  declare module.exports: any;
+}
+
+declare module 'react-icons/cg' {
+  declare module.exports: any;
+}
+
+declare module 'react-icons/di/index.esm' {
+  declare module.exports: any;
+}
+
+declare module 'react-icons/di' {
+  declare module.exports: any;
+}
+
+declare module 'react-icons/fa/index.esm' {
+  declare module.exports: any;
+}
+
+declare module 'react-icons/fa' {
+  declare module.exports: any;
+}
+
+declare module 'react-icons/fc/index.esm' {
+  declare module.exports: any;
+}
+
+declare module 'react-icons/fc' {
+  declare module.exports: any;
+}
+
+declare module 'react-icons/fi/index.esm' {
+  declare module.exports: any;
+}
+
+declare module 'react-icons/fi' {
+  declare module.exports: any;
+}
+
+declare module 'react-icons/gi/index.esm' {
+  declare module.exports: any;
+}
+
+declare module 'react-icons/gi' {
+  declare module.exports: any;
+}
+
+declare module 'react-icons/go/index.esm' {
+  declare module.exports: any;
+}
+
+declare module 'react-icons/go' {
+  declare module.exports: any;
+}
+
+declare module 'react-icons/gr/index.esm' {
+  declare module.exports: any;
+}
+
+declare module 'react-icons/gr' {
+  declare module.exports: any;
+}
+
+declare module 'react-icons/hi/index.esm' {
+  declare module.exports: any;
+}
+
+declare module 'react-icons/hi' {
+  declare module.exports: any;
+}
+
+declare module 'react-icons/im/index.esm' {
+  declare module.exports: any;
+}
+
+declare module 'react-icons/im' {
+  declare module.exports: any;
+}
+
+declare module 'react-icons/index.esm' {
+  declare module.exports: any;
+}
+
+declare module 'react-icons/io/index.esm' {
+  declare module.exports: any;
+}
+
+declare module 'react-icons/io' {
+  declare module.exports: any;
+}
+
+declare module 'react-icons/io5/index.esm' {
+  declare module.exports: any;
+}
+
+declare module 'react-icons/io5' {
+  declare module.exports: any;
+}
+
+declare module 'react-icons/lib/cjs/iconBase' {
+  declare module.exports: any;
+}
+
+declare module 'react-icons/lib/cjs/iconContext' {
+  declare module.exports: any;
+}
+
+declare module 'react-icons/lib/cjs/iconsManifest' {
+  declare module.exports: any;
+}
+
+declare module 'react-icons/lib/cjs' {
+  declare module.exports: any;
+}
+
+declare module 'react-icons/lib/esm/iconBase' {
+  declare module.exports: any;
+}
+
+declare module 'react-icons/lib/esm/iconContext' {
+  declare module.exports: any;
+}
+
+declare module 'react-icons/lib/esm/iconsManifest' {
+  declare module.exports: any;
+}
+
+declare module 'react-icons/lib/esm' {
+  declare module.exports: any;
+}
+
+declare module 'react-icons/md/index.esm' {
+  declare module.exports: any;
+}
+
+declare module 'react-icons/md' {
+  declare module.exports: any;
+}
+
+declare module 'react-icons/ri/index.esm' {
+  declare module.exports: any;
+}
+
+declare module 'react-icons/ri' {
+  declare module.exports: any;
+}
+
+declare module 'react-icons/si/index.esm' {
+  declare module.exports: any;
+}
+
+declare module 'react-icons/si' {
+  declare module.exports: any;
+}
+
+declare module 'react-icons/ti/index.esm' {
+  declare module.exports: any;
+}
+
+declare module 'react-icons/ti' {
+  declare module.exports: any;
+}
+
+declare module 'react-icons/vsc/index.esm' {
+  declare module.exports: any;
+}
+
+declare module 'react-icons/vsc' {
+  declare module.exports: any;
+}
+
+declare module 'react-icons/wi/index.esm' {
+  declare module.exports: any;
+}
+
+declare module 'react-icons/wi' {
+  declare module.exports: any;
+}
+
+// Filename aliases
+declare module 'react-icons/ai/index.esm.js' {
+  declare module.exports: $Exports<'react-icons/ai/index.esm'>;
+}
+declare module 'react-icons/ai/index' {
+  declare module.exports: $Exports<'react-icons/ai'>;
+}
+declare module 'react-icons/ai/index.js' {
+  declare module.exports: $Exports<'react-icons/ai'>;
+}
+declare module 'react-icons/all.js' {
+  declare module.exports: $Exports<'react-icons/all'>;
+}
+declare module 'react-icons/bi/index.esm.js' {
+  declare module.exports: $Exports<'react-icons/bi/index.esm'>;
+}
+declare module 'react-icons/bi/index' {
+  declare module.exports: $Exports<'react-icons/bi'>;
+}
+declare module 'react-icons/bi/index.js' {
+  declare module.exports: $Exports<'react-icons/bi'>;
+}
+declare module 'react-icons/bs/index.esm.js' {
+  declare module.exports: $Exports<'react-icons/bs/index.esm'>;
+}
+declare module 'react-icons/bs/index' {
+  declare module.exports: $Exports<'react-icons/bs'>;
+}
+declare module 'react-icons/bs/index.js' {
+  declare module.exports: $Exports<'react-icons/bs'>;
+}
+declare module 'react-icons/cg/index.esm.js' {
+  declare module.exports: $Exports<'react-icons/cg/index.esm'>;
+}
+declare module 'react-icons/cg/index' {
+  declare module.exports: $Exports<'react-icons/cg'>;
+}
+declare module 'react-icons/cg/index.js' {
+  declare module.exports: $Exports<'react-icons/cg'>;
+}
+declare module 'react-icons/di/index.esm.js' {
+  declare module.exports: $Exports<'react-icons/di/index.esm'>;
+}
+declare module 'react-icons/di/index' {
+  declare module.exports: $Exports<'react-icons/di'>;
+}
+declare module 'react-icons/di/index.js' {
+  declare module.exports: $Exports<'react-icons/di'>;
+}
+declare module 'react-icons/fa/index.esm.js' {
+  declare module.exports: $Exports<'react-icons/fa/index.esm'>;
+}
+declare module 'react-icons/fa/index' {
+  declare module.exports: $Exports<'react-icons/fa'>;
+}
+declare module 'react-icons/fa/index.js' {
+  declare module.exports: $Exports<'react-icons/fa'>;
+}
+declare module 'react-icons/fc/index.esm.js' {
+  declare module.exports: $Exports<'react-icons/fc/index.esm'>;
+}
+declare module 'react-icons/fc/index' {
+  declare module.exports: $Exports<'react-icons/fc'>;
+}
+declare module 'react-icons/fc/index.js' {
+  declare module.exports: $Exports<'react-icons/fc'>;
+}
+declare module 'react-icons/fi/index.esm.js' {
+  declare module.exports: $Exports<'react-icons/fi/index.esm'>;
+}
+declare module 'react-icons/fi/index' {
+  declare module.exports: $Exports<'react-icons/fi'>;
+}
+declare module 'react-icons/fi/index.js' {
+  declare module.exports: $Exports<'react-icons/fi'>;
+}
+declare module 'react-icons/gi/index.esm.js' {
+  declare module.exports: $Exports<'react-icons/gi/index.esm'>;
+}
+declare module 'react-icons/gi/index' {
+  declare module.exports: $Exports<'react-icons/gi'>;
+}
+declare module 'react-icons/gi/index.js' {
+  declare module.exports: $Exports<'react-icons/gi'>;
+}
+declare module 'react-icons/go/index.esm.js' {
+  declare module.exports: $Exports<'react-icons/go/index.esm'>;
+}
+declare module 'react-icons/go/index' {
+  declare module.exports: $Exports<'react-icons/go'>;
+}
+declare module 'react-icons/go/index.js' {
+  declare module.exports: $Exports<'react-icons/go'>;
+}
+declare module 'react-icons/gr/index.esm.js' {
+  declare module.exports: $Exports<'react-icons/gr/index.esm'>;
+}
+declare module 'react-icons/gr/index' {
+  declare module.exports: $Exports<'react-icons/gr'>;
+}
+declare module 'react-icons/gr/index.js' {
+  declare module.exports: $Exports<'react-icons/gr'>;
+}
+declare module 'react-icons/hi/index.esm.js' {
+  declare module.exports: $Exports<'react-icons/hi/index.esm'>;
+}
+declare module 'react-icons/hi/index' {
+  declare module.exports: $Exports<'react-icons/hi'>;
+}
+declare module 'react-icons/hi/index.js' {
+  declare module.exports: $Exports<'react-icons/hi'>;
+}
+declare module 'react-icons/im/index.esm.js' {
+  declare module.exports: $Exports<'react-icons/im/index.esm'>;
+}
+declare module 'react-icons/im/index' {
+  declare module.exports: $Exports<'react-icons/im'>;
+}
+declare module 'react-icons/im/index.js' {
+  declare module.exports: $Exports<'react-icons/im'>;
+}
+declare module 'react-icons/index.esm.js' {
+  declare module.exports: $Exports<'react-icons/index.esm'>;
+}
+declare module 'react-icons/index' {
+  declare module.exports: $Exports<'react-icons'>;
+}
+declare module 'react-icons/index.js' {
+  declare module.exports: $Exports<'react-icons'>;
+}
+declare module 'react-icons/io/index.esm.js' {
+  declare module.exports: $Exports<'react-icons/io/index.esm'>;
+}
+declare module 'react-icons/io/index' {
+  declare module.exports: $Exports<'react-icons/io'>;
+}
+declare module 'react-icons/io/index.js' {
+  declare module.exports: $Exports<'react-icons/io'>;
+}
+declare module 'react-icons/io5/index.esm.js' {
+  declare module.exports: $Exports<'react-icons/io5/index.esm'>;
+}
+declare module 'react-icons/io5/index' {
+  declare module.exports: $Exports<'react-icons/io5'>;
+}
+declare module 'react-icons/io5/index.js' {
+  declare module.exports: $Exports<'react-icons/io5'>;
+}
+declare module 'react-icons/lib/cjs/iconBase.js' {
+  declare module.exports: $Exports<'react-icons/lib/cjs/iconBase'>;
+}
+declare module 'react-icons/lib/cjs/iconContext.js' {
+  declare module.exports: $Exports<'react-icons/lib/cjs/iconContext'>;
+}
+declare module 'react-icons/lib/cjs/iconsManifest.js' {
+  declare module.exports: $Exports<'react-icons/lib/cjs/iconsManifest'>;
+}
+declare module 'react-icons/lib/cjs/index' {
+  declare module.exports: $Exports<'react-icons/lib/cjs'>;
+}
+declare module 'react-icons/lib/cjs/index.js' {
+  declare module.exports: $Exports<'react-icons/lib/cjs'>;
+}
+declare module 'react-icons/lib/esm/iconBase.js' {
+  declare module.exports: $Exports<'react-icons/lib/esm/iconBase'>;
+}
+declare module 'react-icons/lib/esm/iconContext.js' {
+  declare module.exports: $Exports<'react-icons/lib/esm/iconContext'>;
+}
+declare module 'react-icons/lib/esm/iconsManifest.js' {
+  declare module.exports: $Exports<'react-icons/lib/esm/iconsManifest'>;
+}
+declare module 'react-icons/lib/esm/index' {
+  declare module.exports: $Exports<'react-icons/lib/esm'>;
+}
+declare module 'react-icons/lib/esm/index.js' {
+  declare module.exports: $Exports<'react-icons/lib/esm'>;
+}
+declare module 'react-icons/md/index.esm.js' {
+  declare module.exports: $Exports<'react-icons/md/index.esm'>;
+}
+declare module 'react-icons/md/index' {
+  declare module.exports: $Exports<'react-icons/md'>;
+}
+declare module 'react-icons/md/index.js' {
+  declare module.exports: $Exports<'react-icons/md'>;
+}
+declare module 'react-icons/ri/index.esm.js' {
+  declare module.exports: $Exports<'react-icons/ri/index.esm'>;
+}
+declare module 'react-icons/ri/index' {
+  declare module.exports: $Exports<'react-icons/ri'>;
+}
+declare module 'react-icons/ri/index.js' {
+  declare module.exports: $Exports<'react-icons/ri'>;
+}
+declare module 'react-icons/si/index.esm.js' {
+  declare module.exports: $Exports<'react-icons/si/index.esm'>;
+}
+declare module 'react-icons/si/index' {
+  declare module.exports: $Exports<'react-icons/si'>;
+}
+declare module 'react-icons/si/index.js' {
+  declare module.exports: $Exports<'react-icons/si'>;
+}
+declare module 'react-icons/ti/index.esm.js' {
+  declare module.exports: $Exports<'react-icons/ti/index.esm'>;
+}
+declare module 'react-icons/ti/index' {
+  declare module.exports: $Exports<'react-icons/ti'>;
+}
+declare module 'react-icons/ti/index.js' {
+  declare module.exports: $Exports<'react-icons/ti'>;
+}
+declare module 'react-icons/vsc/index.esm.js' {
+  declare module.exports: $Exports<'react-icons/vsc/index.esm'>;
+}
+declare module 'react-icons/vsc/index' {
+  declare module.exports: $Exports<'react-icons/vsc'>;
+}
+declare module 'react-icons/vsc/index.js' {
+  declare module.exports: $Exports<'react-icons/vsc'>;
+}
+declare module 'react-icons/wi/index.esm.js' {
+  declare module.exports: $Exports<'react-icons/wi/index.esm'>;
+}
+declare module 'react-icons/wi/index' {
+  declare module.exports: $Exports<'react-icons/wi'>;
+}
+declare module 'react-icons/wi/index.js' {
+  declare module.exports: $Exports<'react-icons/wi'>;
 }

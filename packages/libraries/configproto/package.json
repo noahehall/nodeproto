@@ -59,6 +59,7 @@
   },
   "devDependencies": {
     "@octokit/core": "3.5.1",
+    "eslint-plugin-fb-flow": "0.0.4",
     "flow-bin": "0.161.0",
     "flow-typed": "3.3.1"
   }

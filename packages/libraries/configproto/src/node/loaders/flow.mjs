@@ -12,11 +12,12 @@ export async function transformSource(
 ) {
   const { url, format } = context;
 
-  if (source.includes('// @flow')) {
+  if (source.includes('@flow')) {
     // TODO: this shit should be color printed to console
-    execFile(flow, ['check', url.replace('file://', '')], (err, stdout) => {
-      console.info(stdout);
-    });
+    if (process.env.FLOW_CHECK)
+      execFile(flow, ['check', url.replace('file://', '')], (err, stdout) => {
+        console.info(stdout);
+      });
 
     return { source: Buffer.from(flowRemoveTypes(source.toString()).toString()) };
   }

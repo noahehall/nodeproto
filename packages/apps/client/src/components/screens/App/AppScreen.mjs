@@ -2,11 +2,13 @@
 
 import { Helmet } from 'react-helmet';
 import { Router } from '@reach/router';
-import * as React from 'react';
+
 import GlobalStyle from './global-styles.mjs';
 import LandingScreen from '../Landing/LandingScreen.mjs';
 import NotFoundScreen from '../NotFound/NotFoundScreen.mjs';
 import styled from 'styled-components';
+
+import type { Node } from 'react';
 
 // css
 import 'normalize.css';
@@ -33,27 +35,27 @@ const AppWrapper = styled.main`
   padding: 10px;
 `;
 
-export function App (): React.Node {
-  return (<OuterContainer id='outer-container'>
-    <Helmet
-      defaultTitle='NIRV'
-      titleTemplate='%s - NIRV'
-    >
-      <meta content='IT TAKES NIRV' name='description' />
-    </Helmet>
+export default function App(): Node {
+  return (
+    <OuterContainer id='outer-container'>
+      <Helmet
+        defaultTitle='NIRV'
+        titleTemplate='%s - NIRV'
+      >
+        <meta content='IT TAKES NIRV' name='description' />
+      </Helmet>
 
-    <InnerContainer id='inner-container'>
-      <AppWrapper id='app-wrapper'>
-        <Router>
-          <LandingScreen isFor='ppop' path='/' />
+      <InnerContainer id='inner-container'>
+        <AppWrapper id='app-wrapper'>
+          <Router>
+            <LandingScreen isFor='ppop' path='/' />
 
-          <NotFoundScreen default />
-        </Router>
-      </AppWrapper>
-    </InnerContainer>
+            <NotFoundScreen default />
+          </Router>
+        </AppWrapper>
+      </InnerContainer>
 
-    <GlobalStyle />
-  </OuterContainer>);
+      <GlobalStyle />
+    </OuterContainer>
+  );
 }
-
-export default App;

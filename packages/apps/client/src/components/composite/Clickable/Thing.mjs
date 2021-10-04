@@ -2,8 +2,9 @@
 
 import { Clickable } from 'reakit/Clickable';
 import { useButton } from 'react-aria';
-import clsx from 'clsx';
+
 import * as React from 'react';
+import clsx from 'clsx';
 import styled from 'styled-components';
 
 
@@ -32,20 +33,18 @@ export function Button (props: ButtonProps): React.Element<'button'> {
 
 type AnchorProps = {
   className?: string,
-  text?: string
+  text?: string,
+  ...
 }
 
-export function Anchor (arg: AnchorProps = {}): React.Node {
-  const { className, text = 'Click Here', ...props } = arg;
-
+export function Anchor ({ className, text = 'Click Here', ...props }: AnchorProps): React.Node {
   return (
     <StyledAnchor {...props} className={clsx(className)} forwardedAs='a'>
       {text}
 
-      <button>testing rect-aria</button>
+      <button>{"testing rect-aria"}</button>
     </StyledAnchor>
   );
 }
 
-// $FlowIgnore[prop-missing]
-if (module.hot.accept) module.hot.accept();
+if (module.hot.accept) module.hot.accept(); // eslint-disable-line no-undef

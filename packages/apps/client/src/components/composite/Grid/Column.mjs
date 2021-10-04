@@ -1,25 +1,21 @@
 // @flow
 
+import { unstable_GridCell as GridCell, unstable_useGridState as useGridState } from 'reakit/Grid';
 import * as React from 'react';
-import styled from 'styled-components';
 import clsx from 'clsx';
-import {
-  unstable_GridCell as GridCell,
-  unstable_useGridState as useGridState,
-} from 'reakit/Grid';
+import styled from 'styled-components';
 
 const StyledCell = styled(GridCell)`
 
 `;
 
-export type ScreenColumnProps = {
-  className?: string,
+type ScreenColumnProps = {
+  className: string,
   children: React.Node,
-  props?: Array<any>,
 };
 
-export function ScreenColumn ({ className, children, ...props }: ScreenColumnProps): React.Node {
-  const grid = useGridState();
+export default function ScreenColumn ({ className, children }: ScreenColumnProps): React.Node {
+  const grid: {} = useGridState();
 
   return (
     <StyledCell
@@ -33,4 +29,4 @@ export function ScreenColumn ({ className, children, ...props }: ScreenColumnPro
   );
 }
 
-if (module.hot?.accept) module.hot.accept();
+if (module.hot?.accept) module.hot.accept(); // eslint-disable-line no-undef
