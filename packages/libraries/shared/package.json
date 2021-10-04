@@ -4,8 +4,9 @@
   "private": true,
   "version": "0.0.0",
   "directories": {
-    "./src": "./src",
-    "./dist": "./dist"
+    "src": "./src",
+    "dist": "./dist",
+    "flowtyped": "./flow-typed"
   },
   "exports": {
     ".": {
@@ -59,6 +60,7 @@
     "@nodeproto/configproto": "workspace:0.0.0",
     "@nodeproto/testproto": "workspace:0.0.0",
     "@swc/cli": "0.1.46",
-    "@swc/core": "1.2.75"
+    "@swc/core": "1.2.75",
+    "flow-bin": "0.161.0"
   }
 }

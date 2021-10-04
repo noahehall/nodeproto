@@ -2,7 +2,7 @@
 
 import httpTerminator from 'http-terminator';
 import Koa from 'koa';
-import { isMain, dirs } from '@nodeproto/wtf';
+import { dirs, isMain } from '@nodeproto/wtf';
 
 export async function runApp({
   APP_PORT,

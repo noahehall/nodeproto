@@ -49,17 +49,20 @@
     "@nodeproto/configproto": "workspace:0.0.0",
     "@nodeproto/jsync": "workspace:0.0.0",
     "@nodeproto/testproto": "workspace:0.0.0",
+    "@octokit/core": "3.5.1",
     "@swc/cli": "0.1.46",
     "@swc/core": "1.2.75",
     "chokidar-cli": "3.0.0",
     "eslint": "7.32.0",
     "flow-bin": "0.161.0",
     "flow-remove-types": "2.158.0",
+    "flow-typed": "3.3.1",
     "uvu": "0.5.1"
   },
   "directories": {
     "dist": "./dist",
-    "src": "./src"
+    "src": "./src",
+    "flowtyped": "./flow-typed"
   },
   "engines": {
     "node": ">=16.10.0"
@@ -133,6 +136,7 @@
     "repo:eslint:fix": "pnpm repo:eslint -- --fix",
     "repo:flow": "pnpm exec flow",
     "repo:flow:status": "pnpm exec flow status",
+    "repo:flowtyped:install": "pnpm exec flow-typed install",
     "repo:install": "pnpm -r exec pnpm install",
     "repo:monitor": "pnpm exec ultra --monitor",
     "repo:nuke": "pnpm repo:rm:dist; pnpm repo:rm:nodemodules",

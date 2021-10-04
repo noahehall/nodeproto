@@ -1,8 +1,8 @@
-import * as t from '@nodeproto/testproto';
+const t = require('@nodeproto/testproto');
 
 const { assert } = t;
 
-const test = t.suite('integration:envproto:esm:apiContract');
+const test = t.suite('integration:envproto:cjs:apiContract');
 
 test('imports', async () => {
   const envprotoExpected = [
@@ -19,7 +19,7 @@ test('imports', async () => {
   ];
 
   assert.hasAllKeys(
-    await import('@nodeproto/envproto'),
+    require('@nodeproto/envproto'),
     envprotoExpected
   );
   // TODO: only testing the default import

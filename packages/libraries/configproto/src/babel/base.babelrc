@@ -63,7 +63,7 @@
     "retainLines": false,
     "compact": false,
     "minified": false,
-    "comments": true,
+    "comments": true
   },
   "parserOpts": {
     "allowAwaitOutsideFunction": true,

@@ -1,6 +1,5 @@
-
-import { wtf as wtfShared } from '@nodeproto/shared';
 import { homedir, tmpdir } from 'os';
+import { wtf as wtfShared } from '@nodeproto/shared';
 
 import cPath from 'contains-path';
 import globalDirs from 'global-dirs';

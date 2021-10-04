@@ -2,10 +2,8 @@
  * shit related to ssl certs
  * @see https://github.com/Dexus/pem/blob/master/test/pem.spec.js
  */
-
+import "assert";
 import { dirs, getFsproto } from '@nodeproto/wtf';
-
-import path from 'path';
 import pem from 'pem';
 
 const fsproto = getFsproto(process.env.IS_TEST);

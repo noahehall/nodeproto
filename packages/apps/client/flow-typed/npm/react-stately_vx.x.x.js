@@ -1,4 +1,4 @@
-// flow-typed signature: 7d44bf0d0595c0b3e0beed8495005696
+// flow-typed signature: bb19489cd164134d2eada833a25d0ad2
 // flow-typed version: <<STUB>>/react-stately_v3.7.0/flow_v0.161.0
 
 /**
@@ -15,25 +15,4 @@
 
 declare module 'react-stately' {
   declare module.exports: any;
-}
-
-/**
- * We include stubs for each file inside this npm package in case you need to
- * require those files directly. Feel free to delete any files that aren't
- * needed.
- */
-declare module 'react-stately/dist/main' {
-  declare module.exports: any;
-}
-
-declare module 'react-stately/dist/module' {
-  declare module.exports: any;
-}
-
-// Filename aliases
-declare module 'react-stately/dist/main.js' {
-  declare module.exports: $Exports<'react-stately/dist/main'>;
-}
-declare module 'react-stately/dist/module.js' {
-  declare module.exports: $Exports<'react-stately/dist/module'>;
 }

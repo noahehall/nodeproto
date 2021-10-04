@@ -1,3 +1,6 @@
+// TODO: really need to rework this logic and add some tests
+// prototype is verified, type to make it a product
+
 import { wtf as wtfShared } from '@nodeproto/shared';
 
 import fs from 'fs-extra';
@@ -11,14 +14,14 @@ const notArrayOrObject = (v) => !isObject(v) && !Array.isArray(v);
 const throwIt = msg => { throw msg; };
 // TODO: @see @nodeproto/inception
 const noop = () => void 0;
-const logIt = process.env.NODE_ENV !== 'verbose' ? noop : (...msgs) => console.log(...msgs);
+const logIt = process.env.NODE_ENV !== 'verbose' ? noop : (...msgs) => console.info(...msgs);
 
 let newChildJson = {};
 
 // json field value categories
-const VTS = 'valuesToSpread';
-const VTF = 'valuesToForce';
-const VTI = 'valuesToIgnore';
+const VTS = 'spreadRootValues';
+const VTF = 'forceRootValues';
+const VTI = 'ignoreRootValues';
 const V = {}; // container for all the json segments
 
 // TODO
@@ -50,8 +53,6 @@ const getRootPkgFiles = async ({
       });
 };
 
-const finalizeJsyncConfig = (main, overrides) => ({ ...main, ...overrides });
-
 // TODO: confirm env
 const childPkgJsonPath = process.env.CHILD_PKG_JSON_PATH || process.cwd();
 const childPkgJson = await getPkgJson(childPkgJsonPath);
@@ -59,7 +60,30 @@ logIt('\n\n child pkgjson', childPkgJson);
 
 // finalize child jsync config
 if (!childPkgJson?.file?.jsync) throwIt(`invalid child package.json file: missing jsync property ${childPkgJson}`);
-const useChildJsyncConfig = finalizeJsyncConfig(JSYNC_DEFAULT_CONFIG, childPkgJson.file.jsync);
+
+// ensure the child '*" takes precedence over our default
+let DEFAULT_CATEGORY;
+const finalizeJsyncConfig = () => {
+  for (const key in childPkgJson.file.jsync) {
+    if (childPkgJson.file.jsync[key].includes?.('*')) {
+      if (!DEFAULT_CATEGORY) DEFAULT_CATEGORY = key;
+      childPkgJson.file.jsync[key] = childPkgJson.file.jsync[key].filter(k => k !== '*');
+    }
+  }
+
+  for (const key in JSYNC_DEFAULT_CONFIG) {
+    if (JSYNC_DEFAULT_CONFIG[key].includes?.('*')) {
+      if (!DEFAULT_CATEGORY) DEFAULT_CATEGORY = key;
+      JSYNC_DEFAULT_CONFIG[key] = JSYNC_DEFAULT_CONFIG[key].filter(k => k !== '*');
+    }
+  }
+
+  return {
+    ...JSYNC_DEFAULT_CONFIG,
+    ...childPkgJson.file.jsync,
+  };
+};
+const useChildJsyncConfig = finalizeJsyncConfig();
 logIt('\n\n final child jsync', useChildJsyncConfig);
 
 // retrieve root jsync config
@@ -77,7 +101,8 @@ const {
   ignoreRootValues = [],
   forceRootValues = [],
   spreadRootValues = [],
-}  = finalizeJsyncConfig(rootJsync, useChildJsyncConfig);
+}  = ({ ...rootJsync, ...useChildJsyncConfig });
+
 logIt('\n\n final jsync', { rootJsync, ignoreRootValues, forceRootValues, spreadRootValues }); // eslint-disable-line sort-keys
 
 // values to ignore
@@ -103,9 +128,6 @@ const getJsonFieldCategory = k => (
   || VTI
 );
 
-const DEFAULT_CATEGORY = getJsonFieldCategory('*');
-logIt('\n\n default category', DEFAULT_CATEGORY);
-
 let category;
 const segmentJsonFieldsByCategory = (json = rootJson) => (
   Object
@@ -123,7 +145,7 @@ const segmentJsonFieldsByCategory = (json = rootJson) => (
 );
 
 const rootJsonSegments = segmentJsonFieldsByCategory();
-logIt('\n\n root json segments', rootJsonSegments);
+logIt('\n\n root json segments', rootJsonSegments, DEFAULT_CATEGORY);
 
 // TODO: need to define logic when root & child have different value types
 // ^  root takes precendence if missing from child or child has same value type as root
@@ -185,16 +207,19 @@ await updateNewJson({
   force: true,
   keys: rootJsonSegments[VTF],
 });
+
 // spread values from root to child
 await updateNewJson({
   force: false,
   keys: rootJsonSegments[VTS],
 });
 
-// handle remaining root fields
-await updateNewJson({
+// handle remaining root fields not present in jsync config
+// if we are not ignoring fields by default
+
+if (DEFAULT_CATEGORY !== VTI) await updateNewJson({
   force: DEFAULT_CATEGORY === VTF,
-  keys: Object.keys(rootJson).filter(k => V[VTI].has(k)),
+  keys: Object.keys(rootJson).filter(k => !V[VTI].has(k)),
 });
 // use remaining values in childPkgJson as defualt
 // but override with new values on clash
