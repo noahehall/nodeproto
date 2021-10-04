@@ -1,4 +1,4 @@
-// @flow
+// @flowtodo
 
 import baseWebpackConfig from './base.webpack.config';
 import HtmlWebpackPlugin from 'html-webpack-plugin';

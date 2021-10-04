@@ -1,5 +1,5 @@
 import esbuild from 'esbuild';
-import { fsproto } from '@nodeproto/wtf/fsproto';
+import { dirs, fsproto } from '@nodeproto/wtf';
 
 const servers = new Map();
 
@@ -28,7 +28,13 @@ const startDev = async config => {
     // will likely break if consumer has multiple entyrpoints and hte first isnt the server
     const serverPath = config.outdir + '/' + Object.values(manifest)[0].split('/').pop();
 
-    server = await import(serverPath);
+    try {
+      server = await import(serverPath);
+    } catch (e) {
+      console.error('\n\n error importing serverPath', serverPath);
+
+      throw new Error(e);
+    }
 
     if (!server.runApp) throw new Error('server does not contain runApp fn');
 

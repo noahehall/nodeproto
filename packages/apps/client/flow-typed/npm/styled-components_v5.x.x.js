@@ -1,5 +1,5 @@
-// flow-typed signature: 69f4563bd6688187bba475803d40272a
-// flow-typed version: 145462e58a/styled-components_v5.x.x/flow_>=v0.134.x
+// flow-typed signature: ff5fd8efec7131ad9a2c76baef58d620
+// flow-typed version: 80277df6ae/styled-components_v5.x.x/flow_>=v0.134.x
 
 // @flow
 
@@ -46,7 +46,7 @@ declare module 'styled-components' {
   >;
   declare export type CreateGlobalStyleConstructor = TaggedTemplateLiteral<
     any, // eslint-disable-line flowtype/no-weak-types
-    React$ComponentType<*>
+    React$ComponentType<any>
   >;
 
   declare interface Tag<T> {
@@ -58,7 +58,7 @@ declare module 'styled-components' {
     removeRules(id: string): void;
     css(): string;
     toHTML(additionalAttrs: ?string): string;
-    toElement(): React$Element<*>;
+    toElement(): React$Element<any>;
     clone(): Tag<T>;
     sealed: boolean;
   }

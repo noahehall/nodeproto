@@ -1,5 +1,5 @@
 extends:
-  - ./.eslintrc.yml
+  - ./base.eslintrc.yml
   - plugin:react/jsx-runtime
   - plugin:react-hooks/recommended
 
@@ -13,7 +13,6 @@ settings:
     pragma: React
     fragment: Fragment
     version: detect
-    flowVersion: 0.158.0
     componentWrapperFunctions:
       - styled
     linkComponents:
@@ -22,7 +21,6 @@ settings:
 
 env:
   browser: true
-  es6: true
   serviceworker: true
   shared-node-browser: true
   webextensions: true

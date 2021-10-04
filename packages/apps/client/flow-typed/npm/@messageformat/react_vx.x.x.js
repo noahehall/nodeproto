@@ -1,4 +1,4 @@
-// flow-typed signature: 7a75ba606ad369ee90813c21d38af367
+// flow-typed signature: fe081f454176adac9302beb0668b7e98
 // flow-typed version: <<STUB>>/@messageformat/react_v1.0.0/flow_v0.161.0
 
 /**
@@ -15,77 +15,4 @@
 
 declare module '@messageformat/react' {
   declare module.exports: any;
-}
-
-/**
- * We include stubs for each file inside this npm package in case you need to
- * require those files directly. Feel free to delete any files that aren't
- * needed.
- */
-declare module '@messageformat/react/lib/get-message' {
-  declare module.exports: any;
-}
-
-declare module '@messageformat/react/lib' {
-  declare module.exports: any;
-}
-
-declare module '@messageformat/react/lib/message-context' {
-  declare module.exports: any;
-}
-
-declare module '@messageformat/react/lib/message-error' {
-  declare module.exports: any;
-}
-
-declare module '@messageformat/react/lib/message-provider' {
-  declare module.exports: any;
-}
-
-declare module '@messageformat/react/lib/message' {
-  declare module.exports: any;
-}
-
-declare module '@messageformat/react/lib/use-locales' {
-  declare module.exports: any;
-}
-
-declare module '@messageformat/react/lib/use-message-getter' {
-  declare module.exports: any;
-}
-
-declare module '@messageformat/react/lib/use-message' {
-  declare module.exports: any;
-}
-
-// Filename aliases
-declare module '@messageformat/react/lib/get-message.js' {
-  declare module.exports: $Exports<'@messageformat/react/lib/get-message'>;
-}
-declare module '@messageformat/react/lib/index' {
-  declare module.exports: $Exports<'@messageformat/react/lib'>;
-}
-declare module '@messageformat/react/lib/index.js' {
-  declare module.exports: $Exports<'@messageformat/react/lib'>;
-}
-declare module '@messageformat/react/lib/message-context.js' {
-  declare module.exports: $Exports<'@messageformat/react/lib/message-context'>;
-}
-declare module '@messageformat/react/lib/message-error.js' {
-  declare module.exports: $Exports<'@messageformat/react/lib/message-error'>;
-}
-declare module '@messageformat/react/lib/message-provider.js' {
-  declare module.exports: $Exports<'@messageformat/react/lib/message-provider'>;
-}
-declare module '@messageformat/react/lib/message.js' {
-  declare module.exports: $Exports<'@messageformat/react/lib/message'>;
-}
-declare module '@messageformat/react/lib/use-locales.js' {
-  declare module.exports: $Exports<'@messageformat/react/lib/use-locales'>;
-}
-declare module '@messageformat/react/lib/use-message-getter.js' {
-  declare module.exports: $Exports<'@messageformat/react/lib/use-message-getter'>;
-}
-declare module '@messageformat/react/lib/use-message.js' {
-  declare module.exports: $Exports<'@messageformat/react/lib/use-message'>;
 }

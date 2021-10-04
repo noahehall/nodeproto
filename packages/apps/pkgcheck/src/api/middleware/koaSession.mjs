@@ -30,7 +30,7 @@ export const sessionHandler = async (ctx, next) => {
   ctx.session.views = views + 1;
 
   next();
-}
+};
 export default function koaSession ({ useHandler = true, ...conf } = {}, app) {
   const s = session(
     { ...CONFIG, ...conf },

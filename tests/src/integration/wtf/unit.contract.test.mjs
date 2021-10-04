@@ -84,7 +84,7 @@ test('dirs', async () => {
   assert.match(
     dirs.filename(import.meta.url),
     // i.e. /some/path/on/ur/machine/tests/src/integration/wtf/contract.test.mjs
-    /^\/.*\/tests\/src\/integration\/wtf\/contract.test.mjs$/,
+    /^\/.*\/tests\/src\/integration\/wtf\/unit.contract.test.mjs$/,
     'esm: returns absolute path to this dir'
   );
 
@@ -106,9 +106,9 @@ test('fsproto', async () => {
   // similar to aforementioned comment
   // keeping things dry, while supporting esm + cjs environments
   assert.match(
-    await resolve('./contract.test.mjs', import.meta),
+    await resolve('./unit.contract.test.mjs', import.meta),
     // i.e. /some/path/on/ur/machine/tests/src/integration/wtf/contract.test.mjs
-    /^\/.*tests\/src\/integration\/wtf\/contract.test.mjs$/,
+    /^\/.*tests\/src\/integration\/wtf\/unit.contract.test.mjs$/,
     'esm: can resolve file in current dir'
   );
 
@@ -124,7 +124,7 @@ test('fsproto', async () => {
 
   assert.match(
     await urlToPath(import.meta.url),
-    /^\/.*tests\/src\/integration\/wtf\/contract.test.mjs$/,
+    /^\/.*tests\/src\/integration\/wtf\/unit.contract.test.mjs$/,
     'esm: returns absolute path to current file via import.meta.url'
   );
 

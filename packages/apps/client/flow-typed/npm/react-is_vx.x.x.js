@@ -1,4 +1,4 @@
-// flow-typed signature: bc41c8e5a2b5be4d418913cc497d17d7
+// flow-typed signature: fe503a9e01c9c44d2b61c58ce47b075f
 // flow-typed version: <<STUB>>/react-is_v17.0.2/flow_v0.161.0
 
 /**
@@ -15,45 +15,4 @@
 
 declare module 'react-is' {
   declare module.exports: any;
-}
-
-/**
- * We include stubs for each file inside this npm package in case you need to
- * require those files directly. Feel free to delete any files that aren't
- * needed.
- */
-declare module 'react-is/cjs/react-is.development' {
-  declare module.exports: any;
-}
-
-declare module 'react-is/cjs/react-is.production.min' {
-  declare module.exports: any;
-}
-
-declare module 'react-is/umd/react-is.development' {
-  declare module.exports: any;
-}
-
-declare module 'react-is/umd/react-is.production.min' {
-  declare module.exports: any;
-}
-
-// Filename aliases
-declare module 'react-is/cjs/react-is.development.js' {
-  declare module.exports: $Exports<'react-is/cjs/react-is.development'>;
-}
-declare module 'react-is/cjs/react-is.production.min.js' {
-  declare module.exports: $Exports<'react-is/cjs/react-is.production.min'>;
-}
-declare module 'react-is/index' {
-  declare module.exports: $Exports<'react-is'>;
-}
-declare module 'react-is/index.js' {
-  declare module.exports: $Exports<'react-is'>;
-}
-declare module 'react-is/umd/react-is.development.js' {
-  declare module.exports: $Exports<'react-is/umd/react-is.development'>;
-}
-declare module 'react-is/umd/react-is.production.min.js' {
-  declare module.exports: $Exports<'react-is/umd/react-is.production.min'>;
 }

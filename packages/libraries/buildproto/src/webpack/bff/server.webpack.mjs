@@ -1,4 +1,4 @@
-// @flow
+// @flowtodo
 
 import httpTerminator from 'http-terminator';
 import Koa from 'koa';

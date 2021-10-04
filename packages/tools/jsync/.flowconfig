@@ -1,24 +1,24 @@
-; wtf! https://github.com/facebook/flow/issues/153
-; https://github.com/TiddoLangerak/flow-json-config#readme
+💩  @see https://flow.org/en/docs/config/
+💩  wtf! https://github.com/facebook/flow/issues/153
+💩  https://github.com/TiddoLangerak/flow-json-config#readme
 ; @nodeproto: the ultimate flowconfig
 ; @todo: https://github.com/flow-typed/flow-typed
 ; @todo: https://github.com/flow-typed/flow-typed/wiki/Importing-And-Using-Type-Definitions
-;
-[declarations]
-<PROJECT_ROOT>/flow-typed/.*
-
 [ignore]
-<PROJECT_ROOT>/.rush/.*
 <PROJECT_ROOT>/browsertime*/.*
 <PROJECT_ROOT>/bundle*/.*
 <PROJECT_ROOT>/doc/.*
 <PROJECT_ROOT>/hint*/.*
+./dist/.*
+.*/node_modules/fbjs/.*
+.*/git/.*
 
-[include]
+[lints]
+all=warn
+untyped-import=off
 
 [libs]
-<PROJECT_ROOT>/flow-typed/.*
-[lints]
+<PROJECT_ROOT>/flow-typed
 
 [options]
 all=false
@@ -26,7 +26,7 @@ babel_loose_array_spread=false
 emoji=true
 exact_by_default=false
 experimental.const_params=true
-include_warnings=true
+include_warnings=false
 lazy_mode=none
 log.file=./.flowlog
 max_header_tokens=3
@@ -37,10 +37,11 @@ module.file_ext=.json
 module.ignore_non_literal_requires=true
 module.system=node
 module.system.node.main_field=exports
-module.system.node.main_field=browser
+module.system.node.main_field=module
 module.system.node.main_field=main
+module.system.node.main_field=browser
 module.system.node.resolve_dirname=node_modules
-module.use_strict=false
+module.use_strict=true
 munge_underscores=false
 no_flowlib=false
 react.runtime=automatic
@@ -55,13 +56,3 @@ suppress_type=$FlowTODO
 ; types_first=false throws err
 ; well_formed_exports=true
 ; esproposal.class_static_fields=true throws err
-
-[strict]
-
-[untyped]
-<PROJECT_ROOT>/dist/.*
-; <PROJECT_ROOT>/node_modules/.*
-<PROJECT_ROOT>/*\.test\.(c|m)js
-
-[version]
-0.158.0

@@ -10,10 +10,10 @@ import path from 'path';
 export const isR = (t, msg = 'is required in @nodeproto/fsproto') => { throw new Error(`${t}: ${msg}`); };
 
 export const isMain = (
-  importMetaOrisRuireMain = isR('importMetaOrisRuireMain'),
+  importMetaOrRequireMain = isR('importMetaOrRequireMain'),
 ) => wtfShared.isEsm()
-  ? esMain(importMetaOrisRuireMain)
-  : importMetaOrisRuireMain == module; // eslint-disable-line no-undef
+  ? esMain(importMetaOrRequireMain)
+  : importMetaOrRequireMain == module; // eslint-disable-line no-undef
 
 
 export const urlToPath = (importMetaUrlOrPath = isR('importMetaUrlOrPath')) => fileURLToPath(importMetaUrlOrPath);

@@ -1,5 +1,5 @@
 import { createEsbuildConfig, esbuildConfig } from '@nodeproto/buildproto/esbuild';
-import { fsproto, resolve, dirs } from '@nodeproto/wtf';
+import { dirs, fsproto, resolve } from '@nodeproto/wtf';
 import path from 'path';
 
 const thisDir = dirs.dirname(import.meta.url);

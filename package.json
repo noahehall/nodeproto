@@ -73,6 +73,7 @@
     "proto:slice": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" pnpm exec ultra -r --filter",
     "proto": "pnpm exec ultra -r",
     "repo:flow": "pnpm exec flow",
+    "repo:flowtyped:install": "pnpm exec flow-typed install",
     "repo:flow:status": "pnpm exec flow status",
     "repo:cp:browserslist": "rm -f .browserslistrc && cp ./node_modules/@nodeproto/configproto/src/browserslist/.browserslistrc .",
     "repo:cp:cjs": "rm -f ./dist/package.json && mkdir -p dist && cp ./node_modules/@nodeproto/configproto/src/node/cjs.json ./dist/package.json",
@@ -105,20 +106,15 @@
   },
   "packageManager": "pnpm@6.15.1",
   "dependencies": {
-    "@babel/runtime": "7.14.8",
-    "regenerator-runtime": "0.13.9",
     "ultra-runner": "3.10.5"
   },
   "devDependencies": {
-    "@babel/core": "7.15.0",
-    "@babel/eslint-parser": "7.14.7",
     "@changesets/cli": "2.17.0",
-    "@swc/cli": "0.1.46",
-    "@swc/core": "1.2.75",
-    "chokidar-cli": "3.0.0",
+    "@octokit/core": "3.5.1",
     "eslint": "7.32.0",
     "flow-bin": "0.161.0",
     "flow-remove-types": "2.158.0",
+    "flow-typed": "3.3.1",
     "uvu": "0.5.1"
   }
 }

@@ -18,5 +18,5 @@ export default function logger (config, app) {
     );
 
     log(`${ctx.method}: ${ctx.url} ${rt}ms\nBody: \n${ctx.body}`);
-  }
+  };
 }

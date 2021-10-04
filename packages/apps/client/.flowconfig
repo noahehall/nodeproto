@@ -9,14 +9,14 @@
 <PROJECT_ROOT>/bundle*/.*
 <PROJECT_ROOT>/doc/.*
 <PROJECT_ROOT>/hint*/.*
-<PROJECT_ROOT>/dist/.*
-
-[untyped]
-.*/node_modules/*
+.*/node_modules/fbjs/.*
 
 [lints]
 all=warn
 untyped-import=off
+
+[libs]
+<PROJECT_ROOT>/flow-typed
 
 [options]
 all=false
@@ -35,10 +35,11 @@ module.file_ext=.json
 module.ignore_non_literal_requires=true
 module.system=node
 module.system.node.main_field=exports
-module.system.node.main_field=browser
+module.system.node.main_field=module
 module.system.node.main_field=main
+module.system.node.main_field=browser
 module.system.node.resolve_dirname=node_modules
-module.use_strict=false
+module.use_strict=true
 munge_underscores=false
 no_flowlib=false
 react.runtime=automatic

@@ -24,7 +24,7 @@ const CONFIG = {
   // blacklist: (ctx) => {
   // some logic that returns a boolean
   // }
-}
+};
 
 export default function koaRatelimit (config = CONFIG, app) {
   return ratelimit(config);

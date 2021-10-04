@@ -8,7 +8,9 @@
     // the total number of ancestor dirs to search for root
     // will throw err if not found
     "maxLookups": 3,
-    // list of root/package.json fields to always ignore
+    // list of root/package.json fields to always ignore UNLESS missing
+    // we always force missing values from root to child
+    // consumers (or more likely their tech leads) should be forced to pay attention to their source code
     // overrides all other settings
     "ignoreRootValues": [
       "bin",
@@ -18,7 +20,7 @@
       "files",
       "jsync",
       "name",
-      "workspaces",
+      "workspaces"
       // "*" uncomment to test precedence logic
     ],
     // list of root/package.json fields to always use if available

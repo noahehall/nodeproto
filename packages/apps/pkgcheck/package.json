@@ -1,6 +1,7 @@
 {
   "bugs": "https://github.com/noahehall/nodeproto/issues",
   "description": "bleeding-edge repo for prototyping end-to-end, complex, and secure applications and microservices",
+  "exports": "./src/root.mjs",
   "homepage": "https://github.com/noahehall/nodeproto",
   "license": "SEE LICENSE IN LICENSE.md",
   "main": "./dist/index.cjs",
@@ -62,7 +63,6 @@
     "@nodeproto/testproto": "workspace:0.0.0",
     "@swc/cli": "0.1.46",
     "@swc/core": "1.2.75",
-    "chokidar": "3.5.2",
     "chokidar-cli": "3.0.0",
     "eslint": "7.32.0",
     "flow-bin": "0.161.0",
@@ -77,6 +77,7 @@
   "engines": {
     "node": ">=16.10.0"
   },
+  "files": [],
   "jsync": {
     "root": false
   },

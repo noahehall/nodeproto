@@ -1,4 +1,4 @@
-// flow-typed signature: 910e3793db9e6239ab3deddec4df896b
+// flow-typed signature: 116d9abaf248088a91b45c3bc2f0e905
 // flow-typed version: <<STUB>>/immutability-helper_v3.1.1/flow_v0.161.0
 
 /**
@@ -15,24 +15,4 @@
 
 declare module 'immutability-helper' {
   declare module.exports: any;
-}
-
-/**
- * We include stubs for each file inside this npm package in case you need to
- * require those files directly. Feel free to delete any files that aren't
- * needed.
- */
-declare module 'immutability-helper/smoke-test' {
-  declare module.exports: any;
-}
-
-// Filename aliases
-declare module 'immutability-helper/index' {
-  declare module.exports: $Exports<'immutability-helper'>;
-}
-declare module 'immutability-helper/index.js' {
-  declare module.exports: $Exports<'immutability-helper'>;
-}
-declare module 'immutability-helper/smoke-test.js' {
-  declare module.exports: $Exports<'immutability-helper/smoke-test'>;
 }

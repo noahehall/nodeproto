@@ -14,19 +14,11 @@
     "name": "theDRAGON",
     "url": "https://github.com/noahehall"
   },
-  "bin": {
-    "bin": "./usr/bin"
-  },
   "config": {
-    "BABEL_SHOW_CONFIG_FOR": "e.g. BABEL_SHOW_CONFIG_FOR=absolute/path/to/file somePkgJsonScriptName",
-    "DIRS_TO_TRANSPILE": "./src",
-    "FLOW_LOADER": "./node_modules/@nodeproto/configproto/src/node/loaders/flow.mjs",
     "GATEWAY_CHROOT_DIR": "./var/lib/haproxy",
     "GATEWAY_GROUP": "haproxy",
     "GATEWAY_STATS_SOCK": "./run/haproxy/admin.sock",
     "GATEWAY_USER": "haproxy",
-    "NODE_ENV": "production",
-    "NODE_OPTIONS": "--experimental-loader=\"./node_modules/@nodeproto/configproto/src/node/loaders/flow.mjs\" --experimental-specifier-resolution=node --experimental-json-modules --experimental-top-level-await --experimental-vm-modules --experimental-import-meta-resolve node --enable-source-maps --heapsnapshot-near-heap-limit=3 --use-largepages=on --pending-deprecation --trace-sigint --trace-warnings --trace-exit --report-uncaught-exception --report-on-fatalerror --abort-on-uncaught-exception",
     "PATH_DIST": "./dist",
     "PATH_SRC": "./src"
   },
@@ -35,21 +27,10 @@
   },
   "devDependencies": {
     "@changesets/cli": "2.17.0",
-    "@nodeproto/configproto": "workspace:0.0.0",
-    "@nodeproto/jsync": "workspace:0.0.0",
-    "chokidar-cli": "3.0.0",
-    "eslint": "7.32.0",
-    "flow-bin": "0.161.0",
-    "flow-remove-types": "2.158.0",
-    "uvu": "0.5.1"
+    "@nodeproto/jsync": "workspace:0.0.0"
   },
   "directories": {
-    "doc": "./doc",
-    "packages": "./packages",
     "src": "./src"
-  },
-  "engines": {
-    "node": ">=16.10.0"
   },
   "files": [],
   "jsync": {
@@ -58,23 +39,18 @@
       "bugs",
       "funding",
       "homepage",
-      "license"
+      "license",
+      "repository"
     ],
     "ignoreRootValues": [
-      "dependencies",
-      "devDependencies",
-      "files",
       "*"
     ],
     "root": false,
     "spreadRootValues": [
-      "config",
       "cpu",
-      "engines",
       "keywords",
       "os",
       "publishConfig",
-      "scripts",
       "version"
     ]
   },
@@ -117,23 +93,12 @@
     "proto:slice": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" pnpm exec ultra -r --filter",
     "repo:about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
     "repo:config:list": "pnpm config list --json",
-    "repo:cp:browserslist": "rm -f .browserslistrc && cp ./node_modules/@nodeproto/configproto/src/browserslist/.browserslistrc .",
-    "repo:cp:cjs": "rm -f ./dist/package.json && mkdir -p dist && cp ./node_modules/@nodeproto/configproto/src/node/cjs.json ./dist/package.json",
-    "repo:cp:configproto": "pnpm repo:cp:flow; pnpm repo:cp:cjs; pnpm repo:cp:browserslist",
-    "repo:cp:flow": "rm -f .flowconfig && cp ./node_modules/@nodeproto/configproto/src/flowtype/.flowconfig .",
     "repo:deps": "pnpm exec ultra --info",
     "repo:eslint": "eslint 'src/**/*'",
     "repo:eslint:fix": "pnpm repo:eslint -- --fix",
-    "repo:flow": "pnpm exec flow",
-    "repo:flow:status": "pnpm exec flow status",
     "repo:install": "pnpm -r exec pnpm install",
     "repo:monitor": "pnpm exec ultra --monitor",
     "repo:nuke": "pnpm repo:rm:dist; pnpm repo:rm:nodemodules",
-    "repo:rm:dist": "rm -rf dist/*",
-    "repo:rm:nodemodules": "rm -rf node_modules",
-    "repo:test": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" uvu ./src \"test.(m|c)?js\"",
-    "repo:test:help": "uvu --help",
-    "repo:testing": "pnpm repo:test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"pnpm repo:test\"",
     "repo:upgrade": "pnpm upgrade -L",
     "start": "src/usr/bin/startdefault.sh",
     "start:client": "pnpm start",

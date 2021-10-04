@@ -1,6 +1,8 @@
 # @nodeproto/configproto - base eslint config
 # @see https://eslint.org/docs/user-guide/configuring/language-options
 # @see https://json.schemastore.org/eslintrc.json
+# @see https://github.com/amilajack/eslint-plugin-flowtype-errors/wiki/Advanced-Config
+# @see https://github.com/amilajack/eslint-plugin-flowtype-errors/wiki/Advanced-Config
 
 reportUnusedDisableDirectives: true
 ignorePatterns: ["**/dist/**"] # '**/node_modules/**', included by default
@@ -11,8 +13,8 @@ ignorePatterns: ["**/dist/**"] # '**/node_modules/**', included by default
 parser: "@babel/eslint-parser"
 parserOptions:
   allowImportExportEverywhere: false
-  ecmaVersion: latest
-  requireConfigFile: true # force a configFile so we dont have to always debug htis fkn issue (required for @babel/eslint-parser)
+  ecmaVersion: 12 # dont fkn use "latest", it breaks eslint, @see https://github.com/eslint/eslint-scope/issues/55
+  requireConfigFile: true # force a configFile so we dont have to always debug htis fkn issue (required for @babel/eslint-parser, else throws error)
   sourceType: module
   ecmaFeatures:
     globalReturn: true
@@ -20,6 +22,9 @@ parserOptions:
     jsx: true
     modules: true
   # set babelOptions when extending if dont want to use a babel config/using webpack + babel-loader
+  babelOptions:
+    rootMode: upward-optional
+    # configFile: you have to set this
 
 # @see https://eslint.org/docs/user-guide/configuring/language-options#specifying-environments
 env:
@@ -48,6 +53,7 @@ extends:
   - plugin:markdown/recommended
   - plugin:yml/standard
   - plugin:json/recommended-with-comments
+  - plugin:flowtype-errors/recommended
 
 settings:
   # @see https://github.com/BenoitZugmeyer/eslint-plugin-html
@@ -57,8 +63,9 @@ settings:
   html/indent: "+2"
   html/report-bad-indent: error
 
-  # flowtype:
-  #   onlyFilesWithFlowAnnotation: true
+  flowtype-errors:
+    stopOnExit: false
+
   # @see https://github.com/import-js/eslint-plugin-import#settings
   # parse these as modules and inspect them for exports
   # throws error if no export is found
@@ -125,12 +132,13 @@ rules:
     - error
     - ignoreCase: true
       ignoreDeclarationSort: false
+      ignoreMemberSort: false
       allowSeparatedGroups: true
-      memberSyntaxSortOrder:
-        - single # import { poop }
-        - all # import * as poop
-        - none # import poop
+      memberSyntaxSortOrder: # supports sorting lines ascending
+        - none # import 'poop'
         - multiple # import { p, o, o, p } # usually on more than one line so hard to sort in vscode
+        - all # import * as poop
+        - single # import poop 'from 'poop
   sort-keys:
     - error
     - asc
@@ -154,13 +162,17 @@ rules:
 
   # flow specific rules
   flowtype-errors/show-errors: error
+  flowtype-errors/show-warnings: warn
+  flowtype-errors/enforce-min-coverage:
+    - error
+    - 100
 
 
   # dumb fkn rules here
   arrow-parens: 0
   capitalized-comments: 0
   comma-dangle: 0 # love trailing commas
-  id-length: 0 # we support junior devs without hampering others
+  id-length: 0
   line-comment-position: 0
   multiline-comment-style: 0
   no-inline-comments: 0

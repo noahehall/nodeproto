@@ -1,4 +1,4 @@
-// @flow
+// @flowtodo
 
 import { ESBuildMinifyPlugin } from 'esbuild-loader';
 import HtmlWebpackPlugin from 'html-webpack-plugin';

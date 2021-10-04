@@ -3,7 +3,8 @@
   "description": "@nodeproto/wtf - Where the file? file and directory management",
   "homepage": "https://github.com/noahehall/nodeproto",
   "license": "SEE LICENSE IN LICENSE.md",
-  "main": "index.mjs",
+  "main": "dist/index.js",
+  "module": "./src/index.mjs",
   "name": "@nodeproto/wtf",
   "packageManager": "pnpm@6.15.1",
   "private": true,
@@ -48,14 +49,20 @@
     "@nodeproto/configproto": "workspace:0.0.0",
     "@nodeproto/jsync": "workspace:0.0.0",
     "@nodeproto/testproto": "workspace:0.0.0",
+    "@octokit/core": "3.5.1",
     "@swc/cli": "0.1.46",
     "@swc/core": "1.2.75",
-    "chokidar": "3.5.2",
     "chokidar-cli": "3.0.0",
     "eslint": "7.32.0",
     "flow-bin": "0.161.0",
     "flow-remove-types": "2.158.0",
+    "flow-typed": "3.3.1",
     "uvu": "0.5.1"
+  },
+  "directories": {
+    "dist": "./dist",
+    "src": "./src",
+    "flowtyped": "./flow-typed"
   },
   "engines": {
     "node": ">=16.10.0"
@@ -74,6 +81,9 @@
       "default": "./dist/fsproto.js"
     }
   },
+  "files": [
+    "./.flowconfig"
+  ],
   "jsync": {
     "root": false
   },
@@ -126,12 +136,14 @@
     "repo:eslint:fix": "pnpm repo:eslint -- --fix",
     "repo:flow": "pnpm exec flow",
     "repo:flow:status": "pnpm exec flow status",
+    "repo:flowtyped:install": "pnpm exec flow-typed install",
     "repo:install": "pnpm -r exec pnpm install",
     "repo:monitor": "pnpm exec ultra --monitor",
     "repo:nuke": "pnpm repo:rm:dist; pnpm repo:rm:nodemodules",
     "repo:rm:dist": "rm -rf dist/*",
     "repo:rm:nodemodules": "rm -rf node_modules",
     "repo:test": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" uvu ./src \"test.(m|c)?js\"",
+    "repo:test:file": "node --experimental-specifier-resolution=node --experimental-import-meta-resolve $*",
     "repo:test:help": "uvu --help",
     "repo:test:ing": "pnpm repo:test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"pnpm repo:test\"",
     "repo:testing": "pnpm repo:test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"pnpm repo:test\"",

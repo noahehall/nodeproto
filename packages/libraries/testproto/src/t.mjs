@@ -1,4 +1,3 @@
-// import * as internalAssert from 'uvu/assert';
 import { suite as internalSuite } from 'uvu';
 
 import chaiAsPromised from 'chai-as-promised';
@@ -6,7 +5,6 @@ import chaiExclude from 'chai-exclude';
 import chaiNock from 'chai-nock';
 import http from 'http';
 import internalChai from 'chai';
-
 import internalNock from 'nock';
 import internalSinon from 'sinon';
 
@@ -23,6 +21,6 @@ internalChai.use(chaiAsPromised); // https://github.com/domenic/chai-as-promised
 export const assert = internalChai.assert; // https://www.chaijs.com/api/assert/
 export const get = http.get;
 export const nock = internalNock;
-export const post = http.post;
+export const request = http.request;
 export const sinon = internalSinon;
 export const suite = internalSuite;

@@ -4,6 +4,7 @@
   "homepage": "https://github.com/noahehall/nodeproto",
   "license": "SEE LICENSE IN LICENSE.md",
   "main": "./dist/index.cjs",
+  "module": "./src/index.mjs",
   "name": "@nodeproto/envproto",
   "packageManager": "pnpm@6.15.1",
   "private": true,
@@ -36,23 +37,25 @@
   },
   "devDependencies": {
     "@babel/core": "7.15.0",
-    "@babel/eslint-parser": "7.14.7",
     "@changesets/cli": "2.17.0",
     "@nodeproto/configproto": "workspace:0.0.0",
     "@nodeproto/jsync": "workspace:*",
     "@nodeproto/testproto": "workspace:0.0.0",
+    "@octokit/core": "3.5.1",
     "@swc/cli": "0.1.46",
     "@swc/core": "1.2.75",
     "chokidar-cli": "3.0.0",
     "eslint": "7.32.0",
     "flow-bin": "0.161.0",
     "flow-remove-types": "2.158.0",
+    "flow-typed": "3.3.1",
     "ultra-runner": "3.10.5",
     "uvu": "0.5.1"
   },
   "directories": {
     "dist": "./dist",
-    "src": "./src"
+    "src": "./src",
+    "flowtyped": "./flow-typed"
   },
   "engines": {
     "node": ">=16.10.0"
@@ -61,6 +64,9 @@
     "import": "./src/index.mjs",
     "default": "./dist/index.js"
   },
+  "files": [
+    "./.flowconfig"
+  ],
   "jsync": {
     "root": false
   },
@@ -111,11 +117,13 @@
     "repo:eslint:fix": "pnpm repo:eslint -- --fix",
     "repo:flow": "pnpm exec flow",
     "repo:flow:status": "pnpm exec flow status",
+    "repo:flowtyped:install": "pnpm exec flow-typed install",
     "repo:monitor": "pnpm exec ultra --monitor",
     "repo:nuke": "pnpm repo:rm:dist; pnpm repo:rm:nodemodules",
     "repo:rm:dist": "rm -rf dist/*",
     "repo:rm:nodemodules": "rm -rf node_modules",
     "repo:test": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" uvu ./src \"test.(m|c)?js\"",
+    "repo:test:file": "node --experimental-specifier-resolution=node --experimental-import-meta-resolve $*",
     "repo:test:help": "uvu --help",
     "repo:testing": "pnpm repo:test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"pnpm repo:test\"",
     "repo:upgrade": "pnpm upgrade -L"

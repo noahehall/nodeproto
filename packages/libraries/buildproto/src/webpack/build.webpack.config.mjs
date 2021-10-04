@@ -1,4 +1,4 @@
-// @flow
+// @flowtodo
 
 import testCompiler from './test.compiler';
 import webpack from 'webpack';

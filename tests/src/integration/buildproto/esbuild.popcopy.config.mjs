@@ -4,7 +4,7 @@ import {
   esbuildPluginPopCopy,
   esbuildPluginPopCopyConfig,
 } from '@nodeproto/buildproto/esbuild';
-import { fsproto, resolve, dirs } from '@nodeproto/wtf';
+import { dirs, fsproto, resolve } from '@nodeproto/wtf';
 import { builtinModules } from 'module';
 import path from 'path';
 
