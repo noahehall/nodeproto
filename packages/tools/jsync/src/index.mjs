@@ -139,6 +139,7 @@ const updateNewJson = async ({
     const childValue = toJson[k];
     const missing = !(k in toJson);
 
+    // takes priority over everything
     // set the value if forced or missing
     if (force || missing) {
       newChildJson[k] = rootValue;
@@ -193,7 +194,7 @@ await updateNewJson({
 // handle remaining root fields
 await updateNewJson({
   force: DEFAULT_CATEGORY === VTF,
-  keys: Object.keys(rootJson).filter(k => !V[VTI].has(k)),
+  keys: Object.keys(rootJson).filter(k => V[VTI].has(k)),
 });
 // use remaining values in childPkgJson as defualt
 // but override with new values on clash

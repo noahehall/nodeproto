@@ -62,6 +62,9 @@
     "import": "./src/index.mjs",
     "default": "./dist/index.js"
   },
+  "files": [
+    "./.flowconfig"
+  ],
   "jsync": {
     "root": false
   },

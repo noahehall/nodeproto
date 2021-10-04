@@ -1,2 +1,2 @@
 root: true
-extends: ./node_modules/@nodeproto/configproto/src/eslint/.eslintrc.yml
+extends: ./node_modules/@nodeproto/configproto/src/eslint/base.eslintrc.yml

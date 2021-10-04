@@ -26,6 +26,9 @@
   "engines": {
     "node": ">=16.10.0"
   },
+  "files": [
+    "./.flowconfig"
+  ],
   "config": {
     "NODE_ENV": "production",
     "NODE_OPTIONS": "--enable-source-maps --heapsnapshot-near-heap-limit=3 --use-largepages=on --pending-deprecation --trace-sigint --trace-warnings --trace-exit --report-uncaught-exception --report-on-fatalerror --abort-on-uncaught-exception --experimental-specifier-resolution=node --experimental-json-modules --experimental-top-level-await --experimental-vm-modules --experimental-import-meta-resolve",
@@ -42,9 +45,6 @@
     "repo:eslint:fix": "pnpm repo:eslint -- --fix",
     "repo:eslint": "eslint 'src/**/*'",
     "repo:rm:dist": "rm -rf dist/*",
-    "repo:test:help": "uvu --help",
-    "repo:testing": "pnpm repo:test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"pnpm repo:test\"",
-    "repo:test": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" uvu ./src test.mjs",
     "repo:install": "pnpm -r exec pnpm install",
     "repo:upgrade": "pnpm upgrade -L"
   },
