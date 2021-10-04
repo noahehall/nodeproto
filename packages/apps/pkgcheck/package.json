@@ -132,12 +132,13 @@
     "repo:rm:dist": "rm -rf dist/*",
     "repo:rm:nodemodules": "rm -rf node_modules",
     "repo:test": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" uvu ./src \"test.(m|c)?js\"",
+    "repo:test:file": "node --experimental-specifier-resolution=node --experimental-import-meta-resolve $*",
     "repo:test:help": "uvu --help",
     "repo:testing": "pnpm repo:test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"pnpm repo:test\"",
     "repo:upgrade": "pnpm upgrade -L",
     "start": "pnpm start:pkgcheck",
-    "start:raw": "node --experimental-specifier-resolution=node --experimental-import-meta-resolve src/root.mjs",
-    "start:pkgcheck": "clear; pnpm repo:rm:dist && NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" node esbuild.run.config.mjs"
+    "start:pkgcheck": "clear; pnpm repo:rm:dist && NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" node esbuild.run.config.mjs",
+    "start:raw": "node --experimental-specifier-resolution=node --experimental-import-meta-resolve src/root.mjs"
   },
   "ultra": {
     "concurrent": [

@@ -89,6 +89,7 @@
     "repo:rm:nodemodules": "rm -rf node_modules",
     "repo:test:help": "uvu --help",
     "repo:test": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" uvu ./src \"test.(m|c)?js\"",
+    "repo:test:file": "node --experimental-specifier-resolution=node --experimental-import-meta-resolve $*",
     "repo:testing": "pnpm repo:test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"pnpm repo:test\"",
     "repo:upgrade": "pnpm upgrade -L"
   },
