@@ -1,4 +1,4 @@
-// @flow
+// @flow strict
 
 import { unstable_GridCell as GridCell, unstable_useGridState as useGridState } from 'reakit/Grid';
 import * as React from 'react';

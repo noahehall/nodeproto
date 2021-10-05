@@ -1,4 +1,4 @@
-// @flow
+// @flow strict
 
 import clsx from 'clsx';
 import * as React from 'react';

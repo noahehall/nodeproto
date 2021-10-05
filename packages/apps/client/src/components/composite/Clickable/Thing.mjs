@@ -1,4 +1,4 @@
-// @flow
+// @flow strict
 
 import { Clickable } from 'reakit/Clickable';
 import { useButton } from 'react-aria';

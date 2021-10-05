@@ -1,4 +1,4 @@
-// @flow
+// @flow strict
 
 import { Helmet } from 'react-helmet';
 import { Router } from '@reach/router';

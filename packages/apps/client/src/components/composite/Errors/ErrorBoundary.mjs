@@ -1,4 +1,4 @@
-// @flow
+// @flow strict
 
 import DisplayError from './DisplayError.mjs';
 import JsonPretty from 'react-json-pretty';
