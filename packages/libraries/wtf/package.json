@@ -43,8 +43,8 @@
     "ultra-runner": "3.10.5"
   },
   "devDependencies": {
-    "@babel/core": "7.15.0",
-    "@babel/eslint-parser": "7.14.7",
+    "@babel/core": "7.15.5",
+    "@babel/eslint-parser": "7.15.7",
     "@changesets/cli": "2.17.0",
     "@nodeproto/configproto": "workspace:0.0.0",
     "@nodeproto/jsync": "workspace:0.0.0",
@@ -61,8 +61,8 @@
   },
   "directories": {
     "dist": "./dist",
-    "src": "./src",
-    "flowtyped": "./flow-typed"
+    "flowtyped": "./flow-typed",
+    "src": "./src"
   },
   "engines": {
     "node": ">=16.10.0"
@@ -132,7 +132,7 @@
     "repo:cp:eslint": "rm -f .eslintrc.yml && ln -s ../../libraries/configproto/.eslintrc.yml .",
     "repo:cp:flow": "rm -f .flowconfig && cp ./node_modules/@nodeproto/configproto/src/flowtype/.flowconfig .",
     "repo:deps": "pnpm exec ultra --info",
-    "repo:eslint": "eslint 'src/**/*'",
+    "repo:eslint": "eslint './**/*'",
     "repo:eslint:fix": "pnpm repo:eslint -- --fix",
     "repo:flow": "pnpm exec flow",
     "repo:flow:status": "pnpm exec flow status",

@@ -1,4 +1,4 @@
-// flow-typed signature: 97322f15317cb9198c75716197cd3699
+// flow-typed signature: db29decc3faf0c2c66239de6e4e13d4e
 // flow-typed version: <<STUB>>/@nodeproto/envproto_vworkspace:0.0.0/flow_v0.161.0
 
 /**
@@ -15,4 +15,189 @@
 
 declare module '@nodeproto/envproto' {
   declare module.exports: any;
+}
+
+/**
+ * We include stubs for each file inside this npm package in case you need to
+ * require those files directly. Feel free to delete any files that aren't
+ * needed.
+ */
+declare module '@nodeproto/envproto/dist/env' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/envproto/dist' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/envproto/dist/ssl' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/envproto/flow-typed/npm/@babel/core_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/envproto/flow-typed/npm/@babel/runtime_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/envproto/flow-typed/npm/@changesets/cli_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/envproto/flow-typed/npm/@nodeproto/configproto_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/envproto/flow-typed/npm/@nodeproto/jsync_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/envproto/flow-typed/npm/@nodeproto/testproto_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/envproto/flow-typed/npm/@nodeproto/wtf_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/envproto/flow-typed/npm/@octokit/core_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/envproto/flow-typed/npm/@swc/cli_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/envproto/flow-typed/npm/@swc/core_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/envproto/flow-typed/npm/chokidar-cli_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/envproto/flow-typed/npm/dotenv_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/envproto/flow-typed/npm/env-cmd_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/envproto/flow-typed/npm/eslint_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/envproto/flow-typed/npm/flow-bin_v0.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/envproto/flow-typed/npm/flow-remove-types_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/envproto/flow-typed/npm/flow-typed_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/envproto/flow-typed/npm/pem_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/envproto/flow-typed/npm/regenerator-runtime_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/envproto/flow-typed/npm/ultra-runner_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/envproto/flow-typed/npm/uvu_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/envproto/flow-typed/npm/yargs_vx.x.x' {
+  declare module.exports: any;
+}
+
+// Filename aliases
+declare module '@nodeproto/envproto/dist/env.js' {
+  declare module.exports: $Exports<'@nodeproto/envproto/dist/env'>;
+}
+declare module '@nodeproto/envproto/dist/index' {
+  declare module.exports: $Exports<'@nodeproto/envproto/dist'>;
+}
+declare module '@nodeproto/envproto/dist/index.js' {
+  declare module.exports: $Exports<'@nodeproto/envproto/dist'>;
+}
+declare module '@nodeproto/envproto/dist/ssl.js' {
+  declare module.exports: $Exports<'@nodeproto/envproto/dist/ssl'>;
+}
+declare module '@nodeproto/envproto/flow-typed/npm/@babel/core_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/envproto/flow-typed/npm/@babel/core_vx.x.x'>;
+}
+declare module '@nodeproto/envproto/flow-typed/npm/@babel/runtime_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/envproto/flow-typed/npm/@babel/runtime_vx.x.x'>;
+}
+declare module '@nodeproto/envproto/flow-typed/npm/@changesets/cli_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/envproto/flow-typed/npm/@changesets/cli_vx.x.x'>;
+}
+declare module '@nodeproto/envproto/flow-typed/npm/@nodeproto/configproto_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/envproto/flow-typed/npm/@nodeproto/configproto_vx.x.x'>;
+}
+declare module '@nodeproto/envproto/flow-typed/npm/@nodeproto/jsync_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/envproto/flow-typed/npm/@nodeproto/jsync_vx.x.x'>;
+}
+declare module '@nodeproto/envproto/flow-typed/npm/@nodeproto/testproto_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/envproto/flow-typed/npm/@nodeproto/testproto_vx.x.x'>;
+}
+declare module '@nodeproto/envproto/flow-typed/npm/@nodeproto/wtf_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/envproto/flow-typed/npm/@nodeproto/wtf_vx.x.x'>;
+}
+declare module '@nodeproto/envproto/flow-typed/npm/@octokit/core_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/envproto/flow-typed/npm/@octokit/core_vx.x.x'>;
+}
+declare module '@nodeproto/envproto/flow-typed/npm/@swc/cli_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/envproto/flow-typed/npm/@swc/cli_vx.x.x'>;
+}
+declare module '@nodeproto/envproto/flow-typed/npm/@swc/core_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/envproto/flow-typed/npm/@swc/core_vx.x.x'>;
+}
+declare module '@nodeproto/envproto/flow-typed/npm/chokidar-cli_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/envproto/flow-typed/npm/chokidar-cli_vx.x.x'>;
+}
+declare module '@nodeproto/envproto/flow-typed/npm/dotenv_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/envproto/flow-typed/npm/dotenv_vx.x.x'>;
+}
+declare module '@nodeproto/envproto/flow-typed/npm/env-cmd_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/envproto/flow-typed/npm/env-cmd_vx.x.x'>;
+}
+declare module '@nodeproto/envproto/flow-typed/npm/eslint_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/envproto/flow-typed/npm/eslint_vx.x.x'>;
+}
+declare module '@nodeproto/envproto/flow-typed/npm/flow-bin_v0.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/envproto/flow-typed/npm/flow-bin_v0.x.x'>;
+}
+declare module '@nodeproto/envproto/flow-typed/npm/flow-remove-types_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/envproto/flow-typed/npm/flow-remove-types_vx.x.x'>;
+}
+declare module '@nodeproto/envproto/flow-typed/npm/flow-typed_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/envproto/flow-typed/npm/flow-typed_vx.x.x'>;
+}
+declare module '@nodeproto/envproto/flow-typed/npm/pem_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/envproto/flow-typed/npm/pem_vx.x.x'>;
+}
+declare module '@nodeproto/envproto/flow-typed/npm/regenerator-runtime_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/envproto/flow-typed/npm/regenerator-runtime_vx.x.x'>;
+}
+declare module '@nodeproto/envproto/flow-typed/npm/ultra-runner_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/envproto/flow-typed/npm/ultra-runner_vx.x.x'>;
+}
+declare module '@nodeproto/envproto/flow-typed/npm/uvu_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/envproto/flow-typed/npm/uvu_vx.x.x'>;
+}
+declare module '@nodeproto/envproto/flow-typed/npm/yargs_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/envproto/flow-typed/npm/yargs_vx.x.x'>;
 }

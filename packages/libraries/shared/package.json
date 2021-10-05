@@ -53,8 +53,7 @@
     "@folder/readdir": "3.1.0",
     "jsonc-simple-parser": "2.2.0",
     "picomatch": "2.3.0",
-    "regenerator-runtime": "0.13.9",
-    "shelljs": "0.8.4"
+    "regenerator-runtime": "0.13.9"
   },
   "devDependencies": {
     "@nodeproto/configproto": "workspace:0.0.0",

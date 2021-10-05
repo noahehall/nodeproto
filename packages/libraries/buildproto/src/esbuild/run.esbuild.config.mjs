@@ -1,5 +1,5 @@
-import esbuild from 'esbuild';
 import { dirs, fsproto } from '@nodeproto/wtf';
+import esbuild from 'esbuild';
 
 const servers = new Map();
 

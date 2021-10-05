@@ -26,7 +26,7 @@ export function createEsbuildConfig ({
   outExtension = { '.js': '.cjs' },
   platform = 'node',
   plugins = [],
-  removePkgDependencies = true,
+  removePkgDependencies = false,
   replaceEntryVars = {}, // passed to define
   resolveExtensions = ['.mjs', '.js', '.cjs', '.json'],
   sourcemap = true,

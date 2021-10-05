@@ -21,7 +21,7 @@ export const runApp = async () => {
     ));
 
   if (sport) {
-    const { clientKey: key, certificate: cert } = await getDevCert();
+    const { clientKey: key, certificate: cert } = await getDevCert({ outdir: './' });
 
     if (!key || !cert) console.error('\n\n did not receive dev certs', typeof key, typeof cert);
     else servers.push(https.createServer(
@@ -35,8 +35,15 @@ export const runApp = async () => {
   return servers;
 };
 
-const getRequireOrImportMeta = () => dirs.isEsm() ? import.meta: require.main; // eslint-disable-line no-undef
+// build > require.main
+// start:raw > import.meta
+// start:pkgcheck > undefined
+// console.info('\n\n wtf is this', dirs.isEsm() ? import.meta: require.main);
+// build > false
+// start:raw > true
+// start:pkgcheck > false
+// console.info('\n\n dirs', dirs.isEsm());
 
-if (isMain(getRequireOrImportMeta())) runApp().catch(e => {
+if (isMain(dirs.isEsm() ? import.meta : require.main)) runApp().catch(e => {
   console.info('\n\n got err in pkgcheck', e);
 });

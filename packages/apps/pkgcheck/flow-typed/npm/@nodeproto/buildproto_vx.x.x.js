@@ -1,4 +1,4 @@
-// flow-typed signature: 32831ec87b644754f8d85a88eb37aeef
+// flow-typed signature: 4b0e23b356a574306699b167ea9949c1
 // flow-typed version: <<STUB>>/@nodeproto/buildproto_vworkspace:0.0.0/flow_v0.161.0
 
 /**
@@ -98,6 +98,186 @@ declare module '@nodeproto/buildproto/fixtures/react' {
   declare module.exports: any;
 }
 
+declare module '@nodeproto/buildproto/flow-typed/npm/@babel/core_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/buildproto/flow-typed/npm/@babel/plugin-syntax-top-level-await_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/buildproto/flow-typed/npm/@babel/plugin-transform-flow-strip-types_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/buildproto/flow-typed/npm/@babel/runtime_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/buildproto/flow-typed/npm/@babel/traverse_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/buildproto/flow-typed/npm/@changesets/cli_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/buildproto/flow-typed/npm/@nodeproto/configproto_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/buildproto/flow-typed/npm/@nodeproto/jsync_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/buildproto/flow-typed/npm/@nodeproto/testproto_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/buildproto/flow-typed/npm/@nodeproto/wtf_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/buildproto/flow-typed/npm/@octokit/core_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/buildproto/flow-typed/npm/@swc/cli_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/buildproto/flow-typed/npm/@swc/core_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/buildproto/flow-typed/npm/@swc/helpers_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/buildproto/flow-typed/npm/babel-loader_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/buildproto/flow-typed/npm/browserslist_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/buildproto/flow-typed/npm/bundle-stats-webpack-plugin_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/buildproto/flow-typed/npm/chokidar-cli_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/buildproto/flow-typed/npm/core-js_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/buildproto/flow-typed/npm/css-loader_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/buildproto/flow-typed/npm/esbuild_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/buildproto/flow-typed/npm/esbuild-loader_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/buildproto/flow-typed/npm/esbuild-plugin-manifest_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/buildproto/flow-typed/npm/eslint_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/buildproto/flow-typed/npm/file-loader_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/buildproto/flow-typed/npm/flow-bin_v0.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/buildproto/flow-typed/npm/flow-remove-types_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/buildproto/flow-typed/npm/flow-typed_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/buildproto/flow-typed/npm/html-webpack-plugin_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/buildproto/flow-typed/npm/http-terminator_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/buildproto/flow-typed/npm/koa_v2.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/buildproto/flow-typed/npm/memfs_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/buildproto/flow-typed/npm/react-devtools_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/buildproto/flow-typed/npm/react-dom_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/buildproto/flow-typed/npm/regenerator-runtime_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/buildproto/flow-typed/npm/schema-utils_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/buildproto/flow-typed/npm/string-replace-loader_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/buildproto/flow-typed/npm/style-loader_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/buildproto/flow-typed/npm/svg-url-loader_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/buildproto/flow-typed/npm/ultra-runner_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/buildproto/flow-typed/npm/url-loader_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/buildproto/flow-typed/npm/uvu_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/buildproto/flow-typed/npm/webpack_v5.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/buildproto/flow-typed/npm/webpack-dev-middleware-2_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/buildproto/flow-typed/npm/webpack-hot-middleware-2_vx.x.x' {
+  declare module.exports: any;
+}
+
 // Filename aliases
 declare module '@nodeproto/buildproto/dist/esbuild/create.esbuild.config.js' {
   declare module.exports: $Exports<'@nodeproto/buildproto/dist/esbuild/create.esbuild.config'>;
@@ -158,4 +338,139 @@ declare module '@nodeproto/buildproto/fixtures/auto.js' {
 }
 declare module '@nodeproto/buildproto/fixtures/react.jsx' {
   declare module.exports: $Exports<'@nodeproto/buildproto/fixtures/react'>;
+}
+declare module '@nodeproto/buildproto/flow-typed/npm/@babel/core_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/@babel/core_vx.x.x'>;
+}
+declare module '@nodeproto/buildproto/flow-typed/npm/@babel/plugin-syntax-top-level-await_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/@babel/plugin-syntax-top-level-await_vx.x.x'>;
+}
+declare module '@nodeproto/buildproto/flow-typed/npm/@babel/plugin-transform-flow-strip-types_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/@babel/plugin-transform-flow-strip-types_vx.x.x'>;
+}
+declare module '@nodeproto/buildproto/flow-typed/npm/@babel/runtime_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/@babel/runtime_vx.x.x'>;
+}
+declare module '@nodeproto/buildproto/flow-typed/npm/@babel/traverse_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/@babel/traverse_vx.x.x'>;
+}
+declare module '@nodeproto/buildproto/flow-typed/npm/@changesets/cli_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/@changesets/cli_vx.x.x'>;
+}
+declare module '@nodeproto/buildproto/flow-typed/npm/@nodeproto/configproto_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/@nodeproto/configproto_vx.x.x'>;
+}
+declare module '@nodeproto/buildproto/flow-typed/npm/@nodeproto/jsync_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/@nodeproto/jsync_vx.x.x'>;
+}
+declare module '@nodeproto/buildproto/flow-typed/npm/@nodeproto/testproto_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/@nodeproto/testproto_vx.x.x'>;
+}
+declare module '@nodeproto/buildproto/flow-typed/npm/@nodeproto/wtf_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/@nodeproto/wtf_vx.x.x'>;
+}
+declare module '@nodeproto/buildproto/flow-typed/npm/@octokit/core_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/@octokit/core_vx.x.x'>;
+}
+declare module '@nodeproto/buildproto/flow-typed/npm/@swc/cli_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/@swc/cli_vx.x.x'>;
+}
+declare module '@nodeproto/buildproto/flow-typed/npm/@swc/core_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/@swc/core_vx.x.x'>;
+}
+declare module '@nodeproto/buildproto/flow-typed/npm/@swc/helpers_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/@swc/helpers_vx.x.x'>;
+}
+declare module '@nodeproto/buildproto/flow-typed/npm/babel-loader_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/babel-loader_vx.x.x'>;
+}
+declare module '@nodeproto/buildproto/flow-typed/npm/browserslist_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/browserslist_vx.x.x'>;
+}
+declare module '@nodeproto/buildproto/flow-typed/npm/bundle-stats-webpack-plugin_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/bundle-stats-webpack-plugin_vx.x.x'>;
+}
+declare module '@nodeproto/buildproto/flow-typed/npm/chokidar-cli_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/chokidar-cli_vx.x.x'>;
+}
+declare module '@nodeproto/buildproto/flow-typed/npm/core-js_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/core-js_vx.x.x'>;
+}
+declare module '@nodeproto/buildproto/flow-typed/npm/css-loader_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/css-loader_vx.x.x'>;
+}
+declare module '@nodeproto/buildproto/flow-typed/npm/esbuild_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/esbuild_vx.x.x'>;
+}
+declare module '@nodeproto/buildproto/flow-typed/npm/esbuild-loader_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/esbuild-loader_vx.x.x'>;
+}
+declare module '@nodeproto/buildproto/flow-typed/npm/esbuild-plugin-manifest_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/esbuild-plugin-manifest_vx.x.x'>;
+}
+declare module '@nodeproto/buildproto/flow-typed/npm/eslint_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/eslint_vx.x.x'>;
+}
+declare module '@nodeproto/buildproto/flow-typed/npm/file-loader_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/file-loader_vx.x.x'>;
+}
+declare module '@nodeproto/buildproto/flow-typed/npm/flow-bin_v0.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/flow-bin_v0.x.x'>;
+}
+declare module '@nodeproto/buildproto/flow-typed/npm/flow-remove-types_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/flow-remove-types_vx.x.x'>;
+}
+declare module '@nodeproto/buildproto/flow-typed/npm/flow-typed_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/flow-typed_vx.x.x'>;
+}
+declare module '@nodeproto/buildproto/flow-typed/npm/html-webpack-plugin_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/html-webpack-plugin_vx.x.x'>;
+}
+declare module '@nodeproto/buildproto/flow-typed/npm/http-terminator_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/http-terminator_vx.x.x'>;
+}
+declare module '@nodeproto/buildproto/flow-typed/npm/koa_v2.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/koa_v2.x.x'>;
+}
+declare module '@nodeproto/buildproto/flow-typed/npm/memfs_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/memfs_vx.x.x'>;
+}
+declare module '@nodeproto/buildproto/flow-typed/npm/react-devtools_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/react-devtools_vx.x.x'>;
+}
+declare module '@nodeproto/buildproto/flow-typed/npm/react-dom_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/react-dom_vx.x.x'>;
+}
+declare module '@nodeproto/buildproto/flow-typed/npm/regenerator-runtime_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/regenerator-runtime_vx.x.x'>;
+}
+declare module '@nodeproto/buildproto/flow-typed/npm/schema-utils_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/schema-utils_vx.x.x'>;
+}
+declare module '@nodeproto/buildproto/flow-typed/npm/string-replace-loader_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/string-replace-loader_vx.x.x'>;
+}
+declare module '@nodeproto/buildproto/flow-typed/npm/style-loader_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/style-loader_vx.x.x'>;
+}
+declare module '@nodeproto/buildproto/flow-typed/npm/svg-url-loader_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/svg-url-loader_vx.x.x'>;
+}
+declare module '@nodeproto/buildproto/flow-typed/npm/ultra-runner_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/ultra-runner_vx.x.x'>;
+}
+declare module '@nodeproto/buildproto/flow-typed/npm/url-loader_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/url-loader_vx.x.x'>;
+}
+declare module '@nodeproto/buildproto/flow-typed/npm/uvu_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/uvu_vx.x.x'>;
+}
+declare module '@nodeproto/buildproto/flow-typed/npm/webpack_v5.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/webpack_v5.x.x'>;
+}
+declare module '@nodeproto/buildproto/flow-typed/npm/webpack-dev-middleware-2_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/webpack-dev-middleware-2_vx.x.x'>;
+}
+declare module '@nodeproto/buildproto/flow-typed/npm/webpack-hot-middleware-2_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/webpack-hot-middleware-2_vx.x.x'>;
 }

@@ -1,7 +1,21 @@
+import fs from 'fs';
 import JSONC from 'jsonc-simple-parser';
 import picomatch from 'picomatch';
 import Readdir from '@folder/readdir';
-import shelljs from 'shelljs';
+
+/**
+  shelljs issue when running bundled code
+  dont use shelljs
+
+  import shelljs from 'shelljs';
+
+  Uncaught Error: Cannot find module './src/cat'
+  FYI: shelljs@0.8.4/node_modules/shelljs/shell.js
+  // Load all default commands
+  require('./commands').forEach(function (command) {
+    require('./src/' + command);
+  });
+ */
 
 const readdirOptions = {
   absolute: true,
@@ -15,7 +29,6 @@ const readdirOptions = {
 
 export const external = {
   picomatch,
-  shelljs,
   JSONC,
 };
 
@@ -39,7 +52,7 @@ export const getPkgJson = async (dirpath = '.', glob = 'package.json', interpret
 
   return pkgJsonAbs
     && {
-      file: interpreter(shelljs.cat(pkgJsonAbs)),
+      file: JSONC.parse(fs.readFileSync(pkgJsonAbs)),
       path: pkgJsonAbs,
     }
     || {};

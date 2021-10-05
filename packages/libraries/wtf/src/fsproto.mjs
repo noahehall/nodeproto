@@ -10,7 +10,7 @@ import path from 'path';
 export const isR = (t, msg = 'is required in @nodeproto/fsproto') => { throw new Error(`${t}: ${msg}`); };
 
 export const isMain = (
-  importMetaOrRequireMain = isR('importMetaOrRequireMain'),
+  importMetaOrRequireMain = isR('importMetaOrRequireMain: fn.isMain'),
 ) => wtfShared.isEsm()
   ? esMain(importMetaOrRequireMain)
   : importMetaOrRequireMain == module; // eslint-disable-line no-undef

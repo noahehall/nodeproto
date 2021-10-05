@@ -60,7 +60,6 @@ test('dirs', async () => {
     'picomatch',
     'readdir',
     'runtime',
-    'shelljs',
     'symlinkDir',
     'temp',
     'userdirs'

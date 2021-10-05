@@ -1,4 +1,4 @@
-// flow-typed signature: dc333706b62901037e418827ab63e476
+// flow-typed signature: e4d021ae8a6c8dc1e8b6f4382afdfc16
 // flow-typed version: <<STUB>>/@nodeproto/configproto_vworkspace:0.0.0/flow_v0.161.0
 
 /**
@@ -22,6 +22,118 @@ declare module '@nodeproto/configproto' {
  * require those files directly. Feel free to delete any files that aren't
  * needed.
  */
+declare module '@nodeproto/configproto/flow-typed/npm/@babel/core_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/configproto/flow-typed/npm/@babel/eslint-parser_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/configproto/flow-typed/npm/@babel/eslint-plugin_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/configproto/flow-typed/npm/@babel/plugin-proposal-throw-expressions_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/configproto/flow-typed/npm/@babel/plugin-syntax-jsx_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/configproto/flow-typed/npm/@babel/plugin-transform-flow-strip-types_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/configproto/flow-typed/npm/@babel/plugin-transform-react-constant-elements_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/configproto/flow-typed/npm/@babel/plugin-transform-react-inline-elements_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/configproto/flow-typed/npm/@babel/plugin-transform-runtime_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/configproto/flow-typed/npm/@babel/preset-env_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/configproto/flow-typed/npm/@babel/preset-flow_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/configproto/flow-typed/npm/@babel/preset-react_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/configproto/flow-typed/npm/@babel/runtime_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/configproto/flow-typed/npm/@babel/traverse_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/configproto/flow-typed/npm/@octokit/core_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/configproto/flow-typed/npm/babel-plugin-tailcall-optimization_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/configproto/flow-typed/npm/babel-plugin-transform-export-default-name_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/configproto/flow-typed/npm/core-js_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/configproto/flow-typed/npm/eslint-plugin-flowtype-errors_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/configproto/flow-typed/npm/eslint-plugin-html_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/configproto/flow-typed/npm/eslint-plugin-json_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/configproto/flow-typed/npm/eslint-plugin-markdown_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/configproto/flow-typed/npm/eslint-plugin-react_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/configproto/flow-typed/npm/eslint-plugin-react-hooks_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/configproto/flow-typed/npm/eslint-plugin-yml_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/configproto/flow-typed/npm/flow-bin_v0.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/configproto/flow-typed/npm/flow-typed_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/configproto/flow-typed/npm/yaml-eslint-parser_vx.x.x' {
+  declare module.exports: any;
+}
+
 declare module '@nodeproto/configproto/src/fixtures/auto' {
   declare module.exports: any;
 }
@@ -31,6 +143,90 @@ declare module '@nodeproto/configproto/src/fixtures/react' {
 }
 
 // Filename aliases
+declare module '@nodeproto/configproto/flow-typed/npm/@babel/core_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/configproto/flow-typed/npm/@babel/core_vx.x.x'>;
+}
+declare module '@nodeproto/configproto/flow-typed/npm/@babel/eslint-parser_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/configproto/flow-typed/npm/@babel/eslint-parser_vx.x.x'>;
+}
+declare module '@nodeproto/configproto/flow-typed/npm/@babel/eslint-plugin_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/configproto/flow-typed/npm/@babel/eslint-plugin_vx.x.x'>;
+}
+declare module '@nodeproto/configproto/flow-typed/npm/@babel/plugin-proposal-throw-expressions_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/configproto/flow-typed/npm/@babel/plugin-proposal-throw-expressions_vx.x.x'>;
+}
+declare module '@nodeproto/configproto/flow-typed/npm/@babel/plugin-syntax-jsx_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/configproto/flow-typed/npm/@babel/plugin-syntax-jsx_vx.x.x'>;
+}
+declare module '@nodeproto/configproto/flow-typed/npm/@babel/plugin-transform-flow-strip-types_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/configproto/flow-typed/npm/@babel/plugin-transform-flow-strip-types_vx.x.x'>;
+}
+declare module '@nodeproto/configproto/flow-typed/npm/@babel/plugin-transform-react-constant-elements_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/configproto/flow-typed/npm/@babel/plugin-transform-react-constant-elements_vx.x.x'>;
+}
+declare module '@nodeproto/configproto/flow-typed/npm/@babel/plugin-transform-react-inline-elements_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/configproto/flow-typed/npm/@babel/plugin-transform-react-inline-elements_vx.x.x'>;
+}
+declare module '@nodeproto/configproto/flow-typed/npm/@babel/plugin-transform-runtime_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/configproto/flow-typed/npm/@babel/plugin-transform-runtime_vx.x.x'>;
+}
+declare module '@nodeproto/configproto/flow-typed/npm/@babel/preset-env_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/configproto/flow-typed/npm/@babel/preset-env_vx.x.x'>;
+}
+declare module '@nodeproto/configproto/flow-typed/npm/@babel/preset-flow_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/configproto/flow-typed/npm/@babel/preset-flow_vx.x.x'>;
+}
+declare module '@nodeproto/configproto/flow-typed/npm/@babel/preset-react_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/configproto/flow-typed/npm/@babel/preset-react_vx.x.x'>;
+}
+declare module '@nodeproto/configproto/flow-typed/npm/@babel/runtime_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/configproto/flow-typed/npm/@babel/runtime_vx.x.x'>;
+}
+declare module '@nodeproto/configproto/flow-typed/npm/@babel/traverse_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/configproto/flow-typed/npm/@babel/traverse_vx.x.x'>;
+}
+declare module '@nodeproto/configproto/flow-typed/npm/@octokit/core_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/configproto/flow-typed/npm/@octokit/core_vx.x.x'>;
+}
+declare module '@nodeproto/configproto/flow-typed/npm/babel-plugin-tailcall-optimization_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/configproto/flow-typed/npm/babel-plugin-tailcall-optimization_vx.x.x'>;
+}
+declare module '@nodeproto/configproto/flow-typed/npm/babel-plugin-transform-export-default-name_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/configproto/flow-typed/npm/babel-plugin-transform-export-default-name_vx.x.x'>;
+}
+declare module '@nodeproto/configproto/flow-typed/npm/core-js_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/configproto/flow-typed/npm/core-js_vx.x.x'>;
+}
+declare module '@nodeproto/configproto/flow-typed/npm/eslint-plugin-flowtype-errors_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/configproto/flow-typed/npm/eslint-plugin-flowtype-errors_vx.x.x'>;
+}
+declare module '@nodeproto/configproto/flow-typed/npm/eslint-plugin-html_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/configproto/flow-typed/npm/eslint-plugin-html_vx.x.x'>;
+}
+declare module '@nodeproto/configproto/flow-typed/npm/eslint-plugin-json_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/configproto/flow-typed/npm/eslint-plugin-json_vx.x.x'>;
+}
+declare module '@nodeproto/configproto/flow-typed/npm/eslint-plugin-markdown_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/configproto/flow-typed/npm/eslint-plugin-markdown_vx.x.x'>;
+}
+declare module '@nodeproto/configproto/flow-typed/npm/eslint-plugin-react_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/configproto/flow-typed/npm/eslint-plugin-react_vx.x.x'>;
+}
+declare module '@nodeproto/configproto/flow-typed/npm/eslint-plugin-react-hooks_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/configproto/flow-typed/npm/eslint-plugin-react-hooks_vx.x.x'>;
+}
+declare module '@nodeproto/configproto/flow-typed/npm/eslint-plugin-yml_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/configproto/flow-typed/npm/eslint-plugin-yml_vx.x.x'>;
+}
+declare module '@nodeproto/configproto/flow-typed/npm/flow-bin_v0.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/configproto/flow-typed/npm/flow-bin_v0.x.x'>;
+}
+declare module '@nodeproto/configproto/flow-typed/npm/flow-typed_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/configproto/flow-typed/npm/flow-typed_vx.x.x'>;
+}
+declare module '@nodeproto/configproto/flow-typed/npm/yaml-eslint-parser_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/configproto/flow-typed/npm/yaml-eslint-parser_vx.x.x'>;
+}
 declare module '@nodeproto/configproto/src/fixtures/auto.js' {
   declare module.exports: $Exports<'@nodeproto/configproto/src/fixtures/auto'>;
 }
