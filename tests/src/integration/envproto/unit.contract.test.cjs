@@ -6,11 +6,13 @@ const test = t.suite('integration:envproto:cjs:apiContract');
 
 test('imports', async () => {
   const envprotoExpected = [
+    "_parsed",
+    "parsed",
+    "ref",
     'buildEnv',
     'clearBaseEnv',
     'getConditions',
     'getDevCert',
-    'parsed',
     'syncConfigWithEnv',
     'syncEnvAndConfig',
     'syncEnvWithConfig',

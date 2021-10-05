@@ -32,8 +32,8 @@
     "ultra-runner": "3.10.5"
   },
   "devDependencies": {
-    "@babel/core": "7.15.0",
-    "@babel/eslint-parser": "7.14.7",
+    "@babel/core": "7.15.5",
+    "@babel/eslint-parser": "7.15.7",
     "@changesets/cli": "2.17.0",
     "@nodeproto/buildproto": "workspace:0.0.0",
     "@nodeproto/configproto": "workspace:0.0.0",
@@ -114,7 +114,7 @@
     "repo:cp:configproto": "pnpm repo:cp:flow; pnpm repo:cp:cjs; pnpm repo:cp:browserslist",
     "repo:cp:flow": "rm -f .flowconfig && cp ./node_modules/@nodeproto/configproto/src/flowtype/.flowconfig .",
     "repo:deps": "pnpm exec ultra --info",
-    "repo:eslint": "eslint 'src/**/*'",
+    "repo:eslint": "eslint './**/*'",
     "repo:eslint:fix": "pnpm repo:eslint -- --fix",
     "repo:flow": "pnpm exec flow",
     "repo:flow:status": "pnpm exec flow status",

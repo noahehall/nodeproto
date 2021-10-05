@@ -1,35 +1,34 @@
-/**
- * shit related to ssl certs
- * @see https://github.com/Dexus/pem/blob/master/test/pem.spec.js
- */
-import "assert";
-import { dirs, getFsproto } from '@nodeproto/wtf';
+import { getFsproto } from '@nodeproto/wtf';
 import pem from 'pem';
 
 const fsproto = getFsproto(process.env.IS_TEST);
 
-const getRequireOrImport = () => dirs.isCjs()
-  ? __filename // eslint-disable-line
-  : import.meta.url;
+const r = (t, msg = ': is required in envproto/ssl.mjs') => {
+  throw new Error(`${t}${msg}`);
+};
 
 export const getDevCert = async ({
   days = 7,
   domain = process.env.DEV_DOMAIN || 'localhost',
+  outdir = r('outdir: path'),
   selfSigned = true,
-  tmpDir = process.env.PEMJS_TMPDIR,
 
 
   // dependent
   commonName = `*.${domain}`,
 } = {}) => {
   // where to save dev certs
-  if (!tmpDir) process.env.PEMJS_TMPDIR = `${dirs.dirname(getRequireOrImport())}/certs`;
+  // @see https://github.com/Dexus/pem/search?q=PEMJS_TMPDIR
+  // ^ to understand why this is required
+  process.env.PEMJS_TMPDIR = `${outdir}/certs`;
+
   let
     certificate,
     clientKey,
     csr,
     serviceKey
   ;
+
   const
     msgs = [],
     names = {
