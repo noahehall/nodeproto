@@ -1,8 +1,10 @@
+// @flow strict
 
 import { oas } from 'koa-oas3';
-import yaml from 'js-yaml';
-import fs from 'fs';
+
 import bodyParser from 'koa-bodyparser';
+import fs from 'fs';
+import yaml from 'js-yaml';
 
 /**
  * @see https://github.com/atlassian/koa-oas3#oasoption
@@ -45,36 +47,22 @@ export const oas3Handler = async (config, app) => {
   app.use(oasMw);
 };
 
-export default function koaOas3 (
-  {
-    file,
-    spec,
-    routepath,
-    ...config
-  } = {},
-  app
-) {
-  if (!routepath) throw 'String(routepath) required to load openApi UI';
-  if (!file && !spec) throw 'atleast file|spec required in koaOas3';
+export default function koaOas3 ({ file, routepath, spec, ...config } = {}, app) {
+  if (!routepath) throw new Error('String(routepath) required to load openApi UI');
+  if (!file && !spec) throw new Error('atleast file|spec required in koaOas3');
 
   // @see https://github.com/nodeca/js-yaml
-  const useSpec = spec || yaml.load(fs.readFileSync(
-    file,
-    'utf8'
-  ));
+  const useSpec = spec || yaml.load(fs.readFileSync(file, 'utf8'));
 
   const oas3Config = {
-    spec: useSpec,
     endpoint: `${routepath}.json`,
+    spec: useSpec,
     uiEndpoint: `${routepath}.html`,
     ...CONFIG,
     ...config
   };
 
-  oas3Handler(
-    oas3Config,
-    app
-  );
+  oas3Handler(oas3Config, app);
 
   return async ctx => ctx.response.redirect(oas3Config.uiEndpoint);
 }

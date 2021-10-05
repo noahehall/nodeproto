@@ -1,3 +1,4 @@
+// @flow strict
 
 /**
  *
@@ -10,7 +11,7 @@ import { dirs, resolve } from '@nodeproto/wtf';
 import * as demo from './demo/index.mjs';
 import koaOas3 from '../../middleware/koaOas3.mjs';
 
-const getImportMetaOrFilename = () => dirs.isEsm() ? import.meta : __filename;
+const getImportMetaOrFilename = () => dirs.isEsm() ? import.meta : __filename; // eslint-disable-line no-undef
 
 export default async function v1Controller (v1RouterGroup, app) {
   try {
@@ -19,7 +20,7 @@ export default async function v1Controller (v1RouterGroup, app) {
     */
     const openApiUri = await resolve('./v1openapi.yaml', getImportMetaOrFilename());
 
-    console.log('\n\n openApiUri', openApiUri);
+    console.info('\n\n openApiUri', openApiUri);
 
     v1RouterGroup.get(
       '/',

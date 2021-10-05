@@ -5,7 +5,7 @@
 # @see https://github.com/amilajack/eslint-plugin-flowtype-errors/wiki/Advanced-Config
 
 reportUnusedDisableDirectives: true
-ignorePatterns: ["**/dist/**"] # '**/node_modules/**', included by default
+ignorePatterns: ['**/node_modules/**','**/dist/**', '**/flow-typed/**', '**/bundlestats/**'] # '**/node_modules/**', included by default
 
 # @see https://github.com/babel/babel/tree/main/eslint/babel-eslint-parser
 # @see https://github.com/babel/babel/blob/main/eslint/babel-eslint-config-internal/index.js
@@ -176,7 +176,10 @@ rules:
   fb-flow/flow-enums-default-if-possible: error
   fb-flow/no-flow-enums-object-mapping: error
 
-
+    # markdownlint
+  MD033/no-inline-html: off # no-markdown-in-html
+  no-inline-html: off
+  MD033: off
   # dumb fkn rules here
   arrow-parens: 0
   capitalized-comments: 0

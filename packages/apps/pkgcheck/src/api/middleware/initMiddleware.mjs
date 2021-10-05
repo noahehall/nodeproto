@@ -1,5 +1,7 @@
+// @flow strict
 
 import { koaBodyParser } from './koaBody.mjs';
+
 import eTag from './eTag.mjs';
 import koaCharset from './koaCharset.mjs';
 import koaCors from './koaCors.mjs';

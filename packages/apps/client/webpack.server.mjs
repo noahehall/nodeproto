@@ -1,4 +1,4 @@
-// @flow
+// @flow strict
 
 import { serverWebpack as webpackServer } from '@nodeproto/buildproto';
 import { webpackConfig } from './webpack.dev.config.mjs';

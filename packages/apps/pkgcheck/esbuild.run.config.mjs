@@ -1,11 +1,11 @@
 import {
   createEsbuildConfig,
-  esrunConfig,
   esbuildPluginPopCopy,
   esbuildPluginPopCopyConfig,
+  esrunConfig,
 } from '@nodeproto/buildproto/esbuild';
-import { fsproto, resolve, dirs } from '@nodeproto/wtf';
-import { builtinModules } from 'module'
+import { dirs, fsproto, resolve } from '@nodeproto/wtf';
+import { builtinModules } from 'module';
 import path from 'path';
 
 const thisDir = dirs.dirname(import.meta.url);

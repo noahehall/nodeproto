@@ -1,3 +1,4 @@
+// @flow strict
 
 /**
  * @see https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ETag
@@ -16,7 +17,7 @@ export default function eTag (config, app) {
 
     if (!ctx.response.body || ctx.response.headerSent) return;
 
-    console.log(
+    console.info(
       '\n\n setting etag',
       tinyETag(ctx.response.body)
     );

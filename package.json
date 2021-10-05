@@ -83,7 +83,7 @@
     "repo:config:list": "pnpm config list --json",
     "repo:deps": "pnpm exec ultra --info",
     "repo:eslint:fix": "pnpm repo:eslint -- --fix",
-    "repo:eslint": "eslint 'src/**/*'",
+    "repo:eslint": "eslint './**/*'",
     "repo:monitor": "pnpm exec ultra --monitor",
     "repo:nuke": "pnpm repo:rm:dist; pnpm repo:rm:nodemodules",
     "repo:rm:dist": "rm -rf dist/*",

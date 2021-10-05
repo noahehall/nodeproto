@@ -1,3 +1,5 @@
+// @flow strict
+
 import { dirs, isMain } from '@nodeproto/wtf';
 import { getDevCert } from '@nodeproto/envproto';
 
@@ -9,7 +11,7 @@ const port = process.env.PKGCHECK_HTTP_PORT || 8080;
 const sport = process.env.PKGCHECK_HTTPS_PORT || 8443;
 
 export const runApp = async () => {
-  if (!port && !sport) throw 'PKGCHECK_HTTP_PORT or PKGHECK_HTTPS_PORT must be set in env';
+  if (!port && !sport) throw new Error('PKGCHECK_HTTP_PORT or PKGHECK_HTTPS_PORT must be set in env');
 
   const servers = [];
   if (port)
@@ -33,7 +35,7 @@ export const runApp = async () => {
   return servers;
 };
 
-const getRequireOrImportMeta = () => dirs.isEsm() ? import.meta: require.main;
+const getRequireOrImportMeta = () => dirs.isEsm() ? import.meta: require.main; // eslint-disable-line no-undef
 
 if (isMain(getRequireOrImportMeta())) runApp().catch(e => {
   console.info('\n\n got err in pkgcheck', e);

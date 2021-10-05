@@ -143,7 +143,7 @@
     "repo:cp:configproto": "pnpm repo:cp:flow; pnpm repo:cp:cjs; pnpm repo:cp:browserslist",
     "repo:cp:flow": "rm -f .flowconfig && cp ./node_modules/@nodeproto/configproto/src/flowtype/.flowconfig .",
     "repo:deps": "pnpm exec ultra --info",
-    "repo:eslint": "eslint 'src/**/*'",
+    "repo:eslint": "eslint './**/*'",
     "repo:eslint:fix": "pnpm repo:eslint -- --fix",
     "repo:flow": "pnpm exec flow",
     "repo:flow:status": "pnpm exec flow status",

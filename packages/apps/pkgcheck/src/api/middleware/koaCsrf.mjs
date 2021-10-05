@@ -1,3 +1,4 @@
+// @flow strict
 
 import CSRF from 'koa-csrf';
 
@@ -7,14 +8,10 @@ import CSRF from 'koa-csrf';
 
 // fear the copypasta
 const CONFIG = {
+  disableQuery: false,
+  excludedMethods: ['GET', 'HEAD', 'OPTIONS'],
   invalidTokenMessage: 'Invalid CSRF token',
   invalidTokenStatusCode: 403,
-  excludedMethods: [
-    'GET',
-    'HEAD',
-    'OPTIONS'
-  ],
-  disableQuery: false,
 };
 
 export default function koaCsrf (config = CONFIG, app) {

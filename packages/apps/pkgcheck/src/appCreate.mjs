@@ -1,6 +1,7 @@
+// @flow strict
 
-import Koa from 'koa';
 import { getEnv } from './api/shared.mjs';
+import Koa from 'koa';
 import koaQs from 'koa-qs';
 
 // default app settings

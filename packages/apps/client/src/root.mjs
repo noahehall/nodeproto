@@ -4,10 +4,12 @@ import App from './components/screens/App/AppScreen.mjs';
 import ErrorBoundary from './components/composite/Errors/ErrorBoundary.mjs';
 import ReactDOM from 'react-dom';
 
+import type { Node } from "react";
+
 const containerID: string = 'root';
 const container: HTMLElement | null = document.getElementById('root');
 
-const render = (Comp) : void => {
+const render = (Comp: () => Node) : void => {
   console.info('rendering app'); // TODO: need to add logging logic
 
   const root = ReactDOM.createRoot(container);
