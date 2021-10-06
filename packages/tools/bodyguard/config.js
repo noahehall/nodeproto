@@ -11,7 +11,7 @@ module.exports = {
   },
   run: {
     browserConsole: true,
-    firefoxProfile: './firefox-profile',
+    firefoxProfile: 'firefox-profile', // will show a popup each time for you to select a profile
     profileCreateIfMissing: true,
     keepProfileChanges: true,
     pref: [],

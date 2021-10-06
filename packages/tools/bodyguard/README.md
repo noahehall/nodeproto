@@ -20,21 +20,7 @@
 - [provide linkback for free icon](https://icons8.com/icon/7319/muscle)
 - [review how they set this up](https://github.com/ritwickdey/live-server-web-extension/blob/master/manifest.json)
 
-# links
+# special thanks to
 
-- packages
-  - [web-ext: manage firefox extensions](https://extensionworkshop.com/documentation/develop/getting-started-with-web-ext/)
-
-- specs
-  - [content scripts](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Content_scripts)
-  - [match patterns in extension manifests](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Match_patterns)
-  - [filters to apply to webrequest events](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/webRequest/RequestFilter)
-  - [webrequest api](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/webRequest)
-  - [onBeforeRequest contract](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/webRequest/onBeforeRequest)
-  - [resource types used to filter](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/webRequest/ResourceType)
-
-- tutorials
-  - [intercept http requests](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Intercept_HTTP_requests)
-  - [mozilla: your first extension](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Your_first_WebExtension)
-
--
+- [webextensions-examples/menu-demo](https://github.com/mdn/webextensions-examples/tree/master/menu-demo)
+- [webextensions-examples/annotate-page](https://github.com/mdn/webextensions-examples/tree/master/annotate-page)

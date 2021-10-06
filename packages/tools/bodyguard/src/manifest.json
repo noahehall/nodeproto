@@ -3,6 +3,7 @@
   "name": "@nodeproto/bodyguard",
   "description": "@nodeproto/bodyguard - protect your network requests with @nodeproto/bodyguard firefox browser extension",
   "version": "0.0.0",
+  "default_locale": "en",
   "icons": {
     "48": "icons/icons8-muscle-48.png"
   },
@@ -20,9 +21,9 @@
   },
   "background": {
     "scripts": [
-      "browser-polyfill.js",
-      "background_script.js",
-      "network.js"
+      "external/browser-polyfill.js",
+      "scripts/background_script.js",
+      "scripts/network.js"
     ]
   },
   "content_scripts": [
@@ -31,8 +32,8 @@
         "*://*.mozilla.org/*"
       ],
       "js": [
-        "browser-polyfill.js",
-        "content_script.js"
+        "external/browser-polyfill.js",
+        "scripts/content_script.js"
       ]
     }
   ],
@@ -41,25 +42,54 @@
       "48": "icons/icons8-muscle-48.png"
     },
     "default_popup": "browserAction/index.html",
-    "default_title": "bodyguard"
+    "default_title": "@nodeproto/bodyguard",
+    "browser_style": true,
+    "chrome_style": true,
+    "default_area": "navbar"
   },
   "page_action": {
     "default_icon": {
       "48": "icons/icons8-muscle-48.png"
     },
     "default_popup": "pageAction/index.html",
-    "default_title": "bodyguard"
+    "default_title": "@nodeproto/bodyguard",
+    "browser_style": true,
+    "chrome_style": true,
+    "show_matches": ["<all_urls>"]
+  },
+  "sidebar_action": {
+    "default_icon": {
+      "48": "icons/icons8-muscle-48.png"
+    },
+    "default_title" : "@nodeproto/bodyguard",
+    "default_panel": "sidebars/index.html",
+    "open_at_install": true,
+    "browser_style": true,
+    "chrome_style": true
+  },
+  "options_ui": {
+    "page": "options/index.html",
+    "browser_style": true,
+    "chrome_style": true,
+    "open_in_tab": true
+  },
+  "commands": {
+    "_execute_sidebar_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y"
+      }
+    }
   },
   "permissions": [
-    "webRequest",
-    "webRequestBlocking",
-    "tabs",
-    "webNavigation",
+    "activeTab",
     "http://*/*",
     "https://*/*",
+    "menus",
+    "storage",
+    "tabs",
+    "webNavigation",
+    "webRequest",
+    "webRequestBlocking",
     "<all_urls>"
-  ],
-  "options_ui": {
-    "page": "options/index.html"
-  }
+  ]
 }
