@@ -16,13 +16,21 @@
   - `pnpm install`
   - `pnpm webext:run`
     - update `root/config.js` to target a browser other than firefox
+  - go to `about:debugging#/runtime/this-firefox` and click `inspect` on `@nodeproto/bodyguard`
+  - [click the iframe selector](https://developer.mozilla.org/en-US/docs/Tools/Working_with_iframes) to view the dev console of a specific element
 
 # TODO
 
 - [provide linkback for free icon](https://icons8.com/icon/7319/muscle)
 - [review how they set this up](https://github.com/ritwickdey/live-server-web-extension/blob/master/manifest.json)
+- [firefox design](https://design.firefox.com/)
+- [ff photon](https://github.com/FirefoxUX/photon)
+- [extension workshop](https://github.com/FirefoxUX/photon)
 
 # special thanks to
 
 - [webextensions-examples/menu-demo](https://github.com/mdn/webextensions-examples/tree/master/menu-demo)
 - [webextensions-examples/annotate-page](https://github.com/mdn/webextensions-examples/tree/master/annotate-page)
+- [webextensions-examples/http-response](https://github.com/mdn/webextensions-examples/tree/master/http-response)
+- [webextions-examples/examples.json](https://github.com/mdn/webextensions-examples/blob/master/examples.json)
+  - likely the holy grail of copypasta

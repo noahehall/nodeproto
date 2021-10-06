@@ -1,64 +1,52 @@
-let myWindowId;
+'use strict';
 
-const buttonReset = document.getElementById('reset');
-const buttonSave = document.getElementById('save');
+let myWindowId;
+const stripUrl = url => url.split('?')[0]
+
 const formActions = document.getElementById('actions');
 const formBodyguard = document.getElementById('bodyguard-form');
 
 const resetContent = () => {
-  console.info('\n\n resetting content');
+  const formFields = formBodyguard.elements;
 
-  try {
-    const formFields = formBodyguard.elements;
-    if (!formFields) return console.info('\n\n error retrieving formFields');;
+  if (!formFields) return console.error('\n\n error retrieving formFields');;
 
-    let tabUrl;
+  browser.tabs.query({ windowId: myWindowId, active: true })
+    // get tab url
+    .then(tabs => stripUrl(tabs[0].url))
+    // get data from storage
+    .then(url => browser.storage.local.get().then(data => {
+      const bodyguardRules = data[url];
 
-    browser.tabs.query({windowId: myWindowId, active: true})
-      .then((tabs) => {
-        tabUrl = tabs[0].url;
+      if (typeof bodyguardRules === 'undefined') return console.info('bodyguardRules for this URL is undefined, TODO: setup global rules', bodyguardRules, url)
 
-        return browser.storage.local.get(tabs[0].url)
+      Object.entries(bodyguardRules).forEach(([name, value]) => {
+        if (formFields[name].type === 'checkbox') formFields[name].checked = value;
+        else formFields[name].value = value;
       })
-      .then((data) => {
-        console.info('\n\n data', tabUrl,  typeof data[tabUrl])
-        if (typeof data[tabUrl] !== 'string') return console.info('saved data[url] not a string')
-        const filterRules = JSON.parse(data[tabUrl]);
-
-        if (!filterRules) return console.info('\n\n error retrieving filter rules');
-
-        console.info('\n\n got saved bodyguardRules', filterRules);
-
-        Object.entries(filterRules).forEach(([name, value]) => {
-          console.info('injecting previous values', name, value);
-
-          if (formFields[name].type === 'checkbox') formFields[name].checked = value;
-          else formFields[name].value = value;
-        })
-      })
-  } catch (e) {
-    console.info('\n\n error reseting content', e)
-  }
+    }))
 }
 
 formActions.addEventListener('click', e => {
   const formAction = e.target.id;
-  if (!formAction) return console.info('\n\n error retrieving formAction');
-
-  const formFields = formBodyguard.elements;
+  if (!formAction) return console.error('\n\n error retrieving formAction');
 
   browser.tabs.query({windowId: myWindowId, active: true}).then((tabs) => {
+    const formFields = formBodyguard.elements;
+
     switch (formAction) {
       case 'save': {
-        const bodyGuardRules = {};
+        const bodyguardRules = {};
         [].forEach.call(formFields, field => {
-
-          if (field.name && ['checkbox', 'text'].includes(field.type)) bodyGuardRules[field.name] = field.type === 'checkbox'
+          if (
+            field.name
+            && ['checkbox', 'text', 'url'].includes(field.type)
+          ) bodyguardRules[field.name] = field.type === 'checkbox'
             ? field.checked
             : field.value;
         });
 
-        browser.storage.local.set({ [tabs[0].url]: JSON.stringify(bodyGuardRules) });
+        browser.storage.local.set({ [stripUrl(tabs[0].url)]: bodyguardRules });
 
         break;
       }
@@ -66,6 +54,13 @@ formActions.addEventListener('click', e => {
         resetContent();
 
         break;
+      }
+      case 'clear': {
+        browser.storage.local.set({ [stripUrl(tabs[0].url)]: {} });
+        [].forEach.call(formFields, field => {
+          if (field.value) field.value = '';
+          else if (field.checked) field.checked = false;
+        });
       }
     }
 

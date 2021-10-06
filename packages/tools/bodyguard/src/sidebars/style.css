@@ -5,13 +5,13 @@ html, body {
   box-sizing: border-box;
 }
 
+
 body {
-  body {
-    height: 90%;
-    font: caption;
-    background-color: #F4F7F8;
-  }
+  height: 90%;
+  font: caption;
+  background-color: #F4F7F8;
 }
+
 body * {
   color: inherit;
   background-color: unset;
@@ -24,14 +24,39 @@ body * {
 h1 {
   font-size: 2rem;
 }
+
 h2 {
-  font-style: italic;
   font-size: 1.5rem;
 }
 
+button, label {
+  text-transform:uppercase;
+}
 button {
-  min-width: 40px;
   text-align: center;
+}
+
+button, label.checkbox {
+  cursor: pointer;
+}
+
+/* @see https://stackoverflow.com/questions/4148499/how-to-style-a-checkbox-using-css?answertab=active#tab-top */
+input[type=checkbox] {
+  -moz-appearance: none;
+  -moz-box-shadow: none !important;
+  -webkit-appearance: none;
+  -webkit-box-shadow: none !important;
+  appearance: none;
+  background-color: maroon;
+  border: 0;
+  box-shadow: none !important;
+  display: inline-block;
+  outline: 0;
+  text-align: center;
+}
+
+input[type=checkbox]:checked {
+  background-color: green;
 }
 
 code {
@@ -40,30 +65,47 @@ code {
   margin: 15px;
 }
 
+code.log {
+  transition: background-color .2s ease-out;
+}
+
 form {
   padding: 10px;
 }
 
-fieldset {
+label, fieldset {
+  display: grid;
+  align-items: center;
+  grid-gap: 0.5rem;
+  /* single column shrinks to minimum of 240px */
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+label.text {
+  cursor: text;
+}
+label.checkbox {
+  cursor: pointer;
+  /* 2 columns: first second */
+  grid-template-columns: 1.5rem 1fr;
+}
+
+.filter-rule-group {
   display: grid;
   grid-template-columns: 1fr;
 }
 
-.label {
-  display: inline-grid;
-}
-.label.text {
-  grid-template-rows: 1fr 1fr;
-}
-.label.checkbox {
-  grid-template-columns: 25px 1fr;
+.group.flex {
+  display: flex;
+  justify-content: center;
 }
 
 .panel-section-footer {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-direction: row;
 }
-
-code.log {
-  transition: background-color .2s ease-out;
+.panel-section-footer > button {
+  flex: 1;
 }
