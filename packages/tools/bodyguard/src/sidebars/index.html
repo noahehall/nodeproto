@@ -15,7 +15,7 @@
       </p>
       <article class="panel-section panel-section-list">
         <h2 class="panel-section-header">runtime options</h2>
-        <form class="panel-section panel-section-formElements">
+        <form id="bodyguard-form" class="panel-section panel-section-formElements">
           <fieldset class="filter rule">
             <legend>FILTER RULES <button class="browser-style" type="button" name="add">+</button></legend>
 
@@ -52,16 +52,15 @@
         </form>
       </article>
 
-      <article class="panel-section-list">
-        <aside class="debug">
-          <h2 class="panel-section-header">debug</h2>
-          <p class="panel-list-item">check LOG on any filter rule to view the matching requests</p>
-          <code class="log"></code>
-        </aside>
-      </article>
-      <footer class="panel-section panel-section-footer">
-        <button type="reset">Cancel</button>
-        <button type="submit">Confirm</button>
+      <aside class="panel-section-list">
+        <h2 class="panel-section-header">debug</h2>
+        <p class="panel-list-item">check LOG on any filter rule to view the matching requests</p>
+        <code class="panel-list-item log"></code>
+      </aside>
+
+      <footer id="actions" class="panel-section panel-section-footer">
+        <button type="button" id="reset">Reset</button>
+        <button type="button" id="save">Save</button>
       </footer>
     </main>
     <script src="script.js"></script>

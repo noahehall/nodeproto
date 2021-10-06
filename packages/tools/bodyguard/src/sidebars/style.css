@@ -1,7 +1,17 @@
-body {
-  padding: 5px;
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  box-sizing: border-box;
 }
 
+body {
+  body {
+    height: 90%;
+    font: caption;
+    background-color: #F4F7F8;
+  }
+}
 body * {
   color: inherit;
   background-color: unset;
@@ -24,10 +34,10 @@ button {
   text-align: center;
 }
 
-.debug > code {
-  display: block;
+code {
   height: 400px;
   background: gray;
+  margin: 15px;
 }
 
 form {
@@ -52,4 +62,8 @@ fieldset {
 .panel-section-footer {
   display: grid;
   grid-template-columns: 1fr 1fr;
+}
+
+code.log {
+  transition: background-color .2s ease-out;
 }
