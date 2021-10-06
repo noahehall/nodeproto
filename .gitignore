@@ -2,6 +2,7 @@ gitpod-local-companion-linux
 .ultra.cache.json
 report.*
 dist
+firefox-profile
 # Logs
 *.log
 npm-debug.log*

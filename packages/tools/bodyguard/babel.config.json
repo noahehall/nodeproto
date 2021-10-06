@@ -1,0 +1,8 @@
+{
+  "extends": "@nodeproto/configproto/babel/client",
+  "babelrc": true,
+  "babelrcRoots": [
+    ".",
+    "src/*"
+  ]
+}
