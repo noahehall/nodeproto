@@ -2,8 +2,15 @@
 
 static configuratoin files
 
-- you **HAVE** to remember to update the versions in the config files
+- TODO: (automate this shit) you **HAVE** to remember to update the versions in the config files
 - when upgrading dependencies
+  - things to update: `grep -E "core-js|@babel|flow" package.json`
+  - `base.babelrc`
+    - `@babel/plugin-transform-runtime`
+  - `client.babelrc`
+    - `@babel/preset-env`
+  - `node.babelrc`
+    - `@babel/preset-env`
 
 ## errors
 

@@ -1,7 +1,6 @@
 {
   "browserslistEnv": "client",
   "extends": "./base.babelrc",
-
   "overrides": [
     // will always use these options
     // because we dont specify a condition
@@ -9,9 +8,13 @@
       "presets": [
         [
           // https://babeljs.io/docs/en/babel-preset-env
-          "@babel/preset-env", {
+          "@babel/preset-env",
+          {
             "bugfixes": true,
-            "corejs": { "version": "3.16.3", "proposals": true },
+            "corejs": {
+              "version": "3.18.2",
+              "proposals": true
+            },
             "debug": false,
             "forceAllTransforms": false, // set to true if only support es5/running through uglifyjs
             "ignoreBrowserslistConfig": false,
@@ -24,18 +27,17 @@
           }
         ],
         [
-          "@babel/preset-react", {
+          "@babel/preset-react",
+          {
             // applies to both classic & automatic runtimes
             "throwIfNamespace": false,
             "development": true, // TODO set to false via env
-
             // uncomment for classic
             // "runtime": "classic", // enables other commented options
             // "pragma": "React.default.createElement",
             // "pragmaFrag": "React.default.Fragment",
             // "useBuiltIns": false,
             // "useSpread": true
-
             // uncomment for automatic runtime
             "runtime": "automatic", // automatically import React shit at the top of files
             "importSource": "@emotion/react" // https://emotion.sh/docs/css-prop##babel-preset
@@ -43,27 +45,32 @@
         ]
       ],
       "plugins": [
-        ["@emotion", {
-          "sourceMap": true,
-          "autoLabel": "dev-only",
-          "labelFormat": "[local]",
-          "cssPropOptimization": true
-        }],
+        [
+          "@emotion",
+          {
+            "sourceMap": true,
+            "autoLabel": "dev-only",
+            "labelFormat": "[local]",
+            "cssPropOptimization": true
+          }
+        ],
         "@babel/plugin-transform-react-constant-elements",
         // "@babel/plugin-transform-react-inline-elements" incompatible with @emotion
       ]
-
     },
     {
-      // TODO
-      // need to confirm this outputs a separate file automatically
+      // TODO: need to confirm this outputs a separate file automatically
       // for browsers that support script.type=module
       "test": "browser.modern.mjs",
       "presets": [
         [
-          "@babel/preset-env", {
+          "@babel/preset-env",
+          {
             "bugfixes": true,
-            "corejs": { "version": "3.15.2", "proposals": true },
+            "corejs": {
+              "version": "3.18.2",
+              "proposals": true
+            },
             "debug": false,
             "forceAllTransforms": false, // set to true if only support es5/running through uglifyjs
             "ignoreBrowserslistConfig": false, // @see targets

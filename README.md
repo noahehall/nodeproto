@@ -20,9 +20,9 @@ bleeding-edge type-first *product development framework* for rapidly prototyping
   - [@nodeproto/bodyguard - UI Network Request proxy + debugger](packages/tools/bodyguard/README.md)
   - [@nodeproto/member - virutalization via docker +/ vagrant](packages/tools/membrane/README.md)
 
-| tech stack |
-| :----------: |
-| <img src="https://webpack.js.org/site-logo.1fcab817090e78435061.svg" width="100" align="left" /><img src="https://www.openapis.org/wp-content/uploads/sites/3/2018/02/OpenAPI_Logo_Pantone-1.png" width="100" align="left" /><img src="https://cdn.haproxy.com/wp-content/uploads/2017/10/haproxy-weblogo.png" width="100" align="left" /><img src="https://nodejs.org/static/images/logo.svg" width="100" align="left" /><img src="https://github.com/evanw/esbuild/raw/master/images/wordmark.svg" width="100" align="left" /><img src="https://avatars.githubusercontent.com/u/5429470?s=200&v=4" width="100" align="left" /><img src="https://hero35.com/stacks/react.svg" width="100" align="left" /><img src="https://raw.githubusercontent.com/koajs/koa/master/docs/logo.png" width="100" align="left" /><img src="https://camo.githubusercontent.com/32657601b349b558831f32c553cb2c7734cb5ae89a2e8340afa314ea3b2116a0/68747470733a2f2f6d696c6c696772616d2e696f2f696d616765732f7468756d626e61696c2e706e67" width="100" align="left" /><img src="https://raw.githubusercontent.com/emotion-js/emotion/main/emotion.png" alt="Emotion logo" width="100"><img src="https://github.com/lukeed/uvu/blob/ddf62e883b5e56c3ba84ad0acf0e7966cc3ade48/shots/uvu.jpg" alt="UVU logo" width="100">|
+|                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           tech stack                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| <img src="https://webpack.js.org/site-logo.1fcab817090e78435061.svg" width="100" align="left" /><img src="https://www.openapis.org/wp-content/uploads/sites/3/2018/02/OpenAPI_Logo_Pantone-1.png" width="100" align="left" /><img src="https://cdn.haproxy.com/wp-content/uploads/2017/10/haproxy-weblogo.png" width="100" align="left" /><img src="https://nodejs.org/static/images/logo.svg" width="100" align="left" /><img src="https://github.com/evanw/esbuild/raw/master/images/wordmark.svg" width="100" align="left" /><img src="https://avatars.githubusercontent.com/u/5429470?s=200&v=4" width="100" align="left" /><img src="https://hero35.com/stacks/react.svg" width="100" align="left" /><img src="https://raw.githubusercontent.com/koajs/koa/master/docs/logo.png" width="100" align="left" /><img src="https://camo.githubusercontent.com/32657601b349b558831f32c553cb2c7734cb5ae89a2e8340afa314ea3b2116a0/68747470733a2f2f6d696c6c696772616d2e696f2f696d616765732f7468756d626e61696c2e706e67" width="100" align="left" /><img src="https://raw.githubusercontent.com/emotion-js/emotion/main/emotion.png" alt="Emotion logo" width="100"><img src="https://github.com/lukeed/uvu/blob/ddf62e883b5e56c3ba84ad0acf0e7966cc3ade48/shots/uvu.jpg" alt="UVU logo" width="100"> |
 
 <details>
   <summary>Learn more about @nodeproto</summary>
@@ -47,8 +47,8 @@ bleeding-edge type-first *product development framework* for rapidly prototyping
 
 ## TLDR
 
-| architecture |
-| :----------: |
+|                   architecture                    |
+| :-----------------------------------------------: |
 | ![@nodeproto architecture](/doc/architecture.png) |
 
 under activate development; expect breaking changes
@@ -111,27 +111,33 @@ be sure to checkout `root/tests/integration` for how to use our internal magic
   - install node `pnpm env use --global 16`
   - install pnpm tab-completion `pnpm install-completion`
   - source your shell (e.g. bashrc `. ~/.bashrc`)
+
 - setup application
-  - anything scratched out likely needs to be set nonconcurrent
+  - TODO: if unable to get this to run via proto just move it to a shell script and call it a day
+    - anything scratched out likely needs to be set nonconcurrent
+    - to circumvent the issue, run the failed cmd from within the submodule root dir (ouch)
   - install root dependencies `pnpm install`
-  - ~~install dependencies for all packages/* `pnpm proto repo:install`~~
-    - ~~on any failures, navigate to the child repo and run `pnpm install` directly~~
-  - ~~run all tests in all packages `pnpm repo:test`~~
-    - TODO: this currently fails but works if run from within each pkg
-  - make any changes you want in `root/package.json` then sync them to monorepo packages
+  - install dependencies for all packages/* `pnpm proto repo:install`
+  - build dependences for all packages/* `pnpm proto build`
+  - run all tests in all packages `pnpm repo:test`
+  - make any changes you want in `root/package.json` then sync them to sub modules
     - `pnpm proto jsync`
+
 - flowtyped
   - `pnpm add --global flow-typed`
-  - run `flow-typed install` in all of your child pkgs to get type definition
+    - TODO: i think i actually installed this as a local dep (which is what you should do anyway)
+  - run `pnpm proto repo:flow-typed:install` in all of your child pkgs to get type definition
   - run `pnpm exec flow` to get near realtime type checking for transpiled files
-  - use the experimental loader in  `root/src/loaders/flow.mjs` for non transpiled files
+  - use the experimental loader in  `packages/configproto/src/node/loaders/flow.mjs` for non transpiled files
+
 - haproxy
   - until we get docker setup make sure you have **haproxy 2.4** installed
   - see *apps/gateway* for instructions
-- library build process: a 3 step process (plans to for automation later)
-  1. sync with root `$ pnpm jsync`
-  2. copy static files `$ pnpm repo:cp:configproto`
-  3. build output files to dist `$ pnpm build`
+
+- monorepo build process: a 3 step process (plans for automation later)
+  1. sync with root `$ pnpm proto jsync`
+  2. copy static files `$ pnpm proto repo:cp:configproto`
+  3. build output files to dist `$ pnpm proto build`
      - if there havent been any changes, you likely only need this last step
 
 </details>

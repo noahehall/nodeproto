@@ -22,10 +22,10 @@ const startDev = async config => {
   let manifest, server;
 
   try {
-    // will break if consumer uses a different manifest name
+    // TODO: will break if consumer uses a different manifest name
     manifest = JSON.parse(await fsproto.fs.readFile(config.outdir + '/' + 'manifest.json', 'utf-8'));
 
-    // will likely break if consumer has multiple entyrpoints and hte first isnt the server
+    // TODO: will likely break if consumer has multiple entyrpoints and hte first isnt the server
     const serverPath = config.outdir + '/' + Object.values(manifest)[0].split('/').pop();
 
     try {

@@ -26,7 +26,7 @@
     "PATH_SRC": "./src"
   },
   "dependencies": {
-    "@babel/runtime": "7.14.8",
+    "@babel/runtime": "7.15.4",
     "@folder/readdir": "3.1.0",
     "@folder/xdg": "3.1.2",
     "@nodeproto/shared": "workspace:0.0.0",
@@ -36,28 +36,28 @@
     "fs-extra": "10.0.0",
     "global-dirs": "3.0.0",
     "jsonc-simple-parser": "2.2.0",
-    "memfs": "3.2.2",
+    "memfs": "3.3.0",
     "mkdirp": "1.0.4",
     "regenerator-runtime": "0.13.9",
     "symlink-dir": "5.0.1",
     "ultra-runner": "3.10.5"
   },
   "devDependencies": {
-    "@babel/core": "7.15.5",
-    "@babel/eslint-parser": "7.15.7",
+    "@babel/core": "7.15.8",
+    "@babel/eslint-parser": "7.15.8",
     "@changesets/cli": "2.17.0",
     "@nodeproto/configproto": "workspace:0.0.0",
     "@nodeproto/jsync": "workspace:0.0.0",
     "@nodeproto/testproto": "workspace:0.0.0",
     "@octokit/core": "3.5.1",
-    "@swc/cli": "0.1.46",
-    "@swc/core": "1.2.75",
+    "@swc/cli": "0.1.51",
+    "@swc/core": "1.2.95",
     "chokidar-cli": "3.0.0",
-    "eslint": "7.32.0",
+    "eslint": "8.0.0",
     "flow-bin": "0.161.0",
     "flow-remove-types": "2.161.0",
     "flow-typed": "3.3.1",
-    "uvu": "0.5.1"
+    "uvu": "0.5.2"
   },
   "directories": {
     "dist": "./dist",
@@ -135,6 +135,8 @@
     "repo:eslint": "eslint './**/*'",
     "repo:eslint:fix": "pnpm repo:eslint -- --fix",
     "repo:exec:list": "pnpm exec ultra --list",
+    "repo:exec:list:g": "pnpm repo:exec:list | grep $*",
+    "repo:exec:list:v": "npm run-script",
     "repo:flow": "pnpm exec flow",
     "repo:flow:status": "pnpm exec flow status",
     "repo:flowtyped:install": "pnpm exec flow-typed install",

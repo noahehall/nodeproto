@@ -81,6 +81,8 @@
     "repo:cp:flow": "rm -f .flowconfig && cp ./node_modules/@nodeproto/configproto/src/flowtype/.flowconfig .",
     "repo:about": "npm run-script && npm --versions && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
     "repo:exec:list": "pnpm exec ultra --list",
+    "repo:exec:list:v": "npm run-script",
+    "repo:exec:list:g": "pnpm repo:exec:list | grep $*",
     "repo:config:list": "pnpm config list --json",
     "repo:deps": "pnpm exec ultra --info",
     "repo:eslint:fix": "pnpm repo:eslint -- --fix",

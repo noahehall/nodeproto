@@ -22,7 +22,11 @@
     overrides
  */
 {
-  "ignore": ["**/dist", "**/*.test.mjs", "**/*.test.cjs"], // TODO: doesnt work, instead use --ignore '**/*.test.mjs' --ignore ...etc
+  "ignore": [
+    "**/dist",
+    "**/*.test.mjs",
+    "**/*.test.cjs"
+  ], // TODO: doesnt work, instead use --ignore '**/*.test.mjs' --ignore ...etc
   // use assumptions whenever possible
   // @see https://babeljs.io/docs/en/assumptions
   // @see https://github.com/babel/rfcs/blob/master/rfcs/0003-top-level-assumptions.md
@@ -56,7 +60,6 @@
   "highlightCode": true,
   "sourceMaps": true,
   "sourceType": "module",
-
   "generatorOpts": {
     // never enable these; use a plugin instead
     // "auxiliaryCommentBefore"
@@ -79,11 +82,12 @@
     "strict": true,
     // When a plugin is specified multiple times, only the first options are considered.
     "plugins": [
-        // @see https://babeljs.io/docs/en/plugins/
+      // @see https://babeljs.io/docs/en/plugins/
       "asyncDoExpressions",
       "classStaticBlock",
       [
-        "decorators", {
+        "decorators",
+        {
           "decoratorsBeforeExport": true
         }
       ],
@@ -96,14 +100,16 @@
       "partialApplication",
       [
         // @see https://babeljs.io/docs/en/babel-plugin-proposal-pipeline-operator
-        "pipelineOperator", {
+        "pipelineOperator",
+        {
           "proposal": "fsharp"
         }
       ],
       "privateIn",
       [
         // @see https://github.com/tc39/proposal-record-tuple/issues/10
-        "recordAndTuple", {
+        "recordAndTuple",
+        {
           "syntaxType": "bar"
         }
       ],
@@ -111,7 +117,6 @@
       "topLevelAwait"
     ]
   },
-
   "overrides": [
     // TODO: these simple overrides doenst seem to be working
     // @see packages/libraries/configproto/babel/client.babelonly.babelrc
@@ -124,7 +129,10 @@
       "sourceType": "script"
     },
     {
-      "test": ["**/*.mjs$", "**/*.jsx$"],
+      "test": [
+        "**/*.mjs$",
+        "**/*.jsx$"
+      ],
       "sourceType": "module"
     },
     {
@@ -147,19 +155,27 @@
     // modules: "amd" | "umd" | "systemjs" | "commonjs" | "cjs" | "auto" | false, defaults to "auto".
     // ^ set output type
     // ^ @see https://github.com/babel/babel/issues/8887
-
-    ["@babel/preset-env", false],
-    ["@babel/preset-react", false],
     [
-      "@babel/preset-flow", {
+      "@babel/preset-env",
+      false
+    ],
+    [
+      "@babel/preset-react",
+      false
+    ],
+    [
+      "@babel/preset-flow",
+      {
         "all": false,
         "allowDeclareFields": true
       }
     ]
   ],
-
   "plugins": [
-    ["@emotion", false],
+    [
+      "@emotion",
+      false
+    ],
     "transform-export-default-name",
     // "transform-flow-strip-types", // allready included in preset
     // TODO: verify these options
@@ -172,14 +188,20 @@
         "absoluteRuntime": false,
         "helpers": true,
         "regenerator": true,
-        "version": "^7.14"
+        "version": "7.15.8"
       }
     ],
     "@babel/plugin-proposal-throw-expressions",
     // TODO: test if other presets handle this automatically
     // ["@babel/plugin-transform-modules-commonjs", false],
     "tailcall-optimization",
-    ["@babel/plugin-transform-react-constant-elements", false],
-    ["@babel/plugin-transform-react-inline-elements", false]
+    [
+      "@babel/plugin-transform-react-constant-elements",
+      false
+    ],
+    [
+      "@babel/plugin-transform-react-inline-elements",
+      false
+    ]
   ]
 }

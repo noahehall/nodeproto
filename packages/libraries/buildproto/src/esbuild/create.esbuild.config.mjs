@@ -7,6 +7,7 @@ const getPkgDeps = pkgJson => Object.keys({
   ...(pkgJson.devDependencies || {})
 });
 
+// @see https://esbuild.github.io/api/
 export function createEsbuildConfig ({
   entry = r('entry: string'),
   outdir = r('outdir: string'), // fsproto.resolve('dist')
@@ -60,21 +61,19 @@ export function createEsbuildConfig ({
   };
 
   return {
-    preserveSymlinks: false,
     assetNames,
-    bundle,
-    define,
+    bundle, // inline any imported dependencies into the file itself;
+    define, // This feature provides a way to replace global identifiers with constant expressions.
     entryNames,
     entryPoints: [entry],
     external: external.concat(builtinModules).concat(removePkgDependencies ? getPkgDeps(pkgJson) : []),
     metafile,
-    minify,
+    minify, // the generated code will be minified instead of pretty-printed
     outdir,
     outExtension,
     platform,
-    plugins: plugins.concat(
-      manifestPlugin(manifestPluginConfig),
-    ),
+    plugins: plugins.concat(manifestPlugin(manifestPluginConfig)),
+    preserveSymlinks: false,
     resolveExtensions,
     sourcemap,
     target,

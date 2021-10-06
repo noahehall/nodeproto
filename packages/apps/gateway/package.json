@@ -123,6 +123,8 @@
     "repo:eslint": "eslint './**/*'",
     "repo:eslint:fix": "pnpm repo:eslint -- --fix",
     "repo:exec:list": "pnpm exec ultra --list",
+    "repo:exec:list:g": "pnpm repo:exec:list | grep $*",
+    "repo:exec:list:v": "npm run-script",
     "repo:flow": "pnpm exec flow",
     "repo:flow:status": "pnpm exec flow status",
     "repo:flowtyped:install": "pnpm exec flow-typed install",

@@ -29,21 +29,13 @@ export const runApp = async () => {
       (await App).callback()).listen(
         sport,
         () => console.info('\n\n server running on: ', sport)
-    ));
+      ));
   }
 
   return servers;
 };
 
-// build > require.main
-// start:raw > import.meta
-// start:pkgcheck > undefined
-// console.info('\n\n wtf is this', dirs.isEsm() ? import.meta: require.main);
-// build > false
-// start:raw > true
-// start:pkgcheck > false
-// console.info('\n\n dirs', dirs.isEsm());
-
-if (isMain(dirs.isEsm() ? import.meta : require.main)) runApp().catch(e => {
+// dont change this
+if (require.main === module) runApp().catch(e => {
   console.info('\n\n got err in pkgcheck', e);
 });

@@ -58,8 +58,8 @@
   "devDependencies": {
     "@nodeproto/configproto": "workspace:0.0.0",
     "@nodeproto/testproto": "workspace:0.0.0",
-    "@swc/cli": "0.1.46",
-    "@swc/core": "1.2.75",
+    "@swc/cli": "0.1.51",
+    "@swc/core": "1.2.95",
     "flow-bin": "0.161.0"
   }
 }
