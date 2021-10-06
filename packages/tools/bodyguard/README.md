@@ -1,19 +1,21 @@
-![@nodeproto/bodyguard redirecting images on about.pinterest.com](./about.pinterest.com.png)
+@nodeproto/bodyguard - protect your network requests with @nodeproto/bodyguard browser extension
+
+![@nodeproto/bodyguard redirecting images on about.pinterest.com](./src/images/about.pinterest.com.png)
 
 # TLDR
 
-- method A: manually load `@nodeproto/bodyguard` as a temporary extension into and existing firefox window
-  - load the manifest.json here: `about:debugging#/runtime/this-firefox`
-    - click `load temporary extension` & select `manifest.json`
-    - click `inspect` to and view the dev console
-      - or load `about:devtools-toolbox?id=noahedwardhall%40gmail.com&type=extension`
+- for consumers: manually load `@nodeproto/bodyguard` as a temporary extension into an existing firefox window
+  - firefox
+    - install via URL: `about:debugging#/runtime/this-firefox`
+      - click `load temporary extension` & select `manifest.json`
+      - debug via URL: `about:devtools-toolbox?id=noahedwardhall%40gmail.com&type=extension`
+  - chromium (edge, opera, chrome)
+    - TODO
 
-- method B: automatically inject `@nodeproto/bodyguard` as a temporary extension into a new firefox window with hot-reloading
+- for developers: automatically inject `@nodeproto/bodyguard` as a temporary extension into a new firefox window with hot-reloading
   - `pnpm install`
-  - `pnpm start`
-
-- see `root/network.js` for network request mgmt
-- see `root/screen.js` for DOM mgmt
+  - `pnpm webext:run`
+    - update `root/config.js` to target a browser other than firefox
 
 # TODO
 

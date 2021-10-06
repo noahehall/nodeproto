@@ -1,3 +1,55 @@
+body {
+  padding: 5px;
+}
+
+body * {
+  color: inherit;
+  background-color: unset;
+  font: inherit;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
 h1 {
+  font-size: 2rem;
+}
+h2 {
   font-style: italic;
+  font-size: 1.5rem;
+}
+
+button {
+  min-width: 40px;
+  text-align: center;
+}
+
+.debug > code {
+  display: block;
+  height: 400px;
+  background: gray;
+}
+
+form {
+  padding: 10px;
+}
+
+fieldset {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.label {
+  display: inline-grid;
+}
+.label.text {
+  grid-template-rows: 1fr 1fr;
+}
+.label.checkbox {
+  grid-template-columns: 25px 1fr;
+}
+
+.panel-section-footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }

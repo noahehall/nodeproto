@@ -98,3 +98,8 @@ TODO
     - each business unit... etc
 - tools
   - maybe i'll build one...
+
+Inspiration behind RaceXP
+
+- the legend: Claude Rouelle
+- [![inspiration for RaceXP](https://img.youtube.com/vi/c1n-rgqSTyY/0.jpg)](https://www.youtube.com/watch?v=c1n-rgqSTyY)

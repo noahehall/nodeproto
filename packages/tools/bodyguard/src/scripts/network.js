@@ -4,7 +4,7 @@ var pattern = "https://about.pinterest.com/";
 
 // @see https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/webRequest/onBeforeRequest#additional_objects
 function logURL(requestDetails) {
-  if (!requestDetails.url.startsWith(pattern)) return void 0;
+  if (!requestDetails.url.includes(pattern)) return void 0;
 
   console.log("@nodeproto/bodyguard: " + requestDetails.url);
 }

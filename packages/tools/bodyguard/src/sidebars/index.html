@@ -6,7 +6,64 @@
     <script type="application/javascript" src="/external/browser-polyfill.js"></script>
   </head>
   <body>
-    <h1 id="myHeading">sidebar</h1>
+    <header class="panel-section panel-section-header">
+      <h1 class="text-section-header">SETUP</h1>
+    </header>
+    <main class="panel-section panel-section-list">
+      <p class="browser-style panel-list-item"">
+        configure & debug @nodeproto/bodyguard network proxy settings
+      </p>
+      <article class="panel-section panel-section-list">
+        <h2 class="panel-section-header">runtime options</h2>
+        <form class="panel-section panel-section-formElements">
+          <fieldset class="filter rule">
+            <legend>FILTER RULES <button class="browser-style" type="button" name="add">+</button></legend>
+
+            <div class="panel-formElements-item">
+              <label class="browser-style label text">
+                <span>URLS MATCHING</span>
+                <input type="text" name="matching">
+              </label>
+            </div>
+
+            <div class="panel-formElements-item">
+              <label class="browser-style label text">
+                <span>REDIRECT TO</span>
+                <input type="text" name="redirect">
+              </label>
+            </div>
+
+            <div class="panel-formElements-item">
+              <labeL class="browser-style label checkbox">
+                <input type="checkbox" name="log"/>
+                LOG
+              </labeL>
+            </div>
+            <div class="panel-formElements-item">
+              <labeL class="browser-style label checkbox">
+                <input type="checkbox" name="active" />
+                ACTIVE
+              </labeL>
+            </div>
+            <div class="panel-formElements-item">
+              <button class="browser-style" type="button" name="del">DELETE</button>
+            </div>
+          </fieldset>
+        </form>
+      </article>
+
+      <article class="panel-section-list">
+        <aside class="debug">
+          <h2 class="panel-section-header">debug</h2>
+          <p class="panel-list-item">check LOG on any filter rule to view the matching requests</p>
+          <code class="log"></code>
+        </aside>
+      </article>
+      <footer class="panel-section panel-section-footer">
+        <button type="reset">Cancel</button>
+        <button type="submit">Confirm</button>
+      </footer>
+    </main>
     <script src="script.js"></script>
   </body>
 </html>
