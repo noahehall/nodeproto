@@ -25,9 +25,10 @@
 
 - [provide linkback for free icon](https://icons8.com/icon/7319/muscle)
 - [review how they set this up](https://github.com/ritwickdey/live-server-web-extension/blob/master/manifest.json)
-- [firefox design](https://design.firefox.com/)
-- [ff photon](https://github.com/FirefoxUX/photon)
-- [extension workshop](https://github.com/FirefoxUX/photon)
+- remove uneeded browser extension icons (browser url, tools menu)
+- update context + any menus and remove uneeded options
+- only use  browser APIs that are cross-browser compatible
+- enable use in chromium browsers without modifying config.js
 
 # special thanks to
 
