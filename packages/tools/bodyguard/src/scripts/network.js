@@ -4,7 +4,7 @@ let myWindowId;
 
 const stripUrl = url => url.split('?')[0]
 
-const cache = {};
+const cache = { global: {}};
 const guards = new Set();
 const debug = new Set();
 // // @see https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/webRequest/ResourceType
@@ -20,6 +20,7 @@ const debug = new Set();
 //   // websocket
 // ]
 
+// TODO: should either replace| substitute
 const transformUrl = (url, find, replace) => (
   url.includes(find)
   && url.replace(find, replace)
@@ -27,10 +28,12 @@ const transformUrl = (url, find, replace) => (
 
 // // @see https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/webRequest/onBeforeRequest#additional_objects
 function debugUrl(requestDetails) {
-  const { matching, find, replace } = Object.values(cache)[0];
+  const { matching, find, replace } = cache.global;
 
   if (!requestDetails.url.includes(matching)) return void 0;
 
+
+  // push these logs into the sidebar.form.elements.code#debug element
   console.info("bodyguard match: " + requestDetails.url);
   const newUrl = transformUrl(requestDetails.url, find, replace)
   if (newUrl) console.info('bodyguard replaced: ' + newUrl)
@@ -44,7 +47,6 @@ function guardUrl(requestDetails) {
 
   const redirectUrl = transformUrl(requestDetails.url, find, replace);
 
-  console.info('\n\n redirectUrl', redirectUrl)
   return redirectUrl && Promise.resolve({ redirectUrl });
 }
 
@@ -52,12 +54,14 @@ const syncBodyguards = () => {
   browser.webRequest.onBeforeRequest.removeListener(debugUrl);
   browser.webRequest.onBeforeRequest.removeListener(guardUrl);
 
-  Object.entries(cache).forEach(([tabUrl, bodyguardRules]) => {
-    if (!bodyguardRules) return void(
-      guards.clear(),
-      debug.clear(),
-      console.info('all guards inactive')
-    );
+  Object.entries(cache).forEach(([tabUrl, bodyguardRules = {}]) => {
+    // TODO: enhancce with per-tab urls
+    // if (!bodyguardRules) {
+      // guards.clear();
+      // debug.clear(),
+      // console.info('all guards inactive'),
+      // continue;
+    // }
 
     // sync guards on duty
     if (bodyguardRules.active) {
@@ -88,19 +92,31 @@ const syncBodyguards = () => {
   }
 }
 
-const retrieveBodyguardRules = () => {
-  return browser.tabs.query({ windowId: myWindowId, active: true })
-    // get tab url
-    .then(tabs => stripUrl(tabs[0].url))
-    // get data from storage
-    .then(url => browser.storage.local.get().then(data => {
+const retrieveActiveTab = () => browser
+  .tabs.query({ windowId: myWindowId, active: true })
+  .then(tabs => stripUrl(tabs[0].url))
 
-      cache[url] = data[url]
-    }));
-}
+const retrieveBodyguardRules = () => browser
+  .storage.local.get().then(bodyguardRules => {
+    const [ url, data ] = Object.entries(bodyguardRules)[0];
+
+    cache[url] = data[url];
+
+    return cache;
+  });
 browser.windows.getCurrent({ populate: true }).then(windowInfo => {
   myWindowId = windowInfo.id;
 
   retrieveBodyguardRules()
     .then(() => syncBodyguards())
 });
+
+const bodyguardShiftManager = diff => {
+  // TODO: enable per activeTab url bodyguard rules (url === activate tab)
+  // const [ url, { newValue: data } ] = Object.entries(diff)[0];
+  cache.global = diff.global.newValue;
+  syncBodyguards();
+};
+
+if (!browser.storage.onChanged.hasListener(bodyguardShiftManager))
+  browser.storage.onChanged.addListener(bodyguardShiftManager);

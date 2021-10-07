@@ -1,3 +1,10 @@
+:disabled {
+  cursor: not-allowed !important;
+}
+:checked {
+  background-color: green !important;
+}
+
 html, body {
   height: 100%;
   width: 100%;
@@ -32,32 +39,23 @@ h2 {
 button, label {
   text-transform:uppercase;
 }
-button {
+button, [type=checkbox] {
   text-align: center;
+  border: 0.5px solid #6272a4;
+  outline: none;
 }
 
-button, label.checkbox {
+button, label.checkbox, [type=checkbox] {
   cursor: pointer;
 }
 
 /* @see https://stackoverflow.com/questions/4148499/how-to-style-a-checkbox-using-css?answertab=active#tab-top */
-input[type=checkbox] {
-  -moz-appearance: none;
-  -moz-box-shadow: none !important;
-  -webkit-appearance: none;
-  -webkit-box-shadow: none !important;
-  appearance: none;
+[type=checkbox] {
   background-color: maroon;
-  border: 0;
-  box-shadow: none !important;
-  display: inline-block;
-  outline: 0;
-  text-align: center;
 }
 
-input[type=checkbox]:checked {
-  background-color: green;
-}
+
+
 
 code {
   height: 400px;

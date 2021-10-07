@@ -9,16 +9,16 @@ const formBodyguard = document.getElementById('bodyguard-form');
 const resetContent = () => {
   const formFields = formBodyguard.elements;
 
-  if (!formFields) return console.error('\n\n error retrieving formFields');;
+  if (!formFields) return console.error('\n\n error retrieving formFields');
 
   browser.tabs.query({ windowId: myWindowId, active: true })
     // get tab url
     .then(tabs => stripUrl(tabs[0].url))
     // get data from storage
     .then(url => browser.storage.local.get().then(data => {
-      const bodyguardRules = data[url];
+      const bodyguardRules = data.global;
 
-      if (typeof bodyguardRules === 'undefined') return console.info('bodyguardRules for this URL is undefined, TODO: setup global rules', bodyguardRules, url)
+      if (typeof bodyguardRules === 'undefined') return console.info('TODO: setup global + activate tab rules', bodyguardRules, url)
 
       Object.entries(bodyguardRules).forEach(([name, value]) => {
         if (formFields[name].type === 'checkbox') formFields[name].checked = value;
@@ -46,7 +46,7 @@ formActions.addEventListener('click', e => {
             : field.value;
         });
 
-        browser.storage.local.set({ [stripUrl(tabs[0].url)]: bodyguardRules });
+        browser.storage.local.set({ global: bodyguardRules, activateTab: [stripUrl(tabs[0].url)] });
 
         break;
       }
@@ -58,7 +58,9 @@ formActions.addEventListener('click', e => {
       case 'clear': {
         browser.storage.local.set({ [stripUrl(tabs[0].url)]: {} });
         [].forEach.call(formFields, field => {
-          if (field.value) field.value = '';
+          // force setting true until we have type to develop per tab settings
+          if (field.name === 'is-global') field.value = true;
+          else if (field.value) field.value = '';
           else if (field.checked) field.checked = false;
         });
       }

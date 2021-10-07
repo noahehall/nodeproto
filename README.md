@@ -6,7 +6,9 @@
   - [review our contributing docs](https://github.com/noahehall/nodeproto/blob/develop/CONTRIBUTING.md)
 
 - for contributing:
-  - you should be intermediate/advanced with docker, node, shell scripting, [flowtype](https://github.com/facebook/flow/blob/main/lib/react.js) and especially javascript
+  - you should be:
+    - intermediate/advanced with docker, node, shell scripting, cloud (aws specifically), [flowtype](https://github.com/facebook/flow/blob/main/lib/react.js) and especially javascript
+    - capable of learning other vertical technologies used by this framework (but if your good at the other stuff, piece of cake)
 
 - for consuming:
   - you should be good at javascript

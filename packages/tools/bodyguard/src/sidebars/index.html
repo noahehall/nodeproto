@@ -17,7 +17,7 @@
         <h2 class="panel-section-header">runtime options</h2>
         <form id="bodyguard-form" class="panel-section panel-section-formElements">
           <fieldset class="filter-rule">
-            <legend>FILTER RULES <button class="browser-style" type="button" name="add">+</button></legend>
+            <legend>FILTER RULES <button class="browser-style" type="button" name="add" disabled>+</button></legend>
 
             <div class="panel-formElements-item">
               <label class="browser-style label text" title="will manage all network requests whose URL includes string">
@@ -27,7 +27,7 @@
             </div>
 
             <fieldset class="filter-rule">
-              <legend>PROXY RULES <button class="browser-style" type="button" name="add">+</button></legend>
+              <legend>PROXY RULES <button class="browser-style" type="button" name="add" disabled>+</button></legend>
 
               <small class="browser-style text">Each matched URL will fall through all proxy rules. </small>
 
@@ -66,13 +66,13 @@
             </fieldset>
 
             <div class="panel-formElements-item">
-              <labeL class="browser-style label checkbox" title="If checked filter rules apply to all open tabs">
-                <input type="checkbox" name="is-global" />
+              <labeL class="browser-style label checkbox" title="If checked filter rules apply to all open tabs" disabled>
+                <input type="checkbox" name="is-global" disabled checked />
                 Global Filter Rule?
               </labeL>
             </div>
             <div class="panel-formElements-item">
-              <button class="browser-style" type="button" name="del">DELETE</button>
+              <button class="browser-style" type="button" name="del" disabled>DELETE</button>
             </div>
           </fieldset>
         </form>
