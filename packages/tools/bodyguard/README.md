@@ -1,4 +1,6 @@
-@nodeproto/bodyguard - protect your network requests with @nodeproto/bodyguard browser extension
+@nodeproto/bodyguard - manage UI application network requests with @nodeproto/bodyguard firefox & chromium (chrome, edge, opera) browser extension
+
+![@nodeproto/bodyguard sidebar](./src/images/screenshot.png)
 
 ![@nodeproto/bodyguard redirecting images on about.pinterest.com](./src/images/about.pinterest.com.png)
 
@@ -29,6 +31,7 @@
 
 # special thanks to
 
+- [charles web proxy](https://www.charlesproxy.com/)
 - [webextensions-examples/menu-demo](https://github.com/mdn/webextensions-examples/tree/master/menu-demo)
 - [webextensions-examples/annotate-page](https://github.com/mdn/webextensions-examples/tree/master/annotate-page)
 - [webextensions-examples/http-response](https://github.com/mdn/webextensions-examples/tree/master/http-response)

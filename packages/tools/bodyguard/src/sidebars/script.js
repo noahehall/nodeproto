@@ -3,8 +3,34 @@
 let myWindowId;
 const stripUrl = url => url.split('?')[0]
 
+const debugElement = document.getElementById('bodyguard-debug');
 const formActions = document.getElementById('actions');
 const formBodyguard = document.getElementById('bodyguard-form');
+
+const updateDebugLog = message => {
+
+}
+const handleInternalMsg = ({ type, message } = {}) => {
+
+  if (type === 'DEBUG')
+    debugElement.textContent = debugElement.textContent += '\r\n\r\n' + message.join('\r\n↑↓\r\n')
+}
+const msgListener = (data = {}, sender) => {
+  switch (data.type) {
+    case 'DEBUG':
+    case 'SIDEBAR': {
+      handleInternalMsg(data);
+
+      return Promise.resolve('done');
+    }
+    default: return false;
+  }
+}
+const addMsgListener = () => {
+  debugElement.textContent = '';
+  browser.runtime.onMessage.removeListener(msgListener);
+  browser.runtime.onMessage.addListener(msgListener);
+}
 
 const resetContent = () => {
   const formFields = formBodyguard.elements;
@@ -46,7 +72,12 @@ formActions.addEventListener('click', e => {
             : field.value;
         });
 
-        browser.storage.local.set({ global: bodyguardRules, activateTab: [stripUrl(tabs[0].url)] });
+        browser.storage.local.set({
+          global: bodyguardRules,
+          activateTab: [stripUrl(tabs[0].url)],
+        });
+
+        addMsgListener();
 
         break;
       }
@@ -72,5 +103,7 @@ formActions.addEventListener('click', e => {
 // populate bodyGuard rules when sidebar loads
 browser.windows.getCurrent({populate: true}).then((windowInfo) => {
   myWindowId = windowInfo.id;
+
   resetContent();
+  addMsgListener();
 });

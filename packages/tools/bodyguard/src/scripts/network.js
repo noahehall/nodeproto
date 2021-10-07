@@ -4,11 +4,18 @@ let myWindowId;
 
 const stripUrl = url => url.split('?')[0]
 
+// @see https://github.com/mdn/webextensions-examples/blob/master/history-deleter/history.js
+const getActiveTab = () => browser.tabs.query({active: true, currentWindow: true});
+// @see https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/sendMessage
+// TODO: prefer this for sending console logs https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Content_scripts#connection-based_messaging
+const sendInternalMsg = ({ type = 'DEBUG', message }) => browser.runtime.sendMessage({ type, message });
+
 const cache = { global: {}};
 const guards = new Set();
 const debug = new Set();
+
 // // @see https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/webRequest/ResourceType
-// this should come from bodyguardRules
+// TODO: this should come from bodyguardRules
 // const redirectTypes = [
 //   'image',
 //   // imageset
@@ -20,7 +27,7 @@ const debug = new Set();
 //   // websocket
 // ]
 
-// TODO: should either replace| substitute
+// TODO: should handle replace|substitute
 const transformUrl = (url, find, replace) => (
   url.includes(find)
   && url.replace(find, replace)
@@ -32,11 +39,12 @@ function debugUrl(requestDetails) {
 
   if (!requestDetails.url.includes(matching)) return void 0;
 
-
-  // push these logs into the sidebar.form.elements.code#debug element
-  console.info("bodyguard match: " + requestDetails.url);
-  const newUrl = transformUrl(requestDetails.url, find, replace)
-  if (newUrl) console.info('bodyguard replaced: ' + newUrl)
+  sendInternalMsg({
+    message: [
+      `bodyguard match: ${requestDetails.url}`,
+      `replaced: ${transformUrl(requestDetails.url, find, replace)}`,
+    ]
+  });
 }
 
 // // @see https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/webRequest/onBeforeRequest#additional_objects
@@ -76,6 +84,8 @@ const syncBodyguards = () => {
     else if (debug.has(bodyguardRules.find)) debug.delete(bodyguardRules.find);
   });
 
+  console.info('\n\n wtf', debug);
+
   if (debug.size) browser.webRequest.onBeforeRequest.addListener(
     debugUrl, { urls: ["<all_urls>"] }
   );
@@ -104,6 +114,7 @@ const retrieveBodyguardRules = () => browser
 
     return cache;
   });
+
 browser.windows.getCurrent({ populate: true }).then(windowInfo => {
   myWindowId = windowInfo.id;
 
@@ -118,5 +129,6 @@ const bodyguardShiftManager = diff => {
   syncBodyguards();
 };
 
+// use storage.onChange vs browser.runtime as we want to persist this data anyway
 if (!browser.storage.onChanged.hasListener(bodyguardShiftManager))
   browser.storage.onChanged.addListener(bodyguardShiftManager);

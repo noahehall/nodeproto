@@ -25,15 +25,14 @@ be sure to checkout `root/tests/integration` for how to use our internal magic
   # top for nodeproto
   $ pnpm repo:monitor
 
-  # pnpm proto SOMECMD
-  # ^ run a command in ALL/SOME pkgs from anywhere within the monorepo
+  # pnpm proto ...
+  # ^ execute cmd|bin in ALL/SOME pkgs from ANYWHERE in monorepo
 
-  # runs SOMECMD in all workspace packages
+  # ^ runs SOMECMD in all workspace packages
   $ pnpm proto pnpm outdated
   $ pnpm proto pnpm install
 
-  # pnpm proto pkgjsonscript
-  # runs script in all workspace packages that have the script
+  # ^ runs script in all workspace packages that have the script
   $ pnpm proto jsync
   $ pnpm proto build
   $ pnpm proto repo:cp:configproto
@@ -43,18 +42,24 @@ be sure to checkout `root/tests/integration` for how to use our internal magic
   $ pnpm proto start:client # localhost:7777
   $ pnpm proto start:dev # localhost:8080
   $ pnpm proto start
+  $ pnpm proto webext:run # @nodeproto/bodyguard
+  $ pnpm proto repo:config:list # pnpm configuration (super handy)
+  $ pnpm proto repo:exec:list # all pkgjson scripts
 
-  # pnpm proto:slice "filter" "cmd"
-  # runs script|cmd in packages/directories matching filter
-  $ pnpm proto "packages/libraries/*" repo:test
+  # pnpm proto:slice ... ...
+  # ^ runs cmd|bin in all packages/** directories matching filter from ANYWHERE in monorepo
+  $ pnpm proto:slice "packages/libraries/*" repo:test
+  $ pnpm proto:slice "packages/libraries/*" repo:test
 
-  # pnpm CMD/PKGJSONSCRIPT
-  # ^ run a ./bin/CMD| pkg json script by in the current repo
-  pnpm repo:test... #i.e. any of the above cmds but without the proto
+  # pnpm CMD/BIN
+  # pnpm exec CMD/BIN
+  # ^ recommended to use exec when running ./node_modules/.bin/CMDs
+  # ^^ in the event there is a matching package.json SCRIPT with the same .bin/CMD name
+  # ^^ without exec pnpm will choose pkgjson.script.NAME > ./node_modules/.bin/NAME
+  # ^ execute a package.json.script:CMD |./node_modules/.bin/CMD in the current directory
+  pnpm repo:test
+  pnpm exec flow status
 
-  # useful cmds provided by ultra
-  $ pnpm exec ultra --info # see package dependencies
-  $ pnpm exec ultra --list # see package scripts
 ```
 
 ## getting started

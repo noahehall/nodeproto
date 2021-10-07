@@ -1,6 +1,7 @@
 :disabled {
   cursor: not-allowed !important;
 }
+
 :checked {
   background-color: green !important;
 }
@@ -106,4 +107,9 @@ label.checkbox {
 }
 .panel-section-footer > button {
   flex: 1;
+}
+
+#bodyguard-debug {
+  overflow: scroll;
+  white-space: pre-wrap;
 }

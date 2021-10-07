@@ -1,6 +1,6 @@
 {
   "bugs": "https://github.com/noahehall/nodeproto/issues",
-  "description": "@nodeproto/bodyguard - protect your network requests with @nodeproto/bodyguard firefox browser extension",
+  "description": "@nodeproto/bodyguard - manage UI application network requests with @nodeproto/bodyguard firefox & chromium (chrome, edge, opera) browser extension",
   "homepage": "https://github.com/noahehall/nodeproto",
   "license": "SEE LICENSE IN LICENSE.md",
   "name": "@nodeproto/bodyguard",
@@ -96,6 +96,7 @@
     "repo:deps": "pnpm exec ultra --info",
     "repo:eslint": "eslint './**/*'",
     "repo:eslint:fix": "pnpm repo:eslint -- --fix",
+    "repo:exec:list": "pnpm exec ultra --list",
     "repo:flow": "pnpm exec flow",
     "repo:flow:status": "pnpm exec flow status",
     "repo:flowtyped:install": "pnpm exec flow-typed install",
@@ -108,10 +109,9 @@
     "repo:test:help": "uvu --help",
     "repo:testing": "pnpm repo:test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"pnpm repo:test\"",
     "repo:upgrade": "pnpm upgrade -L",
-    "start": "NODE_OPTIONS=$npm_package_config_NODE_OPTIONS web-ext run --bc -t firefox-desktop --url about.pinterest.com",
-    "start:c": "web-ext run --bc -t chromium",
-    "webext:run": "pnpm exec web-ext -c=config.js run --verbose",
+    "start:chrome": "web-ext run --bc -t chromium",
     "webext:lint": "pnpm exec web-ext -c=config.js lint",
+    "webext:run": "pnpm exec web-ext -c=config.js run --verbose",
     "webext:version": "pnpm exec web-ext --version"
   },
   "ultra": {
