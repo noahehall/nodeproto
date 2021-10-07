@@ -69,7 +69,7 @@ anything listed below should be ready for dev, but not primetime (wait for alpha
 - services
   - [@nodeproto/gateway - HAproxy Gateway](packages/apps/gateway/README.md)
   - [@nodeproto/client - React@alpha frontend](packages/apps/client/README.md)
-  - [@nodeproto/pkgcheck - Koa/OpenAPI@3 backend](packages/apps/gateway/README.md)
+  - [@nodeproto/pkgcheck - Koa/OpenAPI@3 backend](packages/apps/pkgcheck/README.md)
 - libraries
   - [@nodeproto/configproto - Static configurations](packages/libraries/configproto/README.md)
   - [@nodeproto/shared - utility fns](packages/libraries/shared/README.md)
