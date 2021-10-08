@@ -7,7 +7,7 @@
 - hot module replacement
 - webpack 5
 - latest ecmascript goodiness
-- react 17
+- react@alpha (v18)
 - bff powered by koa
 - styled-components
 - interoperability between esm & commonjs without multiple files
