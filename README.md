@@ -1,6 +1,6 @@
 # @nodeproto
 
-- bleeding-edge type-first *product development framework* for rapidly prototyping end-to-end, complex, and secure products within a baremetal|virtual micro-service architecture
+- bleeding-edge type-first *product development framework* for rapidly prototyping end-to-end, complex, and secure products within a baremetal|cloud-native micro-service architecture
 
 - for understanding why @nodeproto exists
   - [review our contributing docs](https://github.com/noahehall/nodeproto/blob/develop/CONTRIBUTING.md)
