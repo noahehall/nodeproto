@@ -14,6 +14,7 @@
 
 ## links
 
+- [createapp](https://createapp.dev/webpack/no-library)
 - [node commonJS module spec](https://nodejs.org/api/modules.html)
 - [node module API spec](https://nodejs.org/api/module.html)
 - [node esm spec](https://nodejs.org/api/esm.html)

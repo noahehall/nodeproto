@@ -1,4 +1,5 @@
 // Put all the javascript code here, that you want to execute in background.
+// TODO: fix all this shit
 
 // copypasta
 // ^ @see https://github.com/mdn/webextensions-examples/blob/master/menu-demo/background.js

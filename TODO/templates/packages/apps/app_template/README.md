@@ -1,3 +1,0 @@
-# TLDR
-
-application_name

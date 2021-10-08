@@ -1,9 +1,51 @@
 {
   "manifest_version": 2,
   "name": "@nodeproto/bodyguard",
-  "description": "@nodeproto/bodyguard - protect your network requests with @nodeproto/bodyguard firefox browser extension",
+  "description": "manage UI application network requests with @nodeproto/bodyguard firefox & chromium (chrome, edge, opera) browser extension",
   "version": "0.0.0",
   "default_locale": "en",
+  "background": {
+    "scripts": [
+      "background/contextMenu.js",
+      "background/network.js"
+    ]
+  },
+  "browser_action": {
+    "default_icon": {
+      "48": "icons/icons8-muscle-48.png"
+    },
+    "default_popup": "browserAction/browserAction.html",
+    "default_title": "@nodeproto/bodyguard",
+    "browser_style": true,
+    "chrome_style": true,
+    "default_area": "navbar"
+  },
+  "options_ui": {
+    "page": "optionsUi/optionsUi.html",
+    "browser_style": true,
+    "chrome_style": true,
+    "open_in_tab": true
+  },
+  "page_action": {
+    "default_icon": {
+      "48": "icons/icons8-muscle-48.png"
+    },
+    "default_popup": "pageAction/pageAction.html",
+    "default_title": "@nodeproto/bodyguard",
+    "browser_style": true,
+    "chrome_style": true,
+    "show_matches": ["<all_urls>"]
+  },
+  "sidebar_action": {
+    "default_icon": {
+      "48": "icons/icons8-muscle-48.png"
+    },
+    "default_title" : "@nodeproto/bodyguard",
+    "default_panel": "sidebarAction/sidebarAction.html",
+    "open_at_install": true,
+    "browser_style": true,
+    "chrome_style": true
+  },
   "icons": {
     "48": "icons/icons8-muscle-48.png"
   },
@@ -18,60 +60,6 @@
     "safari": {
       "strict_min_version": "13"
     }
-  },
-  "background": {
-    "scripts": [
-      "external/browser-polyfill.js",
-      "scripts/background_script.js",
-      "scripts/network.js"
-    ]
-  },
-  "content_scripts": [
-    {
-      "matches": [
-        "*://*.mozilla.org/*"
-      ],
-      "js": [
-        "external/browser-polyfill.js",
-        "scripts/content_script.js"
-      ]
-    }
-  ],
-  "browser_action": {
-    "default_icon": {
-      "48": "icons/icons8-muscle-48.png"
-    },
-    "default_popup": "browserAction/index.html",
-    "default_title": "@nodeproto/bodyguard",
-    "browser_style": true,
-    "chrome_style": true,
-    "default_area": "navbar"
-  },
-  "page_action": {
-    "default_icon": {
-      "48": "icons/icons8-muscle-48.png"
-    },
-    "default_popup": "pageAction/index.html",
-    "default_title": "@nodeproto/bodyguard",
-    "browser_style": true,
-    "chrome_style": true,
-    "show_matches": ["<all_urls>"]
-  },
-  "sidebar_action": {
-    "default_icon": {
-      "48": "icons/icons8-muscle-48.png"
-    },
-    "default_title" : "@nodeproto/bodyguard",
-    "default_panel": "sidebars/index.html",
-    "open_at_install": true,
-    "browser_style": true,
-    "chrome_style": true
-  },
-  "options_ui": {
-    "page": "options/index.html",
-    "browser_style": true,
-    "chrome_style": true,
-    "open_in_tab": true
   },
   "commands": {
     "_execute_sidebar_action": {
@@ -90,6 +78,7 @@
     "webNavigation",
     "webRequest",
     "webRequestBlocking",
+
     "<all_urls>"
   ]
 }

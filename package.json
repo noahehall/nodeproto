@@ -115,7 +115,7 @@
     "@octokit/core": "3.5.1",
     "eslint": "7.32.0",
     "flow-bin": "0.161.0",
-    "flow-remove-types": "2.158.0",
+    "flow-remove-types": "2.161.0",
     "flow-typed": "3.3.1",
     "uvu": "0.5.1"
   }

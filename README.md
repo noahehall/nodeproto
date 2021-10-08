@@ -19,6 +19,10 @@ bleeding-edge type-first *product development framework* for rapidly prototyping
   - [@nodeproto/jsync - synchronize package.json[c] files](packages/tools/jsync/README.md)
   - [@nodeproto/bodyguard - UI Network Request proxy + debugger](packages/tools/bodyguard/README.md)
 
+| tech stack |
+| :----------: |
+| <img src="https://webpack.js.org/site-logo.1fcab817090e78435061.svg" width="100" align="left" /><img src="https://www.openapis.org/wp-content/uploads/sites/3/2018/02/OpenAPI_Logo_Pantone-1.png" width="100" align="left" /><img src="https://cdn.haproxy.com/wp-content/uploads/2017/10/haproxy-weblogo.png" width="100" align="left" /><img src="https://nodejs.org/static/images/logo.svg" width="100" align="left" /><img src="https://github.com/evanw/esbuild/raw/master/images/wordmark.svg" width="100" align="left" /><img src="https://avatars.githubusercontent.com/u/5429470?s=200&v=4" width="100" align="left" /><img src="https://hero35.com/stacks/react.svg" width="100" align="left" /><img src="https://raw.githubusercontent.com/koajs/koa/master/docs/logo.png" width="100" align="left" /><img src="https://camo.githubusercontent.com/32657601b349b558831f32c553cb2c7734cb5ae89a2e8340afa314ea3b2116a0/68747470733a2f2f6d696c6c696772616d2e696f2f696d616765732f7468756d626e61696c2e706e67" width="100" align="left" />|
+
 <details>
   <summary>Learn more about @nodeproto</summary>
 
@@ -34,15 +38,17 @@ bleeding-edge type-first *product development framework* for rapidly prototyping
   - you should be good at javascript
 
 - whats a product development framework ?
-  - well first think whats a web framework, or an application framework
-  - then think of everything else you would need when you're done using those
+  - consider what a web framework, or an application framework is
+  - then consider everything else you would need
 
 </details>
 <br/>
 
 ## TLDR
 
-![@nodeproto architecture](/doc/architecture.png)
+| architecture |
+| :----------: |
+| ![@nodeproto architecture](/doc/architecture.png) |
 
 under activate development; expect breaking changes
 

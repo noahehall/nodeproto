@@ -1,13 +1,15 @@
 // @flowtodo
 
+// @see https://webpack.js.org/plugins/copy-webpack-plugin/
 import { BundleStatsWebpackPlugin } from 'bundle-stats-webpack-plugin';
+import CopyPlugin from 'copy-webpack-plugin';
 
 // likely not needed as we continue to integrate flow
 const t = (msg = 'required', p = 'error in baseWebpackConfig: ') => { throw new Error(`${p}${msg}`); };
 
 const r = thing => t(`${thing} is required`);
 
-const defaultPlugins = [
+const getDefaultPlugins = ({ copyOptions }) => [
   // @see https://github.com/relative-ci/bundle-stats/tree/master/packages/webpack-plugin
   new BundleStatsWebpackPlugin({
     baseline: false,
@@ -17,7 +19,10 @@ const defaultPlugins = [
     outDir: '../bundlestats',
     silent: false,
   }),
-];
+
+  copyOptions && new CopyPlugin(copyOptions),
+
+].filter(x => x);
 
 const generateLoaders = ({
   stringReplaceLoader,
@@ -123,9 +128,10 @@ export default function baseWebpackConfig ({
   // sideEffects = ['./app/components/**/*.js', '*.css'], doesnt work like in pkgjson, keep this comment
 
   // required
-  entry = r('entry: Array'),
+  entry = r('entry: Array|string|object|descriptor'),
 
   // provided by pack, but still overridable
+  copyOptions,  // @see https://stackoverflow.com/questions/49852038/copy-files-with-copywebpackplugin
   pack = {}, // provided by setup.webpack.config.mjs
   builtinModules = pack.builtinModules || [], // TODO: update tests this shouldnt be required
   ifDev = pack.ifDev,
@@ -136,7 +142,6 @@ export default function baseWebpackConfig ({
   pkgJson = pack.pkgJson || {},
 
   // other shit
-  basePlugins = defaultPlugins,
   context = process.cwd(), // you generally want to pass this in and not rely on process.cwd()
   entryPush = [],
   entryUnshift = [],
@@ -154,7 +159,8 @@ export default function baseWebpackConfig ({
   target = 'web',
 
   // dependent1
-  devtool = ifProd ? 'hidden-source-map' : 'eval-cheap-module-source-map',
+  basePlugins = getDefaultPlugins({ copyOptions }),
+  devtool = ifProd ? 'hidden-source-map' : 'eval-source-map',
   // deps = Object.keys(pkgJson.dependencies || {}),
   // peerDeps = Object.keys(pkgJson.peerDependencies || {}),
 
@@ -171,13 +177,27 @@ export default function baseWebpackConfig ({
     }
   },
 
+  // @see https://webpack.js.org/configuration/experiments/#root
+  experiments = {
+    // cacheUnaffected: true,
+    // futureDefaults: false,
+    asyncWebAssembly: true, // make a webassembly module an async module
+    buildHttp: true, // build remote resource that begin with http(s)
+    layers: true,
+    lazyCompilation: false,
+    outputModule: false,
+    syncWebAssembly: false,
+    topLevelAwait: true,
+  },
+
   // overrides top level properties
   ...overrides
 } = {}) {
   return {
     context,
     devtool,
-    entry: entryUnshift.concat(entry, entryPush).filter(e => e),
+    entry: Array.isArray(entry) ? entryUnshift.concat(entry, entryPush).filter(e => e) : entry,
+    experiments,
     externals: builtinModules.concat(externals),
     mode,
     // use to be [generateLoaders...]

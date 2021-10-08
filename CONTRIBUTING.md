@@ -11,7 +11,7 @@ before contributing, you:
 
 ## RACE:XP Methodology
 
-- **R**ealistic **A**gile **C**oncepts for **E**xtreme **P**rogramming
+- **R**ealistic **A**gile **C**oncepts for **EX**treme **P**rogramming
 
 ![@nodeproto RACE:XP](/doc/racexp.png)
 

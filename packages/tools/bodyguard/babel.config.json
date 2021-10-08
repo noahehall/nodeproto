@@ -1,5 +1,5 @@
 {
-  "extends": "@nodeproto/configproto/babel/client",
+  "extends": "@nodeproto/configproto/babel/node",
   "babelrc": true,
   "babelrcRoots": [
     ".",
