@@ -26,7 +26,11 @@
 ## TLDR
 
 ![@nodeproto architecture](/doc/architecture.png)
+
 under activate development; expect breaking changes
+
+<details>
+  <summary>unfinished cmd reference</summary>
 
 be sure to checkout `root/tests/integration` for how to use our internal magic
 
@@ -70,6 +74,8 @@ be sure to checkout `root/tests/integration` for how to use our internal magic
   pnpm exec flow status
 
 ```
+
+</details>
 
 ## framework components
 
