@@ -2,6 +2,9 @@
 
 - bleeding-edge type-first *product development framework* for rapidly prototyping end-to-end, complex, and secure products within a baremetal|cloud-native micro-service architecture
 
+<details>
+  <summary>Learn more about @nodeproto</summary>
+
 - for understanding why @nodeproto exists
   - [review our contributing docs](https://github.com/noahehall/nodeproto/blob/develop/CONTRIBUTING.md)
 
@@ -17,10 +20,12 @@
   - well first think whats a web framework, or an application framework
   - then think of everything else you would need when you're done using those
 
-![@nodeproto architecture](/doc/architecture.png)
+</details>
+<br/>
 
 ## TLDR
 
+![@nodeproto architecture](/doc/architecture.png)
 under activate development; expect breaking changes
 
 be sure to checkout `root/tests/integration` for how to use our internal magic
