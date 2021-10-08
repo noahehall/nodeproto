@@ -1,6 +1,6 @@
 # @nodeproto
 
-- bleeding-edge type-first *product development framework* for rapidly prototyping end-to-end, complex, and secure products within a baremetal|cloud-native micro-service architecture
+bleeding-edge type-first *product development framework* for rapidly prototyping end-to-end, complex, and secure products within a baremetal|cloud-native micro-service architecture
 
 - tests
   - [@nodeproto/tests - Integration + e2e tests for everything below](tests/README.md)
