@@ -74,9 +74,9 @@ anything listed below should be ready for dev, but not primetime (wait for alpha
   - [@nodeproto/configproto - Static configurations](packages/libraries/configproto/README.md)
   - [@nodeproto/shared - utility fns](packages/libraries/shared/README.md)
   - [@nodeproto/testproto - High Velocity test suite](packages/libraries/testproto/README.md)
-  - [@nodeproto/envproto - env/SSL management](packages/libraries/gateway/README.md)
+  - [@nodeproto/envproto - env/SSL management](packages/libraries/envproto/README.md)
   - [@nodeproto/buildproto - esbuild/webpack: build anything run everywhere](packages/libraries/buildproto/README.md)
-  - [@nodeproto/wtf - Where the file? system locations & file management](packages/libraries/gateway/README.md)
+  - [@nodeproto/wtf - Where the file? system locations & file management](packages/libraries/wtf/README.md)
 - tools
   - [@nodeproto/jsync - synchronize package.json[c] files](packages/tools/jsync/README.md)
   - [@nodeproto/bodyguard - UI Network Request proxy + debugger](packages/tools/bodyguard/README.md)
