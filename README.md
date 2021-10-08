@@ -1,6 +1,6 @@
 # @nodeproto
 
-- bleeding-edge type-first monorepo for rapidly prototyping end-to-end, complex, and secure applications and microservices
+- bleeding-edge type-first *product development framework* for rapidly prototyping end-to-end, complex, and secure applications and microservices
 
 - for understanding why @nodeproto exists
   - [review our contributing docs](https://github.com/noahehall/nodeproto/blob/develop/CONTRIBUTING.md)
@@ -12,6 +12,10 @@
 
 - for consuming:
   - you should be good at javascript
+
+- whats a product development framework ?
+  - well first think whats a web framework, or an application framework
+  - then think of everything else you would need when you're done using those
 
 ![@nodeproto architecture](/doc/architecture.png)
 
