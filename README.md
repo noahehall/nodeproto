@@ -70,6 +70,8 @@ be sure to checkout `root/tests/integration` for how to use our internal magic
 
 anything listed below should be ready for dev, but not primetime (wait for alpha release)
 
+- tests
+  - [@nodeproto/tests - Integration + e2e tests for everything below](tests/README.md)
 - services
   - [@nodeproto/gateway - HAproxy Gateway](packages/apps/gateway/README.md)
   - [@nodeproto/client - React@alpha frontend](packages/apps/client/README.md)
