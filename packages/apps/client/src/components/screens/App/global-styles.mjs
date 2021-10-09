@@ -5,7 +5,7 @@
   https://freebiesbug.com/
   */
 
-import { createGlobalStyle } from 'styled-components';
+import { css } from '@emotion/react';
 
 /* quickies
   rem - root container fontsize
@@ -23,7 +23,7 @@ import { createGlobalStyle } from 'styled-components';
 // https://www.w3schools.com/charsets/ref_utf_dingbats.asp
 // https://dev.w3.org/html5/html-author/charref
 // https://html.spec.whatwg.org/multipage/named-characters.html#named-character-references
-export default createGlobalStyle`
+export default css`
   // vars
     :root {
       /* everything relative to these sizes!*/

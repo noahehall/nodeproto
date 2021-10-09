@@ -1,12 +1,13 @@
 // @flow strict
 
+import { Global } from '@emotion/react';
 import { Helmet } from 'react-helmet';
 import { Router } from '@reach/router';
 
-import GlobalStyle from './global-styles.mjs';
+import styled from '@emotion/styled';
+import globalStyles from './global-styles.mjs';
 import LandingScreen from '../Landing/LandingScreen.mjs';
 import NotFoundScreen from '../NotFound/NotFoundScreen.mjs';
-import styled from 'styled-components';
 
 import type { Node } from 'react';
 
@@ -45,6 +46,8 @@ export default function App(): Node {
         <meta content='IT TAKES NIRV' name='description' />
       </Helmet>
 
+      <Global styles={globalStyles} />
+
       <InnerContainer id='inner-container'>
         <AppWrapper id='app-wrapper'>
           <Router>
@@ -54,8 +57,6 @@ export default function App(): Node {
           </Router>
         </AppWrapper>
       </InnerContainer>
-
-      <GlobalStyle />
     </OuterContainer>
   );
 }

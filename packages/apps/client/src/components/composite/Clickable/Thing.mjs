@@ -5,8 +5,7 @@ import { useButton } from 'react-aria';
 
 import * as React from 'react';
 import clsx from 'clsx';
-import styled from 'styled-components';
-
+import styled from '@emotion/styled';
 
 const StyledAnchor = styled(Clickable)`
 

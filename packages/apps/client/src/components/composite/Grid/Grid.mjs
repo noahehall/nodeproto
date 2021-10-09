@@ -4,7 +4,7 @@ import { unstable_Grid as Grid, unstable_useGridState as useGridState } from 're
 import * as React from 'react';
 import clsx from 'clsx';
 import ErrorBoundary from '../Errors/ErrorBoundary.mjs';
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 
 const StyledGrid = styled(Grid)`
   /* display: flex;

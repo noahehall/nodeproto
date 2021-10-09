@@ -38,7 +38,7 @@
 
             // uncomment for automatic runtime
             "runtime": "automatic", // automatically import React shit at the top of files
-            "importSource": "react"
+            "importSource": "@emotion/react" // https://emotion.sh/docs/css-prop##babel-preset
           }
         ]
       ],

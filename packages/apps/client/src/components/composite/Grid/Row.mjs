@@ -2,7 +2,7 @@
 
 import clsx from 'clsx';
 import * as React from 'react';
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 import {
   unstable_GridRow as GridRow,
   unstable_useGridState as useGridState,
