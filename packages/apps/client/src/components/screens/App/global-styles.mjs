@@ -24,7 +24,7 @@ import { css } from '@emotion/react';
 // https://dev.w3.org/html5/html-author/charref
 // https://html.spec.whatwg.org/multipage/named-characters.html#named-character-references
 export default css`
-  // vars
+  /*vars*/
     :root {
       /* everything relative to these sizes!*/
       /* --fontsize-normal: 32px;
@@ -112,7 +112,7 @@ export default css`
       }
     }
 
-  // hierarchy
+  /*hierarchy*/
     html {
       /* font-size: var(--fontsize-normal); */
       font-family: Fabriga, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;

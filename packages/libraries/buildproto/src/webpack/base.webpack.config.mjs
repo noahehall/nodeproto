@@ -1,13 +1,16 @@
 // @flowtodo
+// TODO: move 99% of this shit to separate file
+// TODO: require pack from setup.webpack. ot make life easier for us and consumers
 
 // @see https://webpack.js.org/plugins/copy-webpack-plugin/
 import { BundleStatsWebpackPlugin } from 'bundle-stats-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
+import svgToMiniDataURI from 'mini-svg-data-uri';
 
 // likely not needed as we continue to integrate flow
 const t = (msg = 'required', p = 'error in baseWebpackConfig: ') => { throw new Error(`${p}${msg}`); };
 
-const r = thing => t(`${thing} is required`);
+const r = thing => t(`${thing} is required in base.webpack.config`);
 
 const getDefaultPlugins = ({ copyOptions }) => [
   // @see https://github.com/relative-ci/bundle-stats/tree/master/packages/webpack-plugin
@@ -23,6 +26,38 @@ const getDefaultPlugins = ({ copyOptions }) => [
   copyOptions && new CopyPlugin(copyOptions),
 
 ].filter(x => x);
+
+// @see https://webpack.js.org/guides/asset-modules/
+// @see https://webpack.js.org/configuration/output/#template-strings
+// asset/resource: emit separate file (e.g. file-loader)
+// asset/inline: export data uri (e.g. url-loader)
+// asset/source: export source code (e.g. raw-loader)
+// asset: automatically choose (e.g. url-loader with asset size limit)
+const getAssetLoaders = () => ({
+fontLoader: {
+    test: /\.(eot|otf|ttf|woff|woff2)$/,
+    type: 'asset/resource',
+    generator: { filename: '[file][query]' },
+  },
+  imageLoader: {
+    test: /\.(jpg|png|gif)$/,
+    type: 'asset/resource',
+    generator: { filename: '[file][query]' },
+  },
+  videoLoader: {
+    test: /\.(mp4|webm)$/,
+    type: 'asset/resource',
+    generator: { filename: '[file][query]' },
+  },
+  svgLoader: {
+    test: /\.svg$/,
+    type: 'asset/inline',
+    generator: {
+      filename: '[file][query]',
+      dataUrl: content => svgToMiniDataURI(content.toString()),
+    },
+  },
+});
 
 const generateLoaders = ({
   stringReplaceLoader,
@@ -46,48 +81,7 @@ const generateLoaders = ({
     ],
   },
 
-  fontLoader: {
-    test: /\.(eot|otf|ttf|woff|woff2)$/,
-    use: 'file-loader',
-  },
-
-  imageLoader: {
-    test: /\.(jpg|png|gif)$/,
-    use: [
-      {
-        loader: 'url-loader',
-        options: {
-        // Inline files smaller than 10 kB
-          limit: 10 * 1024,
-        },
-      }
-    ],
-  },
-
-  svgLoader: {
-    test: /\.svg$/,
-    use: [
-      {
-        loader: 'svg-url-loader',
-        options: {
-        // Inline files smaller than 10 kB
-          limit: 10 * 1024,
-          noquotes: true,
-        },
-      }
-    ],
-  },
-
-  videoLoader: {
-    test: /\.(mp4|webm)$/,
-    use: {
-      loader: 'url-loader',
-      options: {
-        limit: 10000,
-      },
-    },
-  },
-
+  ...getAssetLoaders(),
   // @see https://github.com/webpack/webpack/issues/11467
   esmLoader: {
     test: /\.m?js$/,
@@ -117,11 +111,42 @@ const generateLoaders = ({
   },
 });
 
-/**
- *
- * @param options everything is configurable
- * @returns webpack configuration object
- */
+// @see https://webpack.js.org/configuration/cache/
+const getCache = (cache, pack = r('pack => getCache()')) => {
+  if (!pack.pkgJson) r('pack.pkgJson => getCache');
+  return !cache // disable|production
+    ? false
+    : typeof cache === 'boolean' // use our defaults for devlepoment|production
+      ? {
+        // TODO: should return settings appropriate for prod if mode === 'production'
+
+        // options only for type:memory
+        // maxGenerations: 10
+        // cacheUnaffected: true,
+
+        // enabled for development
+        // cacheDirectory: 'node_modules/.cache/webpack', // use webpack defualts
+        // cacheLocation: 'name_of_app', // use webpack default
+        allowCollectingMemory: true,
+        // buildDependencies: { config: ['webpack/lib', pack.pathSrc] },
+        compression: false,
+        hashAlgorithm: 'md4',
+        idleTimeout: 60000,
+        idleTimeoutAfterLargeChanges: 1000,
+        idleTimeoutForInitialStore: 0,
+        maxAge: 5184000000 / 4, // 7 days
+        maxMemoryGenerations: 10,
+        memoryCacheUnaffected: true,
+        name: pack.pkgJson.name,
+        profile: true,
+        store: 'pack',
+        type: 'filesystem',
+        version: pack.pkgJson.version,
+
+      }
+      : cache; // use whatever they send
+};
+
 export default function baseWebpackConfig ({
   // defaults
   // externalsConfig = { modulesFromFile: true }, // verify this
@@ -139,9 +164,10 @@ export default function baseWebpackConfig ({
   configFile = false, // todo: absolute path to a babelConfigFile
   pathDist = pack.pathDist || r('pathDist: String'),
   pathSrc = pack.pathSrc || r('pathSrc: String'),
-  pkgJson = pack.pkgJson || {},
+  pkgJson = pack.pkgJson || null,
 
   // other shit
+  cache = false,
   context = process.cwd(), // you generally want to pass this in and not rely on process.cwd()
   entryPush = [],
   entryUnshift = [],
@@ -151,7 +177,6 @@ export default function baseWebpackConfig ({
   mode = 'development',
   optimization = {},
   output = {},
-  outputDefault = { filename: '[name].js', chunkFilename: '[name].chunk.js' },
   plugins = [],
   processEnv = {},
   publicPath = 'auto', // @see https://webpack.js.org/guides/public-path/#automatic-publicpath
@@ -179,8 +204,8 @@ export default function baseWebpackConfig ({
 
   // @see https://webpack.js.org/configuration/experiments/#root
   experiments = {
-    // cacheUnaffected: true,
     // futureDefaults: false,
+    cacheUnaffected: true,
     asyncWebAssembly: true, // make a webassembly module an async module
     buildHttp: true, // build remote resource that begin with http(s)
     layers: true,
@@ -194,19 +219,30 @@ export default function baseWebpackConfig ({
   ...overrides
 } = {}) {
   return {
+    cache: getCache(cache, pack),
     context,
     devtool,
     entry: Array.isArray(entry) ? entryUnshift.concat(entry, entryPush).filter(e => e) : entry,
     experiments,
     externals: builtinModules.concat(externals),
+    infrastructureLogging: {
+      // TODO: add this to fn params for overriding
+      // @see https://webpack.js.org/configuration/other-options/#infrastructurelogging
+      level: 'info',
+      colors: true,
+    },
     mode,
     // use to be [generateLoaders...]
     module: { rules: Object.values(generateLoaders({ pathSrc, stringReplaceLoader, configFile })).filter(x => x) },
     optimization,
     output: {
+      charset: true,
+      chunkFilename: '[name].chunk.js',
+      filename: '[name].js',
       path: pathDist,
       publicPath,
-      ...outputDefault,
+      clean: false, // just do this manually
+      compareBeforeEmit: true, // dont emit files if the file already exists with same content
       ...output,
     },
     plugins: (plugins.concat(basePlugins)).filter(x => x),

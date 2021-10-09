@@ -1,15 +1,19 @@
 {
+  "default_locale": "en",
+  "description": "manage UI application network requests with @nodeproto/bodyguard firefox & chromium (chrome, edge, opera) browser extension",
   "manifest_version": 2,
   "name": "@nodeproto/bodyguard",
-  "description": "manage UI application network requests with @nodeproto/bodyguard firefox & chromium (chrome, edge, opera) browser extension",
   "version": "0.0.0",
-  "default_locale": "en",
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self';",
+
+  "commands": { "_execute_sidebar_action": { "suggested_key": { "default": "Ctrl+Shift+Y" }}},
+  "icons": { "48": "icons/icons8-muscle-48.png"},
+
   "background": {
-    "scripts": [
-      "background/contextMenu.js",
-      "background/network.js"
-    ]
+    "page": "background/scriptManager.html",
+    "persistent": false
   },
+
   "browser_action": {
     "default_icon": {
       "48": "icons/icons8-muscle-48.png"
@@ -20,22 +24,14 @@
     "chrome_style": true,
     "default_area": "navbar"
   },
+
   "options_ui": {
     "page": "optionsUi/optionsUi.html",
     "browser_style": true,
     "chrome_style": true,
     "open_in_tab": true
   },
-  "page_action": {
-    "default_icon": {
-      "48": "icons/icons8-muscle-48.png"
-    },
-    "default_popup": "pageAction/pageAction.html",
-    "default_title": "@nodeproto/bodyguard",
-    "browser_style": true,
-    "chrome_style": true,
-    "show_matches": ["<all_urls>"]
-  },
+
   "sidebar_action": {
     "default_icon": {
       "48": "icons/icons8-muscle-48.png"
@@ -46,9 +42,8 @@
     "browser_style": true,
     "chrome_style": true
   },
-  "icons": {
-    "48": "icons/icons8-muscle-48.png"
-  },
+
+
   "browser_specific_settings": {
     "gecko": {
       "id": "noahedwardhall@gmail.com",
@@ -61,13 +56,8 @@
       "strict_min_version": "13"
     }
   },
-  "commands": {
-    "_execute_sidebar_action": {
-      "suggested_key": {
-        "default": "Ctrl+Shift+Y"
-      }
-    }
-  },
+
+
   "permissions": [
     "activeTab",
     "http://*/*",

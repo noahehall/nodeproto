@@ -1,32 +1,36 @@
-import React from 'react';
+import { Global } from '@emotion/react';
+import { useEffect, useState } from 'react';
+import {
+  getBrowserLocalStorage,
+  getBrowserTabs,
+  getBrowserWindow,
+  getOnMessage,
+  handleInternalMsg,
+  setBrowserLocalStorage,
+  stripUrl,
+} from '../shared/utils';
+
+import Debug from './components/Debug';
+import globalStyles from './globalStyles';
+import Header from './components/Header';
 import ReactDOM from 'react-dom';
-import 'webextension-polyfill';
+import RuntimeOptions from './components/RuntimeOptions';
+import Actions from './components/Actions';
 
 let myWindowId;
 
-let debugElement, formActions, formBodyguard;
+const onMessage = getOnMessage();
+const storage = getBrowserLocalStorage();
 
-export default function SidebarAction () {
-  const stripUrl = url => url.split('?')[0]
+function SidebarAction () {
 
-  React.useEffect(() => {
-    if (!debugElement || !formActions || !formBodyguard) {
-      debugElement = document.getElementById('bodyguard-debug');
-      formActions = document.getElementById('actions');
-      formBodyguard = document.getElementById('bodyguard-form');
-    }
-  },[debugElement, formActions, formBodyguard]);
-
-  const handleInternalMsg = ({ type, message } = {}) => {
-    if (type === 'DEBUG')
-      debugElement.textContent = debugElement.textContent += '\r\n\r\n' + message.join('\r\n↑↓\r\n')
-  }
+  const [{ debugElement, formActions, formBodyguard }, setElements] = useState({});
 
   const msgListener = (data = {}, sender) => {
     switch (data.type) {
       case 'DEBUG':
       case 'SIDEBAR': {
-        handleInternalMsg(data);
+        handleInternalMsg(data, debugElement);
 
         return Promise.resolve('done');
       }
@@ -36,8 +40,8 @@ export default function SidebarAction () {
 
   const addMsgListener = () => {
     debugElement.textContent = '';
-    browser.runtime.onMessage.removeListener(msgListener);
-    browser.runtime.onMessage.addListener(msgListener);
+    onMessage.removeListener(msgListener);
+    onMessage.addListener(msgListener);
   }
 
   const resetContent = () => {
@@ -45,11 +49,12 @@ export default function SidebarAction () {
 
     if (!formFields) return console.error('\n\n error retrieving formFields');
 
-    browser.tabs.query({ windowId: myWindowId, active: true })
-      // get tab url
-      .then(tabs => stripUrl(tabs[0].url))
-      // get data from storage
-      .then(url => browser.storage.local.get().then(data => {
+    getBrowserTabs().then(tabs => {
+      const url = stripUrl(tabs[0].url);
+
+      getBrowserLocalStorage().then(data => {
+        console.info('\n\n reset url', url);
+
         const bodyguardRules = data.global;
 
         if (typeof bodyguardRules === 'undefined') return console.info('TODO: setup global + activate tab rules', bodyguardRules, url)
@@ -58,25 +63,18 @@ export default function SidebarAction () {
           if (formFields[name].type === 'checkbox') formFields[name].checked = value;
           else formFields[name].value = value;
         })
-      }))
+      });
+    })
   }
 
-  React.useEffect(() => {
-    if (!debugElement || !formActions || !formBodyguard) return void 0;
+  const actionsOnClick = e => {
+    console.info('\n\n formactions click', e.target.id);
 
-    // populate bodyGuard rules when sidebar loads
-    browser.windows.getCurrent({populate: true}).then((windowInfo) => {
-      myWindowId = windowInfo.id;
-
-      resetContent();
-      addMsgListener();
-    });
-
-    formActions.addEventListener('click', e => {
     const formAction = e.target.id;
     if (!formAction) return console.error('\n\n error retrieving formAction');
 
-    browser.tabs.query({windowId: myWindowId, active: true}).then((tabs) => {
+    getBrowserTabs().then((tabs) => {
+      console.info('\n\n tabs', tabs)
       const formFields = formBodyguard.elements;
 
       switch (formAction) {
@@ -91,7 +89,7 @@ export default function SidebarAction () {
               : field.value;
           });
 
-          browser.storage.local.set({
+          setBrowserLocalStorage({
             global: bodyguardRules,
             activateTab: [stripUrl(tabs[0].url)],
           });
@@ -106,18 +104,41 @@ export default function SidebarAction () {
           break;
         }
         case 'clear': {
-          browser.storage.local.set({ [stripUrl(tabs[0].url)]: {} });
+          setBrowserLocalStorage({ [stripUrl(tabs[0].url)]: {} });
           [].forEach.call(formFields, field => {
             // force setting true until we have type to develop per tab settings
             if (field.name === 'is-global') field.value = true;
             else if (field.value) field.value = '';
             else if (field.checked) field.checked = false;
           });
-        }
-      }
 
+          break;
+        }
+        default: console.error('\n\n unknown formAction', e.target.id);
+      }
     });
-  });
+  };
+
+  useEffect(() => {
+    if (!debugElement || !formActions || !formBodyguard) {
+      setElements({
+        debugElement: document.getElementById('bodyguard-debug'),
+        formActions: document.getElementById('actions'),
+        formBodyguard:document.getElementById('bodyguard-form')
+      });
+    }
+  },[debugElement, formActions, formBodyguard, setElements]);
+
+  useEffect(() => {
+    if (!debugElement || !formActions || !formBodyguard) return void 0;
+
+    // populate bodyGuard rules when sidebar loads
+    getBrowserWindow().then((windowInfo) => {
+      myWindowId = windowInfo.id;
+
+      resetContent();
+      addMsgListener();
+    });
   }, [
     debugElement,
     formActions,
@@ -126,98 +147,23 @@ export default function SidebarAction () {
     addMsgListener,
   ])
 
-
   return (
     <>
-      <header className="panel-section panel-section-header">
-        <h1 className="text-section-header">SETUP</h1>
-      </header>
+      <Global styles={globalStyles} />
+      <Header />
       <main className="panel-section panel-section-list">
         <p className="browser-style panel-list-item">
           configure & debug UI applications network requests with @nodeproto/bodyguard
         </p>
-        <article className="panel-section panel-section-list">
-          <h2 className="panel-section-header">runtime options</h2>
-          <form id="bodyguard-form" className="panel-section panel-section-formElements">
-            <fieldset className="filter-rule">
-              <legend>FILTER RULES <button className="browser-style" type="button" name="add" disabled>+</button></legend>
 
-              <div className="panel-formElements-item">
-                <label className="browser-style label text" title="will manage all network requests whose URL includes string">
-                  <span>URLS MATCHING</span>
-                  <input type="url" name="matching"  required />
-                </label>
-              </div>
-
-              <fieldset className="filter-rule">
-                <legend>PROXY RULES <button className="browser-style" type="button" name="add" disabled>+</button></legend>
-
-                <small className="browser-style text">Each matched URL will fall through all proxy rules. </small>
-
-                <div className="panel-formElements-item filter-rule-group">
-                  <div className="group">
-                    <label className="browser-style label text" title="string to find in the URL">
-                      <span>FIND</span>
-                      <input type="text" name="find" />
-                    </label>
-                  </div>
-
-                  <div className="group">
-                    <label className="browser-style label text" title="string to inject into the URL">
-                      <span>REPLACE</span>
-                      <input type="text" name="replace" />
-                    </label>
-                  </div>
-
-                  <div className="group flex">
-                    <label className="browser-style label checkbox" title="if checked: reject this request and return 404">
-                      <input type="checkbox" name="reject" />
-                      <span>REJECT</span>
-                    </label>
-
-                    <label className="browser-style label checkbox" title="if checked: will log requests to the debug section">
-                      <input type="checkbox" name="debug" />
-                      LOG
-                    </label>
-
-                    <label className="browser-style label checkbox" title="if checked: all rules will be active">
-                      <input type="checkbox" name="active" />
-                      ACTIVE
-                    </label>
-                  </div>
-                </div>
-              </fieldset>
-
-              <div className="panel-formElements-item">
-                <label className="browser-style label checkbox" title="If checked filter rules apply to all open tabs" disabled>
-                  <input type="checkbox" name="is-global" disabled checked />
-                  Global Filter Rule?
-                </label>
-              </div>
-              <div className="panel-formElements-item">
-                <button className="browser-style" type="button" name="del" disabled>DELETE</button>
-              </div>
-            </fieldset>
-          </form>
-        </article>
-
-        <aside className="panel-section-list">
-          <h2 className="panel-section-header">debug</h2>
-          <p className="panel-list-item">check LOG on any filter rule to view the matching requests</p>
-          <code className="panel-list-item log" id="bodyguard-debug"></code>
-        </aside>
-
-        <footer id="actions" className="panel-section panel-section-footer">
-          <button type="button" id="save" type="button">Save</button>
-          <button type="button" id="reset" type="button">Undo</button>
-          <button type="button" id="clear" type="button">Trash</button>
-        </footer>
+        <RuntimeOptions />
+        <Debug />
+        <Actions onClick={actionsOnClick} />
       </main>
     </>
   );
 }
 
-const containerID = 'root';
 const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container);
 root.render(<SidebarAction />);

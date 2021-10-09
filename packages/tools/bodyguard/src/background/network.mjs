@@ -1,16 +1,17 @@
-'use strict';
+import {
+  getActiveTab,
+  getBrowserLocalStorage,
+  getBrowserStorage,
+  getBrowserTabs,
+  getBrowserWindow,
+  getOnBeforeRequest,
+  sendInternalMsg,
+  stripUrl,
+} from '../shared/utils';
 
-let myWindowId;
-
-const stripUrl = url => url.split('?')[0]
-
-// @see https://github.com/mdn/webextensions-examples/blob/master/history-deleter/history.js
-const getActiveTab = () => browser.tabs.query({active: true, currentWindow: true});
-// @see https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/sendMessage
-// TODO: prefer this for sending console logs https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Content_scripts#connection-based_messaging
-const sendInternalMsg = ({ type = 'DEBUG', message }) => browser.runtime.sendMessage({ type, message });
-
-const cache = { global: {}};
+const onBeforeRequest = getOnBeforeRequest();
+const storage = getBrowserStorage();
+const cache = { myWindowId: null, global: {}};
 const guards = new Set();
 const debug = new Set();
 
@@ -59,8 +60,11 @@ function guardUrl(requestDetails) {
 }
 
 const syncBodyguards = () => {
-  browser.webRequest.onBeforeRequest.removeListener(debugUrl);
-  browser.webRequest.onBeforeRequest.removeListener(guardUrl);
+  console.info('\n\n syncing body guards');
+
+  // remove previous listeners
+  onBeforeRequest.removeListener(debugUrl);
+  onBeforeRequest.removeListener(guardUrl);
 
   Object.entries(cache).forEach(([tabUrl, bodyguardRules = {}]) => {
     // TODO: enhancce with per-tab urls
@@ -84,9 +88,9 @@ const syncBodyguards = () => {
     else if (debug.has(bodyguardRules.find)) debug.delete(bodyguardRules.find);
   });
 
-  console.info('\n\n wtf', debug);
+  console.info('\n\n new bodyguard state:', debug, guards);
 
-  if (debug.size) browser.webRequest.onBeforeRequest.addListener(
+  if (debug.size) onBeforeRequest.addListener(
     debugUrl, { urls: ["<all_urls>"] }
   );
 
@@ -94,7 +98,7 @@ const syncBodyguards = () => {
     let urls = [];
     guards.forEach(url => url && urls.push(url + '*'));
 
-    browser.webRequest.onBeforeRequest.addListener(
+    onBeforeRequest.addListener(
       guardUrl,
       { urls }, // types: redirectTypes  < use to be in object
       ["blocking"]
@@ -102,24 +106,12 @@ const syncBodyguards = () => {
   }
 }
 
-const retrieveActiveTab = () => browser
-  .tabs.query({ windowId: myWindowId, active: true })
-  .then(tabs => stripUrl(tabs[0].url))
+const retrieveBodyguardRules = () => getBrowserLocalStorage().then(bodyguardRules => {
+  const [ url, data ] = Object.entries(bodyguardRules)[0];
 
-const retrieveBodyguardRules = () => browser
-  .storage.local.get().then(bodyguardRules => {
-    const [ url, data ] = Object.entries(bodyguardRules)[0];
+  cache[url] = data[url];
 
-    cache[url] = data[url];
-
-    return cache;
-  });
-
-browser.windows.getCurrent({ populate: true }).then(windowInfo => {
-  myWindowId = windowInfo.id;
-
-  retrieveBodyguardRules()
-    .then(() => syncBodyguards())
+  return cache;
 });
 
 const bodyguardShiftManager = diff => {
@@ -129,6 +121,15 @@ const bodyguardShiftManager = diff => {
   syncBodyguards();
 };
 
+getBrowserWindow().then(windowInfo => {
+  console.info('\n\n initializing @nodeproto/bodygaurd');
+
+  cache.myWindowId = windowInfo.id;
+
+  retrieveBodyguardRules()
+    .then(() => syncBodyguards())
+});
+
 // use storage.onChange vs browser.runtime as we want to persist this data anyway
-if (!browser.storage.onChanged.hasListener(bodyguardShiftManager))
-  browser.storage.onChanged.addListener(bodyguardShiftManager);
+if (!storage.onChanged.hasListener(bodyguardShiftManager))
+  storage.onChanged.addListener(bodyguardShiftManager);

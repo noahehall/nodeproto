@@ -1,5 +1,6 @@
 // @flowtodo
-
+// TODO: move 99% of htis hst to separate file and load directly in base.webpack.config
+// this file should only export shit needed in { pack: {}}
 import { builtinModules } from 'module';
 import { readFileSync } from 'fs';
 
@@ -103,6 +104,7 @@ export default function setupWebpack({
     reuseExistingChunk: true,
   };
 
+  // @see https://webpack.js.org/plugins/split-chunks-plugin/
   const splitChunks = {
     cacheGroups: createCacheGroups(vendors),
     chunks: 'all',
@@ -116,18 +118,18 @@ export default function setupWebpack({
     minRemainingSize: minSize, // to mirror prod
     minSize,
     name: false,
-    usedExports: true,
+    usedExports: false, // TODO
   };
 
   // slows down dev a bit, but at least it ALMOST mirrors prod
 // @see https://webpack.js.org/configuration/optimization/
   const optimization = {
     chunkIds: ifProd ? 'deterministic' : 'named',
-    concatenateModules: true,
-    emitOnErrors: true, // useful if we need to debug
+    concatenateModules: false, // depends on usedExports
+    emitOnErrors: true, // emit assets even if there are errors
     flagIncludedChunks: true,
-    innerGraph: true,
-    mangleExports: ifProd,
+    innerGraph: true, // required for emotion
+    mangleExports: false,
     mergeDuplicateChunks: true,
     minimize: ifProd,
     minimizer: ifProd ? terserPlugin : undefined,
@@ -135,13 +137,15 @@ export default function setupWebpack({
     nodeEnv: mode,
     portableRecords: true,
     providedExports: true,
-    realContentHash: ifProd,
-    removeAvailableModules: true,
-    removeEmptyChunks: true,
-    runtimeChunk: { name: 'runtime' },
+    realContentHash: true,
+    removeAvailableModules: false,
+    removeEmptyChunks: false,
+    runtimeChunk: 'single', // all entry points runtime in the same file
     sideEffects: true,
     splitChunks,
-    usedExports: true,
+    usedExports: false, // cant be used with experiments.cacheUnaffected
+    // mangleWasmImports // TODO
+
   };
 
   return {
