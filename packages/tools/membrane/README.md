@@ -1,6 +1,6 @@
 # @nodeproto/membrane
 
-- virutalization layer separating internal stuff from outside stuff
+- the virtualization layer that separates the interior apps, libraries and tools from the outside environment
 
 ## TLDR
 

@@ -1,5 +1,15 @@
 import browser from 'webextension-polyfill';
 
+export const translate = msg => browser.i18n.getMessage(msg);
+
+export const errorHandler = () => {
+  if (browser.runtime.lastError) {
+    console.log(`Error: ${browser.runtime.lastError}`);
+  } else {
+    console.log("Item created successfully");
+  }
+}
+
 export const stripUrl = url => url.split('?')[0]
 
 export const handleInternalMsg = ({ type, message } = {}, el) => {
@@ -8,6 +18,8 @@ export const handleInternalMsg = ({ type, message } = {}, el) => {
 }
 
 //////////////////// BROWSER /////////////////////
+export const getSidebarAction = () => browser.sidebarAction;
+export const getRuntime = () => browser.runtime
 export const getOnBeforeRequest = () => browser.webRequest.onBeforeRequest;
 
 // @see https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/sendMessage

@@ -11,7 +11,8 @@ const { pack, config } = setupWebpackConfig();
 export const webpackConfig = reactDevWebpackConfig({
   pack,
   ...config,
-  cache: true,
+  watch: true,
+  cache: false, // TODO: not picking up changes when removing babel plugins in @nodeproto/configproto/....../client.babelrc
   devtool: 'cheap-module-source-map',
   entryUnshift: [],
   // @see https://webpack.js.org/configuration/entry-context/#entry-descriptor
@@ -44,7 +45,7 @@ export const webpackConfig = reactDevWebpackConfig({
     patterns: [{
       // set the context
       context: pack.resolve('./src'),
-      from: './**/*.(json|png)',
+      from: './**/*.(json|png)', // TODO: shouldnt need png anymore as its handled via resolveAssets webpack5 thing?
     }]
   },
   htmlOptions: [

@@ -1,4 +1,5 @@
-import { Global } from '@emotion/react';
+
+import { Global, css } from '@emotion/react';
 import { useEffect, useState } from 'react';
 import {
   getBrowserLocalStorage,
@@ -10,12 +11,12 @@ import {
   stripUrl,
 } from '../shared/utils';
 
+import Actions from './components/Actions';
 import Debug from './components/Debug';
 import globalStyles from './globalStyles';
 import Header from './components/Header';
 import ReactDOM from 'react-dom';
 import RuntimeOptions from './components/RuntimeOptions';
-import Actions from './components/Actions';
 
 let myWindowId;
 
@@ -25,6 +26,34 @@ const storage = getBrowserLocalStorage();
 function SidebarAction () {
 
   const [{ debugElement, formActions, formBodyguard }, setElements] = useState({});
+
+  useEffect(() => {
+    if (!debugElement || !formActions || !formBodyguard) {
+      setElements({
+        debugElement: document.getElementById('bodyguard-debug'),
+        formActions: document.getElementById('actions'),
+        formBodyguard:document.getElementById('bodyguard-form')
+      });
+    }
+  },[debugElement, formActions, formBodyguard, setElements]);
+
+  useEffect(() => {
+    if (!debugElement || !formActions || !formBodyguard) return void 0;
+
+    // populate Bodyguard rules when sidebar loads
+    getBrowserWindow().then((windowInfo) => {
+      myWindowId = windowInfo.id;
+
+      resetContent();
+      addMsgListener();
+    });
+  }, [
+    addMsgListener,
+    debugElement,
+    formActions,
+    formBodyguard,
+    resetContent,
+  ])
 
   const msgListener = (data = {}, sender) => {
     switch (data.type) {
@@ -118,34 +147,6 @@ function SidebarAction () {
       }
     });
   };
-
-  useEffect(() => {
-    if (!debugElement || !formActions || !formBodyguard) {
-      setElements({
-        debugElement: document.getElementById('bodyguard-debug'),
-        formActions: document.getElementById('actions'),
-        formBodyguard:document.getElementById('bodyguard-form')
-      });
-    }
-  },[debugElement, formActions, formBodyguard, setElements]);
-
-  useEffect(() => {
-    if (!debugElement || !formActions || !formBodyguard) return void 0;
-
-    // populate bodyGuard rules when sidebar loads
-    getBrowserWindow().then((windowInfo) => {
-      myWindowId = windowInfo.id;
-
-      resetContent();
-      addMsgListener();
-    });
-  }, [
-    debugElement,
-    formActions,
-    formBodyguard,
-    resetContent,
-    addMsgListener,
-  ])
 
   return (
     <>

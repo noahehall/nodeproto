@@ -15,3 +15,6 @@ static configuratoin files
           babelOptions:
             configFile: path/to/.babelrc
       ```
+
+- webpack
+  - TODO: caching not picking up deep dependency changes, e.g. modifying babel plugins forces us to set `cache: false` in webpack config

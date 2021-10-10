@@ -1,9 +1,3 @@
-TODO:
-  dist/background/network.js
-    add if (typeof console !== 'undefined') console.info('\n\n hello jessica',self['webpackChunk_nodeproto_bodyguard'] );
-
-    reports '__unused_webpack_module'
-
 @nodeproto/bodyguard - manage UI application network requests with @nodeproto/bodyguard firefox & chromium (chrome, edge, opera) browser extension
 
 ![@nodeproto/bodyguard sidebar](./src/images/screenshot.png)

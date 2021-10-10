@@ -1,2 +1,3 @@
-import './network.mjs';
-import './contextMenu.mjs';
+import './network';
+import './contextMenu';
+import './toolsMenu';

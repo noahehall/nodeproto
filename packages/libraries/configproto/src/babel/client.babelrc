@@ -43,9 +43,14 @@
         ]
       ],
       "plugins": [
-        "@emotion",
+        ["@emotion", {
+          "sourceMap": true,
+          "autoLabel": "dev-only",
+          "labelFormat": "[local]",
+          "cssPropOptimization": true
+        }],
         "@babel/plugin-transform-react-constant-elements",
-        "@babel/plugin-transform-react-inline-elements"
+        // "@babel/plugin-transform-react-inline-elements" incompatible with @emotion
       ]
 
     },

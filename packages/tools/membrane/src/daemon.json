@@ -1,11 +1,10 @@
 {
   "bridge": "none",
   "data-root": "/var/lib/.nodeproto/docker",
-  "exec-root": "/var/run/.nodeproto/docker",
-  "pidfile": "/var/run/./nodeproto/docker.pid",
   "debug": true,
   "default-shm-size": "64M",
   "dns": ["8.8.8.8","8.8.4.4"],
+  "exec-root": "/var/run/.nodeproto/docker",
   "experimental": true,
   "group": "docker",
   "iptables": true,
@@ -16,11 +15,11 @@
   "max-concurrent-downloads": 3,
   "max-concurrent-uploads": 5,
   "max-download-attempts": 5,
+  "pidfile": "/var/run/.nodeproto/docker.pid",
   "raw-logs": true,
   "selinux-enabled": false,
   "shutdown-timeout": 10,
   "storage-driver": "overlay2",
-  "storage-opts": [],
   "tls": false,
   "default-ulimits": {
     "nofile": {

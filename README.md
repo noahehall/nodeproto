@@ -18,6 +18,7 @@ bleeding-edge type-first *product development framework* for rapidly prototyping
 - tools
   - [@nodeproto/jsync - synchronize package.json[c] files](packages/tools/jsync/README.md)
   - [@nodeproto/bodyguard - UI Network Request proxy + debugger](packages/tools/bodyguard/README.md)
+  - [@nodeproto/member - virutalization via docker +/ vagrant](packages/tools/membrane/README.md)
 
 | tech stack |
 | :----------: |
