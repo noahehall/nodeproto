@@ -14,7 +14,7 @@
   "private": true,
   "type": "module",
   "engines": {
-    "node": ">=16.10.0"
+    "node": "^14.17.0 || >=16.0.0"
   },
   "keywords": [
     "@nirv",
@@ -79,7 +79,7 @@
     "repo:cp:cjs": "rm -f ./dist/package.json && mkdir -p dist && cp ./node_modules/@nodeproto/configproto/src/node/cjs.json ./dist/package.json",
     "repo:cp:configproto": "pnpm repo:cp:flow; pnpm repo:cp:cjs; pnpm repo:cp:browserslist",
     "repo:cp:flow": "rm -f .flowconfig && cp ./node_modules/@nodeproto/configproto/src/flowtype/.flowconfig .",
-    "repo:about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
+    "repo:about": "npm run-script && npm --versions && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
     "repo:exec:list": "pnpm exec ultra --list",
     "repo:config:list": "pnpm config list --json",
     "repo:deps": "pnpm exec ultra --info",

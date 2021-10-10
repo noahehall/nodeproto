@@ -1,0 +1,73 @@
+// unused in development
+{
+  "storage-opts": [],
+  "ip6tables": false,
+  "exec-opts": [],
+  "labels": [],
+  "bip": "",
+  "init-path": "/usr/libexec/docker-init",
+  "allow-nondistributable-artifacts": [],
+  "api-cors-header": "",
+  "authorization-plugins": [],
+  "cgroup-parent": "",
+  "cluster-advertise": "",
+  "cluster-store": "",
+  "cluster-store-opts": {},
+  "containerd": "/run/containerd/containerd.sock",
+  "containerd-namespace": "docker",
+  "containerd-plugin-namespace": "docker-plugins",
+  "default-cgroupns-mode": "private",
+  "default-gateway": "",
+  "default-gateway-v6": "",
+  "default-runtime": "runc",
+  "dns-opts": [],
+  "dns-search": [],
+  "features": {},
+  "fixed-cidr": "",
+  "fixed-cidr-v6": "",
+  "hosts": [],
+  "icc": false,
+  "init": false,
+  "insecure-registries": [],
+  "ip": "0.0.0.0",
+  "ip-forward": false,
+  "ip-masq": false,
+  "mtu": 0,
+  "no-new-privileges": false,
+  "userland-proxy": false,
+  "userland-proxy-path": "/usr/libexec/docker-proxy",
+  "oom-score-adjust": -500,
+  "userns-remap": "",
+  "tlscacert": "",
+  "tlscert": "",
+  "tlskey": "",
+  "tlsverify": true,
+  "swarm-default-advertise-addr": "",
+  "registry-mirrors": [],
+  "runtimes": {
+    "cc-runtime": {
+      "path": "/usr/bin/cc-runtime"
+    },
+    "custom": {
+      "path": "/usr/local/bin/my-runc-replacement",
+      "runtimeArgs": [
+        "--debug"
+      ]
+    }
+  },
+  "seccomp-profile": "",
+  "node-generic-resources": [
+    "NVIDIA-GPU=UUID1",
+    "NVIDIA-GPU=UUID2"
+  ],
+  "default-address-pools": [
+    {
+      "base": "172.30.0.0/16",
+      "size": 24
+    },
+    {
+      "base": "172.31.0.0/16",
+      "size": 24
+    }
+  ],
+}

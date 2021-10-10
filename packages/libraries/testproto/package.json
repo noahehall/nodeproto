@@ -68,7 +68,7 @@
     }
   },
   "engines": {
-    "node": ">=16.10.0"
+    "node": "^14.17.0 || >=16.0.0"
   },
   "scripts": {
     "build": "pnpm repo:rm:dist && pnpm repo:cp:cjs && swc $npm_package_config_DIRS_TO_TRANSPILE -d $npm_package_config_PATH_DIST --config-file ./node_modules/@nodeproto/configproto/src/swc/node.swcrc --copy-files",

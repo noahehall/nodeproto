@@ -48,12 +48,12 @@
     "chokidar-cli": "3.0.0",
     "eslint": "7.32.0",
     "flow-bin": "0.161.0",
-    "flow-remove-types": "2.158.0",
+    "flow-remove-types": "2.161.0",
     "flow-typed": "3.3.1",
     "uvu": "0.5.1"
   },
   "engines": {
-    "node": ">=16.10.0"
+    "node": "^14.17.0 || >=16.0.0"
   },
   "jsync": {
     "root": false
@@ -93,7 +93,7 @@
     "jsync": "node --experimental-specifier-resolution=node ./bin/jsync.js",
     "proto": "pnpm exec ultra -r",
     "proto:slice": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" pnpm exec ultra -r --filter",
-    "repo:about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
+    "repo:about": "npm run-script && npm --versions && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
     "repo:config:list": "pnpm config list --json",
     "repo:cp:browserslist": "rm -f .browserslistrc && cp ./node_modules/@nodeproto/configproto/src/browserslist/.browserslistrc .",
     "repo:cp:cjs": "rm -f ./dist/package.json && mkdir -p dist && cp ./node_modules/@nodeproto/configproto/src/node/cjs.json ./dist/package.json",
@@ -102,6 +102,7 @@
     "repo:deps": "pnpm exec ultra --info",
     "repo:eslint": "eslint './**/*'",
     "repo:eslint:fix": "pnpm repo:eslint -- --fix",
+    "repo:exec:list": "pnpm exec ultra --list",
     "repo:flow": "pnpm exec flow",
     "repo:flow:status": "pnpm exec flow status",
     "repo:flowtyped:install": "pnpm exec flow-typed install",

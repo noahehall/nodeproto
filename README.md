@@ -107,12 +107,14 @@ be sure to checkout `root/tests/integration` for how to use our internal magic
 
 - use pnpm to install node
   - install pnpm `curl -fsSL https://get.pnpm.io/install.sh | sh -`
+  - install node `pnpm env use --global 16`
   - install pnpm tab-completion `pnpm install-completion`
   - source your shell (e.g. bashrc `. ~/.bashrc`)
-  - install node `pnpm env use --global 16`
 - setup application
+  - anything scratched out likely needs to be set nonconcurrent
   - install root dependencies `pnpm install`
-  - install dependencies for all packages/* `pnpm repo:install`
+  - ~~install dependencies for all packages/* `pnpm proto repo:install`~~
+    - ~~on any failures, navigate to the child repo and run `pnpm install` directly~~
   - ~~run all tests in all packages `pnpm repo:test`~~
     - TODO: this currently fails but works if run from within each pkg
   - make any changes you want in `root/package.json` then sync them to monorepo packages

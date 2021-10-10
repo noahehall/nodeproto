@@ -1,9 +1,10 @@
 {
   "bugs": "https://github.com/noahehall/nodeproto/issues",
-  "description": "bleeding-edge repo for prototyping end-to-end, complex, and secure applications and microservices",
+  "description": "@nodeproto/membrane - the virtualization layer for @nodeproto product framework that separates the interior apps, libraries and tools from the outside environment",
   "homepage": "https://github.com/noahehall/nodeproto",
   "license": "SEE LICENSE IN LICENSE.md",
-  "name": "@nodeproto/gateway",
+  "main": "index.js",
+  "name": "@nodeproto/membrane",
   "packageManager": "pnpm@6.15.1",
   "private": true,
   "repository": "git://github.com/noahehall/nodeproto.git",
@@ -17,10 +18,6 @@
   "config": {
     "DIRS_TO_TRANSPILE": "./src",
     "FLOW_LOADER": "./node_modules/@nodeproto/configproto/src/node/loaders/flow.mjs",
-    "GATEWAY_CHROOT_DIR": "./var/lib/haproxy",
-    "GATEWAY_GROUP": "haproxy",
-    "GATEWAY_STATS_SOCK": "./run/haproxy/admin.sock",
-    "GATEWAY_USER": "haproxy",
     "NODE_ENV": "production",
     "NODE_OPTIONS": "--experimental-loader=\"./node_modules/@nodeproto/configproto/src/node/loaders/flow.mjs\" --experimental-specifier-resolution=node --experimental-json-modules --experimental-top-level-await --experimental-vm-modules --experimental-import-meta-resolve node --enable-source-maps --heapsnapshot-near-heap-limit=3 --use-largepages=on --pending-deprecation --trace-sigint --trace-warnings --trace-exit --report-uncaught-exception --report-on-fatalerror --abort-on-uncaught-exception",
     "PATH_DIST": "./dist",
@@ -40,41 +37,11 @@
     "flow-typed": "3.3.1",
     "uvu": "0.5.1"
   },
-  "directories": {
-    "doc": "./doc",
-    "packages": "./packages",
-    "src": "./src"
-  },
   "engines": {
     "node": "^14.17.0 || >=16.0.0"
   },
-  "files": [
-    ".editorconfig",
-    ".eslintrc.yml",
-    ".gitignore",
-    ".npmrc",
-    "pnpm-lock.yaml",
-    "pnpm-workspace.yaml",
-    "README.md"
-  ],
   "jsync": {
-    "forceRootValues": [
-      "author",
-      "bugs",
-      "funding",
-      "homepage",
-      "license",
-      "repository"
-    ],
-    "ignoreRootValues": [],
-    "root": false,
-    "spreadRootValues": [
-      "cpu",
-      "keywords",
-      "os",
-      "publishConfig",
-      "version"
-    ]
+    "root": false
   },
   "keywords": [
     "@nirv",
@@ -108,12 +75,9 @@
     "linux"
   ],
   "scripts": {
-    "build": "",
-    "jsync": "jsync",
-    "linkandsetowner": "src/usr/bin/linkandsetowner.sh",
     "proto": "pnpm exec ultra -r",
     "proto:slice": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" pnpm exec ultra -r --filter",
-    "repo:about": "npm run-script && npm --versions && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
+    "repo:about": "npm run-script && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
     "repo:config:list": "pnpm config list --json",
     "repo:cp:browserslist": "rm -f .browserslistrc && cp ./node_modules/@nodeproto/configproto/src/browserslist/.browserslistrc .",
     "repo:cp:cjs": "rm -f ./dist/package.json && mkdir -p dist && cp ./node_modules/@nodeproto/configproto/src/node/cjs.json ./dist/package.json",
@@ -126,7 +90,6 @@
     "repo:flow": "pnpm exec flow",
     "repo:flow:status": "pnpm exec flow status",
     "repo:flowtyped:install": "pnpm exec flow-typed install",
-    "repo:install": "pnpm -r exec pnpm install",
     "repo:monitor": "pnpm exec ultra --monitor",
     "repo:nuke": "pnpm repo:rm:dist; pnpm repo:rm:nodemodules",
     "repo:rm:dist": "rm -rf dist/*",
@@ -136,10 +99,7 @@
     "repo:test:help": "uvu --help",
     "repo:testing": "pnpm repo:test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"pnpm repo:test\"",
     "repo:upgrade": "pnpm upgrade -L",
-    "start": "src/usr/bin/startdefault.sh",
-    "start:client": "pnpm start",
-    "start:gateway": "pnpm start",
-    "start:pkgcheck": "pnpm start"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "ultra": {
     "concurrent": [

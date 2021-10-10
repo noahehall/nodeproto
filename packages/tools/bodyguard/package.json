@@ -58,7 +58,7 @@
     "webpack": "5.58.1"
   },
   "engines": {
-    "node": ">=16.10.0"
+    "node": "^14.17.0 || >=16.0.0"
   },
   "jsync": {
     "root": false
