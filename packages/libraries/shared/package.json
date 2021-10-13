@@ -1,8 +1,52 @@
 {
-  "name": "@nodeproto/shared",
-  "type": "module",
-  "private": true,
+  "author": {
+    "name": "theDRAGON",
+    "email": "noahedwardhall+souls@gmail.com",
+    "url": "https://github.com/noahehall"
+  },
+  "bugs": "https://github.com/noahehall/nodeproto/issues",
+  "repository": "git://github.com/noahehall/nodeproto.git",
+  "homepage": "https://github.com/noahehall/nodeproto",
+  "license": "SEE LICENSE IN LICENSE.md",
   "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "^14.17.0 || >=16.0.0"
+  },
+  "keywords": [
+    "@nirv",
+    "@nodeproto",
+    "api",
+    "bodyguard",
+    "cloudnative",
+    "development",
+    "fullstack",
+    "inception",
+    "jsync",
+    "micro service",
+    "microservice",
+    "noahedwardhall",
+    "openapi",
+    "product development framework",
+    "production",
+    "prototype",
+    "secure",
+    "theDRAGON",
+    "virtual",
+    "virtualization"
+  ],
+  "os": [
+    "linux"
+  ],
+  "config": {
+    "DIRS_TO_TRANSPILE": "./src",
+    "NODE_ENV": "production",
+    "NODE_OPTIONS": "--experimental-loader=\"./node_modules/@nodeproto/configproto/src/node/loaders/flow.mjs\" --experimental-specifier-resolution=node --experimental-json-modules --experimental-top-level-await --experimental-vm-modules --experimental-import-meta-resolve node --enable-source-maps --heapsnapshot-near-heap-limit=3 --use-largepages=on --pending-deprecation --trace-sigint --trace-warnings --trace-exit --report-uncaught-exception --report-on-fatalerror --abort-on-uncaught-exception",
+    "PATH_DIST": "./dist",
+    "PATH_SRC": "./src"
+  },
+  "name": "@nodeproto/shared",
   "directories": {
     "src": "./src",
     "dist": "./dist",
@@ -24,30 +68,33 @@
   },
   "main": "./dist/index.js",
   "module": "./src/index.mjs",
-  "engines": {
-    "node": "^14.17.0 || >=16.0.0"
-  },
   "files": [
     "./.flowconfig"
   ],
-  "config": {
-    "NODE_ENV": "production",
-    "NODE_OPTIONS": "--enable-source-maps --heapsnapshot-near-heap-limit=3 --use-largepages=on --pending-deprecation --trace-sigint --trace-warnings --trace-exit --report-uncaught-exception --report-on-fatalerror --abort-on-uncaught-exception --experimental-specifier-resolution=node --experimental-json-modules --experimental-top-level-await --experimental-vm-modules --experimental-import-meta-resolve",
-    "PATH_DIST": "./dist",
-    "PATH_SRC": "./src",
-    "DIRS_TO_TRANSPILE": "./src"
-  },
   "scripts": {
     "build": "pnpm repo:rm:dist && pnpm repo:cp:cjs && swc $npm_package_config_DIRS_TO_TRANSPILE -d $npm_package_config_PATH_DIST --config-file ./node_modules/@nodeproto/configproto/src/swc/node.swcrc --copy-files",
+    "proto:bin": "pnpm -r exec $*",
+    "proto:script": "pnpm -r $*",
+    "proto:slice": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" pnpm exec ultra -r --filter",
+    "proto": "pnpm exec ultra -r",
+    "repo:about": "npm run-script && npm --versions && pnpm c list && echo \"NODE OPTIONS set to: $npm_package_config_NODE_OPTIONS\"",
     "repo:cp:browserslist": "rm -f .browserslistrc && cp ./node_modules/@nodeproto/configproto/src/browserslist/.browserslistrc .",
     "repo:cp:cjs": "rm -f ./dist/package.json && mkdir -p dist && cp ./node_modules/@nodeproto/configproto/src/node/cjs.json ./dist/package.json",
     "repo:cp:configproto": "pnpm repo:cp:flow; pnpm repo:cp:cjs; pnpm repo:cp:browserslist",
     "repo:cp:flow": "rm -f .flowconfig && cp ./node_modules/@nodeproto/configproto/src/flowtype/.flowconfig .",
+    "repo:deps": "ultra --info",
     "repo:eslint:fix": "pnpm repo:eslint -- --fix",
-    "repo:eslint": "eslint 'src/**/*'",
+    "repo:eslint": "eslint './**/*'",
+    "repo:flowtyped:install": "flow-typed install",
+    "repo:nuke": "pnpm repo:rm:dist; pnpm repo:rm:nodemodules",
     "repo:rm:dist": "rm -rf dist/*",
-    "repo:install": "pnpm -r exec pnpm install",
-    "repo:upgrade": "pnpm upgrade -L"
+    "repo:rm:nodemodules": "rm -rf node_modules",
+    "repo:scripts:v": "npm run-script",
+    "repo:scripts": "ultra --list",
+    "repo:test:file": "node --experimental-specifier-resolution=node --experimental-import-meta-resolve $*",
+    "repo:test:help": "uvu --help",
+    "repo:test": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" uvu ./src \"test.(m|c)?js\"",
+    "repo:testing": "pnpm repo:test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"pnpm repo:test\""
   },
   "dependencies": {
     "@folder/readdir": "3.1.0",
@@ -60,6 +107,7 @@
     "@nodeproto/testproto": "workspace:0.0.0",
     "@swc/cli": "0.1.51",
     "@swc/core": "1.2.95",
+    "chokidar-cli": "3.0.0",
     "flow-bin": "0.161.0"
   }
 }

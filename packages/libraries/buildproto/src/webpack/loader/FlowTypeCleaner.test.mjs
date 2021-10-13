@@ -13,7 +13,7 @@ const fixtures = '../../../fixtures/';
 // @see https://webpack.js.org/contribute/writing-a-loader/#absolute-paths
 // dont use absolute paths as it breaks hashing
 const config = {
-  // eslint-disable-next-line flowtype-errors/show-errors
+   
   context: thisDir,
   entry: fixtures + 'flow.mjs',
   module: {

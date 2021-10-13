@@ -15,6 +15,7 @@ export const getConfig = (overrides = {}) => ({
   mode: 'development',
   pathDist: thisDir + '/dist',
   pathSrc: thisDir,
+  pack: { pkgJson: {} },
 
   ...overrides
 });
@@ -28,7 +29,7 @@ test('throws', () => {
 
   assert.throws(
     () => baseWebpackConfig(config),
-    /entry: Array is required/,
+    /error in baseWebpackConfig: entry: Array\|string\|object\|descriptor is required in base.webpack.config/,
     'if missing entry'
   );
 
@@ -80,12 +81,9 @@ test('compilation', async () => {
 
   assert.isObject(
     await testCompiler(baseWebpackConfig({
-      builtinModules: pack.builtinModules,
+      ...config,
+      pack,
       entry: data.entry,
-      pathDist: pack.pathDist,
-      pathSrc: pack.pathSrc,
-
-      ...config
     })),
     'compiles successfully with setup.webpack.config.mjs'
   );

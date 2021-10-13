@@ -28,7 +28,7 @@
     "PATH_SRC": "./src"
   },
   "dependencies": {
-    "@babel/runtime": "7.14.8",
+    "@babel/runtime": "7.15.4",
     "@nodeproto/shared": "workspace:0.0.0",
     "env-cmd": "10.1.0",
     "fs-extra": "10.0.0",
@@ -36,21 +36,21 @@
     "ultra-runner": "3.10.5"
   },
   "devDependencies": {
-    "@babel/core": "7.15.0",
-    "@babel/eslint-parser": "7.14.7",
+    "@babel/core": "7.15.8",
+    "@babel/eslint-parser": "7.15.8",
     "@changesets/cli": "2.17.0",
     "@nodeproto/configproto": "workspace:0.0.0",
     "@nodeproto/testproto": "workspace:0.0.0",
     "@octokit/core": "3.5.1",
-    "@swc/cli": "0.1.46",
-    "@swc/core": "1.2.75",
+    "@swc/cli": "0.1.51",
+    "@swc/core": "1.2.95",
     "chokidar": "3.5.2",
     "chokidar-cli": "3.0.0",
-    "eslint": "7.32.0",
+    "eslint": "8.0.0",
     "flow-bin": "0.161.0",
     "flow-remove-types": "2.161.0",
     "flow-typed": "3.3.1",
-    "uvu": "0.5.1"
+    "uvu": "0.5.2"
   },
   "engines": {
     "node": "^14.17.0 || >=16.0.0"
@@ -63,6 +63,8 @@
     "@nodeproto",
     "api",
     "bodyguard",
+    "cloudnative",
+    "development",
     "docker",
     "esbuild",
     "fullstack",
@@ -74,15 +76,22 @@
     "micro service",
     "microservice",
     "nirv",
+    "noahedwardhall",
     "nodeproto",
     "openapi",
     "pnpm",
+    "product development framework",
+    "production",
     "prometheus",
     "prototype",
     "react",
+    "secure",
     "ssl",
     "starter",
     "swagger",
+    "theDRAGON",
+    "virtual",
+    "virtualization",
     "webpack5"
   ],
   "os": [
@@ -92,23 +101,19 @@
   "scripts": {
     "jsync": "node --experimental-specifier-resolution=node ./bin/jsync.js",
     "proto": "pnpm exec ultra -r",
+    "proto:bin": "pnpm -r $*",
     "proto:slice": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" pnpm exec ultra -r --filter",
-    "repo:about": "npm run-script && npm --versions && echo 'available via `bin/FILENAME`:\n'; ls bin/*.sh || exit 0",
-    "repo:config:list": "pnpm config list --json",
+    "repo:about": "npm run-script && npm --versions && pnpm -r config list --json t && echo \"NODE OPTIONS set to: $npm_package_config_NODE_OPTIONS\"",
+    "repo:check:configproto": "test -d node_modules/@nodepdroto/configproto",
+    "repo:check:jsync": "test -d node_modules/@nodeproto/jsync",
     "repo:cp:browserslist": "rm -f .browserslistrc && cp ./node_modules/@nodeproto/configproto/src/browserslist/.browserslistrc .",
     "repo:cp:cjs": "rm -f ./dist/package.json && mkdir -p dist && cp ./node_modules/@nodeproto/configproto/src/node/cjs.json ./dist/package.json",
     "repo:cp:configproto": "pnpm repo:cp:flow; pnpm repo:cp:cjs; pnpm repo:cp:browserslist",
     "repo:cp:flow": "rm -f .flowconfig && cp ./node_modules/@nodeproto/configproto/src/flowtype/.flowconfig .",
-    "repo:deps": "pnpm exec ultra --info",
+    "repo:deps": "ultra --info",
     "repo:eslint": "eslint './**/*'",
     "repo:eslint:fix": "pnpm repo:eslint -- --fix",
-    "repo:exec:list": "pnpm exec ultra --list",
-    "repo:exec:list:g": "pnpm repo:exec:list | grep $*",
-    "repo:exec:list:v": "npm run-script",
-    "repo:flow": "pnpm exec flow",
-    "repo:flow:status": "pnpm exec flow status",
-    "repo:flowtyped:install": "pnpm exec flow-typed install",
-    "repo:install": "pnpm -r exec pnpm install",
+    "repo:flowtyped:install": "flow-typed install",
     "repo:monitor": "pnpm exec ultra --monitor",
     "repo:nuke": "pnpm repo:rm:dist; pnpm repo:rm:nodemodules",
     "repo:rm:dist": "rm -rf dist/*",
@@ -116,8 +121,7 @@
     "repo:test": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" uvu ./src \"test.(m|c)?js\"",
     "repo:test:file": "node --experimental-specifier-resolution=node --experimental-import-meta-resolve $*",
     "repo:test:help": "uvu --help",
-    "repo:testing": "pnpm repo:test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"pnpm repo:test\"",
-    "repo:upgrade": "pnpm upgrade -L"
+    "repo:testing": "pnpm repo:test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"pnpm repo:test\""
   },
   "ultra": {
     "concurrent": [

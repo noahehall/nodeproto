@@ -18,9 +18,9 @@ static configuratoin files
   - be sure to add
 
       ```yml
-        parserOptions:
-          babelOptions:
-            configFile: path/to/.babelrc
+      parserOptions:
+        babelOptions:
+          configFile: path/to/.babelrc
       ```
 
 - webpack

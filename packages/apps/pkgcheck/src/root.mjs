@@ -7,7 +7,7 @@ import App from './app.mjs';
 import http from 'http';
 import https from 'https';
 
-const port = process.env.PKGCHECK_HTTP_PORT || 8080;
+const port = process.env.PKGCHECK_HTTP_PORT || 8081;
 const sport = process.env.PKGCHECK_HTTPS_PORT || 8443;
 
 export const runApp = async () => {
