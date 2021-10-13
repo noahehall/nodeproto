@@ -1,4 +1,4 @@
-// flow-typed signature: 3a52d1e9e98d8427b4a68dac05d858f2
+// flow-typed signature: 3823b67c55ca524b2302ffb0a3d97005
 // flow-typed version: <<STUB>>/@nodeproto/jsync_vworkspace:0.0.0/flow_v0.161.0
 
 /**
@@ -26,7 +26,154 @@ declare module '@nodeproto/jsync/bin/jsync' {
   declare module.exports: any;
 }
 
+declare module '@nodeproto/jsync/flow-typed/npm/@babel/core_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/jsync/flow-typed/npm/@babel/eslint-parser_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/jsync/flow-typed/npm/@babel/runtime_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/jsync/flow-typed/npm/@changesets/cli_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/jsync/flow-typed/npm/@nodeproto/configproto_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/jsync/flow-typed/npm/@nodeproto/shared_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/jsync/flow-typed/npm/@nodeproto/testproto_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/jsync/flow-typed/npm/@octokit/core_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/jsync/flow-typed/npm/@swc/cli_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/jsync/flow-typed/npm/@swc/core_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/jsync/flow-typed/npm/chokidar_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/jsync/flow-typed/npm/chokidar-cli_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/jsync/flow-typed/npm/env-cmd_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/jsync/flow-typed/npm/eslint_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/jsync/flow-typed/npm/flow-bin_v0.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/jsync/flow-typed/npm/flow-remove-types_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/jsync/flow-typed/npm/flow-typed_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/jsync/flow-typed/npm/fs-extra_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/jsync/flow-typed/npm/regenerator-runtime_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/jsync/flow-typed/npm/ultra-runner_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/jsync/flow-typed/npm/uvu_vx.x.x' {
+  declare module.exports: any;
+}
+
 // Filename aliases
 declare module '@nodeproto/jsync/bin/jsync.js' {
   declare module.exports: $Exports<'@nodeproto/jsync/bin/jsync'>;
+}
+declare module '@nodeproto/jsync/flow-typed/npm/@babel/core_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/jsync/flow-typed/npm/@babel/core_vx.x.x'>;
+}
+declare module '@nodeproto/jsync/flow-typed/npm/@babel/eslint-parser_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/jsync/flow-typed/npm/@babel/eslint-parser_vx.x.x'>;
+}
+declare module '@nodeproto/jsync/flow-typed/npm/@babel/runtime_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/jsync/flow-typed/npm/@babel/runtime_vx.x.x'>;
+}
+declare module '@nodeproto/jsync/flow-typed/npm/@changesets/cli_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/jsync/flow-typed/npm/@changesets/cli_vx.x.x'>;
+}
+declare module '@nodeproto/jsync/flow-typed/npm/@nodeproto/configproto_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/jsync/flow-typed/npm/@nodeproto/configproto_vx.x.x'>;
+}
+declare module '@nodeproto/jsync/flow-typed/npm/@nodeproto/shared_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/jsync/flow-typed/npm/@nodeproto/shared_vx.x.x'>;
+}
+declare module '@nodeproto/jsync/flow-typed/npm/@nodeproto/testproto_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/jsync/flow-typed/npm/@nodeproto/testproto_vx.x.x'>;
+}
+declare module '@nodeproto/jsync/flow-typed/npm/@octokit/core_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/jsync/flow-typed/npm/@octokit/core_vx.x.x'>;
+}
+declare module '@nodeproto/jsync/flow-typed/npm/@swc/cli_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/jsync/flow-typed/npm/@swc/cli_vx.x.x'>;
+}
+declare module '@nodeproto/jsync/flow-typed/npm/@swc/core_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/jsync/flow-typed/npm/@swc/core_vx.x.x'>;
+}
+declare module '@nodeproto/jsync/flow-typed/npm/chokidar_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/jsync/flow-typed/npm/chokidar_vx.x.x'>;
+}
+declare module '@nodeproto/jsync/flow-typed/npm/chokidar-cli_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/jsync/flow-typed/npm/chokidar-cli_vx.x.x'>;
+}
+declare module '@nodeproto/jsync/flow-typed/npm/env-cmd_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/jsync/flow-typed/npm/env-cmd_vx.x.x'>;
+}
+declare module '@nodeproto/jsync/flow-typed/npm/eslint_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/jsync/flow-typed/npm/eslint_vx.x.x'>;
+}
+declare module '@nodeproto/jsync/flow-typed/npm/flow-bin_v0.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/jsync/flow-typed/npm/flow-bin_v0.x.x'>;
+}
+declare module '@nodeproto/jsync/flow-typed/npm/flow-remove-types_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/jsync/flow-typed/npm/flow-remove-types_vx.x.x'>;
+}
+declare module '@nodeproto/jsync/flow-typed/npm/flow-typed_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/jsync/flow-typed/npm/flow-typed_vx.x.x'>;
+}
+declare module '@nodeproto/jsync/flow-typed/npm/fs-extra_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/jsync/flow-typed/npm/fs-extra_vx.x.x'>;
+}
+declare module '@nodeproto/jsync/flow-typed/npm/regenerator-runtime_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/jsync/flow-typed/npm/regenerator-runtime_vx.x.x'>;
+}
+declare module '@nodeproto/jsync/flow-typed/npm/ultra-runner_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/jsync/flow-typed/npm/ultra-runner_vx.x.x'>;
+}
+declare module '@nodeproto/jsync/flow-typed/npm/uvu_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/jsync/flow-typed/npm/uvu_vx.x.x'>;
 }

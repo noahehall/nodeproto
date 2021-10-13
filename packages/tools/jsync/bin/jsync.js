@@ -6,5 +6,5 @@
  * ^ to run this file as `jsync` within the root of this pkg
  */
 
-console.info('\nrunning jsync\n')
+console.info('\nrunning jsync\n');
 import('../src/index.mjs');

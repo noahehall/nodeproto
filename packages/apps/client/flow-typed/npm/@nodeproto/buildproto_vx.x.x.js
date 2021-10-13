@@ -1,4 +1,4 @@
-// flow-typed signature: 4b0e23b356a574306699b167ea9949c1
+// flow-typed signature: 5352bbcf316257c4c217149bcfb3b2e9
 // flow-typed version: <<STUB>>/@nodeproto/buildproto_vworkspace:0.0.0/flow_v0.161.0
 
 /**
@@ -22,74 +22,6 @@ declare module '@nodeproto/buildproto' {
  * require those files directly. Feel free to delete any files that aren't
  * needed.
  */
-declare module '@nodeproto/buildproto/dist/esbuild/create.esbuild.config' {
-  declare module.exports: any;
-}
-
-declare module '@nodeproto/buildproto/dist/esbuild/index.esbuild.config' {
-  declare module.exports: any;
-}
-
-declare module '@nodeproto/buildproto/dist/esbuild/plugins/_pluginTemplate' {
-  declare module.exports: any;
-}
-
-declare module '@nodeproto/buildproto/dist/esbuild/plugins/fixtures/sourcedir/copytooutdir' {
-  declare module.exports: any;
-}
-
-declare module '@nodeproto/buildproto/dist/esbuild/plugins/index.esbuild.plugin' {
-  declare module.exports: any;
-}
-
-declare module '@nodeproto/buildproto/dist/esbuild/plugins/popCopy.esbuild.plugin' {
-  declare module.exports: any;
-}
-
-declare module '@nodeproto/buildproto/dist/esbuild/run.esbuild.config' {
-  declare module.exports: any;
-}
-
-declare module '@nodeproto/buildproto/dist' {
-  declare module.exports: any;
-}
-
-declare module '@nodeproto/buildproto/dist/webpack/base.webpack.config' {
-  declare module.exports: any;
-}
-
-declare module '@nodeproto/buildproto/dist/webpack/bff/server.webpack' {
-  declare module.exports: any;
-}
-
-declare module '@nodeproto/buildproto/dist/webpack/build.webpack.config' {
-  declare module.exports: any;
-}
-
-declare module '@nodeproto/buildproto/dist/webpack/index.webpack.config' {
-  declare module.exports: any;
-}
-
-declare module '@nodeproto/buildproto/dist/webpack/prod.webpack.config' {
-  declare module.exports: any;
-}
-
-declare module '@nodeproto/buildproto/dist/webpack/react.dev.webpack.config' {
-  declare module.exports: any;
-}
-
-declare module '@nodeproto/buildproto/dist/webpack/react.esbuild.webpack.config' {
-  declare module.exports: any;
-}
-
-declare module '@nodeproto/buildproto/dist/webpack/setup.webpack.config' {
-  declare module.exports: any;
-}
-
-declare module '@nodeproto/buildproto/dist/webpack/test.compiler' {
-  declare module.exports: any;
-}
-
 declare module '@nodeproto/buildproto/fixtures/auto' {
   declare module.exports: any;
 }
@@ -170,6 +102,10 @@ declare module '@nodeproto/buildproto/flow-typed/npm/chokidar-cli_vx.x.x' {
   declare module.exports: any;
 }
 
+declare module '@nodeproto/buildproto/flow-typed/npm/copy-webpack-plugin_vx.x.x' {
+  declare module.exports: any;
+}
+
 declare module '@nodeproto/buildproto/flow-typed/npm/core-js_vx.x.x' {
   declare module.exports: any;
 }
@@ -226,7 +162,15 @@ declare module '@nodeproto/buildproto/flow-typed/npm/memfs_vx.x.x' {
   declare module.exports: any;
 }
 
+declare module '@nodeproto/buildproto/flow-typed/npm/mini-svg-data-uri_vx.x.x' {
+  declare module.exports: any;
+}
+
 declare module '@nodeproto/buildproto/flow-typed/npm/react-devtools_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/buildproto/flow-typed/npm/react-dom_v17.x.x' {
   declare module.exports: any;
 }
 
@@ -279,60 +223,6 @@ declare module '@nodeproto/buildproto/flow-typed/npm/webpack-hot-middleware-2_vx
 }
 
 // Filename aliases
-declare module '@nodeproto/buildproto/dist/esbuild/create.esbuild.config.js' {
-  declare module.exports: $Exports<'@nodeproto/buildproto/dist/esbuild/create.esbuild.config'>;
-}
-declare module '@nodeproto/buildproto/dist/esbuild/index.esbuild.config.js' {
-  declare module.exports: $Exports<'@nodeproto/buildproto/dist/esbuild/index.esbuild.config'>;
-}
-declare module '@nodeproto/buildproto/dist/esbuild/plugins/_pluginTemplate.js' {
-  declare module.exports: $Exports<'@nodeproto/buildproto/dist/esbuild/plugins/_pluginTemplate'>;
-}
-declare module '@nodeproto/buildproto/dist/esbuild/plugins/fixtures/sourcedir/copytooutdir.js' {
-  declare module.exports: $Exports<'@nodeproto/buildproto/dist/esbuild/plugins/fixtures/sourcedir/copytooutdir'>;
-}
-declare module '@nodeproto/buildproto/dist/esbuild/plugins/index.esbuild.plugin.js' {
-  declare module.exports: $Exports<'@nodeproto/buildproto/dist/esbuild/plugins/index.esbuild.plugin'>;
-}
-declare module '@nodeproto/buildproto/dist/esbuild/plugins/popCopy.esbuild.plugin.js' {
-  declare module.exports: $Exports<'@nodeproto/buildproto/dist/esbuild/plugins/popCopy.esbuild.plugin'>;
-}
-declare module '@nodeproto/buildproto/dist/esbuild/run.esbuild.config.js' {
-  declare module.exports: $Exports<'@nodeproto/buildproto/dist/esbuild/run.esbuild.config'>;
-}
-declare module '@nodeproto/buildproto/dist/index' {
-  declare module.exports: $Exports<'@nodeproto/buildproto/dist'>;
-}
-declare module '@nodeproto/buildproto/dist/index.js' {
-  declare module.exports: $Exports<'@nodeproto/buildproto/dist'>;
-}
-declare module '@nodeproto/buildproto/dist/webpack/base.webpack.config.js' {
-  declare module.exports: $Exports<'@nodeproto/buildproto/dist/webpack/base.webpack.config'>;
-}
-declare module '@nodeproto/buildproto/dist/webpack/bff/server.webpack.js' {
-  declare module.exports: $Exports<'@nodeproto/buildproto/dist/webpack/bff/server.webpack'>;
-}
-declare module '@nodeproto/buildproto/dist/webpack/build.webpack.config.js' {
-  declare module.exports: $Exports<'@nodeproto/buildproto/dist/webpack/build.webpack.config'>;
-}
-declare module '@nodeproto/buildproto/dist/webpack/index.webpack.config.js' {
-  declare module.exports: $Exports<'@nodeproto/buildproto/dist/webpack/index.webpack.config'>;
-}
-declare module '@nodeproto/buildproto/dist/webpack/prod.webpack.config.js' {
-  declare module.exports: $Exports<'@nodeproto/buildproto/dist/webpack/prod.webpack.config'>;
-}
-declare module '@nodeproto/buildproto/dist/webpack/react.dev.webpack.config.js' {
-  declare module.exports: $Exports<'@nodeproto/buildproto/dist/webpack/react.dev.webpack.config'>;
-}
-declare module '@nodeproto/buildproto/dist/webpack/react.esbuild.webpack.config.js' {
-  declare module.exports: $Exports<'@nodeproto/buildproto/dist/webpack/react.esbuild.webpack.config'>;
-}
-declare module '@nodeproto/buildproto/dist/webpack/setup.webpack.config.js' {
-  declare module.exports: $Exports<'@nodeproto/buildproto/dist/webpack/setup.webpack.config'>;
-}
-declare module '@nodeproto/buildproto/dist/webpack/test.compiler.js' {
-  declare module.exports: $Exports<'@nodeproto/buildproto/dist/webpack/test.compiler'>;
-}
 declare module '@nodeproto/buildproto/fixtures/auto.js' {
   declare module.exports: $Exports<'@nodeproto/buildproto/fixtures/auto'>;
 }
@@ -393,6 +283,9 @@ declare module '@nodeproto/buildproto/flow-typed/npm/bundle-stats-webpack-plugin
 declare module '@nodeproto/buildproto/flow-typed/npm/chokidar-cli_vx.x.x.js' {
   declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/chokidar-cli_vx.x.x'>;
 }
+declare module '@nodeproto/buildproto/flow-typed/npm/copy-webpack-plugin_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/copy-webpack-plugin_vx.x.x'>;
+}
 declare module '@nodeproto/buildproto/flow-typed/npm/core-js_vx.x.x.js' {
   declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/core-js_vx.x.x'>;
 }
@@ -435,8 +328,14 @@ declare module '@nodeproto/buildproto/flow-typed/npm/koa_v2.x.x.js' {
 declare module '@nodeproto/buildproto/flow-typed/npm/memfs_vx.x.x.js' {
   declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/memfs_vx.x.x'>;
 }
+declare module '@nodeproto/buildproto/flow-typed/npm/mini-svg-data-uri_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/mini-svg-data-uri_vx.x.x'>;
+}
 declare module '@nodeproto/buildproto/flow-typed/npm/react-devtools_vx.x.x.js' {
   declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/react-devtools_vx.x.x'>;
+}
+declare module '@nodeproto/buildproto/flow-typed/npm/react-dom_v17.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/react-dom_v17.x.x'>;
 }
 declare module '@nodeproto/buildproto/flow-typed/npm/react-dom_vx.x.x.js' {
   declare module.exports: $Exports<'@nodeproto/buildproto/flow-typed/npm/react-dom_vx.x.x'>;

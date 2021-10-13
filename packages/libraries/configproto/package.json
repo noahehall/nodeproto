@@ -1,22 +1,71 @@
 {
-  "name": "@nodeproto/configproto",
-  "version": "0.0.0",
-  "description": "static configuration files",
-  "private": true,
-  "bugs": "https://github.com/noahehall/nodeproto/issues",
-  "repository": "git://github.com/noahehall/nodeproto.git",
-  "type": "module",
   "author": {
     "name": "theDRAGON",
     "email": "noahedwardhall+souls@gmail.com",
     "url": "https://github.com/noahehall"
   },
+  "bugs": "https://github.com/noahehall/nodeproto/issues",
+  "repository": "git://github.com/noahehall/nodeproto.git",
+  "homepage": "https://github.com/noahehall/nodeproto",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "^14.17.0 || >=16.0.0"
+  },
+  "keywords": [
+    "@nirv",
+    "@nodeproto",
+    "api",
+    "bodyguard",
+    "cloudnative",
+    "development",
+    "fullstack",
+    "inception",
+    "jsync",
+    "micro service",
+    "microservice",
+    "noahedwardhall",
+    "openapi",
+    "product development framework",
+    "production",
+    "prototype",
+    "secure",
+    "theDRAGON",
+    "virtual",
+    "virtualization"
+  ],
+  "os": [
+    "linux"
+  ],
+  "config": {
+    "DIRS_TO_TRANSPILE": "./src",
+    "NODE_ENV": "production",
+    "NODE_OPTIONS": "--experimental-loader=\"./node_modules/@nodeproto/configproto/src/node/loaders/flow.mjs\" --experimental-specifier-resolution=node --experimental-json-modules --experimental-top-level-await --experimental-vm-modules --experimental-import-meta-resolve node --enable-source-maps --heapsnapshot-near-heap-limit=3 --use-largepages=on --pending-deprecation --trace-sigint --trace-warnings --trace-exit --report-uncaught-exception --report-on-fatalerror --abort-on-uncaught-exception",
+    "PATH_DIST": "./dist",
+    "PATH_SRC": "./src"
+  },
+  "name": "@nodeproto/configproto",
+  "description": "static configuration files",
+  "scripts": {
+    "proto:bin": "pnpm -r exec $*",
+    "proto:script": "pnpm -r $*",
+    "proto:slice": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" pnpm exec ultra -r --filter",
+    "proto": "pnpm exec ultra -r",
+    "repo:about": "npm run-script && npm --versions && pnpm c list && echo \"NODE OPTIONS set to: $npm_package_config_NODE_OPTIONS\"",
+    "repo:deps": "ultra --info",
+    "repo:eslint:fix": "pnpm repo:eslint -- --fix",
+    "repo:eslint": "eslint './**/*'",
+    "repo:nuke": "pnpm repo:rm:dist; pnpm repo:rm:nodemodules",
+    "repo:rm:dist": "rm -rf dist/*",
+    "repo:rm:nodemodules": "rm -rf node_modules",
+    "repo:scripts:v": "npm run-script",
+    "repo:scripts": "ultra --list"
+  },
   "directories": {
     "src": "./src",
     "flowtyped": "./flow-typed"
-  },
-  "engines": {
-    "node": "^14.17.0 || >=16.0.0"
   },
   "exports": {
     "./babel/*": "./src/babel/*.babelrc",

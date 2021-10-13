@@ -1,8 +1,7 @@
 {
-  "extends": "@nodeproto/configproto/babel/isomorphic",
+  "extends": "@nodeproto/configproto/babel/node",
   "babelrc": true,
   "babelrcRoots": [
-    ".",
-    "src/*"
+    "."
   ]
 }
