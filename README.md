@@ -20,9 +20,9 @@ bleeding-edge type-first *product development framework* for rapidly prototyping
   - [@nodeproto/bodyguard - UI Network Request proxy + debugger](packages/tools/bodyguard/README.md)
   - [@nodeproto/membrane - virutalization via docker +/ vagrant](packages/tools/membrane/README.md)
 
-|                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           tech stack                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| <img src="https://webpack.js.org/site-logo.1fcab817090e78435061.svg" width="100" align="left" /><img src="https://www.openapis.org/wp-content/uploads/sites/3/2018/02/OpenAPI_Logo_Pantone-1.png" width="100" align="left" /><img src="https://cdn.haproxy.com/wp-content/uploads/2017/10/haproxy-weblogo.png" width="100" align="left" /><img src="https://nodejs.org/static/images/logo.svg" width="100" align="left" /><img src="https://github.com/evanw/esbuild/raw/master/images/wordmark.svg" width="100" align="left" /><img src="https://avatars.githubusercontent.com/u/5429470?s=200&v=4" width="100" align="left" /><img src="https://hero35.com/stacks/react.svg" width="100" align="left" /><img src="https://raw.githubusercontent.com/koajs/koa/master/docs/logo.png" width="100" align="left" /><img src="https://camo.githubusercontent.com/32657601b349b558831f32c553cb2c7734cb5ae89a2e8340afa314ea3b2116a0/68747470733a2f2f6d696c6c696772616d2e696f2f696d616765732f7468756d626e61696c2e706e67" width="100" align="left" /><img src="https://raw.githubusercontent.com/emotion-js/emotion/main/emotion.png" alt="Emotion logo" width="100"><img src="https://github.com/lukeed/uvu/blob/ddf62e883b5e56c3ba84ad0acf0e7966cc3ade48/shots/uvu.jpg" alt="UVU logo" width="100"> |
+|                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          tech stack                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| <img src="https://webpack.js.org/site-logo.1fcab817090e78435061.svg" width="100" align="left" /><img src="https://www.openapis.org/wp-content/uploads/sites/3/2018/02/OpenAPI_Logo_Pantone-1.png" width="100" align="left" /><img src="https://cdn.haproxy.com/wp-content/uploads/2017/10/haproxy-weblogo.png" width="100" align="left" /><img src="https://nodejs.org/static/images/logo.svg" width="100" align="left" /><img src="https://github.com/evanw/esbuild/raw/master/images/wordmark.svg" width="100" align="left" /><img src="https://avatars.githubusercontent.com/u/5429470?s=200&v=4" width="100" align="left" /><img src="https://hero35.com/stacks/react.svg" width="100" align="left" /><img src="https://raw.githubusercontent.com/koajs/koa/master/docs/logo.png" width="100" align="left" /><img src="https://camo.githubusercontent.com/32657601b349b558831f32c553cb2c7734cb5ae89a2e8340afa314ea3b2116a0/68747470733a2f2f6d696c6c696772616d2e696f2f696d616765732f7468756d626e61696c2e706e67" width="100" align="left" /><img src="https://raw.githubusercontent.com/emotion-js/emotion/main/emotion.png" alt="Emotion logo" width="100"><img src="https://github.com/lukeed/uvu/blob/ddf62e883b5e56c3ba84ad0acf0e7966cc3ade48/shots/uvu.jpg" alt="UVU logo" width="100"><img src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/vagrant/vagrant.png" alt="vagrant logo" width="100"> |
 
 <details>
   <summary>Learn more about @nodeproto</summary>
@@ -65,6 +65,8 @@ be sure to checkout `root/tests/integration` for how to use our internal magic
   # pnpm proto ...
   # ^ execute cmd|bin in ALL/SOME pkgs from ANYWHERE in monorepo
 
+  pnpm proto start # localhost:7777, localhost:8081, https:localhost:8443
+
   # ^ runs SOMECMD in all workspace packages
   $ pnpm proto pnpm outdated
   $ pnpm proto pnpm install
@@ -86,7 +88,7 @@ be sure to checkout `root/tests/integration` for how to use our internal magic
   # pnpm proto:slice ... ...
   # ^ runs cmd|bin in all packages/** directories matching filter from ANYWHERE in monorepo
   $ pnpm proto:slice "packages/libraries/*" repo:test
-  $ pnpm proto:slice "packages/libraries/*" repo:test
+  $ pnpm proto:slice "packages/apps/*" repo:test
 
   # pnpm CMD/BIN
   # pnpm exec CMD/BIN
@@ -106,22 +108,33 @@ be sure to checkout `root/tests/integration` for how to use our internal magic
 <details>
   <summary>contributing</summary>
 
-- use pnpm to install node
-  - install pnpm `curl -fsSL https://get.pnpm.io/install.sh | sh -`
-  - install node `pnpm env use --global 16`
-  - install pnpm tab-completion `pnpm install-completion`
-  - source your shell (e.g. bashrc `. ~/.bashrc`)
+### installation
 
-- setup application
-  - TODO: if unable to get this to run via proto just move it to a shell script and call it a day
-    - anything scratched out likely needs to be set nonconcurrent
-    - to circumvent the issue, run the failed cmd from within the submodule root dir (ouch)
-  - install root dependencies `pnpm install`
-  - install dependencies for all packages/* `pnpm proto repo:install`
-  - build dependences for all packages/* `pnpm proto build`
-  - run all tests in all packages `pnpm repo:test`
-  - make any changes you want in `root/package.json` then sync them to sub modules
-    - `pnpm proto jsync`
+- baremental
+  - use pnpm to install node
+    - install pnpm `curl -fsSL https://get.pnpm.io/install.sh | sh -`
+    - install node `pnpm env use --global 16`
+    - install pnpm tab-completion `pnpm install-completion`
+    - source your shell (e.g. bashrc `. ~/.bashrc`)
+
+- vagrant + vb
+  - TODO
+  - ensure vagrant 2.2.18 & vb 6.1 installed
+  - `vagrant up`
+  - `vagrant ssh`
+  - `cd /opt/nodeproto`
+
+### setup application
+
+- TODO: if unable to get this to run via proto just move it to a shell script and call it a day
+  - anything scratched out likely needs to be set nonconcurrent
+  - to circumvent the issue, run the failed cmd from within the submodule root dir (ouch)
+- install root dependencies `pnpm install`
+- install dependencies for all packages/* `pnpm proto repo:install`
+- build dependences for all packages/* `pnpm proto build`
+- run all tests in all packages `pnpm repo:test`
+- make any changes you want in `root/package.json` then sync them to sub modules
+  - `pnpm proto jsync`
 
 - flowtyped
   - `pnpm add --global flow-typed`
@@ -146,6 +159,7 @@ be sure to checkout `root/tests/integration` for how to use our internal magic
   <summary> gotchas </summary>
 
 - idiosyncrasies (there like opinions, all frameworks have them)
+- where appropriate, [we follow the linux filesystem hierarchy](https://help.ubuntu.com/community/LinuxFilesystemTreeOverview#Main_directories)
 - `mjs` interoperability with `cjs`
   - I could not find any solution (wtf node?) with a good developer experience, thus i settled on this custom approach based on nodejs docs
   - generally you need to enable `--experimental-specifier-resolution=node` to run `mjs` files as we dont specify an extension when importing anything
