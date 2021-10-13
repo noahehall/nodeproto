@@ -25,23 +25,23 @@ async function assertWebpackServerStateAndResponse(server, name) {
   return new Promise(resolve => {
     server.webpackDevMiddlewareInstance.waitUntilValid(() => {
       get(`http:${server.config.host}:${server.config.port}`, res => {
-          // compiles
-          assert.lengthOf(
-            server.webpackDevMiddlewareInstance.context.stats.compilation.errors,
-            0,
-            `${name} server compiles without errors`
-          );
-          // response
-          assert.deepEqual(
-            res.statusCode,
-            200,
-            `${name} server returns 200 statusCode`
-          );
+        // compiles
+        assert.lengthOf(
+          server.webpackDevMiddlewareInstance.context.stats.compilation.errors,
+          0,
+          `${name} server compiles without errors`
+        );
+        // response
+        assert.deepEqual(
+          res.statusCode,
+          200,
+          `${name} server returns 200 statusCode`
+        );
 
-          assert.include(res.headers['content-type'], 'text/html; charset=utf-8');
+        assert.include(res.headers['content-type'], 'text/html; charset=utf-8');
 
-          resolve(true);
-        });
+        resolve(true);
+      });
     });
   });
 }

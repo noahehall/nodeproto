@@ -17,6 +17,8 @@ export const getOpts = (overrides) => ({
   output: { path: thisDir + '/dist' },
   pathDist: thisDir + '/dist',
   pathSrc: thisDir,
+  cache: false,
+  pack: { pkgJson: {} },
 
   ...overrides
 });
@@ -29,7 +31,7 @@ test('throws', () => {
 
   assert.throws(
     () => reactDevWebpackConfig(opts),
-    /entry: Array: is required/,
+    /entry: \[\]\|{}: is required/,
     'if missing entry'
   );
 
@@ -38,7 +40,7 @@ test('throws', () => {
 
   assert.throws(
     () => reactDevWebpackConfig(opts),
-    /htmlOptions: is required/,
+    /htmlOptions: \[\]\|{}: is required/,
     'if missing htmlOptions'
   );
 });

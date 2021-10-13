@@ -1,4 +1,4 @@
-// flow-typed signature: 7e322dfaf0a253e58fe360cc16b3c904
+// flow-typed signature: a6b2fca556f189d631c1c025537b008d
 // flow-typed version: <<STUB>>/@nodeproto/testproto_vworkspace:0.0.0/flow_v0.161.0
 
 /**
@@ -30,6 +30,110 @@ declare module '@nodeproto/testproto/dist/t' {
   declare module.exports: any;
 }
 
+declare module '@nodeproto/testproto/flow-typed/npm/@babel/core_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/testproto/flow-typed/npm/@babel/eslint-parser_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/testproto/flow-typed/npm/@babel/eslint-plugin_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/testproto/flow-typed/npm/@nodeproto/configproto_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/testproto/flow-typed/npm/@swc/cli_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/testproto/flow-typed/npm/@swc/core_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/testproto/flow-typed/npm/browserslist_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/testproto/flow-typed/npm/chai_v4.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/testproto/flow-typed/npm/chai-as-promised_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/testproto/flow-typed/npm/chai-exclude_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/testproto/flow-typed/npm/chai-nock_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/testproto/flow-typed/npm/eslint-plugin-flowtype-errors_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/testproto/flow-typed/npm/eslint-plugin-html_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/testproto/flow-typed/npm/eslint-plugin-import_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/testproto/flow-typed/npm/eslint-plugin-json_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/testproto/flow-typed/npm/eslint-plugin-markdown_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/testproto/flow-typed/npm/eslint-plugin-node_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/testproto/flow-typed/npm/eslint-plugin-promise_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/testproto/flow-typed/npm/eslint-plugin-react_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/testproto/flow-typed/npm/eslint-plugin-react-hooks_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/testproto/flow-typed/npm/eslint-plugin-yml_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/testproto/flow-typed/npm/flow-bin_v0.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/testproto/flow-typed/npm/nock_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/testproto/flow-typed/npm/sinon_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/testproto/flow-typed/npm/ultra-runner_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/testproto/flow-typed/npm/uvu_vx.x.x' {
+  declare module.exports: any;
+}
+
 // Filename aliases
 declare module '@nodeproto/testproto/dist/index' {
   declare module.exports: $Exports<'@nodeproto/testproto/dist'>;
@@ -39,4 +143,82 @@ declare module '@nodeproto/testproto/dist/index.js' {
 }
 declare module '@nodeproto/testproto/dist/t.js' {
   declare module.exports: $Exports<'@nodeproto/testproto/dist/t'>;
+}
+declare module '@nodeproto/testproto/flow-typed/npm/@babel/core_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/testproto/flow-typed/npm/@babel/core_vx.x.x'>;
+}
+declare module '@nodeproto/testproto/flow-typed/npm/@babel/eslint-parser_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/testproto/flow-typed/npm/@babel/eslint-parser_vx.x.x'>;
+}
+declare module '@nodeproto/testproto/flow-typed/npm/@babel/eslint-plugin_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/testproto/flow-typed/npm/@babel/eslint-plugin_vx.x.x'>;
+}
+declare module '@nodeproto/testproto/flow-typed/npm/@nodeproto/configproto_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/testproto/flow-typed/npm/@nodeproto/configproto_vx.x.x'>;
+}
+declare module '@nodeproto/testproto/flow-typed/npm/@swc/cli_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/testproto/flow-typed/npm/@swc/cli_vx.x.x'>;
+}
+declare module '@nodeproto/testproto/flow-typed/npm/@swc/core_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/testproto/flow-typed/npm/@swc/core_vx.x.x'>;
+}
+declare module '@nodeproto/testproto/flow-typed/npm/browserslist_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/testproto/flow-typed/npm/browserslist_vx.x.x'>;
+}
+declare module '@nodeproto/testproto/flow-typed/npm/chai_v4.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/testproto/flow-typed/npm/chai_v4.x.x'>;
+}
+declare module '@nodeproto/testproto/flow-typed/npm/chai-as-promised_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/testproto/flow-typed/npm/chai-as-promised_vx.x.x'>;
+}
+declare module '@nodeproto/testproto/flow-typed/npm/chai-exclude_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/testproto/flow-typed/npm/chai-exclude_vx.x.x'>;
+}
+declare module '@nodeproto/testproto/flow-typed/npm/chai-nock_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/testproto/flow-typed/npm/chai-nock_vx.x.x'>;
+}
+declare module '@nodeproto/testproto/flow-typed/npm/eslint-plugin-flowtype-errors_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/testproto/flow-typed/npm/eslint-plugin-flowtype-errors_vx.x.x'>;
+}
+declare module '@nodeproto/testproto/flow-typed/npm/eslint-plugin-html_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/testproto/flow-typed/npm/eslint-plugin-html_vx.x.x'>;
+}
+declare module '@nodeproto/testproto/flow-typed/npm/eslint-plugin-import_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/testproto/flow-typed/npm/eslint-plugin-import_vx.x.x'>;
+}
+declare module '@nodeproto/testproto/flow-typed/npm/eslint-plugin-json_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/testproto/flow-typed/npm/eslint-plugin-json_vx.x.x'>;
+}
+declare module '@nodeproto/testproto/flow-typed/npm/eslint-plugin-markdown_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/testproto/flow-typed/npm/eslint-plugin-markdown_vx.x.x'>;
+}
+declare module '@nodeproto/testproto/flow-typed/npm/eslint-plugin-node_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/testproto/flow-typed/npm/eslint-plugin-node_vx.x.x'>;
+}
+declare module '@nodeproto/testproto/flow-typed/npm/eslint-plugin-promise_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/testproto/flow-typed/npm/eslint-plugin-promise_vx.x.x'>;
+}
+declare module '@nodeproto/testproto/flow-typed/npm/eslint-plugin-react_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/testproto/flow-typed/npm/eslint-plugin-react_vx.x.x'>;
+}
+declare module '@nodeproto/testproto/flow-typed/npm/eslint-plugin-react-hooks_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/testproto/flow-typed/npm/eslint-plugin-react-hooks_vx.x.x'>;
+}
+declare module '@nodeproto/testproto/flow-typed/npm/eslint-plugin-yml_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/testproto/flow-typed/npm/eslint-plugin-yml_vx.x.x'>;
+}
+declare module '@nodeproto/testproto/flow-typed/npm/flow-bin_v0.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/testproto/flow-typed/npm/flow-bin_v0.x.x'>;
+}
+declare module '@nodeproto/testproto/flow-typed/npm/nock_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/testproto/flow-typed/npm/nock_vx.x.x'>;
+}
+declare module '@nodeproto/testproto/flow-typed/npm/sinon_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/testproto/flow-typed/npm/sinon_vx.x.x'>;
+}
+declare module '@nodeproto/testproto/flow-typed/npm/ultra-runner_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/testproto/flow-typed/npm/ultra-runner_vx.x.x'>;
+}
+declare module '@nodeproto/testproto/flow-typed/npm/uvu_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/testproto/flow-typed/npm/uvu_vx.x.x'>;
 }

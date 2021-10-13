@@ -1,4 +1,4 @@
-// flow-typed signature: db29decc3faf0c2c66239de6e4e13d4e
+// flow-typed signature: 30978460a4123e3d245a172d0bb4779c
 // flow-typed version: <<STUB>>/@nodeproto/envproto_vworkspace:0.0.0/flow_v0.161.0
 
 /**
@@ -22,18 +22,6 @@ declare module '@nodeproto/envproto' {
  * require those files directly. Feel free to delete any files that aren't
  * needed.
  */
-declare module '@nodeproto/envproto/dist/env' {
-  declare module.exports: any;
-}
-
-declare module '@nodeproto/envproto/dist' {
-  declare module.exports: any;
-}
-
-declare module '@nodeproto/envproto/dist/ssl' {
-  declare module.exports: any;
-}
-
 declare module '@nodeproto/envproto/flow-typed/npm/@babel/core_vx.x.x' {
   declare module.exports: any;
 }
@@ -123,18 +111,6 @@ declare module '@nodeproto/envproto/flow-typed/npm/yargs_vx.x.x' {
 }
 
 // Filename aliases
-declare module '@nodeproto/envproto/dist/env.js' {
-  declare module.exports: $Exports<'@nodeproto/envproto/dist/env'>;
-}
-declare module '@nodeproto/envproto/dist/index' {
-  declare module.exports: $Exports<'@nodeproto/envproto/dist'>;
-}
-declare module '@nodeproto/envproto/dist/index.js' {
-  declare module.exports: $Exports<'@nodeproto/envproto/dist'>;
-}
-declare module '@nodeproto/envproto/dist/ssl.js' {
-  declare module.exports: $Exports<'@nodeproto/envproto/dist/ssl'>;
-}
 declare module '@nodeproto/envproto/flow-typed/npm/@babel/core_vx.x.x.js' {
   declare module.exports: $Exports<'@nodeproto/envproto/flow-typed/npm/@babel/core_vx.x.x'>;
 }

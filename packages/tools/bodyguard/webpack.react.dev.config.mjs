@@ -4,14 +4,14 @@ import {
   buildWebpackConfig,
   reactDevWebpackConfig,
   setupWebpackConfig,
-  } from '@nodeproto/buildproto';
+} from '@nodeproto/buildproto';
 
 const { pack, config } = setupWebpackConfig();
 
 export const webpackConfig = reactDevWebpackConfig({
   pack,
   ...config,
-  watch: true,
+  watch: process.env.WATCH == 1,
   cache: false, // TODO: not picking up changes when removing babel plugins in @nodeproto/configproto/....../client.babelrc
   devtool: 'cheap-module-source-map',
   entryUnshift: [],

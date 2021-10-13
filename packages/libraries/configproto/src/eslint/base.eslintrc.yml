@@ -5,7 +5,7 @@
 # @see https://github.com/amilajack/eslint-plugin-flowtype-errors/wiki/Advanced-Config
 
 reportUnusedDisableDirectives: true
-ignorePatterns: ['pnpm-lock.yaml','pnpm-workspace.yaml','**/node_modules/**','**/dist/**', '**/flow-typed/**', '**/bundlestats/**', '**/copypasta/**']
+ignorePatterns: [pnpm-lock.yaml,pnpm-workspace.yaml,"**/node_modules/**","**/dist/**", "**/flow-typed/**", "**/bundlestats/**", "**/copypasta/**"]
 
 # @see https://github.com/babel/babel/tree/main/eslint/babel-eslint-parser
 # @see https://github.com/babel/babel/blob/main/eslint/babel-eslint-config-internal/index.js
@@ -37,7 +37,7 @@ env:
 plugins:
   - "@babel"
   - flowtype-errors
-  - "fb-flow"
+  - fb-flow
   - html
   - markdown
   - node
@@ -176,7 +176,7 @@ rules:
   fb-flow/flow-enums-default-if-possible: error
   fb-flow/no-flow-enums-object-mapping: error
 
-    # markdownlint
+  # markdownlint
   MD033/no-inline-html: off # no-markdown-in-html
   no-inline-html: off
   MD033: off

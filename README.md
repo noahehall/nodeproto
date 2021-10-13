@@ -54,51 +54,88 @@ bleeding-edge type-first *product development framework* for rapidly prototyping
 under activate development; expect breaking changes
 
 <details>
-  <summary>unfinished cmd reference</summary>
+  <summary>cmd reference</summary>
 
-be sure to checkout `root/tests/integration` for how to use our internal magic
+- any pkg.json.script prefixed `repo:` or `proto` should only be modified in `root/package.json` file and synced with child packages via `pnpm proto repo:jsync`
+  - except `shared|configproto|testproto` as these are dependencies of `jsync`
+    - TODO: ^ automate that
 
 ```sh
-  # top for nodeproto
-  $ pnpm repo:monitor
-
-  # pnpm proto ...
-  # ^ execute cmd|bin in ALL/SOME pkgs from ANYWHERE in monorepo
-
-  pnpm proto start # localhost:7777, localhost:8081, https:localhost:8443
-
-  # ^ runs SOMECMD in all workspace packages
-  $ pnpm proto pnpm outdated
-  $ pnpm proto pnpm install
-
-  # ^ runs script in all workspace packages that have the script
-  $ pnpm proto jsync
-  $ pnpm proto build
-  $ pnpm proto repo:cp:configproto
-  $ pnpm proto repo:test
-  $ pnpm proto repo:eslint
-  $ pnpm proto repo:eslint:fix # eslint + flowtype-errors eslint plugin
-  $ pnpm proto start:client # localhost:7777
-  $ pnpm proto start:dev # localhost:8080
-  $ pnpm proto start
-  $ pnpm proto webext:run # @nodeproto/bodyguard
-  $ pnpm proto repo:config:list # pnpm configuration (super handy)
-  $ pnpm proto repo:exec:list # all pkgjson scripts
-
-  # pnpm proto:slice ... ...
-  # ^ runs cmd|bin in all packages/** directories matching filter from ANYWHERE in monorepo
+  # TODO
+  $ proto:slice
   $ pnpm proto:slice "packages/libraries/*" repo:test
   $ pnpm proto:slice "packages/apps/*" repo:test
 
-  # pnpm CMD/BIN
-  # pnpm exec CMD/BIN
-  # ^ recommended to use exec when running ./node_modules/.bin/CMDs
-  # ^^ in the event there is a matching package.json SCRIPT with the same .bin/CMD name
-  # ^^ without exec pnpm will choose pkgjson.script.NAME > ./node_modules/.bin/NAME
-  # ^ execute a package.json.script:CMD |./node_modules/.bin/CMD in the current directory
-  pnpm repo:test
-  pnpm exec flow status
 
+  ########## ABOUT MONOREPO CMDS ##############
+  # run cmds from root|any child directory within monorepo
+  # $ pnpm proto CMD_LIST
+  # run any CMD found in package.json.script | /bin | node_modules/.bin/ | system path
+  # ^ if CMD is found in a subset of packages, will run it and NOT print any errors
+  # ^^ if CMD is found in package.json.scripts|/bin|/node_modules/.bin, will run it
+  # ^^ if CMD is found in path, will run it
+  # ^ else if CMD is found in NO packages, will error
+  $ pnpm proto pwd # prints absolute path of each package via ultra
+  $ pnpm proto repo:about # prints debug infor for each subpackage with the cmd via ultra
+  $ pnpm proto this:doesnt:exist # prints error as the cmd was not found in ANY packages
+
+  # $ pnpm proto:script CMD_LIST
+  # ^ same as above, but only executes package.json scripts (in all packages)
+  # ^ i see this work better for cmds that modify pnpm cache, or if ultra-runner fails for some reason
+  $ pnpm proto:script repo:flowtyped:install # runs package.json.script in all packages where its found
+
+  # $ pnpm proto:bin CMD_LIST
+  # ^ same as above, but only executes cmds found in the system PATH
+  $ pnpm proto:bin pwd # prints the absolute path of each subpackage
+
+  ############ CMDS YOU COULD BUT SHOULDNT ##########
+  $ pnpm exec flow # generally you should run flow via eslint
+  $ pnpm exec flow status|etc # generally you should run flow via eslint
+
+
+  ############ AVAILABLE CMDS ##############
+  ########### run within a single package/root
+  # basic cmds (dont use with proto | proto:bin | proto:slice | etc)
+  # remove the -r from a cmd to run in the current package only
+  $ pnpm -r outdated # see all outdated packages
+  $ pnpm -r upgrade -L # update all packages
+  $ pnpm config list
+  $ pnpm install # install deps of all packages (even root)
+  $ pnpm repo:about # debug info
+  $ pnpm repo:deps # see mono repo dependency graph
+  $ pnpm repo:eslint # see lint issues for current package
+  $ pnpm repo:eslint:fix # fix lint issues in current package
+  $ pnpm repo:monitor # top for @nodeproto
+  $ pnpm repo:scripts # see current package script names
+  $ pnpm repo:scripts:v # see current package script names + CMD each runs
+
+
+  #########
+  # should only be run by your build script
+  # ^ for setting the dist to commonjs
+  $ pnpm repo:cp:cjs # copy configproto/package.json into package/dist/package.json
+  $ pnpm repo:cp:configproto # copy configproto/[flow,cjs,browserslist] into package
+
+  #########
+  # useful if run with pnpm proto
+  $ pnpm repo:cp:browserslist # copy configproto/browserslistrc into package
+  $ pnpm repo:cp:flow # copy configproto/.flowconfig into package
+  $ pnpm repo:flowtyped:install # install flow-type defs
+  $ pnpm repo:jsync # sync child package.json with root package.json
+  $ pnpm repo:nuke # rm /dist & /node_modules directories
+  $ pnpm repo:rm:dist # rm /dist dir
+  $ pnpm repo:rm:nodemodules # remove /node_modules dir
+
+  # useful if run with pnpm proto:script
+  # ^ TODO: investigate why `pnpm proto` fails on these scripts
+  $ pnpm proto:script build # build all packages
+  $ pnpm proto:script repo:test # test all packages
+
+  #### monorepo orchestration
+  # TODO: how package.json script NAMES permit you to orchestrate tasks across subpackages
+  $ pnpm proto start # localhost:7777, localhost:8081, https:localhost:8443
+  $ pnpm proto start:client # localhost:7777
+  $ pnpm proto start:dev # localhost:8080
 ```
 
 </details>
@@ -111,6 +148,7 @@ be sure to checkout `root/tests/integration` for how to use our internal magic
 ### installation
 
 - baremental
+  - TODO
   - use pnpm to install node
     - install pnpm `curl -fsSL https://get.pnpm.io/install.sh | sh -`
     - install node `pnpm env use --global 16`
@@ -124,19 +162,16 @@ be sure to checkout `root/tests/integration` for how to use our internal magic
   - `vagrant ssh`
   - `cd /opt/nodeproto`
 
-### setup application
+### setup @nodeproto development environment
 
-- TODO: if unable to get this to run via proto just move it to a shell script and call it a day
-  - anything scratched out likely needs to be set nonconcurrent
-  - to circumvent the issue, run the failed cmd from within the submodule root dir (ouch)
-- install root dependencies `pnpm install`
-- install dependencies for all packages/* `pnpm proto repo:install`
-- build dependences for all packages/* `pnpm proto build`
-- run all tests in all packages `pnpm repo:test`
+- install root + subpackage dependencies `pnpm install`
+- build dependences for all packages/* `pnpm proto:script build`
+- run all tests in all packages `pnpm proto:script repo:test`
 - make any changes you want in `root/package.json` then sync them to sub modules
-  - `pnpm proto jsync`
+  - `pnpm proto repo:jsync`
 
 - flowtyped
+  - TODO
   - `pnpm add --global flow-typed`
     - TODO: i think i actually installed this as a local dep (which is what you should do anyway)
   - run `pnpm proto repo:flow-typed:install` in all of your child pkgs to get type definition

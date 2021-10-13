@@ -4,7 +4,7 @@ import * as t from '@nodeproto/testproto';
 const { assert } = t;
 const test = t.suite('@nodeproto/envproto/ssl');
 
-const getOpts = (overrides = {}) => ({ // eslint-disable-line
+const getOpts = (overrides = {}) => ({  
   days: 7,
   domain: undefined,
   selfSigned:  true,
