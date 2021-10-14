@@ -63,26 +63,21 @@ under activate development; expect breaking changes
     - TODO: ^ automate that
 
 ```sh
-  # TODO
-  $ proto:slice
-  $ pnpm proto:slice "packages/libraries/*" repo:test
-  $ pnpm proto:slice "packages/apps/*" repo:test
-
-
   ########## ABOUT MONOREPO CMDS ##############
   # run cmds from root|any child directory within monorepo
   # $ pnpm proto CMD_LIST
-  # ^ if CMD is found in a subset of packages, will run it and NOT print any errors
-  # ^^ if CMD is found in package.json.scripts|/bin|/node_modules/.bin, will run it
-  # ^^ if CMD is found in path, will run it
-  # ^ else if CMD is found in NO packages, will error
+  # ^ runs CMD_LIST in all packages; CMD_LIST is used wherever its found first across packages
+  # ^^ package.json.script[CMD] > pkg/bin > pkg/node_modules/.bin > system path
+  # ^^ if cmd is not found in ANY pkg, will error
+  # e.g. below
   $ pnpm proto pwd # prints absolute path of each package via ultra
-  $ pnpm proto repo:about # prints debug infor for each subpackage with the cmd via ultra
+  $ pnpm proto repo:about # prints debug info for each package
   $ pnpm proto this:doesnt:exist # prints error as the cmd was not found in ANY packages
 
   # $ pnpm proto:script CMD_LIST
-  # ^ same as above, but only executes package.json scripts (in all packages)
+  # ^ same as above, but only looks in pkg.json.script
   # ^ i see this work better for cmds that modify pnpm cache, or if ultra-runner fails for some reason
+  # e.g. below
   $ pnpm proto:script repo:flowtyped:install # runs package.json.script in all packages where its found
 
   # $ pnpm proto:bin CMD_LIST
@@ -92,7 +87,6 @@ under activate development; expect breaking changes
   ############ CMDS YOU COULD BUT SHOULDNT ##########
   $ pnpm exec flow # generally you should run flow via eslint
   $ pnpm exec flow status|etc # generally you should run flow via eslint
-
 
   ############ AVAILABLE CMDS ##############
   ########### run within a single package/root
@@ -113,8 +107,8 @@ under activate development; expect breaking changes
 
   #########
   # should only be run by your build script
-  # ^ for setting the dist to commonjs
   $ pnpm repo:cp:cjs # copy configproto/package.json into package/dist/package.json
+  # ^ for setting the dist to commonjs
   $ pnpm repo:cp:configproto # copy configproto/[flow,cjs,browserslist] into package
 
   #########
@@ -137,6 +131,12 @@ under activate development; expect breaking changes
   $ pnpm proto start # localhost:7777, localhost:8081, https:localhost:8443
   $ pnpm proto start:client # localhost:7777
   $ pnpm proto start:dev # localhost:8080
+
+  ##### other repo level cmds
+  # TODO
+  $ proto:slice
+  $ pnpm proto:slice "packages/libraries/*" repo:test
+  $ pnpm proto:slice "packages/apps/*" repo:test
 ```
 
 </details>

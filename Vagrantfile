@@ -1,6 +1,10 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+# @nodeproto
+ENV["LC_ALL"] = "en_US.UTF-8"
+Vagrant.require_version ">= 2.2"
+
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
 # configures the configuration version (we support older styles for
 # backwards compatibility). Please don't change it unless you know what
@@ -13,6 +17,11 @@ Vagrant.configure("2") do |config|
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
   config.vm.box = "generic/alpine314"
+  config.vm.box_version = "3.4.2" # set tp > 0 to get the latest
+  config.vm.provision :shell, path: "src/vagrant/bootstrap.sh"
+  # doenst work either
+  # config.vm.provision "shell",
+  #   inline: "curl -fsSL https://get.pnpm.io/install.sh | sh -"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
