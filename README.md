@@ -27,6 +27,8 @@ bleeding-edge type-first *product development framework* for rapidly prototyping
 <details>
   <summary>Learn more about @nodeproto</summary>
 
+- my desire is to blend devops, backend, and frontend work into a single Production Development framework... haha yea, good luck right?
+
 - for understanding why @nodeproto exists
   - [review our contributing docs](https://github.com/noahehall/nodeproto/blob/develop/CONTRIBUTING.md)
 
