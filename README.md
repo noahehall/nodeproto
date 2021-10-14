@@ -70,7 +70,6 @@ under activate development; expect breaking changes
   ########## ABOUT MONOREPO CMDS ##############
   # run cmds from root|any child directory within monorepo
   # $ pnpm proto CMD_LIST
-  # run any CMD found in package.json.script | /bin | node_modules/.bin/ | system path
   # ^ if CMD is found in a subset of packages, will run it and NOT print any errors
   # ^^ if CMD is found in package.json.scripts|/bin|/node_modules/.bin, will run it
   # ^^ if CMD is found in path, will run it
