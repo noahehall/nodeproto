@@ -96,10 +96,11 @@ under activate development; expect breaking changes
     - ignore any incompatible def erros, `flow-type` is awesome enough to know we are on the bleeding edge and likely many type defs arent available for the versions we use, thus many types are unfortunately `poop: any`
 
 - monorepo build process: a 3 step process (plans for automation later)
-  1. sync with root `$ pnpm proto jsync`
+  1. sync with root `$ pnpm proto repo:jsync`
   2. copy static files `$ pnpm proto repo:cp:configproto`
   3. build output files to dist `$ pnpm proto build`
-     - if there havent been any changes, you likely only need this last step
+     - if there havent been any changes to `root/package.json` or static files in `configproto`
+     - you likely only need this last step
 
 </details>
 
