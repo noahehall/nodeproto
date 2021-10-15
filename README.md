@@ -150,41 +150,34 @@ under activate development; expect breaking changes
 
 - baremental
   - use pnpm to setup your dev env
+    - ensure haproxy 2.4 is available in your system path
     - install pnpm `curl -fsSL https://get.pnpm.io/install.sh | sh -`
     - install node `pnpm env use --global 16`
     - install pnpm tab-completion `pnpm install-completion`
     - source your shell (e.g. bashrc `. ~/.bashrc`)
 
-- vagrant + virtual box
+- vagrant + virtual box (appropriate for application appliances)
   - ensure vagrant 2.2.18 & vb 6.1 installed
   - `vagrant up`
   - `vagrant ssh`
   - `cd /opt/nodeproto`
+
+- vagrant + docker (appropriate for production)
+  - TODO
 
 - all envs: verify installation
   - `pnpm install`
   - `pnpm proto:script build`
   - `pnpm proto:script repo:test`
 
-### setup @nodeproto development environment
+### other things you could do
 
-- install root + subpackage dependencies `pnpm install`
-- build dependences for all packages/* `pnpm proto:script build`
-- run all tests in all packages `pnpm proto:script repo:test`
-- make any changes you want in `root/package.json` then sync them to sub modules
-  - `pnpm proto repo:jsync`
+all of this is TODO
 
 - flowtyped
   - TODO
-  - `pnpm add --global flow-typed`
-    - TODO: i think i actually installed this as a local dep (which is what you should do anyway)
-  - run `pnpm proto repo:flow-typed:install` in all of your child pkgs to get type definition
-  - run `pnpm exec flow` to get near realtime type checking for transpiled files
-  - use the experimental loader in  `packages/configproto/src/node/loaders/flow.mjs` for non transpiled files
-
-- haproxy
-  - until we get docker setup make sure you have **haproxy 2.4** installed
-  - see *apps/gateway* for instructions
+  - run `pnpm proto repo:flowtyped:install` refresh type definitions
+    - ignore any incompatible def erros, `flow-type` is awesome enough to know we are on the bleeding edge and likely many type defs arent available for the versions we use, thus many types are unfortunately `poop: any`
 
 - monorepo build process: a 3 step process (plans for automation later)
   1. sync with root `$ pnpm proto jsync`

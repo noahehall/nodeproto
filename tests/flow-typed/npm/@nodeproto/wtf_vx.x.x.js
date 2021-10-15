@@ -1,4 +1,4 @@
-// flow-typed signature: 7a730280892c8d64158f21ce73952177
+// flow-typed signature: 4c40be2e5447959c39ab990502bed242
 // flow-typed version: <<STUB>>/@nodeproto/wtf_vworkspace:0.0.0/flow_v0.161.0
 
 /**
@@ -22,6 +22,22 @@ declare module '@nodeproto/wtf' {
  * require those files directly. Feel free to delete any files that aren't
  * needed.
  */
+declare module '@nodeproto/wtf/dist/dirs' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/wtf/dist/esmain' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/wtf/dist/fsproto' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/wtf/dist' {
+  declare module.exports: any;
+}
+
 declare module '@nodeproto/wtf/flow-typed/npm/@babel/core_vx.x.x' {
   declare module.exports: any;
 }
@@ -94,6 +110,10 @@ declare module '@nodeproto/wtf/flow-typed/npm/eslint_vx.x.x' {
   declare module.exports: any;
 }
 
+declare module '@nodeproto/wtf/flow-typed/npm/flow-bin_v0.x.x' {
+  declare module.exports: any;
+}
+
 declare module '@nodeproto/wtf/flow-typed/npm/flow-remove-types_vx.x.x' {
   declare module.exports: any;
 }
@@ -139,6 +159,21 @@ declare module '@nodeproto/wtf/flow-typed/npm/uvu_vx.x.x' {
 }
 
 // Filename aliases
+declare module '@nodeproto/wtf/dist/dirs.js' {
+  declare module.exports: $Exports<'@nodeproto/wtf/dist/dirs'>;
+}
+declare module '@nodeproto/wtf/dist/esmain.js' {
+  declare module.exports: $Exports<'@nodeproto/wtf/dist/esmain'>;
+}
+declare module '@nodeproto/wtf/dist/fsproto.js' {
+  declare module.exports: $Exports<'@nodeproto/wtf/dist/fsproto'>;
+}
+declare module '@nodeproto/wtf/dist/index' {
+  declare module.exports: $Exports<'@nodeproto/wtf/dist'>;
+}
+declare module '@nodeproto/wtf/dist/index.js' {
+  declare module.exports: $Exports<'@nodeproto/wtf/dist'>;
+}
 declare module '@nodeproto/wtf/flow-typed/npm/@babel/core_vx.x.x.js' {
   declare module.exports: $Exports<'@nodeproto/wtf/flow-typed/npm/@babel/core_vx.x.x'>;
 }
@@ -192,6 +227,9 @@ declare module '@nodeproto/wtf/flow-typed/npm/env-cmd_vx.x.x.js' {
 }
 declare module '@nodeproto/wtf/flow-typed/npm/eslint_vx.x.x.js' {
   declare module.exports: $Exports<'@nodeproto/wtf/flow-typed/npm/eslint_vx.x.x'>;
+}
+declare module '@nodeproto/wtf/flow-typed/npm/flow-bin_v0.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/wtf/flow-typed/npm/flow-bin_v0.x.x'>;
 }
 declare module '@nodeproto/wtf/flow-typed/npm/flow-remove-types_vx.x.x.js' {
   declare module.exports: $Exports<'@nodeproto/wtf/flow-typed/npm/flow-remove-types_vx.x.x'>;

@@ -1,4 +1,4 @@
-// flow-typed signature: b733b77e89710cb87cf63d208dcbf1bd
+// flow-typed signature: 7381d7793684cdd4503d16a1c36279da
 // flow-typed version: <<STUB>>/@nodeproto/wtf_vworkspace:*/flow_v0.161.0
 
 /**
@@ -22,6 +22,22 @@ declare module '@nodeproto/wtf' {
  * require those files directly. Feel free to delete any files that aren't
  * needed.
  */
+declare module '@nodeproto/wtf/dist/dirs' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/wtf/dist/esmain' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/wtf/dist/fsproto' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/wtf/dist' {
+  declare module.exports: any;
+}
+
 declare module '@nodeproto/wtf/flow-typed/npm/@babel/core_vx.x.x' {
   declare module.exports: any;
 }
@@ -143,6 +159,21 @@ declare module '@nodeproto/wtf/flow-typed/npm/uvu_vx.x.x' {
 }
 
 // Filename aliases
+declare module '@nodeproto/wtf/dist/dirs.js' {
+  declare module.exports: $Exports<'@nodeproto/wtf/dist/dirs'>;
+}
+declare module '@nodeproto/wtf/dist/esmain.js' {
+  declare module.exports: $Exports<'@nodeproto/wtf/dist/esmain'>;
+}
+declare module '@nodeproto/wtf/dist/fsproto.js' {
+  declare module.exports: $Exports<'@nodeproto/wtf/dist/fsproto'>;
+}
+declare module '@nodeproto/wtf/dist/index' {
+  declare module.exports: $Exports<'@nodeproto/wtf/dist'>;
+}
+declare module '@nodeproto/wtf/dist/index.js' {
+  declare module.exports: $Exports<'@nodeproto/wtf/dist'>;
+}
 declare module '@nodeproto/wtf/flow-typed/npm/@babel/core_vx.x.x.js' {
   declare module.exports: $Exports<'@nodeproto/wtf/flow-typed/npm/@babel/core_vx.x.x'>;
 }

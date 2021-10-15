@@ -1,4 +1,4 @@
-// flow-typed signature: a6b2fca556f189d631c1c025537b008d
+// flow-typed signature: 1b6c0c122ef62716ecb71e980d6bef32
 // flow-typed version: <<STUB>>/@nodeproto/testproto_vworkspace:0.0.0/flow_v0.161.0
 
 /**
@@ -71,6 +71,10 @@ declare module '@nodeproto/testproto/flow-typed/npm/chai-exclude_vx.x.x' {
 }
 
 declare module '@nodeproto/testproto/flow-typed/npm/chai-nock_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/testproto/flow-typed/npm/chokidar-cli_vx.x.x' {
   declare module.exports: any;
 }
 
@@ -176,6 +180,9 @@ declare module '@nodeproto/testproto/flow-typed/npm/chai-exclude_vx.x.x.js' {
 }
 declare module '@nodeproto/testproto/flow-typed/npm/chai-nock_vx.x.x.js' {
   declare module.exports: $Exports<'@nodeproto/testproto/flow-typed/npm/chai-nock_vx.x.x'>;
+}
+declare module '@nodeproto/testproto/flow-typed/npm/chokidar-cli_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/testproto/flow-typed/npm/chokidar-cli_vx.x.x'>;
 }
 declare module '@nodeproto/testproto/flow-typed/npm/eslint-plugin-flowtype-errors_vx.x.x.js' {
   declare module.exports: $Exports<'@nodeproto/testproto/flow-typed/npm/eslint-plugin-flowtype-errors_vx.x.x'>;

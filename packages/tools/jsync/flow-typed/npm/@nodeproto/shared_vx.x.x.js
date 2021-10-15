@@ -1,4 +1,4 @@
-// flow-typed signature: f6fbafd7e0371e14dcb925f29560be46
+// flow-typed signature: 6cbb3d0282cd7630deefb951a2b528f6
 // flow-typed version: <<STUB>>/@nodeproto/shared_vworkspace:0.0.0/flow_v0.161.0
 
 /**
@@ -58,6 +58,10 @@ declare module '@nodeproto/shared/flow-typed/npm/@swc/core_vx.x.x' {
   declare module.exports: any;
 }
 
+declare module '@nodeproto/shared/flow-typed/npm/chokidar-cli_vx.x.x' {
+  declare module.exports: any;
+}
+
 declare module '@nodeproto/shared/flow-typed/npm/flow-bin_v0.x.x' {
   declare module.exports: any;
 }
@@ -111,6 +115,9 @@ declare module '@nodeproto/shared/flow-typed/npm/@swc/cli_vx.x.x.js' {
 }
 declare module '@nodeproto/shared/flow-typed/npm/@swc/core_vx.x.x.js' {
   declare module.exports: $Exports<'@nodeproto/shared/flow-typed/npm/@swc/core_vx.x.x'>;
+}
+declare module '@nodeproto/shared/flow-typed/npm/chokidar-cli_vx.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/shared/flow-typed/npm/chokidar-cli_vx.x.x'>;
 }
 declare module '@nodeproto/shared/flow-typed/npm/flow-bin_v0.x.x.js' {
   declare module.exports: $Exports<'@nodeproto/shared/flow-typed/npm/flow-bin_v0.x.x'>;
