@@ -138,7 +138,7 @@ under activate development; expect breaking changes
   $ pnpm exec flow status|etc # generally you should run flow via eslint
 
   ############ AVAILABLE CMDS ##############
-  ########### run within a single package/root
+  ########### run within a single package
   # basic cmds (dont use with proto | proto:bin | proto:slice | etc)
   # remove the -r from a cmd to run in the current package only
   $ pnpm -r outdated # see all outdated packages
@@ -161,7 +161,7 @@ under activate development; expect breaking changes
   $ pnpm repo:cp:configproto # copy configproto/[flow,cjs,browserslist] into package
 
   #########
-  # useful if run with pnpm proto
+  # useful if run with pnpm proto, e.g. pnpm proto repo:nuke
   $ pnpm repo:cp:browserslist # copy configproto/browserslistrc into package
   $ pnpm repo:cp:flow # copy configproto/.flowconfig into package
   $ pnpm repo:flowtyped:install # install flow-type defs
@@ -170,7 +170,7 @@ under activate development; expect breaking changes
   $ pnpm repo:rm:dist # rm /dist dir
   $ pnpm repo:rm:nodemodules # remove /node_modules dir
 
-  # useful if run with pnpm proto:script
+  # useful if run with pnpm proto:script, e.g. pnpm proto:script build
   # ^ TODO: investigate why `pnpm proto` fails on these scripts
   $ pnpm proto:script build # build all packages
   $ pnpm proto:script repo:test # test all packages
