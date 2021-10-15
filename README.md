@@ -55,6 +55,49 @@ bleeding-edge type-first *product development framework* for rapidly prototyping
 
 under activate development; expect breaking changes
 
+## getting started
+
+<details>
+  <summary>contributing</summary>
+
+### installation
+
+- baremental
+  - use pnpm to setup your dev env
+    - ensure haproxy 2.4 is available in your system path
+    - install pnpm `curl -fsSL https://get.pnpm.io/install.sh | sh -`
+    - install node `pnpm env use --global 16`
+    - install pnpm tab-completion `pnpm install-completion`
+    - source your shell (e.g. bashrc `. ~/.bashrc`)
+
+- vagrant + virtual box (appropriate for application appliances)
+  - ensure vagrant 2.2.18 & vb 6.1 installed
+  - `vagrant up`
+  - `vagrant ssh`
+  - `cd /opt/nodeproto`
+
+- vagrant + docker (appropriate for production)
+  - TODO
+
+- all envs: verify installation
+  - `pnpm install`
+  - `pnpm proto:script build`
+  - `pnpm proto:script repo:test`
+
+### other things you could do
+
+- refresh type definitions
+  - run `pnpm proto repo:flowtyped:install`
+    - ignore any incompatible def erros, `flow-type` is awesome enough to know we are on the bleeding edge and likely many type defs arent available for the versions we use, thus many types are unfortunately `poop: any`
+
+- monorepo build process: a 3 step process (plans for automation later)
+  1. sync with root `$ pnpm proto jsync`
+  2. copy static files `$ pnpm proto repo:cp:configproto`
+  3. build output files to dist `$ pnpm proto build`
+     - if there havent been any changes, you likely only need this last step
+
+</details>
+
 <details>
   <summary>cmd reference</summary>
 
@@ -138,52 +181,6 @@ under activate development; expect breaking changes
   $ pnpm proto:slice "packages/libraries/*" repo:test
   $ pnpm proto:slice "packages/apps/*" repo:test
 ```
-
-</details>
-
-## getting started
-
-<details>
-  <summary>contributing</summary>
-
-### installation
-
-- baremental
-  - use pnpm to setup your dev env
-    - ensure haproxy 2.4 is available in your system path
-    - install pnpm `curl -fsSL https://get.pnpm.io/install.sh | sh -`
-    - install node `pnpm env use --global 16`
-    - install pnpm tab-completion `pnpm install-completion`
-    - source your shell (e.g. bashrc `. ~/.bashrc`)
-
-- vagrant + virtual box (appropriate for application appliances)
-  - ensure vagrant 2.2.18 & vb 6.1 installed
-  - `vagrant up`
-  - `vagrant ssh`
-  - `cd /opt/nodeproto`
-
-- vagrant + docker (appropriate for production)
-  - TODO
-
-- all envs: verify installation
-  - `pnpm install`
-  - `pnpm proto:script build`
-  - `pnpm proto:script repo:test`
-
-### other things you could do
-
-all of this is TODO
-
-- flowtyped
-  - TODO
-  - run `pnpm proto repo:flowtyped:install` refresh type definitions
-    - ignore any incompatible def erros, `flow-type` is awesome enough to know we are on the bleeding edge and likely many type defs arent available for the versions we use, thus many types are unfortunately `poop: any`
-
-- monorepo build process: a 3 step process (plans for automation later)
-  1. sync with root `$ pnpm proto jsync`
-  2. copy static files `$ pnpm proto repo:cp:configproto`
-  3. build output files to dist `$ pnpm proto build`
-     - if there havent been any changes, you likely only need this last step
 
 </details>
 
