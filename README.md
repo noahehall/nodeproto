@@ -162,6 +162,9 @@ under activate development; expect breaking changes
   - `vagrant up`
   - `vagrant ssh`
   - `cd /opt/nodeproto`
+  - `pnpm install`
+  - `pnpm proto:script build`
+  - `pnpm proto:script repo:test`
 
 ### setup @nodeproto development environment
 
