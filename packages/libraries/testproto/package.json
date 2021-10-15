@@ -68,6 +68,10 @@
       "default": "./dist/index.js"
     }
   },
+  "os": [
+    "darwin",
+    "linux"
+  ],
   "engines": {
     "node": "^14.17.0 || >=16.0.0"
   },

@@ -63,6 +63,11 @@ under activate development; expect breaking changes
 ### installation
 
 - baremental
+  - notes
+    - the world runs on linux
+    - I run on linux
+    - mac should be compatible but unfortunately you're on your own with baremetal
+
   - use pnpm to setup your dev env
     - ensure haproxy 2.4 is available in your system path
     - install pnpm `curl -fsSL https://get.pnpm.io/install.sh | sh -`

@@ -37,6 +37,7 @@
     "virtualization"
   ],
   "os": [
+    "darwin",
     "linux"
   ],
   "config": {

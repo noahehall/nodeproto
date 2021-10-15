@@ -39,7 +39,8 @@
     "virtualization"
   ],
   "os": [
-    "linux"
+    "linux",
+    "darwin"
   ],
   "directories": {
     "doc": "./doc",
