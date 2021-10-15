@@ -92,7 +92,7 @@
     "repo:flowtyped:install": "flow-typed install",
     "repo:nuke": "pnpm repo:rm:dist; pnpm repo:rm:nodemodules",
     "repo:rm:dist": "rm -rf dist/*",
-    "repo:rm:nodemodules": "rm -rf node_modules",
+    "repo:rm:nodemodules": "rm -rf node_modules/*",
     "repo:scripts:v": "npm run-script",
     "repo:scripts": "ultra --list",
     "repo:test:file": "node --experimental-specifier-resolution=node --experimental-import-meta-resolve $*",

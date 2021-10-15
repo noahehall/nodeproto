@@ -73,7 +73,7 @@
     "./.flowconfig"
   ],
   "scripts": {
-    "build": "pnpm repo:rm:dist && pnpm repo:cp:cjs && swc $npm_package_config_DIRS_TO_TRANSPILE -d $npm_package_config_PATH_DIST --config-file ./node_modules/@nodeproto/configproto/src/swc/node.swcrc --copy-files",
+    "build": "RUST_BACKTRACE=1 pnpm repo:rm:dist && pnpm repo:cp:cjs && swc $npm_package_config_DIRS_TO_TRANSPILE -d $npm_package_config_PATH_DIST --config-file ./node_modules/@nodeproto/configproto/src/swc/node.swcrc --copy-files",
     "proto:bin": "pnpm -r exec $*",
     "proto:script": "pnpm -r $*",
     "proto:slice": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" pnpm exec ultra -r --filter",
@@ -89,7 +89,7 @@
     "repo:flowtyped:install": "flow-typed install",
     "repo:nuke": "pnpm repo:rm:dist; pnpm repo:rm:nodemodules",
     "repo:rm:dist": "rm -rf dist/*",
-    "repo:rm:nodemodules": "rm -rf node_modules",
+    "repo:rm:nodemodules": "rm -rf node_modules/*",
     "repo:scripts:v": "npm run-script",
     "repo:scripts": "ultra --list",
     "repo:test:file": "node --experimental-specifier-resolution=node --experimental-import-meta-resolve $*",
@@ -107,8 +107,9 @@
     "@nodeproto/configproto": "workspace:0.0.0",
     "@nodeproto/testproto": "workspace:0.0.0",
     "@swc/cli": "0.1.51",
-    "@swc/core": "1.2.95",
+    "@swc/core": "1.2.97",
+    "browserslist": "4.17.4",
     "chokidar-cli": "3.0.0",
-    "flow-bin": "0.161.0"
+    "flow-bin": "0.162.0"
   }
 }

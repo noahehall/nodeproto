@@ -39,14 +39,14 @@ export default function webpackServer({
   const controller = new AbortController();
 
   const config = {
-    host: 'localhost',
+    host: '0.0.0.0',
     port: CLIENT_PORT,
     signal: controller.signal,
   };
 
   const server = app.listen(
     config,
-    () =>  console.info(`${APP_NAME} running on: ${CLIENT_PORT}`)
+    () => console.info(`${APP_NAME} running on: ${CLIENT_PORT}`)
   );
 
   // @see https://github.com/gajus/http-terminator
@@ -61,7 +61,7 @@ export default function webpackServer({
     // likely you want to use this in a real env
     // especially if you expect there to be an unknown amount of connections
     // await httpTerminator.terminate();
-    httpTerminator:  httpTerminator.createHttpTerminator({ server }),
+    httpTerminator: httpTerminator.createHttpTerminator({ server }),
     server,
     // await webpackDevMiddlewareInstance.close() -> close webpack dev server;
     webpackDevMiddlewareInstance,

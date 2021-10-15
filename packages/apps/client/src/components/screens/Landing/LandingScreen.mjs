@@ -13,7 +13,7 @@ import ScreenGrid from '../../composite/Grid/Grid.mjs';
 import { ScreenRow } from '../../composite/Grid/Row.mjs';
 import * as React from 'react';
 
-export default function LandingScreen (props: {}): React.Node {
+export default function LandingScreen(props: {}): React.Node {
   return (
     <ScreenGrid {...props} isFor='Landing'>
       <Helmet>

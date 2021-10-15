@@ -13,7 +13,7 @@
           {
             "bugfixes": true,
             "corejs": {
-              "version": "3.18.2",
+              "version": "3.18.3",
               "proposals": true
             },
             "debug": false,

@@ -43,7 +43,7 @@
   "config": {
     "DIRS_TO_TRANSPILE": "./src",
     "NODE_ENV": "production",
-    "NODE_OPTIONS": "--experimental-loader=\"./node_modules/@nodeproto/configproto/src/node/loaders/flow.mjs\" --experimental-specifier-resolution=node --experimental-json-modules --experimental-top-level-await --experimental-vm-modules --experimental-import-meta-resolve node --enable-source-maps --heapsnapshot-near-heap-limit=3 --use-largepages=on --pending-deprecation --trace-sigint --trace-warnings --trace-exit --report-uncaught-exception --report-on-fatalerror --abort-on-uncaught-exception",
+    "NODE_OPTIONS": "--experimental-loader=\"./src/node/loaders/flow.mjs\" --experimental-specifier-resolution=node --experimental-json-modules --experimental-top-level-await --experimental-vm-modules --experimental-import-meta-resolve node --enable-source-maps --heapsnapshot-near-heap-limit=3 --use-largepages=on --pending-deprecation --trace-sigint --trace-warnings --trace-exit --report-uncaught-exception --report-on-fatalerror --abort-on-uncaught-exception",
     "PATH_DIST": "./dist",
     "PATH_SRC": "./src"
   },
@@ -60,7 +60,7 @@
     "repo:eslint": "eslint './**/*'",
     "repo:nuke": "pnpm repo:rm:dist; pnpm repo:rm:nodemodules",
     "repo:rm:dist": "rm -rf dist/*",
-    "repo:rm:nodemodules": "rm -rf node_modules",
+    "repo:rm:nodemodules": "rm -rf node_modules/*",
     "repo:scripts:v": "npm run-script",
     "repo:scripts": "ultra --list"
   },
@@ -97,7 +97,8 @@
     "@emotion/babel-plugin": "11.3.0",
     "babel-plugin-tailcall-optimization": "2.0.0",
     "babel-plugin-transform-export-default-name": "2.1.0",
-    "core-js": "3.18.2",
+    "browserslist": "4.17.4",
+    "core-js": "3.18.3",
     "eslint-plugin-fb-flow": "0.0.4",
     "eslint-plugin-flowtype-errors": "4.4.0",
     "eslint-plugin-html": "6.2.0",
@@ -110,7 +111,7 @@
   },
   "devDependencies": {
     "@octokit/core": "3.5.1",
-    "flow-bin": "0.161.0",
+    "flow-bin": "0.162.0",
     "flow-typed": "3.3.1"
   }
 }

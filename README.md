@@ -60,9 +60,29 @@ under activate development; expect breaking changes
 <details>
   <summary>contributing</summary>
 
+### uninstall
+
+- fully remove: `rm -rf /var/.nodeproto`
+- reset
+
+```sh
+  # dont remove the parent dir .nodeproto, just its children
+  rm -rf /var/.nodeproto/*
+  rm pnpm-lock.yaml
+  pnpm proto repo:nuke
+  pnpm add -g pnpm
+  pnpm env use --global 16
+  pnpm install
+```
+
 ### installation
 
-- baremental
+- prereqs
+  - to ease transition from metal to cloud: we store dependency + pnpm metadata with a single directory `/var/.nodeproto`
+  - `$ sudo mkdir /var/.nodeproto`
+  - `$ sudo chown -R $(whoami):$(whoami) /var/.nodeproto`
+
+- baremetal
   - notes
     - the world runs on linux
     - I run on linux
@@ -76,7 +96,8 @@ under activate development; expect breaking changes
     - source your shell (e.g. bashrc `. ~/.bashrc`)
 
 - vagrant + virtual box (appropriate for application appliances)
-  - ensure vagrant 2.2.18 & vb 6.1 installed
+  - ensure vagrant 2.2.18 & virtualb 6.1 installed + guest additions
+    - other versions may work
   - `vagrant up`
   - `vagrant ssh`
   - `cd /opt/nodeproto`
@@ -99,6 +120,7 @@ under activate development; expect breaking changes
   1. sync with root `$ pnpm proto repo:jsync`
   2. copy static files `$ pnpm proto repo:cp:configproto`
   3. build output files to dist `$ pnpm proto build`
+     - for swc errors, cd into package and run `RUST_BACKTRACE=full pnpm build`
      - if there havent been any changes to `root/package.json` or static files in `configproto`
      - you likely only need this last step
 
@@ -177,9 +199,9 @@ under activate development; expect breaking changes
 
   #### monorepo orchestration
   # TODO: how package.json script NAMES permit you to orchestrate tasks across subpackages
-  $ pnpm proto start # localhost:7777, localhost:8081, https:localhost:8443
-  $ pnpm proto start:client # localhost:7777
-  $ pnpm proto start:dev # localhost:8080
+  $ pnpm proto start # localhost:7777, localhost:7777/v1
+  $ pnpm proto start:client # localhost:7777, localhost:8080
+  $ pnpm proto start:pkgcheck # localhost:7777/v1, localhost:3000/v1
 
   ##### other repo level cmds
   # TODO

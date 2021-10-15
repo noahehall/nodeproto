@@ -64,6 +64,7 @@
     "@octokit/core": "3.5.1",
     "@swc/cli": "0.1.51",
     "@swc/core": "1.2.95",
+    "browserslist": "4.17.4",
     "chokidar-cli": "3.0.0",
     "eslint": "8.0.0",
     "flow-bin": "0.161.0",
@@ -143,7 +144,7 @@
     "repo:monitor": "ultra --monitor",
     "repo:nuke": "pnpm repo:rm:dist; pnpm repo:rm:nodemodules",
     "repo:rm:dist": "rm -rf dist/*",
-    "repo:rm:nodemodules": "rm -rf node_modules",
+    "repo:rm:nodemodules": "rm -rf node_modules/*",
     "repo:scripts": "ultra --list",
     "repo:scripts:v": "npm run-script",
     "repo:test": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" uvu ./src \"test.(m|c)?js\"",
@@ -151,8 +152,8 @@
     "repo:test:help": "uvu --help",
     "repo:testing": "pnpm repo:test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"pnpm repo:test\"",
     "start": "pnpm start:pkgcheck",
-    "start:pkgcheck": "clear; pnpm repo:rm:dist && NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" node esbuild.run.config.mjs",
-    "start:raw": "node --experimental-specifier-resolution=node --experimental-import-meta-resolve src/root.mjs"
+    "start:pkgcheck": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" node esbuild.run.config.mjs",
+    "start:raw": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" node src/root.mjs"
   },
   "ultra": {
     "concurrent": [

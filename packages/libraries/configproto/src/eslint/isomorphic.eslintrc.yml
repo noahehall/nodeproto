@@ -14,7 +14,7 @@ settings:
     pragma: React
     fragment: Fragment
     version: detect
-    flowVersion: 0.161.0
+    flowVersion: 0.162.0
     componentWrapperFunctions:
       - styled
     linkComponents:
@@ -34,13 +34,14 @@ rules:
   react-hooks/exhaustive-deps: warn
   react-hooks/rules-of-hooks: error
   react/display-name: error
-  react/forbid-component-props: [error, {forbid: [reactsucks, angularisgreat]}]
+  react/forbid-component-props:
+    [error, { forbid: [reactsucks, angularisgreat] }]
   react/jsx-indent-props: [error, 2]
   react/jsx-indent: [error, 2]
-  react/jsx-max-depth: [error, {max: 5}]
-  react/jsx-max-props-per-line: [error, {maximum: 3, when: multiline}]
+  react/jsx-max-depth: [error, { max: 5 }]
+  react/jsx-max-props-per-line: [error, { maximum: 3, when: multiline }]
   react/jsx-no-literals: warn
-  react/jsx-one-expression-per-line: [error, {allow: single-child}]
+  react/jsx-one-expression-per-line: [error, { allow: single-child }]
 
   # dumb rules
   react/destructuring-assignment: 0
