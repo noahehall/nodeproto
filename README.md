@@ -68,8 +68,8 @@ under activate development; expect breaking changes
     - I run on linux
     - mac should be compatible but unfortunately you're on your own with baremetal
 
+  - ensure haproxy (preferable >= 2.4) is available in your system path
   - use pnpm to setup your dev env
-    - ensure haproxy 2.4 is available in your system path
     - install pnpm `curl -fsSL https://get.pnpm.io/install.sh | sh -`
     - install node `pnpm env use --global 16`
     - install pnpm tab-completion `pnpm install-completion`
