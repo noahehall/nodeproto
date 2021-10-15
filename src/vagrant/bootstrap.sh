@@ -13,6 +13,9 @@ EOF
 
   apk update
 
+  # TODO: forces use to use haproxy 2.4.4; create a build script
+  # TODO: this forces us to use the latest (whatever) nodejs: create a build script
+  # ^ necessary evils until we find the time to focus on this
   apk add --no-cache \
     attr \
     bash bash-completion \
@@ -26,7 +29,8 @@ EOF
     binutils \
     findutils \
     readline \
-    nodejs-current # this forces us to use the latest nodejs
+    haproxy \
+    nodejs-current
 
 
   # @see https://unix.stackexchange.com/questions/94490/bash-doesnt-read-bashrc-unless-manually-started

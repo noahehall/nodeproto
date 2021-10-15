@@ -149,19 +149,19 @@ under activate development; expect breaking changes
 ### installation
 
 - baremental
-  - TODO
-  - use pnpm to install node
+  - use pnpm to setup your dev env
     - install pnpm `curl -fsSL https://get.pnpm.io/install.sh | sh -`
     - install node `pnpm env use --global 16`
     - install pnpm tab-completion `pnpm install-completion`
     - source your shell (e.g. bashrc `. ~/.bashrc`)
 
-- vagrant + vb
-  - TODO
+- vagrant + virtual box
   - ensure vagrant 2.2.18 & vb 6.1 installed
   - `vagrant up`
   - `vagrant ssh`
   - `cd /opt/nodeproto`
+
+- all envs: verify installation
   - `pnpm install`
   - `pnpm proto:script build`
   - `pnpm proto:script repo:test`
