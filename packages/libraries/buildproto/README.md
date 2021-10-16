@@ -32,3 +32,7 @@
 - [cosmiconfig](https://github.com/davidtheclark/cosmiconfig)
   - might have to join the crowd and use this
   - yea fkn right
+
+- issues
+  - think webpack changed something, getting errs about experiments
+  - `configuration.experiments.buildHttp should be one of these`

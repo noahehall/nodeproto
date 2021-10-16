@@ -2,6 +2,14 @@
 
 bleeding-edge type-first *product development framework* for rapidly prototyping end-to-end, complex, and secure products within a baremetal|cloud-native micro-service architecture
 
+- issues
+  - `pnpm -h: Version 6.22.2 (compiled to binary; bundled Node.js v14.17.0)`
+    - ^ thats why package.json engines fails
+
+[go straight to TLDR](#TLDR)
+
+## about
+
 - tests
   - [@nodeproto/tests - Integration + e2e tests for everything below](tests/README.md)
 - services (examples)
@@ -66,13 +74,21 @@ under activate development; expect breaking changes
 - reset
 
 ```sh
-  # dont remove the parent dir .nodeproto, just its children
   rm -rf /var/.nodeproto/*
   rm pnpm-lock.yaml
   pnpm proto repo:nuke
   pnpm add -g pnpm
-  pnpm env use --global 16
+  pnpm env use --global 17
   pnpm install
+  # optional resync & reinstall
+  pnpm proto repo:jsync
+  pnpm install
+  # optional rebuild & test
+  pnpm proto:script build
+  pnpm proto:script repo:test
+  # get a feel for the repo
+  pnpm repo:deps
+  pnpm repo:scripts
 ```
 
 ### installation
@@ -96,13 +112,13 @@ under activate development; expect breaking changes
     - source your shell (e.g. bashrc `. ~/.bashrc`)
 
 - vagrant + virtual box (appropriate for application appliances)
-  - ensure vagrant 2.2.18 & virtualb 6.1 installed + guest additions
+  - ensure vagrant 2.2.18 & virtualbox 6.1 installed + guest additions
     - other versions may work
   - `vagrant up`
   - `vagrant ssh`
   - `cd /opt/nodeproto`
 
-- vagrant + docker (appropriate for production)
+- vagrant + docker (appropriate for production games)
   - TODO
 
 - all envs: verify installation
@@ -165,6 +181,7 @@ under activate development; expect breaking changes
   # remove the -r from a cmd to run in the current package only
   $ pnpm -r outdated # see all outdated packages
   $ pnpm -r upgrade -L # update all packages
+    # ^ for packages with react, then do pnpm add react@next react-dom@next
   $ pnpm config list
   $ pnpm install # install deps of all packages (even root)
   $ pnpm repo:about # debug info

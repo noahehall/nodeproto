@@ -107,9 +107,9 @@
     "@nodeproto/configproto": "workspace:0.0.0",
     "@nodeproto/testproto": "workspace:0.0.0",
     "@swc/cli": "0.1.51",
-    "@swc/core": "1.2.97",
-    "browserslist": "4.17.4",
+    "@swc/core": "1.2.109",
+    "browserslist": "4.18.1",
     "chokidar-cli": "3.0.0",
-    "flow-bin": "0.162.0"
+    "flow-bin": "0.164.0"
   }
 }

@@ -24,9 +24,9 @@
     "PATH_SRC": "./src"
   },
   "dependencies": {
-    "@babel/runtime": "7.15.4",
-    "@emotion/react": "11.4.1",
-    "core-js": "3.18.2",
+    "@babel/runtime": "7.16.3",
+    "@emotion/react": "11.6.0",
+    "core-js": "3.19.1",
     "download": "8.0.0",
     "env-cmd": "10.1.0",
     "express": "4.17.1",
@@ -35,32 +35,32 @@
     "yargs": "17.2.1"
   },
   "devDependencies": {
-    "@babel/core": "7.15.8",
-    "@changesets/cli": "2.17.0",
+    "@babel/core": "7.16.0",
+    "@changesets/cli": "2.18.0",
     "@nodeproto/buildproto": "workspace:0.0.0",
     "@nodeproto/configproto": "workspace:0.0.0",
     "@nodeproto/jsync": "workspace:*",
     "@octokit/core": "3.5.1",
     "@types/download": "8.0.1",
-    "babel-loader": "8.2.2",
+    "babel-loader": "8.2.3",
     "body-parser": "1.19.0",
-    "browserslist": "4.17.4",
+    "browserslist": "4.18.1",
     "chokidar-cli": "3.0.0",
-    "eslint": "8.0.0",
-    "flow-bin": "0.161.0",
-    "flow-remove-types": "2.161.0",
-    "flow-typed": "3.3.1",
+    "eslint": "8.2.0",
+    "flow-bin": "0.164.0",
+    "flow-remove-types": "2.164.0",
+    "flow-typed": "3.4.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "string-replace-loader": "3.0.3",
     "uvu": "0.5.2",
-    "web-ext": "~6.4.0",
+    "web-ext": "~6.5.0",
     "web-ext-translator": "4.0.0",
     "webextension-polyfill": "0.8.0",
-    "webpack": "5.58.1"
+    "webpack": "5.64.1"
   },
   "engines": {
-    "node": "^14.17.0 || >=16.0.0"
+    "node": "^14.17.0 || ^16.11.0 || >=17.1.0"
   },
   "jsync": {
     "root": false
@@ -113,7 +113,6 @@
     "proto:script": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" pnpm -r $*",
     "proto:slice": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" pnpm exec ultra -r --filter",
     "repo:about": "npm run-script && npm --versions && pnpm -r config list --json t && echo \"NODE OPTIONS set to: $npm_package_config_NODE_OPTIONS\"",
-    "repo:about:scripts": "npm run-script",
     "repo:cp:browserslist": "rm -f .browserslistrc && cp ./node_modules/@nodeproto/configproto/src/browserslist/.browserslistrc .",
     "repo:cp:cjs": "rm -f ./dist/package.json && mkdir -p dist && cp ./node_modules/@nodeproto/configproto/src/node/cjs.json ./dist/package.json",
     "repo:cp:configproto": "pnpm repo:cp:flow; pnpm repo:cp:cjs; pnpm repo:cp:browserslist",

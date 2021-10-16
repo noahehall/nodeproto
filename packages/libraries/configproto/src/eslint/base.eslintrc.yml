@@ -5,7 +5,14 @@
 # @see https://github.com/amilajack/eslint-plugin-flowtype-errors/wiki/Advanced-Config
 
 reportUnusedDisableDirectives: true
-ignorePatterns: [pnpm-lock.yaml,pnpm-workspace.yaml,"**/node_modules/**","**/dist/**", "**/flow-typed/**", "**/bundlestats/**", "**/copypasta/**"]
+ignorePatterns:
+  - pnpm-lock.yaml
+  - pnpm-workspace.yaml
+  - "**/node_modules/**"
+  - "**/dist/**"
+  - "**/flow-typed/**"
+  - "**/bundlestats/**"
+  - "**/copypasta/**"
 
 # @see https://github.com/babel/babel/tree/main/eslint/babel-eslint-parser
 # @see https://github.com/babel/babel/blob/main/eslint/babel-eslint-config-internal/index.js
@@ -33,7 +40,6 @@ env:
   node: true
   shelljs: true
 
-
 plugins:
   - "@babel"
   - flowtype-errors
@@ -43,6 +49,7 @@ plugins:
   - node
   - promise
   - yml
+  - prettier
 
 extends:
   # general plugins up here
@@ -51,10 +58,11 @@ extends:
   - "plugin:promise/recommended"
 
   # priority plugins here
-  - plugin:markdown/recommended
-  - plugin:yml/standard
-  - plugin:json/recommended-with-comments
-  - plugin:flowtype-errors/recommended
+  - "plugin:markdown/recommended"
+  - "plugin:yml/standard"
+  - "plugin:json/recommended-with-comments"
+  - "plugin:flowtype-errors/recommended"
+  - "plugin:prettier/recommended"
 
 settings:
   # @see https://github.com/BenoitZugmeyer/eslint-plugin-html
@@ -82,7 +90,6 @@ settings:
   #   - packages/tests
   #   - packages/tools
 
-
 # todo
 # @see https://eslint.org/docs/user-guide/configuring/language-options#specifying-environments
 # globals:
@@ -101,6 +108,7 @@ overrides:
   - files: ["**/*.md"]
     processor: markdown/markdown
     rules:
+      prettier/prettier: error
       "@babel/no-unused-expressions": 0
       # import/no-unresolved: 0
       no-console: 0
@@ -136,10 +144,10 @@ rules:
       ignoreMemberSort: false
       allowSeparatedGroups: true
       memberSyntaxSortOrder: # supports sorting lines ascending
-        - none # import 'poop'
+        - none # import "poop"
         - multiple # import { p, o, o, p } # usually on more than one line so hard to sort in vscode
         - all # import * as poop
-        - single # import poop 'from 'poop
+        - single # import poop "from "poop
   sort-keys:
     - error
     - asc

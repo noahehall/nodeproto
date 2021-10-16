@@ -12,7 +12,7 @@
   "private": true,
   "type": "module",
   "engines": {
-    "node": "^14.17.0 || >=16.0.0"
+    "node": "^14.17.0 || >=16.0.0 || >= 17.0.0"
   },
   "keywords": [
     "@nirv",
@@ -59,6 +59,8 @@
     "repo:eslint:fix": "pnpm repo:eslint -- --fix",
     "repo:eslint": "eslint './**/*'",
     "repo:nuke": "pnpm repo:rm:dist; pnpm repo:rm:nodemodules",
+    "repo:pretty:check": "pnpm prettier --check .",
+    "repo:pretty:write": "pnpm prettier --write .",
     "repo:rm:dist": "rm -rf dist/*",
     "repo:rm:nodemodules": "rm -rf node_modules/*",
     "repo:scripts:v": "npm run-script",
@@ -80,38 +82,43 @@
     "./swc/*": "./src/swc/*.swcrc"
   },
   "dependencies": {
-    "@babel/core": "7.15.8",
-    "@babel/eslint-parser": "7.15.8",
+    "@babel/core": "7.16.0",
+    "@babel/eslint-parser": "7.16.3",
     "@babel/eslint-plugin": "7.14.5",
-    "@babel/plugin-proposal-throw-expressions": "7.14.5",
-    "@babel/plugin-syntax-jsx": "7.14.5",
-    "@babel/plugin-transform-flow-strip-types": "7.14.5",
-    "@babel/plugin-transform-react-constant-elements": "7.14.5",
-    "@babel/plugin-transform-react-inline-elements": "7.14.5",
-    "@babel/plugin-transform-runtime": "7.15.8",
-    "@babel/preset-env": "7.15.8",
-    "@babel/preset-flow": "7.14.5",
-    "@babel/preset-react": "7.14.5",
-    "@babel/runtime": "7.15.4",
-    "@babel/traverse": "7.15.4",
+    "@babel/plugin-proposal-throw-expressions": "7.16.0",
+    "@babel/plugin-syntax-jsx": "7.16.0",
+    "@babel/plugin-transform-flow-strip-types": "7.16.0",
+    "@babel/plugin-transform-react-constant-elements": "7.16.0",
+    "@babel/plugin-transform-react-inline-elements": "7.16.0",
+    "@babel/plugin-transform-runtime": "7.16.4",
+    "@babel/preset-env": "7.16.4",
+    "@babel/preset-flow": "7.16.0",
+    "@babel/preset-react": "7.16.0",
+    "@babel/runtime": "7.16.3",
+    "@babel/traverse": "7.16.3",
     "@emotion/babel-plugin": "11.3.0",
     "babel-plugin-tailcall-optimization": "2.0.0",
     "babel-plugin-transform-export-default-name": "2.1.0",
-    "browserslist": "4.17.4",
-    "core-js": "3.18.3",
+    "browserslist": "4.18.1",
+    "core-js": "3.19.1",
+    "eslint-config-prettier": "8.3.0",
     "eslint-plugin-fb-flow": "0.0.4",
-    "eslint-plugin-flowtype-errors": "4.4.0",
+    "eslint-plugin-flowtype-errors": "4.5.0",
     "eslint-plugin-html": "6.2.0",
     "eslint-plugin-json": "3.1.0",
     "eslint-plugin-markdown": "2.2.1",
-    "eslint-plugin-react": "7.26.1",
-    "eslint-plugin-react-hooks": "4.2.0",
-    "eslint-plugin-yml": "0.10.1",
-    "yaml-eslint-parser": "0.4.1"
+    "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-prettier": "4.0.0",
+    "eslint-plugin-promise": "5.1.1",
+    "eslint-plugin-react": "7.27.0",
+    "eslint-plugin-react-hooks": "4.3.0",
+    "eslint-plugin-yml": "0.11.0",
+    "prettier": "2.4.1",
+    "yaml-eslint-parser": "0.5.0"
   },
   "devDependencies": {
     "@octokit/core": "3.5.1",
-    "flow-bin": "0.162.0",
-    "flow-typed": "3.3.1"
+    "flow-bin": "0.164.0",
+    "flow-typed": "3.4.0"
   }
 }

@@ -28,14 +28,14 @@
     "PKGCHECK_HTTPS_PORT": "4430"
   },
   "dependencies": {
-    "@babel/runtime": "7.15.4",
+    "@babel/runtime": "7.16.3",
     "@koa/cors": "3.1.0",
     "@nodeproto/envproto": "workspace:0.0.0",
     "@nodeproto/wtf": "workspace:0.0.0",
     "@tinyhttp/etag": "2.0.2",
     "cls-rtracer": "2.6.0",
     "js-yaml": "4.1.0",
-    "koa": "2.13.3",
+    "koa": "2.13.4",
     "koa-body": "4.2.0",
     "koa-bodyparser": "4.3.0",
     "koa-charset": "2.0.0",
@@ -43,7 +43,7 @@
     "koa-csrf": "3.0.8",
     "koa-helmet": "6.1.0",
     "koa-jwt": "4.0.3",
-    "koa-oas3": "2.3.2",
+    "koa-oas3": "2.4.1",
     "koa-passport": "4.1.4",
     "koa-qs": "3.0.0",
     "koa-ratelimit": "5.0.1",
@@ -54,22 +54,22 @@
     "ultra-runner": "3.10.5"
   },
   "devDependencies": {
-    "@babel/core": "7.15.8",
-    "@babel/eslint-parser": "7.15.8",
-    "@changesets/cli": "2.17.0",
+    "@babel/core": "7.16.0",
+    "@babel/eslint-parser": "7.16.3",
+    "@changesets/cli": "2.18.0",
     "@nodeproto/buildproto": "workspace:0.0.0",
     "@nodeproto/configproto": "workspace:0.0.0",
     "@nodeproto/jsync": "workspace:0.0.0",
     "@nodeproto/testproto": "workspace:0.0.0",
     "@octokit/core": "3.5.1",
     "@swc/cli": "0.1.51",
-    "@swc/core": "1.2.95",
-    "browserslist": "4.17.4",
+    "@swc/core": "1.2.109",
+    "browserslist": "4.18.1",
     "chokidar-cli": "3.0.0",
-    "eslint": "8.0.0",
-    "flow-bin": "0.161.0",
-    "flow-remove-types": "2.161.0",
-    "flow-typed": "3.3.1",
+    "eslint": "8.2.0",
+    "flow-bin": "0.164.0",
+    "flow-remove-types": "2.164.0",
+    "flow-typed": "3.4.0",
     "uvu": "0.5.2"
   },
   "directories": {
@@ -78,7 +78,7 @@
     "src": "./src"
   },
   "engines": {
-    "node": "^14.17.0 || >=16.0.0"
+    "node": "^14.17.0 || ^16.11.0 || >=17.1.0"
   },
   "files": [],
   "jsync": {
@@ -131,7 +131,6 @@
     "proto:script": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" pnpm -r $*",
     "proto:slice": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" pnpm exec ultra -r --filter",
     "repo:about": "npm run-script && npm --versions && pnpm -r config list --json t && echo \"NODE OPTIONS set to: $npm_package_config_NODE_OPTIONS\"",
-    "repo:about:scripts": "npm run-script",
     "repo:cp:browserslist": "rm -f .browserslistrc && cp ./node_modules/@nodeproto/configproto/src/browserslist/.browserslistrc .",
     "repo:cp:cjs": "rm -f ./dist/package.json && mkdir -p dist && cp ./node_modules/@nodeproto/configproto/src/node/cjs.json ./dist/package.json",
     "repo:cp:configproto": "pnpm repo:cp:flow; pnpm repo:cp:cjs; pnpm repo:cp:browserslist",
