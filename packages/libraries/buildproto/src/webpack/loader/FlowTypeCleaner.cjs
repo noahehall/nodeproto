@@ -1,3 +1,5 @@
+// $FlowTODO
+
 // inspiration: https://github.com/conorhastings/remove-flow-types-loader
 // @see https://github.com/facebook/flow/tree/main/packages/flow-remove-types
 // @see https://webpack.js.org/contribute/writing-a-loader/
@@ -5,11 +7,9 @@
 // @see https://github.com/webpack/loader-utils/blob/master/package.json
 // @see https://github.com/webpack/schema-utils/blob/master/package.json
 
-
 // copypasta
 // multiple loaders are executed in reverse order (right>left|bottom>up)
 // The fact that loaders can be chained also means they don't necessarily have to output JavaScript. As long as the next loader in the chain can handle its output, the loader can return any type of module.
-
 
 /** webpack best loader best practices
     Keep them simple.
@@ -24,22 +24,22 @@
     Use peer dependencies.
 */
 
-const { validate } = require('schema-utils');
-const flowRemoveTypes = require('flow-remove-types'); // TODO: wtf happened to eslint/sort-imports ?
+const { validate } = require("schema-utils");
+const flowRemoveTypes = require("flow-remove-types"); // TODO: wtf happened to eslint/sort-imports ?
 
 const _schema = {
-  type: 'object',
+  type: "object",
   properties: {
-    exclude: { type: 'array' },
-    include: { type: 'array' },
-    all: { type: 'boolean' },
+    exclude: { type: "array" },
+    include: { type: "array" },
+    all: { type: "boolean" },
   },
 };
 
 const _options = {
   exclude: [/node_modules/],
   include: [/\.(c|m|)jsx?/],
-  all: true
+  all: true,
 };
 
 const _upsertOptions = function () {
@@ -48,11 +48,13 @@ const _upsertOptions = function () {
 
     validate(_schema, flowOptions, {
       name: this.displayName,
-      baseDataPath: 'options'
+      baseDataPath: "options",
     });
 
     return flowOptions;
-  } catch { return _options; }
+  } catch {
+    return _options;
+  }
 };
 
 /**
@@ -62,12 +64,12 @@ const _upsertOptions = function () {
  * @param {*} meta? when more than 1 loader applied to resource
  * @return {string, sourceMap?}
  */
-function FlowTypeCleanerLoader (content /*, map, meta*/) {
+function FlowTypeCleanerLoader(content /*, map, meta*/) {
   // this.cacheable();
 
   return flowRemoveTypes(content, _upsertOptions()).toString();
 }
 
-FlowTypeCleanerLoader.displayName = 'FlowTypeCleanerLoader';
+FlowTypeCleanerLoader.displayName = "FlowTypeCleanerLoader";
 
 module.exports = FlowTypeCleanerLoader;

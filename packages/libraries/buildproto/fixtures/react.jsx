@@ -1,3 +1,5 @@
-import React from 'react';
+// @FlowTODO
+
+import React from "react";
 
 export default () => <div />;

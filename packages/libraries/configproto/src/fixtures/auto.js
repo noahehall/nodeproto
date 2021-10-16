@@ -1,2 +1,3 @@
-module.exports = function () {
-};
+// @FlowTODO
+
+module.exports = function () {};

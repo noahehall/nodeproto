@@ -1,3 +1,5 @@
+// $FlowTODO
+
 // TODO: update these tests, for now just relying on the integration tests
 // TODO: doesnt recursively search all child directories, only the first
 /**
@@ -11,18 +13,18 @@
  * implement watching yaml files
  */
 
-import fs from 'fs/promises';
-import path from 'path';
+import fs from "fs/promises";
+import path from "path";
 
-const r = (t, msg = 'required in popCopy') => {
+const r = (t, msg = "required in popCopy") => {
   throw new Error(`${t}: ${msg}`);
 };
 
 export const esbuildPluginPopCopyConfig = ({
-  endingWith = r('endingWith: RegExp'),
-  indir = r('indir: string'),
-  outdir = r('outdir: string'),
-  recurse = true
+  endingWith = r("endingWith: RegExp"),
+  indir = r("indir: string"),
+  outdir = r("outdir: string"),
+  recurse = true,
 }) => ({
   options: [
     {
@@ -41,10 +43,10 @@ export const esbuildPluginPopCopyConfig = ({
 export const cache = new Map();
 
 // fileShouldCopy(path) => lastModified in MS or undefined
-export const fileShouldCopy = async sourcepath => {
+export const fileShouldCopy = async (sourcepath) => {
   let fd;
   try {
-    fd = await fs.open(sourcepath,'r');
+    fd = await fs.open(sourcepath, "r");
     if (!fd) return;
 
     const { mtimeMs } = await fd.stat();
@@ -52,12 +54,12 @@ export const fileShouldCopy = async sourcepath => {
 
     fd.close();
 
-    return (!cacheMs || (cacheMs < mtimeMs)) && mtimeMs;
+    return (!cacheMs || cacheMs < mtimeMs) && mtimeMs;
   } catch (e) {
-    console.warn(
-      'error accessing file, removing from cache\n',
-      { sourcepath, e }
-    );
+    console.warn("error accessing file, removing from cache\n", {
+      sourcepath,
+      e,
+    });
 
     fd?.close();
     cache.delete(sourcepath);
@@ -80,7 +82,7 @@ export const fileCopy = async (newCacheMs, sourcepath, outdir) => {
       await fs.copyFile(sourcepath, outpath);
     }
   } catch (e) {
-    console.warn('\n\n error copying file into outdir', { sourcepath, e });
+    console.warn("\n\n error copying file into outdir", { sourcepath, e });
 
     cache.delete(sourcepath);
   }
@@ -88,46 +90,47 @@ export const fileCopy = async (newCacheMs, sourcepath, outdir) => {
 
 // searches for files to copy
 // sets filepaths as keys in cache
-export const filesToCopy = options => {
-  const msg = 'not copying files:';
+export const filesToCopy = (options) => {
+  const msg = "not copying files:";
 
-  if (!options.length)
-    return console.warn(`${msg} options empty`, options);
+  if (!options.length) return console.warn(`${msg} options empty`, options);
 
   // TODO: cant use async with forEach.. duh
   options.forEach(async ({ outdir, endingWith, indir, recurse, ...opts }) => {
     try {
       if (
-        !(
-          endingWith instanceof RegExp) ||
-          (!indir || !indir.startsWith('/')) ||
-          (!outdir || !outdir.startsWith('/')
-        )
+        !(endingWith instanceof RegExp) ||
+        !indir ||
+        !indir.startsWith("/") ||
+        !outdir ||
+        !outdir.startsWith("/")
       ) {
-        return console.warn(
-          `${msg} invalid params`,
-          { outdir, endingWith, indir, recurse, opts }
-        );
+        return console.warn(`${msg} invalid params`, {
+          endingWith,
+          indir,
+          opts,
+          outdir,
+          recurse,
+        });
       }
 
-      const sourcedirs = await fs.readdir(
-        indir,
-        { encoding: 'utf8', withFileTypes: true }
-      ) ?? [];
+      const sourcedirs =
+        (await fs.readdir(indir, { encoding: "utf8", withFileTypes: true })) ??
+        [];
 
-      sourcedirs.forEach(dirEnt => {
+      sourcedirs.forEach((dirEnt) => {
         // check all child-dirs
         // need to check dirEnt[symbol] type === 2
         // because duh files without extensions
-        if (!dirEnt.name.includes('.') && recurse) {
+        if (!dirEnt.name.includes(".") && recurse) {
           filesToCopy([
             {
-              outdir,
               endingWith,
-              recurse,
               indir: `${indir}/${dirEnt.name}`,
-              ...opts
-            }
+              outdir,
+              recurse,
+              ...opts,
+            },
           ]);
         } else {
           // check if filename endsWith regex
@@ -141,20 +144,20 @@ export const filesToCopy = options => {
         }
       });
     } catch (e) {
-      console.error('\n\n error in popcopy', e);
+      console.error("\n\n error in popcopy", e);
     }
   });
 };
 
-const name = 'popCopyPlugin';
+const name = "popCopyPlugin";
 
-export function esbuildPluginPopCopy (config = r('config')) {
+export function esbuildPluginPopCopy(config = r("config")) {
   esbuildPluginPopCopy.options = config;
   esbuildPluginPopCopy.onStarted = false;
 
   return {
     name,
-    setup (build) {
+    setup(build) {
       /**
        * options
        * { options: [{ indir, endingWith, recurse, outdir }]}
@@ -195,16 +198,17 @@ export function esbuildPluginPopCopy (config = r('config')) {
             try {
               const newCacheMs = await fileShouldCopy(sourcepath);
 
-              if (newCacheMs) await fileCopy(newCacheMs, sourcepath, path.dirname(outpath));
+              if (newCacheMs)
+                await fileCopy(newCacheMs, sourcepath, path.dirname(outpath));
             } catch (e) {
-              console.warn('esbuildPluginPopCopy.onStart error', e);
+              console.warn("esbuildPluginPopCopy.onStart error", e);
             }
           }
         }
       });
 
       // @see https://esbuild.github.io/plugins/#end-callbacks
-      build.onEnd(result => (esbuildPluginPopCopy.onStarted = false));
+      build.onEnd((result) => (esbuildPluginPopCopy.onStarted = false));
     },
   };
 }

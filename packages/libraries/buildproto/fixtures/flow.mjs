@@ -1,3 +1,3 @@
 // @flow
 
-const isString: string = 'true';
+const isString: string = "true";

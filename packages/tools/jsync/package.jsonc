@@ -32,6 +32,7 @@
       "funding",
       "homepage",
       "license",
+      "packageManager",
       // "*" // uncomment to test precedence logic
     ],
     // list of package fields in root to spread into child

@@ -1,3 +1,3 @@
-import * as t from './t';
+import * as t from "./t";
 
-export * from './t';
+export * from "./t";

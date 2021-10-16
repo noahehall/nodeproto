@@ -1,36 +1,38 @@
-import { dirs } from '@nodeproto/wtf';
-import * as t from '@nodeproto/testproto';
+// $FlowTODO
 
-import FlowTypeCleaner from './FlowTypeCleaner.cjs';
-import implementation from 'esbuild';
-import testCompiler, { createConfig } from '../test.compiler';
+import * as t from "@nodeproto/testproto";
+import { dirs } from "@nodeproto/wtf";
+
+import flowTypeCleaner from "./FlowTypeCleaner.cjs";
+import implementation from "esbuild";
+
+import testCompiler, { createConfig } from "../test.compiler";
 
 const { assert } = t;
 
 const thisDir = dirs.dirname(import.meta.url);
-const fixtures = '../../../fixtures/';
+const fixtures = "../../../fixtures/";
 
 // @see https://webpack.js.org/contribute/writing-a-loader/#absolute-paths
 // dont use absolute paths as it breaks hashing
 const config = {
-   
   context: thisDir,
-  entry: fixtures + 'flow.mjs',
+  entry: fixtures + "flow.mjs",
   module: {
     rules: [
       {
         test: /\.mjs$/,
-        type: 'javascript/esm',
+        type: "javascript/esm",
         use: {
-          loader: fixtures + 'fakeLoader.cjs',
+          loader: fixtures + "fakeLoader.cjs",
           options: {},
         },
       },
       {
         test: /\.mjs$/,
-        type: 'javascript/esm',
+        type: "javascript/esm",
         use: {
-          loader: './FlowTypeCleaner.cjs',
+          loader: "./FlowTypeCleaner.cjs",
           options: {},
         },
       },
@@ -38,15 +40,15 @@ const config = {
         test: /\.mjs$/,
         use: [
           {
-              loader: 'esbuild-loader',
-              options: {
-                implementation,
-                loader: 'jsx',
-                target: 'es2015',
-              },
+            loader: "esbuild-loader",
+            options: {
+              implementation,
+              loader: "jsx",
+              target: "es2015",
             },
+          },
           {
-            loader: './FlowTypeCleaner.cjs',
+            loader: "./FlowTypeCleaner.cjs",
             options: {
               /* ... */
             },
@@ -57,9 +59,11 @@ const config = {
   },
 };
 
-const r = (thing, msg = 'is required') => { throw new Error(`${thing} ${msg}`); };
+const r = (thing, msg = "is required") => {
+  throw new Error(`${thing} ${msg}`);
+};
 
-const getConfig = (i = r('index')) => ({
+const getConfig = (i = r("index")) => ({
   ...config,
   module: {
     ...config.module,
@@ -67,49 +71,47 @@ const getConfig = (i = r('index')) => ({
   },
 });
 
-const test = t.suite('FlowTypeCleaner');
+const test = t.suite("FlowTypeCleaner");
 
-const result = FlowTypeCleaner(` // eslint-disable-line @babel/new-cap
+const result = flowTypeCleaner(` // eslint-disable-line @babel/new-cap
   // @flow
   const poop: string = 'flush';
 `);
 
-test('is function', () => {
-  assert.isFunction(FlowTypeCleaner);
+test("is function", () => {
+  assert.isFunction(flowTypeCleaner);
 });
 
-test('returns string', () => {
+test("returns string", () => {
   assert.isString(result);
 });
 
-test('removes @flow from source', () => {
-  assert.notInclude(result, '@flow');
+test("removes @flow from source", () => {
+  assert.notInclude(result, "@flow");
 });
 
-test('removes types from source', () => {
-  assert.notInclude(result, ': string');
+test("removes types from source", () => {
+  assert.notInclude(result, ": string");
 });
 
-test('creates config', () => {
-  assert.ok(createConfig(config), 'creates config');
+test("creates config", () => {
+  assert.ok(createConfig(config), "creates config");
 });
 
-test('sanity check with external cjs loader', async () => {
+test("sanity check with external cjs loader", async () => {
   assert.isObject(await testCompiler(getConfig(0)));
 });
 
-test('FlowTypeCleaner', async () => {
+test("FlowTypeCleaner", async () => {
   assert.isObject(await testCompiler(getConfig(1)));
 });
 
-test('webpack + FlowTypeCleaner', async () => {
-  const result = await testCompiler(getConfig(1));
-  assert.isObject(result);
+test("webpack + FlowTypeCleaner", async () => {
+  assert.isObject(await testCompiler(getConfig(1)));
 });
 
-test('webpack + FlowTypeCleaner + esbuild-loader', async () => {
-  const result = await testCompiler(getConfig(2));
-  assert.isObject(result);
+test("webpack + FlowTypeCleaner + esbuild-loader", async () => {
+  assert.isObject(await testCompiler(getConfig(2)));
 });
 
 test.run();

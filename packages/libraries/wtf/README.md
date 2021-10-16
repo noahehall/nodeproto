@@ -19,21 +19,14 @@
 ## examples
 
   ```js
-    // get the pkg json file in the current directory
-    await wtf.getPkgJson();
-    // get the pkg json in the parent directory
-    await wtf.getPkgJson('..');
-    // get the root pkg json file of @nodeproto from within @nodeprot/jsync
-    await wtf.getPkgJson('../../..');
-    // similarly, get the pkg jsonc file in the current directory
-    await wtf.getPkgJsonc();
+  // get the pkg json file in the current directory
+  await wtf.getPkgJson();
+  // get the pkg json in the parent directory
+  await wtf.getPkgJson("..");
+  // get the root pkg json file of @nodeproto from within @nodeprot/jsync
+  await wtf.getPkgJson("../../..");
+  // similarly, get the pkg jsonc file in the current directory
+  await wtf.getPkgJsonc();
 
-
-    wtf.JSONC
-      .lookup
-      .stringify
-      .strip // strip new lines but keep comments?
-      .validate // validate jsonc?
-      .parse; // convert to json
-
-  ```
+wtf.JSONC.lookup.stringify.strip.validate.parse; // strip new lines but keep comments? // validate jsonc? // convert to json
+```

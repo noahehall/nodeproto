@@ -1,13 +1,13 @@
-// @flowtodo
+// $FlowTODO
 
-import testCompiler from './test.compiler';
-import webpack from 'webpack';
+import testCompiler from "./test.compiler";
+import webpack from "webpack";
 
 const handleConfigErrors = ({
-  stack = 'stack undefined',
-  details = 'details undefined',
+  stack = "stack undefined",
+  details = "details undefined",
   ...err
-}) => console.error({ err, stack, details, });
+}) => console.error({ err, stack, details });
 
 // @see https://webpack.js.org/configuration/stats/
 const statsOptions = {
@@ -18,13 +18,15 @@ const statsOptions = {
 
 const handleCompileIssues = (stats) => {
   if (stats.hasErrors() || stats.hasWarnings()) {
-    const { errors, warnings/*, ...info */ } = stats.toJson();
+    const { errors, warnings /*, ...info */ } = stats.toJson();
     console.error({ errors, warnings });
 
-    if (errors.length) throw new Error('errors exist');
+    if (errors.length) throw new Error("errors exist");
   }
 
-  console.info(stats.toString({ ...statsOptions, chunks: false, colors: true }));
+  console.info(
+    stats.toString({ ...statsOptions, chunks: false, colors: true })
+  );
 };
 
 const compilerCallback = (err, stats) => {
@@ -32,7 +34,10 @@ const compilerCallback = (err, stats) => {
   handleCompileIssues(stats);
 };
 
-export default function webpackBuild(useConfig = 'THROW IF MISSING', toDisk = true) {
+export default function webpackBuild(
+  useConfig = "THROW IF MISSING",
+  toDisk = true
+) {
   return toDisk
     ? webpack(useConfig, compilerCallback)
     : testCompiler(useConfig);

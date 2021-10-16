@@ -1,34 +1,35 @@
-import { dirs } from '@nodeproto/wtf';
-import * as t from '@nodeproto/testproto';
+// $FlowTODO
+import * as t from "@nodeproto/testproto";
+import { dirs } from "@nodeproto/wtf";
 
-import path from 'path';
-import reactEsbuildWebpackConfig from './react.esbuild.webpack.config';
-import testCompiler from './test.compiler';
+import path from "path";
+import reactEsbuildWebpackConfig from "./react.esbuild.webpack.config";
+import testCompiler from "./test.compiler";
 
 const { assert } = t;
 
 const thisDir = dirs.dirname(import.meta.url);
-const fixtures = '../../fixtures/';
-const getEntry = file => path.resolve(thisDir, fixtures, file);
+const fixtures = "../../fixtures/";
+const getEntry = (file) => path.resolve(thisDir, fixtures, file);
 
 export const getOpts = (overrides) => ({
-  entry: '',
+  entry: "",
   htmlOptions: {},
-  outputDir: thisDir + '/dist',
+  outputDir: thisDir + "/dist",
 
-  ...overrides
+  ...overrides,
 });
 
-const test = t.suite('react.esbuild.webpack.config');
+const test = t.suite("react.esbuild.webpack.config");
 
-test('throws', () => {
+test("throws", () => {
   let opts = getOpts();
   delete opts.entry;
 
   assert.throws(
     () => reactEsbuildWebpackConfig(opts),
     /entry is required/,
-    'if missing entry'
+    "if missing entry"
   );
 
   opts = getOpts();
@@ -37,7 +38,7 @@ test('throws', () => {
   assert.throws(
     () => reactEsbuildWebpackConfig(opts),
     /htmlOptions is required/,
-    'if missing htmlOptions'
+    "if missing htmlOptions"
   );
 
   opts = getOpts();
@@ -46,33 +47,35 @@ test('throws', () => {
   assert.throws(
     () => reactEsbuildWebpackConfig(opts),
     /outputDir is required/,
-    'if missing outputDir'
+    "if missing outputDir"
   );
 });
 
-test('is okay', () => {
+test("is okay", () => {
   assert.isObject(
     reactEsbuildWebpackConfig(getOpts()),
-    'returns config object'
+    "returns config object"
   );
 });
 
-test('compilation', async () => {
+test("compilation", async () => {
   const opts = getOpts({
-    entry: getEntry('esm.mjs'),
+    entry: getEntry("esm.mjs"),
   });
 
   assert.isObject(
     await testCompiler(reactEsbuildWebpackConfig(opts)),
-    'compiles esm successfuly'
+    "compiles esm successfuly"
   );
 
   assert.isObject(
-    await testCompiler(reactEsbuildWebpackConfig({
-      ...opts,
-      entry: getEntry('commonjs.cjs'),
-    })),
-    'compiles cjs successfuly'
+    await testCompiler(
+      reactEsbuildWebpackConfig({
+        ...opts,
+        entry: getEntry("commonjs.cjs"),
+      })
+    ),
+    "compiles cjs successfuly"
   );
 
   // assert.isObject(
@@ -84,19 +87,23 @@ test('compilation', async () => {
   // );
 
   assert.isObject(
-    await testCompiler(reactEsbuildWebpackConfig({
-      ...opts,
-      entry: getEntry('auto.js'),
-    })),
-    'interprets js and compiles successfuly'
+    await testCompiler(
+      reactEsbuildWebpackConfig({
+        ...opts,
+        entry: getEntry("auto.js"),
+      })
+    ),
+    "interprets js and compiles successfuly"
   );
 
   assert.isObject(
-    await testCompiler(reactEsbuildWebpackConfig({
-      ...opts,
-      entry: getEntry('flow.mjs'),
-    })),
-    'removes flowtypes and compiles esm successfuly'
+    await testCompiler(
+      reactEsbuildWebpackConfig({
+        ...opts,
+        entry: getEntry("flow.mjs"),
+      })
+    ),
+    "removes flowtypes and compiles esm successfuly"
   );
 });
 
