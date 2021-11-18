@@ -2,10 +2,6 @@
 
 bleeding-edge type-first *product development framework* for rapidly prototyping end-to-end, complex, and secure products within a baremetal|cloud-native micro-service architecture
 
-- issues
-  - `pnpm -h: Version 6.22.2 (compiled to binary; bundled Node.js v14.17.0)`
-    - ^ thats why package.json engines fails
-
 [go straight to TLDR](#TLDR)
 
 ## about
@@ -71,24 +67,11 @@ under activate development; expect breaking changes
 ### uninstall
 
 - fully remove: `rm -rf /var/.nodeproto`
-- reset
 
 ```sh
   rm -rf /var/.nodeproto/*
   rm pnpm-lock.yaml
-  pnpm proto repo:nuke
-  pnpm add -g pnpm
-  pnpm env use --global 17
-  pnpm install
-  # optional resync & reinstall
-  pnpm proto repo:jsync
-  pnpm install
-  # optional rebuild & test
-  pnpm proto:script build
-  pnpm proto:script repo:test
-  # get a feel for the repo
-  pnpm repo:deps
-  pnpm repo:scripts
+  # TODO: link to /bookofnoah/linux/.install_node.sh
 ```
 
 ### installation
@@ -100,16 +83,14 @@ under activate development; expect breaking changes
 
 - baremetal
   - notes
-    - the world runs on linux
-    - I run on linux
-    - mac should be compatible but unfortunately you're on your own with baremetal
+    - the world runs on linux; I run on linux
+    - mac: should be compatible but unfortunately you're on your own
+    - windows: never heard of it
 
   - ensure haproxy (preferable >= 2.4) is available in your system path
-  - use pnpm to setup your dev env
-    - install pnpm `curl -fsSL https://get.pnpm.io/install.sh | sh -`
-    - install node `pnpm env use --global 16`
-    - install pnpm tab-completion `pnpm install-completion`
-    - source your shell (e.g. bashrc `. ~/.bashrc`)
+  - todo: link to install script
+  - install pnpm tab-completion `pnpm install-completion`
+  -
 
 - vagrant + virtual box (appropriate for application appliances)
   - ensure vagrant 2.2.18 & virtualbox 6.1 installed + guest additions
@@ -121,10 +102,21 @@ under activate development; expect breaking changes
 - vagrant + docker (appropriate for production games)
   - TODO
 
+- vagrant + aws
+  - TODO
+
 - all envs: verify installation
-  - `pnpm install`
-  - `pnpm proto:script build`
-  - `pnpm proto:script repo:test`
+
+  ```sh
+    # install deps, sync, & build
+    pnpm install
+    pnpm proto repo:jsync
+    pnpm proto build
+    # run tests in all pkgs
+    pnpm proto:script repo:test
+    # get a feel for the repo
+    pnpm repo:deps
+    pnpm repo:scripts
 
 ### other things you could do
 

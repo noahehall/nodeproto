@@ -1,10 +1,10 @@
 // @see https://github.com/tschaub/es-main/blob/main/main.js
 // copypasta
 
-import { fileURLToPath } from 'url';
+import { fileURLToPath } from "url";
 
-import path from 'path';
-import process from 'process';
+import path from "path";
+import process from "process";
 
 export function stripExt(name) {
   const extension = path.extname(name);
@@ -15,7 +15,7 @@ export function stripExt(name) {
   return name.slice(0, -extension.length);
 }
 
-export default function(meta) {
+export default function (meta) {
   const modulePath = fileURLToPath(meta.url);
 
   const scriptPath = process.argv[1];

@@ -79,10 +79,10 @@
     "proto:slice": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" pnpm exec ultra -r --filter",
     "proto": "pnpm exec ultra -r",
     "repo:about": "npm run-script && npm --versions && pnpm c list && echo \"NODE OPTIONS set to: $npm_package_config_NODE_OPTIONS\"",
-    "repo:cp:browserslist": "rm -f .browserslistrc && cp ./node_modules/@nodeproto/configproto/src/browserslist/.browserslistrc .",
+    "repo:cp:browserslist": "rm -f .browserslistrc && cp ./node_modules/@nodeproto/configproto/.browserslistrc .",
     "repo:cp:cjs": "rm -f ./dist/package.json && mkdir -p dist && cp ./node_modules/@nodeproto/configproto/src/node/cjs.json ./dist/package.json",
     "repo:cp:configproto": "pnpm repo:cp:flow; pnpm repo:cp:cjs; pnpm repo:cp:browserslist",
-    "repo:cp:flow": "rm -f .flowconfig && cp ./node_modules/@nodeproto/configproto/src/flowtype/.flowconfig .",
+    "repo:cp:flow": "rm -f .flowconfig && cp ./node_modules/@nodeproto/configproto/.flowconfig .",
     "repo:deps": "ultra --info",
     "repo:eslint:fix": "pnpm repo:eslint -- --fix",
     "repo:eslint": "eslint './**/*'",
@@ -106,10 +106,10 @@
   "devDependencies": {
     "@nodeproto/configproto": "workspace:0.0.0",
     "@nodeproto/testproto": "workspace:0.0.0",
-    "@swc/cli": "0.1.51",
-    "@swc/core": "1.2.109",
-    "browserslist": "4.18.1",
+    "@swc/cli": "0.1.55",
+    "@swc/core": "1.2.122",
+    "browserslist": "4.19.1",
     "chokidar-cli": "3.0.0",
-    "flow-bin": "0.164.0"
+    "flow-bin": "0.168.0"
   }
 }

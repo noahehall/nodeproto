@@ -1,19 +1,21 @@
-import { getConfig } from './base.webpack.config.test';
-import * as t from '@nodeproto/testproto';
+// $FlowTODO
 
-import baseWebpackConfig from './base.webpack.config';
-import buildWebpackConfig from './build.webpack.config';
+import * as t from "@nodeproto/testproto";
+import { getConfig } from "./base.webpack.config.test";
+
+import baseWebpackConfig from "./base.webpack.config";
+import buildWebpackConfig from "./build.webpack.config";
 
 const { assert } = t;
 
-const test = t.suite('build.webpack.config');
+const test = t.suite("build.webpack.config");
 
-test('compilation', async () => {
+test("compilation", async () => {
   const useConfig = getConfig();
 
   assert.isObject(
     await buildWebpackConfig(baseWebpackConfig(useConfig), false),
-    'compiles with testCompiler if requested  '
+    "compiles with testCompiler if requested  "
   );
 });
 

@@ -10,9 +10,10 @@ so that consumers of this library shouldnt need to install them
   - things to update:
   - see new versions: `grep -E "core-js|@babel|flow" package.json`
   - update these files (could be out of date) with to match new version numbers
-    - `base.babelrc`
-    - `client.babelrc`
-    - `node.babelrc`
+    - `babel.config.json`
+    - `client.babelrc.json`
+    - `node.babelrc.json`
+    - `.eslintrc.yml`
     - `isomorphic.eslintrc.yml`
     - `.flowconfig`
 

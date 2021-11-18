@@ -1,19 +1,20 @@
+// $FlowTODO
 // @see https://webpack.js.org/contribute/writing-a-loader/#testing
 // TODO: move this file into #t
 
-import { createFsFromVolume, Volume } from 'memfs';
+import { createFsFromVolume, Volume } from "memfs";
 
-import path from 'path';
-import webpack from 'webpack';
+import path from "path";
+import webpack from "webpack";
 
 export const createConfig = ({ entry, ...loader } = {}) => ({
   // context: __dirname,
   entry,
   output: {
-    path: path.resolve('./dist/tests'),
-    filename: 'bundle.js',
+    path: path.resolve("./dist/tests"),
+    filename: "bundle.js",
   },
-  ...loader
+  ...loader,
 });
 
 export default async function testCompiler(config = {}) {
@@ -32,9 +33,8 @@ export default async function testCompiler(config = {}) {
 
         console.info(errors);
 
-        reject(new Error(errors[0].message || 'stats has errors'));
-      }
-      else resolve(stats);
+        reject(new Error(errors[0].message || "stats has errors"));
+      } else resolve(stats);
     });
   });
 }

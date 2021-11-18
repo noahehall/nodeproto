@@ -1,23 +1,25 @@
-import { createEsbuildConfig } from './create.esbuild.config';
-import * as t from '@nodeproto/testproto';
+// $FlowTODO
+
+import * as t from "@nodeproto/testproto";
+import { createEsbuildConfig } from "./create.esbuild.config";
 
 const { assert } = t;
 
-const test = t.suite('create.esbuild.config');
+const test = t.suite("create.esbuild.config");
 
-const getConfig = props => ({
-  entry: '',
-  outdir: '',
-  pkgJson: '',
+const getConfig = (props) => ({
+  entry: "",
+  outdir: "",
+  pkgJson: "",
 
-  ...props
+  ...props,
 });
 
-test('is okay', () => {
+test("is okay", () => {
   assert.isObject(createEsbuildConfig(getConfig()));
 });
 
-test('throws', () => {
+test("throws", () => {
   let props = getConfig();
   delete props.entry;
 
@@ -26,7 +28,10 @@ test('throws', () => {
   props = getConfig();
   delete props.outdir;
 
-  assert.throws(() => createEsbuildConfig(props), /outdir: string: is required/);
+  assert.throws(
+    () => createEsbuildConfig(props),
+    /outdir: string: is required/
+  );
 
   props = getConfig();
   delete props.pkgJson;
