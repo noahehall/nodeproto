@@ -6,7 +6,8 @@
 <PROJECT_ROOT>/bundle*/.*
 <PROJECT_ROOT>/doc/.*
 <PROJECT_ROOT>/hint*/.*
-./dist/.*
+<PROJECT_ROOT>/dist/.*
+<PROJECT_ROOT>/src/*.test.mjs
 
 [libs]
 
