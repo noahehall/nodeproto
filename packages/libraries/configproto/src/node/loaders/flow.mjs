@@ -61,7 +61,7 @@ export async function load(url, context, defaultLoad) {
 
   if (!isFlow) return isCjs ? { format, source: rawSource } : defaultLoad(url, { format });
 
-  console.info('\n\n @nodeproto: removing flow types');
+  console.info('@nodeproto: removing flow types', url);
 
   // check types before transpiling
   if (process.env.FLOW_CHECK)

@@ -505,10 +505,12 @@ importers:
       '@babel/eslint-parser': 7.16.5
       '@babel/eslint-plugin': 7.16.5
       '@babel/plugin-proposal-throw-expressions': 7.16.5
+      '@babel/plugin-syntax-flow': 7.16.5
       '@babel/plugin-syntax-jsx': 7.16.5
       '@babel/plugin-transform-flow-strip-types': 7.16.5
       '@babel/plugin-transform-react-constant-elements': 7.16.5
       '@babel/plugin-transform-react-inline-elements': 7.16.5
+      '@babel/plugin-transform-react-jsx': 7.16.5
       '@babel/plugin-transform-runtime': 7.16.5
       '@babel/preset-env': 7.16.5
       '@babel/preset-flow': 7.16.5
@@ -545,10 +547,12 @@ importers:
       '@babel/core': 7.16.5
       '@babel/eslint-parser': 7.16.5_@babel+core@7.16.5+eslint@8.5.0
       '@babel/plugin-proposal-throw-expressions': 7.16.5_@babel+core@7.16.5
+      '@babel/plugin-syntax-flow': 7.16.5_@babel+core@7.16.5
       '@babel/plugin-syntax-jsx': 7.16.5_@babel+core@7.16.5
       '@babel/plugin-transform-flow-strip-types': 7.16.5_@babel+core@7.16.5
       '@babel/plugin-transform-react-constant-elements': 7.16.5_@babel+core@7.16.5
       '@babel/plugin-transform-react-inline-elements': 7.16.5_@babel+core@7.16.5
+      '@babel/plugin-transform-react-jsx': 7.16.5_@babel+core@7.16.5
       '@babel/plugin-transform-runtime': 7.16.5_@babel+core@7.16.5
       '@babel/preset-env': 7.16.5_@babel+core@7.16.5
       '@babel/preset-flow': 7.16.5_@babel+core@7.16.5
@@ -669,6 +673,8 @@ importers:
 
   packages/libraries/shared:
     specifiers:
+      '@babel/cli': 7.16.0
+      '@babel/core': 7.16.5
       '@folder/readdir': 3.1.0
       '@nodeproto/configproto': workspace:0.0.0
       '@nodeproto/testproto': workspace:0.0.0
@@ -681,6 +687,8 @@ importers:
       picomatch: 2.3.0
       regenerator-runtime: 0.13.9
     dependencies:
+      '@babel/cli': 7.16.0_@babel+core@7.16.5
+      '@babel/core': 7.16.5
       '@folder/readdir': 3.1.0
       jsonc-simple-parser: 2.2.0
       picomatch: 2.3.0
@@ -1190,7 +1198,6 @@ packages:
     optionalDependencies:
       '@nicolo-ribaudo/chokidar-2': 2.1.8-no-fsevents.3
       chokidar: 3.5.2
-    dev: true
 
   /@babel/code-frame/7.16.0:
     resolution: {integrity: sha512-IF4EOMEV+bfYwOmNxGzSnjR2EmQod7f1UXOpZM3l4i4o4QNwzjtJAu/HxdjHq0aYBvdqMuQEY1eg0nqW9ZPORA==}
@@ -3451,7 +3458,6 @@ packages:
   /@nicolo-ribaudo/chokidar-2/2.1.8-no-fsevents.3:
     resolution: {integrity: sha512-s88O1aVtXftvp5bCPB7WnmXc5IwOZZ7YPuwNPt+GtOOXpPvad1LfbmjYv+qII7zP6RU2QGnqve27dnLycEnyEQ==}
     requiresBuild: true
-    dev: true
     optional: true
 
   /@node-rs/helper/1.3.0:
@@ -7468,7 +7474,6 @@ packages:
 
   /fs-readdir-recursive/1.1.0:
     resolution: {integrity: sha512-GNanXlVr2pf02+sPN40XN8HG+ePaNcvM0q5mZBd668Obwb0yD5GiUbZOFgwn8kGMY6I3mdyDJzieUy3PTYyTRA==}
-    dev: true
 
   /fs.realpath/1.0.0:
     resolution: {integrity: sha1-FQStJSMVjKpA20onh8sBQRmU6k8=}
@@ -11520,7 +11525,6 @@ packages:
   /slash/2.0.0:
     resolution: {integrity: sha512-ZYKh3Wh2z1PpEXWr0MpSBZ0V6mZHAQfYevttO11c51CaWjGTaadiKZ+wVt1PbMlDV5qhMFslpZCemhwOK7C89A==}
     engines: {node: '>=6'}
-    dev: true
 
   /slash/3.0.0:
     resolution: {integrity: sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==}

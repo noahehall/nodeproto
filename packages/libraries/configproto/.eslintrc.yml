@@ -48,6 +48,7 @@ plugins:
   - 'html' # https://github.com/BenoitZugmeyer/eslint-plugin-html
   - 'markdown' # https://github.com/eslint/eslint-plugin-markdown
   - 'promise'
+  - 'flowtype-errors' # https://github.com/amilajack/eslint-plugin-flowtype-errors/wiki/Advanced-Config
   - 'prettier'
 
 # @see https://eslint.org/docs/user-guide/configuring/configuration-files#extending-configuration-files
@@ -179,7 +180,7 @@ rules:
   flowtype-errors/show-warnings: warn
   flowtype-errors/enforce-min-coverage:
     - error
-    - 100
+    - 50
 
   # fb-flow
   fb-flow/use-indexed-access-type: error

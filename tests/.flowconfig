@@ -13,23 +13,23 @@
 
 [strict]
 nonstrict-import
-unclear-type
+; unclear-type
 unsafe-getters-setters
 untyped-import
 untyped-type-import
 
 [lints]
 all=warn
-untyped-import=error
-ambiguous-object-type=error
+ambiguous-object-type=off
 deprecated-type=error
 deprecated-utility=error
 nonstrict-import=error
-sketchy-null=error
-unclear-type=error
+sketchy-null=off
+unclear-type=off
 unnecessary-invariant=error
 unnecessary-optional-chain=error
 unsafe-getters-setters=error
+untyped-import=off
 untyped-type-import=error
 
 [options]

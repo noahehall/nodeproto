@@ -34,32 +34,42 @@ export const external = {
   JSONC,
 };
 
-interface readdirInterface {
+type Readdir = {
   (props: {
-    dirpath: string,
-    glob: RegExp,
-    ...
-  }): any;
-}
-export const readdir: readdirInterface = async ({ dirpath, glob, ...opts }) => {
+    absolute?: boolean,
+    basename?: string,
+    depth?: number,
+    dirpath?: string,
+    dot?: boolean,
+    filter?: string,
+    follow?: boolean,
+    glob?: RegExp | string | void,
+    isMatch?: boolean,
+  }): any,
+};
+export const readdir: Readdir = async ({ dirpath, glob, ...opts }) => {
   return readdirOg(dirpath, {
     ...readdirOptions,
     ...opts,
-    isMatch: glob ? (file) => picomatch(glob)(file.relative) : undefined,
+    isMatch: !glob ? undefined : (file) => picomatch(glob)(file.relative),
   });
 };
 
-export const getFilePathAbs = async (dirpath = ".", glob) =>
-  await readdir({ dirpath, glob });
+export const getFilePathAbs = async (
+  dirpath: string = ".",
+  glob: RegExp | string
+): Promise<string> => await readdir({ dirpath, glob });
 
-export const getPkgJsonAbs = async (dirpath = ".", glob) =>
-  (await getFilePathAbs(dirpath, glob))[0];
+export const getPkgJsonAbs = async (
+  dirpath: string = ".",
+  glob: RegExp | string
+): Promise<string> => (await getFilePathAbs(dirpath, glob))[0];
 
 export const getPkgJson = async (
-  dirpath = ".",
-  glob = "package.json",
-  interpreter = JSONC.parse
-) => {
+  dirpath: string = ".",
+  glob: string = "package.json",
+  interpreter: Function = JSONC.parse
+): Promise<{ [x: string]: any }> => {
   const pkgJsonAbs = await getPkgJsonAbs(dirpath, glob);
 
   return (
@@ -71,5 +81,6 @@ export const getPkgJson = async (
   );
 };
 
-export const getPkgJsonc = async (dirpath = ".") =>
-  getPkgJson(dirpath, "package.jsonc");
+export const getPkgJsonc = async (
+  dirpath: string = "."
+): Promise<{ [x: string]: any }> => getPkgJson(dirpath, "package.jsonc");

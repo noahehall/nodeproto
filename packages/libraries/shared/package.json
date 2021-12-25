@@ -74,7 +74,9 @@
     "./.flowconfig"
   ],
   "scripts": {
-    "build": "RUST_BACKTRACE=1 NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" pnpm repo:rm:dist && pnpm repo:cp:cjs && swc $npm_package_config_DIRS_TO_TRANSPILE -d $npm_package_config_PATH_DIST --config-file ./node_modules/@nodeproto/configproto/src/swc/node.swcrc --copy-files",
+    "build": "pnpm build:babel",
+    "build:babel": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" pnpm repo:rm:dist && pnpm repo:cp:cjs && babel $npm_package_config_DIRS_TO_TRANSPILE -d $npm_package_config_PATH_DIST --copy-files --no-copy-ignored --ignore \"**/*.test.mjs\"",
+    "build:swc": "RUST_BACKTRACE=1 NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" pnpm repo:rm:dist && pnpm repo:cp:cjs && swc $npm_package_config_DIRS_TO_TRANSPILE -d $npm_package_config_PATH_DIST --config-file ./node_modules/@nodeproto/configproto/src/swc/node.swcrc --copy-files",
     "proto:bin": "pnpm -r exec $*",
     "proto:script": "pnpm -r $*",
     "proto:slice": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" pnpm exec ultra -r --filter",
@@ -99,6 +101,8 @@
     "repo:testing": "pnpm repo:test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"pnpm repo:test\""
   },
   "dependencies": {
+    "@babel/cli": "7.16.0",
+    "@babel/core": "7.16.5",
     "@folder/readdir": "3.1.0",
     "jsonc-simple-parser": "2.2.0",
     "picomatch": "2.3.0",
