@@ -1,4 +1,4 @@
-// @FlowTODO
+// @flow
 
 import { suite as internalSuite } from "uvu";
 

@@ -1,3 +1,5 @@
+// @flow
+
 import fs from "fs";
 import JSONC from "jsonc-simple-parser";
 import picomatch from "picomatch";
@@ -32,7 +34,14 @@ export const external = {
   JSONC,
 };
 
-export const readdir = async ({ dirpath, glob, ...opts }) => {
+interface readdirInterface {
+  (props: {
+    dirpath: string,
+    glob: RegExp,
+    ...
+  }): any;
+}
+export const readdir: readdirInterface = async ({ dirpath, glob, ...opts }) => {
   return readdirOg(dirpath, {
     ...readdirOptions,
     ...opts,

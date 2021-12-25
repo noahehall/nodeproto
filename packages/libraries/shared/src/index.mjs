@@ -1,2 +1,3 @@
-// export * as wtf from './wtf/index';
+// @flow
+
 export * as wtf from "./wtf/index";

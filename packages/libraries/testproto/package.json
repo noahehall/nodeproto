@@ -21,7 +21,7 @@
   ],
   "config": {
     "NODE_ENV": "production",
-    "NODE_OPTIONS": "--experimental-loader=\"./node_modules/@nodeproto/configproto/src/node/loaders/flow.mjs\" --experimental-specifier-resolution=node --experimental-json-modules --experimental-top-level-await --experimental-vm-modules --experimental-import-meta-resolve node --enable-source-maps --heapsnapshot-near-heap-limit=3 --use-largepages=on --pending-deprecation --trace-sigint --trace-warnings --trace-exit --report-uncaught-exception --report-on-fatalerror --abort-on-uncaught-exception",
+    "NODE_OPTIONS": "--abort-on-uncaught-exception --diagnostic-dir=\"/var/.nodeproto/diagnostics\" --enable-source-maps --experimental-abortcontroller --experimental-modules --experimental-import-meta-resolve --experimental-json-modules --experimental-loader=\"./node_modules/@nodeproto/configproto/src/node/loaders/flow.mjs\" --experimental-specifier-resolution=node --experimental-top-level-await --experimental-vm-modules --pending-deprecation --report-compact --report-dir=\"/var/.nodeproto/reports\" --report-filename=nodeprotolog --report-on-fatalerror --report-on-signal --report-signal=SIGUSR2 --report-uncaught-exception --trace-deprecation --trace-exit --trace-sigint --trace-uncaught --trace-warnings --unhandled-rejections=throw --use-largepages=on",
     "PATH_DIST": "./dist",
     "PATH_SRC": "./src",
     "DIRS_TO_TRANSPILE": "./src"
@@ -38,6 +38,7 @@
     "uvu": "0.5.2"
   },
   "devDependencies": {
+    "@babel/cli": "7.16.0",
     "@babel/core": "7.16.5",
     "@babel/eslint-parser": "7.16.5",
     "@babel/eslint-plugin": "7.16.5",
@@ -72,6 +73,10 @@
     ".": {
       "import": "./src/index.mjs",
       "default": "./dist/index.js"
+    },
+    "./t": {
+      "import": "./src/t.mjs",
+      "default": "./dist/t.js"
     }
   },
   "os": [
@@ -82,7 +87,9 @@
     "node": "^14.17.0 || >=16.0.0 || >=17.0.0"
   },
   "scripts": {
-    "build": "pnpm repo:rm:dist && pnpm repo:cp:cjs && swc $npm_package_config_DIRS_TO_TRANSPILE -d $npm_package_config_PATH_DIST --config-file ./node_modules/@nodeproto/configproto/src/swc/node.swcrc --copy-files",
+    "build": "pnpm build:babel",
+    "build:babel": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" pnpm repo:rm:dist && pnpm repo:cp:cjs && babel $npm_package_config_DIRS_TO_TRANSPILE -d $npm_package_config_PATH_DIST --copy-files --no-copy-ignored --ignore \"**/*.test.mjs\"",
+    "build:swc": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" pnpm repo:rm:dist && pnpm repo:cp:cjs && swc $npm_package_config_DIRS_TO_TRANSPILE -d $npm_package_config_PATH_DIST --config-file ./node_modules/@nodeproto/configproto/src/swc/node.swcrc --copy-files",
     "proto:bin": "pnpm -r exec $*",
     "proto:script": "pnpm -r $*",
     "proto:slice": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" pnpm exec ultra -r --filter",

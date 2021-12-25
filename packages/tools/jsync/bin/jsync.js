@@ -1,10 +1,4 @@
-#!/usr/bin/env node --experimental-specifier-resolution=node
-
-/**
- *  @see https://medium.com/netscape/a-guide-to-create-a-nodejs-command-line-package-c2166ad0452e
- * run npm link
- * ^ to run this file as `jsync` within the root of this pkg
- */
+#!/usr/bin/env node --experimental-specifier-resolution=node --experimental-loader=\"./node_modules/@nodeproto/configproto/src/node/loaders/flow.mjs\"
 
 console.info("\nrunning jsync\n");
 import("../src/index.mjs");
