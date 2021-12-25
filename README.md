@@ -108,12 +108,15 @@ under activate development; expect breaking changes
 - all envs: verify installation
 
   ```sh
-    # install deps, types, sync, & build
+    # install deps, types, sync, & build all packages
     pnpm install
     pnpm proto repo:flowtyped:install
+    pnpm proto:script repo:cp:configproto
     pnpm proto repo:jsync
     pnpm proto build
-    # run tests in all pkgs
+    # run lints & tests in all pkgs
+    pnpm proto repo:eslint
+    pnpm proto flow # flow is automatically run via repo:eslint, but can also be run directly
     pnpm proto:script repo:test
     # get a feel for the repo
     pnpm repo:deps

@@ -1,6 +1,8 @@
+// @FlowTODO
+
 // @see https://github.com/lukeed/uvu/blob/master/docs/cli.md
 // @see https://github.com/lukeed/uvu/blob/master/docs/api.uvu.md
-import * as t from "@nodeproto/testproto";
+import * as t from "./t";
 
 const { assert } = t;
 

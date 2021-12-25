@@ -18,10 +18,12 @@ ignorePatterns:
 # @see https://github.com/babel/babel/blob/main/eslint/babel-eslint-config-internal/index.js
 # dont use /experimental-worker like in ^
 parser: '@babel/eslint-parser'
+# @see https://eslint.org/docs/user-guide/configuring/language-options#specifying-parser-options
 parserOptions:
-  allowImportExportEverywhere: false
-  ecmaVersion: 12 # dont fkn use "latest", it breaks eslint, @see https://github.com/eslint/eslint-scope/issues/55
-  requireConfigFile: true # force a configFile so we dont have to always debug htis fkn issue (required for @babel/eslint-parser, else throws error)
+  allowImportExportEverywhere: true
+  allowReserved: false
+  ecmaVersion: 2021 # dont fkn use "latest", it breaks eslint, @see https://github.com/eslint/eslint-scope/issues/55
+  requireConfigFile: true # force a configFile so we dont have to always debug this fkn issue (required for @babel/eslint-parser, else throws error)
   sourceType: module
   ecmaFeatures:
     globalReturn: true
@@ -38,29 +40,28 @@ env:
   es2021: true
   es6: true
   node: true
-  shelljs: true
+  shelljs: false
 
 plugins:
-  - '@babel'
-  - flowtype-errors
-  - fb-flow
-  - html
-  - markdown
-  - node
-  - promise
-  - yml
-  - prettier
+  - '@babel' # https://www.npmjs.com/package/@babel/eslint-plugin
+  - 'fb-flow' # https://www.npmjs.com/package/@babel/eslint-plugin
+  - 'html' # https://github.com/BenoitZugmeyer/eslint-plugin-html
+  - 'markdown' # https://github.com/eslint/eslint-plugin-markdown
+  - 'promise'
+  - 'prettier'
 
+# @see https://eslint.org/docs/user-guide/configuring/configuration-files#extending-configuration-files
 extends:
   # general plugins up here
   - 'eslint:recommended'
-  - 'plugin:node/recommended'
-  - 'plugin:promise/recommended'
+  - 'plugin:node/recommended' # https://github.com/mysticatea/eslint-plugin-node
+  - 'plugin:promise/recommended' # https://github.com/xjamundx/eslint-plugin-promise
 
   # priority plugins here
-  - 'plugin:markdown/recommended'
-  - 'plugin:json/recommended-with-comments'
-  - 'plugin:flowtype-errors/recommended'
+  - 'plugin:markdown/recommended' # https://github.com/eslint/eslint-plugin-markdown
+  - 'plugin:yml/prettier' # https://github.com/ota-meshi/eslint-plugin-yml
+  - 'plugin:json/recommended' # https://github.com/azeemba/eslint-plugin-json
+  - 'plugin:flowtype-errors/recommended' # https://github.com/amilajack/eslint-plugin-flowtype-errors
   - 'plugin:prettier/recommended'
 
 settings:
@@ -101,8 +102,11 @@ overrides:
   - files: ['**/*.cjs']
     parserOptions:
       sourceType: script
+
+  # https://github.com/ota-meshi/eslint-plugin-yml
   - files: ['**/*.yaml', '**/*.yml']
     parser: yaml-eslint-parser
+
   # @see https://github.com/eslint/eslint-plugin-markdown
   - files: ['**/*.md']
     processor: markdown/markdown
@@ -126,6 +130,7 @@ rules:
   '@babel/no-unused-expressions': error
   '@babel/object-curly-spacing': [error, always]
   '@babel/semi': [error, always] # love ending semi - read this https://eslint.org/docs/rules/semi
+  'json/*': ['error', { 'allowComments': true }]
   function-call-argument-newline: [error, consistent]
   no-multiple-empty-lines: error
   no-throw-literal: error

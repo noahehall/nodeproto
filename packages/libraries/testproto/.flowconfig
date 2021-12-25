@@ -1,13 +1,13 @@
 [version]
->=0.164.0
+>=0.168.0
 
 [ignore]
 <PROJECT_ROOT>/browsertime*/.*
 <PROJECT_ROOT>/bundle*/.*
 <PROJECT_ROOT>/doc/.*
 <PROJECT_ROOT>/hint*/.*
-./dist/.*
-.*/git/.*
+<PROJECT_ROOT>/dist/.*
+<PROJECT_ROOT>/src/*.test.mjs
 
 [libs]
 

@@ -7,7 +7,6 @@
 <PROJECT_ROOT>/doc/.*
 <PROJECT_ROOT>/hint*/.*
 ./dist/.*
-.*/git/.*
 
 [libs]
 

@@ -1,55 +1,82 @@
-💩  @see https://flow.org/en/docs/config/
-💩  wtf! https://github.com/facebook/flow/issues/153
-💩  https://github.com/TiddoLangerak/flow-json-config#readme
-; @nodeproto: the ultimate flowconfig
-; @todo: https://github.com/flow-typed/flow-typed
-; @todo: https://github.com/flow-typed/flow-typed/wiki/Importing-And-Using-Type-Definitions
+[version]
+>=0.168.0
+
 [ignore]
 <PROJECT_ROOT>/browsertime*/.*
 <PROJECT_ROOT>/bundle*/.*
 <PROJECT_ROOT>/doc/.*
 <PROJECT_ROOT>/hint*/.*
-<PROJECT_ROOT>/dist/.*
+./dist/.*
 
-[untyped]
-.*/node_modules/*
+[libs]
+
+[strict]
+nonstrict-import
+unclear-type
+unsafe-getters-setters
+untyped-import
+untyped-type-import
 
 [lints]
 all=warn
-untyped-import=off
+untyped-import=error
+ambiguous-object-type=error
+deprecated-type=error
+deprecated-utility=error
+nonstrict-import=error
+sketchy-null=error
+unclear-type=error
+unnecessary-invariant=error
+unnecessary-optional-chain=error
+unsafe-getters-setters=error
+untyped-type-import=error
 
 [options]
 all=false
-babel_loose_array_spread=false
+autoimports=true
+babel_loose_array_spread=true
 emoji=true
-exact_by_default=false
+exact_by_default=true
 experimental.const_params=true
-include_warnings=false
+include_warnings=true
 lazy_mode=none
 log.file=./.flowlog
-max_header_tokens=3
-module.file_ext=.mjs
-module.file_ext=.cjs
-module.file_ext=.js
-module.file_ext=.json
+max_header_tokens=2
 module.ignore_non_literal_requires=true
-module.system=node
 module.system.node.main_field=exports
-module.system.node.main_field=browser
+module.system.node.main_field=module
 module.system.node.main_field=main
 module.system.node.resolve_dirname=node_modules
-module.use_strict=false
+module.system=node
+module.use_strict=true
 munge_underscores=false
 no_flowlib=false
 react.runtime=automatic
-sharedmemory.log_level=1
-; server.max_workers=1 use default value instead
-suppress_type=$FlowFixMe
 suppress_type=$FlowTODO
-; types_first=false
-; esproposal.class_instance_fields=enable throws err
-; traces=false
-; suppress_comment= \\(.\\|\n\\)*\\$FlowFixMe you can now automatically use $FlowFixMe, $FlowIssue, FlowExpectedError, and $FlowIgnore
-; types_first=false throws err
+traces=1
+
+
+; commented options use default values
+; server.max_workers ; let flow use all available cores
+; server.max_workers=1 use default value instead
+; sharedmemory.dirs
+; sharedmemory.hash_table_pow
+; sharedmemory.heap_size
+; sharedmemory.minimum_available
+; module.file_ext=.mjs ; use the default: .js, .jsx, .mjs, .cjs and .json, can be specified multiple times to override
+; module.name_mapper ; no need for this at the moment
+; module.name_mapper.extension ; no need for this at the moment
+; suppress_comment= ; removed from flow, use $FlowFixMe, $FlowIssue, $FlowExpectedError, or $FlowIgnore
+
+; the following cause our setup to error (likely something in eslint)
+; esproposal.class_instance_fields=enable
+; esproposal.class_static_fields=enable
+; esproposal.decorators=ignore
+; esproposal.export_star_as=enable
+; esproposal.nullish_coalescing=enable
+; esproposal.optional_chaining=enable
+; sharedmemory.log_level=0
+; strip_root=true
+; types_first=true
+; well_formed_exports.includes=<PROJECT_ROOT>/src
 ; well_formed_exports=true
-; esproposal.class_static_fields=true throws err

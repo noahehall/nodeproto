@@ -6,6 +6,7 @@
   },
   "bugs": "https://github.com/noahehall/nodeproto/issues",
   "repository": "git://github.com/noahehall/nodeproto.git",
+  "packageManager": "pnpm@6.24.2",
   "homepage": "https://github.com/noahehall/nodeproto",
   "license": "SEE LICENSE IN LICENSE.md",
   "version": "0.0.0",

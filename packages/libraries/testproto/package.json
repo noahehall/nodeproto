@@ -6,7 +6,7 @@
   "main": "./dist/index.js",
   "module": "./src/index.mjs",
   "name": "@nodeproto/testproto",
-  "packageManager": "pnpm@6.15.1",
+  "packageManager": "pnpm@6.24.2",
   "private": true,
   "repository": "git://github.com/noahehall/nodeproto.git",
   "type": "module",
@@ -79,7 +79,7 @@
     "linux"
   ],
   "engines": {
-    "node": "^14.17.0 || >=16.0.0"
+    "node": "^14.17.0 || >=16.0.0 || >=17.0.0"
   },
   "scripts": {
     "build": "pnpm repo:rm:dist && pnpm repo:cp:cjs && swc $npm_package_config_DIRS_TO_TRANSPILE -d $npm_package_config_PATH_DIST --config-file ./node_modules/@nodeproto/configproto/src/swc/node.swcrc --copy-files",
