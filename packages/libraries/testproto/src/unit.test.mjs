@@ -6,7 +6,7 @@ const { assert } = t;
 
 const test = t.suite("@nodeproto/testproto: unit test reference");
 
-// @TODO: add more examples, see t.msgs for everything we include by default
+// @TODO: add more examples, see t.mjs for everything we include by default
 // @see https://www.chaijs.com/api/assert/#method_istrue
 test("reference assertions", () => {
   assert(true === true);

@@ -12,7 +12,8 @@ yarn-error.log*
 **yalc**
 .pnpm*
 .vagrant
-
+flow-typed
+**/flow-typed
 # Runtime data
 *.pid
 *.seed

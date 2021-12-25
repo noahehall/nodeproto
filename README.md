@@ -108,8 +108,9 @@ under activate development; expect breaking changes
 - all envs: verify installation
 
   ```sh
-    # install deps, sync, & build
+    # install deps, types, sync, & build
     pnpm install
+    pnpm proto repo:flowtyped:install
     pnpm proto repo:jsync
     pnpm proto build
     # run tests in all pkgs
@@ -119,10 +120,6 @@ under activate development; expect breaking changes
     pnpm repo:scripts
 
 ### other things you could do
-
-- refresh type definitions
-  - run `pnpm proto repo:flowtyped:install`
-    - ignore any incompatible def erros, `flow-type` is awesome enough to know we are on the bleeding edge and likely many type defs arent available for the versions we use, thus many types are unfortunately `poop: any`
 
 - monorepo build process: a 3 step process (plans for automation later)
   1. sync with root `$ pnpm proto repo:jsync`

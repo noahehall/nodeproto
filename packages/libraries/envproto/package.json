@@ -65,7 +65,6 @@
     "flow-remove-types": "2.168.0",
     "flow-typed": "3.5.0",
     "prettier": "2.5.1",
-    "ultra-runner": "3.10.5",
     "uvu": "0.5.2",
     "yaml-eslint-parser": "0.5.0"
   },
