@@ -13,6 +13,7 @@ ignorePatterns:
   - '**/flow-typed/**'
   - '**/bundlestats/**'
   - '**/copypasta/**'
+  - '*.swcrc'
 
 # @see https://github.com/babel/babel/tree/main/eslint/babel-eslint-parser
 # @see https://github.com/babel/babel/blob/main/eslint/babel-eslint-config-internal/index.js

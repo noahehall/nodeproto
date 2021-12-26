@@ -7,11 +7,8 @@
 import { fileURLToPath } from "url";
 import path from "path";
 
-type BooleanFn = {
-  (): boolean,
-};
-export const isEsm: BooleanFn = () => typeof require === "undefined";
-export const isCjs: BooleanFn = () => !isEsm();
+export const isEsm = (): boolean => typeof require === "undefined";
+export const isCjs = (): boolean => !isEsm();
 
 // absolute path to the current file
 export const filename = (importMetaUrlOrPath: string): string =>

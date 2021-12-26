@@ -1,11 +1,15 @@
 import { cwd } from 'node:process';
-import { dirname, resolve } from 'node:path';
 import { execFile } from 'node:child_process';
-import { fileURLToPath, pathToFileURL } from 'node:url';
 import { readFile } from 'node:fs/promises';
+
+import path from 'node:path';
+import url from 'node:url';
 
 import flow from 'flow-bin';
 import flowRemoveTypes from 'flow-remove-types';
+
+const { dirname, resolve } = path;
+const { fileURLToPath, pathToFileURL } = url;
 
 // logic for node:v17+ -----------------
 // @see https://nodejs.org/api/esm.html#esm_loaders

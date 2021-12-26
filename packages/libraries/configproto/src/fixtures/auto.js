@@ -1,3 +1,3 @@
 // @FlowTODO
 
-module.exports = function () {};
+module.exports = function () {}; // eslint-disable-line no-undef

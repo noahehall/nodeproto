@@ -25,7 +25,7 @@
   "ignore": [
     "**/dist",
     "**/*.test.mjs",
-    "**/*.test.cjs",
+    "**/*.test.cjs"
   ], // TODO: doesnt work, instead use --ignore '**/*.test.mjs' --ignore ...etc
   // use assumptions whenever possible
   // @see https://babeljs.io/docs/en/assumptions
