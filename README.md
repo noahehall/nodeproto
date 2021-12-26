@@ -112,7 +112,7 @@ under activate development; expect breaking changes
     pnpm install
     pnpm proto repo:flowtyped:install
     pnpm proto:script repo:cp:configproto
-    pnpm proto repo:jsync
+    pnpm proto:script repo:jsync
     pnpm proto build
     # run lints & tests in all pkgs
     pnpm proto repo:eslint
@@ -125,7 +125,7 @@ under activate development; expect breaking changes
 ### other things you could do
 
 - monorepo build process: a 3 step process (plans for automation later)
-  1. sync with root `$ pnpm proto repo:jsync`
+  1. sync with root `$ pnpm proto:script repo:jsync`
   2. copy static files `$ pnpm proto repo:cp:configproto`
   3. build output files to dist `$ pnpm proto build`
      - for swc errors, cd into package and run `RUST_BACKTRACE=full pnpm build`
@@ -137,7 +137,7 @@ under activate development; expect breaking changes
 <details>
   <summary>cmd reference</summary>
 
-- any pkg.json.script prefixed `repo:` or `proto` should only be modified in `root/package.json` file and synced with child packages via `pnpm proto repo:jsync`
+- any pkg.json.script prefixed `repo:` or `proto` should only be modified in `root/package.json` file and synced with child packages via `pnpm proto:script repo:jsync`
   - except `shared|configproto|testproto` as these are dependencies of `jsync`
     - TODO: ^ automate that
 

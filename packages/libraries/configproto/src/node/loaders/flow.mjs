@@ -37,9 +37,9 @@ async function getPackageType(url) {
 }
 
 export async function load(url, context, defaultLoad) {
+  if ((url.includes('node_modules') && !url.endsWith('.mjs')) || url.startsWith('node:'))
+    return defaultLoad(url, context, defaultLoad);
   // console.info('\n\n @nodeproto: examing file', url);
-
-  if (url.includes('node_modules')) return defaultLoad(url, context, defaultLoad);
 
   const format = await getPackageType(url);
 
