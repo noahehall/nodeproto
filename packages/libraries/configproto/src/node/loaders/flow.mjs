@@ -41,7 +41,7 @@ async function getPackageType(url) {
 }
 
 export async function load(url, context, defaultLoad) {
-  console.info('\n\n @nodeproto: examing file', url);
+  // console.info('\n\n @nodeproto: examing file', url);
   if ((url.includes('node_modules') && !url.endsWith('.mjs')) || url.startsWith('node:'))
     return defaultLoad(url, context, defaultLoad);
 
@@ -65,13 +65,15 @@ export async function load(url, context, defaultLoad) {
 
   if (!isFlow) return isCjs ? { format, source: rawSource } : defaultLoad(url, { format });
 
-  console.info('@nodeproto: removing flow types', url);
+  console.info('\n@nodeproto: removing flow types', url);
 
   // check types before transpiling
   if (process.env.FLOW_CHECK)
     execFile(flow, ['check', fileURLToPath(url)], (err, stdout) => {
       console.info(stdout);
     });
+
+  // console.info('\n\nsource being returned\n\n', url, flowRemoveTypes(rawSource).toString());
 
   return {
     format,
