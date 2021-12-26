@@ -421,9 +421,9 @@ importers:
       memfs: 3.4.0
       mini-svg-data-uri: 1.4.3
       prettier: 2.5.1
-      react: 17.0.2
+      react: 18.0.0-rc.0-next-bcd24a670-20211221
       react-devtools: ~4.22.1
-      react-dom: 17.0.2
+      react-dom: 18.0.0-rc.0-next-bcd24a670-20211221
       regenerator-runtime: 0.13.9
       schema-utils: 4.0.0
       string-replace-loader: 3.1.0
@@ -440,7 +440,7 @@ importers:
       '@babel/plugin-transform-flow-strip-types': 7.16.5_@babel+core@7.16.5
       '@babel/runtime': 7.16.5
       '@babel/traverse': 7.16.5
-      '@emotion/styled': 11.6.0_@babel+core@7.16.5+react@17.0.2
+      '@emotion/styled': 11.6.0_95ffa4657efbad7a123cffc0aeaf4195
       '@nodeproto/configproto': link:../configproto
       '@nodeproto/wtf': link:../wtf
       '@swc/cli': 0.1.55_@swc+core@1.2.122
@@ -493,9 +493,9 @@ importers:
       flow-bin: 0.168.0
       flow-typed: 3.5.0_@octokit+core@3.5.1
       prettier: 2.5.1
-      react: 17.0.2
+      react: 18.0.0-rc.0-next-bcd24a670-20211221
       react-devtools: 4.22.1
-      react-dom: 17.0.2_react@17.0.2
+      react-dom: 18.0.0-rc.0-next-bcd24a670-20211221_f2a6c5ce256577f556d67d6dc42ff238
       uvu: 0.5.2
       yaml-eslint-parser: 0.5.0
 
@@ -977,6 +977,7 @@ importers:
     specifiers:
       '@babel/core': 7.16.5
       '@babel/eslint-parser': 7.16.5
+      '@babel/eslint-plugin': 7.16.5
       '@babel/runtime': 7.16.5
       '@changesets/cli': 2.19.0
       '@nodeproto/configproto': workspace:0.0.0
@@ -990,13 +991,27 @@ importers:
       chokidar-cli: 3.0.0
       env-cmd: 10.1.0
       eslint: 8.5.0
+      eslint-config-prettier: 8.3.0
+      eslint-plugin-fb-flow: 0.0.4
+      eslint-plugin-flowtype-errors: 4.5.0
+      eslint-plugin-html: 6.2.0
+      eslint-plugin-json: 3.1.0
+      eslint-plugin-markdown: 2.2.1
+      eslint-plugin-node: 11.1.0
+      eslint-plugin-prettier: 4.0.0
+      eslint-plugin-promise: 6.0.0
+      eslint-plugin-react: 7.28.0
+      eslint-plugin-react-hooks: 4.3.0
+      eslint-plugin-yml: 0.12.0
       flow-bin: 0.168.0
       flow-remove-types: 2.168.0
       flow-typed: 3.5.0
       fs-extra: 10.0.0
+      prettier: 2.5.1
       regenerator-runtime: 0.13.9
       ultra-runner: 3.10.5
       uvu: 0.5.2
+      yaml-eslint-parser: 0.5.0
     dependencies:
       '@babel/runtime': 7.16.5
       '@nodeproto/shared': link:../../libraries/shared
@@ -1007,6 +1022,7 @@ importers:
     devDependencies:
       '@babel/core': 7.16.5
       '@babel/eslint-parser': 7.16.5_@babel+core@7.16.5+eslint@8.5.0
+      '@babel/eslint-plugin': 7.16.5_5dfa6049571d15755b3ed263ae59c811
       '@changesets/cli': 2.19.0
       '@nodeproto/configproto': link:../../libraries/configproto
       '@nodeproto/testproto': link:../../libraries/testproto
@@ -1017,10 +1033,24 @@ importers:
       chokidar: 3.5.2
       chokidar-cli: 3.0.0
       eslint: 8.5.0
+      eslint-config-prettier: 8.3.0_eslint@8.5.0
+      eslint-plugin-fb-flow: 0.0.4_eslint@8.5.0
+      eslint-plugin-flowtype-errors: 4.5.0_eslint@8.5.0+flow-bin@0.168.0
+      eslint-plugin-html: 6.2.0
+      eslint-plugin-json: 3.1.0
+      eslint-plugin-markdown: 2.2.1_eslint@8.5.0
+      eslint-plugin-node: 11.1.0_eslint@8.5.0
+      eslint-plugin-prettier: 4.0.0_94e1b6d3ce6ea916847122712570e9ae
+      eslint-plugin-promise: 6.0.0_eslint@8.5.0
+      eslint-plugin-react: 7.28.0_eslint@8.5.0
+      eslint-plugin-react-hooks: 4.3.0_eslint@8.5.0
+      eslint-plugin-yml: 0.12.0_eslint@8.5.0
       flow-bin: 0.168.0
       flow-remove-types: 2.168.0
       flow-typed: 3.5.0_@octokit+core@3.5.1
+      prettier: 2.5.1
       uvu: 0.5.2
+      yaml-eslint-parser: 0.5.0
 
   packages/tools/membrane:
     specifiers:
@@ -2886,7 +2916,7 @@ packages:
     resolution: {integrity: sha512-u0AX4aSo25sMAygCuQTzS+HsImZFuS8llY8O7b9MDRzbJM0kVJlAz6KNDqcG7pOuQZJmj/8X/rAW+66kMnMW+g==}
     dev: false
 
-  /@emotion/styled/11.6.0_@babel+core@7.16.5+react@17.0.2:
+  /@emotion/styled/11.6.0_95ffa4657efbad7a123cffc0aeaf4195:
     resolution: {integrity: sha512-mxVtVyIOTmCAkFbwIp+nCjTXJNgcz4VWkOYQro87jE2QBTydnkiYusMrRGFtzuruiGK4dDaNORk4gH049iiQuw==}
     peerDependencies:
       '@babel/core': ^7.0.0
@@ -2905,7 +2935,7 @@ packages:
       '@emotion/is-prop-valid': 1.1.1
       '@emotion/serialize': 1.0.2
       '@emotion/utils': 1.0.0
-      react: 17.0.2
+      react: 18.0.0-rc.0-next-bcd24a670-20211221
     dev: false
 
   /@emotion/styled/11.6.0_e3ab8ee35867917f7252c6f52a7eb600:
@@ -4601,7 +4631,7 @@ packages:
       loader-utils: 1.4.0
       make-dir: 3.1.0
       schema-utils: 2.7.1
-      webpack: 5.65.0_@swc+core@1.2.122
+      webpack: 5.65.0_@swc+core@1.2.122+esbuild@0.14.8
 
   /babel-plugin-dynamic-import-node/2.3.3:
     resolution: {integrity: sha512-jZVI+s9Zg3IqA/kdi0i6UDCybUI3aSBLnglhYbSSjKlV7yF1F/5LWv8MakQmvYpnbJDS6fcBL2KzHSxNCMtWSQ==}
@@ -5707,7 +5737,7 @@ packages:
       postcss-modules-values: 4.0.0_postcss@8.4.5
       postcss-value-parser: 4.2.0
       semver: 7.3.5
-      webpack: 5.65.0_@swc+core@1.2.122
+      webpack: 5.65.0_@swc+core@1.2.122+esbuild@0.14.8
 
   /css-select/4.2.0:
     resolution: {integrity: sha512-6YVG6hsH9yIb/si3Th/is8Pex7qnVHO6t7q7U6TIUnkQASGbS8tnUDBftnPynLNnuUl/r2+PTd0ekiiq7R0zJw==}
@@ -10797,6 +10827,17 @@ packages:
       scheduler: 0.21.0-beta-24dd07bd2-20211208
     dev: false
 
+  /react-dom/18.0.0-rc.0-next-bcd24a670-20211221_f2a6c5ce256577f556d67d6dc42ff238:
+    resolution: {integrity: sha512-oFH2AsSQnrH6VhmFDmGJ8/mRcFnQZ5eigZjr7vuueHaY0hN0S8C6ptLgdq+2Xa2AddKjISU/zLaSiWGtEGzwSA==}
+    peerDependencies:
+      react: 18.0.0-rc.0-next-bcd24a670-20211221
+    dependencies:
+      loose-envify: 1.4.0
+      object-assign: 4.1.1
+      react: 18.0.0-rc.0-next-bcd24a670-20211221
+      scheduler: 0.21.0-rc.0-next-bcd24a670-20211221
+    dev: true
+
   /react-icons/4.3.1_63a8b33144a3d299d6fac5f5dff1fa72:
     resolution: {integrity: sha512-cB10MXLTs3gVuXimblAdI71jrJx8njrJZmNMEMC+sQu5B/BIOmlsAjskdqpn81y8UBVEGuHODd7/ci5DvoSzTQ==}
     peerDependencies:
@@ -10838,6 +10879,14 @@ packages:
       loose-envify: 1.4.0
       object-assign: 4.1.1
     dev: false
+
+  /react/18.0.0-rc.0-next-bcd24a670-20211221:
+    resolution: {integrity: sha512-Re7Fvr7gCH5PFXkGKRjSF9ml07Abye4g5t/fPG62qhBHCK4sto6R58qML9KcvndiArjnAouQNG90kLGqmZ6LtA==}
+    engines: {node: '>=0.10.0'}
+    dependencies:
+      loose-envify: 1.4.0
+      object-assign: 4.1.1
+    dev: true
 
   /read-pkg-up/7.0.1:
     resolution: {integrity: sha512-zK0TB7Xd6JpCLmlLmufqykGE+/TlOePD6qKClNW7hHDKFh/J7/7gCWGR7joEQEW1bKq3a3yUZSObOoWLFQ4ohg==}
@@ -11234,6 +11283,13 @@ packages:
       loose-envify: 1.4.0
       object-assign: 4.1.1
     dev: false
+
+  /scheduler/0.21.0-rc.0-next-bcd24a670-20211221:
+    resolution: {integrity: sha512-9OiGaARnKXTn33qGVQ5tX4GjLGdvhLjyJ84SW9nPLn3PrIPGrq06SIim45qp0VBmDeotL8EuS91RIXIhJwdx1g==}
+    dependencies:
+      loose-envify: 1.4.0
+      object-assign: 4.1.1
+    dev: true
 
   /schema-utils/2.7.1:
     resolution: {integrity: sha512-SHiNtMOUGWBQJwzISiVYKu82GiV4QYGePp3odlY1tuKO7gPtphAT5R/py0fA6xtbgLL/RvtJZnU9b8s0F1q0Xg==}
@@ -11766,7 +11822,7 @@ packages:
     dependencies:
       loader-utils: 2.0.2
       schema-utils: 3.1.1
-      webpack: 5.65.0_@swc+core@1.2.122
+      webpack: 5.65.0_@swc+core@1.2.122+esbuild@0.14.8
 
   /string-similarity/4.0.4:
     resolution: {integrity: sha512-/q/8Q4Bl4ZKAPjj8WerIBJWALKkaPRfrvhfF8k/B23i4nzrlRj2/go1m90In7nG/3XDSbOo0+pu6RvCTM9RGMQ==}
@@ -11935,7 +11991,7 @@ packages:
     peerDependencies:
       webpack: ^5.0.0
     dependencies:
-      webpack: 5.65.0_@swc+core@1.2.122
+      webpack: 5.65.0_@swc+core@1.2.122+esbuild@0.14.8
 
   /stylis/4.0.13:
     resolution: {integrity: sha512-xGPXiFVl4YED9Jh7Euv2V220mriG9u4B2TA6Ybjc1catrstKD2PpIdU3U0RKpkVBC2EhmL/F0sPCr9vrFTNRag==}

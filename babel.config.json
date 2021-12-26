@@ -3,7 +3,7 @@
     ".",
     "packages/apps/*",
     "packages/libraries/*",
-    "packages/tools/*",
-    "packages/tests/*"
+    "packages/tests/*",
+    "packages/tools/*"
   ]
 }

@@ -92,9 +92,9 @@
     "flow-remove-types": "2.168.0",
     "flow-typed": "3.5.0",
     "prettier": "2.5.1",
-    "react": "17.0.2",
+    "react": "18.0.0-rc.0-next-bcd24a670-20211221",
     "react-devtools": "~4.22.1",
-    "react-dom": "17.0.2",
+    "react-dom": "18.0.0-rc.0-next-bcd24a670-20211221",
     "uvu": "0.5.2",
     "yaml-eslint-parser": "0.5.0"
   },

@@ -3,7 +3,7 @@
   "description": "@nodeproto/wtf - Where the file? file and directory management",
   "homepage": "https://github.com/noahehall/nodeproto",
   "license": "SEE LICENSE IN LICENSE.md",
-  "main": "dist/index.js",
+  "main": "./dist/index.js",
   "module": "./src/index.mjs",
   "name": "@nodeproto/wtf",
   "packageManager": "pnpm@6.24.2",
