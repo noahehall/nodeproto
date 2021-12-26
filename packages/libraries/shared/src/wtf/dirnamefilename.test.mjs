@@ -1,9 +1,12 @@
-// @flow
+import * as t from '@nodeproto/testproto';
 
-import * as t from "@nodeproto/testproto";
+const test = t.suite('@nodeproto/shared: dirnamefilename.mjs');
 
-const test = t.suite("@nodeproto/shared: dirnamefilename.mjs");
-
-test("wtf node 17.3.0", () => {
+// TODO: tests not running
+test('some test 1', () => {
   test.assert(true === true);
+});
+
+test('some test 2', () => {
+  test.assert(true === false);
 });
