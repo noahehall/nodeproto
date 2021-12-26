@@ -56,12 +56,12 @@ export async function load(url, context, defaultLoad) {
   const isCjs = first100chars.includes('import') ? false : first100chars.includes('require(');
 
   // saving for debugging
-  console.info('\n\n custom logic', {
-    format,
-    isCjs,
-    isFlow,
-    url,
-  });
+  // console.info('\n\n custom logic', {
+  //   format,
+  //   isCjs,
+  //   isFlow,
+  //   url,
+  // });
 
   if (!isFlow) return isCjs ? { format, source: rawSource } : defaultLoad(url, { format });
 
