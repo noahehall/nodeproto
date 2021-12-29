@@ -64,21 +64,34 @@
 
 ### installation (contributing)
 
+- vagrant (recommended), requires >= v2.2
+
+```sh
+  vagrant up
+  vagrant ssh
+  cd /opt/nodeproto
+```
+
+- bare metal
 ```sh
   # dependency + pnpm metadata
   sudo mkdir /var/.nodeproto
   sudo chown -R $(whoami):$(whoami) /var/.nodeproto
   pnpm install-completion
-
-  # dependencies
   pnpm install
+  pnpm proto:script build
+  pnpm proto:script repo:test
+```
+
+- other hellpful cmds
+
+```sh
+  # dependencies
   pnpm proto repo:flowtyped:install # install flowtype defs
   pnpm proto repo:jsync # synchronize root/package.json into each package/package.json
-  pnpm proto:script build
 
   # validation
   pnpm proto repo:lint
-  pnpm proto:script repo:test
 
   # introspection
   pnpm repo:deps:graph
