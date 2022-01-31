@@ -74,9 +74,7 @@
     "./.flowconfig"
   ],
   "scripts": {
-    "build": "pnpm build:babel",
-    "build:babel": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" pnpm repo:rm:dist && pnpm repo:cp:cjs && babel $npm_package_config_DIRS_TO_TRANSPILE -d $npm_package_config_PATH_DIST --copy-files --no-copy-ignored --ignore \"**/*.test.mjs\"",
-    "build:swc": "RUST_BACKTRACE=1 NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" pnpm repo:rm:dist && pnpm repo:cp:cjs && swc $npm_package_config_DIRS_TO_TRANSPILE -d $npm_package_config_PATH_DIST --config-file ./node_modules/@nodeproto/configproto/src/swc/node.swcrc --copy-files",
+    "build": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" pnpm repo:rm:dist && pnpm repo:cp:cjs && babel $npm_package_config_DIRS_TO_TRANSPILE -d $npm_package_config_PATH_DIST --copy-files --no-copy-ignored --ignore \"**/*.test.mjs\"",
     "proto:bin": "pnpm -r exec $*",
     "proto:script": "pnpm -r $*",
     "proto:slice": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" pnpm exec ultra -r --filter",
@@ -113,8 +111,6 @@
   "devDependencies": {
     "@nodeproto/configproto": "workspace:0.0.0",
     "@nodeproto/testproto": "workspace:0.0.0",
-    "@swc/cli": "0.1.55",
-    "@swc/core": "1.2.135",
     "browserslist": "4.19.1",
     "chokidar-cli": "3.0.0",
     "flow-bin": "0.170.0"

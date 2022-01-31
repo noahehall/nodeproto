@@ -13,7 +13,7 @@ import readdirOg from "@folder/readdir";
 
   Uncaught Error: Cannot find module './src/cat'
   FYI: shelljs@0.8.4/node_modules/shelljs/shell.js
-  // Load all default commands
+  // due to dynamic imports below
   require('./commands').forEach(function (command) {
     require('./src/' + command);
   });
@@ -30,7 +30,7 @@ const readdirOptions = {
 };
 
 export const external = {
-  picomatch,
+  picomatch, // @see https://github.com/micromatch/picomatch
   JSONC,
 };
 
@@ -48,6 +48,10 @@ type Readdir = {
   }): any,
 };
 export const readdir: Readdir = async ({ dirpath, glob, ...opts }) => {
+  if (!dirpath?.startsWith('/')) {
+    throw new Error('dirpath must be absolute');
+  }
+
   return readdirOg(dirpath, {
     ...readdirOptions,
     ...opts,
@@ -60,6 +64,7 @@ export const getFilePathAbs = async (
   glob: RegExp | string
 ): Promise<string> => await readdir({ dirpath, glob });
 
+// sugar for getting the first file found when searching for package.json
 export const getPkgJsonAbs = async (
   dirpath: string = ".",
   glob: RegExp | string
@@ -81,6 +86,8 @@ export const getPkgJson = async (
   );
 };
 
+// sugar for getting a pkg jsonc file
 export const getPkgJsonc = async (
-  dirpath: string = "."
-): Promise<{ [x: string]: any }> => getPkgJson(dirpath, "package.jsonc");
+  dirpath: string = ".",
+  glob: string = 'package.jsonc'
+): Promise<{ [x: string]: any }> => getPkgJson(dirpath, glob);

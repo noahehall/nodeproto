@@ -1,19 +1,20 @@
-// @flow
-
 // @see https://github.com/lukeed/uvu/blob/master/docs/cli.md
 // @see https://github.com/lukeed/uvu/blob/master/docs/api.uvu.md
 // use fully qualified name until https://github.com/nodejs/node/issues/41321
 // note ./t fails, but ./t.mjs works
-import * as t from '@nodeproto/testproto'; // eslint-disable-line
-
+import * as t from '@nodeproto/testproto/t';
 const { assert } = t;
 
 const test = t.suite('@nodeproto/testproto: unit test reference');
+
+// see all assertions
+// console.info(assert);
 
 // @TODO: add more examples, see t.mjs for everything we include by default
 // @see https://www.chaijs.com/api/assert/#method_istrue
 test('reference assertions', () => {
   assert(true === true);
+  assert.equal(true, true, 'true is equal to true');
 
   // promises, can be used with any method below
   assert.eventually.equal(Promise.resolve(2 + 2), 4, 'This had better be true, eventually');

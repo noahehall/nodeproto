@@ -48,23 +48,43 @@
   pnpm repo:scripts:v
 ```
 
+### monorepo utility logic
+
+```sh
+  # copy static files from configproto into each package
+  pnpm proto repo:cp:configproto
+
+  # synchronize root/package.json into each package/package.json
+  pnpm proto repo:jsync
+
+```
+
 ### updating
 
 ```sh
-  pnpm proto repo:jsync
   pnpm proto repo:update
 ```
 
-### test & build production ready artifacts
+### running tests & lints
 
   ```sh
-    pnpm proto repo:jsync # if root/package.json has been modified
+    # run eslint, flow, & prettier
     pnpm proto repo:eslint
+    # run tests
     pnpm proto repo:test
-    pnpm proto flow # flow is automatically run via repo:eslint, but can also be run directly
-    pnpm proto repo:cp:configproto # if configproto/anyfile has been modified
-    pnpm proto build
+    pnpm proto:testing # watch & rerun tests
+
+    # if for some reason you want to run flow directly
+    pnpm proto flow
+
   ```
+
+### build production ready artifacts
+
+```sh
+    pnpm proto build
+
+```
 
 </details>
 

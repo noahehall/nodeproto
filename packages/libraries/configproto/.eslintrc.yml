@@ -9,6 +9,7 @@ ignorePatterns:
   - '**/bundlestats/**'
   - '**/copypasta/**'
   - '**/dist/**'
+  - '**/fixtures/**'
   - '**/flow-typed/**'
   - '**/node_modules/**'
   - 'pnpm-lock.yaml'

@@ -1,12 +1,31 @@
-import * as t from '@nodeproto/testproto';
+import * as t from '@nodeproto/testproto/t';
+
+import { dirname, filename } from '@nodeproto/shared/wtf';
 
 const test = t.suite('@nodeproto/shared: dirnamefilename.mjs');
 
-// TODO: tests not running
-test('some test 1', () => {
-  test.assert(true === true);
+const { assert } = t;
+
+test('filename', () => {
+  const thisFile = filename(import.meta.url);
+
+  assert.equal(thisFile.startsWith('/'), true, 'is absolute path');
+  assert.equal(
+    thisFile.endsWith('/nodeproto/packages/libraries/shared/src/wtf/dirnamefilename.test.mjs'),
+    true,
+    'ends with path starting from repo root'
+  );
 });
 
-test('some test 2', () => {
-  test.assert(true === false);
+test('dirname', () => {
+  const thisDir = dirname(import.meta.url);
+
+  assert.equal(thisDir.startsWith('/'), true, 'is absolute path');
+  assert.equal(
+    thisDir.endsWith('/nodeproto/packages/libraries/shared/src/wtf'),
+    true,
+    'ends with path starting from repo root'
+  );
 });
+
+test.run();

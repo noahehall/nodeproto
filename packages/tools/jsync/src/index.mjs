@@ -1,13 +1,13 @@
 // TODO: really need to rework this logic and add some tests
 // prototype is verified, type to make it a product
 
-import { wtf as wtfShared } from "@nodeproto/shared";
+import { wtf as wtfShared } from '@nodeproto/shared';
 
-import fs from "fs-extra";
-import path from "path";
+import fs from 'fs-extra';
+import path from 'path';
 
 const { dirname, getPkgJson, getPkgJsonc } = wtfShared;
-const isObject = (v) => typeof v === "object" && v !== null;
+const isObject = (v) => typeof v === 'object' && v !== null;
 const notArrayOrObject = (v) => !isObject(v) && !Array.isArray(v);
 
 // TODO: @see @nodeproto/inception
@@ -16,17 +16,14 @@ const throwIt = (msg) => {
 };
 // TODO: @see @nodeproto/inception
 const noop = () => void 0;
-const logIt =
-  process.env.NODE_ENV !== "verbose"
-    ? noop
-    : (...msgs) => console.info(...msgs);
+const logIt = process.env.NODE_ENV !== 'verbose' ? noop : (...msgs) => console.info(...msgs);
 
 let newChildJson = {};
 
 // json field value categories
-const VTS = "spreadRootValues";
-const VTF = "forceRootValues";
-const VTI = "ignoreRootValues";
+const VTS = 'spreadRootValues';
+const VTF = 'forceRootValues';
+const VTI = 'ignoreRootValues';
 const V = {}; // container for all the json segments
 
 // TODO
@@ -34,12 +31,10 @@ const V = {}; // container for all the json segments
 let JSYNC_DEFAULT_CONFIG = process.env.JSYNC_DEFAULT_CONFIG;
 
 if (!JSYNC_DEFAULT_CONFIG) {
-  const diskPath = path.resolve(dirname(import.meta.url), "..");
+  const diskPath = path.resolve(dirname(import.meta.url), '..');
 
   // const { file: thisPkgJson, path: thisPkgJsonPath } = (await getPkgJson(diskPath));
-  const { file: thisPkgJsonc /*, path: thisPkgJsoncPath*/ } = await getPkgJsonc(
-    diskPath
-  );
+  const { file: thisPkgJsonc /*, path: thisPkgJsoncPath*/ } = await getPkgJsonc(diskPath);
 
   JSYNC_DEFAULT_CONFIG = thisPkgJsonc.jsync;
 }
@@ -48,15 +43,14 @@ const getRootPkgFiles = async ({
   maxLookups = throwIt(`maxLookups is required in getRootPkgFiles`),
   currentDir = throwIt(`currentDir is required in getRootPkgFiles`),
 }) => {
-  if (!maxLookups)
-    throwIt(`unable to find root packageFile in getRootPkgFiles`);
+  if (!maxLookups) throwIt(`unable to find root packageFile in getRootPkgFiles`);
 
   const { file: json, path: jsonPath } = await getPkgJson(currentDir);
 
   return json?.jsync?.root
     ? { json, jsonPath }
     : getRootPkgFiles({
-        currentDir: (currentDir += "/.."),
+        currentDir: (currentDir += '/..'),
         maxLookups: --maxLookups,
       });
 };
@@ -64,32 +58,26 @@ const getRootPkgFiles = async ({
 // TODO: confirm env
 const childPkgJsonPath = process.env.CHILD_PKG_JSON_PATH || process.cwd();
 const childPkgJson = await getPkgJson(childPkgJsonPath);
-logIt("\n\n child pkgjson", childPkgJson);
+logIt('\n\n child pkgjson', childPkgJson);
 
 // finalize child jsync config
 if (!childPkgJson?.file?.jsync)
-  throwIt(
-    `invalid child package.json file: missing jsync property ${childPkgJson}`
-  );
+  throwIt(`invalid child package.json file: missing jsync property ${childPkgJson}`);
 
 // ensure the child '*" takes precedence over our default
 let DEFAULT_CATEGORY;
 const finalizeJsyncConfig = () => {
   for (const key in childPkgJson.file.jsync) {
-    if (childPkgJson.file.jsync[key].includes?.("*")) {
+    if (childPkgJson.file.jsync[key].includes?.('*')) {
       if (!DEFAULT_CATEGORY) DEFAULT_CATEGORY = key;
-      childPkgJson.file.jsync[key] = childPkgJson.file.jsync[key].filter(
-        (k) => k !== "*"
-      );
+      childPkgJson.file.jsync[key] = childPkgJson.file.jsync[key].filter((k) => k !== '*');
     }
   }
 
   for (const key in JSYNC_DEFAULT_CONFIG) {
-    if (JSYNC_DEFAULT_CONFIG[key].includes?.("*")) {
+    if (JSYNC_DEFAULT_CONFIG[key].includes?.('*')) {
       if (!DEFAULT_CATEGORY) DEFAULT_CATEGORY = key;
-      JSYNC_DEFAULT_CONFIG[key] = JSYNC_DEFAULT_CONFIG[key].filter(
-        (k) => k !== "*"
-      );
+      JSYNC_DEFAULT_CONFIG[key] = JSYNC_DEFAULT_CONFIG[key].filter((k) => k !== '*');
     }
   }
 
@@ -99,7 +87,7 @@ const finalizeJsyncConfig = () => {
   };
 };
 const useChildJsyncConfig = finalizeJsyncConfig();
-logIt("\n\n final child jsync", useChildJsyncConfig);
+logIt('\n\n final child jsync', useChildJsyncConfig);
 
 // retrieve root jsync config
 const {
@@ -107,9 +95,9 @@ const {
   jsonPath: rootPath,
 } = await getRootPkgFiles({
   maxLookups: useChildJsyncConfig.maxLookups,
-  currentDir: "..", // start in parent dir
+  currentDir: '..', // start in parent dir
 });
-logIt("\n\n root json", rootJson, rootPath);
+logIt('\n\n root json', rootJson, rootPath);
 
 // the jsync config to use for this parent-child relationship
 const {
@@ -118,7 +106,7 @@ const {
   spreadRootValues = [],
 } = { ...rootJsync, ...useChildJsyncConfig };
 
-logIt("\n\n final jsync", {
+logIt('\n\n final jsync', {
   rootJsync,
   ignoreRootValues,
   forceRootValues,
@@ -127,12 +115,12 @@ logIt("\n\n final jsync", {
 
 // values to ignore
 V[VTI] = new Set(ignoreRootValues);
-logIt("\n\n values to ignore", V[VTI]);
+logIt('\n\n values to ignore', V[VTI]);
 
 // values to force
 // these root values will be set in child package.json
 V[VTF] = new Set(forceRootValues.filter((v) => !V[VTI].has(v)));
-logIt("\n\n values to force", V[VTF]);
+logIt('\n\n values to force', V[VTF]);
 
 // these values will never be spread into child.package.json
 const valuesToNeverSpread = new Set([...V[VTI]].concat([...V[VTF]]));
@@ -140,10 +128,9 @@ const valuesToNeverSpread = new Set([...V[VTI]].concat([...V[VTF]]));
 // these values will be spread into child from root
 // values to spread
 V[VTS] = new Set(spreadRootValues.filter((v) => !valuesToNeverSpread.has(v)));
-logIt("\n\n values to spread", V[VTS]);
+logIt('\n\n values to spread', V[VTS]);
 
-const getJsonFieldCategory = (k) =>
-  (V[VTS].has(k) && VTS) || (V[VTF].has(k) && VTF) || VTI;
+const getJsonFieldCategory = (k) => (V[VTS].has(k) && VTS) || (V[VTF].has(k) && VTF) || VTI;
 
 let category;
 const segmentJsonFieldsByCategory = (json = rootJson) =>
@@ -160,7 +147,7 @@ const segmentJsonFieldsByCategory = (json = rootJson) =>
   ); // end reduce
 
 const rootJsonSegments = segmentJsonFieldsByCategory();
-logIt("\n\n root json segments", rootJsonSegments, DEFAULT_CATEGORY);
+logIt('\n\n root json segments', rootJsonSegments, DEFAULT_CATEGORY);
 
 // TODO: need to define logic when root & child have different value types
 // ^  root takes precendence if missing from child or child has same value type as root
@@ -193,9 +180,7 @@ const updateNewJson = async ({
     // take set of root & child values
     else if (Array.isArray(rootValue)) {
       if (Array.isArray(childValue))
-        newChildJson[k] = Array.from(
-          new Set(rootValue.concat(childValue || []))
-        );
+        newChildJson[k] = Array.from(new Set(rootValue.concat(childValue || [])));
       else newChildJson[k] = childValue;
     }
     // using rudimentary check for object
@@ -205,12 +190,12 @@ const updateNewJson = async ({
         // root takes precedence to get updated values (if any) on subsequent runs
         newChildJson[k] = { ...(childValue || {}), ...rootValue };
       else newChildJson[k] = childValue;
-    } else logIt("\n\n unkown value type", k, rootValue, childValue);
+    } else logIt('\n\n unkown value type', k, rootValue, childValue);
 
     V[VTI].add(k);
   }
 
-  logIt("\n\n newChildJson", newChildJson);
+  logIt('\n\n newChildJson', newChildJson);
 };
 
 // force values from root to child
@@ -237,7 +222,7 @@ if (DEFAULT_CATEGORY !== VTI)
 // but override with new values on clash
 newChildJson = { ...childPkgJson.file, ...newChildJson };
 
-logIt("\n\n new child json", newChildJson);
+logIt('\n\n new child json', newChildJson);
 
 // @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare
 const sortSimpleThenComplexDataTypes = (a, b) => {
@@ -254,7 +239,7 @@ const sortSimpleThenComplexDataTypes = (a, b) => {
 };
 
 const sortArraysAndObjects = (key, value) =>
-  notArrayOrObject(value) || key === "exports"
+  notArrayOrObject(value) || key === 'exports'
     ? value
     : Array.isArray(value)
     ? value.sort((a, b) => a.localeCompare(b))
@@ -264,14 +249,9 @@ const sortArraysAndObjects = (key, value) =>
 
 // @see https://stackoverflow.com/questions/5467129/sort-javascript-object-by-key
 await fs.outputJson(
-  childPkgJsonPath + "/package.json",
+  childPkgJsonPath + '/package.json',
   Object.entries(newChildJson)
     .sort(sortSimpleThenComplexDataTypes)
-    .reduce(
-      (obj, [key, value]) => (
-        (obj[key] = sortArraysAndObjects(key, value)), obj
-      ),
-      {}
-    ),
+    .reduce((obj, [key, value]) => ((obj[key] = sortArraysAndObjects(key, value)), obj), {}),
   { spaces: 2 }
 );
