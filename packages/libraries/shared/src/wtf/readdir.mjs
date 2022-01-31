@@ -70,20 +70,24 @@ export const getPkgJsonAbs = async (
   glob: RegExp | string
 ): Promise<string> => (await getFilePathAbs(dirpath, glob))[0];
 
+type PackageJsonMeta = {
+  file?: {[x: string]: mixed},
+  path?: string,
+}
+
 export const getPkgJson = async (
   dirpath: string = ".",
   glob: string = "package.json",
   interpreter: Function = JSONC.parse
-): Promise<{ [x: string]: any }> => {
+): Promise<PackageJsonMeta> => {
   const pkgJsonAbs = await getPkgJsonAbs(dirpath, glob);
 
-  return (
-    (pkgJsonAbs && {
-      file: JSONC.parse(fs.readFileSync(pkgJsonAbs)),
-      path: pkgJsonAbs,
-    }) ||
-    {}
-  );
+  if (!pkgJsonAbs) return { file: undefined, path: undefined };
+
+  return {
+    file: JSONC.parse(fs.readFileSync(pkgJsonAbs)),
+    path: pkgJsonAbs,
+  };
 };
 
 // sugar for getting a pkg jsonc file
