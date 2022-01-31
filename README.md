@@ -1,10 +1,9 @@
 # @nodeproto
 
-bleeding-edge type-first *product development framework* for rapidly prototyping end-to-end, complex, and secure products within a baremetal|cloud-native micro-service architecture
+- product development framework for RACEXP and HECCYA methodologies
+- requires node >= 17.4, corepack and pnpm
 
-[go straight to TLDR](#TLDR)
-
-## about
+## TLDR
 
 - tests
   - [@nodeproto/tests - Integration + e2e tests for everything below](tests/README.md)
@@ -24,98 +23,44 @@ bleeding-edge type-first *product development framework* for rapidly prototyping
   - [@nodeproto/bodyguard - UI Network Request proxy + debugger](packages/tools/bodyguard/README.md)
   - [@nodeproto/membrane - virutalization via docker +/ vagrant](packages/tools/membrane/README.md)
 
-|                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                tech stack                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| <img src="https://webpack.js.org/site-logo.1fcab817090e78435061.svg" width="100" align="left" /><img src="https://www.openapis.org/wp-content/uploads/sites/3/2018/02/OpenAPI_Logo_Pantone-1.png" width="100" align="left" /><img src="https://cdn.haproxy.com/wp-content/uploads/2017/10/haproxy-weblogo.png" width="100" align="left" /><img src="https://nodejs.org/static/images/logo.svg" width="100" align="left" /><img src="https://github.com/evanw/esbuild/raw/master/images/wordmark.svg" width="100" align="left" /><img src="https://avatars.githubusercontent.com/u/5429470?s=200&v=4" width="100" align="left" /><img src="https://hero35.com/stacks/react.svg" width="100" align="left" /><img src="https://raw.githubusercontent.com/koajs/koa/master/docs/logo.png" width="100" align="left" /><img src="https://camo.githubusercontent.com/32657601b349b558831f32c553cb2c7734cb5ae89a2e8340afa314ea3b2116a0/68747470733a2f2f6d696c6c696772616d2e696f2f696d616765732f7468756d626e61696c2e706e67" width="100" align="left" /><img src="https://raw.githubusercontent.com/emotion-js/emotion/main/emotion.png" alt="Emotion logo" width="100"><img src="https://github.com/lukeed/uvu/blob/ddf62e883b5e56c3ba84ad0acf0e7966cc3ade48/shots/uvu.jpg" alt="UVU logo" width="100"><img src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/vagrant/vagrant.png" alt="vagrant logo" width="100"><img src="https://d33wubrfki0l68.cloudfront.net/aad219b6c931cebb53121dcda794f6180d9e4397/17f34/assets/images/pnpm-standard-79c9dbb2e99b8525ae55174580061e1b.svg" alt="pnpm logo" width="100"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Virtualbox_logo.png" alt="pnpm logo" width="100"> |
-
-<details>
-  <summary>Learn more about @nodeproto</summary>
-
-- for understanding why @nodeproto exists
-  - my desire is to blend devops, backend, and frontend work into a single Product Development framework... haha yea, good luck right?
-    - [similar to what these guys were thinking](https://lipas.uwasa.fi/~phelo/papers/Collaborative%20customized%20product%20development%20framework_IMDS_2009.pdf)
-  - whats a product development framework ?
-    - consider what a web framework, or an application framework is
-    - then consider everything else you would need
-
-- [review our contributing docs](https://github.com/noahehall/nodeproto/blob/develop/CONTRIBUTING.md)
-
-- for contributing:
-  - you should be:
-    - intermediate/advanced with docker, node, shell scripting, cloud (aws specifically), [flowtype](https://github.com/facebook/flow/blob/main/lib/react.js) and especially javascript
-    - capable of learning other vertical technologies used by this framework (but if your good at the other stuff, piece of cake)
-
-- for consuming:
-  - you should be good at javascript
-
-</details>
-<br/>
-
-## TLDR
-
-|                   architecture                    |
-| :-----------------------------------------------: |
-| ![@nodeproto architecture](/doc/architecture.png) |
-
-under activate development; expect breaking changes
-
-## getting started
-
-<details>
-  <summary>contributing</summary>
-
 ### uninstall
 
-- fully remove: `rm -rf /var/.nodeproto`
-
 ```sh
-  rm -rf /var/.nodeproto/*
-  rm pnpm-lock.yaml
-  # TODO: link to /bookofnoah/linux/.install_node.sh
+  rm -rf /var/.nodeproto
+  delete this repository
 ```
 
-### installation
+### installation (contributing)
 
-- prereqs
-  - to ease transition from metal to cloud: we store dependency + pnpm metadata with a single directory `/var/.nodeproto`
-  - `$ sudo mkdir /var/.nodeproto`
-  - `$ sudo chown -R $(whoami):$(whoami) /var/.nodeproto`
+- for contributing to the development of nodeprot
 
-- baremetal
-  - notes
-    - the world runs on linux; I run on linux
-    - mac: should be compatible but unfortunately you're on your own
-    - windows: never heard of it
+```sh
+  # dependency + pnpm metadata
+  sudo mkdir /var/.nodeproto
+  sudo chown -R $(whoami):$(whoami) /var/.nodeproto
+  pnpm install-completion
 
-  - ensure haproxy (preferable >= 2.4) is available in your system path
-  - todo: link to install script
-  - install pnpm tab-completion `pnpm install-completion`
-  -
+  # dependencies
+  pnpm install
+  pnpm proto repo:cp:configproto
+  pnpm proto repo:flowtyped:install
+  pnpm repo:deps
 
-- vagrant + virtual box (appropriate for application appliances)
-  - ensure vagrant 2.2.18 & virtualbox 6.1 installed + guest additions
-    - other versions may work
-  - `vagrant up`
-  - `vagrant ssh`
-  - `cd /opt/nodeproto`
+```
 
-- vagrant + docker (appropriate for production games)
-  - TODO
+### updating
 
-- vagrant + aws
-  - TODO
+```sh
+  pnpm proto repo:jsync
+  pnpm proto repo:update
+```
 
-- all envs: verify installation
+### test, develop, build production ready artifacts
 
   ```sh
-    # install deps, types, sync, & build all packages
-    pnpm install
-    pnpm proto repo:flowtyped:install
-    pnpm proto repo:cp:configproto
-    pnpm proto repo:jsync
     pnpm proto build
-    # run tests in all pkgs
     pnpm proto:script repo:eslint
+    # run tests in all pkgs
     pnpm proto flow # flow is automatically run via repo:eslint, but can also be run directly
     pnpm proto:script repo:test
     # get a feel for the repo
@@ -123,15 +68,10 @@ under activate development; expect breaking changes
     pnpm repo:scripts
   ```
 
-### other things you could do
-
 - monorepo build process: a 3 step process (plans for automation later)
-  1. sync with root `$ pnpm proto:script repo:jsync`
-  2. copy static files `$ pnpm proto repo:cp:configproto`
-  3. build output files to dist `$ pnpm proto build`
-     - for swc errors, cd into package and run `RUST_BACKTRACE=full pnpm build`
-     - if there havent been any changes to `root/package.json` or static files in `configproto`
-     - you likely only need this last step
+  - 1 sync with root `$ pnpm proto:script repo:jsync`
+  - 2 copy static files `$ pnpm proto repo:cp:configproto`
+  - 3 build output files to dist `$ pnpm proto build`
 
 </details>
 
@@ -232,7 +172,6 @@ under activate development; expect breaking changes
   - generally you need to enable `--experimental-specifier-resolution=node` to run `mjs` files as we dont specify an extension when importing anything
   - when we build for cjs
     - for libraries & tools
-      - we use `swc` to compile source files to `dist/dir` in each package
       - we copy `configproto/src/commonjs.json` to `/dist/package.json` which sets `type="commonjs"`
       - swc will convert `mjs` files to `js` files in the `dist` dir
       - and sine we dont specify the extension in the mjs files, in addition to setting `type=commonjs` in the dist dir, everything works as expected whether in commonjs land or esm land
@@ -275,180 +214,5 @@ under activate development; expect breaking changes
   - [gtk](https://draculatheme.com/gtk)
   - [enable via shell-extensions](https://www.omgubuntu.co.uk/2020/04/enable-full-dark-mode-in-ubuntu-20-04)
   - [and do a quick backup](https://linuxconfig.org/ubuntu-20-04-system-backup-and-restore)
-
-</details>
-
-## scripts and tasks
-
-<details>
-  <summary> info </summary>
-
-- todo
-
-</details>
-
-<details>
-  <summary> development </summary>
-
-- dev scripts: open browser to **localhost:7777**
-- **NOTE** all START scripts use **haproxy**
-  - we dont drop priviledges in *DEV*, if you want, do the below
-    - [to *START* as root, but dont *RUN* as root when using **packages/gateway**: click here to read why haproxy recommends this](https://cbonte.github.io/haproxy-dconv/2.4/management.html#13)
-
-</details>
-
-<details>
-  <summary> testing and linting </summary>
-
-- todo
-
-</details>
-
-<details>
-  <summary> building </summary>
-
-- todo
-
-</details>
-
-<details>
-  <summary> adding packages </summary>
-
-- todo
-
-</details>
-
-## environment
-
-<details>
-  <summary> variables </summary>
-
-- todo
-
-</details>
-
-<details>
-  <summary> node options </summary>
-
-- checkout *root/package.json.config*
-- all of your *PKGDIR/pkg/.env* files should include this, but be sure to use **single** and **not double** quotes
-
-</details>
-
-<details>
-  <summary> tls/ssl </summary>
-
-- self-signed certificates auto created on dev
-
-</details>
-
-## our favorite modules
-
-- got someting better?
-- please give us a link we love the latest and greatest and prefer the bleeding edge
-
-<details>
-  <summary> pkg management </summary>
-
-- [ultra-runner](https://github.com/folke/ultra-runner/blob/master/__tests__/runner.ts)
-- [pnpm](https://pnpm.io/cli/install)
-
-</details>
-
-<details>
-  <summary> gateway </summary>
-
-- [haproxy](https://cbonte.github.io/haproxy-dconv/2.4/management.html)
-
-</details>
-
-<details>
-  <summary> api </summary>
-
-- [koa](https://koajs.com/#introduction)
-
-</details>
-
-<details>
-  <summary> tls/ssl </summary>
-
-- [local ssl: pem](https://github.com/Dexus/pem/blob/master/test/pem.spec.js)
-
-</details>
-
-<details>
-  <summary> tooling </summary>
-
-</details>
-
-<details>
-  <summary> testing</summary>
-
-- [uvu](https://github.com/lukeed/uvu)
-
-</details>
-
-<details>
-  <summary> linting </summary>
-
-- [webhint/hint](https://github.com/webhintio/hint)
-- [standard](https://standardjs.com/#table-of-contents)
-- [eslint](https://eslint.org/docs/user-guide/configuring/)
-  - react as we need to support react linting
-  - standard (minus comma-dangle) + react
-- [lighthouse](https://github.com/GoogleChrome/lighthouse#cli-options)
-- [browsertime](https://github.com/sitespeedio/browsertime)
-  - [google admin toolbox has an excellent har analyzer](https://toolbox.googleapps.com/apps/har_analyzer/)
-- [bundle stats](https://github.com/relative-ci/bundle-stats/tree/master/packages/webpack-plugin)
-
-</details>
-
-<details>
-  <summary> UI </summary>
-
-- [react](https://reactjs.org)
-
-</details>
-
-<details>
-  <summary> text/internationalization </summary>
-
-- [messageformat](https://github.com//messageformat)
-
-</details>
-
-<details>
-  <summary> feature detection </summary>
-
-- [modernizr](https://modernizr.com/download?setclasses)
-
-</details>
-
-<details>
-  <summary> css </summary>
-
-- [normalize.css](https://github.com/necolas/normalize.css/)
-- [milligram](https://milligram.io/)
-- [styled-components](https://styled-components.com/docs)
-
-</details>
-
-<details>
-  <summary> animation </summary>
-
-- [animate.css](https://animate.style/)
-
-</details>
-
-<details>
-  <summary> accessibility </summary>
-
-- we use both reakit + react-aria as they compliment each other and keep us from writing primitives
-  - be sure to checkout both as:
-    - doubt this list will stay up to date
-    - we have an accurate representation of everything each provide
-- [reakit](https://reakit.io/)
-- [react-aria](https://react-spectrum.adobe.com/react-aria/)
-- [react-stately](https://react-spectrum.adobe.com/react-stately/getting-started.html)
 
 </details>

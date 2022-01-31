@@ -1,7 +1,7 @@
 {
   "author": {
     "name": "theDRAGON",
-    "email": "noahedwardhall+souls@gmail.com",
+    "email": "nodeproto@nirvai.mozmail.com",
     "url": "https://github.com/noahehall"
   },
   "bugs": "https://github.com/noahehall/nodeproto/issues",
@@ -9,7 +9,7 @@
   "homepage": "https://github.com/noahehall/nodeproto",
   "license": "SEE LICENSE IN LICENSE.md",
   "name": "nodeproto",
-  "packageManager": "pnpm@6.24.2",
+  "packageManager": "pnpm@6.29.1",
   "private": true,
   "repository": "git://github.com/noahehall/nodeproto.git",
   "type": "module",
@@ -61,7 +61,7 @@
     "DIRS_TO_TRANSPILE": "./src",
     "FLOW_LOADER": "./node_modules/@nodeproto/configproto/src/node/loaders/flow.mjs",
     "NODE_ENV": "production",
-    "NODE_OPTIONS_REMOVED":" --preserve-symlinks --preserve-symlinks-main   --v8-pool-size=0 --zero-fill-buffers",
+    "NODE_OPTIONS_REMOVED": " --preserve-symlinks --preserve-symlinks-main   --v8-pool-size=0 --zero-fill-buffers",
     "NODE_OPTIONS": "--abort-on-uncaught-exception --diagnostic-dir=\"/var/.nodeproto/diagnostics\" --enable-source-maps --experimental-abortcontroller --experimental-modules --experimental-import-meta-resolve --experimental-json-modules --experimental-loader=\"./node_modules/@nodeproto/configproto/src/node/loaders/flow.mjs\" --experimental-specifier-resolution=node --experimental-top-level-await --experimental-vm-modules --pending-deprecation --report-compact --report-dir=\"/var/.nodeproto/reports\" --report-filename=nodeprotolog --report-on-fatalerror --report-on-signal --report-signal=SIGUSR2 --report-uncaught-exception --trace-deprecation --trace-exit --trace-sigint --trace-uncaught --trace-warnings --unhandled-rejections=throw --use-largepages=on",
     "PATH_DIST": "./dist",
     "PATH_SRC": "./src"
@@ -110,14 +110,14 @@
     "ultra-runner": "3.10.5"
   },
   "devDependencies": {
-    "@babel/core": "7.16.5",
+    "@babel/core": "7.16.12",
     "@babel/eslint-parser": "7.16.5",
     "@babel/eslint-plugin": "7.16.5",
-    "@changesets/cli": "2.19.0",
+    "@changesets/cli": "2.20.0",
     "@nodeproto/configproto": "workspace:0.0.0",
     "@octokit/core": "3.5.1",
     "browserslist": "4.19.1",
-    "eslint": "8.5.0",
+    "eslint": "8.8.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-fb-flow": "0.0.4",
     "eslint-plugin-flowtype-errors": "4.5.0",
@@ -129,12 +129,12 @@
     "eslint-plugin-promise": "6.0.0",
     "eslint-plugin-react": "7.28.0",
     "eslint-plugin-react-hooks": "4.3.0",
-    "eslint-plugin-yml": "0.12.0",
-    "flow-bin": "0.168.0",
-    "flow-remove-types": "2.168.0",
-    "flow-typed": "3.5.0",
+    "eslint-plugin-yml": "0.13.0",
+    "flow-bin": "0.170.0",
+    "flow-remove-types": "2.170.0",
+    "flow-typed": "3.6.1",
     "prettier": "2.5.1",
-    "uvu": "0.5.2",
+    "uvu": "0.5.3",
     "yaml-eslint-parser": "0.5.0"
   }
 }
