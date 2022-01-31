@@ -1,0 +1,7 @@
+*
+
+!src
+!.eslintrc.yml
+!package.json
+!*.yml
+!*.yaml

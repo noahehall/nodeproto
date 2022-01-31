@@ -4,13 +4,13 @@
   "homepage": "https://github.com/noahehall/nodeproto",
   "license": "SEE LICENSE IN LICENSE.md",
   "name": "@nodeproto/gateway",
-  "packageManager": "pnpm@6.15.1",
+  "packageManager": "pnpm@6.29.1",
   "private": true,
   "repository": "git://github.com/noahehall/nodeproto.git",
   "type": "module",
   "version": "0.0.0",
   "author": {
-    "email": "noahedwardhall+souls@gmail.com",
+    "email": "nodeproto@nirvai.mozmail.com",
     "name": "theDRAGON",
     "url": "https://github.com/noahehall"
   },

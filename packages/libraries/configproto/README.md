@@ -5,17 +5,12 @@ static configuratoin files
 most dependencies will be production dependencies
 so that consumers of this library shouldnt need to install them
 
-- TODO: (automate this shit) you **HAVE** to remember to update the versions in the config files
 - when upgrading dependencies
-  - things to update:
   - see new versions: `grep -E "core-js|@babel|flow" package.json`
-  - update these files (could be out of date) with to match new version numbers
-    - `babel.config.json`
-    - `client.babelrc.json`
-    - `node.babelrc.json`
-    - `.eslintrc.yml`
-    - `isomorphic.eslintrc.yml`
-    - `.flowconfig`
+  - update these files (could be out of date) to match new version numbers
+    - babel files
+    - flow config files
+    - eslint files
 
 ## errors
 
