@@ -2,7 +2,9 @@
 
 // @see https://github.com/lukeed/uvu/blob/master/docs/cli.md
 // @see https://github.com/lukeed/uvu/blob/master/docs/api.uvu.md
-import * as t from '@nodeproto/testproto';
+// use fully qualified name until https://github.com/nodejs/node/issues/41321
+// note ./t fails, but ./t.mjs works
+import * as t from '@nodeproto/testproto'; // eslint-disable-line
 
 const { assert } = t;
 
@@ -11,8 +13,6 @@ const test = t.suite('@nodeproto/testproto: unit test reference');
 // @TODO: add more examples, see t.mjs for everything we include by default
 // @see https://www.chaijs.com/api/assert/#method_istrue
 test('reference assertions', () => {
-  console.info('pooop', poop);
-
   assert(true === true);
 
   // promises, can be used with any method below

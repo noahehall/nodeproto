@@ -6,5 +6,5 @@
 module.exports = function (source) {
   this.cacheable();
 
-  return require('flow-remove-types')(source, {}).toString(); // eslint-disable-line
+  return require('flow-remove-types')(source, {}).toString();
 };

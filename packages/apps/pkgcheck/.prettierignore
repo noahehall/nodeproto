@@ -1,7 +1,6 @@
 *
 
-!src
-!.eslintrc.yml
 !*.json
-!*.yml
-!*.yaml
+!src
+# !*.yaml # uncomment whenever prettier doesnt err on yml comments
+# !*.yml # uncomment whenever prettier doesnt err on yml comments

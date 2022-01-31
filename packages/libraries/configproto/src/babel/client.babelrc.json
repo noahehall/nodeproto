@@ -23,7 +23,7 @@
             "corejs": {
               "version": "3.20.0",
               "proposals": true
-            },
+            }
           }
         ],
         [
