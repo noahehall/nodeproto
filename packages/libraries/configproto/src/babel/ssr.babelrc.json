@@ -1,6 +1,0 @@
-{
-  "extends": "./base.babelrc.json",
-  "browserslistEnv": "ssr",
-  "sourceMaps": "both",
-  "sourceType": "script" // we assume all your client files are .mjs
-}

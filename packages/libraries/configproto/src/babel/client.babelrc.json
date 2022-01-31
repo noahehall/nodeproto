@@ -11,19 +11,19 @@
           "@babel/preset-env",
           {
             "bugfixes": true,
-            "corejs": {
-              "version": "3.20.0",
-              "proposals": true
-            },
             "debug": false,
             "forceAllTransforms": false, // set to true if only support es5/running through uglifyjs
             "ignoreBrowserslistConfig": false,
             "modules": "auto",
             "shippedProposals": true,
             "spec": false,
-            // usage: automatically imports core-js modules in src
+            "useBuiltIns": "entry", // include corejs imports for each file based on the env transpiling to and the files src code
             // entry: you have to specify the imports of core-js in src
-            "useBuiltIns": "entry" // include corejs imports for each file based on the env transpiling to and the files src code
+            // usage: automatically imports core-js modules in src
+            "corejs": {
+              "version": "3.20.0",
+              "proposals": true
+            },
           }
         ],
         [
@@ -31,16 +31,18 @@
           {
             // applies to both classic & automatic runtimes
             "throwIfNamespace": false,
-            "development": true, // TODO set to false via env
-            // uncomment for classic
-            // "runtime": "classic", // enables other commented options
+
+            // use automatic by default-----------------------------------------
+            "development": true,
+            "importSource": "@emotion/react", // https://emotion.sh/docs/css-prop##babel-preset
+            "runtime": "automatic" // automatically import React shit at the top of files
+
+            // uncomment for classic -------------------------------------------
             // "pragma": "React.default.createElement",
             // "pragmaFrag": "React.default.Fragment",
+            // "runtime": "classic", // enables other commented options
             // "useBuiltIns": false,
             // "useSpread": true
-            // uncomment for automatic runtime
-            "runtime": "automatic", // automatically import React shit at the top of files
-            "importSource": "@emotion/react" // https://emotion.sh/docs/css-prop##babel-preset
           }
         ]
       ],
@@ -48,39 +50,14 @@
         [
           "@emotion",
           {
-            "sourceMap": true,
             "autoLabel": "dev-only",
+            "cssPropOptimization": true,
             "labelFormat": "[local]",
-            "cssPropOptimization": true
+            "sourceMap": true
           }
         ],
         "@babel/plugin-transform-react-constant-elements"
         // "@babel/plugin-transform-react-inline-elements" incompatible with @emotion
-      ]
-    },
-    {
-      // TODO: need to confirm this outputs a separate file automatically
-      // for browsers that support script.type=module
-      "test": "browser.modern.mjs",
-      "presets": [
-        [
-          "@babel/preset-env",
-          {
-            "bugfixes": true,
-            "corejs": {
-              "version": "3.20.0",
-              "proposals": true
-            },
-            "debug": false,
-            "forceAllTransforms": false, // set to true if only support es5/running through uglifyjs
-            "ignoreBrowserslistConfig": false, // @see targets
-            "modules": "auto",
-            "browserslistEnv": "es6",
-            "shippedProposals": true,
-            "spec": false,
-            "useBuiltIns": "entry" // include corejs imports for each file based on the env transpiling to and the files src code
-          }
-        ]
       ]
     }
   ]

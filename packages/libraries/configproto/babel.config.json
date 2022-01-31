@@ -1,7 +1,7 @@
 /**
   * base.babelrc
   * you generally want to extend from either [client|node|ssr].babelrc
-  * when transpiling for the browser, you need a module loader, e.g. rollup/webpack
+  * when transpiling for the browser, you need a module loader, we use webpack
   * @see https://stackoverflow.com/questions/31593694/do-i-need-require-js-when-i-use-babel
 
   * babel ordering is important, thus
@@ -12,7 +12,7 @@
     - ensure they are still executed where they ar edefind in this file (in the appropriate plugin/preset order)
 
   useful options for consumers that extend our babelrc files
-  @see node.babelrc & client.babelrc in this dir
+  @see node.babelrc & client.babelrc
     babelrc
     babelrcRoots
     targets: only set if not using browserslist (you shuld use browserslist)
@@ -22,11 +22,13 @@
     overrides
  */
 {
-  "ignore": [
-    "**/dist",
-    "**/*.test.mjs",
-    "**/*.test.cjs"
-  ], // TODO: doesnt work, instead use --ignore '**/*.test.mjs' --ignore ...etc
+  // simple options
+  "browserslistConfigFile": ".browserslistrc",
+  "browserslistEnv": "production",
+  "highlightCode": true,
+  "sourceMaps": true,
+  "sourceType": "module",
+  // complex options
   // use assumptions whenever possible
   // @see https://babeljs.io/docs/en/assumptions
   // @see https://github.com/babel/rfcs/blob/master/rfcs/0003-top-level-assumptions.md
@@ -44,6 +46,7 @@
     "mutableTemplateObject": true,
     "noClassCalls": true,
     "noDocumentAll": true,
+    "noIncompleteNsImportDetection": true,
     "noNewArrows": true,
     "objectRestNoSymbols": true,
     "privateFieldsAsProperties": true,
@@ -55,21 +58,52 @@
     "skipForOfIteratorClosing": true,
     "superIsCallableConstructor": true // disallow extending native classes
   },
-  "browserslistConfigFile": ".browserslistrc",
-  "browserslistEnv": "ssr",
-  "highlightCode": true,
-  "sourceMaps": true,
-  "sourceType": "module",
+  "env": {
+    "production": {
+      "highlightCode": false,
+      "minified": true, // includes compact: true
+      "comments": false
+    }
+  },
   "generatorOpts": {
+    "comments": true,
+    "compact": false,
+    "minified": false,
+    "retainLines": false
     // never enable these; use a plugin instead
     // "auxiliaryCommentBefore"
     // auxiliaryCommentAfter
     // shouldPrintComment
-    "retainLines": false,
-    "compact": false,
-    "minified": false,
-    "comments": true
   },
+  "ignore": [
+    "**/dist",
+    "**/*.test.mjs",
+    "**/*.test.cjs"
+  ],
+  // TODO: these simple overrides doenst seem to be working
+  // @see packages/libraries/configproto/babel/client.babelonly.babelrc
+  // ^ comment the sourcetype module in that file
+  // ^ run packages/tests -> pnpm test:configproto:babel:copypasta
+  "overrides": [
+    {
+      // all commonjs options
+      "test": "**/*.cjs$",
+      // This option will not affect parsing of .mjs files, as they are currently hard-coded to always parse as "module" files.
+      "sourceType": "script"
+    },
+    {
+      "test": [
+        "**/*.mjs$",
+        "**/*.jsx$"
+      ],
+      "sourceType": "module"
+    },
+    {
+      // interprets as module if import/export exists
+      "test": "**/*.js$",
+      "sourceType": "unambiguous"
+    }
+  ],
   "parserOpts": {
     "allowAwaitOutsideFunction": true,
     "allowImportExportEverywhere": false,
@@ -78,13 +112,12 @@
     "allowUndeclaredExports": true,
     "attachComment": false,
     "errorRecovery": false,
-    // "sourceType": "unambiguous",
     "strict": true,
+    // "sourceType": "unambiguous",
     // When a plugin is specified multiple times, only the first options are considered.
     "plugins": [
       // @see https://babeljs.io/docs/en/plugins/
       "asyncDoExpressions",
-      "classStaticBlock",
       [
         "decorators",
         {
@@ -117,60 +150,7 @@
       "topLevelAwait"
     ]
   },
-  "overrides": [
-    // TODO: these simple overrides doenst seem to be working
-    // @see packages/libraries/configproto/babel/client.babelonly.babelrc
-    // ^ comment the sourcetype module in that file
-    // ^ run packages/tests -> pnpm test:configproto:babel:copypasta
-    {
-      // all commonjs options
-      "test": "**/*.cjs$",
-      // This option will not affect parsing of .mjs files, as they are currently hard-coded to always parse as "module" files.
-      "sourceType": "script"
-    },
-    {
-      "test": [
-        "**/*.mjs$",
-        "**/*.jsx$"
-      ],
-      "sourceType": "module"
-    },
-    {
-      // interprets as module if import/export exists
-      "test": "**/*.js$",
-      "sourceType": "unambiguous"
-    }
-  ],
-  "env": {
-    "production": {
-      "highlightCode": false,
-      "minified": true, // includes compact: true
-      "comments": false
-    }
-  },
-  "presets": [
-    // @see https://babeljs.io/docs/en/babel-preset-env
-    // @babel/preset-env won't include any JavaScript syntax proposals less than Stage 3
-    // setting shippedProposals: true will include the limited set of stage 3 proposals implemented by browsers
-    // modules: "amd" | "umd" | "systemjs" | "commonjs" | "cjs" | "auto" | false, defaults to "auto".
-    // ^ set output type
-    // ^ @see https://github.com/babel/babel/issues/8887
-    [
-      "@babel/preset-env",
-      false
-    ],
-    [
-      "@babel/preset-react",
-      false
-    ],
-    [
-      "@babel/preset-flow",
-      {
-        "all": false,
-        "allowDeclareFields": true
-      }
-    ]
-  ],
+
   "plugins": [
     [
       "@emotion",
@@ -202,6 +182,30 @@
     [
       "@babel/plugin-transform-react-inline-elements",
       false
+    ]
+  ],
+
+  // @see https://babeljs.io/docs/en/babel-preset-env
+  // @babel/preset-env won't include any JavaScript syntax proposals less than Stage 3
+  // setting shippedProposals: true will include the limited set of stage 3 proposals implemented by browsers
+  // modules: "amd" | "umd" | "systemjs" | "commonjs" | "cjs" | "auto" | false, defaults to "auto".
+  // ^ set output type
+  // ^ @see https://github.com/babel/babel/issues/8887
+  "presets": [
+    [
+      "@babel/preset-env",
+      false
+    ],
+    [
+      "@babel/preset-react",
+      false
+    ],
+    [
+      "@babel/preset-flow",
+      {
+        "all": false,
+        "allowDeclareFields": true
+      }
     ]
   ]
 }

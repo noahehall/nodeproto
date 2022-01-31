@@ -25,8 +25,7 @@
             "useBuiltIns": "usage" // include corejs imports for each file based on the env transpiling to and the files src code
           }
         ]
-      ],
-      "plugins": []
+      ]
     }
   ]
 }

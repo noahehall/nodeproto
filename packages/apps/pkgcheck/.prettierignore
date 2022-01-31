@@ -2,6 +2,6 @@
 
 !src
 !.eslintrc.yml
-!package.json
+!*.json
 !*.yml
 !*.yaml

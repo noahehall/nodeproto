@@ -32,8 +32,6 @@
 
 ### installation (contributing)
 
-- for contributing to the development of nodeprot
-
 ```sh
   # dependency + pnpm metadata
   sudo mkdir /var/.nodeproto
@@ -44,8 +42,10 @@
   pnpm install
   pnpm proto repo:cp:configproto
   pnpm proto repo:flowtyped:install
-  pnpm repo:deps
 
+  # introspection
+  pnpm repo:deps
+  pnpm repo:scripts:v
 ```
 
 ### updating
@@ -55,23 +55,16 @@
   pnpm proto repo:update
 ```
 
-### test, develop, build production ready artifacts
+### test & build production ready artifacts
 
   ```sh
-    pnpm proto build
-    pnpm proto:script repo:eslint
-    # run tests in all pkgs
+    pnpm proto repo:jsync # if root/package.json has been modified
+    pnpm proto repo:eslint
+    pnpm proto repo:test
     pnpm proto flow # flow is automatically run via repo:eslint, but can also be run directly
-    pnpm proto:script repo:test
-    # get a feel for the repo
-    pnpm repo:deps
-    pnpm repo:scripts
+    pnpm proto repo:cp:configproto # if configproto/anyfile has been modified
+    pnpm proto build
   ```
-
-- monorepo build process: a 3 step process (plans for automation later)
-  - 1 sync with root `$ pnpm proto:script repo:jsync`
-  - 2 copy static files `$ pnpm proto repo:cp:configproto`
-  - 3 build output files to dist `$ pnpm proto build`
 
 </details>
 

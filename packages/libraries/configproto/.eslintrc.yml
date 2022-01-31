@@ -6,14 +6,13 @@
 
 reportUnusedDisableDirectives: true
 ignorePatterns:
-  - pnpm-lock.yaml
-  - pnpm-workspace.yaml
-  - '**/node_modules/**'
-  - '**/dist/**'
-  - '**/flow-typed/**'
   - '**/bundlestats/**'
   - '**/copypasta/**'
-  - '*.swcrc'
+  - '**/dist/**'
+  - '**/flow-typed/**'
+  - '**/node_modules/**'
+  - 'pnpm-lock.yaml'
+  - 'pnpm-workspace.yaml'
 
 # @see https://github.com/babel/babel/tree/main/eslint/babel-eslint-parser
 # @see https://github.com/babel/babel/blob/main/eslint/babel-eslint-config-internal/index.js
@@ -21,20 +20,14 @@ ignorePatterns:
 parser: '@babel/eslint-parser'
 # @see https://eslint.org/docs/user-guide/configuring/language-options#specifying-parser-options
 parserOptions:
-  allowImportExportEverywhere: true
-  allowReserved: false
-  ecmaVersion: 2021 # dont fkn use "latest", it breaks eslint, @see https://github.com/eslint/eslint-scope/issues/55
   requireConfigFile: true # force a configFile so we dont have to always debug this fkn issue (required for @babel/eslint-parser, else throws error)
   sourceType: module
+  allowImportExportEverywhere: true
   ecmaFeatures:
     globalReturn: true
-    impliedStrict: true
-    jsx: true
-    modules: true
-  # set babelOptions when extending if dont want to use a babel config/using webpack + babel-loader
   babelOptions:
     rootMode: upward-optional
-    # configFile: you have to set this
+    # configFile:
 
 # @see https://eslint.org/docs/user-guide/configuring/language-options#specifying-environments
 env:
@@ -44,13 +37,13 @@ env:
   shelljs: false
 
 plugins:
+  - 'markdown' # https://github.com/eslint/eslint-plugin-markdown
+  - 'html' # https://github.com/BenoitZugmeyer/eslint-plugin-html
+  - 'promise'
   - '@babel' # https://www.npmjs.com/package/@babel/eslint-plugin
   - 'fb-flow' # https://www.npmjs.com/package/@babel/eslint-plugin
-  - 'html' # https://github.com/BenoitZugmeyer/eslint-plugin-html
-  - 'markdown' # https://github.com/eslint/eslint-plugin-markdown
-  - 'promise'
   - 'flowtype-errors' # https://github.com/amilajack/eslint-plugin-flowtype-errors/wiki/Advanced-Config
-  - 'prettier'
+  - 'prettier' # https://github.com/prettier/eslint-config-prettier
 
 # @see https://eslint.org/docs/user-guide/configuring/configuration-files#extending-configuration-files
 extends:

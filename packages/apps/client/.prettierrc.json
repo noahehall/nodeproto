@@ -1,11 +1,12 @@
 {
-  "arrowParens": "avoid",
+  "arrowParens": "always",
   "bracketSameLine": false,
   "bracketSpacing": true,
   "embeddedLanguageFormatting": "off",
   "endOfLine": "lf",
   "htmlWhitespaceSensitivity": "css",
   "jsxSingleQuote": false,
+  "parser": "babel-flow",
   "printWidth": 100,
   "proseWrap": "preserve",
   "quoteProps": "as-needed",
