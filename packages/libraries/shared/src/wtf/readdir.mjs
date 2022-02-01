@@ -5,6 +5,8 @@ import JSONC from "jsonc-simple-parser";
 import picomatch from "picomatch";
 import readdirOg from "@folder/readdir";
 
+import type { ObjectType } from '../opsproto';
+
 /**
   shelljs issue when running bundled code
   dont use shelljs
@@ -71,7 +73,7 @@ export const getPkgJsonAbs = async (
 ): Promise<string> => (await getFilePathAbs(dirpath, glob))[0];
 
 type PackageJsonMeta = {
-  file?: {[x: string]: mixed},
+  file?: ObjectType,
   path?: string,
 }
 
@@ -94,4 +96,4 @@ export const getPkgJson = async (
 export const getPkgJsonc = async (
   dirpath: string = ".",
   glob: string = 'package.jsonc'
-): Promise<{ [x: string]: any }> => getPkgJson(dirpath, glob);
+): Promise<ObjectType> => getPkgJson(dirpath, glob);

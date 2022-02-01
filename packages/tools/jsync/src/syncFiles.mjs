@@ -2,7 +2,7 @@
 
 import { SPREAD_VALUES, IGNORE_VALUES, FORCE_VALUES } from './constants';
 import {
-  isObject, isValue, sortArraysAndObjects, sortSimpleThenComplexDataTypes } from '@nodeproto/shared';
+  isObject, isValue, sortObject } from '@nodeproto/shared';
 
 type ObjectType = {[x: string]: mixed };
 
@@ -155,15 +155,10 @@ export const syncJsonFiles = ({
       toJson: childPkgJson.file,
     });
 
-  // use remaining values in childPkgJson as defualt
-  // but override with new values on clash
-  // then sort and return the new json file
-  return Object.entries({
+  return sortObject({
     ...childPkgJson.file,
     ...fieldsForced,
     ...fieldsSpread,
     ...fieldsRemaining,
-  })
-    .sort(sortSimpleThenComplexDataTypes)
-    .reduce((obj, [key, value]) => ((obj[key] = sortArraysAndObjects(key, value)), obj), {})
+  });
 }

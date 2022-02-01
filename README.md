@@ -23,6 +23,10 @@
   - [@nodeproto/bodyguard - UI Network Request proxy + debugger](packages/tools/bodyguard/README.md)
   - [@nodeproto/membrane - virutalization via docker +/ vagrant](packages/tools/membrane/README.md)
 
+### npm scripts
+
+- you can prepend `proto` or `proto:script` to any npm script, depending on your goals
+
 ### uninstall
 
 ```sh
@@ -69,13 +73,12 @@
 
   ```sh
     # run eslint, flow, & prettier
-    pnpm proto repo:eslint
+    pnpm proto repo:eslint # runs eslint flow & prettier
+    pnpm proto flow # detailed flowtype analysis
+
     # run tests
     pnpm proto repo:test
     pnpm proto:testing # watch & rerun tests
-
-    # if for some reason you want to run flow directly
-    pnpm proto flow
 
   ```
 
