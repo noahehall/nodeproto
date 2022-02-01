@@ -1,5 +1,8 @@
 // @flow
 
+import { logIt, noop, throwIt } from '@nodeproto/shared';
+import type { ObjectType } from '@nodeproto/shared';
+
 import {
   childPkgJson,
   childPkgJsonPath,
@@ -9,18 +12,23 @@ import {
 } from './getFiles';
 
 import { FORCE_VALUES, IGNORE_VALUES, SPREAD_VALUES } from './constants';
-import { logIt, noop, throwIt } from '@nodeproto/shared';
 import { segmentJsonFieldsByCategory, syncJsonFiles } from './syncFiles';
 
 import fs from 'fs-extra';
 import path from 'path';
 
-const { DEFAULT_CATEGORY, ...defaultJsyncConfig } = getJsyncConfig();
+const { DEFAULT_CATEGORY, ...defaultJsyncConfig }: {
+  DEFAULT_CATEGORY: string,
+  defaultJsyncConfig: ObjectType,
+} = getJsyncConfig();
 
 // get jsync config from parent json file
 const {
   json: { jsync: rootJsyncConfig, ...rootJson },
-} = await getRootPkgJson({
+}: {
+  rootJsyncConfig: ObjectType,
+  rootJson: ObjectType,
+} = await getRootPkgJson({ // eslint-disable-line
   maxLookups: defaultJsyncConfig.maxLookups,
   currentDir: path.resolve(diskPath, '..'), // start in parent dir
 });
@@ -32,7 +40,7 @@ const { fieldCategories, jsyncFieldCategories } = segmentJsonFieldsByCategory({
   rootJsyncConfig,
 });
 
-const newJsonFile = syncJsonFiles({
+const newJsonFile: ObjectType = syncJsonFiles({
   childPkgJson,
   defaultFieldCategory: DEFAULT_CATEGORY,
   fieldCategories,

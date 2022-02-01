@@ -1,6 +1,5 @@
-/**
-  * @see https://docs.npmjs.com/cli/v7/configuring-npm/package-json
-  */
+// @see https://docs.npmjs.com/cli/v7/configuring-npm/package-json
+
 {
   "jsync": {
       // the root governs child package files

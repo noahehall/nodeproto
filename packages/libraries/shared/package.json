@@ -59,6 +59,10 @@
       "import": "./src/index.mjs",
       "default": "./dist/index.js"
     },
+    "./opsproto": {
+      "import": "./src/opsproto/index.mjs",
+      "default": "./dist/opsproto/index.js"
+    },
     "./wtf": {
       "import": "./src/wtf/index.mjs",
       "default": "./dist/wtf/index.js"
@@ -104,6 +108,7 @@
     "@babel/cli": "7.16.8",
     "@babel/core": "7.16.12",
     "@folder/readdir": "3.1.0",
+    "eslint-plugin-json": "3.1.0",
     "jsonc-simple-parser": "2.2.0",
     "picomatch": "2.3.1",
     "regenerator-runtime": "0.13.9"

@@ -83,6 +83,7 @@ test('reference assertions', () => {
   assert.includeMembers([1, 2, 3], [2, 1, 2], 'include members');
 
   // errors
+  // https://www.chaijs.com/plugins/chai-as-promised/
   assert.throws(() => {
     throw new Error('thrown must have a msg');
   }, / have a msg/);

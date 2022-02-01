@@ -1,5 +1,8 @@
 // @flow
 
 export const throwIt = (msg: string | Error) => {
-  throw msg;
+
+  throw typeof msg  === 'string'
+    ? new Error(msg)
+    : msg;
 };

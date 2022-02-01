@@ -31,8 +31,8 @@ async function getPackageType(url) {
   const packagePath = resolve(dir, 'package.json');
 
   const type = await readFile(packagePath, { encoding: 'utf8' })
-    .then(filestring => JSON.parse(filestring).type)
-    .catch(err => {
+    .then((filestring) => JSON.parse(filestring).type)
+    .catch((err) => {
       if (err?.code !== 'ENOENT') console.error(err);
     });
   if (type) return type;

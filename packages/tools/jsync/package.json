@@ -3,7 +3,6 @@
   "description": "@nodeproto/jsync - sync package.json files in a monorepo",
   "homepage": "https://github.com/noahehall/nodeproto",
   "license": "SEE LICENSE IN LICENSE.md",
-  "main": "index.mjs",
   "name": "@nodeproto/jsync",
   "packageManager": "pnpm@6.29.1",
   "private": true,
@@ -69,6 +68,12 @@
   },
   "engines": {
     "node": "^14.17.0 || ^16.11.0 || >=17.1.0"
+  },
+  "exports": {
+    ".": "./src/index.mjs",
+    "./constants": "./src/constants.mjs",
+    "./getFiles": "./src/getFiles.mjs",
+    "./syncFiles": "./src/syncFiles.mjs"
   },
   "jsync": {
     "root": false

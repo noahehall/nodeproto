@@ -15,6 +15,7 @@
   "engines": {
     "node": "^14.17.0 || >=16.0.0 || >= 17.0.0"
   },
+  "files": [ "./libdefs.mjs", "./src"],
   "keywords": [
     "@nirv",
     "@nodeproto",
@@ -81,6 +82,7 @@
     "./eslint/*": "./src/eslint/*.eslintrc.yml",
     "./fixtures/*": "./src/fixtures/*",
     "./flowconfig": "./.flowconfig",
+    "./libdefs": "./libdefs.mjs",
     "./node/*": "./src/node/*",
     "./prettier": "./.prettierrc.json"
   },

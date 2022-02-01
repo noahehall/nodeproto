@@ -1,6 +1,6 @@
 // @flow
 
-import type { ArrayType, ObjectType } from './libdefs';
+import type { ArrayType, ObjectType } from '@nodeproto/configproto/libdefs'; // eslint-disable-line
 
 // specificall []|{}|[weak](map|set)
 export const isObject = (v: mixed): boolean => typeof v === 'object' && typeof v !== 'boolean' && !!v;

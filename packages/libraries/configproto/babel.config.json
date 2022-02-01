@@ -157,9 +157,7 @@
       false
     ],
     "transform-export-default-name",
-    // "transform-flow-strip-types", // allready included in preset
-    // TODO: verify these options
-    // @see https://babeljs.io/docs/en/babel-plugin-transform-runtime
+    // "transform-flow-strip-types",
     [
       "@babel/plugin-transform-runtime",
       {

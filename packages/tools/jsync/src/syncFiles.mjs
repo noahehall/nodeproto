@@ -1,25 +1,38 @@
 // @flow
 
-import { SPREAD_VALUES, IGNORE_VALUES, FORCE_VALUES } from './constants';
 import {
-  isObject, isValue, sortObject } from '@nodeproto/shared';
+  FORCE_VALUES,
+  IGNORE_VALUES,
+  SPREAD_VALUES,
+} from './constants';
 
-type ObjectType = {[x: string]: mixed };
+import {
+  isObject,
+  isValue,
+  sortObject,
+} from '@nodeproto/shared';
+
+
+import type {
+  ObjectOfSets,
+  ObjectOfStringArrays,
+  ObjectType,
+} from '@nodeproto/configproto/libdefs';
 
 // categorizes this json field as either ignore, force, or spread
-const getJsonFieldCategory = (jsyncFieldCategories, k) =>
-  (jsyncFieldCategories[SPREAD_VALUES].has(k) && SPREAD_VALUES) ||
-  (jsyncFieldCategories[FORCE_VALUES].has(k) && FORCE_VALUES) ||
+export const getJsonFieldCategory = (jsyncFieldCategories: ObjectOfSets, field: string): string =>
+  (jsyncFieldCategories[SPREAD_VALUES].has(field) && SPREAD_VALUES) ||
+  (jsyncFieldCategories[FORCE_VALUES].has(field) && FORCE_VALUES) ||
   IGNORE_VALUES;
 
-export const getFieldCategories = (jsyncConfig: ObjectType): {[x: string]: string[]} => {
+export const getFieldCategories = (jsyncConfig: ObjectType): ObjectOfSets => {
   const fieldCategories = {}; // container for all the json segments
 
-  const {
-    ignoreRootValues = [],
-    forceRootValues = [],
-    spreadRootValues = [],
-  } = jsyncConfig;
+  const
+    forceRootValues: string[] = jsyncConfig[FORCE_VALUES],
+    ignoreRootValues: string[] = jsyncConfig[IGNORE_VALUES],
+    spreadRootValues: string[] = jsyncConfig[SPREAD_VALUES]
+  ;
 
   fieldCategories[IGNORE_VALUES] = new Set(ignoreRootValues);
 
@@ -35,7 +48,7 @@ export const getFieldCategories = (jsyncConfig: ObjectType): {[x: string]: strin
   fieldCategories[SPREAD_VALUES] = new Set(spreadRootValues.filter((v) => !valuesToNeverSpread.has(v)));
 
   return fieldCategories;
-}
+};
 
 export const segmentJsonFieldsByCategory = ({
   defaultJsyncConfig,
@@ -46,8 +59,16 @@ export const segmentJsonFieldsByCategory = ({
     rootJsyncConfig: ObjectType,
     defaultJsyncConfig: ObjectType,
   }
-): {[x: string]: string[]} => {
-  const jsyncFieldCategories = getFieldCategories({ ...rootJsyncConfig, ...defaultJsyncConfig });
+): {
+  fieldCategories: ObjectOfStringArrays,
+  jsyncFieldCategories: ObjectType,
+} => {
+  const jsyncFieldCategories = getFieldCategories({
+    ...defaultJsyncConfig,
+    ...rootJsyncConfig
+  });
+
+  console.info('\n\n jsyncFieldCategories', jsyncFieldCategories);
 
   let category;
   const fieldCategories = fieldNames.reduce(
@@ -59,22 +80,28 @@ export const segmentJsonFieldsByCategory = ({
           [category]: acc[category].concat(k),
         })
       ),
-    { [SPREAD_VALUES]: [], [IGNORE_VALUES]: [], [FORCE_VALUES]: [] } // base accumulator
+    { [SPREAD_VALUES]: [], [IGNORE_VALUES]: [], [FORCE_VALUES]: [] }
   );
 
   return {
     fieldCategories,
     jsyncFieldCategories
-  }
+  };
 };
 
-const syncJsonFields = ({
+export const syncJsonFields = ({
   force = false,
-  fromJson = rootJson,
-  keys = fieldCategories[SPREAD_VALUES],
-  toJson = childPkgJson.file,
+  fromJson,
+  keys,
+  toJson,
   jsyncFieldCategories,
-} = {}) => {
+}: {
+  force: boolean,
+  fromJson: ObjectType,
+  keys: string[],
+  toJson: ObjectType,
+  jsyncFieldCategories: ObjectOfSets,
+}): ObjectType => {
   const jsonObj = {};
 
   for (const k of keys) {
@@ -124,9 +151,15 @@ export const syncJsonFiles = ({
   fieldCategories,
   jsyncFieldCategories,
   rootJson,
-}) => {
+}: {
+  childPkgJson: ObjectType,
+  defaultFieldCategory: string,
+  fieldCategories: {[x: string]: string[]},
+  jsyncFieldCategories: {[x: string]: Set<string>},
+  rootJson: ObjectType,
+}): ObjectType => {
   // force values from root to child
-  const fieldsForced = syncJsonFields({
+  const fieldsForced: ObjectType = syncJsonFields({
     force: true,
     fromJson: rootJson,
     jsyncFieldCategories,
@@ -135,7 +168,7 @@ export const syncJsonFiles = ({
   });
 
   // spread values from root to child
-  const fieldsSpread = syncJsonFields({
+  const fieldsSpread: ObjectType = syncJsonFields({
     force: false,
     fromJson: rootJson,
     jsyncFieldCategories,
@@ -145,7 +178,7 @@ export const syncJsonFiles = ({
 
   // handle remaining root fields not present in jsync config
   // if we are not ignoring fields by default
-  const fieldsRemaining = defaultFieldCategory === IGNORE_VALUES
+  const fieldsRemaining: ObjectType = defaultFieldCategory === IGNORE_VALUES
     ? {}
     : syncJsonFields({
       force: defaultFieldCategory === FORCE_VALUES,
@@ -161,4 +194,4 @@ export const syncJsonFiles = ({
     ...fieldsSpread,
     ...fieldsRemaining,
   });
-}
+};

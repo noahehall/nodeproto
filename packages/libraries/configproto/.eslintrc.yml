@@ -6,6 +6,7 @@
 
 reportUnusedDisableDirectives: true
 ignorePatterns:
+  - '**/*.jsonc'
   - '**/bundlestats/**'
   - '**/copypasta/**'
   - '**/dist/**'
@@ -55,9 +56,9 @@ extends:
 
   # priority plugins here
   - 'plugin:markdown/recommended' # https://github.com/eslint/eslint-plugin-markdown
-  - 'plugin:yml/prettier' # https://github.com/ota-meshi/eslint-plugin-yml
   - 'plugin:json/recommended' # https://github.com/azeemba/eslint-plugin-json
   - 'plugin:flowtype-errors/recommended' # https://github.com/amilajack/eslint-plugin-flowtype-errors
+  - 'plugin:yml/prettier' # https://github.com/ota-meshi/eslint-plugin-yml
   - 'plugin:prettier/recommended'
 
 settings:
@@ -125,8 +126,8 @@ rules:
   '@babel/no-invalid-this': error
   '@babel/no-unused-expressions': error
   '@babel/object-curly-spacing': [error, always]
-  '@babel/semi': [error, always] # love ending semi - read this https://eslint.org/docs/rules/semi
-  'json/*': ['error', { 'allowComments': true }]
+  '@babel/semi': [warn, always] # love ending semi - read this https://eslint.org/docs/rules/semi
+  'json/*': ['warn', { 'allowComments': true }]
   function-call-argument-newline: [error, consistent]
   no-multiple-empty-lines: error
   no-throw-literal: error
@@ -174,8 +175,8 @@ rules:
   flowtype-errors/show-errors: error
   flowtype-errors/show-warnings: warn
   flowtype-errors/enforce-min-coverage:
-    - error
-    - 50
+    - warn
+    - 80
 
   # fb-flow
   fb-flow/use-indexed-access-type: error
