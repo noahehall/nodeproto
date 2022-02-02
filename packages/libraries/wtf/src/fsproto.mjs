@@ -1,84 +1,80 @@
-import { fileURLToPath } from "url";
-import { fs as memfs } from "memfs";
-import { wtf as wtfShared } from "@nodeproto/shared";
+// @flow
 
-import esMain from "./esmain";
-import fse from "fs-extra";
-import path from "path";
+import { isEsm, throwIt } from '@nodeproto/shared';
+import { fileURLToPath } from 'url';
+import { fs as memfs } from 'memfs';
 
-// TODO: this throws in consumers if we dont export it...?
-export const isR = (t, msg = "is required in @nodeproto/fsproto") => {
-  throw new Error(`${t}: ${msg}`);
-};
+import fse from 'fs-extra';
+import path from 'path';
 
-export const isMain = (
-  importMetaOrRequireMain = isR("importMetaOrRequireMain: fn.isMain")
-) =>
-  wtfShared.isEsm()
-    ? esMain(importMetaOrRequireMain)
-    : importMetaOrRequireMain == module; // eslint-disable-line no-undef
+import { esMain } from './esmain';
 
-export const urlToPath = (importMetaUrlOrPath = isR("importMetaUrlOrPath")) =>
-  fileURLToPath(importMetaUrlOrPath);
+import type {
+  FileType,
+  ImportMetaType,
+  ObjectType,
+} from '@nodeproto/configproto/libdefs';
+
+export const isMain = (importMetaOrRequireMain: ObjectType): boolean =>
+  isEsm() ? esMain(importMetaOrRequireMain.url) : importMetaOrRequireMain == module; // eslint-disable-line no-undef
+
+export const urlToPath = (importMetaUrlOrPath: string): string => fileURLToPath(importMetaUrlOrPath);
 
 export const resolve = async (
-  fileToImport = isR("fileToImport: string"),
-  importMetaOrPath = isR("importMetaOrPath: import.meta | string")
-) => {
-  if (wtfShared.isEsm()) {
-    if (!importMetaOrPath.resolve)
-      throw new Error(
-        "import.meta is required in esm: resolve(file, import.meta)" +
-          "\nensure to run node with --experimental-import-meta-resolve" +
-          "\n@see https://nodejs.org/api/esm.html#esm_import_meta_resolve_specifier_parent"
+  relativeFilePath: string,
+  importMetaOrPath: ImportMetaType | string,
+): Promise<string | void> => {
+  if (isEsm()) {
+    if (typeof importMetaOrPath === 'string' || !importMetaOrPath.resolve || !importMetaOrPath.url)
+      throwIt(
+        'import.meta is required in esm: resolve(relativeFilePath, import.meta)' +
+          '\nensure to run node with --experimental-import-meta-resolve' +
+          '\n@see https://nodejs.org/api/esm.html#esm_import_meta_resolve_specifier_parent'
       );
+    else {
+      const absoluteFileUrl = await importMetaOrPath.resolve(
+        relativeFilePath,
+        importMetaOrPath.url
+      ).catch(() => void 0);
 
-    return urlToPath(
-      await importMetaOrPath.resolve(fileToImport, importMetaOrPath.url)
-    );
+      return absoluteFileUrl ? urlToPath(absoluteFileUrl) : undefined;
+    }
   }
 
-  // must be in cjs environtment
-  return path.resolve(path.dirname(importMetaOrPath), fileToImport);
+  if (typeof importMetaOrPath === 'string')
+    return path.resolve(path.dirname(importMetaOrPath), relativeFilePath);
+
+  throwIt('path is required in cjs: resolve(relativeFilePath, path)');
 };
 
-export const getFsproto = (disk = true) => {
+export const getFsproto = (disk: boolean = true): ObjectType => {
   const fs = disk ? fse : memfs;
 
   return {
     fs,
     readFile: fs.readFile,
-    readFiles: async (files = []) =>
-      !files.length
-        ? []
-        : Promise.all(
-            files.map(({ filename, encoding = "utf8" }) =>
-              fs.readFile(filename, encoding)
-            )
-          ),
-
-    writeFile: async (...opts) => {
+    readFiles: async (files: FileType[]): Promise<Array<any>> => {
+      return Promise.all(
+        files.map(({ filename, encoding = 'utf8' }) => fs.readFile(filename, encoding))
+      );
+    },
+    writeFile: async (...opts: any[]): Promise<void> => {
       try {
         await fs.ensureDir(path.dirname(opts[0]));
-      } catch (e) {
-      } finally {
-        return fs.writeFile.apply(fs, opts); // eslint-disable-line no-unsafe-finally
-      }
+      } catch {} // eslint-disable-line no-empty
+
+      return fs.writeFile.apply(fs, opts);
     },
 
-    writeFiles: async (files = []) =>
-      !files.length
-        ? []
-        : Promise.all(
-            files.map(({ filename, data, encoding = "utf8", ...opts }) =>
-              fs.writeFile(filename, data, { encoding, ...opts })
-            )
-          ).catch((e) => [e]),
+    writeFiles: async (files: FileType[] = []): Promise<void | Error> => {
+      Promise.all(
+        files.map(({ filename, data, encoding = 'utf8' }) =>
+          fs.writeFile(filename, data, { encoding })
+        )
+      ).catch((e) => e);
+    }
   };
 };
 
-// TODO: clean this up
-// we should import either or, not both
-// there are efficiencies to gain with the proxy API
-export const fsproto = getFsproto(true);
-export const memfsproto = getFsproto(false);
+export const fsproto: ObjectType = getFsproto(true);
+export const memfsproto: ObjectType = getFsproto(false);

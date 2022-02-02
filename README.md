@@ -74,6 +74,7 @@
   ```sh
     pnpm proto repo:eslint # runs eslint flow & prettier
     pnpm proto flow # detailed flowtype analysis
+    pnpm proto flow stop|start # restart flow server, sometimes it fails to pick up changes to deep external libdefs
     pnpm proto repo:test # run tests
     pnpm repo:testing # watch & rerun tests in a single package
     pnpm repo:test:file somefile # run a specific test file

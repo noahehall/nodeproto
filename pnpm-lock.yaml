@@ -722,6 +722,7 @@ importers:
 
   packages/libraries/wtf:
     specifiers:
+      '@babel/cli': 7.16.8
       '@babel/core': 7.16.12
       '@babel/eslint-parser': 7.16.5
       '@babel/eslint-plugin': 7.16.5
@@ -734,8 +735,6 @@ importers:
       '@nodeproto/shared': workspace:0.0.0
       '@nodeproto/testproto': workspace:0.0.0
       '@octokit/core': 3.5.1
-      '@swc/cli': 0.1.55
-      '@swc/core': 1.2.135
       browserslist: 4.19.1
       chokidar-cli: 3.0.0
       contains-path: 1.0.0
@@ -785,6 +784,7 @@ importers:
       symlink-dir: 5.0.1
       ultra-runner: 3.10.5
     devDependencies:
+      '@babel/cli': 7.16.8_@babel+core@7.16.12
       '@babel/core': 7.16.12
       '@babel/eslint-parser': 7.16.5_@babel+core@7.16.12+eslint@8.8.0
       '@babel/eslint-plugin': 7.16.5_30df7102254d0d2d92e017e2d2616552
@@ -793,8 +793,6 @@ importers:
       '@nodeproto/jsync': link:../../tools/jsync
       '@nodeproto/testproto': link:../testproto
       '@octokit/core': 3.5.1
-      '@swc/cli': 0.1.55_@swc+core@1.2.135
-      '@swc/core': 1.2.135
       browserslist: 4.19.1
       chokidar-cli: 3.0.0
       eslint: 8.8.0

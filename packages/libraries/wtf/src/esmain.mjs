@@ -1,28 +1,24 @@
+// @flow
+
 // @see https://github.com/tschaub/es-main/blob/main/main.js
-// copypasta
+// copypasta: it was such a simple package why import it?
 
-import { fileURLToPath } from "url";
+import { fileURLToPath } from 'url';
+import path from 'path';
 
-import path from "path";
-import process from "process";
+import type { ObjectType } from '@nodeproto/configproto/libdefs';
 
-export function stripExt(name) {
+export const stripExt = (name: string): string => {
   const extension = path.extname(name);
-  if (!extension) {
-    return name;
-  }
 
-  return name.slice(0, -extension.length);
+  return extension ? name.slice(0, -extension.length) : name;
 }
 
-export default function (meta) {
-  const modulePath = fileURLToPath(meta.url);
-
+export const esMain = (importMetaUrl: string): boolean => {
+  const modulePath = fileURLToPath(importMetaUrl);
   const scriptPath = process.argv[1];
-  const extension = path.extname(scriptPath);
-  if (extension) {
-    return modulePath === scriptPath;
-  }
 
-  return stripExt(modulePath) === scriptPath;
+  const scriptExt = path.extname(scriptPath);
+
+  return scriptExt ? (modulePath === scriptPath) : stripExt(modulePath) === scriptPath;
 }
