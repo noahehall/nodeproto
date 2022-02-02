@@ -29,6 +29,7 @@
     "REMOVED_NODE_OPTIONS": ""
   },
   "dependencies": {
+    "@babel/cli": "7.16.8",
     "@babel/core": "7.16.12",
     "@babel/plugin-syntax-top-level-await": "7.14.5",
     "@babel/plugin-transform-flow-strip-types": "7.16.7",
@@ -37,9 +38,6 @@
     "@emotion/styled": "11.6.0",
     "@nodeproto/configproto": "workspace:0.0.0",
     "@nodeproto/wtf": "workspace:0.0.0",
-    "@swc/cli": "0.1.55",
-    "@swc/core": "1.2.135",
-    "@swc/helpers": "0.3.2",
     "babel-loader": "8.2.3",
     "browserslist": "4.19.1",
     "bundle-stats-webpack-plugin": "3.2.4",
@@ -111,34 +109,9 @@
       "import": "./src/index.mjs",
       "default": "./dist/index.js"
     },
-    "./esbuild": {
-      "import": "./src/esbuild/index.esbuild.config.mjs",
-      "default": "./dist/esbuild/index.esbuild.config.js"
-    },
-    "./esbuild/*": {
-      "import": "./src/esbuild/*.esbuild.config.mjs",
-      "default": "./dist/esbuild/*.esbuild.config.js"
-    },
-    "./esbuild/plugin/*": {
-      "import": "./src/esbuild/plugin/*.esbuild.plugin.mjs",
-      "default": "./dist/esbuild/plugin/*.esbuild.plugin.js"
-    },
-    "./package.json": "./package.json",
-    "./webpack": {
-      "import": "./src/webpack/index.webpack.config.mjs",
-      "default": "./dist/webpack/index.webpack.config.js"
-    },
-    "./webpack/*": {
-      "import": "./src/webpack/*.webpack.config.mjs",
-      "default": "./dist/webpack/*.webpack.config.js"
-    },
-    "./webpack/bff/*": {
-      "import": "./src/webpack/bff/*.webpack.mjs",
-      "default": "./dist/webpack/bff/*.webpack.js"
-    },
-    "./webpack/loader/*": "./src/webpack/loader/*.cjs"
+    "./libdefs": "./libdefs.mjs"
   },
-  "files": [],
+  "files": [ "./libdefs.mjs", "./src"],
   "jsync": {
     "root": false
   },
@@ -169,11 +142,7 @@
     "linux"
   ],
   "scripts": {
-    "build": "pnpm cjs:swc",
-    "build:debug": "pnpm cjs:swc:debug",
-    "cjs:babel": "clear; pnpm repo:rm:dist && NODE_OPTIONS=$npm_package_config_NODE_OPTIONS babel $npm_package_config_DIRS_TO_TRANSPILE -d $npm_package_config_PATH_DIST --out-file-extension .js --ignore 'src/**/*.test.mjs' --ignore src/webpack/test.compiler.mjs",
-    "cjs:swc": "pnpm clean && NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" swc $npm_package_config_DIRS_TO_TRANSPILE -d $npm_package_config_PATH_DIST --config-file ./node_modules/@nodeproto/configproto/src/swc/node.swcrc --copy-files",
-    "cjs:swc:debug": "pnpm cjs:swc -- --sync",
+    "build": "pnpm repo:rm:dist && NODE_OPTIONS=$npm_package_config_NODE_OPTIONS babel $npm_package_config_DIRS_TO_TRANSPILE -d $npm_package_config_PATH_DIST --out-file-extension .js --ignore 'src/**/*.test.mjs' --ignore src/webpack/test.compiler.mjs",
     "clean": "pnpm repo:rm:dist && pnpm repo:cp:cjs",
     "js:to:cjs": "for f in ./dist/**/*.js; do mv -- \"$f\" \"${f%.js}.cjs\"; done",
     "proto": "pnpm exec ultra -r",

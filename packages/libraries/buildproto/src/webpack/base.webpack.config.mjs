@@ -1,21 +1,19 @@
-// $FlowTODO
-
-// TODO: move 99% of this shit to separate file
-// TODO: require pack from setup.webpack. ot make life easier for us and consumers
+// @flow
 
 // @see https://webpack.js.org/plugins/copy-webpack-plugin/
-import { BundleStatsWebpackPlugin } from "bundle-stats-webpack-plugin";
-import CopyPlugin from "copy-webpack-plugin";
-import svgToMiniDataURI from "mini-svg-data-uri";
+import { BundleStatsWebpackPlugin } from 'bundle-stats-webpack-plugin';
+import CopyPlugin from 'copy-webpack-plugin';
+import svgToMiniDataURI from 'mini-svg-data-uri';
 
-// likely not needed as we continue to integrate flow
-const t = (msg = "required", p = "error in baseWebpackConfig: ") => {
-  throw new Error(`${p}${msg}`);
-};
+import type {
+  NodeprotoPackType,
+  ObjectType,
+  WebpackConfigType,
+  WebpackPluginType,
+  WebpackSetupType,
+} from '../../libdefs';
 
-const r = (thing) => t(`${thing} is required in base.webpack.config`);
-
-const getDefaultPlugins = ({ copyOptions }) =>
+export const getDefaultPlugins = ({ copyOptions }: ObjectType ): WebpackPluginType[] =>
   [
     // @see https://github.com/relative-ci/bundle-stats/tree/master/packages/webpack-plugin
     new BundleStatsWebpackPlugin({
@@ -23,7 +21,7 @@ const getDefaultPlugins = ({ copyOptions }) =>
       compare: false,
       html: true,
       json: false,
-      outDir: "../bundlestats",
+      outDir: '../bundlestats',
       silent: false,
     }),
 
@@ -36,50 +34,53 @@ const getDefaultPlugins = ({ copyOptions }) =>
 // asset/inline: export data uri (e.g. url-loader)
 // asset/source: export source code (e.g. raw-loader)
 // asset: automatically choose (e.g. url-loader with asset size limit)
-const getAssetLoaders = () => ({
+export const getAssetLoaders = (): ObjectType => ({
   fontLoader: {
     test: /\.(eot|otf|ttf|woff|woff2)$/,
-    type: "asset/resource",
-    generator: { filename: "[file][query]" },
+    type: 'asset/resource',
+    generator: { filename: '[file][query]' },
   },
   imageLoader: {
     test: /\.(jpg|png|gif)$/,
-    type: "asset/resource",
-    generator: { filename: "[file][query]" },
+    type: 'asset/resource',
+    generator: { filename: '[file][query]' },
   },
   svgLoader: {
     test: /\.svg$/,
-    type: "asset/inline",
+    type: 'asset/inline',
     generator: {
-      filename: "[file][query]",
+      filename: '[file][query]',
       dataUrl: (content) => svgToMiniDataURI(content.toString()),
     },
   },
   videoLoader: {
     test: /\.(mp4|webm)$/,
-    type: "asset/resource",
-    generator: { filename: "[file][query]" },
+    type: 'asset/resource',
+    generator: { filename: '[file][query]' },
   },
 });
 
-const generateLoaders = ({ stringReplaceLoader, configFile }) => ({
+export const generateLoaders = ({ stringReplaceLoader, configFile }: {
+  stringReplaceLoader: ObjectType,
+  configFile: boolean | string,
+}): ObjectType => ({
+  ...getAssetLoaders(),
   cssExternalLoader: {
     test: /\.css$/,
     include: /node_modules/,
-    use: ["style-loader", "css-loader"],
+    use: ['style-loader', 'css-loader'],
   },
 
   cssInternalLoader: {
     test: /\.css$/,
     exclude: /node_modules/,
-    use: ["style-loader", "css-loader"],
+    use: ['style-loader', 'css-loader'],
   },
 
-  ...getAssetLoaders(),
   // @see https://github.com/webpack/webpack/issues/11467
   esmLoader: {
     test: /\.m?js$/,
-    type: "javascript/auto",
+    type: 'javascript/auto',
     // include: /node_modules/,
     resolve: { fullySpecified: false },
   },
@@ -91,15 +92,13 @@ const generateLoaders = ({ stringReplaceLoader, configFile }) => ({
     // instead of being compiled if you import a file outside of the pathSrc
     // include: [pathSrc],
     test: /\.(c|m)?jsx?$/,
-    type: "javascript/auto",
+    type: 'javascript/auto',
     use: [
       {
-        loader: "babel-loader",
+        loader: 'babel-loader',
         options: {
-          sourceType: "unambiguous",
-          configFile:
-            configFile ||
-            "./node_modules/@nodeproto/configproto/src/babel/flow.babelrc",
+          sourceType: 'unambiguous',
+          configFile: configFile || './node_modules/@nodeproto/configproto/src/babel/flow.babelrc',
         },
       },
       stringReplaceLoader,
@@ -108,11 +107,13 @@ const generateLoaders = ({ stringReplaceLoader, configFile }) => ({
 });
 
 // @see https://webpack.js.org/configuration/cache/
-const getCache = (cache, pack = r("pack => getCache()")) => {
-  if (!pack.pkgJson) r("pack.pkgJson => getCache");
+const getCache = (
+  cache: boolean | ObjectType,
+  pack: NodeprotoPackType,
+): boolean | ObjectType => {
   return !cache // disable|production
     ? false
-    : typeof cache === "boolean" // use our defaults for devlepoment|production
+    : typeof cache === 'boolean' // use our defaults for devlepoment|production
     ? {
         // TODO: should return settings appropriate for prod if mode === 'production'
 
@@ -126,7 +127,7 @@ const getCache = (cache, pack = r("pack => getCache()")) => {
         allowCollectingMemory: true,
         // buildDependencies: { config: ['webpack/lib', pack.pathSrc] },
         compression: false,
-        hashAlgorithm: "md4",
+        hashAlgorithm: 'md4',
         idleTimeout: 60000,
         idleTimeoutAfterLargeChanges: 1000,
         idleTimeoutForInitialStore: 0,
@@ -135,52 +136,45 @@ const getCache = (cache, pack = r("pack => getCache()")) => {
         memoryCacheUnaffected: true,
         name: pack.pkgJson.name,
         profile: true,
-        store: "pack",
-        type: "filesystem",
+        store: 'pack',
+        type: 'filesystem',
         version: pack.pkgJson.version,
       }
     : cache; // use whatever they send
 };
 
-export default function baseWebpackConfig({
+export const baseWebpackConfig = ({
   // defaults
   // externalsConfig = { modulesFromFile: true }, // verify this
   // sideEffects = ['./app/components/**/*.js', '*.css'], doesnt work like in pkgjson, keep this comment
 
   // required
-  entry = r("entry: Array|string|object|descriptor"),
+  entry,
 
-  // provided by pack, but still overridable
   copyOptions, // @see https://stackoverflow.com/questions/49852038/copy-files-with-copywebpackplugin
   pack = {}, // provided by setup.webpack.config.mjs
-  builtinModules = pack.builtinModules || [], // TODO: update tests this shouldnt be required
-  ifDev = pack.ifDev,
-  ifProd = pack.ifProd,
   configFile = false, // todo: absolute path to a babelConfigFile
-  pathDist = pack.pathDist || r("pathDist: String"),
-  pathSrc = pack.pathSrc || r("pathSrc: String"),
-  pkgJson = pack.pkgJson || null,
 
   // other shit
   cache = false,
   context = process.cwd(), // you generally want to pass this in and not rely on process.cwd()
   entryPush = [],
   entryUnshift = [],
-  extensions = [".mjs", ".js", ".jsx", ".jsx", ".json"],
+  extensions = ['.mjs', '.js', '.jsx', '.jsx', '.json'],
   externals = [],
-  mainFields = ["module", "browser", "main"], // TODO: confirm this
-  mode = "development",
+  mainFields = ['module', 'browser', 'main'], // TODO: confirm this
+  mode = 'development',
   optimization = {},
   output = {},
   plugins = [],
   processEnv = {},
-  publicPath = "auto", // @see https://webpack.js.org/guides/public-path/#automatic-publicpath
-  stats = "summary",
-  target = "web",
+  publicPath = 'auto', // @see https://webpack.js.org/guides/public-path/#automatic-publicpath
+  stats = 'summary',
+  target = 'web',
 
   // dependent1
   basePlugins = getDefaultPlugins({ copyOptions }),
-  devtool = ifProd ? "hidden-source-map" : "eval-source-map",
+  devtool = pack.ifProd ? 'hidden-source-map' : 'eval-source-map',
   // deps = Object.keys(pkgJson.dependencies || {}),
   // peerDeps = Object.keys(pkgJson.peerDependencies || {}),
 
@@ -188,7 +182,7 @@ export default function baseWebpackConfig({
   // should always be last to use defaults and dependents
   stringReplaceLoader = {
     // test: /\.(html|m?js)$/, // doesnt work when part of use: []
-    loader: "string-replace-loader", // we use this instead of dotenv-webpack
+    loader: 'string-replace-loader', // we use this instead of dotenv-webpack
     options: {
       multiple: Object.entries(processEnv).map(([search, replace]) => ({
         search,
@@ -210,39 +204,37 @@ export default function baseWebpackConfig({
     topLevelAwait: true,
   },
 
-  // overrides top level properties
-  ...overrides
-} = {}) {
-  return {
+  ...rest
+}: WebpackSetupType ): WebpackConfigType => ({
+    ...rest,
     cache: getCache(cache, pack),
     context,
     devtool,
-    entry: Array.isArray(entry)
-      ? entryUnshift.concat(entry, entryPush).filter((e) => e)
-      : entry,
+    entry: Array.isArray(entry) ? entryUnshift.concat(entry, entryPush).filter((e) => e) : entry,
     experiments,
-    externals: builtinModules.concat(externals),
+    externals: (pack.builtinModules || []).concat(externals),
     infrastructureLogging: {
       // TODO: add this to fn params for overriding
       // @see https://webpack.js.org/configuration/other-options/#infrastructurelogging
-      level: "info",
-      colors: true,
+      level: 'info',
     },
     mode,
     // use to be [generateLoaders...]
     module: {
-      rules: Object.values(
-        generateLoaders({ pathSrc, stringReplaceLoader, configFile })
-      ).filter((x) => x),
+      // $FlowFixMe[incompatible-return]
+      rules: Object.values(generateLoaders({
+        stringReplaceLoader,
+        configFile
+        })).filter((x) => x),
     },
     optimization,
     output: {
       charset: true,
-      chunkFilename: "[name].chunk.js",
+      chunkFilename: '[name].chunk.js',
       clean: false, // just do this manually
       compareBeforeEmit: true, // dont emit files if the file already exists with same content
-      filename: "[name].js",
-      path: pathDist,
+      filename: '[name].js',
+      path: pack.pathDist,
       publicPath,
       ...output,
     },
@@ -250,7 +242,4 @@ export default function baseWebpackConfig({
     resolve: { extensions, mainFields },
     stats,
     target,
-
-    ...overrides,
-  };
-}
+  });

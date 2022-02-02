@@ -108,15 +108,15 @@
     "@babel/cli": "7.16.8",
     "@babel/core": "7.16.12",
     "@folder/readdir": "3.1.0",
+    "@nodeproto/configproto": "workspace:0.0.0",
+    "browserslist": "4.19.1",
     "eslint-plugin-json": "3.1.0",
     "jsonc-simple-parser": "2.2.0",
     "picomatch": "2.3.1",
     "regenerator-runtime": "0.13.9"
   },
   "devDependencies": {
-    "@nodeproto/configproto": "workspace:0.0.0",
     "@nodeproto/testproto": "workspace:0.0.0",
-    "browserslist": "4.19.1",
     "chokidar-cli": "3.0.0",
     "flow-bin": "0.170.0"
   }

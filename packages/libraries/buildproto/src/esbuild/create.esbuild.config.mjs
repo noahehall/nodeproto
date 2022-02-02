@@ -1,55 +1,57 @@
-// $FlowTODO
+// @flow
 
-import manifestPlugin from "esbuild-plugin-manifest";
+import manifestPlugin from 'esbuild-plugin-manifest';
 
-const r = (t, msg = "is required") => {
-  throw new Error(`${t}: ${msg}`);
-};
+import type {
+  EsbuildConfigType,
+  EsbuildSetupType,
+  ObjectType,
+} from '../../libdefs';
 
-const getPkgDeps = (pkgJson) =>
+const getPkgDeps = (pkgJson: ObjectType): string[] =>
   Object.keys({
     ...(pkgJson.dependencies || {}),
     ...(pkgJson.devDependencies || {}),
   });
 
 // @see https://esbuild.github.io/api/
-export function createEsbuildConfig({
-  entry = r("entry: string"),
-  outdir = r("outdir: string"), // fsproto.resolve('dist')
-  pkgJson = r("pkgJson: json"),
+export const createEsbuildConfig = ({
+  entry,
+  outdir, // fsproto.resolve('dist')
+  pkgJson,
 
   // defaults
-  assetNames = "assets/[name]-[hash]",
+  assetNames = 'assets/[name]-[hash]',
   bff = false, // starts server
   builtinModules = [], // import { builtinModules } from 'module';
   bundle = true,
   external = [], // generally you shouldnt package your deps
   isBuild = process.env.IS_BUILD,
-  isDev = process.env.NODE_ENV !== "production",
+  isDev = process.env.NODE_ENV !== 'production',
   isProd = !isDev,
-  manifestFilename = "manifest.json",
+  manifestFilename = 'manifest.json',
   metafile = true,
-  outExtension = { ".js": ".cjs" },
-  platform = "node",
+  outExtension = { '.js': '.cjs' },
+  platform = 'node',
   plugins = [],
   removePkgDependencies = false,
   replaceEntryVars = {}, // passed to define
-  resolveExtensions = [".mjs", ".js", ".cjs", ".json"],
+  resolveExtensions = ['.mjs', '.js', '.cjs', '.json'],
   sourcemap = true,
-  target = ["node14"], // LTS
+  target = ['node14'], // LTS
   watch = false,
   write = true,
 
   // dependent
-  entryNames = isDev ? "[name]-[hash]" : "[name]",
+  entryNames = isDev ? '[name]-[hash]' : '[name]',
   minify = isProd,
 
-  ...overrides
-}) {
-  const lastPeriod = entry.lastIndexOf(".");
+  ...rest
+}: EsbuildSetupType): EsbuildConfigType => {
+  const lastPeriod = entry.lastIndexOf('.');
   const appInputFilename = entry.slice(0, lastPeriod);
   const appExtension = entry.slice(lastPeriod);
-  const manifestUri = outdir + "/" + manifestFilename;
+  const manifestUri = outdir + '/' + manifestFilename;
 
   const define = {
     // TODO: create example of using envproto with configproto
@@ -59,13 +61,14 @@ export function createEsbuildConfig({
   };
 
   const manifestPluginConfig = {
-    extensionless: "input",
+    extensionless: 'input',
     filename: manifestFilename,
     hash: isProd,
     shortNames: false,
   };
 
   return {
+    ...rest,
     assetNames,
     bundle, // inline any imported dependencies into the file itself;
     define, // This feature provides a way to replace global identifiers with constant expressions.
@@ -86,7 +89,5 @@ export function createEsbuildConfig({
     target,
     watch,
     write,
-
-    ...overrides,
   };
-}
+};

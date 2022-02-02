@@ -17,3 +17,5 @@ export type FileType = {
   encoding?: string,
   filename: string,
 };
+
+export type StringContainerType = string | string[] | ObjectOfStrings

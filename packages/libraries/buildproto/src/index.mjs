@@ -1,2 +1,4 @@
-export * from './webpack/index.webpack.config';
-export * from './esbuild/index.esbuild.config';
+// @flow
+
+export * from './esbuild';
+export * from './webpack';

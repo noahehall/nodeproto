@@ -1,44 +1,55 @@
-// $FlowTODO
+// @flow
 
-import testCompiler from "./test.compiler";
-import webpack from "webpack";
+import { throwIt } from '@nodeproto/configproto';
+import webpack from 'webpack';
 
-const handleConfigErrors = ({
-  stack = "stack undefined",
-  details = "details undefined",
+import { testCompiler } from './test.compiler';
+
+import type {
+  ObjectType,
+  Stats,
+  WebpackConfigType,
+} from '../../libdefs';
+
+export const handleConfigErrors = ({
+  stack = 'stack undefined',
+  details = 'details undefined',
   ...err
-}) => console.error({ err, stack, details });
+}: {
+  stack: string,
+  details: string,
+  ...
+}): void => console.error({ err, stack, details });
 
 // @see https://webpack.js.org/configuration/stats/
 const statsOptions = {
-  maxModules: Infinity,
+  maxModules: 100,
   optimizationBailout: true,
   errorDetails: true,
 };
 
-const handleCompileIssues = (stats) => {
+export const handleCompileIssues = (stats: Stats): void => {
   if (stats.hasErrors() || stats.hasWarnings()) {
     const { errors, warnings /*, ...info */ } = stats.toJson();
+
     console.error({ errors, warnings });
 
-    if (errors.length) throw new Error("errors exist");
+    if (errors.length) throwIt('errors exist');
   }
 
-  console.info(
-    stats.toString({ ...statsOptions, chunks: false, colors: true })
-  );
+  console.info(stats.toString({ ...statsOptions, chunks: false, colors: true }));
 };
 
-const compilerCallback = (err, stats) => {
-  if (err) return handleConfigErrors(err);
-  handleCompileIssues(stats);
+export const compilerCallback = (err: any, stats: Stats): void => {
+  if (err) handleConfigErrors(err);
+  else handleCompileIssues(stats);
 };
 
-export default function webpackBuild(
-  useConfig = "THROW IF MISSING",
-  toDisk = true
-) {
-  return toDisk
+export const webpackBuild = (
+  useConfig: WebpackConfigType,
+  toDisk: boolean = true
+): mixed => (
+  toDisk
     ? webpack(useConfig, compilerCallback)
-    : testCompiler(useConfig);
-}
+    : testCompiler(useConfig)
+);

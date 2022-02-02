@@ -1,5 +1,3 @@
-// $FlowTODO
-
 // inspiration: https://github.com/conorhastings/remove-flow-types-loader
 // @see https://github.com/facebook/flow/tree/main/packages/flow-remove-types
 // @see https://webpack.js.org/contribute/writing-a-loader/
@@ -24,15 +22,15 @@
     Use peer dependencies.
 */
 
-const { validate } = require("schema-utils");
-const flowRemoveTypes = require("flow-remove-types"); // TODO: wtf happened to eslint/sort-imports ?
+const { validate } = require('schema-utils');
+const flowRemoveTypes = require('flow-remove-types');
 
 const _schema = {
-  type: "object",
+  type: 'object',
   properties: {
-    exclude: { type: "array" },
-    include: { type: "array" },
-    all: { type: "boolean" },
+    exclude: { type: 'array' },
+    include: { type: 'array' },
+    all: { type: 'boolean' },
   },
 };
 
@@ -48,7 +46,7 @@ const _upsertOptions = function () {
 
     validate(_schema, flowOptions, {
       name: this.displayName,
-      baseDataPath: "options",
+      baseDataPath: 'options',
     });
 
     return flowOptions;
@@ -70,6 +68,6 @@ function FlowTypeCleanerLoader(content /*, map, meta*/) {
   return flowRemoveTypes(content, _upsertOptions()).toString();
 }
 
-FlowTypeCleanerLoader.displayName = "FlowTypeCleanerLoader";
+FlowTypeCleanerLoader.displayName = 'FlowTypeCleanerLoader';
 
 module.exports = FlowTypeCleanerLoader;

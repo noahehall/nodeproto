@@ -1,31 +1,34 @@
-// $FlowTODO
+// @flow
 
-import httpTerminator from "http-terminator";
-import Koa from "koa";
-import middleware from "webpack-dev-middleware-2";
-import webpack from "webpack";
-import webpackHotMiddleware from "webpack-hot-middleware-2";
+import httpTerminator from 'http-terminator';
+import Koa from 'koa';
+import middleware from 'webpack-dev-middleware-2';
+import webpack from 'webpack';
+import webpackHotMiddleware from 'webpack-hot-middleware-2';
 
-const r = (t, msg = "is required") => {
-  throw new Error(`${t}: ${msg}`);
-};
+import type {
+  NodeprotoPackType,
+  NodeprotoWebpackServerType,
+  ObjectType,
+  WebpackConfigType,
+} from '../../../libdefs';
 
-export default function webpackServer({
-  useConfig = r("useConfig: Object"),
-  pack = {},
-}) {
-  const CLIENT_PORT = pack.CLIENT_PORT || process.env.CLIENT_PORT || 8080;
-  const APP_NAME =
-    pack.APP_NAME ||
-    process.env.APP_NAME ||
-    "@nodeproto/configproto.webpack.server";
+export const webpackServer = ({
+  useConfig,
+  pack,
+}: {
+  useConfig: WebpackConfigType,
+  pack: NodeprotoPackType,
+}): NodeprotoWebpackServerType => {
+  const CLIENT_PORT: number = pack.CLIENT_PORT || Number(process.env.CLIENT_PORT || 8080);
+  const APP_NAME: string = pack.APP_NAME || process.env.APP_NAME || '@nodeproto/configproto.webpack.server';
 
   const compiler = webpack(useConfig);
 
   const webpackDevMiddlewareInstance = middleware(compiler, {
     publicPath: useConfig.publicPath,
-    stats: "errors-warnings",
-    useBff: "useKoa2",
+    stats: 'errors-warnings',
+    useBff: 'useKoa2',
     writeToDisk: pack.writeToDisk,
   });
 
@@ -33,19 +36,17 @@ export default function webpackServer({
 
   app.use(webpackDevMiddlewareInstance);
 
-  app.use(webpackHotMiddleware(compiler, { useBff: "useKoa2" }));
+  app.use(webpackHotMiddleware(compiler, { useBff: 'useKoa2' }));
 
   const controller = new AbortController();
 
   const config = {
-    host: "0.0.0.0",
+    host: '0.0.0.0',
     port: CLIENT_PORT,
     signal: controller.signal,
   };
 
-  const server = app.listen(config, () =>
-    console.info(`${APP_NAME} running on: ${CLIENT_PORT}`)
-  );
+  const server = app.listen(config, () => console.info(`${APP_NAME} running on: ${CLIENT_PORT}`));
 
   // @see https://github.com/gajus/http-terminator
   // @see https://github.com/gajus/http-terminator/blob/master/test/http-terminator/factories/createInternalHttpTerminator.ts
@@ -64,4 +65,4 @@ export default function webpackServer({
     // await webpackDevMiddlewareInstance.close() -> close webpack dev server;
     webpackDevMiddlewareInstance,
   };
-}
+};
