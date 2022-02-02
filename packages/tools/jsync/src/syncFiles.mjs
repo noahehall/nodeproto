@@ -10,188 +10,174 @@ import {
   isObject,
   isValue,
   sortObject,
+  throwIt,
 } from '@nodeproto/shared';
 
 
 import type {
   ObjectOfSets,
   ObjectOfStringArrays,
+  ObjectOfStrings,
   ObjectType,
 } from '@nodeproto/configproto/libdefs';
 
-// categorizes this json field as either ignore, force, or spread
-export const getJsonFieldCategory = (jsyncFieldCategories: ObjectOfSets, field: string): string =>
-  (jsyncFieldCategories[SPREAD_VALUES].has(field) && SPREAD_VALUES) ||
-  (jsyncFieldCategories[FORCE_VALUES].has(field) && FORCE_VALUES) ||
-  IGNORE_VALUES;
+export const availableActions: Set<string> = new Set([FORCE_VALUES, IGNORE_VALUES, SPREAD_VALUES]);
 
-export const getFieldCategories = (jsyncConfig: ObjectType): ObjectOfSets => {
+// converts jsync config object of arrays into object of sets
+// and ensures fields are unique across sets
+export const getFieldCategories = (config: ObjectType): ObjectOfSets => {
   const fieldCategories = {}; // container for all the json segments
 
   const
-    forceRootValues: string[] = jsyncConfig[FORCE_VALUES],
-    ignoreRootValues: string[] = jsyncConfig[IGNORE_VALUES],
-    spreadRootValues: string[] = jsyncConfig[SPREAD_VALUES]
+    forceRootValues: string[] = config[FORCE_VALUES],
+    ignoreRootValues: string[] = config[IGNORE_VALUES],
+    spreadRootValues: string[] = config[SPREAD_VALUES]
   ;
 
-  fieldCategories[IGNORE_VALUES] = new Set(ignoreRootValues);
+  // takes precedence over everything else (always ignores jsync config)
+  // debatable if force should take precedence
+  // maybe we should call this `set` instead of `force`
+  fieldCategories[IGNORE_VALUES] = (new Set(ignoreRootValues).add('jsync'));
 
-  // values to force
-  // these root values will be set in child package.json
+  // values to force from root to child
   fieldCategories[FORCE_VALUES] = new Set(forceRootValues.filter((v) => !fieldCategories[IGNORE_VALUES].has(v)));
 
-  // these values will never be spread into child.package.json
+  // remove any values that are ignored, or forced
   const valuesToNeverSpread = new Set([...fieldCategories[IGNORE_VALUES]].concat([...fieldCategories[FORCE_VALUES]]));
 
-  // these values will be spread into child from root
-  // values to spread
+  // values to spread from root to child
   fieldCategories[SPREAD_VALUES] = new Set(spreadRootValues.filter((v) => !valuesToNeverSpread.has(v)));
 
   return fieldCategories;
 };
 
-export const segmentJsonFieldsByCategory = ({
-  defaultJsyncConfig,
+// categorizes a specific field as either ignore, force, or spread
+export const getFieldCategory = ({
+  defaultAction,
+  field,
+  fieldCategories,
+}: {
+  defaultAction: string,
+  field: string,
+  fieldCategories: ObjectOfSets,
+}): string =>
+  (fieldCategories[SPREAD_VALUES].has(field) && SPREAD_VALUES) ||
+  (fieldCategories[FORCE_VALUES].has(field) && FORCE_VALUES) ||
+  (fieldCategories[IGNORE_VALUES].has(field) && IGNORE_VALUES) ||
+  (availableActions.has(defaultAction) && defaultAction)
+  // $FlowIssue
+  || throwIt(`${defaultAction} is not a valid action`);
+
+// extracts each field in a json field
+// and assigns it to the category in the jsync config
+export const getFieldsByCategory = ({
+  config,
   fieldNames,
-  rootJsyncConfig,
   }: {
+    config: ObjectType,
     fieldNames: string[],
-    rootJsyncConfig: ObjectType,
-    defaultJsyncConfig: ObjectType,
   }
-): {
-  fieldCategories: ObjectOfStringArrays,
-  jsyncFieldCategories: ObjectType,
-} => {
-  const jsyncFieldCategories = getFieldCategories({
-    ...defaultJsyncConfig,
-    ...rootJsyncConfig
-  });
+): ObjectOfStrings => {
+  const fieldCategories = getFieldCategories(config);
 
-  console.info('\n\n jsyncFieldCategories', jsyncFieldCategories);
-
-  let category;
-  const fieldCategories = fieldNames.reduce(
-    (acc, k) =>
-      Object.assign(
-        acc,
-        ((category = getJsonFieldCategory(jsyncFieldCategories, k)),
-        {
-          [category]: acc[category].concat(k),
-        })
-      ),
-    { [SPREAD_VALUES]: [], [IGNORE_VALUES]: [], [FORCE_VALUES]: [] }
+  const fieldsByCategory = fieldNames.reduce(
+    (acc, field) => Object.assign(
+      acc,
+      {
+        [field]: getFieldCategory({
+          defaultAction: config.defaultAction,
+          field,
+          fieldCategories,
+          }),
+      }
+    ),
+    {}
   );
 
-  return {
-    fieldCategories,
-    jsyncFieldCategories
-  };
+  return fieldsByCategory;
 };
 
-export const syncJsonFields = ({
-  force = false,
+export const syncFields = ({
   fromJson,
-  keys,
   toJson,
-  jsyncFieldCategories,
+  fieldsByCategory,
 }: {
-  force: boolean,
   fromJson: ObjectType,
-  keys: string[],
   toJson: ObjectType,
-  jsyncFieldCategories: ObjectOfSets,
+  fieldsByCategory: ObjectOfStrings,
 }): ObjectType => {
   const jsonObj = {};
 
-  for (const k of keys) {
-    const rootValue = fromJson[k];
-    const childValue = toJson[k];
-    const missing = !(k in toJson);
+  for (const field in fieldsByCategory) {
+    const rootValue = fromJson[field];
+    const childValue = toJson[field];
+    const action = fieldsByCategory[field];
 
-    // takes priority over everything
-    // set the value if forced or missing
-    if (force || missing) {
-      jsonObj[k] = rootValue;
-
-      jsyncFieldCategories[IGNORE_VALUES].add(k);
+    switch(action) {
+      case FORCE_VALUES: {
+        jsonObj[field] = rootValue;
+        break;
+      }
+      case SPREAD_VALUES: {
+        if (Array.isArray(rootValue)) {
+          const childValueIsArray = Array.isArray(childValue);
+          if (!childValueIsArray) console.warn(`
+            ignoring child field "${field}": it should be an array to spread
+            received: ${childValue}
+          `);
+          jsonObj[field] = Array.from(new Set(rootValue.concat(childValueIsArray ? childValue : [])));
+        }
+        else if (isObject(rootValue)) {
+          const childValueIsObject = isObject(childValue);
+          if (!childValueIsObject) console.warn(`
+            ignoring child field "${field}": it should be an object to spread
+            received: ${childValue}
+          `);
+          jsonObj[field] = {
+            ...(childValueIsObject ? childValue : {}),
+            ...rootValue
+          };
+        }
+        else {
+          console.warn(`
+            ignoring root field "${field}": it should be array/object to spread
+            received: ${rootValue}
+          `);
+        }
+      }
     }
-
-    if (jsyncFieldCategories[IGNORE_VALUES].has(k)) continue;
-    // set the value only if missing: use force above to override
-    else if (isValue(rootValue)) {
-      if (isValue(childValue) && missing) jsonObj[k] = rootValue;
-      else jsonObj[k] = childValue;
-    }
-    // take set of root & child values
-    else if (Array.isArray(rootValue)) {
-      if (Array.isArray(childValue))
-        jsonObj[k] = Array.from(new Set(rootValue.concat(childValue || [])));
-      else jsonObj[k] = childValue;
-    }
-    // using rudimentary check for object
-    // but has to be an object based on previous checks
-    else if (isObject(rootValue)) {
-      if (isObject(childValue))
-        // root takes precedence to get updated values (if any) on subsequent runs
-        jsonObj[k] = { ...(childValue || {}), ...rootValue };
-      else jsonObj[k] = childValue;
-    }
-
-    jsyncFieldCategories[IGNORE_VALUES].add(k);
   }
 
   return jsonObj;
 };
 
 // creates a new json object with values from root and child
-export const syncJsonFiles = ({
-  childPkgJson,
-  defaultFieldCategory,
-  fieldCategories,
-  jsyncFieldCategories,
+export const syncFiles = ({
+  childJson,
+  config,
   rootJson,
 }: {
-  childPkgJson: ObjectType,
-  defaultFieldCategory: string,
-  fieldCategories: {[x: string]: string[]},
-  jsyncFieldCategories: {[x: string]: Set<string>},
+  childJson: ObjectType,
+  config: ObjectType,
   rootJson: ObjectType,
 }): ObjectType => {
-  // force values from root to child
-  const fieldsForced: ObjectType = syncJsonFields({
-    force: true,
-    fromJson: rootJson,
-    jsyncFieldCategories,
-    keys: fieldCategories[FORCE_VALUES],
-    toJson: childPkgJson.file,
+  // assign each rootJson field to a category
+  const fieldsByCategory: ObjectOfStrings = getFieldsByCategory({
+    config,
+    fieldNames: Object.keys(rootJson),
   });
 
-  // spread values from root to child
-  const fieldsSpread: ObjectType = syncJsonFields({
-    force: false,
+  // sync (ignore > force > spread) rootJson fields with childJson fields
+  const syncedFields: ObjectType = syncFields({
     fromJson: rootJson,
-    jsyncFieldCategories,
-    keys: fieldCategories[SPREAD_VALUES],
-    toJson: childPkgJson.file,
+    fieldsByCategory,
+    toJson: childJson,
   });
 
-  // handle remaining root fields not present in jsync config
-  // if we are not ignoring fields by default
-  const fieldsRemaining: ObjectType = defaultFieldCategory === IGNORE_VALUES
-    ? {}
-    : syncJsonFields({
-      force: defaultFieldCategory === FORCE_VALUES,
-      fromJson: rootJson,
-      jsyncFieldCategories,
-      keys: Object.keys(rootJson).filter((k) => !jsyncFieldCategories[IGNORE_VALUES].has(k)),
-      toJson: childPkgJson.file,
-    });
-
+  // override childJson fields with fields synced from rootJson
+  // then sort the object: by name, simple values before complex values
   return sortObject({
-    ...childPkgJson.file,
-    ...fieldsForced,
-    ...fieldsSpread,
-    ...fieldsRemaining,
+    ...childJson,
+    ...syncedFields
   });
 };

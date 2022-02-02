@@ -7,6 +7,9 @@
     // the total number of ancestor dirs to search for root
     // will throw err if not found
     "maxLookups": 3,
+    // the default action to take for fields
+    // spread | ignore | force
+    "defaultAction": "spreadRootValues",
     // list of root/package.json fields to always ignore UNLESS missing
     // we always force missing values from root to child
     // consumers (or more likely their tech leads) should be forced to pay attention to their source code
@@ -39,7 +42,6 @@
     // e.g. child.field: Object = { ...root.field, ...child.field }
     // e.g. child.field: Array = new Set([ ...root.field, ...child.field ])
     "spreadRootValues": [
-      "*", // spread all remaining values, * will only be in a single category
       // the below isnt needed since we use the * above
       // "private",
       // "browser",

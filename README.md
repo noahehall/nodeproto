@@ -25,7 +25,7 @@
 
 ### npm scripts
 
-- you can prepend `proto` or `proto:script` to any npm script, depending on your goals
+- you can prepend `proto` or `proto:script` before any npm script cmd to run in all packages
 
 ### uninstall
 
@@ -72,13 +72,11 @@
 ### running tests & lints
 
   ```sh
-    # run eslint, flow, & prettier
     pnpm proto repo:eslint # runs eslint flow & prettier
     pnpm proto flow # detailed flowtype analysis
-
-    # run tests
-    pnpm proto repo:test
-    pnpm proto:testing # watch & rerun tests
+    pnpm proto repo:test # run tests
+    pnpm repo:testing # watch & rerun tests in a single package
+    pnpm repo:test:file somefile # run a specific test file
 
   ```
 

@@ -14,11 +14,10 @@ import { SPREAD_VALUES } from './constants';
 
 import path from 'path';
 
-export const diskPath: string = path.resolve(dirname(import.meta.url), '..');
-export const JSYNC_CONFIG: Promise<ObjectType> = (await getPkgJsonc(diskPath))?.file?.jsync; // eslint-disable-line
+const importMetaUrl = import.meta.url;
 
-if (!JSYNC_CONFIG)
-  throwIt(`unable to find jsync config in ${diskPath} or ${process.env.JSYNC_CONFIG_PATH}`);
+export const diskPath: string = path.resolve(dirname((typeof importMetaUrl === 'string' ? importMetaUrl : process.cwd())), '..');
+export const internalConfigPromise: Promise<ObjectType> = getPkgJsonc(diskPath);
 
 export const getRootPkgJson = async ({
   maxLookups,
@@ -27,8 +26,8 @@ export const getRootPkgJson = async ({
   maxLookups: number,
   currentDir: string
 }): Promise<ObjectType> => {
-  if (!maxLookups) throwIt(
-    `unable to find root packageFile in getRootPkgJson`
+  if (maxLookups < 0) throwIt(
+    `unable to find root package.json, ending search in ${currentDir}`
   );
 
   const { file: json, path: jsonPath } = await getPkgJson(currentDir);
@@ -37,38 +36,44 @@ export const getRootPkgJson = async ({
     ? { json, jsonPath }
     : getRootPkgJson({
         currentDir: path.resolve(currentDir, '..'),
-        maxLookups: --maxLookups,
+        maxLookups: maxLookups - 1,
       });
 };
 
 export const childPkgJsonPath: string = process.env.CHILD_PKG_JSON_PATH || process.cwd();
 
-export const childPkgJson: Promise<ObjectType> = await getPkgJson(childPkgJsonPath);
+export const childPkgJsonPromise: Promise<ObjectType> = getPkgJson(childPkgJsonPath);
 
-// finalize child jsync config
-if (!childPkgJson?.file?.jsync)
-  throwIt(`invalid child package.json file: missing jsync property ${childPkgJson}`);
+/**
+ * @description
+ * spreads { default, root, child } jsync configs
+ */
+export const getFiles = async (): Promise<ObjectType> => {
+  const internalConfig = (await internalConfigPromise).file.jsync;
 
-let tempCategory: string = SPREAD_VALUES;
+  if (!internalConfig) throwIt(`unable to find internal jsync config @ path ${diskPath}`);
 
-export const getJsyncConfig = (): ObjectType => {
-  for (const key in childPkgJson.file.jsync) {
-    if (childPkgJson.file.jsync[key].includes?.('*')) {
-      if (!tempCategory) tempCategory = key;
-      childPkgJson.file.jsync[key] = childPkgJson.file.jsync[key].filter((k) => k !== '*');
-    }
-  }
+  const { json: { jsync: rootConfig, ...rootJson } } = await getRootPkgJson({
+    maxLookups: internalConfig.maxLookups,
+    currentDir: path.resolve(diskPath, '..'),
+  });
 
-  for (const key in JSYNC_CONFIG) {
-    if (JSYNC_CONFIG[key].includes?.('*')) {
-      if (!tempCategory) tempCategory = key;
-      JSYNC_CONFIG[key] = JSYNC_CONFIG[key].filter((k) => k !== '*');
-    }
-  }
+  if (!rootConfig || !rootJson) throwIt(`unable to find root pkgJson @ path ${diskPath}`);
+
+  const { file: childJson } = await childPkgJsonPromise;
+
+
+  if (!childJson) throwIt(`unable to find child pkgJson @ path ${childPkgJsonPath}`);
+
+  if (!childJson.jsync) throwIt(`child pkgJson does not have jsync config @ path ${childPkgJsonPath}`);
 
   return {
-    ...JSYNC_CONFIG,
-    ...childPkgJson.file.jsync,
-    DEFAULT_CATEGORY: tempCategory
+    config: {
+      ...internalConfig,
+      ...rootConfig,
+      ...childJson.jsync,
+    },
+    rootJson,
+    childJson,
   };
 };

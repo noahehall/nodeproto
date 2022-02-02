@@ -3,48 +3,23 @@
 import { logIt, noop, throwIt } from '@nodeproto/shared';
 import type { ObjectType } from '@nodeproto/shared';
 
-import {
-  childPkgJson,
-  childPkgJsonPath,
-  diskPath,
-  getJsyncConfig,
-  getRootPkgJson,
-} from './getFiles';
-
-import { FORCE_VALUES, IGNORE_VALUES, SPREAD_VALUES } from './constants';
-import { segmentJsonFieldsByCategory, syncJsonFiles } from './syncFiles';
+import { childPkgJsonPath, getFiles } from './getFiles';
+import { syncFiles } from './syncFiles';
 
 import fs from 'fs-extra';
 import path from 'path';
 
-const { DEFAULT_CATEGORY, ...defaultJsyncConfig }: {
-  DEFAULT_CATEGORY: string,
-  defaultJsyncConfig: ObjectType,
-} = getJsyncConfig();
-
-// get jsync config from parent json file
-const {
-  json: { jsync: rootJsyncConfig, ...rootJson },
-}: {
-  rootJsyncConfig: ObjectType,
+const { childJson, config, rootJson }: {
+  childJson: ObjectType,
+  config: ObjectType,
   rootJson: ObjectType,
-} = await getRootPkgJson({ // eslint-disable-line
-  maxLookups: defaultJsyncConfig.maxLookups,
-  currentDir: path.resolve(diskPath, '..'), // start in parent dir
-});
+  // flow/eslint errs on top-level await, not a blocker just an inconvenience
+} = await getFiles(); // eslint-disable-line
 
-// get fieldCategories for the rootJson file and the jsync config
-const { fieldCategories, jsyncFieldCategories } = segmentJsonFieldsByCategory({
-  defaultJsyncConfig,
-  fieldNames: Object.keys(rootJson),
-  rootJsyncConfig,
-});
 
-const newJsonFile: ObjectType = syncJsonFiles({
-  childPkgJson,
-  defaultFieldCategory: DEFAULT_CATEGORY,
-  fieldCategories,
-  jsyncFieldCategories,
+const newJsonFile: ObjectType = syncFiles({
+  childJson,
+  config,
   rootJson,
 });
 
