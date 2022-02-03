@@ -23,7 +23,23 @@ import type {
   WebpackPluginInstance,
 } from 'webpack';
 
-export type PkgJsonType = ObjectType;
+export type acceptableNodEnvs = 'development' | 'production';
+
+export type PkgJsonType = {
+  config: {
+    PATH_DIST: string,
+    PATH_SRC: string,
+    NODE_ENV: acceptableNodEnvs
+  },
+  main: string, // path to index.js|index.cjs,
+  module: string, // path to index.mjs
+  name: string,
+  type: string,
+  version: string,
+  dependencies: { [string]: string },
+  devDependencies: { [string]: string },
+  ...
+};
 export type WebpackPluginType = WebpackPluginInstance | WebpackPluginFunction;
 
 // @see copypasta from flow-typed/npm/webpack_v5.x.x.js
@@ -36,36 +52,17 @@ export type WebpackInfrastructureLoggingType = {
     | Array<string | RegExp | ((string) => boolean)>,
 };
 
-export type WebpackConfigType = WebpackOptions & {
-  configFile?: boolean | string,
-  context?: string,
-  entry?: Entry,
-  experiments?: ObjectType,
-  extensions?: string[],
-  htmlOptions?: ObjectType,
-  infrastructureLogging?: WebpackInfrastructureLoggingType,
-  mainFields?: ArrayOfStringOrStringArrayValues,
-  mode?: string,
-  module?: ModuleOptions,
-  optimization?: OptimizationOptions,
-  output?: OutputOptions,
-  outputDir?: string,
-  plugins?: WebpackPluginType[],
-  publicPath?: string,
-  stats?: StatsOptions,
-  ...
-}
+export type WebpackConfigType = WebpackOptions;
 
 export type NodeprotoPackType = {
-  APP_NAME: string,
+  builtinModules: string[],
   CLIENT_PORT?: number,
+  ifDev?: boolean,
+  ifProd?: boolean,
   pathDist: string,
   pathSrc: string,
   pkgJson: PkgJsonType,
-  writeToDisk: boolean,
-  builtinModules: string[],
-  ifDev?: boolean,
-  ifProd?: boolean,
+  writeToDisk?: boolean,
 };
 
 export type NodeprotoWebpackServerType = {
@@ -93,21 +90,28 @@ export type NodeprotoEsbuildServerTrackerType = Map<string[], NodeprotoEsbuildSe
 
 export type EsbuildPluginOptions = ObjectType;
 
-export type WebpackSetupType = WebpackConfigType & {
+export type BaseWebpackType = {
+  configFile?: boolean | string,
+  context?: string,
+  copyOptions?: ObjectType,
+  entry: Entry,
   entryPush?: string[],
   entryUnshift?: string[],
-  IS_DEV?: boolean,
-  IS_PROD?: boolean,
-  NODE_ENV?: string,
-  pack?: NodeprotoPackType,
-  PATH_DIST?: string,
-  PATH_SRC?: string,
-  pathDist?: string,
-  pathSrc?: string,
-  pkgJsonPath?: string,
-  copyOptions?: EsbuildPluginOptions,
+  NODE_ENV?: acceptableNodEnvs,
+  cache?: boolean | ObjectType,
   processEnv?: ObjectType,
-  basePlugins?: WebpackPluginType[],
+
+  experiments?: ObjectType,
+  htmlOptions?: ObjectType,
+  infrastructureLogging?: WebpackInfrastructureLoggingType,
+  mode?: acceptableNodEnvs | 'none',
+  module?: ModuleOptions,
+  optimization?: OptimizationOptions,
+
+  outputDir?: string,
+
+  publicPath?: string,
+  stats?: StatsOptions,
   stringReplaceLoader?: ObjectType,
   ...
 }

@@ -334,6 +334,7 @@ importers:
       '@emotion/styled': 11.6.0
       '@nodeproto/configproto': workspace:0.0.0
       '@nodeproto/jsync': workspace:0.0.0
+      '@nodeproto/shared': 0.0.0
       '@nodeproto/testproto': workspace:0.0.0
       '@nodeproto/wtf': workspace:0.0.0
       '@octokit/core': 3.5.1
@@ -391,6 +392,7 @@ importers:
       '@babel/traverse': 7.16.10
       '@emotion/styled': 11.6.0_@babel+core@7.16.12+react@17.0.2
       '@nodeproto/configproto': link:../configproto
+      '@nodeproto/shared': link:../shared
       '@nodeproto/wtf': link:../wtf
       babel-loader: 8.2.3_e748cba1f5e972defd8ae51292b4033f
       browserslist: 4.19.1

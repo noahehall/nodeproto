@@ -4,7 +4,7 @@ import { fsproto } from '@nodeproto/wtf';
 
 import esbuild from 'esbuild';
 
-import { throwIt } from '@nodeproto/configproto';
+import { throwIt } from '@nodeproto/shared';
 
 import type {
   EsbuildConfigType,

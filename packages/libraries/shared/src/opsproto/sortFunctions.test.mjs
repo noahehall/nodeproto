@@ -3,8 +3,6 @@
 import * as t from '@nodeproto/testproto/t';
 
 import {
-  isObject,
-  isValue,
   sortArraysAndObjects,
   sortObject,
   sortSimpleThenComplexDataTypes,
@@ -13,32 +11,6 @@ import {
 const test = t.suite('@nodeproto/shared: sortFunctions.mjs');
 
 const { assert } = t;
-
-test('isObject', () => {
-  assert.isFalse(isObject(''));
-  assert.isFalse(isObject(0));
-  assert.isFalse(isObject(false));
-  assert.isFalse(isObject(null));
-  assert.isFalse(isObject(true));
-  assert.isFalse(isObject(undefined));
-  assert.isTrue(isObject([]));
-  assert.isTrue(isObject({}));
-  assert.isTrue(isObject(new Map()));
-  assert.isTrue(isObject(new Set()));
-});
-
-test('isValue', () => {
-  assert.isTrue(isValue(''));
-  assert.isTrue(isValue(0));
-  assert.isTrue(isValue(false));
-  assert.isTrue(isValue(null));
-  assert.isTrue(isValue(true));
-  assert.isTrue(isValue(undefined));
-  assert.isFalse(isValue([]));
-  assert.isFalse(isValue({}));
-  assert.isFalse(isValue(new Map()));
-  assert.isFalse(isValue(new Set()));
-});
 
 test('sortSimpleThenComplexDataTypes', () => {
   const sorted = Object.entries({

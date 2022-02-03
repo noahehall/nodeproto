@@ -22,29 +22,18 @@ export const urlToPath = (importMetaUrlOrPath: string): string => fileURLToPath(
 
 export const resolve = async (
   relativeFilePath: string,
-  importMetaOrPath: ImportMetaType | string,
+  importMetaOrPath?: ImportMetaType | string,
 ): Promise<string | void> => {
-  if (isEsm()) {
-    if (typeof importMetaOrPath === 'string' || !importMetaOrPath.resolve || !importMetaOrPath.url)
-      throwIt(
-        'import.meta is required in esm: resolve(relativeFilePath, import.meta)' +
-          '\nensure to run node with --experimental-import-meta-resolve' +
-          '\n@see https://nodejs.org/api/esm.html#esm_import_meta_resolve_specifier_parent'
-      );
-    else {
-      const absoluteFileUrl = await importMetaOrPath.resolve(
-        relativeFilePath,
-        importMetaOrPath.url
-      ).catch(() => void 0);
-
-      return absoluteFileUrl ? urlToPath(absoluteFileUrl) : undefined;
-    }
-  }
-
-  if (typeof importMetaOrPath === 'string')
+  if (!relativeFilePath) throwIt('relativeFilePath is required');
+  else if (!importMetaOrPath)
+    return path.resolve(relativeFilePath);
+  else if (typeof importMetaOrPath === 'string')
     return path.resolve(path.dirname(importMetaOrPath), relativeFilePath);
-
-  throwIt('path is required in cjs: resolve(relativeFilePath, path)');
+  else if (importMetaOrPath.resolve && importMetaOrPath.url)
+      return importMetaOrPath
+        .resolve(relativeFilePath, importMetaOrPath.url)
+        .then(absoluteFileUrl => urlToPath(absoluteFileUrl))
+        .catch(() => console.info(`could not resolve file: ${relativeFilePath}`));
 };
 
 export const getFsproto = (disk: boolean = true): ObjectType => {
@@ -58,6 +47,7 @@ export const getFsproto = (disk: boolean = true): ObjectType => {
         files.map(({ filename, encoding = 'utf8' }) => fs.readFile(filename, encoding))
       );
     },
+    readFileSync: fs.readFileSync,
     writeFile: async (...opts: any[]): Promise<void> => {
       try {
         await fs.ensureDir(path.dirname(opts[0]));

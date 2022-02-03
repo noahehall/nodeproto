@@ -12,7 +12,7 @@ export const stripExt = (name: string): string => {
   const extension = path.extname(name);
 
   return extension ? name.slice(0, -extension.length) : name;
-}
+};
 
 export const esMain = (importMetaUrl: string): boolean => {
   const modulePath = fileURLToPath(importMetaUrl);
@@ -21,4 +21,4 @@ export const esMain = (importMetaUrl: string): boolean => {
   const scriptExt = path.extname(scriptPath);
 
   return scriptExt ? (modulePath === scriptPath) : stripExt(modulePath) === scriptPath;
-}
+};

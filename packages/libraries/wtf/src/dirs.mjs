@@ -9,6 +9,7 @@ import symlinkDir from 'symlink-dir';
 import xdg from '@folder/xdg';
 
 import type { ObjectType } from '@nodeproto/configproto/libdefs';
+
 const { external, ...internal } = wtfShared;
 
 export const getDirs = (overrides: ObjectType = {}): ObjectType => {

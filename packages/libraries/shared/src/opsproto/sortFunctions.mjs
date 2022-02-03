@@ -1,11 +1,8 @@
 // @flow
 
-import type { ArrayType, ObjectType } from '@nodeproto/configproto/libdefs'; // eslint-disable-line
+import { isObject, isString, isValue } from './utility';
 
-// specificall []|{}|[weak](map|set)
-export const isObject = (v: mixed): boolean => typeof v === 'object' && typeof v !== 'boolean' && !!v;
-// basically anything that isnt considered an object
-export const isValue = (v: mixed): boolean => !isObject(v);
+import type { ArrayType, ObjectType } from '@nodeproto/configproto/libdefs'; // eslint-disable-line
 
 // @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare
 export const sortSimpleThenComplexDataTypes = (a: any, b :any): number => {

@@ -6,10 +6,10 @@ import webpack from 'webpack';
 import { baseWebpackConfig } from './base.webpack.config';
 
 import type {
+  BaseWebpackType,
   ObjectType,
   WebpackConfigType,
   WebpackPluginType,
-  WebpackSetupType,
 } from '../../libdefs';
 
 export const getHtmlWebpackPlugin = (
@@ -48,7 +48,7 @@ export const reactDevWebpackConfig = ({
   ].filter((x) => x),
 
   ...rest
-}: WebpackSetupType): WebpackConfigType => {
+}: BaseWebpackType): WebpackConfigType => {
   const basePlugins = entryUnshift.some((e) => e.includes('webpack-hot'))
       ? [new webpack.HotModuleReplacementPlugin()]
       : [];

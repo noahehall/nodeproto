@@ -34,7 +34,14 @@ test('resolve', async () => {
 });
 
 test('getFsproto', () => {
-  const interfaceContract = ['fs', 'readFile', 'readFiles', 'writeFile', 'writeFiles'];
+  const interfaceContract = [
+    'fs',
+    'readFile',
+    'readFiles',
+    'readFileSync',
+    'writeFile',
+    'writeFiles',
+  ];
 
   // when persisting to disk
   assert.hasAllKeys(getFsproto(true), interfaceContract);

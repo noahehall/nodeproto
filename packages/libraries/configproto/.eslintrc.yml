@@ -136,7 +136,7 @@ rules:
   node/no-unpublished-require: warn
   padded-blocks: [error, never]
   prefer-named-capture-group: 0 # performance
-  prefer-object-spread: error
+  prefer-object-spread: 0
 
   sort-imports:
     - error

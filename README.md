@@ -45,7 +45,7 @@
   # dependencies
   pnpm install
   pnpm proto repo:cp:configproto
-  pnpm proto repo:flowtyped:install
+  pnpm proto repo:flowtyped:install # also useful for updating typedefs across dependent packages
 
   # introspection
   pnpm repo:deps

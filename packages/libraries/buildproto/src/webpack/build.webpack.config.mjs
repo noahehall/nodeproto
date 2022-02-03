@@ -1,6 +1,6 @@
 // @flow
 
-import { throwIt } from '@nodeproto/configproto';
+import { throwIt } from '@nodeproto/shared';
 import webpack from 'webpack';
 
 import { testCompiler } from './test.compiler';

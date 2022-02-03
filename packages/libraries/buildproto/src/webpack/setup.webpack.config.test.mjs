@@ -1,28 +1,25 @@
-// $FlowTODO
-import * as t from "@nodeproto/testproto";
-import setupWebpackConfig from "./setup.webpack.config";
+import * as t from '@nodeproto/testproto/t';
+
+import { setupWebpackConfig } from '@nodeproto/buildproto';
 
 const { assert } = t;
 
-const test = t.suite("setup.webpack.config");
+const test = t.suite('setup.webpack.config');
 
-test("throws", () => {
-  assert.throws(
-    () => setupWebpackConfig({ pkgJsonPath: "./doesnt.exist.here.json" }),
-    /no such file or directory/,
-    "if incorrect pkgJsonPath"
-  );
-});
+test('setupWebpackConfig', async () => {
+  setupWebpackConfig({ context: './not/abs/path' }).catch((e) => {
+    assert.equal(e.message, 'dirpath must be absolute');
+  });
 
-test("is okay", () => {
-  const { pack, config } = setupWebpackConfig();
+  setupWebpackConfig({ context: '/dir/without/package/json' }).catch((e) => {
+    assert.match(e.message, /could not find package.json/);
+  });
 
-  assert.isObject(
-    config,
-    "returns config object suitable for a webpack compilation"
-  );
+  const { pack, config } = await setupWebpackConfig();
 
-  assert.isObject(pack, "returns pack object with environment data & fns");
+  assert.isObject(config, 'returns webpack config');
+
+  assert.isObject(pack, 'returns pack object with environment data & fns');
 });
 
 test.run();

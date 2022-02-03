@@ -5,12 +5,15 @@ import { BundleStatsWebpackPlugin } from 'bundle-stats-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
 import svgToMiniDataURI from 'mini-svg-data-uri';
 
+import { setupWebpackConfig } from './setup.webpack.config';
+
 import type {
+  BaseWebpackType,
   NodeprotoPackType,
   ObjectType,
   WebpackConfigType,
+  WebpackOptions,
   WebpackPluginType,
-  WebpackSetupType,
 } from '../../libdefs';
 
 export const getDefaultPlugins = ({ copyOptions }: ObjectType ): WebpackPluginType[] =>
@@ -143,45 +146,24 @@ const getCache = (
     : cache; // use whatever they send
 };
 
-export const baseWebpackConfig = ({
-  // defaults
-  // externalsConfig = { modulesFromFile: true }, // verify this
-  // sideEffects = ['./app/components/**/*.js', '*.css'], doesnt work like in pkgjson, keep this comment
-
-  // required
-  entry,
-
-  copyOptions, // @see https://stackoverflow.com/questions/49852038/copy-files-with-copywebpackplugin
-  pack = {}, // provided by setup.webpack.config.mjs
-  configFile = false, // todo: absolute path to a babelConfigFile
-
-  // other shit
+// consumers should import this instead of setupWebpackConfig
+// everything here affects the output of webpack and not webpack itself
+export const baseWebpackConfig = async ({
   cache = false,
-  context = process.cwd(), // you generally want to pass this in and not rely on process.cwd()
+  configFile = false,
+  context = process.cwd(),
+  copyOptions, // @see https://stackoverflow.com/questions/49852038/copy-files-with-copywebpackplugin
+  entry,
   entryPush = [],
   entryUnshift = [],
-  extensions = ['.mjs', '.js', '.jsx', '.jsx', '.json'],
-  externals = [],
-  mainFields = ['module', 'browser', 'main'], // TODO: confirm this
-  mode = 'development',
-  optimization = {},
-  output = {},
-  plugins = [],
+  NODE_ENV = 'development',
   processEnv = {},
-  publicPath = 'auto', // @see https://webpack.js.org/guides/public-path/#automatic-publicpath
-  stats = 'summary',
-  target = 'web',
 
-  // dependent1
-  basePlugins = getDefaultPlugins({ copyOptions }),
-  devtool = pack.ifProd ? 'hidden-source-map' : 'eval-source-map',
-  // deps = Object.keys(pkgJson.dependencies || {}),
-  // peerDeps = Object.keys(pkgJson.peerDependencies || {}),
+  ...rest
+}: BaseWebpackType ): Promise<WebpackConfigType> => {
+  const { config, pack } = await setupWebpackConfig({ context, NODE_ENV });
 
-  // loaders
-  // should always be last to use defaults and dependents
-  stringReplaceLoader = {
-    // test: /\.(html|m?js)$/, // doesnt work when part of use: []
+  const stringReplaceLoader = {
     loader: 'string-replace-loader', // we use this instead of dotenv-webpack
     options: {
       multiple: Object.entries(processEnv).map(([search, replace]) => ({
@@ -189,57 +171,61 @@ export const baseWebpackConfig = ({
         replace,
       })),
     },
-  },
+  };
 
   // @see https://webpack.js.org/configuration/experiments/#root
-  experiments = {
+  const experiments = {
     // futureDefaults: false,
     asyncWebAssembly: true, // make a webassembly module an async module
-    buildHttp: true, // build remote resource that begin with http(s)
+    // buildHttp: false, // build remote resources (security issue)
     cacheUnaffected: true,
     layers: true,
     lazyCompilation: false,
     outputModule: false,
     syncWebAssembly: false,
     topLevelAwait: true,
-  },
+  };
 
-  ...rest
-}: WebpackSetupType ): WebpackConfigType => ({
-    ...rest,
-    cache: getCache(cache, pack),
-    context,
-    devtool,
-    entry: Array.isArray(entry) ? entryUnshift.concat(entry, entryPush).filter((e) => e) : entry,
-    experiments,
-    externals: (pack.builtinModules || []).concat(externals),
-    infrastructureLogging: {
-      // TODO: add this to fn params for overriding
-      // @see https://webpack.js.org/configuration/other-options/#infrastructurelogging
-      level: 'info',
+  return Object.assign(
+    {},
+    config,
+    {
+      cache: getCache(cache, pack),
+      context,
+      devtool: pack.ifProd ? 'hidden-source-map' : 'eval-source-map',
+      entry: Array.isArray(entry) ? entryUnshift.concat(entry, entryPush).filter((e) => e) : entry,
+      experiments,
+      externals: pack.builtinModules,
+      infrastructureLogging: {
+        // TODO: add this to fn params for overriding
+        // @see https://webpack.js.org/configuration/other-options/#infrastructurelogging
+        level: 'info',
+      },
+      // use to be [generateLoaders...]
+      module: {
+        // $FlowFixMe[incompatible-return]
+        rules: Object.values(generateLoaders({
+          stringReplaceLoader,
+          configFile,
+          })).filter((x) => x),
+      },
+      output: {
+        charset: true,
+        chunkFilename: '[name].chunk.js',
+        clean: false, // just do this manually
+        compareBeforeEmit: true, // dont emit files if the file already exists with same content
+        filename: '[name].js',
+        path: pack.pathDist,
+        publicPath: 'auto', // @see https://webpack.js.org/guides/public-path/#automatic-publicpath
+      },
+      plugins: getDefaultPlugins({ copyOptions }),
+      resolve: {
+        extensions: ['.mjs', '.js', '.json', '.cjs'],
+        mainFields: ['module', 'main'],
+      },
+      stats: 'summary',
+      target: 'web',
     },
-    mode,
-    // use to be [generateLoaders...]
-    module: {
-      // $FlowFixMe[incompatible-return]
-      rules: Object.values(generateLoaders({
-        stringReplaceLoader,
-        configFile
-        })).filter((x) => x),
-    },
-    optimization,
-    output: {
-      charset: true,
-      chunkFilename: '[name].chunk.js',
-      clean: false, // just do this manually
-      compareBeforeEmit: true, // dont emit files if the file already exists with same content
-      filename: '[name].js',
-      path: pack.pathDist,
-      publicPath,
-      ...output,
-    },
-    plugins: plugins.concat(basePlugins).filter((x) => x),
-    resolve: { extensions, mainFields },
-    stats,
-    target,
-  });
+    rest
+  );
+};
