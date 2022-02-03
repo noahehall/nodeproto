@@ -4,7 +4,11 @@ import { dirs, resolve } from '@nodeproto/wtf';
 import { builtinModules } from 'module';
 import { throwIt } from '@nodeproto/shared';
 
-import { createOptimization } from './utility.webpack.config';
+import {
+  createOptimization,
+  experiments,
+  infrastructureLogging,
+} from './utility.webpack.config';
 
 import type {
   NodeprotoPackType,
@@ -39,6 +43,8 @@ export const setupWebpackConfig = async ({
   return {
     config: {
       context,
+      experiments,
+      infrastructureLogging,
       mode,
       optimization: createOptimization(ifProd, pathDist),
     },

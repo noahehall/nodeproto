@@ -1,9 +1,19 @@
 // @flow
 import os from 'os';
 
+import { BundleStatsWebpackPlugin } from 'bundle-stats-webpack-plugin';
+import CopyPlugin from 'copy-webpack-plugin';
+import svgToMiniDataURI from 'mini-svg-data-uri';
+
+
 import type {
+  BaseWebpackType,
+  NodeprotoPackType,
   ObjectType,
   OptimizationOptions,
+  WebpackConfigType,
+  WebpackOptions,
+  WebpackPluginType,
 } from '../../libdefs';
 
 const vendors = {
@@ -126,3 +136,166 @@ export const createTerserPlugin = (
       test: /\.(m|c)+js$/i,
     }),
   ];
+
+
+// tests needed pass this line
+
+export const getDefaultPlugins = (copyOptions?: ObjectType): WebpackPluginType[] =>
+  [
+    // @see https://github.com/relative-ci/bundle-stats/tree/master/packages/webpack-plugin
+    new BundleStatsWebpackPlugin({
+      baseline: false,
+      compare: false,
+      html: true,
+      json: false,
+      outDir: '../bundlestats',
+      silent: false,
+    }),
+
+    // @see https://stackoverflow.com/questions/49852038/copy-files-with-copywebpackplugin
+    copyOptions && new CopyPlugin(copyOptions),
+  ].filter(Boolean);
+
+// @see https://webpack.js.org/guides/asset-modules/
+// @see https://webpack.js.org/configuration/output/#template-strings
+// asset/resource: emit separate file (e.g. file-loader)
+// asset/inline: export data uri (e.g. url-loader)
+// asset/source: export source code (e.g. raw-loader)
+// asset: automatically choose (e.g. url-loader with asset size limit)
+export const getAssetLoaders = (): ObjectType => ({
+  fontLoader: {
+    test: /\.(eot|otf|ttf|woff|woff2)$/,
+    type: 'asset/resource',
+    generator: { filename: '[file][query]' },
+  },
+  imageLoader: {
+    test: /\.(jpg|png|gif)$/,
+    type: 'asset/resource',
+    generator: { filename: '[file][query]' },
+  },
+  svgLoader: {
+    test: /\.svg$/,
+    type: 'asset/inline',
+    generator: {
+      filename: '[file][query]',
+      dataUrl: (content) => svgToMiniDataURI(content.toString()),
+    },
+  },
+  videoLoader: {
+    test: /\.(mp4|webm)$/,
+    type: 'asset/resource',
+    generator: { filename: '[file][query]' },
+  },
+});
+
+export const generateLoaders = ({ processEnv, configFile }: {
+  configFile: boolean | string,
+  processEnv: ObjectType,
+}): any[] => Object.values({
+  ...getAssetLoaders(),
+  cssExternalLoader: {
+    test: /\.css$/,
+    include: /node_modules/,
+    use: ['style-loader', 'css-loader'],
+  },
+
+  cssInternalLoader: {
+    test: /\.css$/,
+    exclude: /node_modules/,
+    use: ['style-loader', 'css-loader'],
+  },
+
+  // @see https://github.com/webpack/webpack/issues/11467
+  esmLoader: {
+    test: /\.m?js$/,
+    type: 'javascript/auto',
+    // include: /node_modules/,
+    resolve: { fullySpecified: false },
+  },
+
+  jsLoader: {
+    exclude: /node_modules/,
+    // be careful if you do this
+    // you will be hunting for a bug wondering why some files are throwing errors
+    // instead of being compiled if you import a file outside of the pathSrc
+    // include: [pathSrc],
+    test: /\.(c|m)?jsx?$/,
+    type: 'javascript/auto',
+    use: [
+      {
+        loader: 'babel-loader',
+        options: {
+          sourceType: 'unambiguous',
+          configFile: configFile || './node_modules/@nodeproto/configproto/src/babel/flow.babelrc',
+        },
+      },
+      getStringReplaceLoader(processEnv),
+    ],
+  },
+}).filter(Boolean);
+
+// @see https://webpack.js.org/configuration/cache/
+export const getCache = (
+  cache: boolean | ObjectType,
+  pack: NodeprotoPackType,
+): boolean | ObjectType => {
+  return !cache // disable|production
+    ? false
+    : typeof cache === 'boolean' // use our defaults for devlepoment|production
+    ? {
+        // TODO: should return settings appropriate for prod if mode === 'production'
+
+        // options only for type:memory
+        // maxGenerations: 10
+        // cacheUnaffected: true,
+
+        // enabled for development
+        // cacheDirectory: 'node_modules/.cache/webpack', // use webpack defualts
+        // cacheLocation: 'name_of_app', // use webpack default
+        allowCollectingMemory: true,
+        // buildDependencies: { config: ['webpack/lib', pack.pathSrc] },
+        compression: false,
+        hashAlgorithm: 'md4',
+        idleTimeout: 60000,
+        idleTimeoutAfterLargeChanges: 1000,
+        idleTimeoutForInitialStore: 0,
+        maxAge: 5184000000 / 4, // 7 days
+        maxMemoryGenerations: 10,
+        memoryCacheUnaffected: true,
+        name: pack.pkgJson.name,
+        profile: true,
+        store: 'pack',
+        type: 'filesystem',
+        version: pack.pkgJson.version,
+      }
+    : cache; // use whatever they send
+};
+
+export const getStringReplaceLoader = (processEnv: ObjectType): ObjectType => ({
+    loader: 'string-replace-loader', // we use this instead of dotenv-webpack
+    options: {
+      multiple: Object.entries(processEnv).map(([search, replace]) => ({
+        search,
+        replace,
+      })),
+    },
+  });
+
+// @see https://webpack.js.org/configuration/experiments/#root
+export const experiments = {
+  // futureDefaults: false,
+  asyncWebAssembly: true, // make a webassembly module an async module
+  // buildHttp: false, // build remote resources (security issue)
+  cacheUnaffected: true,
+  layers: true,
+  lazyCompilation: false,
+  outputModule: false,
+  syncWebAssembly: false,
+  topLevelAwait: true,
+};
+
+export const infrastructureLogging = {
+  // TODO:
+  // @see https://webpack.js.org/configuration/other-options/#infrastructurelogging
+  level: 'info',
+};
