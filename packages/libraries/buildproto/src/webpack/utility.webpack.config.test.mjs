@@ -5,6 +5,12 @@ import {
   createOptimization,
   createSplitChunks,
   createTerserPlugin,
+  generateLoaders,
+  getAssetLoaders,
+  getCache,
+  getDefaultPlugins,
+  getStringReplaceLoader,
+  getWebpackExperiments,
 } from '@nodeproto/buildproto';
 
 const { assert } = t;

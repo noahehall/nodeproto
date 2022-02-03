@@ -14,7 +14,6 @@ import type {
   WebpackOptions,
 } from '../../libdefs';
 
-
 // everything here affects the output of webpack and not webpack itself
 export const baseWebpackConfig = async ({
   cache = false,

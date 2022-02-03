@@ -6,8 +6,8 @@ import { throwIt } from '@nodeproto/shared';
 
 import {
   createOptimization,
-  experiments,
-  infrastructureLogging,
+  getInfrastructureLogging,
+  getWebpackExperiments,
 } from './utility.webpack.config';
 
 import type {
@@ -43,8 +43,8 @@ export const setupWebpackConfig = async ({
   return {
     config: {
       context,
-      experiments,
-      infrastructureLogging,
+      experiments: getWebpackExperiments(),
+      infrastructureLogging: getInfrastructureLogging(),
       mode,
       optimization: createOptimization(ifProd, pathDist),
     },

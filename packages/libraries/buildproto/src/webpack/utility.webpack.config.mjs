@@ -5,7 +5,6 @@ import { BundleStatsWebpackPlugin } from 'bundle-stats-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
 import svgToMiniDataURI from 'mini-svg-data-uri';
 
-
 import type {
   BaseWebpackType,
   NodeprotoPackType,
@@ -16,7 +15,7 @@ import type {
   WebpackPluginType,
 } from '../../libdefs';
 
-const vendors = {
+const cacheGroupBaseParams = {
   chunks: 'all',
   enforce: true,
   filename: 'js/[name]/bundle.js',
@@ -25,7 +24,7 @@ const vendors = {
 
 export const createCacheGroups = (): ObjectType => ({
   babel: {
-    ...vendors,
+    ...cacheGroupBaseParams,
     idHint: '3',
     priority: -8,
     test: /[\\/]node_modules[\\/].*babel.*[\\/]/,
@@ -37,25 +36,25 @@ export const createCacheGroups = (): ObjectType => ({
     reuseExistingChunk: true,
   },
   etc: {
-    ...vendors,
+    ...cacheGroupBaseParams,
     idHint: '5',
     priority: -10,
     test: /[\\/]node_modules[\\/]/,
   },
   react: {
-    ...vendors,
+    ...cacheGroupBaseParams,
     idHint: '4',
     priority: -9,
     test: /[\\/]node_modules[\\/].*react.*[\\/]/,
   },
   styled: {
-    ...vendors,
+    ...cacheGroupBaseParams,
     idHint: '1',
     priority: -6,
     test: /[\\/]node_modules[\\/](animate|normalize|styled|milligram).*[\\/]/,
   },
   support: {
-    ...vendors,
+    ...cacheGroupBaseParams,
     idHint: '2',
     priority: -7,
     test: /[\\/]node_modules[\\/](reakit|react-aria|@reach).*[\\/]/,
@@ -282,7 +281,7 @@ export const getStringReplaceLoader = (processEnv: ObjectType): ObjectType => ({
   });
 
 // @see https://webpack.js.org/configuration/experiments/#root
-export const experiments = {
+export const getWebpackExperiments = (): ObjectType => ({
   // futureDefaults: false,
   asyncWebAssembly: true, // make a webassembly module an async module
   // buildHttp: false, // build remote resources (security issue)
@@ -292,10 +291,10 @@ export const experiments = {
   outputModule: false,
   syncWebAssembly: false,
   topLevelAwait: true,
-};
+});
 
-export const infrastructureLogging = {
+export const getInfrastructureLogging = (): ObjectType => ({
   // TODO:
   // @see https://webpack.js.org/configuration/other-options/#infrastructurelogging
   level: 'info',
-};
+});
