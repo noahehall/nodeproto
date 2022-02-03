@@ -1,14 +1,17 @@
 import * as t from '@nodeproto/testproto/t';
 
 import {
+  combineArrays,
   createCacheGroups,
   createOptimization,
   createSplitChunks,
   createTerserPlugin,
+  generateBasePlugins,
   generateLoaders,
   getAssetLoaders,
   getCache,
   getDefaultPlugins,
+  getHtmlWebpackPlugin,
   getInfrastructureLogging,
   getStringReplaceLoader,
   getWebpackExperiments,
@@ -160,6 +163,52 @@ test('getInfrastructureLogging', () => {
 
   assert.isObject(logging);
   assert.hasAllKeys(logging, ['level']);
+});
+
+test('combineArrays', () => {
+  const startArray = [1, 2, 3];
+  const baseArray = [4, 5, 6];
+  const endArray = [7, 8, 9];
+
+  const combined = combineArrays(baseArray, startArray, endArray);
+
+  assert.isArray(combined);
+  assert.deepEqual(combined, [1, 2, 3, 4, 5, 6, 7, 8, 9]);
+});
+
+test('getHtmlWebpackPlugin', () => {
+  const htmlWebpackPlugin = getHtmlWebpackPlugin();
+
+  const expectedContract = {
+    userOptions: { inject: true },
+    version: 5,
+  };
+
+  assert.isArray(htmlWebpackPlugin);
+  assert.isObject(htmlWebpackPlugin[0]);
+  assert.deepEqual(htmlWebpackPlugin[0], expectedContract);
+
+  const multipleHtmlFiles = getHtmlWebpackPlugin(Array(5).fill({}));
+
+  assert.isArray(htmlWebpackPlugin);
+
+  multipleHtmlFiles.forEach((htmlPlugin) => {
+    assert.isObject(htmlPlugin);
+    assert.deepEqual(htmlPlugin, expectedContract);
+  });
+});
+
+test('generateBasePlugins', () => {
+  const plugins = generateBasePlugins();
+
+  assert.isArray(plugins);
+  plugins.forEach((plugin) => assert.isObject(plugin));
+
+  const pluginsToPush = [{}, {}];
+  const withPlugins = generateBasePlugins({}, pluginsToPush);
+
+  withPlugins.forEach((plugin) => assert.isObject(plugin));
+  assert.equal(withPlugins.length - plugins.length, pluginsToPush.length);
 });
 
 test.run();

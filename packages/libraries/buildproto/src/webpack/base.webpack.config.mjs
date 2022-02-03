@@ -1,6 +1,7 @@
 // @flow
 
 import {
+  combineArrays,
   generateLoaders,
   getCache,
   getDefaultPlugins,
@@ -24,6 +25,8 @@ export const baseWebpackConfig = async ({
   entryPush = [],
   entryUnshift = [],
   NODE_ENV = 'development',
+  pluginsPush = [],
+  pluginsUnshift = [],
   processEnv = {},
 
   ...rest
@@ -37,7 +40,9 @@ export const baseWebpackConfig = async ({
       cache: getCache(cache, pack),
       context,
       devtool: pack.ifProd ? 'hidden-source-map' : 'eval-source-map',
-      entry: Array.isArray(entry) ? entryUnshift.concat(entry, entryPush).filter(Boolean) : entry,
+      entry: Array.isArray(entry)
+        ? combineArrays(entry, entryUnshift, entryPush).filter(Boolean)
+        : entry,
       externals: pack.builtinModules,
       module: {
         rules: generateLoaders({ processEnv, configFile, }),
@@ -51,7 +56,11 @@ export const baseWebpackConfig = async ({
         path: pack.pathDist,
         publicPath: 'auto', // @see https://webpack.js.org/guides/public-path/#automatic-publicpath
       },
-      plugins: getDefaultPlugins(copyOptions),
+      plugins: combineArrays(
+        getDefaultPlugins(copyOptions),
+        pluginsUnshift,
+        pluginsPush
+      ).filter(Boolean),
       resolve: {
         extensions: ['.mjs', '.js', '.json', '.cjs'],
         mainFields: ['module', 'main'],

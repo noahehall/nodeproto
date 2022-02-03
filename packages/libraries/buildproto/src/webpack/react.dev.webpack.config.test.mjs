@@ -1,101 +1,46 @@
-// import * as t from '@nodeproto/testproto';
-// import { dirs } from '@nodeproto/wtf';
+import * as t from '@nodeproto/testproto/t';
 
-// import path from 'path';
-// import reactDevWebpackConfig from './react.dev.webpack.config';
-// import testCompiler from './test.compiler';
+import { reactDevWebpackConfig, testCompiler } from '@nodeproto/buildproto';
 
-// const { assert } = t;
+const { assert } = t;
 
-// const thisDir = dirs.dirname(import.meta.url);
-// const fixtures = '../../fixtures/';
-// const getEntry = (file) => path.resolve(thisDir, fixtures, file);
+const test = t.suite('react.dev.webpack.config');
 
-// export const getOpts = (overrides) => ({
-//   cache: false,
-//   entry: [],
-//   htmlOptions: {},
-//   output: { path: thisDir + '/dist' },
-//   pack: { pkgJson: {} },
-//   pathDist: thisDir + '/dist',
-//   pathSrc: thisDir,
+test.before.each((context) => {
+  const reactDevWebpackOptions = {
+    entry: ['./src/fixtures/esm.mjs'],
+  };
 
-//   ...overrides,
-// });
+  context.fixtures = {
+    reactDevWebpackOptions,
+  };
+});
 
-// const test = t.suite('react.dev.webpack.config.mjs');
+test('reactDevWebpackConfig', async ({ fixtures }) => {
+  const { reactDevWebpackOptions } = fixtures;
+  const config = await reactDevWebpackConfig(reactDevWebpackOptions);
 
-// test('throws', () => {
-//   let opts = getOpts();
-//   delete opts.entry;
+  assert.isObject(config, 'returns webpack object');
 
-//   assert.throws(
-//     () => reactDevWebpackConfig(opts),
-//     /entry: \[\]\|{}: is required/,
-//     'if missing entry'
-//   );
+  assert.hasAllKeys(config, [
+    'cache',
+    'context',
+    'devtool',
+    'entry',
+    'experiments',
+    'externals',
+    'infrastructureLogging',
+    'mode',
+    'module',
+    'optimization',
+    'output',
+    'plugins',
+    'resolve',
+    'stats',
+    'target',
+  ]);
 
-//   opts = getOpts();
-//   delete opts.htmlOptions;
+  assert.isObject(await testCompiler(config), 'compiles esm successfuly');
+});
 
-//   assert.throws(
-//     () => reactDevWebpackConfig(opts),
-//     /htmlOptions: \[\]\|{}: is required/,
-//     'if missing htmlOptions'
-//   );
-// });
-
-// test('is okay', () => {
-//   assert.isObject(reactDevWebpackConfig(getOpts()), 'returns config object');
-// });
-
-// test('compilation', async () => {
-//   const opts = getOpts({
-//     entry: [getEntry('esm.mjs')],
-//   });
-
-//   assert.isObject(await testCompiler(reactDevWebpackConfig(opts)), 'compiles esm successfuly');
-
-//   assert.isObject(
-//     await testCompiler(
-//       reactDevWebpackConfig({
-//         ...opts,
-//         entry: [getEntry('commonjs.cjs')],
-//       })
-//     ),
-//     'compiles cjs successfuly'
-//   );
-
-//   // TODO: i've never used .jsx extension
-//   // add @babel/preset-react to base.webpack.config.mjs if that changes
-//   // assert.isObject(
-//   //   await testCompiler(reactDevWebpackConfig({
-//   //     ...opts,
-//   //     entry: [getEntry('react.jsx')],
-//   //   })),
-//   //   'object',
-//   //   'compiles jsx successfuly'
-//   // );
-
-//   assert.isObject(
-//     await testCompiler(
-//       reactDevWebpackConfig({
-//         ...opts,
-//         entry: [getEntry('auto.js')],
-//       })
-//     ),
-//     'interprets js and compiles successfuly'
-//   );
-
-//   assert.isObject(
-//     await testCompiler(
-//       reactDevWebpackConfig({
-//         ...opts,
-//         entry: [getEntry('flow.mjs')],
-//       })
-//     ),
-//     'removes flowtypes and compiles esm successfuly'
-//   );
-// });
-
-// test.run();
+test.run();
