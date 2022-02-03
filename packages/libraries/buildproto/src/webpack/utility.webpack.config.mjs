@@ -187,10 +187,10 @@ export const getAssetLoaders = (): ObjectType => ({
   },
 });
 
-export const generateLoaders = ({ processEnv, configFile }: {
+export const generateLoaders = ({ processEnv = {}, configFile }: {
   configFile: boolean | string,
   processEnv: ObjectType,
-}): any[] => Object.values({
+} = {}): any[] => Object.values({
   ...getAssetLoaders(),
   cssExternalLoader: {
     test: /\.css$/,

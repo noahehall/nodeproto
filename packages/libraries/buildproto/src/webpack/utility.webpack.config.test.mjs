@@ -9,6 +9,7 @@ import {
   getAssetLoaders,
   getCache,
   getDefaultPlugins,
+  getInfrastructureLogging,
   getStringReplaceLoader,
   getWebpackExperiments,
 } from '@nodeproto/buildproto';
@@ -84,6 +85,81 @@ test('createTerserPlugin', () => {
     'terserOptions',
     'test',
   ]);
+});
+
+test('getDefaultPlugins', () => {
+  const plugins = getDefaultPlugins();
+
+  assert.isArray(plugins);
+});
+
+test('getAssetLoaders', () => {
+  const loaders = getAssetLoaders();
+
+  assert.isObject(loaders);
+  assert.hasAllKeys(loaders, ['fontLoader', 'imageLoader', 'svgLoader', 'videoLoader']);
+});
+
+test('generateLoaders', () => {
+  const loaders = generateLoaders();
+
+  assert.isArray(loaders);
+  loaders.forEach((loader) => {
+    assert.isObject(loader);
+    assert.hasAnyKeys(loader, ['test']);
+  });
+});
+
+test('getCache', () => {
+  assert.isFalse(getCache());
+  assert.hasAllKeys(getCache(true, { pkgJson: { name: 'test', version: '1 ' } }), [
+    'allowCollectingMemory',
+    'compression',
+    'hashAlgorithm',
+    'idleTimeout',
+    'idleTimeoutAfterLargeChanges',
+    'idleTimeoutForInitialStore',
+    'maxAge',
+    'maxMemoryGenerations',
+    'memoryCacheUnaffected',
+    'name',
+    'profile',
+    'store',
+    'type',
+    'version',
+  ]);
+
+  const fakeCacheObject = { some: 'cache', object: 'i want to use' };
+  assert.deepEqual(getCache(fakeCacheObject), fakeCacheObject);
+});
+
+test('getStringReplaceLoader', () => {
+  const loader = getStringReplaceLoader('some string');
+
+  assert.isObject(loader);
+  assert.hasAllKeys(loader, ['loader', 'options']);
+});
+
+test('getWebpackExperiments', () => {
+  const experiments = getWebpackExperiments();
+
+  assert.isObject(experiments);
+  assert.hasAllKeys(experiments, [
+    'asyncWebAssembly',
+    'cacheUnaffected',
+    'layers',
+    'lazyCompilation',
+    'outputModule',
+    'syncWebAssembly',
+    'topLevelAwait',
+  ]);
+});
+
+test('getInfrastructureLogging', () => {
+  const logging = getInfrastructureLogging();
+
+  assert.isObject(logging);
+  assert.hasAllKeys(logging, ['level']);
 });
 
 test.run();
