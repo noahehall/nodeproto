@@ -10,6 +10,8 @@
 <PROJECT_ROOT>/src/*.test.mjs
 
 [libs]
+<PROJECT_ROOT>/flow-typed/*
+<PROJECT_ROOT>/libdefs.mjs
 
 [strict]
 nonstrict-import

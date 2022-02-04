@@ -1,22 +1,22 @@
-// @flow strict
+// @flow
 
 import { Global } from '@emotion/react';
 import { Helmet } from 'react-helmet';
 import { Router } from '@reach/router';
-
 import styled from '@emotion/styled';
-import globalStyles from './global-styles.mjs';
-import LandingScreen from '../Landing/LandingScreen.mjs';
-import NotFoundScreen from '../NotFound/NotFoundScreen.mjs';
 
-import type { Node } from 'react';
+import { globalStyles } from './global-styles.mjs';
+import { LandingScreen } from '../Landing/LandingScreen.mjs';
+import { NotFoundScreen } from '../NotFound/NotFoundScreen.mjs';
 
 // css
 import 'normalize.css';
 import 'milligram';
 import 'animate.css';
 
-const OuterContainer = styled.div`
+import type { ComponentType, Element } from '../../../../libdefs';
+
+const OuterContainer: ComponentType<any> = styled.div`
   display: flex;
   flex-flow: wrap column;
   height: 100%;
@@ -25,33 +25,30 @@ const OuterContainer = styled.div`
   padding: 0;
 `;
 
-const InnerContainer = styled.div`
+const InnerContainer: ComponentType<any> = styled.div`
   overflow: visible;
   position: relative;
 `;
 
-const AppWrapper = styled.main`
+const AppWrapper: ComponentType<any> = styled.main`
   height: 100%;
   overflow: visible;
   padding: 10px;
 `;
 
-export default function App(): Node {
+export const App: ComponentType<null> = () => {
   return (
-    <OuterContainer id='outer-container'>
-      <Helmet
-        defaultTitle='NIRV'
-        titleTemplate='%s - NIRV'
-      >
-        <meta content='IT TAKES NIRV' name='description' />
+    <OuterContainer id="outer-container">
+      <Helmet defaultTitle="NIRV" titleTemplate="%s - NIRV">
+        <meta content="IT TAKES NIRV" name="description" />
       </Helmet>
 
       <Global styles={globalStyles} />
 
-      <InnerContainer id='inner-container'>
-        <AppWrapper id='app-wrapper'>
+      <InnerContainer id="inner-container">
+        <AppWrapper id="app-wrapper">
           <Router>
-            <LandingScreen isFor='ppop' path='/' />
+            <LandingScreen isFor="ppop" path="/" />
 
             <NotFoundScreen default />
           </Router>
@@ -59,4 +56,4 @@ export default function App(): Node {
       </InnerContainer>
     </OuterContainer>
   );
-}
+};

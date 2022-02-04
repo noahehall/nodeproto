@@ -1,27 +1,29 @@
-// @flow strict
+// @flow
 
-import DisplayError from './DisplayError.mjs';
+import { cloneElement, Component } from 'react';
 import JsonPretty from 'react-json-pretty';
 import JSONPrettyMonTheme from 'react-json-pretty/dist/monikai';
 
-import * as React from 'react';
+import { DisplayError } from './DisplayError.mjs';
+
+import type { Element, Node } from '../../../../libdefs';
 
 type ErrorBoundaryProps = {
-  children: Node
+  children?: Node
 };
 
 type ErrorBoundaryState = {
-  error: Error
+  error: ?Error
 }
 
-export default class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
+export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   constructor (props: ErrorBoundaryProps) {
     super(props);
 
-    this.state = {};
+    this.state = { error: null };
   }
 
-  static getDerivedStateFromError (error: {}): {} {
+  static getDerivedStateFromError (error: Error): { error: Error } {
     // Update state so the next render will show the fallback UI.
     return { error };
   }
@@ -30,13 +32,13 @@ export default class ErrorBoundary extends React.Component<ErrorBoundaryProps, E
     console.error(info);
   }
 
-  render(): React.Node {
+render(): Element < typeof DisplayError > | Node {
     return (
       this.state.error
         ? <DisplayError error={this.state.error} />
-        : React.cloneElement(this.props.children, this.props)
+        : cloneElement(this.props.children, this.props)
     );
   }
 }
 
-if (module.hot.accept) module.hot.accept(); // eslint-disable-line no-undef
+// if (module.hot.accept) module.hot.accept(); // eslint-disable-line no-undef

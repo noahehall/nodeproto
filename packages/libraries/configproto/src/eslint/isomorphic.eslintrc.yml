@@ -30,7 +30,6 @@ env:
 
 rules:
   # react specific
-  jsx-quotes: [error, prefer-single]
   react-hooks/exhaustive-deps: warn
   react-hooks/rules-of-hooks: error
   react/display-name: error

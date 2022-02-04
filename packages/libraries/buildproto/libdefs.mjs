@@ -114,7 +114,7 @@ export type BaseWebpackType = {
 
 export type ReactDevType = BaseWebpackType & {
   htmlOptions?: ObjectType,
-
+  ...
 };
 
 export type EsbuildConfigType = {

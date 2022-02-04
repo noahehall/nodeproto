@@ -1,23 +1,21 @@
-// @flow strict
+// @flow strict-local
 
-import {
-  buildWebpackConfig,
-  reactDevWebpackConfig,
-  setupWebpackConfig,
-  } from '@nodeproto/buildproto';
+import { reactDevWebpackConfig } from '@nodeproto/buildproto';
 
-import { dirs, isMain } from '@nodeproto/wtf';
+import type {
+  NodeprotoPackType,
+  WebpackConfigType,
+} from './libdefs';
 
-const { pack, config } = setupWebpackConfig();
+export const getWebpackConfig = async (): Promise<{
+  config: WebpackConfigType, pack: NodeprotoPackType
+}> => {
+  return reactDevWebpackConfig({
+    entry: ['./src/root.mjs'],
+    htmlOptions: { template: './src/index.html' },
+  });
+};
 
-export const webpackConfig: Object = reactDevWebpackConfig({
-  ...config,
-  cache: true,
-  entry: [pack.resolve('./src/root.mjs')],
-  htmlOptions: { template: pack.resolve('./src/index.html') },
-  output: { path: pack.resolve('./dist') },
-  pack,
-});
-
-// if this file is run directly, it will build and output to disk
-if (isMain(dirs.isEsm() ? import.meta : require.main)) buildWebpackConfig(webpackConfig);
+// run this file directly to output to disk
+// TODO: buildwebpack needs rework
+// if (isMain(dirs.isEsm() ? import.meta : require.main)) buildWebpackConfig(webpackConfig);

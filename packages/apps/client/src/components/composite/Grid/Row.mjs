@@ -1,25 +1,26 @@
-// @flow strict
+// @flow
 
-import clsx from 'clsx';
-import * as React from 'react';
-import styled from '@emotion/styled';
 import {
   unstable_GridRow as GridRow,
   unstable_useGridState as useGridState,
 } from 'reakit/Grid';
 
-// TODO: figure out this type
+import clsx from 'clsx';
+import styled from '@emotion/styled';
+
+import type { ComponentType, Element } from '../../../../libdefs';
+
 const StyledRow = styled(GridRow)`
 
 `;
 
 export type ScreenRowProps = {
   className?: string,
-  children: React.Node,
-  props?: Array<any>,
+  children: Node,
+  ...
 }
 
-export function ScreenRow ({ className, children, ...props }: ScreenRowProps): React.Node {
+export const ScreenRow: ComponentType<ScreenRowProps> = ({ className, children, ...props } = {}): Element<typeof StyledRow> => {
   const grid = useGridState();
 
   return (
@@ -32,6 +33,6 @@ export function ScreenRow ({ className, children, ...props }: ScreenRowProps): R
       {children}
     </StyledRow>
   );
-}
+};
 
 if (module.hot?.accept) module.hot.accept();

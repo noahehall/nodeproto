@@ -35,8 +35,9 @@
     "@babel/plugin-transform-flow-strip-types": "7.16.7",
     "@babel/runtime": "7.16.7",
     "@babel/traverse": "7.16.10",
+    "@emotion/react": "11.7.1",
     "@emotion/styled": "11.6.0",
-    "@nodeproto/configproto": "workspace:0.0.0",
+    "@nodeproto/configproto": "0.0.0",
     "@nodeproto/shared": "0.0.0",
     "@nodeproto/wtf": "workspace:0.0.0",
     "babel-loader": "8.2.3",
@@ -91,9 +92,9 @@
     "flow-remove-types": "2.170.0",
     "flow-typed": "3.6.1",
     "prettier": "2.5.1",
-    "react": "17.0.2",
+    "react": "18.0.0-rc.0",
     "react-devtools": "~4.23.0",
-    "react-dom": "17.0.2",
+    "react-dom": "18.0.0-rc.0",
     "uvu": "0.5.3",
     "yaml-eslint-parser": "0.5.0"
   },
@@ -185,5 +186,10 @@
       "test",
       "cp:flow"
     ]
+  },
+  "peerDependencies": {
+    "react": "18.0.0-rc.0",
+    "react-devtools": "~4.23.0",
+    "react-dom": "18.0.0-rc.0"
   }
 }

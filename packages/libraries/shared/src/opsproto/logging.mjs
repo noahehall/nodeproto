@@ -1,6 +1,10 @@
 // @flow
 
-export const noop = (): void => void 0;
+interface VoidFnInterface {
+  (...arggs: mixed[]): void;
+}
 
-const logFunction = (...msgs: any[]): void => console.info(...msgs);
-export const logIt: () => void = !process.env.VERBOSE ? noop : logFunction;
+export const noop: VoidFnInterface = () => void 0;
+
+const logFunction: VoidFnInterface = (...msgs) => console.info(...msgs);
+export const logIt: VoidFnInterface = !process.env.VERBOSE ? noop : logFunction;

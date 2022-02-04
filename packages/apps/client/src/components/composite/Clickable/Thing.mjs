@@ -1,34 +1,33 @@
-// @flow strict
+// @flow
 
 import { Clickable } from 'reakit/Clickable';
 import { useButton } from 'react-aria';
+import { useRef } from 'react';
 
-import * as React from 'react';
 import clsx from 'clsx';
 import styled from '@emotion/styled';
+
+import type { ComponentType, Element, Node, Ref } from '../../../../libdefs';
 
 const StyledAnchor = styled(Clickable)`
 
 `;
 
 type ButtonProps = {
-  children: React.Node
+  children?: Node
 }
 
-export function Button (props: ButtonProps): React.Element<'button'> {
-  const ref: React.Ref<'button'> = React.useRef();
+export const Button: ComponentType<ButtonProps> = (props) => {
+  const ref: Ref<'button'> = useRef();
 
-  const { buttonProps } = useButton(
-    props,
-    ref
-  );
+  const { buttonProps } = useButton(props, ref);
 
   return (
     <button {...buttonProps} ref={ref}>
       {props.children}
     </button>
   );
-}
+};
 
 type AnchorProps = {
   className?: string,
@@ -36,7 +35,11 @@ type AnchorProps = {
   ...
 }
 
-export function Anchor ({ className, text = 'Click Here', ...props }: AnchorProps): React.Node {
+export const Anchor: ComponentType<AnchorProps> = ({
+  className,
+  text = 'Click Here',
+  ...props
+} = {}): Element<typeof StyledAnchor> => {
   return (
     <StyledAnchor {...props} className={clsx(className)} forwardedAs='a'>
       {text}
@@ -44,6 +47,6 @@ export function Anchor ({ className, text = 'Click Here', ...props }: AnchorProp
       <button>{"testing rect-aria"}</button>
     </StyledAnchor>
   );
-}
+};
 
-if (module.hot.accept) module.hot.accept(); // eslint-disable-line no-undef
+// if (module.hot.accept) module.hot.accept(); // eslint-disable-line no-undef

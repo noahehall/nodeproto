@@ -1,7 +1,21 @@
 # @nodeproto
 
-- product development framework for RACEXP and HECCYA methodologies
-- requires node >= 17.4, corepack and pnpm
+- product development starterkit specifically for RACEXP and HECCYA methodologies, but generally usable in any high-performance environment
+- hard requirements for develop branch
+  - node >= 17.4
+  - corepack
+  - pnpm
+  - react, react-dom @rc (or @next)
+  - koa => 2
+  - flowtype
+  - all packages export libdefs as `@nodeproto/packagename/libdefs`
+- cultural boundaries
+  - bleeding edge always
+  - best in class > most popular
+  - terse clarity > verbose expressiveness
+  - monorepo microservices > multirepo microservices
+  - read the code > read the comments
+  - tests are first class citizens (no discrimination here!)
 
 ## TLDR
 

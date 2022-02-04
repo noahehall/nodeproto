@@ -1,16 +1,13 @@
-// @flow strict
+// @flow strict-local
+// use flow strict for all mission critical services
+// or at the minimum use strict-local
+// @see https://flow.org/en/docs/strict/
 
-import { serverWebpack as webpackServer } from '@nodeproto/buildproto';
-import { webpackConfig } from './webpack.dev.config.mjs';
+import { webpackServer } from '@nodeproto/buildproto';
 
-export type WebpackServer = {
-  useConfig: {...},
-  pack: {...}
-};
+import { getWebpackConfig } from './webpack.dev.config.mjs';
 
-export const app: WebpackServer = webpackServer({
-  useConfig: webpackConfig,
-  pack: {
-    writeToDisk: true
-  }
-});
+(async () => {
+  const { config, pack } = await getWebpackConfig();
+  const app = webpackServer({ config, pack });
+})();

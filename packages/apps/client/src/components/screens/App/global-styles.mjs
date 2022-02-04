@@ -1,3 +1,5 @@
+// @flow
+
 /*
   good links
   https://www.rapidtables.com/web/css/css-color.html
@@ -6,6 +8,8 @@
   */
 
 import { css } from '@emotion/react';
+
+import type { ComponentType } from '../../../../libdefs';
 
 /* quickies
   rem - root container fontsize
@@ -23,7 +27,7 @@ import { css } from '@emotion/react';
 // https://www.w3schools.com/charsets/ref_utf_dingbats.asp
 // https://dev.w3.org/html5/html-author/charref
 // https://html.spec.whatwg.org/multipage/named-characters.html#named-character-references
-export default css`
+export const globalStyles: ComponentType<void> = css`
   /*vars*/
     :root {
       /* everything relative to these sizes!*/

@@ -1,19 +1,15 @@
 // @flow
-// @flow strict
-/*
- * Landing Screen
- *
- * This is the first thing players see of our App, at the '/' route
- */
+
+import { Helmet } from 'react-helmet';
 
 import { Anchor } from '../../composite/Clickable/Thing.mjs';
-import { Helmet } from 'react-helmet';
-import ScreenColumn from '../../composite/Grid/Column.mjs';
-import ScreenGrid from '../../composite/Grid/Grid.mjs';
+import { ScreenColumn } from '../../composite/Grid/Column.mjs';
+import { ScreenGrid } from '../../composite/Grid/Grid.mjs';
 import { ScreenRow } from '../../composite/Grid/Row.mjs';
-import * as React from 'react';
 
-export default function LandingScreen(props: {}): React.Node {
+import type { ComponentType, Element } from '../../../../libdefs';
+
+export const LandingScreen: ComponentType<any> = (props: {}): Element<typeof ScreenGrid> => {
   return (
     <ScreenGrid {...props} isFor='Landing'>
       <Helmet>
@@ -38,4 +34,4 @@ export default function LandingScreen(props: {}): React.Node {
       </ScreenRow>
     </ScreenGrid>
   );
-}
+};

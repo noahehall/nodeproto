@@ -1,27 +1,33 @@
-// @flow strict
+// @flow
 
-import { unstable_Grid as Grid, unstable_useGridState as useGridState } from 'reakit/Grid';
-import * as React from 'react';
+import {
+  unstable_Grid as Grid,
+  unstable_useGridState as useGridState
+} from 'reakit/Grid';
+
 import clsx from 'clsx';
-import ErrorBoundary from '../Errors/ErrorBoundary.mjs';
 import styled from '@emotion/styled';
 
-const StyledGrid = styled(Grid)`
+import { ErrorBoundary } from '../Errors/ErrorBoundary.mjs';
+
+import type { ComponentType, Element, Node } from '../../../../libdefs';
+
+const StyledGrid: ComponentType<void> = styled(Grid)`
   /* display: flex;
   flex-flow: nowrap column; */
 `;
 
-type ScreenGridNativeProps = {
-  children: React.Node,
+type ScreenGridProps = {
+  children: ?Node,
   className?: string,
-  isFor: string,
+  isFor?: string,
 };
 
-export function ScreenGridNative ({
-  isFor = 'Nirv',
-  className,
+export const ScreenGridNative: ComponentType<ScreenGridProps> = ({
   children,
-}: ScreenGridNativeProps): React.Node {
+  className,
+  isFor = 'Nirv',
+} = {}): Element<typeof StyledGrid> => {
   const grid = useGridState();
 
   return (
@@ -34,9 +40,9 @@ export function ScreenGridNative ({
       {children}
     </StyledGrid>
   );
-}
+};
 
-export default function ScreenGrid ({ children, className, isFor }: ScreenGridNativeProps): React.Node {
+export const ScreenGrid: ComponentType<ScreenGridProps> = ({ children, className, isFor } = {}): Element<typeof ErrorBoundary> =>{
   return (
     <ErrorBoundary>
       <ScreenGridNative className={className} isFor={isFor}>
@@ -44,6 +50,6 @@ export default function ScreenGrid ({ children, className, isFor }: ScreenGridNa
       </ScreenGridNative>
     </ErrorBoundary>
   );
-}
+};
 
-if (module.hot?.accept) module.hot.accept(); // eslint-disable-line no-undef
+// if (module.hot?.accept) module.hot.accept(); // eslint-disable-line no-undef

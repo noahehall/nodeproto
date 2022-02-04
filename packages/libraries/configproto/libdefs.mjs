@@ -2,6 +2,7 @@
 
 export type ObjectOfSets = { [key: string]: Set<any> };
 export type ObjectOfStringArrays = { [key: string]: string[] };
+export type ObjectOfStringNumber = { [key: string]: string | number };
 export type ObjectOfStrings = { [key: string]: string };
 export type ObjectType = { [key: string]: any };
 
