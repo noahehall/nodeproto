@@ -1,31 +1,27 @@
-// $FlowTODO
+// @flow
 
-// TODO: update these tests, for now just relying on the integration tests
 // TODO: doesnt recursively search all child directories, only the first
-/**
- * @see https://www.youtube.com/watch?v=zR7LOtMix9w
- * @see https://esbuild.github.io/plugins/
- * popCopy esbuild plugin
- * copies files synchronously before EACH build into the output directory
- * caches results: incremental builds speed > than initial build speed
- *
- * TODO: https://esbuild.github.io/api/#incremental
- * implement watching yaml files
- */
 
-import fs from "fs/promises";
-import path from "path";
+import { fsproto } from '@nodeproto/wtf';
+import path from 'path';
 
-const r = (t, msg = "required in popCopy") => {
-  throw new Error(`${t}: ${msg}`);
-};
+import type {
+  ObjectType
+} from '../../../libdefs';
+
+const fs = { fsproto };
 
 export const esbuildPluginPopCopyConfig = ({
-  endingWith = r("endingWith: RegExp"),
-  indir = r("indir: string"),
-  outdir = r("outdir: string"),
+  endingWith,
+  indir,
+  outdir,
   recurse = true,
-}) => ({
+}: {
+  endingWith: RegExp,
+  indir: string,
+  outdir: string,
+  recurse: boolean,
+}): { options: ObjectType[]} => ({
   options: [
     {
       endingWith,
@@ -40,14 +36,14 @@ export const esbuildPluginPopCopyConfig = ({
 // for us to return the previous output if the input hasnt change
 // ALWAYS use the filepath as key
 // @see https://esbuild.github.io/plugins/#caching-your-plugin
-export const cache = new Map();
+export const cache: Map<string, ObjectType> = new Map();
 
 // fileShouldCopy(path) => lastModified in MS or undefined
-export const fileShouldCopy = async (sourcepath) => {
+export const fileShouldCopy = async (sourcepath: string): Promise<boolean> => {
   let fd;
   try {
-    fd = await fs.open(sourcepath, "r");
-    if (!fd) return;
+    fd = await fs.open(sourcepath, 'r');
+    if (!fd) return false;
 
     const { mtimeMs } = await fd.stat();
     const cacheMs = cache.get(sourcepath)?.ms;
@@ -56,7 +52,7 @@ export const fileShouldCopy = async (sourcepath) => {
 
     return (!cacheMs || cacheMs < mtimeMs) && mtimeMs;
   } catch (e) {
-    console.warn("error accessing file, removing from cache\n", {
+    console.warn('error accessing file, removing from cache\n', {
       sourcepath,
       e,
     });
@@ -69,7 +65,7 @@ export const fileShouldCopy = async (sourcepath) => {
 };
 
 // copy file into specified outdir && caches file time in ms
-export const fileCopy = async (newCacheMs, sourcepath, outdir) => {
+export const fileCopy = async (newCacheMs: number, sourcepath: string, outdir: string): Promise<boolean> => {
   try {
     if (newCacheMs) {
       const outpath = `${outdir}/${path.basename(sourcepath)}`;
@@ -80,18 +76,21 @@ export const fileCopy = async (newCacheMs, sourcepath, outdir) => {
 
       // dont catch let it throw
       await fs.copyFile(sourcepath, outpath);
+
+      return true;
     }
   } catch (e) {
-    console.warn("\n\n error copying file into outdir", { sourcepath, e });
+    console.warn('\n\n error copying file into outdir', { sourcepath, e });
 
     cache.delete(sourcepath);
   }
+  return false;
 };
 
 // searches for files to copy
 // sets filepaths as keys in cache
-export const filesToCopy = (options) => {
-  const msg = "not copying files:";
+export const filesToCopy = async (options: ObjectType[]): Promise<void> => {
+  const msg = 'not copying files:';
 
   if (!options.length) return console.warn(`${msg} options empty`, options);
 
@@ -99,11 +98,9 @@ export const filesToCopy = (options) => {
   options.forEach(async ({ outdir, endingWith, indir, recurse, ...opts }) => {
     try {
       if (
-        !(endingWith instanceof RegExp) ||
-        !indir ||
-        !indir.startsWith("/") ||
-        !outdir ||
-        !outdir.startsWith("/")
+        !(endingWith instanceof RegExp)
+          || !indir?.startsWith('/')
+          || !outdir?.startsWith('/')
       ) {
         return console.warn(`${msg} invalid params`, {
           endingWith,
@@ -114,22 +111,20 @@ export const filesToCopy = (options) => {
         });
       }
 
-      const sourcedirs =
-        (await fs.readdir(indir, { encoding: "utf8", withFileTypes: true })) ??
-        [];
+      const sourcedirs = (await fs.readdir(indir, { encoding: 'utf8', withFileTypes: true })) ?? [];
 
       sourcedirs.forEach((dirEnt) => {
         // check all child-dirs
         // need to check dirEnt[symbol] type === 2
         // because duh files without extensions
-        if (!dirEnt.name.includes(".") && recurse) {
+        if (!dirEnt.name.includes('.') && recurse) {
           filesToCopy([
             {
+              ...opts,
               endingWith,
               indir: `${indir}/${dirEnt.name}`,
               outdir,
               recurse,
-              ...opts,
             },
           ]);
         } else {
@@ -144,14 +139,14 @@ export const filesToCopy = (options) => {
         }
       });
     } catch (e) {
-      console.error("\n\n error in popcopy", e);
+      console.error('\n\n error in popcopy', e);
     }
   });
 };
 
-const name = "popCopyPlugin";
+const name = 'popCopyPlugin';
 
-export function esbuildPluginPopCopy(config = r("config")) {
+export const esbuildPluginPopCopy = (config: ObjectType): ObjectType => {
   esbuildPluginPopCopy.options = config;
   esbuildPluginPopCopy.onStarted = false;
 
@@ -198,10 +193,9 @@ export function esbuildPluginPopCopy(config = r("config")) {
             try {
               const newCacheMs = await fileShouldCopy(sourcepath);
 
-              if (newCacheMs)
-                await fileCopy(newCacheMs, sourcepath, path.dirname(outpath));
+              if (newCacheMs) await fileCopy(newCacheMs, sourcepath, path.dirname(outpath));
             } catch (e) {
-              console.warn("esbuildPluginPopCopy.onStart error", e);
+              console.warn('esbuildPluginPopCopy.onStart error', e);
             }
           }
         }
@@ -211,4 +205,4 @@ export function esbuildPluginPopCopy(config = r("config")) {
       build.onEnd((result) => (esbuildPluginPopCopy.onStarted = false));
     },
   };
-}
+};

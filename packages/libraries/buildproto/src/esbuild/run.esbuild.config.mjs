@@ -1,10 +1,8 @@
 // @flow
 
 import { fsproto } from '@nodeproto/wtf';
-
-import esbuild from 'esbuild';
-
 import { throwIt } from '@nodeproto/shared';
+import esbuild from 'esbuild';
 
 import type {
   EsbuildConfigType,
