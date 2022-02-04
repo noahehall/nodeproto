@@ -1,144 +1,78 @@
-// import * as t from '@nodeproto/testproto';
-// import { dirs } from '@nodeproto/wtf';
-// import { getOpts as reactDevOpts } from '../react.dev.webpack.config.test';
-// import { getOpts as reactEsbuildOpts } from '../react.esbuild.webpack.config.test';
+import * as t from '@nodeproto/testproto/t';
+import http from 'http';
 
-// import path from 'path';
-// import reactDevWebpackConfig from '../react.dev.webpack.config';
-// import reactEsbuildWebpackConfig from '../react.esbuild.webpack.config';
-// import webpackServer from './server.webpack';
+import { reactDevWebpackConfig, webpackServer } from '@nodeproto/buildproto';
 
-// const { assert, get } = t;
+const { assert } = t;
 
-// const thisDir = dirs.dirname(import.meta.url);
-// const fixtures = '../../../fixtures/';
-// const getEntry = (file) => [path.resolve(thisDir, fixtures, file)];
+const test = t.suite('server.webpack');
 
-// const getOpts = () => ({
-//   useConfig: {},
-//   pack: {},
-// });
+async function assertWebpackServerStateAndResponse(server, name) {
+  return new Promise((resolve) => {
+    server.webpackDevMiddlewareInstance.waitUntilValid(() => {
+      http.get(`http:${server.cidr.host}:${server.cidr.port}`, (res) => {
+        // compiles
+        assert.lengthOf(
+          server.webpackDevMiddlewareInstance.context.stats.compilation.errors,
+          0,
+          `${name} server compiles without errors`
+        );
 
-// const test = t.suite('server.webpack');
+        // response
+        assert.equal(res.statusCode, 200, `${name} server returns 200 statusCode`);
 
-// async function assertWebpackServerStateAndResponse(server, name) {
-//   return new Promise((resolve) => {
-//     server.webpackDevMiddlewareInstance.waitUntilValid(() => {
-//       get(`http:${server.config.host}:${server.config.port}`, (res) => {
-//         // compiles
-//         assert.lengthOf(
-//           server.webpackDevMiddlewareInstance.context.stats.compilation.errors,
-//           0,
-//           `${name} server compiles without errors`
-//         );
-//         // response
-//         assert.deepEqual(res.statusCode, 200, `${name} server returns 200 statusCode`);
+        assert.include(res.headers['content-type'], 'text/html; charset=utf-8');
+        resolve(true);
+      });
+    });
+  });
+}
 
-//         assert.include(res.headers['content-type'], 'text/html; charset=utf-8');
+test.before.each((context) => {
+  const reactDevOpts = {
+    entry: ['./src/fixtures/esm.mjs'],
+  };
 
-//         resolve(true);
-//       });
-//     });
-//   });
-// }
+  context.fixtures = {
+    reactDevOpts,
+  };
+});
 
-// test('throws', () => {
-//   let opts = getOpts();
-//   delete opts.useConfig;
+test.after.each((context) => {
+  delete context.fixtures;
+});
 
-//   assert.throws(
-//     () => webpackServer(opts),
-//     /useConfig: Object: is required/,
-//     'if missing useConfig'
-//   );
-// });
+test('webpackServer: throws', () => {
+  assert.throws(() => webpackServer());
+  assert.throws(() => webpackServer({ pack: {}, webpackConfig: 'poop' }));
+  assert.throws(() => webpackServer({ pack: 'poop', webpackConfig: {} }));
+  assert.throws(() =>
+    webpackServer({
+      pack: {},
+      webpackConfig: { output: { publicPath: () => 'public path has to be a string' } },
+    })
+  );
+});
 
-// test('server init & shutdown: react.dev.webpack.config', () => {
-//   const esm = webpackServer({
-//     useConfig: reactDevWebpackConfig(
-//       reactDevOpts({
-//         // context: thisDir,
-//         entry: getEntry('esm.mjs'),
-//       })
-//     ),
-//     pack: { CLIENT_PORT: 8095, APP_NAME: 'esm server' },
-//   });
+test('webpackServer: development server', async (context) => {
+  const { reactDevOpts } = context.fixtures;
+  const { config, pack } = await reactDevWebpackConfig(reactDevOpts);
 
-//   esm.server.on('listening', async () => {
-//     assert.isTrue(esm.server.listening, 'esm server is running');
+  const esm = webpackServer({ config, pack });
 
-//     await assertWebpackServerStateAndResponse(esm, 'react:dev:esm');
+  esm.server.on('listening', async () => {
+    assert.isTrue(esm.server.listening, 'server is running');
+    await assertWebpackServerStateAndResponse(esm, 'react:dev:esm');
 
-//     esm.controller.abort();
-//     await esm.webpackDevMiddlewareInstance.close();
+    esm.controller.abort();
+    await esm.webpackDevMiddlewareInstance.close();
+    assert.isFalse(esm.server.listening, 'server isnt running');
+  });
+});
 
-//     assert.isFalse(esm.server.listening, 'esm server isnt running');
-//   });
+test.run();
 
-//   const cjs = webpackServer({
-//     useConfig: reactDevWebpackConfig(
-//       reactDevOpts({
-//         context: thisDir,
-//         entry: getEntry('commonjs.cjs'),
-//       })
-//     ),
-//     pack: { CLIENT_PORT: 8094, APP_NAME: 'cjs server' },
-//   });
-
-//   cjs.server.on('listening', async () => {
-//     assert.isTrue(cjs.server.listening, 'cjs server is running');
-
-//     await assertWebpackServerStateAndResponse(cjs, 'react:dev:cjs');
-
-//     cjs.controller.abort();
-//     await cjs.webpackDevMiddlewareInstance.close();
-
-//     assert.isFalse(cjs.server.listening, 'cjs server isnt running');
-//   });
-
-//   const auto = webpackServer({
-//     useConfig: reactDevWebpackConfig(
-//       reactDevOpts({
-//         context: thisDir,
-//         entry: getEntry('auto.js'),
-//       })
-//     ),
-//     pack: { CLIENT_PORT: 8092, APP_NAME: 'auto server' },
-//   });
-
-//   auto.server.on('listening', async () => {
-//     assert.isTrue(auto.server.listening, 'auto server is running');
-
-//     await assertWebpackServerStateAndResponse(auto, 'react:dev:auto');
-
-//     auto.controller.abort();
-//     await auto.webpackDevMiddlewareInstance.close();
-
-//     assert.isFalse(auto.server.listening, 'auto server isnt running');
-//   });
-
-//   const flow = webpackServer({
-//     useConfig: reactDevWebpackConfig(
-//       reactDevOpts({
-//         context: thisDir,
-//         entry: getEntry('flow.mjs'),
-//       })
-//     ),
-//     pack: { CLIENT_PORT: 8091, APP_NAME: 'flow server' },
-//   });
-
-//   flow.server.on('listening', async () => {
-//     assert.isTrue(flow.server.listening, 'flow server is running');
-
-//     await assertWebpackServerStateAndResponse(flow, 'react:dev:flow');
-
-//     flow.controller.abort();
-//     await flow.webpackDevMiddlewareInstance.close();
-
-//     assert.isFalse(flow.server.listening, 'flow server isnt running');
-//   });
-// });
-
+// TODO: once I rework esbuild
 // test('server init & shutdown: react.esbuild.webpack.config', () => {
 //   const esm = webpackServer({
 //     useConfig: reactEsbuildWebpackConfig(

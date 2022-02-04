@@ -21,6 +21,10 @@ test.after.each((context) => {
 });
 
 test('baseWebpackConfig', async ({ fixtures }) => {
+  baseWebpackConfig({})
+    .then(() => assert.fails('should not resolve'))
+    .catch((e) => assert.match(e.message, /entry/));
+
   const { baseWebpackOptions } = fixtures;
 
   const { config, pack } = await baseWebpackConfig(baseWebpackOptions);

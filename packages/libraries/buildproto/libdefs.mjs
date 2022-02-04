@@ -65,7 +65,7 @@ export type NodeprotoPackType = {
 export type NodeprotoWebpackServerType = {
   app: any,
   compiler: WebpackCompiler,
-  config: { host?: string, port?: number, signal?: AbortSignal, ... },
+  cidr: { host?: string, port?: number, signal?: AbortSignal, ... },
   controller: AbortController,
   httpTerminator: ObjectType,
   server: any,

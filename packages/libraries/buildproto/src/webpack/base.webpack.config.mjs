@@ -1,5 +1,7 @@
 // @flow
 
+import { throwIt } from '@nodeproto/shared';
+
 import {
   combineArrays,
   generateLoaders,
@@ -35,6 +37,8 @@ export const baseWebpackConfig = async ({
   config: WebpackConfigType,
   pack: NodeprotoPackType
 }> => {
+  if (!entry) throwIt('entry must be defined');
+
   const { config, pack } = await setupWebpackConfig({ context, NODE_ENV });
 
   return {
