@@ -20,8 +20,8 @@ export const webpackServer = ({
   useConfig: WebpackConfigType,
   pack: NodeprotoPackType,
 }): NodeprotoWebpackServerType => {
-  const CLIENT_PORT: number = pack.CLIENT_PORT || Number(process.env.CLIENT_PORT || 8080);
-  const APP_NAME: string = pack.APP_NAME || process.env.APP_NAME || '@nodeproto/configproto.webpack.server';
+  const CLIENT_PORT: number = pack.CLIENT_PORT || 8080;
+  const APP_NAME: string = pack.pkgJson.name;
 
   const compiler = webpack(useConfig);
 

@@ -13,6 +13,7 @@ import {
 import type {
   NodeprotoPackType,
   ObjectType,
+  SupportedNodeEnvsType,
 } from '../../libdefs';
 
 // retrieves package.json, env metadata & utility logic (in pack object)
@@ -20,9 +21,13 @@ import type {
 export const setupWebpackConfig = async ({
   context = process.cwd(),
   NODE_ENV = 'development',
+  PATH_DIST = '',
+  PATH_SRC = '',
 }: {
   context?: string,
-  NODE_ENV?: string,
+  NODE_ENV?: SupportedNodeEnvsType,
+  PATH_DIST?: string,
+  PATH_SRC?: string,
 } = {}): Promise<{
   config: ObjectType,
   pack: NodeprotoPackType
@@ -30,8 +35,8 @@ export const setupWebpackConfig = async ({
   const pkgJson = (await dirs.getPkgJson(context))?.file;
   if (!pkgJson) throwIt(`could not find package.json in ${context}`);
 
-  const pathDist: string = (await resolve(pkgJson.config.PATH_DIST)) || '';
-  const pathSrc: string = (await resolve(pkgJson.config.PATH_SRC)) || '';
+  const pathDist: string = (await resolve(PATH_DIST || pkgJson.config.PATH_DIST)) || '';
+  const pathSrc: string = (await resolve(PATH_SRC || pkgJson.config.PATH_SRC)) || '';
   if (!pathDist || !pathSrc) {
     throwIt(`PATH_DIST or PATH_SRC is not defined in package.json.config`);
   }
@@ -46,7 +51,7 @@ export const setupWebpackConfig = async ({
       experiments: getWebpackExperiments(),
       infrastructureLogging: getInfrastructureLogging(),
       mode,
-      optimization: createOptimization(ifProd, pathDist),
+      optimization: createOptimization(ifProd, pathDist), // debatable if this should be in base.webpack.config
     },
 
     pack: {

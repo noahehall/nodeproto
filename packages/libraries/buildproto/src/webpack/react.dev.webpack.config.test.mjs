@@ -16,29 +16,44 @@ test.before.each((context) => {
   };
 });
 
+test.after.each((context) => {
+  delete context.fixtures;
+});
+
 test('reactDevWebpackConfig', async ({ fixtures }) => {
   const { reactDevWebpackOptions } = fixtures;
-  const config = await reactDevWebpackConfig(reactDevWebpackOptions);
+  const { config, pack } = await reactDevWebpackConfig(reactDevWebpackOptions);
 
-  assert.isObject(config, 'returns webpack object');
+  assert.isObject(config, 'webpack object');
+  assert.isObject(pack, 'pack meta object');
 
-  assert.hasAllKeys(config, [
-    'cache',
-    'context',
-    'devtool',
-    'entry',
-    'experiments',
-    'externals',
-    'infrastructureLogging',
-    'mode',
-    'module',
-    'optimization',
-    'output',
-    'plugins',
-    'resolve',
-    'stats',
-    'target',
-  ]);
+  assert.hasAllKeys(
+    config,
+    [
+      'cache',
+      'context',
+      'devtool',
+      'entry',
+      'experiments',
+      'externals',
+      'infrastructureLogging',
+      'mode',
+      'module',
+      'optimization',
+      'output',
+      'plugins',
+      'resolve',
+      'stats',
+      'target',
+    ],
+    'webpack interface contract'
+  );
+
+  assert.hasAllKeys(
+    pack,
+    ['builtinModules', 'ifDev', 'ifProd', 'pathDist', 'pathSrc', 'pkgJson'],
+    'buildproto pack interface contract'
+  );
 
   assert.isObject(await testCompiler(config), 'compiles esm successfuly');
 });

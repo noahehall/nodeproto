@@ -91,6 +91,11 @@ test('reference assertions', () => {
     throw new Error('poop');
   }, 'Any Error thrown must not have this message');
 
+  // this method is way more useful
+  // resolve(fakeFilePath, import.meta, true)
+  //   .then(() => assert.fail('should not resolve'))
+  //   .catch((e) => assert.match(e.message, fakeFilePath));
+
   // comparisons
   assert.operator(1, '<', 2, 'everything is ok');
 });

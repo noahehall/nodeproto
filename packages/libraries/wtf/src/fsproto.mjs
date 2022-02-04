@@ -1,6 +1,6 @@
 // @flow
 
-import { isEsm, throwIt } from '@nodeproto/shared';
+import { isBoolean, isEsm, isFunction, isString, throwIt } from '@nodeproto/shared';
 import { fileURLToPath } from 'url';
 import { fs as memfs } from 'memfs';
 
@@ -22,18 +22,31 @@ export const urlToPath = (importMetaUrlOrPath: string): string => fileURLToPath(
 
 export const resolve = async (
   relativeFilePath: string,
-  importMetaOrPath?: ImportMetaType | string,
+  importMetaOrPath?: ImportMetaType & string & boolean, // bolean for confirming a relative path exists
+  throwIfNotFound?: boolean = false,
 ): Promise<string | void> => {
+  let absFilePath: string;
   if (!relativeFilePath) throwIt('relativeFilePath is required');
-  else if (!importMetaOrPath)
-    return path.resolve(relativeFilePath);
+  else if (!importMetaOrPath || isBoolean(importMetaOrPath))
+    absFilePath = path.resolve(relativeFilePath);
   else if (typeof importMetaOrPath === 'string')
-    return path.resolve(path.dirname(importMetaOrPath), relativeFilePath);
-  else if (importMetaOrPath.resolve && importMetaOrPath.url)
-      return importMetaOrPath
+    absFilePath = path.resolve(path.dirname(importMetaOrPath), relativeFilePath);
+  else if (
+    !isBoolean(importMetaOrPath)
+    && isFunction(importMetaOrPath.resolve)
+    && isString(importMetaOrPath.url)
+  )
+      absFilePath = await importMetaOrPath
         .resolve(relativeFilePath, importMetaOrPath.url)
         .then(absoluteFileUrl => urlToPath(absoluteFileUrl))
-        .catch(() => console.info(`could not resolve file: ${relativeFilePath}`));
+        .catch(() => '');
+
+  if (
+    (throwIfNotFound || isBoolean(importMetaOrPath) && importMetaOrPath)
+    && (!absFilePath || !(await fse.pathExists(absFilePath))))
+    throwIt(`${relativeFilePath} does not exist`);
+
+  return absFilePath;
 };
 
 export const getFsproto = (disk: boolean = true): ObjectType => {
@@ -50,7 +63,7 @@ export const getFsproto = (disk: boolean = true): ObjectType => {
     readFileSync: fs.readFileSync,
     writeFile: async (...opts: any[]): Promise<void> => {
       try {
-        await fs.ensureDir(path.dirname(opts[0]));
+        await fs.ensureDir(path.dirname(opts[0])); // creates dir if missing
       } catch {} // eslint-disable-line no-empty
 
       return fs.writeFile.apply(fs, opts);

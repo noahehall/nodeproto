@@ -23,13 +23,13 @@ import type {
   WebpackPluginInstance,
 } from 'webpack';
 
-export type acceptableNodEnvs = 'development' | 'production';
+export type SupportedNodeEnvsType = 'development' | 'production';
 
 export type PkgJsonType = {
   config: {
     PATH_DIST: string,
     PATH_SRC: string,
-    NODE_ENV: acceptableNodEnvs
+    NODE_ENV: SupportedNodeEnvsType
   },
   main: string, // path to index.js|index.cjs,
   module: string, // path to index.mjs
@@ -91,32 +91,34 @@ export type NodeprotoEsbuildServerTrackerType = Map<string[], NodeprotoEsbuildSe
 export type EsbuildPluginOptions = ObjectType;
 
 export type BaseWebpackType = {
+  cache?: boolean | ObjectType,
   configFile?: boolean | string,
   context?: string,
   copyOptions?: ObjectType,
   entry: Entry,
   entryPush?: Entry[],
   entryUnshift?: Entry[],
-  NODE_ENV?: acceptableNodEnvs,
-  cache?: boolean | ObjectType,
-  processEnv?: ObjectType,
+  NODE_ENV?: SupportedNodeEnvsType,
   pluginsPush?: WebpackPluginType[],
   pluginsUnshift?: WebpackPluginType[],
+  processEnv?: ObjectType,
 
-  experiments?: ObjectType,
-  htmlOptions?: ObjectType,
-  infrastructureLogging?: WebpackInfrastructureLoggingType,
-  mode?: acceptableNodEnvs | 'none',
-  module?: ModuleOptions,
-  optimization?: OptimizationOptions,
-
-  outputDir?: string,
-
-  publicPath?: string,
-  stats?: StatsOptions,
-  stringReplaceLoader?: ObjectType,
+  // experiments?: ObjectType,
+  // infrastructureLogging?: WebpackInfrastructureLoggingType,
+  // mode?: SupportedNodeEnvsType | 'none',
+  // module?: ModuleOptions,
+  // optimization?: OptimizationOptions,
+  // outputDir?: string,
+  // publicPath?: string,
+  // stats?: StatsOptions,
+  // stringReplaceLoader?: ObjectType,
   ...
 }
+
+export type ReactDevType = BaseWebpackType & {
+  htmlOptions?: ObjectType,
+
+};
 
 export type EsbuildConfigType = {
   assetNames: string,

@@ -5,7 +5,7 @@ import JSONC from "jsonc-simple-parser";
 import picomatch from "picomatch";
 import readdirOg from "@folder/readdir";
 
-import type { ObjectType } from '@nodeproto/configproto/libdefs'; // eslint-disable-line
+import type { ObjectType } from '@nodeproto/configproto/libdefs';
 
 /**
   shelljs issue when running bundled code

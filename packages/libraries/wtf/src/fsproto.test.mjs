@@ -28,8 +28,16 @@ test('resolve', async () => {
     true
   );
 
-  assert.equal(await resolve('file doesnt exist', import.meta), undefined);
+  const fakeFilePath = './poop.mjs';
+  assert.equal(await resolve(fakeFilePath, import.meta), '');
 
+  resolve(fakeFilePath, import.meta, true)
+    .then(() => assert.fail('should not resolve'))
+    .catch((e) => assert.match(e.message, fakeFilePath));
+
+  resolve(fakeFilePath, true)
+    .then(() => assert.fail('should not resolve'))
+    .catch((e) => assert.match(e.message, fakeFilePath));
   // save cjs test for integration tests in root/tests dir
 });
 

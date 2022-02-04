@@ -2,7 +2,7 @@
 
 import { isObject, isString, isValue } from './utility';
 
-import type { ArrayType, ObjectType } from '@nodeproto/configproto/libdefs'; // eslint-disable-line
+import type { ArrayType, ObjectType } from '@nodeproto/configproto/libdefs';
 
 // @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare
 export const sortSimpleThenComplexDataTypes = (a: any, b :any): number => {

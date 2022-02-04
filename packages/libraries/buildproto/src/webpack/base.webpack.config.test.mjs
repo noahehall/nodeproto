@@ -23,26 +23,38 @@ test.after.each((context) => {
 test('baseWebpackConfig', async ({ fixtures }) => {
   const { baseWebpackOptions } = fixtures;
 
-  const config = await baseWebpackConfig(baseWebpackOptions);
+  const { config, pack } = await baseWebpackConfig(baseWebpackOptions);
 
-  assert.isObject(config, 'returns webpack config');
-  assert.hasAllKeys(config, [
-    'cache',
-    'context',
-    'devtool',
-    'entry',
-    'experiments',
-    'externals',
-    'infrastructureLogging',
-    'mode',
-    'module',
-    'optimization',
-    'output',
-    'plugins',
-    'resolve',
-    'stats',
-    'target',
-  ]);
+  assert.isObject(config, 'webpack config');
+  assert.isObject(pack, 'pack meta object');
+
+  assert.hasAllKeys(
+    config,
+    [
+      'cache',
+      'context',
+      'devtool',
+      'entry',
+      'experiments',
+      'externals',
+      'infrastructureLogging',
+      'mode',
+      'module',
+      'optimization',
+      'output',
+      'plugins',
+      'resolve',
+      'stats',
+      'target',
+    ],
+    'webpack interface contract'
+  );
+
+  assert.hasAllKeys(
+    pack,
+    ['builtinModules', 'ifDev', 'ifProd', 'pathDist', 'pathSrc', 'pkgJson'],
+    'buildproto pack interface contract'
+  );
 
   assert.isObject(
     await testCompiler(config),

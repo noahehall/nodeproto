@@ -6,8 +6,9 @@ import { baseWebpackConfig } from './base.webpack.config';
 import { generateBasePlugins } from './utility.webpack.config';
 
 import type {
-  BaseWebpackType,
+  NodeprotoPackType,
   ObjectType,
+  ReactDevType,
   WebpackConfigType,
   WebpackPluginType,
 } from '../../libdefs';
@@ -21,7 +22,7 @@ export const reactDevWebpackConfig = async ({
   pluginsUnshift = [],
 
   ...rest
-}: BaseWebpackType): Promise<WebpackConfigType> => baseWebpackConfig(
+}: ReactDevType): Promise<{config: WebpackConfigType, pack: NodeprotoPackType}> => baseWebpackConfig(
   Object.assign(
     {},
     {
