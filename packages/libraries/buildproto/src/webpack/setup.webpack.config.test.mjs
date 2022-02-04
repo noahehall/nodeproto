@@ -7,16 +7,24 @@ const { assert } = t;
 const test = t.suite('setup.webpack.config');
 
 test('setupWebpackConfig', async () => {
-  setupWebpackConfig({ context: './not/abs/path' }).catch((e) => {
-    assert.equal(e.message, 'dirpath must be absolute');
-  });
+  setupWebpackConfig({ context: './not/abs/path' })
+    .then(() => assert.fail('should not resolve'))
+    .catch((e) => assert.equal(e.message, 'dirpath must be absolute'));
 
-  setupWebpackConfig({ context: '/dir/without/package/json' }).catch((e) => {
-    assert.match(e.message, /could not find package.json/);
-  });
+  setupWebpackConfig({ context: '/dir/without/package/json' })
+    .then(() => assert.fail('should not resolve'))
+    .catch((e) => assert.match(e.message, /could not find package.json/));
 
-  setupWebpackConfig({ PATH_SRC: 'poop' }).catch((e) => {
-  });
+  const fakeSrc = 'fake/src/path';
+  const fakeDist = 'fake/dist/path';
+
+  setupWebpackConfig({ PATH_SRC: fakeSrc, PATH_DIST: process.cwd() })
+    .then(() => assert.fail('should not resolve'))
+    .catch((e) => assert.match(e.message, fakeSrc));
+
+  setupWebpackConfig({ PATH_SRC: process.cwd(), PATH_DIST: fakeDist })
+    .then(() => assert.fail('should not resolve'))
+    .catch((e) => assert.match(e.message, fakeDist));
 
   const { pack, config } = await setupWebpackConfig();
 

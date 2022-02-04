@@ -33,13 +33,13 @@ export const setupWebpackConfig = async ({
   pack: NodeprotoPackType
 }> => {
   const pkgJson = (await dirs.getPkgJson(context))?.file;
+
   if (!pkgJson) throwIt(`could not find package.json in ${context}`);
 
-  const pathDist: string = (await resolve(PATH_DIST || pkgJson.config.PATH_DIST, true)) || '';
-  const pathSrc: string = (await resolve(PATH_SRC || pkgJson.config.PATH_SRC, true)) || '';
-  if (!pathDist || !pathSrc) {
-    throwIt(`PATH_DIST or PATH_SRC is not defined in package.json.config`);
-  }
+  // $FlowIgnore - will throw if path doesnt exist; see tests
+  const pathDist: string = await resolve(PATH_DIST || pkgJson.config.PATH_DIST, true);
+  // $FlowIgnore - will throw if path doesnt exist; see tests
+  const pathSrc: string = await resolve(PATH_SRC || pkgJson.config.PATH_SRC, true);
 
   const mode: string = NODE_ENV || pkgJson.config.NODE_ENV;
   const ifProd: boolean = mode === 'production';
