@@ -1,4 +1,5 @@
-// @FlowTODO
+// @flow
+
 /* eslint-disable */
 
 /**

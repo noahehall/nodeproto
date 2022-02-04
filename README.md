@@ -9,6 +9,7 @@
   - koa => 2
   - flowtype
   - all packages export libdefs as `@nodeproto/packagename/libdefs`
+    - todo should be defined in package.json exports which target a src/libdefs/index.mjs file
 - cultural boundaries
   - bleeding edge always
   - best in class > most popular

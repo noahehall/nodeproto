@@ -13,7 +13,7 @@ import type {
   WebpackPluginType,
 } from '../../libdefs';
 
-export const reactDevWebpackConfig = async ({
+export const reactWebpackConfig = async ({
   entry,
   htmlOptions = {},
   entryUnshift = [],

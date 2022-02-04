@@ -1,5 +1,19 @@
 // @flow
 
+// creates an esbuild configuration object for bundling a node apps source files
+// hard requirements on the latest node LTS and esm
+
+// easy to forget stuff
+// bundling: takes an input file, inlines all statically imported deps (that arent externalized) and outputs a single file
+// ^ asynchronous imports need to be marked as external, and made available in the runtime environment
+// concateting: passing multiple input files will create multiple bundles
+// external
+// ^ require for the iife and cjs formats, import for the esm format
+// ^ can use * as wildcard path to mark entire filepaths as external
+// ^^ both before & after path resolution,
+// ^^ import path in sourcecode, e.g. @foo/bar/* or /somedir/*
+// ^^ absolute filepath of the resolved file, e.g. ./node_modules/*
+
 import manifestPlugin from 'esbuild-plugin-manifest';
 
 import type {
@@ -8,50 +22,34 @@ import type {
   ObjectType,
 } from '../../libdefs';
 
-const getPkgDeps = (pkgJson: ObjectType): string[] =>
-  Object.keys({
-    ...(pkgJson.dependencies || {}),
-    ...(pkgJson.devDependencies || {}),
-  });
-
 // @see https://esbuild.github.io/api/
 export const createEsbuildConfig = ({
-  entry,
-  outdir, // fsproto.resolve('dist')
-  pkgJson,
-
-  // defaults
   assetNames = 'assets/[name]-[hash]',
-  bff = false, // starts server
-  builtinModules = [], // import { builtinModules } from 'module';
   bundle = true,
+  entry,
   external = [], // generally you shouldnt package your deps
-  isBuild = process.env.IS_BUILD,
-  isDev = process.env.NODE_ENV !== 'production',
-  isProd = !isDev,
+  format = 'esm',
   manifestFilename = 'manifest.json',
   metafile = true,
-  outExtension = { '.js': '.cjs' },
+  NODE_ENV = 'development',
+  outdir,
+  pkgJson,
   platform = 'node',
   plugins = [],
-  removePkgDependencies = false,
   replaceEntryVars = {}, // passed to define
   resolveExtensions = ['.mjs', '.js', '.cjs', '.json'],
-  sourcemap = true,
-  target = ['node14'], // LTS
+  target = ['node16.14.0'],
   watch = false,
   write = true,
 
-  // dependent
-  entryNames = isDev ? '[name]-[hash]' : '[name]',
-  minify = isProd,
-
   ...rest
 }: EsbuildSetupType): EsbuildConfigType => {
-  const lastPeriod = entry.lastIndexOf('.');
-  const appInputFilename = entry.slice(0, lastPeriod);
-  const appExtension = entry.slice(lastPeriod);
-  const manifestUri = outdir + '/' + manifestFilename;
+  const isDev = NODE_ENV !== 'production';
+  const isProd = !isDev;
+  const entryNames = isDev ? '[name]-[hash]' : '[name]';
+  const minify = isProd;
+  const sourcemap = isDev;
+
 
   const define = {
     // TODO: create example of using envproto with configproto
@@ -74,13 +72,10 @@ export const createEsbuildConfig = ({
     define, // This feature provides a way to replace global identifiers with constant expressions.
     entryNames,
     entryPoints: [entry],
-    external: external
-      .concat(builtinModules)
-      .concat(removePkgDependencies ? getPkgDeps(pkgJson) : []),
+    external: external.concat('./node_modules/*'),
     metafile,
     minify, // the generated code will be minified instead of pretty-printed
     outdir,
-    outExtension,
     platform,
     plugins: plugins.concat(manifestPlugin(manifestPluginConfig)),
     preserveSymlinks: false,

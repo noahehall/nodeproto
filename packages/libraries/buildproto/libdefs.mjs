@@ -38,6 +38,7 @@ export type PkgJsonType = {
   devDependencies: { [string]: string },
   ...
 };
+
 export type WebpackPluginType = WebpackPluginInstance | WebpackPluginFunction;
 
 // @see copypasta from flow-typed/npm/webpack_v5.x.x.js

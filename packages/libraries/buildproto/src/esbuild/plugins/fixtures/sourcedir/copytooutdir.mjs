@@ -1,1 +1,3 @@
-export const obj = {};
+// @flow
+
+export const poop: string = 'then flush';

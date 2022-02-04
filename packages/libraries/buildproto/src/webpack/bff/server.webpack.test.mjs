@@ -1,7 +1,7 @@
 import * as t from '@nodeproto/testproto/t';
 import http from 'http';
 
-import { reactDevWebpackConfig, webpackServer } from '@nodeproto/buildproto';
+import { reactWebpackConfig, webpackServer } from '@nodeproto/buildproto';
 
 const { assert } = t;
 
@@ -56,7 +56,7 @@ test('webpackServer: throws', () => {
 
 test('webpackServer: development server', async (context) => {
   const { reactDevOpts } = context.fixtures;
-  const { config, pack } = await reactDevWebpackConfig(reactDevOpts);
+  const { config, pack } = await reactWebpackConfig(reactDevOpts);
 
   const esm = webpackServer({ config, pack });
 

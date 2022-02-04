@@ -1,4 +1,6 @@
 // @flow
+
+// TODO: file is wayy tooo long
 import os from 'os';
 
 import { BundleStatsWebpackPlugin } from 'bundle-stats-webpack-plugin';

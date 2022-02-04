@@ -1,6 +1,6 @@
 import * as t from '@nodeproto/testproto/t';
 
-import { reactDevWebpackConfig, testCompiler } from '@nodeproto/buildproto';
+import { reactWebpackConfig, testCompiler } from '@nodeproto/buildproto';
 
 const { assert } = t;
 
@@ -20,9 +20,9 @@ test.after.each((context) => {
   delete context.fixtures;
 });
 
-test('reactDevWebpackConfig', async ({ fixtures }) => {
+test('reactWebpackConfig', async ({ fixtures }) => {
   const { reactDevWebpackOptions } = fixtures;
-  const { config, pack } = await reactDevWebpackConfig(reactDevWebpackOptions);
+  const { config, pack } = await reactWebpackConfig(reactDevWebpackOptions);
 
   assert.isObject(config, 'webpack object');
   assert.isObject(pack, 'pack meta object');

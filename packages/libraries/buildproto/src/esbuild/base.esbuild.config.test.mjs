@@ -1,9 +1,17 @@
-// import * as t from '@nodeproto/testproto';
-// import { createEsbuildConfig } from './create.esbuild.config';
+import * as t from '@nodeproto/testproto/t';
+import http from 'http';
 
-// const { assert } = t;
+import { createEsbuildConfig } from '@nodeproto/buildproto';
 
-// const test = t.suite('create.esbuild.config');
+const { assert } = t;
+
+const test = t.suite('create.esbuild.config');
+
+test('createEsbuildConfig', () => {
+  assert(true === true);
+});
+
+test.run();
 
 // const getConfig = (props) => ({
 //   entry: '',
@@ -33,5 +41,3 @@
 
 //   assert.throws(() => createEsbuildConfig(props), /pkgJson: json: is required/);
 // });
-
-// test.run();
