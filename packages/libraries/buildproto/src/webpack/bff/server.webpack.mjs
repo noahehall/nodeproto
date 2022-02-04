@@ -6,6 +6,8 @@ import middleware from 'webpack-dev-middleware-2';
 import webpack from 'webpack';
 import webpackHotMiddleware from 'webpack-hot-middleware-2';
 
+import { isString, throwIt } from '@nodeproto/shared';
+
 import type {
   NodeprotoPackType,
   NodeprotoWebpackServerType,
@@ -14,19 +16,24 @@ import type {
 } from '../../../libdefs';
 
 export const webpackServer = ({
-  useConfig,
+  CLIENT_PORT = 8080,
+  HOST_IP = '0.0.0.0',
   pack,
+  webpackConfig,
 }: {
-  useConfig: WebpackConfigType,
+  HOST_IP?: string,
+  CLIENT_PORT: number,
   pack: NodeprotoPackType,
+  webpackConfig: WebpackConfigType,
 }): NodeprotoWebpackServerType => {
-  const CLIENT_PORT: number = pack.CLIENT_PORT || 8080;
-  const APP_NAME: string = pack.pkgJson.name;
+  if (!isString(webpackConfig.output?.publicPath))
+    throwIt('webpackConfig.output.publicPath should be a string');
 
-  const compiler = webpack(useConfig);
+  const APP_NAME: string = pack.pkgJson.name;
+  const compiler = webpack(webpackConfig);
 
   const webpackDevMiddlewareInstance = middleware(compiler, {
-    publicPath: useConfig.publicPath,
+    publicPath: webpackConfig.output?.publicPath,
     stats: 'errors-warnings',
     useBff: 'useKoa2',
     writeToDisk: pack.writeToDisk,
@@ -41,12 +48,15 @@ export const webpackServer = ({
   const controller = new AbortController();
 
   const config = {
-    host: '0.0.0.0',
+    host: HOST_IP,
     port: CLIENT_PORT,
     signal: controller.signal,
   };
 
-  const server = app.listen(config, () => console.info(`${APP_NAME} running on: ${CLIENT_PORT}`));
+  const server = app.listen(
+    config,
+    () => console.info(`${APP_NAME} running on: ${CLIENT_PORT}`)
+  );
 
   // @see https://github.com/gajus/http-terminator
   // @see https://github.com/gajus/http-terminator/blob/master/test/http-terminator/factories/createInternalHttpTerminator.ts

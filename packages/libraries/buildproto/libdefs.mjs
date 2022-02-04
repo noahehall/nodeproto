@@ -11,11 +11,9 @@ import type { ObjectType, StringContainerType } from '@nodeproto/configproto/lib
 
 // @see flow-typed/npm/webpack_v5.x.x.js
 import type {
-  ArrayOfStringOrStringArrayValues,
   Entry,
   ModuleOptions,
   OptimizationOptions,
-  OutputOptions,
   StatsOptions,
   WebpackCompiler,
   WebpackOptions,
@@ -56,7 +54,6 @@ export type WebpackConfigType = WebpackOptions;
 
 export type NodeprotoPackType = {
   builtinModules: string[],
-  CLIENT_PORT?: number,
   ifDev?: boolean,
   ifProd?: boolean,
   pathDist: string,
