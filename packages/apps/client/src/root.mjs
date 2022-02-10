@@ -8,12 +8,12 @@ import ReactDOM from 'react-dom';
 import { App } from './components/screens/App/AppScreen.mjs';
 import { ErrorBoundary } from './components/composite/Errors/ErrorBoundary.mjs';
 
-import type { Node } from '../libdefs';
+import type { Element } from '../libdefs';
 
 const containerID: string = 'root';
 const container: HTMLElement | null = document.getElementById('root');
 
-const render = (Comp: Node): void => {
+const render = (Comp): void => {
   logIt('rendering app');
 
   if (!container) throwIt('container is null');

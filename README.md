@@ -86,7 +86,10 @@
 ### running tests & lints
 
   ```sh
-    pnpm proto repo:eslint # runs eslint flow & prettier
+    pnpm proto repo:lint # runs eslint (fix mode), prettier, flow + type coverage
+    pnpm proto repo:eslint # runs eslint flow & prettier, fails on first package with lint errs
+    pnpm proto repo:eslint:fix # same as above, but doesnt fail
+    pnpm proto repo:flow:coverage # runs flow with type def coverage
     pnpm proto flow # detailed flowtype analysis
     pnpm proto flow stop|start # restart flow server, sometimes it fails to pick up changes to deep external libdefs
     pnpm proto repo:test # run tests

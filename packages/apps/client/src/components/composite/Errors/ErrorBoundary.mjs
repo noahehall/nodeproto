@@ -6,10 +6,10 @@ import JSONPrettyMonTheme from 'react-json-pretty/dist/monikai';
 
 import { DisplayError } from './DisplayError.mjs';
 
-import type { Element, Node } from '../../../../libdefs';
+import type { Element, Portal } from '../../../../libdefs';
 
 type ErrorBoundaryProps = {
-  children?: Node
+  children: Element<any>
 };
 
 type ErrorBoundaryState = {
@@ -32,7 +32,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
     console.error(info);
   }
 
-render(): Element < typeof DisplayError > | Node {
+render(): Element < typeof DisplayError > | Portal {
     return (
       this.state.error
         ? <DisplayError error={this.state.error} />

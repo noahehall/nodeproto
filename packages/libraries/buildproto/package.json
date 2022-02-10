@@ -146,6 +146,11 @@
     "darwin",
     "linux"
   ],
+  "peerDependencies": {
+    "react": "18.0.0-rc.0",
+    "react-devtools": "~4.23.0",
+    "react-dom": "18.0.0-rc.0"
+  },
   "scripts": {
     "build": "pnpm repo:rm:dist && NODE_OPTIONS=$npm_package_config_NODE_OPTIONS babel $npm_package_config_DIRS_TO_TRANSPILE -d $npm_package_config_PATH_DIST --out-file-extension .js --ignore 'src/**/*.test.mjs' --ignore src/webpack/test.compiler.mjs",
     "clean": "pnpm repo:rm:dist && pnpm repo:cp:cjs",
@@ -163,11 +168,12 @@
     "repo:cp:pretty": "rm -f .prettier* && cp ./node_modules/@nodeproto/configproto/.prettier* .",
     "repo:deps": "ultra --info",
     "repo:deps:direct": "npm ls",
-    "repo:eslint": "eslint './**/*'; pnpm repo:flow:coverage",
+    "repo:eslint": "eslint './**/*'",
     "repo:eslint:fix": "pnpm repo:eslint -- --fix",
     "repo:flow:coverage": "pnpm flow batch-coverage src",
     "repo:flowtyped:install": "flow-typed install",
     "repo:jsync": "jsync",
+    "repo:lint": "pnpm repo:eslint:fix; pnpm repo:flow:coverage",
     "repo:monitor": "ultra --monitor",
     "repo:nuke": "pnpm repo:rm:dist; pnpm repo:rm:nodemodules",
     "repo:rm:dist": "rm -rf dist/*",
@@ -186,10 +192,5 @@
       "test",
       "cp:flow"
     ]
-  },
-  "peerDependencies": {
-    "react": "18.0.0-rc.0",
-    "react-devtools": "~4.23.0",
-    "react-dom": "18.0.0-rc.0"
   }
 }

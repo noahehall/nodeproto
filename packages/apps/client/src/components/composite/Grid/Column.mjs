@@ -15,8 +15,8 @@ const StyledCell = styled(GridCell)`
 `;
 
 type ScreenColumnProps = {
-  className: string,
-  children?: Node,
+  className?: string,
+  children: Element<any>,
 };
 
 export const ScreenColumn: ComponentType<ScreenColumnProps> = ({

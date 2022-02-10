@@ -13,7 +13,7 @@ export const LandingScreen: ComponentType<any> = (props: {}): Element<typeof Scr
   return (
     <ScreenGrid {...props} isFor='Landing'>
       <Helmet>
-        <title>NIRV</title>
+        <title>{"NIRV"}</title>
 
         <meta
           content='@nodeproto: build prototypes, fast!'
@@ -23,7 +23,9 @@ export const LandingScreen: ComponentType<any> = (props: {}): Element<typeof Scr
 
       <ScreenRow>
         <ScreenColumn>
-          <h1 className='animate__animated animate__backInUp'>@nodeproto: build prototypes, faster.</h1>
+          <h1 className='animate__animated animate__backInUp'>
+            {"@nodeproto: build prototypes, faster."}
+          </h1>
         </ScreenColumn>
       </ScreenRow>
 

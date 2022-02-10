@@ -4,7 +4,7 @@ import { ScreenGrid } from '../../composite/Grid/Grid.mjs';
 
 import type { ComponentType, Element } from '../../../../libdefs';
 
-export const NotFoundScreen: ComponentType<void> = () => {
+export const NotFoundScreen: ComponentType<{default?: boolean}> = () => {
   return (
     <ScreenGrid isFor='Not Found'>
       <h1>

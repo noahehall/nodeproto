@@ -36,7 +36,7 @@ const AppWrapper: ComponentType<any> = styled.main`
   padding: 10px;
 `;
 
-export const App: ComponentType<null> = () => {
+export const App: ComponentType<{}> = () => {
   return (
     <OuterContainer id="outer-container">
       <Helmet defaultTitle="NIRV" titleTemplate="%s - NIRV">
