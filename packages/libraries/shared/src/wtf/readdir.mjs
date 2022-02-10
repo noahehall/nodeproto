@@ -5,7 +5,7 @@ import JSONC from "jsonc-simple-parser";
 import picomatch from "picomatch";
 import readdirOg from "@folder/readdir";
 
-import type { ObjectType } from '@nodeproto/configproto/libdefs';
+import type { PkgJsonType, PackageJsonMeta } from '../libdefs';
 
 /**
   shelljs issue when running bundled code
@@ -49,6 +49,7 @@ type Readdir = {
     isMatch?: boolean,
   }): any,
 };
+
 export const readdir: Readdir = async ({ dirpath, glob, ...opts }) => {
   if (!dirpath?.startsWith('/')) {
     throw new Error('dirpath must be absolute');
@@ -72,10 +73,7 @@ export const getPkgJsonAbs = async (
   glob: RegExp | string
 ): Promise<string> => (await getFilePathAbs(dirpath, glob))[0];
 
-type PackageJsonMeta = {
-  file?: ObjectType,
-  path?: string,
-}
+
 
 export const getPkgJson = async (
   dirpath: string = ".",
@@ -96,4 +94,4 @@ export const getPkgJson = async (
 export const getPkgJsonc = async (
   dirpath: string = ".",
   glob: string = 'package.jsonc'
-): Promise<ObjectType> => getPkgJson(dirpath, glob);
+): Promise<PackageJsonMeta> => getPkgJson(dirpath, glob);

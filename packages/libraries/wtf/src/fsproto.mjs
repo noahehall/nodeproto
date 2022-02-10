@@ -9,14 +9,17 @@ import path from 'path';
 
 import { esMain } from './esmain';
 
-import type {
-  FileType,
-  ImportMetaType,
-  ObjectType,
-} from '@nodeproto/configproto/libdefs';
+import type { FileType, ImportMetaType, ObjectType } from './libdefs';
 
-export const isMain = (importMetaOrRequireMain: ObjectType): boolean =>
-  isEsm() ? esMain(importMetaOrRequireMain.url) : importMetaOrRequireMain == module; // eslint-disable-line no-undef
+export const isMain = (importMetaOrRequireMain: ObjectType): boolean => {
+  if (isEsm()) {
+    return typeof importMetaOrRequireMain.url === 'string'
+      ? esMain(importMetaOrRequireMain.url)
+      : false;
+  }
+
+  return importMetaOrRequireMain == module; // eslint-disable-line no-undef
+};
 
 export const urlToPath = (importMetaUrlOrPath: string): string => fileURLToPath(importMetaUrlOrPath);
 

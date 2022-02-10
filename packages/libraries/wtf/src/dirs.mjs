@@ -8,7 +8,7 @@ import globalDirs from 'global-dirs';
 import symlinkDir from 'symlink-dir';
 import xdg from '@folder/xdg';
 
-import type { ObjectType } from '@nodeproto/configproto/libdefs';
+import type { ObjectType } from './libdefs';
 
 const { external, ...internal } = wtfShared;
 

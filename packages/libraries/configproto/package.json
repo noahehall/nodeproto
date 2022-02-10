@@ -16,7 +16,9 @@
   "engines": {
     "node": "^14.17.0 || >=16.0.0 || >= 17.0.0"
   },
-  "files": [ "./libdefs.mjs", "./src"],
+  "files": [
+    "./src"
+  ],
   "keywords": [
     "@nirv",
     "@nodeproto",
@@ -59,8 +61,9 @@
     "proto": "pnpm exec ultra -r",
     "repo:about": "npm run-script && npm --versions && pnpm c list && echo \"NODE OPTIONS set to: $npm_package_config_NODE_OPTIONS\"",
     "repo:deps": "ultra --info",
+    "repo:eslint": "eslint './**/*'",
     "repo:eslint:fix": "pnpm repo:eslint -- --fix",
-    "repo:eslint": "eslint './**/*'; pnpm repo:flow:coverage",
+    "repo:lint": "pnpm repo:eslint:fix; pnpm repo:flow:coverage",
     "repo:flow:coverage": "pnpm flow batch-coverage src",
     "repo:flowtyped:install": "flow-typed install",
     "repo:nuke": "pnpm repo:rm:dist; pnpm repo:rm:nodemodules",
@@ -83,7 +86,7 @@
     "./eslint/*": "./src/eslint/*.eslintrc.yml",
     "./fixtures/*": "./src/fixtures/*",
     "./flowconfig": "./.flowconfig",
-    "./libdefs": "./libdefs.mjs",
+    "./libdefs": "./src/libdefs/index.js",
     "./node/*": "./src/node/*",
     "./prettier": "./.prettierrc.json"
   },
@@ -125,7 +128,7 @@
     "eslint-plugin-react": "7.28.0",
     "eslint-plugin-react-hooks": "4.3.0",
     "eslint-plugin-yml": "0.13.0",
-    "flow-bin": "0.170.0",
+    "flow-bin": "0.171.0",
     "flow-remove-types": "2.170.0",
     "flow-typed": "3.6.1",
     "prettier": "2.5.1",

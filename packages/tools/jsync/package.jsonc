@@ -6,7 +6,7 @@
     "root": false,
     // the total number of ancestor dirs to search for root
     // will throw err if not found
-    "maxLookups": 3,
+    "maxLookups": 10,
     // the default action to take for fields
     // spread | ignore | force
     "defaultAction": "spreadRootValues",

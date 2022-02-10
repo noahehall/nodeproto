@@ -28,12 +28,11 @@
     "DIRS_TO_TRANSPILE": "./src"
   },
   "dependencies": {
+    "chai": "4.3.6",
     "chai-as-promised": "7.1.1",
     "chai-exclude": "2.1.0",
     "chai-nock": "1.3.0",
-    "chai": "4.3.6",
     "chokidar-cli": "3.0.0",
-    "eslint-plugin-fb-flow": "0.0.4",
     "nock": "13.2.2",
     "sinon": "13.0.0",
     "ultra-runner": "3.10.5",
@@ -48,6 +47,7 @@
     "browserslist": "4.19.1",
     "diff": "5.0.0",
     "eslint-config-prettier": "8.3.0",
+    "eslint-plugin-fb-flow": "0.0.4",
     "eslint-plugin-flowtype-errors": "4.5.0",
     "eslint-plugin-html": "6.2.0",
     "eslint-plugin-import": "2.25.4",
@@ -56,10 +56,10 @@
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-prettier": "4.0.0",
     "eslint-plugin-promise": "6.0.0",
-    "eslint-plugin-react": "7.28.0",
     "eslint-plugin-react-hooks": "4.3.0",
+    "eslint-plugin-react": "7.28.0",
     "eslint-plugin-yml": "0.13.0",
-    "flow-bin": "0.170.0",
+    "flow-bin": "0.171.0",
     "kleur": "4.1.4",
     "prettier": "2.5.1"
   },
@@ -76,7 +76,8 @@
     "./t": {
       "import": "./src/t.mjs",
       "default": "./dist/t.js"
-    }
+    },
+    "./libdefs": "./src/libdefs/index.js"
   },
   "os": [
     "darwin",

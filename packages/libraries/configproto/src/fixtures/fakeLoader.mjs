@@ -1,5 +1,3 @@
-// @FlowTODO
-
 // @see https://webpack.js.org/contribute/writing-a-loader/#testing
 
 import flowRemoveTypes from 'flow-remove-types';

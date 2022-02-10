@@ -8,16 +8,16 @@ import {
   throwIt,
 } from '@nodeproto/shared';
 
-import type { ObjectType } from '@nodeproto/configproto/libdefs';
+import path from 'path';
 
 import { SPREAD_VALUES } from './constants';
 
-import path from 'path';
+import type { JsyncConfigType, JsyncMetaType, PkgJsonType } from './libdefs';
 
 const importMetaUrl = import.meta.url;
 
 export const diskPath: string = path.resolve(dirname((typeof importMetaUrl === 'string' ? importMetaUrl : process.cwd())), '..');
-export const internalConfigPromise: Promise<ObjectType> = getPkgJsonc(diskPath);
+export const internalConfigPromise: Promise<JsyncMetaType> = getPkgJsonc(diskPath);
 
 export const getRootPkgJson = async ({
   maxLookups,
@@ -25,15 +25,15 @@ export const getRootPkgJson = async ({
 }: {
   maxLookups: number,
   currentDir: string
-}): Promise<ObjectType> => {
+}): Promise<JsyncMetaType> => {
   if (maxLookups < 0) throwIt(
     `unable to find root package.json, ending search in ${currentDir}`
   );
 
-  const { file: json, path: jsonPath } = await getPkgJson(currentDir);
+  const pkgJsonMeta = await getPkgJson(currentDir);
 
-  return json?.jsync?.root
-    ? { json, jsonPath }
+  return pkgJsonMeta.file?.jsync?.root === true
+    ? pkgJsonMeta
     : getRootPkgJson({
         currentDir: path.resolve(currentDir, '..'),
         maxLookups: maxLookups - 1,
@@ -42,38 +42,39 @@ export const getRootPkgJson = async ({
 
 export const childPkgJsonPath: string = process.env.CHILD_PKG_JSON_PATH || process.cwd();
 
-export const childPkgJsonPromise: Promise<ObjectType> = getPkgJson(childPkgJsonPath);
+export const childPkgJsonPromise: Promise<JsyncMetaType> = getPkgJson(childPkgJsonPath);
 
 /**
  * @description
  * spreads { default, root, child } jsync configs
  */
-export const getFiles = async (): Promise<ObjectType> => {
-  const internalConfig = (await internalConfigPromise).file.jsync;
+export const getFiles = async (): Promise<{
+  config: JsyncConfigType,
+  rootJson: PkgJsonType,
+  childJson: PkgJsonType,
+} | void> => {
+  const internalConfig = (await internalConfigPromise).file?.jsync;
 
   if (!internalConfig) throwIt(`unable to find internal jsync config @ path ${diskPath}`);
 
-  const { json: { jsync: rootConfig, ...rootJson } } = await getRootPkgJson({
-    maxLookups: internalConfig.maxLookups,
+  const { file: { jsync: rootConfig, ...rootJson } = {} } = await getRootPkgJson({
     currentDir: path.resolve(diskPath, '..'),
+    maxLookups: typeof internalConfig?.maxLookups === 'number' ? internalConfig.maxLookups : 10
   });
 
   if (!rootConfig || !rootJson) throwIt(`unable to find root pkgJson @ path ${diskPath}`);
 
   const { file: childJson } = await childPkgJsonPromise;
 
-
   if (!childJson) throwIt(`unable to find child pkgJson @ path ${childPkgJsonPath}`);
 
-  if (!childJson.jsync) throwIt(`child pkgJson does not have jsync config @ path ${childPkgJsonPath}`);
+  else if (!childJson.jsync) throwIt(`child pkgJson does not have jsync config @ path ${childPkgJsonPath}`);
 
-  return {
-    config: {
-      ...internalConfig,
-      ...rootConfig,
-      ...childJson.jsync,
-    },
-    rootJson,
-    childJson,
-  };
+  else {
+    return {
+      config: Object.assign({}, internalConfig, rootConfig, childJson.jsync),
+      rootJson,
+      childJson,
+    };
+  }
 };

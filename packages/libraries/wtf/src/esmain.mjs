@@ -6,7 +6,7 @@
 import { fileURLToPath } from 'url';
 import path from 'path';
 
-import type { ObjectType } from '@nodeproto/configproto/libdefs';
+import type { ObjectType } from './libdefs';
 
 export const stripExt = (name: string): string => {
   const extension = path.extname(name);

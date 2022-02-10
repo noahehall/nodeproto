@@ -1,5 +1,5 @@
 [version]
->=0.170.0
+>=0.171.0
 
 [ignore]
 <PROJECT_ROOT>/browsertime*/.*
@@ -10,8 +10,7 @@
 <PROJECT_ROOT>/src/*.test.mjs
 
 [libs]
-<PROJECT_ROOT>/flow-typed/*
-<PROJECT_ROOT>/libdefs.mjs
+<PROJECT_ROOT>/flow-typed/.*
 
 [strict]
 nonstrict-import
@@ -44,8 +43,8 @@ experimental.const_params=true
 include_warnings=true
 lazy_mode=none
 log.file=./.flowlog
-max_header_tokens=2
-module.ignore_non_literal_requires=true
+max_header_tokens=6
+module.ignore_non_literal_requires=false
 module.system.node.main_field=exports
 module.system.node.main_field=module
 module.system.node.main_field=main
@@ -71,15 +70,5 @@ traces=1
 ; module.name_mapper.extension ; no need for this at the moment
 ; suppress_comment= ; removed from flow, use $FlowFixMe, $FlowIssue, $FlowExpectedError, or $FlowIgnore
 
-; the following cause our setup to error (likely something in eslint)
-; esproposal.class_instance_fields=enable
-; esproposal.class_static_fields=enable
-; esproposal.decorators=ignore
-; esproposal.export_star_as=enable
-; esproposal.nullish_coalescing=enable
-; esproposal.optional_chaining=enable
+; the following cause our setup to error (likely something in eslint/deprecated)
 ; sharedmemory.log_level=0
-; strip_root=true
-; types_first=true
-; well_formed_exports.includes=<PROJECT_ROOT>/src
-; well_formed_exports=true

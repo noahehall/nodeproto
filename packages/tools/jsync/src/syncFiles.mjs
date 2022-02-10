@@ -15,17 +15,17 @@ import {
 
 
 import type {
+  JsyncConfigType,
   ObjectOfSets,
-  ObjectOfStringArrays,
   ObjectOfStrings,
-  ObjectType,
-} from '@nodeproto/configproto/libdefs';
+  PkgJsonType,
+} from './libdefs';
 
 export const availableActions: Set<string> = new Set([FORCE_VALUES, IGNORE_VALUES, SPREAD_VALUES]);
 
 // converts jsync config object of arrays into object of sets
 // and ensures fields are unique across sets
-export const getFieldCategories = (config: ObjectType): ObjectOfSets => {
+export const getFieldCategories = (config: JsyncConfigType): ObjectOfSets => {
   const fieldCategories = {}; // container for all the json segments
 
   const
@@ -74,7 +74,7 @@ export const getFieldsByCategory = ({
   config,
   fieldNames,
   }: {
-    config: ObjectType,
+    config: JsyncConfigType,
     fieldNames: string[],
   }
 ): ObjectOfStrings => {
@@ -102,10 +102,10 @@ export const syncFields = ({
   toJson,
   fieldsByCategory,
 }: {
-  fromJson: ObjectType,
-  toJson: ObjectType,
+  fromJson: PkgJsonType,
+  toJson: PkgJsonType,
   fieldsByCategory: ObjectOfStrings,
-}): ObjectType => {
+}): PkgJsonType => {
   const jsonObj = {};
 
   for (const field in fieldsByCategory) {
@@ -157,10 +157,10 @@ export const syncFiles = ({
   config,
   rootJson,
 }: {
-  childJson: ObjectType,
-  config: ObjectType,
-  rootJson: ObjectType,
-}): ObjectType => {
+  childJson: PkgJsonType,
+  config: JsyncConfigType,
+  rootJson: PkgJsonType,
+}): PkgJsonType => {
   // assign each rootJson field to a category
   const fieldsByCategory: ObjectOfStrings = getFieldsByCategory({
     config,
@@ -168,7 +168,7 @@ export const syncFiles = ({
   });
 
   // sync (ignore > force > spread) rootJson fields with childJson fields
-  const syncedFields: ObjectType = syncFields({
+  const syncedFields = syncFields({
     fromJson: rootJson,
     fieldsByCategory,
     toJson: childJson,
@@ -176,8 +176,6 @@ export const syncFiles = ({
 
   // override childJson fields with fields synced from rootJson
   // then sort the object: by name, simple values before complex values
-  return sortObject({
-    ...childJson,
-    ...syncedFields
-  });
+  // $FlowIssue[incompatible-return]
+  return sortObject(Object.assign({}, childJson, syncedFields));
 };

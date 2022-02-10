@@ -112,7 +112,7 @@
       "import": "./src/index.mjs",
       "default": "./dist/index.js"
     },
-    "./libdefs": "./libdefs.mjs"
+    "./libdefs": "./src/libdefs/index.mjs"
   },
   "files": [
     "./libdefs.mjs",
@@ -172,9 +172,9 @@
     "repo:eslint": "eslint './**/*'",
     "repo:eslint:fix": "pnpm repo:eslint -- --fix",
     "repo:flow:coverage": "pnpm flow batch-coverage src",
+    "repo:lint": "pnpm repo:eslint:fix; pnpm repo:flow:coverage",
     "repo:flowtyped:install": "flow-typed install",
     "repo:jsync": "jsync",
-    "repo:lint": "pnpm repo:eslint:fix; pnpm repo:flow:coverage",
     "repo:monitor": "ultra --monitor",
     "repo:nuke": "pnpm repo:rm:dist; pnpm repo:rm:nodemodules",
     "repo:rm:dist": "rm -rf dist/*",

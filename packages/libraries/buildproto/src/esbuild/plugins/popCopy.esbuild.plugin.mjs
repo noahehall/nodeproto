@@ -5,7 +5,7 @@
 import { fsproto } from '@nodeproto/wtf';
 import path from 'path';
 
-import type { ObjectType } from '../../../libdefs';
+import type { ObjectType } from '@nodeproto/buildproto';
 
 const fs = { fsproto };
 

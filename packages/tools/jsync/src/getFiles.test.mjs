@@ -44,7 +44,7 @@ test('childPkgJsonPromise', async () => {
 });
 
 test('getRootPkgJson', async () => {
-  const { json, jsonPath } = await getRootPkgJson({
+  const { file: json, path: jsonPath } = await getRootPkgJson({
     maxLookups: 3,
     currentDir: process.cwd(),
   });

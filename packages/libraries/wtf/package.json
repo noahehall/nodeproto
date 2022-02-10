@@ -69,7 +69,7 @@
     "eslint-plugin-react": "7.28.0",
     "eslint-plugin-react-hooks": "4.3.0",
     "eslint-plugin-yml": "0.13.0",
-    "flow-bin": "0.170.0",
+    "flow-bin": "0.171.0",
     "flow-remove-types": "2.170.0",
     "flow-typed": "3.6.1",
     "prettier": "2.5.1",
@@ -96,7 +96,8 @@
     "./fsproto": {
       "import": "./src/fsproto.mjs",
       "default": "./dist/fsproto.js"
-    }
+    },
+    "./libdefs": "./src/index.js"
   },
   "files": [
     "./.flowconfig"

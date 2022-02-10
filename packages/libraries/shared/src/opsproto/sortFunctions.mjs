@@ -2,7 +2,7 @@
 
 import { isObject, isString, isValue } from './utility';
 
-import type { ArrayType, ObjectType } from '@nodeproto/configproto/libdefs';
+import type { ArrayType, ObjectType } from '../libdefs';
 
 // @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare
 export const sortSimpleThenComplexDataTypes = (a: any, b :any): number => {
@@ -28,6 +28,7 @@ export const sortArraysAndObjects = (key: string, value: any): ObjectType | Arra
         .sort((a, b) => a[0].localeCompare(b[0]))
         .reduce((obj, [key, value]) => ((obj[key] = value), obj), {});
 
-export const sortObject = (obj: ObjectType): ObjectType => Object.entries(obj)
+// $FlowIssue[incompatible-return]
+export const sortObject = <T>(obj: T): T => Object.entries(obj)
   .sort(sortSimpleThenComplexDataTypes)
   .reduce((obj, [key, value]) => ((obj[key] = sortArraysAndObjects(key, value)), obj), {});

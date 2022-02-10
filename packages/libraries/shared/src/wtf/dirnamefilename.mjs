@@ -1,8 +1,6 @@
 // @flow
 
 // @see https://stackoverflow.com/questions/46745014/alternative-for-dirname-in-node-when-using-the-experimental-modules-flag
-// dont duplicate this shit across your app, just use this, which should be part
-// of your dependencies anyway
 
 import { fileURLToPath } from "url";
 import path from "path";

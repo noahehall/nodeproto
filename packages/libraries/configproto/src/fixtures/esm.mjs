@@ -1,3 +1,1 @@
-// @FlowTODO
-
 export default function () {}

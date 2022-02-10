@@ -20,7 +20,7 @@ import type {
   EsbuildConfigType,
   EsbuildSetupType,
   ObjectType,
-} from '../../libdefs';
+} from '@nodeproto/buildproto';
 
 // @see https://esbuild.github.io/api/
 export const createEsbuildConfig = ({

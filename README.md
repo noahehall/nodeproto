@@ -8,8 +8,7 @@
   - react, react-dom @rc (or @next)
   - koa => 2
   - flowtype
-  - all packages export libdefs as `@nodeproto/packagename/libdefs`
-    - todo should be defined in package.json exports which target a src/libdefs/index.mjs file
+  - all packages export reusable type definitions as `@nodeproto/packagename/libdefs`
 - cultural boundaries
   - bleeding edge always
   - best in class > most popular
