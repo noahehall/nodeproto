@@ -6,7 +6,7 @@ import JSONPrettyMonTheme from 'react-json-pretty/dist/monikai';
 
 import { DisplayError } from './DisplayError.mjs';
 
-import type { Element, Portal } from '../../../../libdefs';
+import type { Element, Portal } from '../../../libdefs';
 
 type ErrorBoundaryProps = {
   children: Element<any>

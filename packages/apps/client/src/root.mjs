@@ -5,8 +5,8 @@ import { StrictMode } from 'react';
 
 import ReactDOM from 'react-dom';
 
-import { App } from './components/screens/App/AppScreen.mjs';
-import { ErrorBoundary } from './components/composite/Errors/ErrorBoundary.mjs';
+import { App } from './Components/AppScreen.mjs';
+import { ErrorBoundary } from './Library/Errors/ErrorBoundary.mjs';
 
 const containerID: string = 'root';
 const container: HTMLElement | null = document.getElementById('root');

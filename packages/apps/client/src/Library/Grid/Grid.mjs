@@ -10,7 +10,7 @@ import styled from '@emotion/styled';
 
 import { ErrorBoundary } from '../Errors/ErrorBoundary.mjs';
 
-import type { ComponentType, Element, Node } from '../../../../libdefs';
+import type { ComponentType, Element, Node } from '../../../libdefs';
 
 const StyledGrid: ComponentType<void> = styled(Grid)`
   /* display: flex;

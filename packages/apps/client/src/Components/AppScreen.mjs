@@ -6,15 +6,15 @@ import { Router } from '@reach/router';
 import styled from '@emotion/styled';
 
 import { globalStyles } from './global-styles.mjs';
-import { LandingScreen } from '../Landing/LandingScreen.mjs';
-import { NotFoundScreen } from '../NotFound/NotFoundScreen.mjs';
+import { LandingScreen } from './LandingScreen.mjs';
+import { NotFoundScreen } from '../Library/NotFoundScreen.mjs';
 
 // css
 import 'normalize.css';
 import 'milligram';
 import 'animate.css';
 
-import type { ComponentType, Element } from '../../../../libdefs';
+import type { ComponentType, Element } from '../../libdefs';
 
 const OuterContainer: ComponentType<any> = styled.div`
   display: flex;

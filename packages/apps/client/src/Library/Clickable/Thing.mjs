@@ -7,7 +7,7 @@ import { useRef } from 'react';
 import clsx from 'clsx';
 import styled from '@emotion/styled';
 
-import type { ComponentType, Element, Node, Ref } from '../../../../libdefs';
+import type { ComponentType, Element, Node, Ref } from '../../../libdefs';
 
 const StyledAnchor = styled(Clickable)`
 

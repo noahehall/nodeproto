@@ -3,7 +3,7 @@
 import JsonPretty from 'react-json-pretty';
 import JSONPrettyMonTheme from 'react-json-pretty/dist/monikai';
 
-import type { ComponentType, ElementType } from '../../../../libdefs';
+import type { ComponentType, ElementType } from '../../../libdefs';
 
 type DisplayErrorProps = {
   error: Error,

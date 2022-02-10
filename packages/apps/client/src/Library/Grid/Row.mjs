@@ -8,7 +8,7 @@ import {
 import clsx from 'clsx';
 import styled from '@emotion/styled';
 
-import type { ComponentType, Element } from '../../../../libdefs';
+import type { ComponentType, Element } from '../../../libdefs';
 
 const StyledRow = styled(GridRow)`
 

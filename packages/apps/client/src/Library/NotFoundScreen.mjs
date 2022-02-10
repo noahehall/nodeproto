@@ -1,8 +1,8 @@
 // @flow
 
-import { ScreenGrid } from '../../composite/Grid/Grid.mjs';
+import { ScreenGrid } from './Grid/Grid.mjs';
 
-import type { ComponentType } from '../../../../libdefs';
+import type { ComponentType } from '../../libdefs';
 
 export const NotFoundScreen: ComponentType<{default?: boolean}> = () => {
   return (
