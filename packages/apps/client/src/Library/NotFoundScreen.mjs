@@ -8,7 +8,7 @@ export const NotFoundScreen: ComponentType<{default?: boolean}> = () => {
   return (
     <ScreenGrid isFor='Not Found'>
       <h1>
-        {" wtf happened bro?"}
+        {"wtf happened bro?"}
       </h1>
     </ScreenGrid>
   );

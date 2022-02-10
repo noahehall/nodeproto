@@ -1,8 +1,6 @@
 // @flow
 
 import { Global } from '@emotion/react';
-import { Helmet } from 'react-helmet';
-import { Router } from '@reach/router';
 import styled from '@emotion/styled';
 
 import { globalStyles } from './global-styles.mjs';
@@ -10,8 +8,6 @@ import { LandingScreen } from './LandingScreen.mjs';
 import { NotFoundScreen } from '../Library/NotFoundScreen.mjs';
 
 // css
-import 'normalize.css';
-import 'milligram';
 import 'animate.css';
 
 import type { ComponentType, Element } from '../../libdefs';
@@ -39,19 +35,13 @@ const AppWrapper: ComponentType<any> = styled.main`
 export const App: ComponentType<{}> = () => {
   return (
     <OuterContainer id="outer-container">
-      <Helmet defaultTitle="NIRV" titleTemplate="%s - NIRV">
-        <meta content="IT TAKES NIRV" name="description" />
-      </Helmet>
-
       <Global styles={globalStyles} />
 
       <InnerContainer id="inner-container">
         <AppWrapper id="app-wrapper">
-          <Router>
-            <LandingScreen isFor="ppop" path="/" />
+          <LandingScreen isFor="ppop" path="/" />
 
-            <NotFoundScreen default />
-          </Router>
+          {/* <NotFoundScreen default /> */}
         </AppWrapper>
       </InnerContainer>
     </OuterContainer>

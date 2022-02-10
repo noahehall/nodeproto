@@ -1,8 +1,5 @@
 // @flow
 
-import JsonPretty from 'react-json-pretty';
-import JSONPrettyMonTheme from 'react-json-pretty/dist/monikai';
-
 import type { ComponentType, ElementType } from '../../../libdefs';
 
 type DisplayErrorProps = {
@@ -18,9 +15,9 @@ export const DisplayError: ComponentType<DisplayErrorProps> = ({
     <section>
       <h1>{"Something went wrong."}</h1>
       <h2>{"Error"}</h2>
-      <JsonPretty data={error} theme={JSONPrettyMonTheme} />
+      <div>{JSON.stringify(error)}</div>
       <h2>{"Error Info"}</h2>
-      <JsonPretty data={info} theme={JSONPrettyMonTheme} />
+      <div>{JSON.stringify(info)}</div>
     </section>
   );
 };

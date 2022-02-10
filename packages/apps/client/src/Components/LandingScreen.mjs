@@ -1,7 +1,5 @@
 // @flow
 
-import { Helmet } from 'react-helmet';
-
 import { Anchor } from '../Library/Clickable/Thing.mjs';
 import { ScreenColumn } from '../Library/Grid/Column.mjs';
 import { ScreenGrid } from '../Library/Grid/Grid.mjs';
@@ -12,15 +10,6 @@ import type { ComponentType, Element } from '../../libdefs';
 export const LandingScreen: ComponentType<any> = (props: {}): Element<typeof ScreenGrid> => {
   return (
     <ScreenGrid {...props} isFor='Landing'>
-      <Helmet>
-        <title>{"NIRV"}</title>
-
-        <meta
-          content='@nodeproto: build prototypes, fast!'
-          name='description'
-        />
-      </Helmet>
-
       <ScreenRow>
         <ScreenColumn>
           <h1 className='animate__animated animate__backInUp'>

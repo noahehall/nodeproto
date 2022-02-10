@@ -1,8 +1,6 @@
 // @flow
 
 import { cloneElement, Component } from 'react';
-import JsonPretty from 'react-json-pretty';
-import JSONPrettyMonTheme from 'react-json-pretty/dist/monikai';
 
 import { DisplayError } from './DisplayError.mjs';
 
