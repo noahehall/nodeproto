@@ -2,7 +2,7 @@
 
 import { ScreenGrid } from '../../composite/Grid/Grid.mjs';
 
-import type { ComponentType, Element } from '../../../../libdefs';
+import type { ComponentType } from '../../../../libdefs';
 
 export const NotFoundScreen: ComponentType<{default?: boolean}> = () => {
   return (

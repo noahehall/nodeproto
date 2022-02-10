@@ -7,6 +7,7 @@
   "packageManager": "pnpm@6.29.1",
   "private": true,
   "repository": "git://github.com/noahehall/nodeproto.git",
+  "sideEffects": false,
   "type": "module",
   "version": "0.0.0",
   "author": {
@@ -135,8 +136,9 @@
     "repo:cp:pretty": "rm -f .prettier* && cp ./node_modules/@nodeproto/configproto/.prettier* .",
     "repo:deps": "ultra --info",
     "repo:deps:direct": "npm ls",
-    "repo:eslint": "eslint './**/*'; pnpm repo:flow:coverage",
     "repo:eslint:fix": "pnpm repo:eslint -- --fix",
+    "repo:eslint": "eslint './**/*'",
+    "repo:lint": "pnpm repo:eslint:fix; pnpm repo:flow:coverage",
     "repo:flow:coverage": "pnpm flow batch-coverage src",
     "repo:flowtyped:install": "flow-typed install",
     "repo:monitor": "ultra --monitor",

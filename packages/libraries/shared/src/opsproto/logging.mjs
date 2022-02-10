@@ -7,4 +7,5 @@ interface VoidFnInterface {
 export const noop: VoidFnInterface = () => void 0;
 
 const logFunction: VoidFnInterface = (...msgs) => console.info(...msgs);
-export const logIt: VoidFnInterface = !process.env.VERBOSE ? noop : logFunction;
+// TODO: fix for envs (e.g. browser) where process isnt defined
+export const logIt: VoidFnInterface = typeof process === 'undefined' || !process.env.VERBOSE ? noop : logFunction;

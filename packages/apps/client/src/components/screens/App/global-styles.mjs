@@ -27,7 +27,7 @@ import type { ComponentType } from '../../../../libdefs';
 // https://www.w3schools.com/charsets/ref_utf_dingbats.asp
 // https://dev.w3.org/html5/html-author/charref
 // https://html.spec.whatwg.org/multipage/named-characters.html#named-character-references
-export const globalStyles: ComponentType<void> = css`
+export const globalStyles: ComponentType<any> = css`
   /*vars*/
     :root {
       /* everything relative to these sizes!*/

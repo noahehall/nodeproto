@@ -8,8 +8,6 @@ import ReactDOM from 'react-dom';
 import { App } from './components/screens/App/AppScreen.mjs';
 import { ErrorBoundary } from './components/composite/Errors/ErrorBoundary.mjs';
 
-import type { Element } from '../libdefs';
-
 const containerID: string = 'root';
 const container: HTMLElement | null = document.getElementById('root');
 
