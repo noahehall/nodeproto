@@ -65,7 +65,7 @@ export const getFieldCategory = ({
   (fieldCategories[FORCE_VALUES].has(field) && FORCE_VALUES) ||
   (fieldCategories[IGNORE_VALUES].has(field) && IGNORE_VALUES) ||
   (availableActions.has(defaultAction) && defaultAction)
-  // $FlowIssue
+  // $FlowIssue[incompatible-return]
   || throwIt(`${defaultAction} is not a valid action`);
 
 // extracts each field in a json field
