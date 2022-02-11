@@ -5,7 +5,7 @@ import JSONC from "jsonc-simple-parser";
 import picomatch from "picomatch";
 import readdirOg from "@folder/readdir";
 
-import type { PkgJsonType, PackageJsonMeta } from '../libdefs';
+import type { PackageJsonMeta, PkgJsonType } from '../libdefs';
 
 /**
   shelljs issue when running bundled code
@@ -72,7 +72,6 @@ export const getPkgJsonAbs = async (
   dirpath: string = ".",
   glob: RegExp | string
 ): Promise<string> => (await getFilePathAbs(dirpath, glob))[0];
-
 
 
 export const getPkgJson = async (

@@ -148,7 +148,7 @@ export const syncFields = ({
     }
   }
 
-  return jsonObj;
+  return Object.freeze({ ...jsonObj });
 };
 
 // creates a new json object with values from root and child
@@ -176,6 +176,5 @@ export const syncFiles = ({
 
   // override childJson fields with fields synced from rootJson
   // then sort the object: by name, simple values before complex values
-  // $FlowIssue[incompatible-return]
-  return sortObject(Object.assign({}, childJson, syncedFields));
+  return Object.freeze(sortObject(Object.assign({}, childJson, syncedFields)));
 };

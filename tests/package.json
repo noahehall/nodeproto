@@ -4,7 +4,7 @@
   "homepage": "https://github.com/noahehall/nodeproto",
   "license": "SEE LICENSE IN LICENSE.md",
   "name": "@nodeproto/tests",
-  "packageManager": "pnpm@6.29.1",
+  "packageManager": "pnpm@6.30.1",
   "private": true,
   "repository": "git://github.com/noahehall/nodeproto.git",
   "type": "module",
@@ -61,7 +61,7 @@
     "eslint-plugin-react": "7.28.0",
     "eslint-plugin-react-hooks": "4.3.0",
     "eslint-plugin-yml": "0.13.0",
-    "flow-bin": "0.170.0",
+    "flow-bin": "0.171.0",
     "flow-remove-types": "2.170.0",
     "flow-typed": "3.6.1",
     "http-terminator": "3.0.4",
@@ -78,7 +78,7 @@
     "dist": "./dist"
   },
   "engines": {
-    "node": "^14.17.0 || ^16.11.0 || >=17.1.0"
+    "node": "^14.17.0 || ^16.11.0 || >=17.5.0"
   },
   "exports": {
     ".": "./index.mjs",

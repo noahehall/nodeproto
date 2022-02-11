@@ -25,17 +25,18 @@ export type StringContainerType = string | string[] | ObjectOfStrings
 export type SupportedNodeEnvsType = 'development' | 'production';
 
 export type PkgJsonType = {
-  config: {
+  config?: {
     PATH_DIST: string,
     PATH_SRC: string,
     NODE_ENV: SupportedNodeEnvsType
   },
   jsync?: ObjectType,
-  main: string, // path to index.js|index.cjs,
-  module: string, // path to index.mjs
-  name: string,
-  type: string,
-  version: string,
-  dependencies: { [string]: string },
-  devDependencies: { [string]: string },
+  main?: string, // path to index.js|index.cjs,
+  module?: string, // path to index.mjs
+  name?: string,
+  type?: string,
+  version?: string,
+  dependencies?: { [string]: string },
+  devDependencies?: { [string]: string },
+  ...
 };

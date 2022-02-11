@@ -5,7 +5,7 @@
   "license": "SEE LICENSE IN LICENSE.md",
   "main": "./index.mjs",
   "name": "@nodeproto/client",
-  "packageManager": "pnpm@6.29.1",
+  "packageManager": "pnpm@6.30.1",
   "private": true,
   "repository": "git://github.com/noahehall/nodeproto.git",
   "type": "module",
@@ -57,6 +57,7 @@
     "@nodeproto/configproto": "workspace:0.0.0",
     "@nodeproto/jsync": "workspace:0.0.0",
     "@nodeproto/testproto": "workspace:0.0.0",
+    "@octokit/core": "3.5.1",
     "babel-loader": "8.2.3",
     "browserslist": "4.19.1",
     "browsertime": "14.18.1",
@@ -76,7 +77,8 @@
     "eslint-plugin-react": "7.28.0",
     "eslint-plugin-react-hooks": "4.3.0",
     "eslint-plugin-yml": "0.13.0",
-    "flow-bin": "0.170.0",
+    "flow-bin": "0.171.0",
+    "flow-remove-types": "2.170.0",
     "flow-typed": "3.6.1",
     "lighthouse": "9.2.0",
     "prettier": "2.5.1",
@@ -92,7 +94,7 @@
     "dist": "./dist"
   },
   "engines": {
-    "node": "^14.17.0 || ^16.11.0 || >=17.1.0"
+    "node": "^14.17.0 || ^16.11.0 || >=17.5.0"
   },
   "jsync": {
     "root": false
