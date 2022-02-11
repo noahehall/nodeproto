@@ -11,7 +11,7 @@ import type {
   ReactDevType,
   WebpackConfigType,
   WebpackPluginType,
-} from '../../libdefs';
+} from '../libdefs';
 
 export const reactWebpackConfig = async ({
   entry,

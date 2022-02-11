@@ -13,8 +13,9 @@ import {
 import type {
   NodeprotoPackType,
   ObjectType,
+  PkgJsonType,
   SupportedNodeEnvsType,
-} from '../../libdefs';
+} from '../libdefs';
 
 // retrieves package.json, env metadata & utility logic (in pack object)
 // sets webpack config items related to how webpack will run (and not what it outputs)
@@ -29,10 +30,10 @@ export const setupWebpackConfig = async ({
   PATH_DIST?: string,
   PATH_SRC?: string,
 } = {}): Promise<{
-  config: ObjectType,
+  config: PkgJsonType,
   pack: NodeprotoPackType
 }> => {
-  const pkgJson = (await dirs.getPkgJson(context))?.file;
+  const pkgJson = ((await dirs.getPkgJson(context))?.file: PkgJsonType);
 
   if (!pkgJson) throwIt(`could not find package.json in ${context}`);
 

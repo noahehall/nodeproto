@@ -8,28 +8,28 @@ import globalDirs from 'global-dirs';
 import symlinkDir from 'symlink-dir';
 import xdg from '@folder/xdg';
 
-import type { ObjectType } from './libdefs';
+import type { DirsType, ObjectType } from './libdefs';
 
 const { external, ...internal } = wtfShared;
 
-export const getDirs = (overrides: ObjectType = {}): ObjectType => {
-  return {
-    ...external,
-    ...internal,
-    ...xdg({
+export const getDirs = (overrides: ObjectType = {}): DirsType => {
+  return Object.freeze(Object.assign(
+    {},
+    { inceptionStore: `${homedir()}/.node_modules` },
+    cPath,
+    external,
+    globalDirs,
+    internal,
+    symlinkDir,
+    xdg({
       env: process.env,
       expanded: true,
       homedir: homedir(),
       platform: process.platform,
       tempdir: tmpdir(),
     }),
-    cPath,
-    globalDirs,
-    inceptionStore: `${homedir()}/.node_modules`,
-    symlinkDir,
-
-    ...overrides,
-  };
+    overrides
+  ));
 };
 
-export const dirs: ObjectType = getDirs();
+export const dirs: DirsType = getDirs();

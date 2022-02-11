@@ -16,7 +16,7 @@ import type {
   NodeprotoPackType,
   WebpackConfigType,
   WebpackOptions,
-} from '../../libdefs';
+} from '../libdefs';
 
 // everything here affects the output of webpack and not webpack itself
 export const baseWebpackConfig = async ({

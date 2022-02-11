@@ -2,7 +2,7 @@
   "browserslistEnv": "node",
   "extends": "./base.babelrc.json",
   "sourceMaps": "inline",
-  "sourceType": "script",
+  "sourceType": "module",
   "overrides": [
     // will always use these options
     // because we dont specify a condition

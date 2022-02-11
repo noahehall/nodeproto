@@ -9,28 +9,28 @@ const test = t.suite('@nodeproto/wtf: dirs.mjs');
 test.before.each((context) => {
   const interfaceContract = [
     'JSONC',
-    'cPath',
     'cache',
     'config',
     'cwd',
     'data',
+    'default',
     'dirname',
-    'picomatch',
     'filename',
     'getFilePathAbs',
     'getPkgJson',
     'getPkgJsonAbs',
     'getPkgJsonc',
-    'globalDirs',
     'home',
     'inceptionStore',
     'isCjs',
     'isEsm',
+    'npm',
+    'picomatch',
     'readdir',
     'runtime',
-    'symlinkDir',
     'temp',
     'userdirs',
+    'yarn',
   ];
 
   context.fixtures = {

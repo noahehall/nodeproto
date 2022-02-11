@@ -8,10 +8,9 @@ import path from 'path';
 import webpack from 'webpack';
 
 import type {
-  ObjectType,
   Stats,
   WebpackConfigType,
-} from '../../libdefs';
+} from '../libdefs';
 
 export const createConfig = ({
   entry,
@@ -20,7 +19,7 @@ export const createConfig = ({
     filename: 'bundle.js',
   },
   ...rest
-}: WebpackConfigType): ObjectType => {
+}: WebpackConfigType): WebpackConfigType => {
   return {
     // context: __dirname,
     ...rest,

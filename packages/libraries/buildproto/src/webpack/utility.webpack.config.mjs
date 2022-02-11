@@ -14,10 +14,11 @@ import type {
   NodeprotoPackType,
   ObjectType,
   OptimizationOptions,
+  OptimizationSplitChunksOptions,
   WebpackConfigType,
   WebpackOptions,
   WebpackPluginType,
-} from '../../libdefs';
+} from '../libdefs';
 
 const cacheGroupBaseParams = {
   chunks: 'all',
@@ -68,7 +69,7 @@ export const createCacheGroups = (): ObjectType => ({
 // @see https://webpack.js.org/plugins/split-chunks-plugin/
 export const createSplitChunks = (
   minSize?: number = 2000
-): ObjectType => {
+): OptimizationSplitChunksOptions => {
   const maxSize: number = minSize * 6;
 
   return {
