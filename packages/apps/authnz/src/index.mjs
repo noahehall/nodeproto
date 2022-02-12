@@ -7,10 +7,11 @@ import https from 'https';
 
 import { App } from './app';
 
+
 const port = process.env.PKGCHECK_HTTP_PORT || 3000;
 const sport = process.env.PKGCHECK_HTTPS_PORT || 3443;
 
-export const runApp = async () => {
+export const runApp = async (): Promise<Servers[]> => {
   if (!port && !sport)
     throw new Error('PKGCHECK_HTTP_PORT or PKGHECK_HTTPS_PORT must be set in env');
 
