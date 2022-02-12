@@ -4,4 +4,6 @@ import { createApp } from './appCreate';
 import { initAppRouter } from './appRouter';
 import { initMiddleware } from './api/middleware/initMiddleware';
 
-export const App = initAppRouter(initMiddleware(createApp()));
+import type { AppType } from './libdefs';
+
+export const App: AppType = initAppRouter(initMiddleware(createApp()));

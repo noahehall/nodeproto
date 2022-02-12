@@ -55,6 +55,121 @@ importers:
       prettier: 2.5.1
       uvu: 0.5.3
 
+  packages/apps/authnz:
+    specifiers:
+      '@babel/cli': 7.17.0
+      '@babel/core': 7.17.2
+      '@babel/eslint-parser': 7.17.0
+      '@babel/eslint-plugin': 7.16.5
+      '@babel/runtime': 7.17.2
+      '@koa/cors': 3.1.0
+      '@nodeproto/buildproto': workspace:0.0.0
+      '@nodeproto/configproto': workspace:0.0.0
+      '@nodeproto/envproto': workspace:0.0.0
+      '@nodeproto/eslint-config': workspace:0.0.0
+      '@nodeproto/jsync': workspace:0.0.0
+      '@nodeproto/prettier-config': workspace:0.0.0
+      '@nodeproto/shared': workspace:0.0.0
+      '@nodeproto/testproto': workspace:0.0.0
+      '@nodeproto/wtf': workspace:0.0.0
+      '@octokit/core': 3.5.1
+      '@tinyhttp/etag': 2.0.2
+      browserslist: 4.19.1
+      chokidar-cli: 3.0.0
+      cls-rtracer: 2.6.0
+      eslint: 8.9.0
+      eslint-config-prettier: 8.3.0
+      eslint-plugin-fb-flow: 0.0.4
+      eslint-plugin-flowtype-errors: 4.5.0
+      eslint-plugin-html: 6.2.0
+      eslint-plugin-json: 3.1.0
+      eslint-plugin-markdown: 2.2.1
+      eslint-plugin-node: 11.1.0
+      eslint-plugin-prettier: 4.0.0
+      eslint-plugin-promise: 6.0.0
+      eslint-plugin-yml: 0.13.0
+      flow-bin: 0.171.0
+      flow-typed: 3.6.1
+      js-yaml: 4.1.0
+      koa: 2.13.4
+      koa-body: 4.2.0
+      koa-bodyparser: 4.3.0
+      koa-charset: 2.0.0
+      koa-compose: 4.1.0
+      koa-csrf: 3.0.8
+      koa-helmet: 6.1.0
+      koa-jwt: 4.0.3
+      koa-mount: 4.0.0
+      koa-oas3: 2.4.1
+      koa-passport: 4.1.4
+      koa-qs: 3.0.0
+      koa-ratelimit: 5.0.1
+      koa-session: 6.2.0
+      koa-sslify: 5.0.0
+      koa-static: 5.0.0
+      koa-tree-router: github:noahehall/koa-tree-router
+      prettier: 2.5.1
+      ultra-runner: 3.10.5
+      uvu: 0.5.3
+      yaml-eslint-parser: 0.5.0
+    dependencies:
+      '@babel/runtime': 7.17.2
+      '@koa/cors': 3.1.0
+      '@nodeproto/configproto': link:../../libraries/configproto
+      '@nodeproto/envproto': link:../../libraries/envproto
+      '@nodeproto/shared': link:../../libraries/shared
+      '@nodeproto/wtf': link:../../libraries/wtf
+      '@tinyhttp/etag': 2.0.2
+      cls-rtracer: 2.6.0
+      js-yaml: 4.1.0
+      koa: 2.13.4
+      koa-body: 4.2.0
+      koa-bodyparser: 4.3.0
+      koa-charset: 2.0.0
+      koa-compose: 4.1.0
+      koa-csrf: 3.0.8
+      koa-helmet: 6.1.0
+      koa-jwt: 4.0.3
+      koa-mount: 4.0.0
+      koa-oas3: 2.4.1_koa@2.13.4
+      koa-passport: 4.1.4
+      koa-qs: 3.0.0
+      koa-ratelimit: 5.0.1
+      koa-session: 6.2.0
+      koa-sslify: 5.0.0
+      koa-static: 5.0.0
+      koa-tree-router: github.com/noahehall/koa-tree-router/b6e8fa9d137734df5e229cf2f174e96c29585334
+      ultra-runner: 3.10.5
+    devDependencies:
+      '@babel/cli': 7.17.0_@babel+core@7.17.2
+      '@babel/core': 7.17.2
+      '@babel/eslint-parser': 7.17.0_@babel+core@7.17.2+eslint@8.9.0
+      '@babel/eslint-plugin': 7.16.5_0f7d57242c70b8e89c1f8fee5b7f60ba
+      '@nodeproto/buildproto': link:../../libraries/buildproto
+      '@nodeproto/eslint-config': link:../../configs/eslint-config
+      '@nodeproto/jsync': link:../../tools/jsync
+      '@nodeproto/prettier-config': link:../../configs/prettier-config
+      '@nodeproto/testproto': link:../../libraries/testproto
+      '@octokit/core': 3.5.1
+      browserslist: 4.19.1
+      chokidar-cli: 3.0.0
+      eslint: 8.9.0
+      eslint-config-prettier: 8.3.0_eslint@8.9.0
+      eslint-plugin-fb-flow: 0.0.4_eslint@8.9.0
+      eslint-plugin-flowtype-errors: 4.5.0_eslint@8.9.0+flow-bin@0.171.0
+      eslint-plugin-html: 6.2.0
+      eslint-plugin-json: 3.1.0
+      eslint-plugin-markdown: 2.2.1_eslint@8.9.0
+      eslint-plugin-node: 11.1.0_eslint@8.9.0
+      eslint-plugin-prettier: 4.0.0_07b422646bb75d3db791621d4fdbc992
+      eslint-plugin-promise: 6.0.0_eslint@8.9.0
+      eslint-plugin-yml: 0.13.0_eslint@8.9.0
+      flow-bin: 0.171.0
+      flow-typed: 3.6.1
+      prettier: 2.5.1
+      uvu: 0.5.3
+      yaml-eslint-parser: 0.5.0
+
   packages/apps/client:
     specifiers:
       '@babel/cli': 7.17.0
@@ -8975,6 +9090,16 @@ packages:
     resolution: {integrity: sha512-carPklcUh7ROWRK7Cv27RPtdhYhUsela/ue5/jKzjegVvXDqM2ILE9Q2BGn9JZJh1g87cp56su/FgQSzcWS8cQ==}
     dev: true
 
+  /http-errors/1.6.3:
+    resolution: {integrity: sha1-i1VoC7S+KDoLW/TqLjhYC+HZMg0=}
+    engines: {node: '>= 0.6'}
+    dependencies:
+      depd: 1.1.2
+      inherits: 2.0.3
+      setprototypeof: 1.1.0
+      statuses: 1.5.0
+    dev: false
+
   /http-errors/1.8.1:
     resolution: {integrity: sha512-Kpk9Sm7NmI+RHhnj6OIWDI1d6fIoFAtFt9RLaTMRlg/8w49juAStsrBgp0Dp4OdxdVbRIeKhtCUvoi/RuAhO4g==}
     engines: {node: '>= 0.6'}
@@ -9108,6 +9233,10 @@ packages:
     dependencies:
       once: 1.4.0
       wrappy: 1.0.2
+
+  /inherits/2.0.3:
+    resolution: {integrity: sha1-Yzwsg+PaQqUC9SRmAiSA9CCCYd4=}
+    dev: false
 
   /inherits/2.0.4:
     resolution: {integrity: sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==}
@@ -9874,6 +10003,16 @@ packages:
       p-any: 2.1.0
     dev: false
 
+  /koa-mount/4.0.0:
+    resolution: {integrity: sha512-rm71jaA/P+6HeCpoRhmCv8KVBIi0tfGuO/dMKicbQnQW/YJntJ6MnnspkodoA4QstMVEZArsCphmd0bJEtoMjQ==}
+    engines: {node: '>= 7.6.0'}
+    dependencies:
+      debug: 4.3.3
+      koa-compose: 4.1.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
   /koa-oas3/2.4.1_koa@2.13.4:
     resolution: {integrity: sha512-VtfaKI7Gca2UkRha8EPYbiZ7rRCMwruRWaSJvlF5gK5epZW1fYtKSN2Wj29xThgNjRG2YlQ/BEwMyW9WWFCibw==}
     peerDependencies:
@@ -9915,6 +10054,17 @@ packages:
       - supports-color
     dev: false
 
+  /koa-send/5.0.1:
+    resolution: {integrity: sha512-tmcyQ/wXXuxpDxyNXv5yNNkdAMdFRqwtegBXUaowiQzUKqJehttS0x2j0eOZDQAyloAth5w6wwBImnFzkUz3pQ==}
+    engines: {node: '>= 8'}
+    dependencies:
+      debug: 4.3.3
+      http-errors: 1.8.1
+      resolve-path: 1.4.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
   /koa-session/6.2.0:
     resolution: {integrity: sha512-l2ZC6D1BnRkIXhWkRgpewdqKn38/9/2WScmxyShuN408TxX+J/gUzdzGBIvGZaRwmezOU819sNpGmfFGLeDckg==}
     engines: {node: '>=7.6'}
@@ -9928,6 +10078,16 @@ packages:
   /koa-sslify/5.0.0:
     resolution: {integrity: sha512-3Qc/DxPcH4BavYkt7xOVDFbaS7nR8oCozb/0dlIpLlyGVhFXcjHETWBwE3QrDLwjKOVJj6ykwRJoNzPT9QxCag==}
     engines: {node: '>6.0.0'}
+    dev: false
+
+  /koa-static/5.0.0:
+    resolution: {integrity: sha512-UqyYyH5YEXaJrf9S8E23GoJFQZXkBVJ9zYYMPGz919MSX1KuvAcycIuS0ci150HCoPf4XQVhQ84Qf8xRPWxFaQ==}
+    engines: {node: '>= 7.6.0'}
+    dependencies:
+      debug: 3.2.7
+      koa-send: 5.0.1
+    transitivePeerDependencies:
+      - supports-color
     dev: false
 
   /koa-unless/1.0.7:
@@ -12026,6 +12186,14 @@ packages:
     resolution: {integrity: sha512-qYg9KP24dD5qka9J47d0aVky0N+b4fTU89LN9iDnjB5waksiC49rvMB0PrUJQGoTmH50XPiqOvAjDfaijGxYZw==}
     engines: {node: '>=8'}
 
+  /resolve-path/1.4.0:
+    resolution: {integrity: sha1-xL2p9e+y/OZSR4c6s2u02DT+Fvc=}
+    engines: {node: '>= 0.8'}
+    dependencies:
+      http-errors: 1.6.3
+      path-is-absolute: 1.0.1
+    dev: false
+
   /resolve/1.22.0:
     resolution: {integrity: sha512-Hhtrw0nLeSrFQ7phPp4OOcVjLPIeMnRlr5mcnVuMe7M/7eBn98A3hmFRLoFo3DLZkivSYwhRUJTyPyWAk56WLw==}
     hasBin: true
@@ -12312,6 +12480,10 @@ packages:
     resolution: {integrity: sha1-SysbJ+uAip+NzEgaWOXlb1mfP2E=}
     engines: {node: '>=0.10.0'}
     dev: true
+
+  /setprototypeof/1.1.0:
+    resolution: {integrity: sha512-BvE/TwpZX4FXExxOxZyRGQQv651MSwmWKZGqvmPcRIjDqWub67kTKuIMx43cZZrS/cBBzwBcNDWoFxt2XEFIpQ==}
+    dev: false
 
   /setprototypeof/1.2.0:
     resolution: {integrity: sha512-E5LDX7Wrp85Kil5bhZv46j8jOeboKq5JMmYM3gVGdGH8xFpPWXUMsNrlODCrkoxMEeNi/XZIwuRvY4XNwYMJpw==}
