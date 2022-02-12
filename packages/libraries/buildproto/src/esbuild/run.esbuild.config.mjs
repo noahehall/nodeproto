@@ -98,12 +98,12 @@ export const logResults = ({
   return true;
 };
 
-export const esbuildConfig = async (
+export const esbuildCompileConfig = async (
   config: EsbuildConfigType
 ): Promise<ObjectType> =>
   esbuild.build(config).then((results) => (logResults(results), results));
 
-export const esrunConfig = async ({
+export const esbuildRunConfig = async ({
   config, pack
 }: {
   config: EsbuildConfigType,
@@ -122,6 +122,6 @@ export const esrunConfig = async ({
     },
   };
 
-  await esbuildConfig(useConfig);
+  await esbuildCompileConfig(useConfig);
   await startDev({ config: useConfig, pack });
 };
