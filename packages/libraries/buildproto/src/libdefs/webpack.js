@@ -3,10 +3,12 @@
 // @see flow-typed/npm/webpack_v5.x.x.js
 import type {
   Entry,
+  Externals,
   ModuleOptions,
   ObjectType,
   OptimizationOptions,
   StatsOptions,
+  SupportedNodeEnvsType,
   WebpackCompiler,
   WebpackOptions,
   WebpackPluginFunction,
@@ -47,19 +49,20 @@ export type BaseWebpackType = {
   entry: Entry,
   entryPush?: Entry[],
   entryUnshift?: Entry[],
+  infrastructureLogging?: WebpackInfrastructureLoggingType,
+  mode?: SupportedNodeEnvsType | 'none',
   NODE_ENV?: SupportedNodeEnvsType,
   pluginsPush?: WebpackPluginType[],
   pluginsUnshift?: WebpackPluginType[],
   processEnv?: ObjectType,
+  stats?: StatsOptions,
+  externals?: Externals, // function | Array<ExternalItem>
 
   // experiments?: ObjectType,
-  // infrastructureLogging?: WebpackInfrastructureLoggingType,
-  // mode?: SupportedNodeEnvsType | 'none',
   // module?: ModuleOptions,
   // optimization?: OptimizationOptions,
   // outputDir?: string,
   // publicPath?: string,
-  // stats?: StatsOptions,
   // stringReplaceLoader?: ObjectType,
   ...
 }

@@ -13,8 +13,8 @@ import {
 import type {
   NodeprotoPackType,
   ObjectType,
-  PkgJsonType,
   SupportedNodeEnvsType,
+  WebpackConfigType,
 } from '../libdefs';
 
 // retrieves package.json, env metadata & utility logic (in pack object)
@@ -30,10 +30,10 @@ export const setupWebpackConfig = async ({
   PATH_DIST?: string,
   PATH_SRC?: string,
 } = {}): Promise<{
-  config: PkgJsonType,
+  config: WebpackConfigType,
   pack: NodeprotoPackType
 }> => {
-  const pkgJson = ((await dirs.getPkgJson(context))?.file: PkgJsonType);
+  const pkgJson = (await dirs.getPkgJson(context)).file;
 
   if (!pkgJson) throwIt(`could not find package.json in ${context}`);
 
@@ -42,11 +42,11 @@ export const setupWebpackConfig = async ({
   // $FlowIgnore - will throw if path doesnt exist; see tests
   const pathSrc: string = await resolve(PATH_SRC || pkgJson.config.PATH_SRC, true);
 
-  const mode: string = NODE_ENV || pkgJson.config.NODE_ENV;
+  const mode = NODE_ENV;
   const ifProd: boolean = mode === 'production';
   const ifDev: boolean = mode === 'development';
 
-  return {
+  return Object.freeze({
     config: {
       context,
       experiments: getWebpackExperiments(),
@@ -56,12 +56,14 @@ export const setupWebpackConfig = async ({
     },
 
     pack: {
+      // $FlowIssue[incompatible-return]
       builtinModules,
       ifDev,
       ifProd,
       pathDist,
       pathSrc,
+      // $FlowIssue[incompatible-return]
       pkgJson,
     },
-  };
+  });
 };

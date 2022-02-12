@@ -9,7 +9,7 @@ import type {
   ObjectType,
   Stats,
   WebpackConfigType,
-} from '../../libdefs';
+} from '../libdefs';
 
 export const handleConfigErrors = ({
   stack = 'stack undefined',

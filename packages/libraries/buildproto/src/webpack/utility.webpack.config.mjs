@@ -16,6 +16,7 @@ import type {
   OptimizationOptions,
   OptimizationSplitChunksOptions,
   WebpackConfigType,
+  WebpackInfrastructureLoggingType,
   WebpackOptions,
   WebpackPluginType,
 } from '../libdefs';
@@ -298,7 +299,7 @@ export const getWebpackExperiments = (): ObjectType => ({
   topLevelAwait: true,
 });
 
-export const getInfrastructureLogging = (): ObjectType => ({
+export const getInfrastructureLogging = (): WebpackInfrastructureLoggingType => ({
   // TODO:
   // @see https://webpack.js.org/configuration/other-options/#infrastructurelogging
   level: 'info',

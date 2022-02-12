@@ -36,7 +36,7 @@ export type PkgJsonType = {
   name?: string,
   type?: string,
   version?: string,
-  dependencies?: { [string]: string },
-  devDependencies?: { [string]: string },
+  dependencies?: ObjectOfStrings,
+  devDependencies?: ObjectOfStrings,
   ...
 };

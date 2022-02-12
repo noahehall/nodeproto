@@ -1,9 +1,9 @@
 // @flow
 
-import type { PkgJsonType } from './external';
+import type { Externals, PkgJsonType } from './external';
 
 export type NodeprotoPackType = {
-  builtinModules: string[],
+  builtinModules: Externals,
   ifDev?: boolean,
   ifProd?: boolean,
   pathDist: string,

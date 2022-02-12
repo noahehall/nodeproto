@@ -13,7 +13,7 @@ import type {
   NodeprotoWebpackServerType,
   ObjectType,
   WebpackConfigType,
-} from '../../../libdefs';
+} from '../../libdefs';
 
 export const webpackServer = ({
   CLIENT_PORT = 8080,
@@ -33,7 +33,7 @@ export const webpackServer = ({
   if (!isString(config.output?.publicPath))
     throwIt('config.output.publicPath should be a string');
 
-  const APP_NAME: string = pack.pkgJson.name;
+  const APP_NAME: string = pack.pkgJson.name || 'node BFF via @nodeproto/buildproto';
   const compiler = webpack(config);
 
   const webpackDevMiddlewareInstance = middleware(compiler, {
