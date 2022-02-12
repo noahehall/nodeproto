@@ -16,23 +16,26 @@
 
 import manifestPlugin from 'esbuild-plugin-manifest';
 
+import { pack } from '../pack';
+
 import type {
+  BaseEsbuildType,
   EsbuildConfigType,
-  EsbuildSetupType,
 } from '../libdefs';
 
 // @see https://esbuild.github.io/api/
-export const createEsbuildConfig = async ({
+export const baseEsbuildConfig = async ({
   assetNames = 'assets/[name]-[hash]',
   bundle = true,
+  context,
   entry,
   external = [], // generally you shouldnt package your deps
   format = 'esm',
   manifestFilename = 'manifest.json',
   metafile = true,
-  NODE_ENV = process.env.NODE_ENV || 'development',
-  outdir,
-  pkgJson,
+  NODE_ENV,
+  PATH_DIST,
+  PATH_SRC,
   platform = 'node',
   plugins = [],
   replaceEntryVars = {}, // passed to define
@@ -42,13 +45,8 @@ export const createEsbuildConfig = async ({
   write = true,
 
   ...rest
-}: EsbuildSetupType): Promise<EsbuildSetupType> => {
-  const isDev = NODE_ENV !== 'production';
-  const isProd = !isDev;
-  const entryNames = isDev ? '[name]-[hash]' : '[name]';
-  const minify = isProd;
-  const sourcemap = isDev;
-
+}: BaseEsbuildType): Promise<EsbuildConfigType> => {
+  const meta = await pack({ context, NODE_ENV, PATH_DIST, PATH_SRC, writeToDisk: write });
 
   const define = {
     // TODO: create example of using envproto with configproto
@@ -60,7 +58,7 @@ export const createEsbuildConfig = async ({
   const manifestPluginConfig = {
     extensionless: 'input',
     filename: manifestFilename,
-    hash: isProd,
+    hash: meta.ifProd,
     shortNames: false,
   };
 
@@ -71,17 +69,17 @@ export const createEsbuildConfig = async ({
       assetNames,
       bundle, // inline any imported dependencies into the file itself;
       define, // This feature provides a way to replace global identifiers with constant expressions.
-      entryNames,
+      entryNames: meta.ifDev ? '[name]-[hash]' : '[name]',
       entryPoints: [entry],
       external: external.concat('./node_modules/*'),
       metafile,
-      minify, // the generated code will be minified instead of pretty-printed
-      outdir,
+      minify: meta.ifProd, // the generated code will be minified instead of pretty-printed
+      outdir: meta.pathDist,
       platform,
       plugins: plugins.concat(manifestPlugin(manifestPluginConfig)),
       preserveSymlinks: false,
       resolveExtensions,
-      sourcemap,
+      sourcemap: meta.ifDev,
       target,
       watch,
       write,

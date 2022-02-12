@@ -4,12 +4,15 @@ import { throwIt } from '@nodeproto/shared';
 
 import {
   combineArrays,
+  createOptimization,
   generateLoaders,
   getCache,
   getDefaultPlugins,
+  getInfrastructureLogging,
+  getWebpackExperiments,
 } from './utility.webpack.config';
 
-import { setupWebpackConfig } from './setup.webpack.config';
+import { pack } from '../pack';
 
 import type {
   BaseWebpackType,
@@ -22,16 +25,18 @@ import type {
 export const baseWebpackConfig = async ({
   cache = false,
   configFile = false,
-  context = process.cwd(),
+  context,
   copyOptions,
   entry,
   entryPush = [],
   entryUnshift = [],
-  NODE_ENV = 'development',
+  NODE_ENV,
+  PATH_DIST,
+  PATH_SRC,
   pluginsPush = [],
   pluginsUnshift = [],
   processEnv = {},
-
+  writeToDisk = false,
   ...rest
 }: BaseWebpackType ): Promise<{
   config: WebpackConfigType,
@@ -39,29 +44,32 @@ export const baseWebpackConfig = async ({
 }> => {
   if (!entry) throwIt('entry must be defined');
 
-  const { config, pack } = await setupWebpackConfig({ context, NODE_ENV });
+  const meta = await pack({ context, NODE_ENV, PATH_DIST, PATH_SRC });
 
   const baseWebpackConfig = Object.assign(
     {},
-    config,
     {
-      cache: getCache(cache, pack),
-      context,
-      devtool: pack.ifProd ? 'hidden-source-map' : 'eval-source-map',
+      cache: getCache(cache, meta),
+      context: meta.context,
+      devtool: meta.ifProd ? 'hidden-source-map' : 'eval-source-map',
       entry: Array.isArray(entry)
         ? combineArrays(entry, entryUnshift, entryPush).filter(Boolean)
         : entry,
-      externals: pack.builtinModules,
+      experiments: getWebpackExperiments(),
+      externals: meta.builtinModules,
+      infrastructureLogging: getInfrastructureLogging(),
+      mode: meta.NODE_ENV,
       module: {
         rules: generateLoaders({ processEnv, configFile, }),
       },
+      optimization: createOptimization(meta.ifProd, meta.pathDist), //
       output: {
         charset: true,
         chunkFilename: '[name].chunk.js',
         clean: false, // just do this manually
         compareBeforeEmit: true, // dont emit files if the file already exists with same content
         filename: '[name].js',
-        path: pack.pathDist,
+        path: meta.pathDist,
         publicPath: 'auto', // @see https://webpack.js.org/guides/public-path/#automatic-publicpath
       },
       plugins: combineArrays(
@@ -79,5 +87,5 @@ export const baseWebpackConfig = async ({
     rest
   );
 
-  return Object.freeze({ config: baseWebpackConfig, pack });
+  return Object.freeze({ config: baseWebpackConfig, pack: meta });
 };

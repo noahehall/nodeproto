@@ -2,6 +2,8 @@ import * as t from '@nodeproto/testproto/t';
 
 import { baseWebpackConfig, testCompiler } from '@nodeproto/buildproto';
 
+import { getPackInterface } from '../pack.test.mjs';
+
 const { assert } = t;
 
 const test = t.suite('base.webpack.config');
@@ -54,11 +56,7 @@ test('baseWebpackConfig', async ({ fixtures }) => {
     'webpack interface contract'
   );
 
-  assert.hasAllKeys(
-    pack,
-    ['builtinModules', 'ifDev', 'ifProd', 'pathDist', 'pathSrc', 'pkgJson'],
-    'buildproto pack interface contract'
-  );
+  assert.hasAllKeys(pack, getPackInterface(), 'buildproto pack interface contract');
 
   assert.isObject(
     await testCompiler(config),

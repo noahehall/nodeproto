@@ -2,9 +2,11 @@ import * as t from '@nodeproto/testproto/t';
 
 import { reactWebpackConfig, testCompiler } from '@nodeproto/buildproto';
 
+import { getPackInterface } from '../pack.test.mjs';
+
 const { assert } = t;
 
-const test = t.suite('react.dev.webpack.config');
+const test = t.suite('react.webpack.config');
 
 test.before.each((context) => {
   const reactDevWebpackOptions = {
@@ -49,11 +51,7 @@ test('reactWebpackConfig', async ({ fixtures }) => {
     'webpack interface contract'
   );
 
-  assert.hasAllKeys(
-    pack,
-    ['builtinModules', 'ifDev', 'ifProd', 'pathDist', 'pathSrc', 'pkgJson'],
-    'buildproto pack interface contract'
-  );
+  assert.hasAllKeys(pack, getPackInterface(), 'buildproto pack interface contract');
 
   assert.isObject(await testCompiler(config), 'compiles esm successfuly');
 });

@@ -1,7 +1,9 @@
 // @flow
 
-import type { ObjectOfStrings, ObjectType, PkgJsonType } from './external';
 
+import type { ObjectOfStrings, ObjectType, PkgJsonType, SupportedNodeEnvsType } from './external';
+
+import type { NodeprotoPackOptionsType } from './buildproto';
 export type NodeprotoEsbuildServerType = {
   close: () => void,
   runApp: () => Promise<NodeprotoEsbuildServerInstanceType>,
@@ -21,10 +23,11 @@ export type EsbuildConfigType = {
   assetNames?: string,
   bundle?: boolean,
   define?: ObjectType,
-  define?: ObjectType[],
   entryNames?: string | string[],
   entryPoints?: string[],
   external?: string[],
+  format?: string,
+  manifestFilename?: string,
   metafile?: boolean,
   minify?: boolean,
   outdir?: string,
@@ -32,6 +35,7 @@ export type EsbuildConfigType = {
   platform?: string,
   plugins?: ObjectType[],
   preserveSymlinks?: boolean,
+  replaceEntryVars?: ObjectOfStrings,
   resolveExtensions?: string[],
   sourcemap?: boolean,
   target?: string[],
@@ -40,9 +44,10 @@ export type EsbuildConfigType = {
   ...
 }
 
-export type EsbuildSetupType = EsbuildConfigType & {
+export type BaseEsbuildType =  EsbuildConfigType & {
+  ...NodeprotoPackOptionsType,
   entry: string,
-  pkgJson: PkgJsonType,
+  ...
 }
 
 export type EsbuildResultsType = {

@@ -15,6 +15,7 @@ import type {
   WebpackPluginInstance,
 } from './external';
 
+import type { NodeprotoPackOptionsType } from './buildproto';
 
 export type WebpackPluginType = WebpackPluginInstance | WebpackPluginFunction;
 export type WebpackConfigType = WebpackOptions;
@@ -42,6 +43,8 @@ export type NodeprotoWebpackServerType = {
 
 
 export type BaseWebpackType = {
+  ...NodeprotoPackOptionsType,
+  writeToDisk?: boolean,
   cache?: boolean | ObjectType,
   configFile?: boolean | string,
   context?: string,
@@ -51,7 +54,6 @@ export type BaseWebpackType = {
   entryUnshift?: Entry[],
   infrastructureLogging?: WebpackInfrastructureLoggingType,
   mode?: SupportedNodeEnvsType | 'none',
-  NODE_ENV?: SupportedNodeEnvsType,
   pluginsPush?: WebpackPluginType[],
   pluginsUnshift?: WebpackPluginType[],
   processEnv?: ObjectType,
