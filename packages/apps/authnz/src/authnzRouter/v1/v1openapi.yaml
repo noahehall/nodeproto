@@ -1,3 +1,4 @@
+# old: was openapi for previous pkcheck app
 openapi: 3.0.3
 info:
   title: "nodeproto: build prototypes, fast."
