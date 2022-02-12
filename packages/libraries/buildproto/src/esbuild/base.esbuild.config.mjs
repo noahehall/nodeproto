@@ -22,6 +22,7 @@ import { pack } from '../pack';
 import type {
   BaseEsbuildType,
   EsbuildConfigType,
+  NodeprotoPackType
 } from '../libdefs';
 
 // @see https://esbuild.github.io/api/
@@ -46,7 +47,7 @@ export const baseEsbuildConfig = async ({
   write = true,
 
   ...rest
-}: BaseEsbuildType): Promise<EsbuildConfigType> => {
+}: BaseEsbuildType): Promise<{ config: EsbuildConfigType, pack: NodeprotoPackType}> => {
   if (typeof entry !== 'string' && !Array.isArray(entry)) throwIt('entry is required');
 
   const meta = await pack({ context, NODE_ENV, PATH_DIST, PATH_SRC, writeToDisk: write });
@@ -65,7 +66,7 @@ export const baseEsbuildConfig = async ({
     shortNames: false,
   };
 
-  return Object.freeze(Object.assign(
+  const config = Object.assign(
     {},
     rest,
     {
@@ -87,5 +88,7 @@ export const baseEsbuildConfig = async ({
       watch,
       write,
     },
-  ));
+  );
+
+  return Object.freeze({ config, pack: meta });
 };

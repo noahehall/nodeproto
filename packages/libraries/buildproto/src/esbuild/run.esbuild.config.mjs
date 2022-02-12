@@ -11,12 +11,15 @@ import type {
   NodeprotoEsbuildServerInstanceType,
   NodeprotoEsbuildServerTrackerType,
   NodeprotoEsbuildServerType,
+  NodeprotoPackType,
   ObjectType,
 } from '../libdefs';
 
 const servers: NodeprotoEsbuildServerTrackerType = new Map();
 
 export const stopDev = async (config: EsbuildConfigType): Promise<void> => {
+  if (!config.entryPoints) return void 0;
+
   const runningServer: NodeprotoEsbuildServerInstanceType | void = servers.get(config.entryPoints);
 
   if (!runningServer) return void 0;
@@ -29,10 +32,16 @@ export const stopDev = async (config: EsbuildConfigType): Promise<void> => {
   else throwIt('retrieved app doesnt contain httpTerminator|server|controller properties');
 };
 
-export const startDev = async (
-  config: EsbuildConfigType
-): Promise<typeof servers | void> => {
+export const startDev = async ({
+  config,
+  pack
+}: {
+  config: EsbuildConfigType,
+  pack: NodeprotoPackType
+}): Promise<typeof servers | void> => {
   await stopDev(config);
+
+  if (!config.entryPoints) return void 0;
 
   let
     manifest: ObjectType,
@@ -43,7 +52,7 @@ export const startDev = async (
   try {
     // TODO: will break if consumer uses a different manifest name
     manifest = JSON.parse(
-      await fsproto.fs.readFile(config.outdir + '/' + 'manifest.json', 'utf-8')
+      await fsproto.fs.readFile(pack.pathDist + '/' + 'manifest.json', 'utf-8')
     );
 
     // TODO: will likely break if consumer has multiple entyrpoints and hte first isnt the server
@@ -52,7 +61,7 @@ export const startDev = async (
     const foundServerPath = Object.values(manifest)[0];
     if (typeof foundServerPath !== 'string') throwIt('esbuild server path not found');
     else {
-      serverPath = config.outdir + '/' + foundServerPath.split('/').pop();
+      serverPath = pack.pathDist + '/' + foundServerPath.split('/').pop();
     }
 
     try {
@@ -65,6 +74,7 @@ export const startDev = async (
     }
 
     if (!server?.runApp) throwIt('server does not contain runApp fn');
+    // $FlowFixMe[incompatible-call]
     else servers.set(config.entryPoints, await server.runApp());
 
     return servers;
@@ -93,7 +103,12 @@ export const esbuildConfig = async (
 ): Promise<ObjectType> =>
   esbuild.build(config).then((results) => (logResults(results), results));
 
-export const esrunConfig = async (config: EsbuildConfigType): Promise<void> => {
+export const esrunConfig = async ({
+  config, pack
+}: {
+  config: EsbuildConfigType,
+  pack: NodeprotoPackType
+} ): Promise<void> => {
   const useConfig = {
     ...config,
     watch: {
@@ -102,11 +117,11 @@ export const esrunConfig = async (config: EsbuildConfigType): Promise<void> => {
 
         logResults(results);
 
-        await startDev(useConfig);
+        await startDev({ config: useConfig, pack });
       },
     },
   };
 
   await esbuildConfig(useConfig);
-  await startDev(useConfig);
+  await startDev({ config: useConfig, pack });
 };

@@ -2,6 +2,8 @@ import * as t from '@nodeproto/testproto/t';
 
 import { baseEsbuildConfig } from '@nodeproto/buildproto';
 
+import { getPackInterface } from '../pack.test.mjs';
+
 const { assert } = t;
 
 const test = t.suite('create.esbuild.config');
@@ -26,11 +28,11 @@ test('baseEsbuildConfig', async ({ fixtures }) => {
     .catch((e) => assert.match(e.message, /entry/));
 
   const { baseEsbuildOptions } = fixtures;
-  const esbuildConfig = await baseEsbuildConfig(baseEsbuildOptions);
+  const { config, pack } = await baseEsbuildConfig(baseEsbuildOptions);
 
-  assert.isObject(esbuildConfig, 'returns esbuild config object');
+  assert.isObject(config, 'returns esbuild config object');
 
-  assert.hasAllKeys(esbuildConfig, [
+  assert.hasAllKeys(config, [
     'assetNames',
     'bundle',
     'define',
@@ -49,6 +51,9 @@ test('baseEsbuildConfig', async ({ fixtures }) => {
     'watch',
     'write',
   ]);
+
+  assert.isObject(pack, 'returns pack object');
+  assert.hasAllKeys(pack, getPackInterface());
 });
 
 test.run();
