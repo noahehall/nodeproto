@@ -1,73 +1,94 @@
-// import * as t from '@nodeproto/testproto';
+import * as t from '@nodeproto/testproto/t';
 
-// import {
-//   buildEnv,
-//   clearBaseEnv,
-//   syncConfigWithEnv,
-//   syncEnvAndConfig,
-//   syncEnvWithConfig,
-//   updateBaseEnv,
-//   wrapValue,
-// } from './env';
+import {
+  buildEnv,
+  clearBaseEnv,
+  syncConfigWithEnv,
+  syncEnvAndConfig,
+  syncEnvWithConfig,
+  updateBaseEnv,
+  wrapValue,
+} from '@nodeproto/envproto';
 
-// const { assert } = t;
-// const test = t.suite('@nodeproto/envproto/env');
+const { assert } = t;
 
-// test.before.each(() => clearBaseEnv());
+const test = t.suite('@nodeproto/envproto/env');
 
-// test('buildEnv', () => {
-//   const parsed = { a: 'b' };
-//   const env = buildEnv(parsed);
+test.before.each(() => clearBaseEnv());
 
-//   assert.deepEqual(env, { "process.env.a": wrapValue(parsed.a) }, 'wraps each value in object');
+test('buildEnv', () => {
+  const parsed = { a: 'b' };
+  const env = buildEnv(parsed);
 
-//   assert.deepEqual(process.env.a, 'b', 'updates process.env');
-// });
+  assert.deepEqual(env, { 'process.env.a': wrapValue(parsed.a) }, 'wraps each value in object');
 
-// test('syncEnvWithConfig', () => {
-//   // need to set to empty string
-//   // syncEnvWithConfig only updates env properties whose values are empty strings
-//   updateBaseEnv({ a: '' });
+  assert.deepEqual(process.env.a, 'b', 'updates process.env');
+});
 
-//   const config = { a: 'b' };
-//   const { parsed, processEnv } = syncEnvWithConfig({ config });
+test('syncEnvWithConfig', () => {
+  // need to set to empty string
+  // syncEnvWithConfig only updates env properties whose values are empty strings
+  updateBaseEnv({ a: '' });
 
-//   assert.deepEqual(parsed, config, 'upserts config into parsed');
-//   assert.deepEqual(processEnv, { "process.env.a": wrapValue(config.a) }, 'wraps each value in object');
-//   assert.deepEqual(process.env.a, config.a, 'updates process.env');
-// });
+  const config = { a: 'b' };
+  const { parsed, processEnv } = syncEnvWithConfig({ config });
 
-// test('syncConfigWithEnv', () => {
-//   const env = { a: 'b' };
-//   updateBaseEnv(env);
+  assert.deepEqual(parsed, config, 'upserts config into parsed');
+  assert.deepEqual(
+    processEnv,
+    { 'process.env.a': wrapValue(config.a) },
+    'wraps each value in object'
+  );
+  assert.deepEqual(process.env.a, config.a, 'updates process.env');
+});
 
-//   const config = syncConfigWithEnv({ config: { b: 'a', a: 'override me' } });
+test('syncConfigWithEnv', () => {
+  const env = { a: 'b' };
+  updateBaseEnv(env);
 
-//   assert.equal(config.a, env.a, 'upserts env into config');
-//   assert.equal(config.b, 'a', 'leaves nonmatching values intact');
-// });
+  const config = syncConfigWithEnv({ config: { b: 'a', a: 'override me' } });
 
-// test('syncEnvAndConfig', () => {
-//   // we want ci to always be true
-//   const requiredEnv = { ci: true, overrideMe: '' };
-//   updateBaseEnv(requiredEnv);
+  assert.equal(config.a, env.a, 'upserts env into config');
+  assert.equal(config.b, 'a', 'leaves nonmatching values intact');
+});
 
-//   // ci is normally false
-//   // we provide a defualt value that should be used
-//   const prevConfig = { ci: false, overrideMe: 'withThis' };
+test('syncEnvAndConfig', () => {
+  // we want ci to always be true
+  const requiredEnv = { ci: true, overrideMe: '' };
+  updateBaseEnv(requiredEnv);
 
-//   // config & process env should match
-//   const { config, processEnv } = syncEnvAndConfig({ config: prevConfig });
+  // ci is normally false
+  // we provide a defualt value that should be used
+  const prevConfig = { ci: false, overrideMe: 'withThis' };
 
-//   // ci is now true in process.env, processEnv (e.g. webpack|esbuild), & config
-//   assert.deepEqual(config.ci, requiredEnv.ci, 'ci should be true in config');
-//   assert.deepEqual(processEnv['process.env.ci'], wrapValue(requiredEnv.ci), 'ci should be true in processEnv');
-//   assert.deepEqual(process.env.ci, String(requiredEnv.ci), 'ci should be true in process.env');
+  // config & process env should match
+  const { config, processEnv } = syncEnvAndConfig({ config: prevConfig });
 
-//   // overrideMe is now 'withThis' in process.env, processEnv & config
-//   assert.deepEqual(config.overrideMe, prevConfig.overrideMe, 'overrideMe should be updated in config');
-//   assert.deepEqual(processEnv['process.env.overrideMe'], wrapValue(prevConfig.overrideMe), 'overrideMe should updated in processEnv');
-//   assert.deepEqual(process.env.overrideMe, prevConfig.overrideMe, 'overrideMe should be updated in process.env');
-// });
+  // ci is now true in process.env, processEnv (e.g. webpack|esbuild), & config
+  assert.deepEqual(config.ci, requiredEnv.ci, 'ci should be true in config');
+  assert.deepEqual(
+    processEnv['process.env.ci'],
+    wrapValue(requiredEnv.ci),
+    'ci should be true in processEnv'
+  );
+  assert.deepEqual(process.env.ci, String(requiredEnv.ci), 'ci should be true in process.env');
 
-// test.run();
+  // overrideMe is now 'withThis' in process.env, processEnv & config
+  assert.deepEqual(
+    config.overrideMe,
+    prevConfig.overrideMe,
+    'overrideMe should be updated in config'
+  );
+  assert.deepEqual(
+    processEnv['process.env.overrideMe'],
+    wrapValue(prevConfig.overrideMe),
+    'overrideMe should updated in processEnv'
+  );
+  assert.deepEqual(
+    process.env.overrideMe,
+    prevConfig.overrideMe,
+    'overrideMe should be updated in process.env'
+  );
+});
+
+test.run();

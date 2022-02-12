@@ -22,7 +22,7 @@ export const getDevCert = async ({
   csr?: string,
   serviceKey?: string
 } | void> => {
-  const pathDist = outdir || (await getPkgJson()).file?.config?.PATH_DIST;
+  const pathDist = outdir || (await getPkgJson(process.cwd())).file?.config?.PATH_DIST;
 
   if (!pathDist)
     return throwIt(`outdir required if PATH_DIST not in pkgjson.config`);

@@ -1,26 +1,20 @@
-// import { getDevCert } from './ssl';
-// import * as t from '@nodeproto/testproto';
+import * as t from '@nodeproto/testproto/t';
 
-// const { assert } = t;
-// const test = t.suite('@nodeproto/envproto/ssl');
+import { getDevCert } from '@nodeproto/envproto';
 
-// const getOpts = (overrides = {}) => ({
-//   days: 7,
-//   domain: undefined,
-//   selfSigned:  true,
-//   tmpDir: undefined,
+const { assert } = t;
 
-//   ...overrides
-// });
+const test = t.suite('@nodeproto/envproto/ssl');
 
-// // TODO: complete tests
-// test.skip('getDevCert', async () => {
-//   const certs = await getDevCert();
+// TODO: complete tests
+test('getDevCert', async () => {
+  const certs = Object.entries(await getDevCert());
 
-//   assert.type(certs.certificate, 'string', 'returns certifcate');
-//   assert.type(certs.clientKey, 'string', 'returns clientKey');
-//   assert.type(certs.csr, 'string', 'returns certificate request');
-//   assert.type(certs.serviceKey, 'string', 'returns private key');
-// });
+  assert.lengthOf(certs, 4, 'returns 4 certs');
+  certs.forEach(([cert, value]) => {
+    assert.equal(value.length > 0, true, `${cert} is not empty`);
+  });
+});
 
-// test.run();
+// TODO: needs to test certs are saved to disk
+test.run();
