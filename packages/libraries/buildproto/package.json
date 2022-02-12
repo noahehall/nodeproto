@@ -107,9 +107,6 @@
   "engines": {
     "node": "^14.17.0 || ^16.11.0 || >=17.5.0"
   },
-  "imports": {
-    "#libdefs": "./src/libdefs/index.js"
-  },
   "exports": {
     ".": {
       "import": "./src/index.mjs",
@@ -121,6 +118,9 @@
     "./libdefs.mjs",
     "./src"
   ],
+  "imports": {
+    "#libdefs": "./src/libdefs/index.js"
+  },
   "jsync": {
     "root": false
   },
@@ -187,7 +187,7 @@
     "repo:test": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" uvu ./src \"test.(m|c)?js\"",
     "repo:test:file": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" node $*",
     "repo:test:help": "uvu --help",
-    "repo:testing": "pnpm repo:test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"pnpm repo:test\"",
+    "repo:testing": "pnpm repo:test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"pnpm repo:test\" -t 2000 -d 2000",
     "repo:update": "pnpm -r up --latest"
   },
   "ultra": {

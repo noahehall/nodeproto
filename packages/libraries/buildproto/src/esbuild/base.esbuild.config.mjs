@@ -19,11 +19,10 @@ import manifestPlugin from 'esbuild-plugin-manifest';
 import type {
   EsbuildConfigType,
   EsbuildSetupType,
-  ObjectType,
 } from '../libdefs';
 
 // @see https://esbuild.github.io/api/
-export const createEsbuildConfig = ({
+export const createEsbuildConfig = async ({
   assetNames = 'assets/[name]-[hash]',
   bundle = true,
   entry,
@@ -43,7 +42,7 @@ export const createEsbuildConfig = ({
   write = true,
 
   ...rest
-}: EsbuildSetupType): EsbuildConfigType => {
+}: EsbuildSetupType): Promise<EsbuildSetupType> => {
   const isDev = NODE_ENV !== 'production';
   const isProd = !isDev;
   const entryNames = isDev ? '[name]-[hash]' : '[name]';
@@ -65,24 +64,27 @@ export const createEsbuildConfig = ({
     shortNames: false,
   };
 
-  return {
-    ...rest,
-    assetNames,
-    bundle, // inline any imported dependencies into the file itself;
-    define, // This feature provides a way to replace global identifiers with constant expressions.
-    entryNames,
-    entryPoints: [entry],
-    external: external.concat('./node_modules/*'),
-    metafile,
-    minify, // the generated code will be minified instead of pretty-printed
-    outdir,
-    platform,
-    plugins: plugins.concat(manifestPlugin(manifestPluginConfig)),
-    preserveSymlinks: false,
-    resolveExtensions,
-    sourcemap,
-    target,
-    watch,
-    write,
-  };
+  return Object.freeze(Object.assign(
+    {},
+    rest,
+    {
+      assetNames,
+      bundle, // inline any imported dependencies into the file itself;
+      define, // This feature provides a way to replace global identifiers with constant expressions.
+      entryNames,
+      entryPoints: [entry],
+      external: external.concat('./node_modules/*'),
+      metafile,
+      minify, // the generated code will be minified instead of pretty-printed
+      outdir,
+      platform,
+      plugins: plugins.concat(manifestPlugin(manifestPluginConfig)),
+      preserveSymlinks: false,
+      resolveExtensions,
+      sourcemap,
+      target,
+      watch,
+      write,
+    },
+  ));
 };

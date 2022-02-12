@@ -7,6 +7,12 @@ const { assert } = t;
 
 const test = t.suite('create.esbuild.config');
 
+test.before.each((context) => {
+  const baseEsbuildOptions = {
+    entry: './src/fixtures/esm.mjs',
+
+  }
+});
 test('createEsbuildConfig', () => {
   assert(true === true);
 });
