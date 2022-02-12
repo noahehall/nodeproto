@@ -1,5 +1,4 @@
 import * as t from '@nodeproto/testproto/t';
-import http from 'http';
 
 import { baseEsbuildConfig } from '@nodeproto/buildproto';
 
@@ -11,39 +10,45 @@ test.before.each((context) => {
   const baseEsbuildOptions = {
     entry: './src/fixtures/esm.mjs',
   };
+
+  context.fixtures = {
+    baseEsbuildOptions,
+  };
 });
 
-test('baseEsbuildConfig', () => {
-  assert(true === true);
+test.after.each((context) => {
+  delete context.fixtures;
+});
+
+test('baseEsbuildConfig', async ({ fixtures }) => {
+  baseEsbuildConfig({ entry: /must be a string/ })
+    .then(() => assert.fail('should not resolve'))
+    .catch((e) => assert.match(e.message, /entry/));
+
+  const { baseEsbuildOptions } = fixtures;
+  const esbuildConfig = await baseEsbuildConfig(baseEsbuildOptions);
+
+  assert.isObject(esbuildConfig, 'returns esbuild config object');
+
+  assert.hasAllKeys(esbuildConfig, [
+    'assetNames',
+    'bundle',
+    'define',
+    'entryNames',
+    'entryPoints',
+    'external',
+    'metafile',
+    'minify',
+    'outdir',
+    'platform',
+    'plugins',
+    'preserveSymlinks',
+    'resolveExtensions',
+    'sourcemap',
+    'target',
+    'watch',
+    'write',
+  ]);
 });
 
 test.run();
-
-// const getConfig = (props) => ({
-//   entry: '',
-//   outdir: '',
-//   pkgJson: '',
-
-//   ...props,
-// });
-
-// test('is okay', () => {
-//   assert.isObject(baseEsbuildConfig(getConfig()));
-// });
-
-// test('throws', () => {
-//   let props = getConfig();
-//   delete props.entry;
-
-//   assert.throws(() => baseEsbuildConfig(props), /entry: string: is required/);
-
-//   props = getConfig();
-//   delete props.outdir;
-
-//   assert.throws(() => baseEsbuildConfig(props), /outdir: string: is required/);
-
-//   props = getConfig();
-//   delete props.pkgJson;
-
-//   assert.throws(() => baseEsbuildConfig(props), /pkgJson: json: is required/);
-// });

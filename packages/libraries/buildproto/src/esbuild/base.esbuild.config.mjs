@@ -15,6 +15,7 @@
 // ^^ absolute filepath of the resolved file, e.g. ./node_modules/*
 
 import manifestPlugin from 'esbuild-plugin-manifest';
+import { throwIt } from '@nodeproto/shared';
 
 import { pack } from '../pack';
 
@@ -46,6 +47,8 @@ export const baseEsbuildConfig = async ({
 
   ...rest
 }: BaseEsbuildType): Promise<EsbuildConfigType> => {
+  if (typeof entry !== 'string' && !Array.isArray(entry)) throwIt('entry is required');
+
   const meta = await pack({ context, NODE_ENV, PATH_DIST, PATH_SRC, writeToDisk: write });
 
   const define = {
@@ -70,7 +73,7 @@ export const baseEsbuildConfig = async ({
       bundle, // inline any imported dependencies into the file itself;
       define, // This feature provides a way to replace global identifiers with constant expressions.
       entryNames: meta.ifDev ? '[name]-[hash]' : '[name]',
-      entryPoints: [entry],
+      entryPoints: Array.isArray(entry) ? entry : [entry],
       external: external.concat('./node_modules/*'),
       metafile,
       minify: meta.ifProd, // the generated code will be minified instead of pretty-printed

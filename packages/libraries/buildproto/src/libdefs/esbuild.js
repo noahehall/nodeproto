@@ -46,7 +46,7 @@ export type EsbuildConfigType = {
 
 export type BaseEsbuildType =  EsbuildConfigType & {
   ...NodeprotoPackOptionsType,
-  entry: string,
+  entry: string | string[],
   ...
 }
 
