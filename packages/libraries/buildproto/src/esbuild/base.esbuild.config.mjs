@@ -31,7 +31,7 @@ export const createEsbuildConfig = ({
   format = 'esm',
   manifestFilename = 'manifest.json',
   metafile = true,
-  NODE_ENV = 'development',
+  NODE_ENV = process.env.NODE_ENV || 'development',
   outdir,
   pkgJson,
   platform = 'node',

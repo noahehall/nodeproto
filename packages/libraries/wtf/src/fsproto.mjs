@@ -9,7 +9,7 @@ import path from 'path';
 
 import { esMain } from './esmain';
 
-import type { FileType, ImportMetaType, ObjectType } from './libdefs';
+import type { FileType, FsprotoType, ImportMetaType, ObjectType } from './libdefs';
 
 export const isMain = (importMetaOrRequireMain: ObjectType): boolean => {
   if (isEsm()) {
@@ -29,6 +29,7 @@ export const resolve = async (
   throwIfNotFound?: boolean = false,
 ): Promise<string | void> => {
   let absFilePath: string;
+
   if (!relativeFilePath) throwIt('relativeFilePath is required');
   else if (!importMetaOrPath || isBoolean(importMetaOrPath))
     absFilePath = path.resolve(relativeFilePath);
@@ -52,24 +53,23 @@ export const resolve = async (
   return absFilePath;
 };
 
-export const getFsproto = (disk: boolean = true): ObjectType => {
+export const getFsproto = (disk: boolean = true): FsprotoType => {
   const fs = disk ? fse : memfs;
 
   return {
     fs,
     readFile: fs.readFile,
-    readFiles: async (files: FileType[]): Promise<Array<any>> => {
-      return Promise.all(
-        files.map(({ filename, encoding = 'utf8' }) => fs.readFile(filename, encoding))
-      );
-    },
+    readFiles: async (files) => Promise.all(
+      files.map(({ filename, encoding = 'utf8' }) => fs.readFile(filename, encoding))
+    ),
     readFileSync: fs.readFileSync,
-    writeFile: async (...opts: any[]): Promise<void> => {
+    writeFile: async (outputPath, ...opts) => {
       try {
-        await fs.ensureDir(path.dirname(opts[0])); // creates dir if missing
+        await fs.ensureDir(path.dirname(outputPath)); // creates dir if missing
       } catch {} // eslint-disable-line no-empty
 
-      return fs.writeFile.apply(fs, opts);
+      // $FlowIssue[incompatible-type]
+      return fs.writeFile.apply(fs, [outputPath].concat(opts));
     },
 
     writeFiles: async (files: FileType[] = []): Promise<void | Error> => {
@@ -82,5 +82,5 @@ export const getFsproto = (disk: boolean = true): ObjectType => {
   };
 };
 
-export const fsproto: ObjectType = getFsproto(true);
-export const memfsproto: ObjectType = getFsproto(false);
+export const fsproto: FsprotoType = getFsproto(true);
+export const memfsproto: FsprotoType = getFsproto(false);

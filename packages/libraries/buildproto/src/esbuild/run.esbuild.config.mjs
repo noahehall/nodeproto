@@ -2,6 +2,7 @@
 
 import { fsproto } from '@nodeproto/wtf';
 import { throwIt } from '@nodeproto/shared';
+
 import esbuild from 'esbuild';
 
 import type {
@@ -11,7 +12,7 @@ import type {
   NodeprotoEsbuildServerTrackerType,
   NodeprotoEsbuildServerType,
   ObjectType,
-} from '../../libdefs';
+} from '../libdefs';
 
 const servers: NodeprotoEsbuildServerTrackerType = new Map();
 
