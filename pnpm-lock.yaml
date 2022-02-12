@@ -195,8 +195,7 @@ importers:
       '@babel/core': 7.17.2
       '@babel/eslint-parser': 7.17.0
       '@babel/eslint-plugin': 7.16.5
-      '@babel/runtime': 7.16.7
-      '@changesets/cli': 2.20.0
+      '@babel/runtime': 7.17.2
       '@koa/cors': 3.1.0
       '@nodeproto/buildproto': workspace:0.0.0
       '@nodeproto/configproto': workspace:0.0.0
@@ -207,8 +206,6 @@ importers:
       '@nodeproto/testproto': workspace:0.0.0
       '@nodeproto/wtf': workspace:0.0.0
       '@octokit/core': 3.5.1
-      '@swc/cli': 0.1.55
-      '@swc/core': 1.2.135
       '@tinyhttp/etag': 2.0.2
       browserslist: 4.19.1
       chokidar-cli: 3.0.0
@@ -223,11 +220,8 @@ importers:
       eslint-plugin-node: 11.1.0
       eslint-plugin-prettier: 4.0.0
       eslint-plugin-promise: 6.0.0
-      eslint-plugin-react: 7.28.0
-      eslint-plugin-react-hooks: 4.3.0
       eslint-plugin-yml: 0.13.0
       flow-bin: 0.171.0
-      flow-remove-types: 2.170.0
       flow-typed: 3.6.1
       js-yaml: 4.1.0
       koa: 2.13.4
@@ -246,12 +240,11 @@ importers:
       koa-sslify: 5.0.0
       koa-tree-router: github:noahehall/koa-tree-router
       prettier: 2.5.1
-      regenerator-runtime: 0.13.9
       ultra-runner: 3.10.5
       uvu: 0.5.3
       yaml-eslint-parser: 0.5.0
     dependencies:
-      '@babel/runtime': 7.16.7
+      '@babel/runtime': 7.17.2
       '@koa/cors': 3.1.0
       '@nodeproto/configproto': link:../../libraries/configproto
       '@nodeproto/envproto': link:../../libraries/envproto
@@ -274,22 +267,18 @@ importers:
       koa-session: 6.2.0
       koa-sslify: 5.0.0
       koa-tree-router: github.com/noahehall/koa-tree-router/b6e8fa9d137734df5e229cf2f174e96c29585334
-      regenerator-runtime: 0.13.9
       ultra-runner: 3.10.5
     devDependencies:
       '@babel/cli': 7.17.0_@babel+core@7.17.2
       '@babel/core': 7.17.2
       '@babel/eslint-parser': 7.17.0_@babel+core@7.17.2+eslint@8.9.0
       '@babel/eslint-plugin': 7.16.5_0f7d57242c70b8e89c1f8fee5b7f60ba
-      '@changesets/cli': 2.20.0
       '@nodeproto/buildproto': link:../../libraries/buildproto
       '@nodeproto/eslint-config': link:../../configs/eslint-config
       '@nodeproto/jsync': link:../../tools/jsync
       '@nodeproto/prettier-config': link:../../configs/prettier-config
       '@nodeproto/testproto': link:../../libraries/testproto
       '@octokit/core': 3.5.1
-      '@swc/cli': 0.1.55_@swc+core@1.2.135
-      '@swc/core': 1.2.135
       browserslist: 4.19.1
       chokidar-cli: 3.0.0
       eslint: 8.9.0
@@ -302,11 +291,8 @@ importers:
       eslint-plugin-node: 11.1.0_eslint@8.9.0
       eslint-plugin-prettier: 4.0.0_07b422646bb75d3db791621d4fdbc992
       eslint-plugin-promise: 6.0.0_eslint@8.9.0
-      eslint-plugin-react: 7.28.0_eslint@8.9.0
-      eslint-plugin-react-hooks: 4.3.0_eslint@8.9.0
       eslint-plugin-yml: 0.13.0_eslint@8.9.0
       flow-bin: 0.171.0
-      flow-remove-types: 2.170.0
       flow-typed: 3.6.1
       prettier: 2.5.1
       uvu: 0.5.3
@@ -2465,11 +2451,11 @@ packages:
       '@babel/plugin-transform-react-pure-annotations': 7.16.7_@babel+core@7.17.2
     dev: false
 
-  /@babel/runtime-corejs3/7.16.8:
-    resolution: {integrity: sha512-3fKhuICS1lMz0plI5ktOE/yEtBRMVxplzRkdn6mJQ197XiY0JnrzYV0+Mxozq3JZ8SBV9Ecurmw1XsGbwOf+Sg==}
+  /@babel/runtime-corejs3/7.17.2:
+    resolution: {integrity: sha512-NcKtr2epxfIrNM4VOmPKO46TvDMCBhgi2CrSHaEarrz+Plk2K5r9QemmOFTGpZaoKnWoGH5MO+CzeRsih/Fcgg==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      core-js-pure: 3.20.3
+      core-js-pure: 3.21.0
       regenerator-runtime: 0.13.9
     dev: false
 
@@ -5653,7 +5639,7 @@ packages:
       loader-utils: 1.4.0
       make-dir: 3.1.0
       schema-utils: 2.7.1
-      webpack: 5.68.0
+      webpack: 5.68.0_esbuild@0.14.21
 
   /babel-loader/8.2.3_cca0e7b125ee9952607e903225fb0427:
     resolution: {integrity: sha512-n4Zeta8NC3QAsuyiizu0GkmRcQ6clkV9WFUnUf1iXP//IeSKbWjofW3UHyZVwlOB4y039YQKefawyTn64Zwbuw==}
@@ -6597,8 +6583,8 @@ packages:
       semver: 7.0.0
     dev: false
 
-  /core-js-pure/3.20.3:
-    resolution: {integrity: sha512-Q2H6tQ5MtPtcC7f3HxJ48i4Q7T9ybPKgvWyuH7JXIoNa2pm0KuBnycsET/qw1SLLZYfbsbrZQNMeIOClb+6WIA==}
+  /core-js-pure/3.21.0:
+    resolution: {integrity: sha512-VaJUunCZLnxuDbo1rNOzwbet9E1K9joiXS5+DQMPtgxd24wfsZbJZMMfQLGYMlCUvSxLfsRUUhoOR2x28mFfeg==}
     requiresBuild: true
     dev: false
 
@@ -6712,7 +6698,7 @@ packages:
       postcss-modules-values: 4.0.0_postcss@8.4.6
       postcss-value-parser: 4.2.0
       semver: 7.3.5
-      webpack: 5.68.0
+      webpack: 5.68.0_esbuild@0.14.21
 
   /css-select/4.2.1:
     resolution: {integrity: sha512-/aUslKhzkTNCQUB2qTX84lVmfia9NyjP3WpDGtj/WxhwBzWBYUV3DgUpurHTme8UTPcPlAD1DJ+b0nN/t50zDQ==}
@@ -12711,7 +12697,7 @@ packages:
     dependencies:
       loader-utils: 2.0.2
       schema-utils: 3.1.1
-      webpack: 5.68.0
+      webpack: 5.68.0_esbuild@0.14.21
 
   /string-similarity/4.0.4:
     resolution: {integrity: sha512-/q/8Q4Bl4ZKAPjj8WerIBJWALKkaPRfrvhfF8k/B23i4nzrlRj2/go1m90In7nG/3XDSbOo0+pu6RvCTM9RGMQ==}
@@ -12874,7 +12860,7 @@ packages:
     peerDependencies:
       webpack: ^5.0.0
     dependencies:
-      webpack: 5.68.0
+      webpack: 5.68.0_esbuild@0.14.21
 
   /stylis/4.0.13:
     resolution: {integrity: sha512-xGPXiFVl4YED9Jh7Euv2V220mriG9u4B2TA6Ybjc1catrstKD2PpIdU3U0RKpkVBC2EhmL/F0sPCr9vrFTNRag==}
@@ -14144,7 +14130,7 @@ packages:
   /xregexp/4.4.1:
     resolution: {integrity: sha512-2u9HwfadaJaY9zHtRRnH6BY6CQVNQKkYm3oLtC9gJXXzfsbACg5X5e4EZZGVAH+YIfa+QA9lsFQTTe3HURF3ag==}
     dependencies:
-      '@babel/runtime-corejs3': 7.16.8
+      '@babel/runtime-corejs3': 7.17.2
     dev: false
 
   /xtend/4.0.2:
