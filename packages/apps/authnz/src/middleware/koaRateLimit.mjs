@@ -4,6 +4,8 @@ import ratelimit from 'koa-ratelimit';
 
 const db = new Map();
 
+import type { MiddlewareConfigKoaAppType } from '../libdefs';
+
 // @see https://github.com/koajs/ratelimit#with-a-memory-driver
 // fear the copypasta
 const CONFIG = {
@@ -27,6 +29,4 @@ const CONFIG = {
   // }
 };
 
-export const koaRatelimit = async (config = CONFIG, app) => {
-  return ratelimit(config);
-};
+export const koaRatelimit: MiddlewareConfigKoaAppType = async (config = CONFIG, app) => ratelimit(config);

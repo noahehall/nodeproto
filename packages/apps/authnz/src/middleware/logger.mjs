@@ -2,9 +2,11 @@
 
 import { logIt } from '@nodeproto/shared';
 
-import { isFaviconRequest, resGet } from '../shared';
+import { isFaviconRequest, resGet } from '../utils';
 
-export const logger = async (config, app) => {
+import type { MiddlewareType } from '../libdefs';
+
+export const logger: MiddlewareType = async (config, app) => {
   return async (ctx, next) => {
     if (isFaviconRequest(ctx.path)) return;
 
@@ -12,6 +14,6 @@ export const logger = async (config, app) => {
 
     const rt = resGet(ctx, 'X-Response-Time');
 
-    logIt(`pkgcheck: ${ctx.method}: ${ctx.url} ${rt}ms\nBody: \n${ctx.body}`);
+    logIt(`pkgcheck: ${ctx.method}: ${ctx.url} ${String(rt)}ms}`);
   };
 };

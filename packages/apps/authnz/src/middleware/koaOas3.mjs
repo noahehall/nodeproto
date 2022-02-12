@@ -6,6 +6,8 @@ import bodyParser from 'koa-bodyparser';
 import fs from 'fs';
 import yaml from 'js-yaml';
 
+import type { MiddlewareConfigKoaAppType, MiddlewareType } from '../libdefs';
+
 /**
  * @see https://github.com/atlassian/koa-oas3#oasoption
  */
@@ -42,27 +44,30 @@ const CONFIG = {
   // qsParseOptions: { comma: true },
 };
 
-export const oas3Handler = async (config, app) => {
+export const oas3Handler: MiddlewareConfigKoaAppType = async (config, app) => {
   const oasMw = await oas(config);
   app.use(oasMw);
 };
 
-export const koaOas3 = async ({ file, routepath, spec, ...config } = {}, app) => {
+export const koaOas3: MiddlewareType = async ({ file, routepath, spec, ...config } = {}, app) => {
   if (!routepath) throw new Error('String(routepath) required to load openApi UI');
   if (!file && !spec) throw new Error('atleast file|spec required in koaOas3');
 
   // @see https://github.com/nodeca/js-yaml
-  const useSpec = spec || yaml.load(fs.readFileSync(file, 'utf8'));
+  const useSpec = spec || yaml.load(fs.readFileSync(String(file), 'utf8'));
 
-  const oas3Config = {
-    endpoint: `${routepath}.json`,
-    spec: useSpec,
-    uiEndpoint: `${routepath}.html`,
-    ...CONFIG,
-    ...config,
-  };
+  const oas3Config = Object.assign(
+    {},
+    {
+      endpoint: `${String(routepath)}.json`,
+      spec: useSpec,
+      uiEndpoint: `${String(routepath)}.html`,
+    },
+    CONFIG,
+    config,
+  );
 
   oas3Handler(oas3Config, app);
 
-  return async (ctx) => ctx.response.redirect(oas3Config.uiEndpoint);
+  return async (ctx, next) => ctx.response.redirect(oas3Config.uiEndpoint);
 };

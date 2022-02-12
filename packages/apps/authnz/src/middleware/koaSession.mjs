@@ -6,6 +6,8 @@
 import compose from 'koa-compose';
 import session from 'koa-session';
 
+import type { MiddlewareContextNextType, MiddlewareType } from '../libdefs';
+
 // fear the copypasta
 // https://github.com/koajs/session#example
 // TODO(noah)
@@ -26,7 +28,7 @@ const CONFIG = {
   signed: true /** (boolean) signed or not (default true) */,
 };
 
-export const sessionHandler = async (ctx, next) => {
+export const sessionHandler: MiddlewareContextNextType = async (ctx, next) => {
   const {
     session: { views = 0 },
   } = ctx;
@@ -34,8 +36,9 @@ export const sessionHandler = async (ctx, next) => {
 
   next();
 };
-export const koaSession = async ({ useHandler = true, ...conf } = {}, app) => {
-  const s = session({ ...CONFIG, ...conf }, app);
+
+export const koaSession: MiddlewareType = async ({ useHandler = true, ...conf } = {}, app) => {
+  const s = session(Object.assign({}, CONFIG, conf), app);
 
   return useHandler ? compose([s, sessionHandler]) : s;
 };
