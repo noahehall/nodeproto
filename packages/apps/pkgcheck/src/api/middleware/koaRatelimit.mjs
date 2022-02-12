@@ -1,4 +1,4 @@
-// @flow strict
+// @flow
 
 import ratelimit from 'koa-ratelimit';
 
@@ -15,7 +15,7 @@ const CONFIG = {
   headers: {
     remaining: 'Rate-Limit-Remaining',
     reset: 'Rate-Limit-Reset',
-    total: 'Rate-Limit-Total'
+    total: 'Rate-Limit-Total',
   },
   id: (ctx) => ctx.ip,
   max: 100,
@@ -27,6 +27,6 @@ const CONFIG = {
   // }
 };
 
-export default function koaRatelimit (config = CONFIG, app) {
+export const koaRatelimit = async (config = CONFIG, app) => {
   return ratelimit(config);
-}
+};

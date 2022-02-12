@@ -1,39 +1,32 @@
-// @flow strict
+// @flow
 
-import { koaBodyParser } from './koaBody.mjs';
+import { eTag } from './eTag';
+import { koaBodyParser } from './koaBody';
+import { koaCharset } from './koaCharset';
+import { koaCors } from './koaCors';
+import { koaCsrf } from './koaCsrf';
+import { koaHelmet } from './koaHelmet';
+import { koaRatelimit } from './koaRatelimit';
+import { koaSession } from './koaSession';
+import { logger } from './logger';
+import { responseTime } from './responseTime';
 
-import eTag from './eTag.mjs';
-import koaCharset from './koaCharset.mjs';
-import koaCors from './koaCors.mjs';
-import koaCsrf from './koaCsrf.mjs';
-import koaHelmet from './koaHelmet.mjs';
-import koaRatelimit from './koaRatelimit.mjs';
-import koaSession from './koaSession.mjs';
-import logger from './logger.mjs';
-import responseTime from './responseTime.mjs';
-
-export default async function initMiddleware (asyncApp) {
-  return asyncApp.then(app => {
+export const initMiddleware = async (asyncApp) => {
+  return asyncApp.then((app) => {
     // always
     app.use(
       logger(),
       responseTime(),
-      koaSession(
-        undefined,
-        app
-      ),
+      koaSession(undefined, app),
       koaHelmet(),
       koaCors(),
-      koaCsrf(
-        undefined,
-        app
-      ),
+      koaCsrf(undefined, app),
       koaRatelimit(),
       eTag(),
-      koaBodyParser(),
+      koaBodyParser()
       // koaCharset(), // todo
     );
 
     return asyncApp;
   });
-}
+};

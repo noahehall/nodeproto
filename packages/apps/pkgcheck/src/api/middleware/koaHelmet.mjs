@@ -1,5 +1,4 @@
-
-import koaHelmet from 'koa-helmet';
+// @flow
 
 // @see https://github.com/venables/koa-helmet#usage
-export default koaHelmet;
+export { default as koaHelmet } from 'koa-helmet';

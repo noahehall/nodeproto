@@ -1,5 +1,4 @@
-
-import cors from '@koa/cors';
+// @flow
 
 // @see https://github.com/koajs/cors#corsoptions
-export default cors;
+export { default as cors } from '@koa/cors';

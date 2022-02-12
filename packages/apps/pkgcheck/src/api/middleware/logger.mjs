@@ -1,23 +1,17 @@
-// @flow strict
+// @flow
 
-// TODO
-// find a real logging middleware;
+import { logIt } from '@nodeproto/shared';
 
-import { isFaviconRequest, resGet } from '../shared.mjs';
+import { isFaviconRequest, resGet } from '../shared';
 
-const log = msg => console.info(`\n\nasyncLogger: ${msg}`);
-
-export default function logger (config, app) {
+export const logger = async (config, app) => {
   return async (ctx, next) => {
     if (isFaviconRequest(ctx.path)) return;
 
     await next();
 
-    const rt = resGet(
-      ctx,
-      'X-Response-Time'
-    );
+    const rt = resGet(ctx, 'X-Response-Time');
 
-    log(`${ctx.method}: ${ctx.url} ${rt}ms\nBody: \n${ctx.body}`);
+    logIt(`pkgcheck: ${ctx.method}: ${ctx.url} ${rt}ms\nBody: \n${ctx.body}`);
   };
-}
+};

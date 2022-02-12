@@ -1,8 +1,7 @@
-// @flow strict
+// @flow
 
-import createApp from './appCreate.mjs';
-import initAppRouter from './appRouter.mjs';
-import initMiddleware from './api/middleware/initMiddleware.mjs';
+import { createApp } from './appCreate';
+import { initAppRouter } from './appRouter';
+import { initMiddleware } from './api/middleware/initMiddleware';
 
 export const App = initAppRouter(initMiddleware(createApp()));
-export default App;

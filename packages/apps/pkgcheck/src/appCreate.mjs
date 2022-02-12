@@ -1,8 +1,9 @@
-// @flow strict
+// @flow
 
-import { getEnv } from './api/shared.mjs';
 import Koa from 'koa';
 import koaQs from 'koa-qs';
+
+import { getEnv } from './api/shared';
 
 // default app settings
 const defaults = {
@@ -10,16 +11,9 @@ const defaults = {
   keys: ['some secret hurr'],
 };
 
-export default async function createApp (overrides = {}) {
-  const app = Object.assign(
-    new Koa(),
-    defaults,
-    overrides
-  );
+export const createApp = async (overrides = {}) => {
+  const app = Object.assign(new Koa(), defaults, overrides);
 
   // @see https://github.com/koajs/qs#whats-different
-  return koaQs(
-    app,
-    'strict'
-  );
-}
+  return koaQs(app, 'strict');
+};

@@ -1,8 +1,9 @@
+// @flow
 
-export function getPkg (ctx) {
+export const getPkg = async (ctx) => {
   return notFound(ctx);
-}
+};
 
-export function notFound (ctx) {
+export const notFound = async (ctx) => {
   ctx.body = 'todo(noah): handle not found gracefully\n';
-}
+};

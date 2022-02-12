@@ -203,6 +203,7 @@ importers:
       '@nodeproto/eslint-config': workspace:0.0.0
       '@nodeproto/jsync': workspace:0.0.0
       '@nodeproto/prettier-config': workspace:0.0.0
+      '@nodeproto/shared': workspace:0.0.0
       '@nodeproto/testproto': workspace:0.0.0
       '@nodeproto/wtf': workspace:0.0.0
       '@octokit/core': 3.5.1
@@ -248,6 +249,7 @@ importers:
       '@koa/cors': 3.1.0
       '@nodeproto/configproto': link:../../libraries/configproto
       '@nodeproto/envproto': link:../../libraries/envproto
+      '@nodeproto/shared': link:../../libraries/shared
       '@nodeproto/wtf': link:../../libraries/wtf
       '@tinyhttp/etag': 2.0.2
       cls-rtracer: 2.6.0

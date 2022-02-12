@@ -33,6 +33,7 @@
     "@koa/cors": "3.1.0",
     "@nodeproto/configproto": "workspace:0.0.0",
     "@nodeproto/envproto": "workspace:0.0.0",
+    "@nodeproto/shared": "workspace:0.0.0",
     "@nodeproto/wtf": "workspace:0.0.0",
     "@tinyhttp/etag": "2.0.2",
     "cls-rtracer": "2.6.0",

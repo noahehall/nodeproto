@@ -1,4 +1,4 @@
-// @flow strict
+// @flow
 
 import CSRF from 'koa-csrf';
 
@@ -14,6 +14,6 @@ const CONFIG = {
   invalidTokenStatusCode: 403,
 };
 
-export default function koaCsrf (config = CONFIG, app) {
+export const koaCsrf = async (config = CONFIG, app) => {
   return new CSRF(config);
-}
+};

@@ -1,4 +1,4 @@
-// @flow strict
+// @flow
 
 import { oas } from 'koa-oas3';
 
@@ -20,21 +20,21 @@ const CONFIG = {
   requestBodyHandler: {
     'application/json': bodyParser({
       extendTypes: {
-        json: ['application/json']
+        json: ['application/json'],
       },
-      enableTypes: ['json']
+      enableTypes: ['json'],
     }),
     'text/*': bodyParser({
       extendTypes: {
-        text: ['text/*']
+        text: ['text/*'],
       },
-      enableTypes: ['text']
+      enableTypes: ['text'],
     }),
     'application/x-www-form-urlencoded': bodyParser({
       extendTypes: {
-        form: ['application/x-www-form-urlencoded']
+        form: ['application/x-www-form-urlencoded'],
       },
-      enableTypes: ['form']
+      enableTypes: ['form'],
     }),
   },
   enableUi: true,
@@ -47,7 +47,7 @@ export const oas3Handler = async (config, app) => {
   app.use(oasMw);
 };
 
-export default function koaOas3 ({ file, routepath, spec, ...config } = {}, app) {
+export const koaOas3 = async ({ file, routepath, spec, ...config } = {}, app) => {
   if (!routepath) throw new Error('String(routepath) required to load openApi UI');
   if (!file && !spec) throw new Error('atleast file|spec required in koaOas3');
 
@@ -59,10 +59,10 @@ export default function koaOas3 ({ file, routepath, spec, ...config } = {}, app)
     spec: useSpec,
     uiEndpoint: `${routepath}.html`,
     ...CONFIG,
-    ...config
+    ...config,
   };
 
   oas3Handler(oas3Config, app);
 
-  return async ctx => ctx.response.redirect(oas3Config.uiEndpoint);
-}
+  return async (ctx) => ctx.response.redirect(oas3Config.uiEndpoint);
+};
