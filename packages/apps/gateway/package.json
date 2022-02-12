@@ -28,6 +28,7 @@
     "PATH_SRC": "./src"
   },
   "dependencies": {
+    "@nodeproto/configproto": "workspace:0.0.0",
     "ultra-runner": "3.10.5"
   },
   "devDependencies": {

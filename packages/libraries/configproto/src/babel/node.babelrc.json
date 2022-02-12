@@ -13,13 +13,13 @@
           {
             "bugfixes": true,
             "corejs": {
-              "version": "3.20.0",
+              "version": "3.21.0",
               "proposals": true
             },
             "debug": false,
             "forceAllTransforms": false, // set to true if only support es5/running through uglifyjs
             "ignoreBrowserslistConfig": false,
-            "modules": "commonjs",
+            "modules": "auto",
             "shippedProposals": true,
             "spec": false,
             "useBuiltIns": "usage" // include corejs imports for each file based on the env transpiling to and the files src code

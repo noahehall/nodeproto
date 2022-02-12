@@ -166,7 +166,7 @@
         "absoluteRuntime": false,
         "helpers": true,
         "regenerator": true,
-        "version": "7.16.12"
+        "version": "7.17.0"
       }
     ],
     "@babel/plugin-proposal-throw-expressions",

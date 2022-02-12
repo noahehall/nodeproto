@@ -1,0 +1,23 @@
+{
+  "name": "@nodeproto/prettier-config",
+  "version": "0.0.0",
+  "description": "@nodeproto/prettier-config: full stack",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "peerDependencies": {
+    "@babel/cli": "7.17.0",
+    "@babel/core": "7.17.2",
+    "eslint": "8.9.0",
+    "prettier": "2.5.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.17.0",
+    "@babel/core": "7.17.2",
+    "eslint": "8.9.0",
+    "prettier": "2.5.1"
+  }
+}

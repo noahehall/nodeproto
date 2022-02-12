@@ -12,29 +12,6 @@
 - [babel assumptions](https://babeljs.io/docs/en/assumptions)
   - "privateFieldsAsProperties": !isProd,
   - "constantReexports": isProd, // might change due to module.hot?
-
-- modules to review
-  - https://github.com/zloirock/core-js#babelpreset-env
-    - debug: !isProd,
-    - corejs
-    -
-  - https://github.com/babel/preset-modules
-  - babel/preset-react
-    - "development": !isProd
-    - plugin-syntax-jsx
-    - plugin-transform-react-jsx
-    - plugin-transform-react-display-name
-    - plugin-transofrm-react-jsx-self
-    - plugin-transform-react-jsx-source
-  - '@babel/plugin-proposal-class-properties',
-    '@babel/plugin-proposal-export-default-from',
-    '@babel/plugin-proposal-nullish-coalescing-operator',
-    '@babel/plugin-proposal-optional-catch-binding',
-    '@babel/plugin-proposal-optional-chaining',
-    '@babel/plugin-proposal-private-methods',
-    '@babel/plugin-proposal-throw-expressions',
-    '@babel/plugin-syntax-dynamic-import',
-    '@babel/plugin-proposal-export-default-from',
-    '@babel/plugin-transform-modules-commonjs',
-      importInterop: 'babel'
-      - disable if treeshaking via webpack
+- [babel/runtime + babel/plugin-transform-runtime](https://babeljs.io/docs/en/babel-runtime)
+  - runtime: runtime deps, ensures your output files are DRY
+  - plugin runtime: replaces compiletime references with runtime references

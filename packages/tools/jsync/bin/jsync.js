@@ -2,4 +2,4 @@
 
 console.info('\nrunning jsync\n');
 
-import("../src/index.mjs"); // eslint-disable-line
+import("../src/index.mjs");  
