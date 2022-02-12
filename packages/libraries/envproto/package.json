@@ -41,6 +41,7 @@
     "@babel/core": "7.17.2",
     "@babel/eslint-parser": "7.17.0",
     "@babel/eslint-plugin": "7.16.5",
+    "@nodeproto/configproto": "workspace:0.0.0",
     "@nodeproto/eslint-config": "workspace:0.0.0",
     "@nodeproto/jsync": "workspace:0.0.0",
     "@nodeproto/prettier-config": "workspace:0.0.0",
