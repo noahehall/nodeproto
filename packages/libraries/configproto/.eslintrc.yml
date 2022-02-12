@@ -138,6 +138,7 @@ rules:
   no-undef: error
   no-unused-vars: off # broken with flowtype-errors?
   node/no-unpublished-require: warn
+  node/no-unsupported-features/es-syntax: off
   padded-blocks: [error, never]
   prefer-named-capture-group: 0 # performance
   prefer-object-spread: 0

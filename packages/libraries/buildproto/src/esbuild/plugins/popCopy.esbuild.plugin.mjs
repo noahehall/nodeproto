@@ -1,25 +1,19 @@
 // @flow
 
 // TODO: doesnt recursively search all child directories, only the first
+// TODO: this looks like another one of those files i spiked but never refactored; bring it up to par
 
 import { fsproto } from '@nodeproto/wtf';
 import path from 'path';
 
-import type { ObjectType } from '../../libdefs';
-
-const fs = { fsproto };
+import type { ObjectType, PopCopyOptionsType } from '../../libdefs';
 
 export const esbuildPluginPopCopyConfig = ({
   endingWith,
   indir,
   outdir,
   recurse = true,
-}: {
-  endingWith: RegExp,
-  indir: string,
-  outdir: string,
-  recurse: boolean,
-}): { options: ObjectType[]} => ({
+}: PopCopyOptionsType): { options: PopCopyOptionsType[] } => ({
   options: [
     {
       endingWith,
@@ -40,7 +34,7 @@ export const cache: Map<string, ObjectType> = new Map();
 export const fileShouldCopy = async (sourcepath: string): Promise<boolean> => {
   let fd;
   try {
-    fd = await fs.open(sourcepath, 'r');
+    fd = await fsproto.fs.open(sourcepath, 'r');
     if (!fd) return false;
 
     const { mtimeMs } = await fd.stat();
@@ -70,10 +64,10 @@ export const fileCopy = async (newCacheMs: number, sourcepath: string, outdir: s
 
       cache.set(sourcepath, { ms: newCacheMs, outpath });
 
-      await fs.mkdir(outdir, { recursive: true });
+      await fsproto.fs.mkdir(outdir, { recursive: true });
 
       // dont catch let it throw
-      await fs.copyFile(sourcepath, outpath);
+      await fsproto.fs.copyFile(sourcepath, outpath);
 
       return true;
     }
@@ -87,7 +81,7 @@ export const fileCopy = async (newCacheMs: number, sourcepath: string, outdir: s
 
 // searches for files to copy
 // sets filepaths as keys in cache
-export const filesToCopy = async (options: ObjectType[]): Promise<void> => {
+export const filesToCopy = async (options: PopCopyOptionsType[]): Promise<void> => {
   const msg = 'not copying files:';
 
   if (!options.length) return console.warn(`${msg} options empty`, options);
@@ -97,8 +91,8 @@ export const filesToCopy = async (options: ObjectType[]): Promise<void> => {
     try {
       if (
         !(endingWith instanceof RegExp)
-          || !indir?.startsWith('/')
-          || !outdir?.startsWith('/')
+          || !indir.startsWith('/')
+          || !outdir.startsWith('/')
       ) {
         return console.warn(`${msg} invalid params`, {
           endingWith,
@@ -109,7 +103,7 @@ export const filesToCopy = async (options: ObjectType[]): Promise<void> => {
         });
       }
 
-      const sourcedirs = (await fs.readdir(indir, { encoding: 'utf8', withFileTypes: true })) ?? [];
+      const sourcedirs = (await fsproto.fs.readdir(indir, { encoding: 'utf8', withFileTypes: true })) ?? [];
 
       sourcedirs.forEach((dirEnt) => {
         // check all child-dirs
@@ -173,6 +167,7 @@ export const esbuildPluginPopCopy = (config: ObjectType): ObjectType => {
       // retrieve asset directories from options
       // scan each dir for files matching provided regex
       // for each file found run cache.set(filePath, undefined)
+      // $FlowIgnore I need to refactor this entire file
       filesToCopy(options);
 
       build.onResolve({ filter: /^popcopy$/ }, () => ({}));
@@ -190,7 +185,7 @@ export const esbuildPluginPopCopy = (config: ObjectType): ObjectType => {
           for (const [sourcepath, { ms, outpath }] of cache) {
             try {
               const newCacheMs = await fileShouldCopy(sourcepath);
-
+              // $FlowIgnore i need to refactor this entire file
               if (newCacheMs) await fileCopy(newCacheMs, sourcepath, path.dirname(outpath));
             } catch (e) {
               console.warn('esbuildPluginPopCopy.onStart error', e);

@@ -1,6 +1,6 @@
 // @flow
 
-import type { ObjectType, PkgJsonType } from './external';
+import type { ObjectOfStrings, ObjectType, PkgJsonType } from './external';
 
 export type NodeprotoEsbuildServerType = {
   close: () => void,
@@ -48,6 +48,16 @@ export type EsbuildSetupType = EsbuildConfigType & {
 export type EsbuildResultsType = {
   errors?: string[],
   warnings?: string[],
-  metafile: ObjectType,
+  metafile: {
+    outputs: ObjectOfStrings,
+    ...
+  },
   ...
 }
+
+export type PopCopyOptionsType = {
+  endingWith: RegExp,
+  indir: string,
+  outdir: string,
+  recurse: boolean,
+};

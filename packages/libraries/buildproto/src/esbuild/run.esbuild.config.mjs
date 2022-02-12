@@ -56,7 +56,8 @@ export const startDev = async (
     }
 
     try {
-      server = await import(serverPath); // eslint-disable-line
+      // $FlowIssue[unsupported-syntax]
+      server = await import(serverPath);
     } catch (e) {
       console.error('\n\n error importing serverPath', serverPath);
 
@@ -80,7 +81,7 @@ export const logResults = ({
   metafile
 }: EsbuildResultsType ): boolean | void => {
   if (warnings.length) console.warn('\n\n build warnings', warnings);
-  if (errors.length) throwIt(errors);
+  if (errors.length) throwIt(`errors exist, stopping server`, errors);
 
   console.info('\n\n finished build\n', Object.keys(metafile.outputs));
 

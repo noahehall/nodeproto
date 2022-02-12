@@ -1,6 +1,6 @@
 // @flow
 
-import typeof fs, { readFile, readFileSync } from 'fs-extra';
+import fs from 'fs-extra';
 
 import { typeof wtf } from '@nodeproto/shared';
 
@@ -20,10 +20,10 @@ export type WriteFileType = (outputPath: string, ...opts?: any[]) => Promise<voi
 export type WriteFilesType = (files: FileType[]) => Promise<void | Error>;
 
 export type FsprotoType = {
-  fs: fs,
-  readFile: readFile,
+  fs: typeof fs,
+  readFile: typeof fs.readFile,
   readFiles: ReadFilesType,
-  readFileSync: readFileSync,
+  readFileSync: typeof fs.readFileSync,
   writeFile: WriteFileType,
   writeFiles: WriteFilesType,
 }
