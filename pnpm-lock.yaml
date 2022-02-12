@@ -566,11 +566,11 @@ importers:
       '@nodeproto/eslint-config': workspace:0.0.0
       '@nodeproto/jsync': workspace:0.0.0
       '@nodeproto/prettier-config': workspace:0.0.0
+      '@nodeproto/shared': workspace:0.0.0
       '@nodeproto/testproto': workspace:0.0.0
       '@nodeproto/wtf': workspace:*
       chokidar-cli: 3.0.0
       dotenv: 16.0.0
-      env-cmd: 10.1.0
       eslint: 8.9.0
       eslint-config-prettier: 8.3.0
       eslint-plugin-fb-flow: 0.0.4
@@ -581,6 +581,8 @@ importers:
       eslint-plugin-node: 11.1.0
       eslint-plugin-prettier: 4.0.0
       eslint-plugin-promise: 6.0.0
+      eslint-plugin-react: 7.28.0
+      eslint-plugin-react-hooks: 4.3.0
       eslint-plugin-yml: 0.13.0
       flow-bin: 0.171.0
       flow-typed: 3.6.1
@@ -591,9 +593,9 @@ importers:
     dependencies:
       '@babel/runtime': 7.17.2
       '@nodeproto/configproto': link:../configproto
+      '@nodeproto/shared': link:../shared
       '@nodeproto/wtf': link:../wtf
       dotenv: 16.0.0
-      env-cmd: 10.1.0
       pem: 1.14.6
       ultra-runner: 3.10.5
     devDependencies:
@@ -616,6 +618,8 @@ importers:
       eslint-plugin-node: 11.1.0_eslint@8.9.0
       eslint-plugin-prettier: 4.0.0_07b422646bb75d3db791621d4fdbc992
       eslint-plugin-promise: 6.0.0_eslint@8.9.0
+      eslint-plugin-react: 7.28.0_eslint@8.9.0
+      eslint-plugin-react-hooks: 4.3.0_eslint@8.9.0
       eslint-plugin-yml: 0.13.0_eslint@8.9.0
       flow-bin: 0.171.0
       flow-typed: 3.6.1

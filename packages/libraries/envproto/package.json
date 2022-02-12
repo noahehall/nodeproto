@@ -30,9 +30,9 @@
   "dependencies": {
     "@babel/runtime": "7.17.2",
     "@nodeproto/configproto": "workspace:0.0.0",
+    "@nodeproto/shared": "workspace:0.0.0",
     "@nodeproto/wtf": "workspace:*",
     "dotenv": "16.0.0",
-    "env-cmd": "10.1.0",
     "pem": "1.14.6",
     "ultra-runner": "3.10.5"
   },
@@ -42,12 +42,12 @@
     "@babel/eslint-parser": "7.17.0",
     "@babel/eslint-plugin": "7.16.5",
     "@nodeproto/eslint-config": "workspace:0.0.0",
+    "@nodeproto/jsync": "workspace:0.0.0",
     "@nodeproto/prettier-config": "workspace:0.0.0",
     "@nodeproto/testproto": "workspace:0.0.0",
-    "@nodeproto/jsync": "workspace:0.0.0",
     "chokidar-cli": "3.0.0",
-    "eslint-config-prettier": "8.3.0",
     "eslint": "8.9.0",
+    "eslint-config-prettier": "8.3.0",
     "eslint-plugin-fb-flow": "0.0.4",
     "eslint-plugin-flowtype-errors": "4.5.0",
     "eslint-plugin-html": "6.2.0",
@@ -56,6 +56,8 @@
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-prettier": "4.0.0",
     "eslint-plugin-promise": "6.0.0",
+    "eslint-plugin-react": "7.28.0",
+    "eslint-plugin-react-hooks": "4.3.0",
     "eslint-plugin-yml": "0.13.0",
     "flow-bin": "0.171.0",
     "flow-typed": "3.6.1",
@@ -124,7 +126,6 @@
     "linux"
   ],
   "scripts": {
-    "build": "pnpm repo:rm:dist && pnpm repo:cp:cjs && swc $npm_package_config_DIRS_TO_TRANSPILE -d $npm_package_config_PATH_DIST --config-file ./node_modules/@nodeproto/configproto/src/swc/node.swcrc --copy-files",
     "proto": "pnpm exec ultra -r",
     "proto:bin": "pnpm -r exec $*",
     "proto:script": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" pnpm -r $*",

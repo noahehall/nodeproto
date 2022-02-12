@@ -16,6 +16,7 @@ export type DirsType = {
 }
 
 export type ReadFilesType = (files: FileType[]) => Promise<string[]>;
+// TODO: think this should be an object, and not an array
 export type WriteFileType = (outputPath: string, ...opts?: any[]) => Promise<void>;
 export type WriteFilesType = (files: FileType[]) => Promise<void | Error>;
 
