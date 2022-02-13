@@ -8,7 +8,7 @@ import Router from 'koa-tree-router';
 
 import * as v1 from './v1';
 
-import type { AppType } from '../../libdefs';
+import type { AppType } from '../libdefs';
 
 const router = new Router();
 const v1RouterGroup = router.newGroup('/v1');

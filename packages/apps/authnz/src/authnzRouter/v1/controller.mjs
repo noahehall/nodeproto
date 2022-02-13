@@ -8,15 +8,17 @@
 import { dirs, resolve } from '@nodeproto/wtf';
 
 // import handlers
-import { koaOas3 } from '../../middleware/koaOas3';
+import { koaOas3 } from '../../middleware';
 
-const getImportMetaOrFilename = () => (dirs.isEsm() ? import.meta : __filename); // eslint-disable-line no-undef
+import type { ControllerType } from '../../libdefs';
 
-export const controller = async (v1RouterGroup, app): Promise<void> => {
+const getImportMetaOrFilename: () => Import$Meta | string = () => (dirs.isEsm() ? import.meta : __filename); // eslint-disable-line no-undef
+
+export const controller: ControllerType = async (v1RouterGroup, app): Promise<void> => {
   try {
-    /**
-     * map v1 paths to handlers
-     */
+    // $FlowFixMe[incompatible-call]
+    // $FlowFixMe[incompatible-exact]
+    // $FlowFixMe[prop-missing]
     const openApiUri = await resolve('./v1openapi.yaml', getImportMetaOrFilename());
 
     v1RouterGroup.get('/', koaOas3({ file: openApiUri, routepath: '/v1' }, app));

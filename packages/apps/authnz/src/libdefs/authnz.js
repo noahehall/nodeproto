@@ -4,9 +4,10 @@ import type {
   Context,
   IncomingMessage,
   KoaApp,
+  ObjectOfFunctions,
   ObjectType,
   Server,
-  ServerResponse,
+  ServerResponse
 } from './external';
 
 export type KoaAppType = {
@@ -33,3 +34,7 @@ export type MiddlewareContextNextType = (Context, NextType) => Promise<void>
 export type MiddlewareAllTypes = MiddlewareType & MiddlewareConfigKoaAppType & MiddlewareContextNextType;
 
 export type MiddlewareComposeType = () => Promise<MiddlewareAllTypes[]>;
+
+export type RouterType = ObjectOfFunctions;
+
+export type ControllerType = (RouterType, KoaAppType) => Promise<void>;
