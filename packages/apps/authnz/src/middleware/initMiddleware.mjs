@@ -1,32 +1,35 @@
 // @flow
 
+import compose from 'koa-compose';
+
 import { eTag } from './eTag';
 import { koaBodyParser } from './koaBody';
 import { koaCharset } from './koaCharset';
 import { koaCors } from './koaCors';
 import { koaCsrf } from './koaCsrf';
 import { koaHelmet } from './koaHelmet';
-import { koaRatelimit } from './koaRatelimit';
+import { koaRateLimit } from './koaRateLimit';
 import { koaSession } from './koaSession';
 import { logger } from './logger';
 import { responseTime } from './responseTime';
 
-export const initMiddleware = async (asyncApp) => {
-  return asyncApp.then((app) => {
-    // always
-    app.use(
-      logger(),
-      responseTime(),
-      koaSession(undefined, app),
-      koaHelmet(),
-      koaCors(),
-      koaCsrf(undefined, app),
-      koaRatelimit(),
-      eTag(),
-      koaBodyParser()
-      // koaCharset(), // todo
-    );
+import type { AppType, KoaAppType } from '../libdefs';
 
-    return asyncApp;
-  });
+export const initMiddleware = async (asyncApp: KoaAppType): AppType => {
+  const app = await asyncApp;
+
+  app.use(compose([
+    logger(undefined, app),
+    responseTime(undefined, app),
+    koaSession(undefined, app),
+    koaHelmet(),
+    koaCors(),
+    koaCsrf(undefined, app),
+    koaRateLimit(undefined, app),
+    eTag(undefined, app),
+    koaBodyParser(undefined, app)
+    // koaCharset(), // todo
+  ]));
+
+  return asyncApp;
 };

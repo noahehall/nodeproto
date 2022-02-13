@@ -2,6 +2,8 @@
 
 import CSRF from 'koa-csrf';
 
+import type { MiddlewareConfigKoaAppType } from '../libdefs';
+
 // @see https://github.com/koajs/csrf#usage
 // TODO(noah)
 // +finish setting up this middleware
@@ -14,6 +16,4 @@ const CONFIG = {
   invalidTokenStatusCode: 403,
 };
 
-export const koaCsrf = async (config = CONFIG, app) => {
-  return new CSRF(config);
-};
+export const koaCsrf: MiddlewareConfigKoaAppType = async (config = CONFIG, app) => new CSRF(config);

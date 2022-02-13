@@ -29,4 +29,4 @@ const CONFIG = {
   // }
 };
 
-export const koaRatelimit: MiddlewareConfigKoaAppType = async (config = CONFIG, app) => ratelimit(config);
+export const koaRateLimit: MiddlewareConfigKoaAppType = async (config = CONFIG, app) => ratelimit(config);

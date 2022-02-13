@@ -6,10 +6,12 @@
  */
 import { eTag as tinyETag } from '@tinyhttp/etag';
 
+import type { MiddlewareType } from '../libdefs';
+
 // TODO(noah)
 // +ensure this is last
 // +to check modifications to body?
-export const eTag = async (config, app) => {
+export const eTag: MiddlewareType = async (config, app) => {
   return async (ctx, next) => {
     if (ctx.method !== 'GET') return;
 
