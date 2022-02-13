@@ -1,29 +1,62 @@
 // @flow
 
 import { dirs, isMain } from '@nodeproto/wtf';
+import { logIt, throwIt } from '@nodeproto/shared'; // TODO: logIt not working in esbuild
 import { getDevCert } from '@nodeproto/envproto';
-import { throwIt } from '@nodeproto/shared';
-
+import http from 'http';
 import https from 'https';
 
-import { App } from './app';
+import { createApp } from './app';
 
-import type { ServerType } from './libdefs';
+import type { AppType, KoaAppType, ServerType } from './libdefs';
 
-export const runApp = async (): ServerType => {
-  const { clientKey, certificate } = (await getDevCert({ outdir: './' })) || {};
+// shouldnt be used if SSL termated at reverse proxy
+export const runSecureServer = async ({
+  app,
+  host = '0.0.0.0',
+  port = 3443,
+}: {
+  app: KoaAppType,
+  host?: string,
+  port?: string | number
+}): ServerType => {
+  const { clientKey: key, certificate: cert } = (await getDevCert({ outdir: './' })) || {};
 
-  if (!clientKey || !certificate) throwIt('HTTPS is required, but could not find certificates');
+  if (!key || !cert) throwIt('HTTPS is required, but could not find certificates');
 
-  const port = Number(process.env.PORT || 3443);
-
-  return https
-    .createServer({ key: clientKey, cert: certificate }, (await App).callback())
-    .listen({ host: '0.0.0.0', port }, () =>
-      console.info('\n\n server running on: ', port)
-  );
+  return (await import('https')).createServer({ key, cert }, app.callback())
+    .listen(
+      { host, port: Number(port) },
+      () => { console.info('\n\n secure server running on: ', port) }
+    );
 };
 
+// should be used if SSL termated at reverse proxy
+export const runInsecureServer = async ({
+  app,
+  host = '0.0.0.0',
+  port = 8080,
+}: {
+  app: KoaAppType,
+  host?: string,
+  port?: string | number
+}): ServerType => {
+  return (await import('http'))
+    .createServer(app.callback())
+    .listen({ host, port: Number(port) },
+      () => console.info('\n\n insecure server running on: ', port)
+    );
+};
+
+export const runApp = async ({
+ssl = process.env.USE_SSL || true
+}: { ssl?: string | boolean } = {}): ServerType => {
+  const app = await createApp();
+
+  return !ssl ? runSecureServer({ app }) : runInsecureServer({ app });
+};
+
+runApp();
 // todo: use stuff from @nodeproto/shared
 // if (require.main === module)
 //   runApp().catch((e) => {

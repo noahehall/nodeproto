@@ -1,11 +1,11 @@
 // @flow
 
-import type { MiddlewareType } from '../libdefs';
+import type { MiddlewareFactoryType } from '../libdefs';
 
 // TODO
 // see how everyone else from koa is doing this
 // vs our koa.introduction.copypasta
-export const responseTime: MiddlewareType = async (config, app) => {
+export const responseTime: MiddlewareFactoryType = (app) => {
   return async (ctx, next) => {
     const start = Date.now();
 

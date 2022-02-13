@@ -1,29 +1,24 @@
 // @flow
 
-/**
- * sets up all routes for the application
- * maps paths to controllers or path handlers
- */
 import Router from 'koa-tree-router';
 
 import * as v1 from './v1';
 
-import type { AppType } from '../libdefs';
+import type { KoaAppType } from '../libdefs';
 
-const router = new Router();
-const v1RouterGroup = router.newGroup('/v1');
+// @see https://github.com/steambap/koa-tree-router#nested-routes
+const authnzRouter = new Router();
 
-export const useRouter = async (asyncApp: AppType): AppType => {
-  // add healthcheck app
+export const useRouter = async (app: KoaAppType): Promise<KoaAppType> => {
+  // TODO: each controller should come with a distinct healthcheck endpoint
   // @see https://github.com/vulcaryn/koa-healthcheck/blob/master/index.js
   // router.get(/healthcheck, healthcheckHandler);
 
-  return asyncApp.then((app) => {
-    // init router groups
-    v1.controller(v1RouterGroup, app);
+  v1.controller(authnzRouter, app);
+  // v2.controller(authnzRouter, app);
+  // etc
 
-    app.use(router.routes());
+  app.use(authnzRouter.routes());
 
-    return asyncApp;
-  });
+  return app;
 };

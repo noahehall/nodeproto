@@ -2,13 +2,12 @@
 
 import ratelimit from 'koa-ratelimit';
 
+import type { Context, MiddlewareFactoryType, ObjectType } from '../libdefs';
+
 const db = new Map();
 
-import type { MiddlewareConfigKoaAppType } from '../libdefs';
-
 // @see https://github.com/koajs/ratelimit#with-a-memory-driver
-// fear the copypasta
-const CONFIG = {
+export const rateLimitConfig: ObjectType = {
   db,
   disableHeader: false,
   driver: 'memory',
@@ -19,7 +18,7 @@ const CONFIG = {
     reset: 'Rate-Limit-Reset',
     total: 'Rate-Limit-Total',
   },
-  id: (ctx) => ctx.ip,
+  id: (ctx: Context) => ctx.ip,
   max: 100,
   // whitelist: (ctx) => {
   // some logic that returns a boolean
@@ -29,4 +28,4 @@ const CONFIG = {
   // }
 };
 
-export const koaRateLimit: MiddlewareConfigKoaAppType = async (config = CONFIG, app) => ratelimit(config);
+export const koaRateLimit: MiddlewareFactoryType = (app) => ratelimit(rateLimitConfig);

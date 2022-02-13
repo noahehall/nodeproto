@@ -1,25 +1,28 @@
 // @flow
 
+import { logIt } from '@nodeproto/shared';
+
 import Koa from 'koa';
-import koaQs from 'koa-qs';
+import koaQs from 'koa-qs'; // @see https://github.com/koajs/qs#whats-different
 
 import * as authnzRouter from './authnzRouter';
+
+import { APP_CONFIG, KOA_CONFIG } from './constants';
 import { initMiddleware } from './middleware';
 
-import type { AppType, ObjectType } from './libdefs';
+import type { AppType, KoaAppType, ObjectType } from './libdefs';
 
-// default app settings
-const defaults: { keys: string[]} = {
-  // https://github.com/koajs/session#example
-  keys: ['some secret hurr'],
+export const createApp = async (opts: ObjectType = {}): Promise<KoaAppType> => {
+  // $FlowFixMe[extra-arg]
+  const app = koaQs(new Koa(Object.assign({}, KOA_CONFIG, opts), 'strict'));
+
+  app.context.config = APP_CONFIG;
+
+  app.on('error', (err) => logIt('app error', err));
+
+  await initMiddleware(app);
+
+  await authnzRouter.useRouter(app);
+
+  return app;
 };
-
-export const createApp = async (overrides: ObjectType = {}): AppType => {
-  const app = Object.assign(new Koa(), defaults, overrides);
-
-  // @see https://github.com/koajs/qs#whats-different
-  return koaQs(app, 'strict');
-};
-
-
-export const App: AppType = authnzRouter.useRouter(initMiddleware(createApp()));

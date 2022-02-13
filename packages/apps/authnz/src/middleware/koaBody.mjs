@@ -6,16 +6,21 @@
 import body from 'koa-body';
 import bodyParser from 'koa-bodyparser';
 
-import type { MiddlewareConfigKoaAppType } from '../libdefs';
+import type { MiddlewareFactoryType } from '../libdefs';
 
-// handles forms
-export const koaBody: MiddlewareConfigKoaAppType = async (conf, app) => {
-  return body();
+// multipart, urlencoded, and json request bodies.
+export const koaBody: MiddlewareFactoryType =  (app) => {
+  // @see https://github.com/koajs/koa-body#options
+  const koaBodyOptions = {};
+
+  return body(koaBodyOptions);
 };
 
-// doesnt handle forms
-// required (temporarily) for koa-oas3
-// default app body parser
-export const koaBodyParser: MiddlewareConfigKoaAppType = async (conf, app) => {
-  return bodyParser();
+// should only be used for the openapi route
+// json, form and text request bodies
+export const koaBodyParser: MiddlewareFactoryType = (app) => {
+  // @see https://github.com/koajs/bodyparser#options
+  const koaBodyOptions = {};
+
+  return bodyParser(koaBodyOptions);
 };

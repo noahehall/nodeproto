@@ -1,9 +1,11 @@
 // @flow
 
+import { logIt } from '@nodeproto/shared';
+
 import compose from 'koa-compose';
 
 import { eTag } from './eTag';
-import { koaBodyParser } from './koaBody';
+import { koaBody } from './koaBody';
 import { koaCharset } from './koaCharset';
 import { koaCors } from './koaCors';
 import { koaCsrf } from './koaCsrf';
@@ -13,23 +15,23 @@ import { koaSession } from './koaSession';
 import { logger } from './logger';
 import { responseTime } from './responseTime';
 
-import type { AppType, KoaAppType } from '../libdefs';
+import type { KoaAppType } from '../libdefs';
 
-export const initMiddleware = async (asyncApp: KoaAppType): AppType => {
-  const app = await asyncApp;
+export const initMiddleware = (app: KoaAppType): KoaAppType => {
+  const middlewareStack = compose([
+    logger(app),
+    responseTime(app),
+    koaRateLimit(app),
+    koaSession(app),
+    koaCharset(app),
+    koaHelmet(app),
+    koaCors(app),
+    koaCsrf(app),
+    eTag(app),
+    koaBody(app),
+  ]);
 
-  app.use(compose([
-    logger(undefined, app),
-    responseTime(undefined, app),
-    koaSession(undefined, app),
-    koaHelmet(),
-    koaCors(),
-    koaCsrf(undefined, app),
-    koaRateLimit(undefined, app),
-    eTag(undefined, app),
-    koaBodyParser(undefined, app)
-    // koaCharset(), // todo
-  ]));
+  app.use(middlewareStack);
 
-  return asyncApp;
+  return app;
 };

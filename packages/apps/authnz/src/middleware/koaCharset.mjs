@@ -1,17 +1,18 @@
 // @flow
 
 import charset from 'koa-charset';
-import compose from 'koa-compose';
 
 import type {
-  MiddlewareComposeType,
-  MiddlewareContextNextType,
+  MiddlewareFactoryType,
+  MiddlewareType,
 } from '../libdefs';
 
-export const charsetHandler: MiddlewareContextNextType = async (ctx, next) => {
-  ctx.charset = 'utf8';
-};
-
-export const koaCharset: MiddlewareComposeType = async () => {
-  return compose([charset, charsetHandler]);
+// enforces the content-type response header is set to the char
+// @see https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type
+// the default charset, short circuits charset logic unless changed by other handlers
+// ^ e.g. stream/buffer content-type shouldnt be
+// @see https://github.com/koajs/charset/blob/master/index.js#L29
+export const koaCharset: MiddlewareFactoryType = (app) => {
+  // @see https://github.com/koajs/charset#options
+  return charset({ charset: app.context.config.charset });
 };
