@@ -308,117 +308,6 @@ importers:
     devDependencies:
       '@nodeproto/jsync': link:../../tools/jsync
 
-  packages/apps/pkgcheck:
-    specifiers:
-      '@babel/cli': 7.17.0
-      '@babel/core': 7.17.2
-      '@babel/eslint-parser': 7.17.0
-      '@babel/eslint-plugin': 7.16.5
-      '@babel/runtime': 7.17.2
-      '@koa/cors': 3.1.0
-      '@nodeproto/buildproto': workspace:0.0.0
-      '@nodeproto/configproto': workspace:0.0.0
-      '@nodeproto/envproto': workspace:0.0.0
-      '@nodeproto/eslint-config': workspace:0.0.0
-      '@nodeproto/jsync': workspace:0.0.0
-      '@nodeproto/prettier-config': workspace:0.0.0
-      '@nodeproto/shared': workspace:0.0.0
-      '@nodeproto/testproto': workspace:0.0.0
-      '@nodeproto/wtf': workspace:0.0.0
-      '@octokit/core': 3.5.1
-      '@tinyhttp/etag': 2.0.2
-      browserslist: 4.19.1
-      chokidar-cli: 3.0.0
-      cls-rtracer: 2.6.0
-      eslint: 8.9.0
-      eslint-config-prettier: 8.3.0
-      eslint-plugin-fb-flow: 0.0.4
-      eslint-plugin-flowtype-errors: 4.5.0
-      eslint-plugin-html: 6.2.0
-      eslint-plugin-json: 3.1.0
-      eslint-plugin-markdown: 2.2.1
-      eslint-plugin-node: 11.1.0
-      eslint-plugin-prettier: 4.0.0
-      eslint-plugin-promise: 6.0.0
-      eslint-plugin-yml: 0.13.0
-      flow-bin: 0.171.0
-      flow-typed: 3.6.1
-      js-yaml: 4.1.0
-      koa: 2.13.4
-      koa-body: 4.2.0
-      koa-bodyparser: 4.3.0
-      koa-charset: 2.0.0
-      koa-compose: 4.1.0
-      koa-csrf: 3.0.8
-      koa-helmet: 6.1.0
-      koa-jwt: 4.0.3
-      koa-oas3: 2.4.1
-      koa-passport: 4.1.4
-      koa-qs: 3.0.0
-      koa-ratelimit: 5.0.1
-      koa-session: 6.2.0
-      koa-sslify: 5.0.0
-      koa-tree-router: github:noahehall/koa-tree-router
-      prettier: 2.5.1
-      ultra-runner: 3.10.5
-      uvu: 0.5.3
-      yaml-eslint-parser: 0.5.0
-    dependencies:
-      '@babel/runtime': 7.17.2
-      '@koa/cors': 3.1.0
-      '@nodeproto/configproto': link:../../libraries/configproto
-      '@nodeproto/envproto': link:../../libraries/envproto
-      '@nodeproto/shared': link:../../libraries/shared
-      '@nodeproto/wtf': link:../../libraries/wtf
-      '@tinyhttp/etag': 2.0.2
-      cls-rtracer: 2.6.0
-      js-yaml: 4.1.0
-      koa: 2.13.4
-      koa-body: 4.2.0
-      koa-bodyparser: 4.3.0
-      koa-charset: 2.0.0
-      koa-compose: 4.1.0
-      koa-csrf: 3.0.8
-      koa-helmet: 6.1.0
-      koa-jwt: 4.0.3
-      koa-oas3: 2.4.1_koa@2.13.4
-      koa-passport: 4.1.4
-      koa-qs: 3.0.0
-      koa-ratelimit: 5.0.1
-      koa-session: 6.2.0
-      koa-sslify: 5.0.0
-      koa-tree-router: github.com/noahehall/koa-tree-router/b6e8fa9d137734df5e229cf2f174e96c29585334
-      ultra-runner: 3.10.5
-    devDependencies:
-      '@babel/cli': 7.17.0_@babel+core@7.17.2
-      '@babel/core': 7.17.2
-      '@babel/eslint-parser': 7.17.0_@babel+core@7.17.2+eslint@8.9.0
-      '@babel/eslint-plugin': 7.16.5_0f7d57242c70b8e89c1f8fee5b7f60ba
-      '@nodeproto/buildproto': link:../../libraries/buildproto
-      '@nodeproto/eslint-config': link:../../configs/eslint-config
-      '@nodeproto/jsync': link:../../tools/jsync
-      '@nodeproto/prettier-config': link:../../configs/prettier-config
-      '@nodeproto/testproto': link:../../libraries/testproto
-      '@octokit/core': 3.5.1
-      browserslist: 4.19.1
-      chokidar-cli: 3.0.0
-      eslint: 8.9.0
-      eslint-config-prettier: 8.3.0_eslint@8.9.0
-      eslint-plugin-fb-flow: 0.0.4_eslint@8.9.0
-      eslint-plugin-flowtype-errors: 4.5.0_eslint@8.9.0+flow-bin@0.171.0
-      eslint-plugin-html: 6.2.0
-      eslint-plugin-json: 3.1.0
-      eslint-plugin-markdown: 2.2.1_eslint@8.9.0
-      eslint-plugin-node: 11.1.0_eslint@8.9.0
-      eslint-plugin-prettier: 4.0.0_07b422646bb75d3db791621d4fdbc992
-      eslint-plugin-promise: 6.0.0_eslint@8.9.0
-      eslint-plugin-yml: 0.13.0_eslint@8.9.0
-      flow-bin: 0.171.0
-      flow-typed: 3.6.1
-      prettier: 2.5.1
-      uvu: 0.5.3
-      yaml-eslint-parser: 0.5.0
-
   packages/configs/eslint-config:
     specifiers:
       '@babel/eslint-parser': 7.17.0
@@ -6698,6 +6587,13 @@ packages:
     engines: {node: '>= 0.6'}
     dev: false
 
+  /cookie/0.4.2:
+    resolution: {integrity: sha512-aSWTXFzaKWkvHO1Ny/s+ePFpvKsPnjc551iI41v3ny/ow6tBG5Vd+FuqGNhh1LxOmVzOlGUriIlOaokOvhaStA==}
+    engines: {node: '>= 0.6'}
+    requiresBuild: true
+    dev: false
+    optional: true
+
   /cookies/0.8.0:
     resolution: {integrity: sha512-8aPsApQfebXnuI+537McwYsDtjVxGm8gTIzQI3FDW6t5t/DAhERxtnbEPN/8RX+uZthoz4eCOgloXaE5cYyNow==}
     engines: {node: '>= 0.8'}
@@ -8954,7 +8850,7 @@ packages:
       request-compose: 2.1.4
       request-oauth: 1.0.1
     optionalDependencies:
-      cookie: 0.4.1
+      cookie: 0.4.2
       cookie-signature: 1.1.0
       jwk-to-pem: 2.0.5
       jws: 4.0.0

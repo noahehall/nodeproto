@@ -5,7 +5,7 @@ import { logIt } from '@nodeproto/shared';
 import compose from 'koa-compose';
 
 import { eTag } from './eTag';
-import { koaBody } from './koaBody';
+import { koaBody, koaBodyParser } from './koaBody';
 import { koaCharset } from './koaCharset';
 import { koaCors } from './koaCors';
 import { koaCsrf } from './koaCsrf';
@@ -21,13 +21,13 @@ export const initMiddleware = (app: KoaAppType): KoaAppType => {
   const middlewareStack = compose([
     logger(app),
     responseTime(app),
-    koaRateLimit(app),
-    koaSession(app),
-    koaCharset(app),
-    koaHelmet(app),
-    koaCors(app),
-    koaCsrf(app),
-    eTag(app),
+    // koaRateLimit(app),
+    // koaSession(app),
+    // koaCharset(app),
+    // koaHelmet(app),
+    // koaCors(app),
+    // koaCsrf(app),
+    // eTag(app),
     koaBody(app),
   ]);
 

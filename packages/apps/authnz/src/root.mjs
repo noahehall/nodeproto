@@ -14,7 +14,7 @@ import type { AppType, KoaAppType, ServerType } from './libdefs';
 export const runSecureServer = async ({
   app,
   host = '0.0.0.0',
-  port = 3443,
+  port = 8043,
 }: {
   app: KoaAppType,
   host?: string,
