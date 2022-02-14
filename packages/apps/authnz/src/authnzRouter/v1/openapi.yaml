@@ -1,4 +1,5 @@
 # old: was openapi for previous pkcheck app
+# TODO: convert to authnz related stuff after library packages are complete
 openapi: 3.0.3
 info:
   title: "nodeproto: build prototypes, fast."

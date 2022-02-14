@@ -21,13 +21,13 @@ export const initMiddleware = (app: KoaAppType): KoaAppType => {
   const middlewareStack = compose([
     logger(app),
     responseTime(app),
-    // koaRateLimit(app),
-    // koaSession(app),
-    // koaCharset(app),
-    // koaHelmet(app),
-    // koaCors(app),
-    // koaCsrf(app),
-    // eTag(app),
+    koaRateLimit(app),
+    // koaSession(app), // internal server error
+    koaCharset(app),
+    // koaHelmet(app), // need to update CSP config
+    koaCors(app),
+    koaCsrf(app),
+    eTag(app),
     koaBody(app),
   ]);
 
