@@ -1,12 +1,12 @@
+// @flow
+
 import ReactDOM from 'react-dom';
 
-function BodyguardOptions () {
+function BodyguardOptions() {
   return (
     <main>
       <h1 id="myHeading">preferences</h1>
-      <p>
-        TODO
-      </p>
+      <p>TODO</p>
     </main>
   );
 }

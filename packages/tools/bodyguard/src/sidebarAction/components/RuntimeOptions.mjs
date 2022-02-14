@@ -1,3 +1,5 @@
+// @flow
+
 import Form from './Form';
 
 const RuntimeOptions = () => (

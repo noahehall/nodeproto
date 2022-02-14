@@ -1,4 +1,4 @@
-// @flasdfdow strict
+// @flow
 
 import {
   buildWebpackConfig,
@@ -42,11 +42,13 @@ export const webpackConfig = reactDevWebpackConfig({
     },
   },
   copyOptions: {
-    patterns: [{
-      // set the context
-      context: pack.resolve('./src'),
-      from: './**/*.(json|png)', // TODO: shouldnt need png anymore as its handled via resolveAssets webpack5 thing?
-    }]
+    patterns: [
+      {
+        // set the context
+        context: pack.resolve('./src'),
+        from: './**/*.(json|png)', // TODO: shouldnt need png anymore as its handled via resolveAssets webpack5 thing?
+      },
+    ],
   },
   htmlOptions: [
     {

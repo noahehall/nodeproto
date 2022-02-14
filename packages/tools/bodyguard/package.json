@@ -32,6 +32,8 @@
     "download": "8.0.0",
     "env-cmd": "10.1.0",
     "express": "4.17.2",
+    "react": "18.0.0-rc.0",
+    "react-dom": "18.0.0-rc.0",
     "safe-compare": "1.1.4",
     "ultra-runner": "3.10.5"
   },
@@ -69,7 +71,7 @@
     "prettier": "2.5.1",
     "string-replace-loader": "3.1.0",
     "uvu": "0.5.3",
-    "web-ext": "~6.7.0",
+    "web-ext": "6.7.0",
     "web-ext-translator": "4.0.0",
     "webextension-polyfill": "0.8.0",
     "webpack": "5.68.0",
@@ -78,6 +80,10 @@
   "engines": {
     "node": "^14.17.0 || ^16.11.0 || >=17.5.0"
   },
+  "files": [
+    "src",
+    "dist"
+  ],
   "jsync": {
     "root": false
   },

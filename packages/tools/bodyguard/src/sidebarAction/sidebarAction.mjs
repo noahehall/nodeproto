@@ -1,3 +1,4 @@
+// @flow
 
 import { css, Global } from '@emotion/react';
 import { useEffect, useState } from 'react';
@@ -23,7 +24,7 @@ let myWindowId;
 const onMessage = getOnMessage();
 const storage = getBrowserLocalStorage();
 
-function SidebarAction () {
+function SidebarAction() {
   const [{ debugElement, formActions, formBodyguard }, setElements] = useState({});
 
   useEffect(() => {
@@ -31,10 +32,10 @@ function SidebarAction () {
       setElements({
         debugElement: document.getElementById('bodyguard-debug'),
         formActions: document.getElementById('actions'),
-        formBodyguard:document.getElementById('bodyguard-form')
+        formBodyguard: document.getElementById('bodyguard-form'),
       });
     }
-  },[debugElement, formActions, formBodyguard, setElements]);
+  }, [debugElement, formActions, formBodyguard, setElements]);
 
   useEffect(() => {
     if (!debugElement || !formActions || !formBodyguard) return void 0;
@@ -46,13 +47,7 @@ function SidebarAction () {
       resetContent();
       addMsgListener();
     });
-  }, [
-    addMsgListener,
-    debugElement,
-    formActions,
-    formBodyguard,
-    resetContent,
-  ]);
+  }, [addMsgListener, debugElement, formActions, formBodyguard, resetContent]);
 
   const msgListener = (data = {}, sender) => {
     switch (data.type) {
@@ -62,7 +57,8 @@ function SidebarAction () {
 
         return Promise.resolve('done');
       }
-      default: return false;
+      default:
+        return false;
     }
   };
 
@@ -77,15 +73,16 @@ function SidebarAction () {
 
     if (!formFields) return console.error('\n\n error retrieving formFields');
 
-    getBrowserTabs().then(tabs => {
+    getBrowserTabs().then((tabs) => {
       const url = stripUrl(tabs[0].url);
 
-      getBrowserLocalStorage().then(data => {
+      getBrowserLocalStorage().then((data) => {
         console.info('\n\n reset url', url);
 
         const bodyguardRules = data.global;
 
-        if (typeof bodyguardRules === 'undefined') return console.info('TODO: setup global + activate tab rules', bodyguardRules, url);
+        if (typeof bodyguardRules === 'undefined')
+          return console.info('TODO: setup global + activate tab rules', bodyguardRules, url);
 
         Object.entries(bodyguardRules).forEach(([name, value]) => {
           if (formFields[name].type === 'checkbox') formFields[name].checked = value;
@@ -95,7 +92,7 @@ function SidebarAction () {
     });
   };
 
-  const actionsOnClick = e => {
+  const actionsOnClick = (e) => {
     console.info('\n\n formactions click', e.target.id);
 
     const formAction = e.target.id;
@@ -108,13 +105,9 @@ function SidebarAction () {
       switch (formAction) {
         case 'save': {
           const bodyguardRules = {};
-          [].forEach.call(formFields, field => {
-            if (
-              field.name
-              && ['checkbox', 'text', 'url'].includes(field.type)
-            ) bodyguardRules[field.name] = field.type === 'checkbox'
-              ? field.checked
-              : field.value;
+          [].forEach.call(formFields, (field) => {
+            if (field.name && ['checkbox', 'text', 'url'].includes(field.type))
+              bodyguardRules[field.name] = field.type === 'checkbox' ? field.checked : field.value;
           });
 
           setBrowserLocalStorage({
@@ -133,7 +126,7 @@ function SidebarAction () {
         }
         case 'clear': {
           setBrowserLocalStorage({ [stripUrl(tabs[0].url)]: {} });
-          [].forEach.call(formFields, field => {
+          [].forEach.call(formFields, (field) => {
             // force setting true until we have type to develop per tab settings
             if (field.name === 'is-global') field.value = true;
             else if (field.value) field.value = '';
@@ -142,7 +135,8 @@ function SidebarAction () {
 
           break;
         }
-        default: console.error('\n\n unknown formAction', e.target.id);
+        default:
+          console.error('\n\n unknown formAction', e.target.id);
       }
     });
   };

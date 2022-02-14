@@ -1,17 +1,19 @@
+const run = {
+  // firefox: '~/Desktop/firefox/firefox'
+  // watchIgnored: ['node_modules/**', 'dist/**', 'firefox-profile/**']
+  browserConsole: false, // ctrl shift alt i
+  firefoxProfile: 'firefox-profile', // will show a popup each time for you to select a profile
+  keepProfileChanges: true,
+  pref: [],
+  profileCreateIfMissing: true,
+  target: ['firefox-desktop'],
+};
+
 module.exports = {
-  verbose: false,
-  sourceDir: './dist',
   artifactsDir: './dist',
-  lint: { output: 'json', pretty: true },
   build: { overwriteDest: true },
-  run: {
-    browserConsole: false, // ctrl shift alt i
-    firefoxProfile: 'firefox-profile', // will show a popup each time for you to select a profile
-    profileCreateIfMissing: true,
-    keepProfileChanges: true,
-    pref: [],
-    target: ['firefox-desktop'],
-    // watchIgnored: ['node_modules/**', 'dist/**', 'firefox-profile/**']
-    // firefox: '~/Desktop/firefox/firefox'
-  }
+  lint: { output: 'json', pretty: true },
+  run,
+  sourceDir: './dist',
+  verbose: false,
 };

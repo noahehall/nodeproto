@@ -1,3 +1,5 @@
+// @flow
+
 import {
   getActiveTab,
   getBrowserLocalStorage,
@@ -29,10 +31,7 @@ const debug = new Set();
 // ]
 
 // TODO: should handle replace|substitute
-const transformUrl = (url, find, replace) => (
-  url.includes(find)
-  && url.replace(find, replace)
-);
+const transformUrl = (url, find, replace) => url.includes(find) && url.replace(find, replace);
 
 // // @see https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/webRequest/onBeforeRequest#additional_objects
 function debugUrl(requestDetails) {
@@ -44,7 +43,7 @@ function debugUrl(requestDetails) {
     message: [
       `bodyguard match: ${requestDetails.url}`,
       `replaced: ${transformUrl(requestDetails.url, find, replace)}`,
-    ]
+    ],
   });
 }
 
@@ -69,65 +68,61 @@ const syncBodyguards = () => {
   Object.entries(cache).forEach(([tabUrl, bodyguardRules = {}]) => {
     // TODO: enhancce with per-tab urls
     // if (!bodyguardRules) {
-      // guards.clear();
-      // debug.clear(),
-      // console.info('all guards inactive'),
-      // continue;
+    // guards.clear();
+    // debug.clear(),
+    // console.info('all guards inactive'),
+    // continue;
     // }
 
     // sync guards on duty
     if (bodyguardRules.active) {
       if (!guards.has(bodyguardRules.matching)) guards.add(bodyguardRules.matching);
-    }
-    else if (guards.has(bodyguardRules.matching)) guards.delete(bodyguardRules.matching);
+    } else if (guards.has(bodyguardRules.matching)) guards.delete(bodyguardRules.matching);
 
     // sync guards on debug
     if (bodyguardRules.debug) {
       if (!debug.has(bodyguardRules.find)) debug.add(bodyguardRules.find);
-    }
-    else if (debug.has(bodyguardRules.find)) debug.delete(bodyguardRules.find);
+    } else if (debug.has(bodyguardRules.find)) debug.delete(bodyguardRules.find);
   });
 
   console.info('\n\n new bodyguard state:', debug, guards);
 
-  if (debug.size) onBeforeRequest.addListener(
-    debugUrl, { urls: ["<all_urls>"] }
-  );
+  if (debug.size) onBeforeRequest.addListener(debugUrl, { urls: ['<all_urls>'] });
 
   if (guards.size) {
     let urls = [];
-    guards.forEach(url => url && urls.push(url + '*'));
+    guards.forEach((url) => url && urls.push(url + '*'));
 
     onBeforeRequest.addListener(
       guardUrl,
       { urls }, // types: redirectTypes  < use to be in object
-      ["blocking"]
+      ['blocking']
     );
   }
 };
 
-const retrieveBodyguardRules = () => getBrowserLocalStorage().then(bodyguardRules => {
-  const [ url, data ] = Object.entries(bodyguardRules)[0];
+const retrieveBodyguardRules = () =>
+  getBrowserLocalStorage().then((bodyguardRules) => {
+    const [url, data] = Object.entries(bodyguardRules)[0];
 
-  cache[url] = data[url];
+    cache[url] = data[url];
 
-  return cache;
-});
+    return cache;
+  });
 
-const bodyguardShiftManager = diff => {
+const bodyguardShiftManager = (diff) => {
   // TODO: enable per activeTab url bodyguard rules (url === activate tab)
   // const [ url, { newValue: data } ] = Object.entries(diff)[0];
   cache.global = diff.global.newValue;
   syncBodyguards();
 };
 
-getBrowserWindow().then(windowInfo => {
+getBrowserWindow().then((windowInfo) => {
   console.info('\n\n initializing @nodeproto/bodygaurd');
 
   cache.myWindowId = windowInfo.id;
 
-  retrieveBodyguardRules()
-    .then(() => syncBodyguards());
+  retrieveBodyguardRules().then(() => syncBodyguards());
 });
 
 // use storage.onChange vs browser.runtime as we want to persist this data anyway

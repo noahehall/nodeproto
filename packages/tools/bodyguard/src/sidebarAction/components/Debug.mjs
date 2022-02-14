@@ -1,3 +1,5 @@
+// @flow
+
 const Debug = () => (
   <aside className="panel-section-list">
     <h2 className="panel-section-header">debug</h2>
