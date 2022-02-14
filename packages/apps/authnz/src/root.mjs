@@ -27,7 +27,7 @@ export const runSecureServer = async ({
   return (await import('https')).createServer({ key, cert }, app.callback())
     .listen(
       { host, port: Number(port) },
-      () => { console.info('\n\n secure server running on: ', port) }
+      () => { console.info('\n\n secure server running on: ', port); }
     );
 };
 

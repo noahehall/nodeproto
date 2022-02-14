@@ -3,4 +3,3 @@ packages:
   - "packages/configs/*"
   - "packages/libraries/*"
   - "packages/tools/*"
-  - "tests"

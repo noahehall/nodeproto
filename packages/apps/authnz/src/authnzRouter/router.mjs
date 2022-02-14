@@ -10,7 +10,7 @@ import type { KoaAppType } from '../libdefs';
 const authnzRouter = new Router();
 
 authnzRouter.get('/', (ctx) => {
-  ctx.body = 'yolo wurl'
+  ctx.body = 'yolo wurl';
 });
 
 export const useRouter = async (app: KoaAppType): Promise<KoaAppType> => {
