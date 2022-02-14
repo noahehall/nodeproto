@@ -11,7 +11,7 @@ import {
 
 const onBeforeRequest = getOnBeforeRequest();
 const storage = getBrowserStorage();
-const cache = { myWindowId: null, global: {}};
+const cache = { myWindowId: null, global: {} };
 const guards = new Set();
 const debug = new Set();
 
@@ -104,7 +104,7 @@ const syncBodyguards = () => {
       ["blocking"]
     );
   }
-}
+};
 
 const retrieveBodyguardRules = () => getBrowserLocalStorage().then(bodyguardRules => {
   const [ url, data ] = Object.entries(bodyguardRules)[0];
@@ -127,7 +127,7 @@ getBrowserWindow().then(windowInfo => {
   cache.myWindowId = windowInfo.id;
 
   retrieveBodyguardRules()
-    .then(() => syncBodyguards())
+    .then(() => syncBodyguards());
 });
 
 // use storage.onChange vs browser.runtime as we want to persist this data anyway

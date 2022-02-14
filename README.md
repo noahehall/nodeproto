@@ -1,6 +1,8 @@
 # @nodeproto
 
-- product development starterkit specifically for RACEXP and HECCYA methodologies, but generally usable in any high-performance environment
+- product development starterkit
+- aims to support a number of product development use cases, however, focuses on full stack node+react apps running on AWS
+
 - hard requirements for develop branch
   - node >= 17.4
   - corepack
@@ -8,7 +10,7 @@
   - react, react-dom @rc (or @next)
   - koa => 2
   - flowtype
-  - all packages export reusable type definitions as `@nodeproto/packagename/libdefs`
+  - all packages export reusable type definitions as `@nodeproto/packagename/src/libdefs`
 - cultural boundaries
   - bleeding edge always
   - best in class > most popular
@@ -19,12 +21,11 @@
 
 ## TLDR
 
-- tests
-  - [@nodeproto/tests - Integration + e2e tests for everything below](tests/README.md)
+
 - services (examples)
   - [@nodeproto/gateway - HAproxy Gateway](packages/apps/gateway/README.md)
-  - [@nodeproto/client - React@alpha frontend](packages/apps/client/README.md)
-  - [@nodeproto/pkgcheck - Koa/OpenAPI@3 backend](packages/apps/pkgcheck/README.md)
+  - [@nodeproto/client - React@rc frontend](packages/apps/client/README.md)
+  - [@nodeproto/authnz - koa/openapi backend](packages/apps/authnz/README.md)
 - libraries
   - [@nodeproto/configproto - Static configurations](packages/libraries/configproto/README.md)
   - [@nodeproto/shared - utility fns](packages/libraries/shared/README.md)
@@ -35,7 +36,6 @@
 - tools
   - [@nodeproto/jsync - synchronize package.json[c] files](packages/tools/jsync/README.md)
   - [@nodeproto/bodyguard - UI Network Request proxy + debugger](packages/tools/bodyguard/README.md)
-  - [@nodeproto/membrane - virutalization via docker +/ vagrant](packages/tools/membrane/README.md)
 
 ### npm scripts
 

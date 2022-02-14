@@ -14,4 +14,4 @@ module.exports = {
     // watchIgnored: ['node_modules/**', 'dist/**', 'firefox-profile/**']
     // firefox: '~/Desktop/firefox/firefox'
   }
-}
+};

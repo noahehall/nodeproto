@@ -1,5 +1,5 @@
 
-import { Global, css } from '@emotion/react';
+import { css, Global } from '@emotion/react';
 import { useEffect, useState } from 'react';
 import {
   getBrowserLocalStorage,
@@ -24,7 +24,6 @@ const onMessage = getOnMessage();
 const storage = getBrowserLocalStorage();
 
 function SidebarAction () {
-
   const [{ debugElement, formActions, formBodyguard }, setElements] = useState({});
 
   useEffect(() => {
@@ -53,7 +52,7 @@ function SidebarAction () {
     formActions,
     formBodyguard,
     resetContent,
-  ])
+  ]);
 
   const msgListener = (data = {}, sender) => {
     switch (data.type) {
@@ -65,13 +64,13 @@ function SidebarAction () {
       }
       default: return false;
     }
-  }
+  };
 
   const addMsgListener = () => {
     debugElement.textContent = '';
     onMessage.removeListener(msgListener);
     onMessage.addListener(msgListener);
-  }
+  };
 
   const resetContent = () => {
     const formFields = formBodyguard.elements;
@@ -86,15 +85,15 @@ function SidebarAction () {
 
         const bodyguardRules = data.global;
 
-        if (typeof bodyguardRules === 'undefined') return console.info('TODO: setup global + activate tab rules', bodyguardRules, url)
+        if (typeof bodyguardRules === 'undefined') return console.info('TODO: setup global + activate tab rules', bodyguardRules, url);
 
         Object.entries(bodyguardRules).forEach(([name, value]) => {
           if (formFields[name].type === 'checkbox') formFields[name].checked = value;
           else formFields[name].value = value;
-        })
+        });
       });
-    })
-  }
+    });
+  };
 
   const actionsOnClick = e => {
     console.info('\n\n formactions click', e.target.id);
@@ -103,7 +102,7 @@ function SidebarAction () {
     if (!formAction) return console.error('\n\n error retrieving formAction');
 
     getBrowserTabs().then((tabs) => {
-      console.info('\n\n tabs', tabs)
+      console.info('\n\n tabs', tabs);
       const formFields = formBodyguard.elements;
 
       switch (formAction) {

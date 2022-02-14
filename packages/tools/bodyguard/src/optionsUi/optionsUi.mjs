@@ -8,7 +8,7 @@ function BodyguardOptions () {
         TODO
       </p>
     </main>
-  )
+  );
 }
 
 const container = document.getElementById('root');
