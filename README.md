@@ -22,7 +22,7 @@
 ## TLDR
 
 
-- services (examples)
+- services
   - [@nodeproto/gateway - HAproxy Gateway](packages/apps/gateway/README.md)
   - [@nodeproto/client - React@rc frontend](packages/apps/client/README.md)
   - [@nodeproto/authnz - koa/openapi backend](packages/apps/authnz/README.md)
@@ -40,13 +40,13 @@
 ### npm scripts
 
 - you can prepend `proto` or `proto:script` before any npm script cmd to run in all packages
+- very useful, e.g., in a githook
 
 ### uninstall
 
-```sh
-  rm -rf /var/.nodeproto
-  delete this repository
-```
+- to remove this repository completely from your system
+- delete the `/var/.nodeproto` directory, and this repository
+
 
 ### installation (contributing)
 

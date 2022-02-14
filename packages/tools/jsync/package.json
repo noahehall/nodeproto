@@ -43,8 +43,8 @@
     "@nodeproto/prettier-config": "workspace:0.0.0",
     "@nodeproto/testproto": "workspace:0.0.0",
     "chokidar-cli": "3.0.0",
-    "eslint-config-prettier": "8.3.0",
     "eslint": "8.9.0",
+    "eslint-config-prettier": "8.3.0",
     "eslint-plugin-fb-flow": "0.0.4",
     "eslint-plugin-flowtype-errors": "4.5.0",
     "eslint-plugin-html": "6.2.0",
@@ -56,6 +56,7 @@
     "eslint-plugin-yml": "0.13.0",
     "flow-bin": "0.171.0",
     "flow-typed": "3.6.1",
+    "husky": "7.0.4",
     "prettier": "2.5.1",
     "uvu": "0.5.3"
   },

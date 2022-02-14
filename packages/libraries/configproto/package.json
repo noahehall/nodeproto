@@ -134,6 +134,7 @@
     "eslint-plugin-promise": "6.0.0",
     "eslint-plugin-yml": "0.13.0",
     "flow-bin": "0.171.0",
+    "husky": "7.0.4",
     "prettier": "2.5.1"
   },
   "peerDependencies": {

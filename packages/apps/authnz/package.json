@@ -86,6 +86,7 @@
     "eslint-plugin-yml": "0.13.0",
     "flow-bin": "0.171.0",
     "flow-typed": "3.6.1",
+    "husky": "7.0.4",
     "prettier": "2.5.1",
     "uvu": "0.5.3",
     "yaml-eslint-parser": "0.5.0"

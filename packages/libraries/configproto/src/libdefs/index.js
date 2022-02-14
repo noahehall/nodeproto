@@ -10,7 +10,7 @@ export type ObjectOfFunctions = { [key: string]: Function };
 
 export type ArrayType = mixed[];
 
-export type ImportMetaType = Import$Meta | {
+export type ImportMetaType = {
   resolve: (x: string, y?: string) => Promise<string>,
   url: string,
 }

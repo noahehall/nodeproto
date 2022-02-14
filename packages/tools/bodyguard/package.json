@@ -69,6 +69,7 @@
     "flow-bin": "0.171.0",
     "flow-remove-types": "2.170.0",
     "flow-typed": "3.6.1",
+    "husky": "7.0.4",
     "prettier": "2.5.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",

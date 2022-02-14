@@ -25,6 +25,7 @@ importers:
       eslint-plugin-yml: 0.13.0
       flow-bin: 0.171.0
       flow-typed: 3.6.1
+      husky: 7.0.4
       prettier: 2.5.1
       ultra-runner: 3.10.5
       uvu: 0.5.3
@@ -52,6 +53,7 @@ importers:
       eslint-plugin-yml: 0.13.0_eslint@8.9.0
       flow-bin: 0.171.0
       flow-typed: 3.6.1
+      husky: 7.0.4
       prettier: 2.5.1
       uvu: 0.5.3
 
@@ -219,6 +221,7 @@ importers:
       flow-bin: 0.171.0
       flow-typed: 3.6.1
       history: 5.2.0
+      husky: 7.0.4
       lighthouse: 9.3.1
       prettier: 2.5.1
       react: 18.0.0-rc.0
@@ -287,6 +290,7 @@ importers:
       eslint-plugin-yml: 0.13.0_eslint@8.9.0
       flow-bin: 0.171.0
       flow-typed: 3.6.1
+      husky: 7.0.4
       lighthouse: 9.3.1
       prettier: 2.5.1
       react-devtools: 4.23.0
@@ -397,6 +401,7 @@ importers:
       flow-typed: 3.6.1
       html-webpack-plugin: 5.5.0
       http-terminator: 3.0.4
+      husky: 7.0.4
       koa: 2.13.4
       memfs: 3.4.1
       mini-svg-data-uri: 1.4.3
@@ -456,6 +461,7 @@ importers:
       eslint-plugin-yml: 0.13.0_eslint@8.9.0
       flow-bin: 0.171.0
       flow-typed: 3.6.1
+      husky: 7.0.4
       prettier: 2.5.1
       react: 18.0.0-rc.0
       react-devtools: 4.23.0
@@ -5659,7 +5665,7 @@ packages:
       loader-utils: 1.4.0
       make-dir: 3.1.0
       schema-utils: 2.7.1
-      webpack: 5.68.0_esbuild@0.14.21
+      webpack: 5.68.0
 
   /babel-loader/8.2.3_cca0e7b125ee9952607e903225fb0427:
     resolution: {integrity: sha512-n4Zeta8NC3QAsuyiizu0GkmRcQ6clkV9WFUnUf1iXP//IeSKbWjofW3UHyZVwlOB4y039YQKefawyTn64Zwbuw==}
@@ -6742,7 +6748,7 @@ packages:
       postcss-modules-values: 4.0.0_postcss@8.4.6
       postcss-value-parser: 4.2.0
       semver: 7.3.5
-      webpack: 5.68.0_esbuild@0.14.21
+      webpack: 5.68.0
 
   /css-select/4.2.1:
     resolution: {integrity: sha512-/aUslKhzkTNCQUB2qTX84lVmfia9NyjP3WpDGtj/WxhwBzWBYUV3DgUpurHTme8UTPcPlAD1DJ+b0nN/t50zDQ==}
@@ -9118,6 +9124,12 @@ packages:
   /human-signals/2.1.0:
     resolution: {integrity: sha512-B4FFZ6q/T2jhhksgkbEW3HBvWIfDW85snkQgawt07S7J5QXTk6BkNV+0yAeZrM5QpMAdYlocGoljn0sJ/WQkFw==}
     engines: {node: '>=10.17.0'}
+    dev: true
+
+  /husky/7.0.4:
+    resolution: {integrity: sha512-vbaCKN2QLtP/vD4yvs6iz6hBEo6wkSzs8HpRah1Z6aGmF2KW5PdYuAd7uX5a+OyBZHBhd+TFLqgjUgytQr4RvQ==}
+    engines: {node: '>=12'}
+    hasBin: true
     dev: true
 
   /iconv-lite/0.4.24:
@@ -12893,7 +12905,7 @@ packages:
     dependencies:
       loader-utils: 2.0.2
       schema-utils: 3.1.1
-      webpack: 5.68.0_esbuild@0.14.21
+      webpack: 5.68.0
 
   /string-similarity/4.0.4:
     resolution: {integrity: sha512-/q/8Q4Bl4ZKAPjj8WerIBJWALKkaPRfrvhfF8k/B23i4nzrlRj2/go1m90In7nG/3XDSbOo0+pu6RvCTM9RGMQ==}
@@ -13056,7 +13068,7 @@ packages:
     peerDependencies:
       webpack: ^5.0.0
     dependencies:
-      webpack: 5.68.0_esbuild@0.14.21
+      webpack: 5.68.0
 
   /stylis/4.0.13:
     resolution: {integrity: sha512-xGPXiFVl4YED9Jh7Euv2V220mriG9u4B2TA6Ybjc1catrstKD2PpIdU3U0RKpkVBC2EhmL/F0sPCr9vrFTNRag==}
