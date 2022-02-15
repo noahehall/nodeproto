@@ -2,15 +2,20 @@
 
 - product development starterkit
   - focuses on full stack node+react apps running on AWS
-  - vagrant + docker in dev
-  - docker in prod
+  - vagrant + docker in dev (todo)
+  - docker in prod (todo)
 
 - hard requirements for develop branch
+  - haproxy (needs virtualization)
   - node + corepack >= 17.5
   - pnpm >= 6.30.1
   - react + react-dom @rc (or @next)
   - koa => 2
   - flowtype >= 0.171.0
+  - Signoz APM (todo)
+  - Consul (todo)
+  - Arangodb (todo)
+  - ClickHouse (todo)
   - all packages export reusable type definitions as `@nodeproto/packagename/src/libdefs`
 
 - cultural boundaries

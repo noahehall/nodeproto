@@ -874,6 +874,7 @@ importers:
       '@nodeproto/eslint-config': workspace:0.0.0
       '@nodeproto/jsync': workspace:*
       '@nodeproto/prettier-config': workspace:0.0.0
+      '@nodeproto/shared': workspace:0.0.0
       '@types/download': 8.0.1
       babel-loader: 8.2.3
       body-parser: 1.19.1
@@ -915,6 +916,7 @@ importers:
       '@babel/runtime': 7.17.2
       '@emotion/react': 11.7.1_7d5827c851c0b40f6026c1d2229c5e55
       '@nodeproto/configproto': link:../../libraries/configproto
+      '@nodeproto/shared': link:../../libraries/shared
       core-js: 3.21.0
       download: 8.0.0
       env-cmd: 10.1.0

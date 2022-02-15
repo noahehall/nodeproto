@@ -28,6 +28,7 @@
     "@babel/runtime": "7.17.2",
     "@emotion/react": "11.7.1",
     "@nodeproto/configproto": "workspace:0.0.0",
+    "@nodeproto/shared": "workspace:0.0.0",
     "core-js": "3.21.0",
     "download": "8.0.0",
     "env-cmd": "10.1.0",

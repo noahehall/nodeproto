@@ -4,7 +4,8 @@ const Form = () => (
   <form id="bodyguard-form" className="panel-section panel-section-formElements">
     <fieldset className="filter-rule">
       <legend>
-        FILTER RULES{' '}
+        FILTER RULES
+        {' '}
         <button className="browser-style" type="button" name="add" disabled>
           +
         </button>
@@ -22,14 +23,16 @@ const Form = () => (
 
       <fieldset className="filter-rule">
         <legend>
-          PROXY RULES{' '}
+          PROXY RULES
+          {' '}
           <button className="browser-style" type="button" name="add" disabled>
             +
           </button>
         </legend>
 
         <small className="browser-style text">
-          Each matched URL will fall through all proxy rules.{' '}
+          Each matched URL will fall through all proxy rules.
+          {' '}
         </small>
 
         <div className="panel-formElements-item filter-rule-group">

@@ -2,6 +2,7 @@
 
 import { css, Global } from '@emotion/react';
 import { useEffect, useState } from 'react';
+import { logIt } from '@nodeproto/shared';
 
 import ReactDOM from 'react-dom';
 
@@ -21,12 +22,14 @@ import globalStyles from './globalStyles';
 import Header from './components/Header';
 import RuntimeOptions from './components/RuntimeOptions';
 
-let myWindowId;
+import type { ComponentType } from '../libdefs';
+
+let myWindowId: string = '';
 
 const onMessage = getOnMessage();
 const storage = getBrowserLocalStorage();
 
-export const SidebarAction = () => {
+export const SidebarAction: ComponentType<any> = () => {
   const [{ debugElement, formActions, formBodyguard }, setElements] = useState({});
 
   useEffect(() => {
@@ -42,13 +45,14 @@ export const SidebarAction = () => {
   useEffect(() => {
     if (!debugElement || !formActions || !formBodyguard) return void 0;
 
-    // populate Bodyguard rules when sidebar loads
-    getBrowserWindow().then((windowInfo) => {
+    (async () => {
+      // populate Bodyguard rules when sidebar loads
+      const windowInfo = await getBrowserWindow();
       myWindowId = windowInfo.id;
 
       resetContent();
       addMsgListener();
-    });
+    })();
   }, [addMsgListener, debugElement, formActions, formBodyguard, resetContent]);
 
   const msgListener = (data = {}, sender) => {
