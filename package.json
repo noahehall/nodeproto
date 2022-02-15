@@ -37,7 +37,9 @@
     "secure",
     "theDRAGON",
     "virtual",
-    "virtualization"
+    "virtualization",
+    "clickhouse",
+    "signoz"
   ],
   "os": [
     "linux",

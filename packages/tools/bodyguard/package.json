@@ -29,10 +29,12 @@
     "@emotion/react": "11.7.1",
     "@nodeproto/configproto": "workspace:0.0.0",
     "@nodeproto/shared": "workspace:0.0.0",
+    "@nodeproto/wtf": "workspace:0.0.0",
     "core-js": "3.21.0",
     "download": "8.0.0",
     "env-cmd": "10.1.0",
     "express": "4.17.2",
+    "globby": "13.1.1",
     "react": "18.0.0-rc.0",
     "react-dom": "18.0.0-rc.0",
     "safe-compare": "1.1.4",
@@ -129,7 +131,7 @@
     "linux"
   ],
   "scripts": {
-    "build": "rm -rf dist && NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" node webpack.react.dev.config.mjs",
+    "build": "rm -rf ./dist/* && NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" node react.webpack.config.mjs",
     "build:w": "WATCH=1 pnpm build",
     "proto": "pnpm exec ultra -r",
     "proto:bin": "pnpm -r exec $*",

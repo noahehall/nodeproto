@@ -18,7 +18,6 @@ import type {
   BaseWebpackType,
   NodeprotoPackType,
   WebpackConfigType,
-  WebpackOptions,
 } from '../libdefs';
 
 // everything here affects the output of webpack and not webpack itself

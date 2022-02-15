@@ -1,10 +1,12 @@
-@nodeproto/bodyguard - manage UI application network requests with @nodeproto/bodyguard firefox & chromium (chrome, edge, opera) browser extension
+# @nodeproto/bodyguard
+
+- manage UI application network requests with @nodeproto/bodyguard firefox browser extension
 
 ![@nodeproto/bodyguard sidebar](./src/images/screenshot.png)
 
 ![@nodeproto/bodyguard redirecting images on about.pinterest.com](./src/images/about.pinterest.com.png)
 
-# TLDR
+## TLDR
 
 - for consumers: manually load `@nodeproto/bodyguard` as a temporary extension into an existing firefox window
   - firefox
@@ -16,8 +18,9 @@
 
 - for developers: automatically inject `@nodeproto/bodyguard` as a temporary extension into a new firefox window with hot-reloading
   - `pnpm install`
+  - `pnpm build` (extract flowtypes & build via webpack)
   - `pnpm webext:run`
-    - update `root/config.js` to target a browser other than firefox
+    - update `root/config.cjs` to target a browser other than firefox
   - go to `about:debugging#/runtime/this-firefox` and click `inspect` on `@nodeproto/bodyguard`
   - [click the iframe selector](https://developer.mozilla.org/en-US/docs/Tools/Working_with_iframes) to view the dev console of a specific element
 
@@ -27,7 +30,7 @@
 - [review how they set this up](https://github.com/ritwickdey/live-server-web-extension/blob/master/manifest.json)
 - remove uneeded browser extension icons (browser url, tools menu)
 - update context + any menus and remove uneeded options
-- only use  browser APIs that are cross-browser compatible
+- only use browser APIs that are cross-browser compatible
 - enable use in chromium browsers without modifying config.js
 
 # special thanks to

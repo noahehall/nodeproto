@@ -1,9 +1,12 @@
 // @flow
 
-import { reactWebpackConfig } from '@nodeproto/buildproto';
-import { resolve } from '@nodproto/wtf';
+import { reactWebpackConfig, webpackBuild } from '@nodeproto/buildproto';
+import { resolve } from '@nodeproto/wtf';
 
 import type { ReactDevType, WebpackConfigType } from './src/libdefs';
+
+const pathSrc = await resolve('./src');
+const pathDist = await resolve('./dist');
 
 const reactDevOptions: ReactDevType = {
   watch: process.env.WATCH == 1,
@@ -29,42 +32,42 @@ const reactDevOptions: ReactDevType = {
       import: './src/sidebarAction/sidebarAction.mjs',
     },
   },
-  copyOptions: {
-    patterns: [
-      {
-        context: resolve('./src'),
-        from: './**/*.(json|png)', // TODO: shouldnt need png anymore as its handled via resolveAssets webpack5 thing?
-      },
-    ],
-  },
+  // copyOptions: {
+  //   patterns: [
+  //     {
+  //       // @see https://webpack.js.org/plugins/copy-webpack-plugin/#context
+  //       // TODO: plan on deprecating this in favor of webpack5 resolveAssets
+  //       context: 'src/**/*.',
+  //       from: './**/*.(json|png)',
+  //       to: pathDist,
+  //     },
+  //   ],
+  // },
   htmlOptions: [
     {
       chunks: ['background'],
       filename: 'background/scriptManager.html',
-      template: resolve('./src/index.html'),
+      template: `${pathSrc}/index.html`,
     },
     {
       chunks: ['browserAction'],
       filename: 'browserAction/browserAction.html',
-      template: resolve('./src/index.html'),
+      template: `${pathSrc}/index.html`,
     },
     {
       chunks: ['optionsUi'],
       filename: 'optionsUi/optionsUi.html',
-      template: resolve('./src/index.html'),
+      template: `${pathSrc}/index.html`,
     },
-    // {
-    //   chunks: ['pageAction'],
-    //   filename: 'pageAction/pageAction.html',
-    //   template: pack.resolve('./src/index.html'),
-    // },
     {
       chunks: ['sidebarAction'],
       filename: 'sidebarAction/sidebarAction.html',
-      template: resolve('./src/index.html'),
+      template: `${pathSrc}/index.html`,
     },
   ],
-  output: { path: resolve('./dist') },
+  output: { path: pathDist },
 };
 
-export const webpackConfig: WebpackConfigType = (await reactWebpackConfig(reactDevOptions)).config;
+const webpackArtifacts = await reactWebpackConfig(reactDevOptions);
+
+webpackBuild(webpackArtifacts.config, true);
