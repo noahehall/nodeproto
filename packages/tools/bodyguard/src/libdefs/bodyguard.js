@@ -2,7 +2,7 @@
 
 export type InternalMsgType = {
   type: string,
-  message: string[],
+  message: string | string[],
 };
 
 export interface HandleInternalMsgInterface {

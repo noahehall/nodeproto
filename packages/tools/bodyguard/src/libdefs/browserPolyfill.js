@@ -38,7 +38,7 @@ export type BrowserStorageType = {
   local: {
     ...ObjectOfStuff,
     get: () => ObjectOfStuff,
-    set: (data: ObjectOfStrings) => void,
+    set: (data: ObjectType) => void,
   },
 };
 

@@ -13,6 +13,7 @@ import type {
   InternalMsgType,
   ObjectOfStrings,
   ObjectOfStuff,
+  ObjectType,
 } from '../libdefs';
 
 const browser: BrowserType = browserPolyfill;
@@ -59,5 +60,5 @@ export const getBrowserWindow = (): BrowserTabType =>
 
 export const getBrowserStorage = (): BrowserStorageType => browser.storage;
 export const getBrowserLocalStorage = (): ObjectOfStuff => getBrowserStorage().local.get();
-export const setBrowserLocalStorage = (data: ObjectOfStrings): void =>
+export const setBrowserLocalStorage = (data: ObjectType): void =>
   getBrowserStorage().local.set(data);
