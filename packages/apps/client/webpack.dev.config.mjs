@@ -1,16 +1,16 @@
 // @flow strict-local
 
-import { reactDevWebpackConfig } from '@nodeproto/buildproto';
+import { reactWebpackConfig } from '@nodeproto/buildproto';
 
 import type {
   NodeprotoPackType,
   WebpackConfigType,
-} from './libdefs';
+} from './src/libdefs';
 
 export const getWebpackConfig = async (): Promise<{
   config: WebpackConfigType, pack: NodeprotoPackType
 }> => {
-  return reactDevWebpackConfig({
+  return reactWebpackConfig({
     entry: ['./src/root.mjs'],
     htmlOptions: { template: './src/index.html' },
   });

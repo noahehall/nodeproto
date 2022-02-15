@@ -1,14 +1,11 @@
 // @flow
 
-import {
-  unstable_GridCell as GridCell,
-  unstable_useGridState as useGridState
-} from 'reakit/Grid';
+import { unstable_GridCell as GridCell, unstable_useGridState as useGridState } from 'reakit/Grid';
 
 import clsx from 'clsx';
 import styled from '@emotion/styled';
 
-import type { ComponentType, Element } from '../../../libdefs.mjs';
+import type { ComponentType, Element } from '../../libdefs';
 
 const StyledCell = styled(GridCell)`
 
@@ -21,17 +18,12 @@ type ScreenColumnProps = {
 
 export const ScreenColumn: ComponentType<ScreenColumnProps> = ({
   className,
-  children } = {}
-): Element<typeof StyledCell> => {
+  children,
+} = {}): Element<typeof StyledCell> => {
   const grid: {} = useGridState();
 
   return (
-    <StyledCell
-      {...grid} className={clsx(
-        'column',
-        className
-      )}
-    >
+    <StyledCell {...grid} className={clsx('column', className)}>
       {children}
     </StyledCell>
   );

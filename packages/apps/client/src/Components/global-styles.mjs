@@ -9,7 +9,7 @@
 
 import { css } from '@emotion/react';
 
-import type { ComponentType } from '../../libdefs';
+import type { ComponentType } from '../libdefs';
 
 /* quickies
   rem - root container fontsize

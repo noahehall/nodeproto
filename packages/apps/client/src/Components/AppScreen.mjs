@@ -10,7 +10,7 @@ import { NotFoundScreen } from '../Library/NotFoundScreen.mjs';
 // css
 import 'animate.css';
 
-import type { ComponentType, Element } from '../../libdefs';
+import type { ComponentType, Element } from '../libdefs';
 
 const OuterContainer: ComponentType<any> = styled.div`
   display: flex;
