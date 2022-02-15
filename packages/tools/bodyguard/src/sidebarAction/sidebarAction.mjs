@@ -5,7 +5,6 @@
 import { css, Global } from '@emotion/react';
 import { useCallback, useEffect, useState } from 'react';
 import { logIt } from '@nodeproto/shared';
-
 import ReactDOM from 'react-dom';
 
 import {
@@ -18,11 +17,8 @@ import {
   stripUrl,
 } from '../shared/utils';
 
-import Actions from './components/Actions';
-import Debug from './components/Debug';
-import globalStyles from './globalStyles';
-import Header from './components/Header';
-import RuntimeOptions from './components/RuntimeOptions';
+import { Actions, Debug, Header, RuntimeOptions } from './components';
+import { globalStyles } from './globalStyles';
 
 import type { ComponentType, InternalMsgType } from '../libdefs';
 

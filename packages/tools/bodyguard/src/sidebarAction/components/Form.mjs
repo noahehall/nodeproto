@@ -1,13 +1,15 @@
 // @flow
+/* eslint-disable react/jsx-max-depth */
 
-const Form = () => (
+import type { ComponentType } from '../../libdefs';
+
+export const Form: ComponentType<{}> = () => (
   <form id="bodyguard-form" className="panel-section panel-section-formElements">
     <fieldset className="filter-rule">
       <legend>
-        FILTER RULES
-        {' '}
+        {'FILTER RULES '}
         <button className="browser-style" type="button" name="add" disabled>
-          +
+          {'+'}
         </button>
       </legend>
 
@@ -16,36 +18,34 @@ const Form = () => (
           className="browser-style label text"
           title="will manage all network requests whose URL includes string"
         >
-          <span>URLS MATCHING</span>
+          <span>{'URLS MATCHING'}</span>
           <input type="url" name="matching" required />
         </label>
       </div>
 
       <fieldset className="filter-rule">
         <legend>
-          PROXY RULES
-          {' '}
+          {'PROXY RULES '}
           <button className="browser-style" type="button" name="add" disabled>
-            +
+            {'+'}
           </button>
         </legend>
 
         <small className="browser-style text">
-          Each matched URL will fall through all proxy rules.
-          {' '}
+          {'Each matched URL will fall through all proxy rules. '}
         </small>
 
         <div className="panel-formElements-item filter-rule-group">
           <div className="group">
             <label className="browser-style label text" title="string to find in the URL">
-              <span>FIND</span>
+              <span>{'FIND'}</span>
               <input type="text" name="find" />
             </label>
           </div>
 
           <div className="group">
             <label className="browser-style label text" title="string to inject into the URL">
-              <span>REPLACE</span>
+              <span>{'REPLACE'}</span>
               <input type="text" name="replace" />
             </label>
           </div>
@@ -56,7 +56,7 @@ const Form = () => (
               title="if checked: reject this request and return 404"
             >
               <input type="checkbox" name="reject" />
-              <span>REJECT</span>
+              <span>{'REJECT'}</span>
             </label>
 
             <label
@@ -64,7 +64,7 @@ const Form = () => (
               title="if checked: will log requests to the debug section"
             >
               <input type="checkbox" name="debug" />
-              LOG
+              {'LOG'}
             </label>
 
             <label
@@ -72,7 +72,7 @@ const Form = () => (
               title="if checked: all rules will be active"
             >
               <input type="checkbox" name="active" />
-              ACTIVE
+              {'ACTIVE'}
             </label>
           </div>
         </div>
@@ -85,16 +85,14 @@ const Form = () => (
           disabled
         >
           <input type="checkbox" name="is-global" disabled checked />
-          Global Filter Rule?
+          {'Global Filter Rule?'}
         </label>
       </div>
       <div className="panel-formElements-item">
         <button className="browser-style" type="button" name="del" disabled>
-          DELETE
+          {'DELETE'}
         </button>
       </div>
     </fieldset>
   </form>
 );
-
-export default Form;

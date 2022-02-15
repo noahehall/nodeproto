@@ -2,7 +2,9 @@
 
 import { css } from '@emotion/react';
 
-export default css`
+import type { ComponentType } from '../libdefs';
+
+export const globalStyles: ComponentType<any> = css`
   :disabled {
     cursor: not-allowed !important;
   }
