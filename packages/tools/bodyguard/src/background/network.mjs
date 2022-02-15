@@ -1,7 +1,6 @@
 // @flow
 
 import {
-  getActiveTab,
   getBrowserLocalStorage,
   getBrowserStorage,
   getBrowserTabs,
@@ -11,11 +10,14 @@ import {
   stripUrl,
 } from '../shared/utils';
 
+import type { BodyguardCacheType, ObjectType } from '../libdefs';
+
+const cache: BodyguardCacheType = { myWindowId: '', global: {} };
+
+const debug = new Set();
+const guards = new Set();
 const onBeforeRequest = getOnBeforeRequest();
 const storage = getBrowserStorage();
-const cache = { myWindowId: null, global: {} };
-const guards = new Set();
-const debug = new Set();
 
 // // @see https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/webRequest/ResourceType
 // TODO: this should come from bodyguardRules
@@ -101,29 +103,38 @@ const syncBodyguards = () => {
   }
 };
 
-const retrieveBodyguardRules = () =>
-  getBrowserLocalStorage().then((bodyguardRules) => {
-    const [url, data] = Object.entries(bodyguardRules)[0];
+// TODO: extract the updating of cache to a separate fn
+const retrieveBodyguardRules = async (): Promise<BodyguardCacheType> => {
+  const bodyguardRules = await getBrowserLocalStorage();
 
-    cache[url] = data[url];
+  const [url, data] = Object.entries(bodyguardRules)[0];
 
-    return cache;
-  });
+  // $FlowFixMe[incompatible-use] data typed as mixed
+  cache[url] = data[url];
 
-const bodyguardShiftManager = (diff) => {
+  return cache;
+};
+
+export const bodyguardShiftManager = ({ global }: { global: { newValue: Object } }): void => {
   // TODO: enable per activeTab url bodyguard rules (url === activate tab)
   // const [ url, { newValue: data } ] = Object.entries(diff)[0];
-  cache.global = diff.global.newValue;
+
+  cache.global = global.newValue;
   syncBodyguards();
 };
 
-getBrowserWindow().then((windowInfo) => {
+(async () => {
   console.info('\n\n initializing @nodeproto/bodygaurd');
+
+  const windowInfo = await getBrowserWindow();
 
   cache.myWindowId = windowInfo.id;
 
-  retrieveBodyguardRules().then(() => syncBodyguards());
-});
+  // TODO: this fn updates the cache, but we need to extract this logic
+  // ^ to a separate fn
+  await retrieveBodyguardRules();
+  syncBodyguards();
+})();
 
 // use storage.onChange vs browser.runtime as we want to persist this data anyway
 if (!storage.onChanged.hasListener(bodyguardShiftManager))

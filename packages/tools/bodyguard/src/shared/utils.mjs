@@ -3,6 +3,7 @@
 import browserPolyfill from 'webextension-polyfill';
 
 import type {
+  BodyguardCacheType,
   BrowserRuntimeType,
   BrowserSidebarActionType,
   BrowserStorageType,
@@ -42,23 +43,18 @@ export const getOnBeforeRequest = (): Function => browser.webRequest.onBeforeReq
 
 // @see https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/sendMessage
 // TODO: prefer this for sending console logs https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Content_scripts#connection-based_messaging
-export const sendInternalMsg = ({
-  type = 'DEBUG',
-  message,
-}: {
-  type: string,
-  message: string,
-}): void => browser.runtime.sendMessage({ type, message });
+export const sendInternalMsg = ({ type = 'DEBUG', message }: InternalMsgType): void =>
+  browser.runtime.sendMessage({ type, message });
 
 export const getOnMessage = (): Function => browser.runtime.onMessage;
 
 // @see https://github.com/mdn/webextensions-examples/blob/master/history-deleter/history.js
-export const getBrowserTabs = (): BrowserTabType[] =>
+export const getBrowserTabs = async (): Promise<BrowserTabType[]> =>
   browser.tabs.query({ active: true, currentWindow: true });
-export const getBrowserWindow = (): BrowserTabType =>
+export const getBrowserWindow = async (): Promise<BrowserTabType> =>
   browser.windows.getCurrent({ populate: true });
 
 export const getBrowserStorage = (): BrowserStorageType => browser.storage;
-export const getBrowserLocalStorage = (): ObjectOfStuff => getBrowserStorage().local.get();
+export const getBrowserLocalStorage = (): BodyguardCacheType => getBrowserStorage().local.get();
 export const setBrowserLocalStorage = (data: ObjectType): void =>
   getBrowserStorage().local.set(data);

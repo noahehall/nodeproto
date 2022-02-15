@@ -3,6 +3,8 @@
 
 import type { ObjectOfStrings, ObjectType } from '@nodeproto/configproto/src/libdefs';
 
+import type { BodyguardCacheType } from './bodyguard';
+
 export type ObjectOfStuff = {
   [key: string]: string | Function | Object,
   ...
@@ -15,7 +17,7 @@ export type BrowserI18nType = {
 
 export type BrowserRuntimeType = {
   lastError: ?string,
-  sendMessage: ({ type: string, message: string }) => void,
+  sendMessage: ({ type: string, message: string & string[] }) => void,
   onMessage: Function,
   openOptionsPage: Function,
   ...
@@ -38,9 +40,13 @@ export type BrowserWindowsType = {
 
 export type BrowserStorageType = {
   local: {
-    get: () => ObjectOfStuff,
+    get: (() => BodyguardCacheType) & ((thing: string) => string | ObjectType),
     set: (data: ObjectType) => void,
     ...
+  },
+  onChanged: {
+    hasListener: (listener: Function) => boolean,
+    addListener: (listener: Function) => void,
   },
   ...
 };
@@ -65,5 +71,7 @@ export type BrowserType = {
   tabs: BrowserTabsType,
   webRequest: BrowserWebRequestType,
   windows: BrowserWindowsType,
-  ...
+  menus: {
+    create: ({ id: string, title: string, contexts: string[] }, errorHandler: Function) => void,
+  },
 };

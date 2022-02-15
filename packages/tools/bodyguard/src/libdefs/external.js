@@ -5,4 +5,4 @@ export type * from '@nodeproto/configproto/src/libdefs';
 export type * from 'react-dom';
 export type * from 'react';
 
-export * from './browserPolyfill';
+export type * from './browserPolyfill';
