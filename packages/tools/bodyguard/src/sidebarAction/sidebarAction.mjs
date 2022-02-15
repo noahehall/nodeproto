@@ -2,6 +2,9 @@
 
 import { css, Global } from '@emotion/react';
 import { useEffect, useState } from 'react';
+
+import ReactDOM from 'react-dom';
+
 import {
   getBrowserLocalStorage,
   getBrowserTabs,
@@ -16,15 +19,15 @@ import Actions from './components/Actions';
 import Debug from './components/Debug';
 import globalStyles from './globalStyles';
 import Header from './components/Header';
-import ReactDOM from 'react-dom';
 import RuntimeOptions from './components/RuntimeOptions';
 
 let myWindowId;
+const document = window.document; // eslint-disable-line no-undef
 
 const onMessage = getOnMessage();
 const storage = getBrowserLocalStorage();
 
-function SidebarAction() {
+export const SidebarAction = () => {
   const [{ debugElement, formActions, formBodyguard }, setElements] = useState({});
 
   useEffect(() => {
@@ -156,7 +159,7 @@ function SidebarAction() {
       </main>
     </>
   );
-}
+};
 
 const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container);

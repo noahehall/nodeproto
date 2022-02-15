@@ -1,20 +1,13 @@
 // @flow
 
-import {
-  buildWebpackConfig,
-  reactDevWebpackConfig,
-  setupWebpackConfig,
-} from '@nodeproto/buildproto';
+import { reactWebpackConfig } from '@nodeproto/buildproto';
+import { resolve } from '@nodproto/wtf';
 
-const { pack, config } = setupWebpackConfig();
+import type { ReactDevType, WebpackConfigType } from './src/libdefs';
 
-export const webpackConfig = reactDevWebpackConfig({
-  pack,
-  ...config,
+const reactDevOptions: ReactDevType = {
   watch: process.env.WATCH == 1,
-  cache: false, // TODO: not picking up changes when removing babel plugins in @nodeproto/configproto/....../client.babelrc
-  devtool: 'cheap-module-source-map',
-  entryUnshift: [],
+  cache: false, // TODO: previously had issues with cache, so disabled for now
   // @see https://webpack.js.org/configuration/entry-context/#entry-descriptor
   entry: {
     background: {
@@ -45,7 +38,7 @@ export const webpackConfig = reactDevWebpackConfig({
     patterns: [
       {
         // set the context
-        context: pack.resolve('./src'),
+        context: resolve('./src'),
         from: './**/*.(json|png)', // TODO: shouldnt need png anymore as its handled via resolveAssets webpack5 thing?
       },
     ],
@@ -54,17 +47,17 @@ export const webpackConfig = reactDevWebpackConfig({
     {
       chunks: ['background'],
       filename: 'background/scriptManager.html',
-      template: pack.resolve('./src/index.html'),
+      template: resolve('./src/index.html'),
     },
     {
       chunks: ['browserAction'],
       filename: 'browserAction/browserAction.html',
-      template: pack.resolve('./src/index.html'),
+      template: resolve('./src/index.html'),
     },
     {
       chunks: ['optionsUi'],
       filename: 'optionsUi/optionsUi.html',
-      template: pack.resolve('./src/index.html'),
+      template: resolve('./src/index.html'),
     },
     // {
     //   chunks: ['pageAction'],
@@ -74,11 +67,10 @@ export const webpackConfig = reactDevWebpackConfig({
     {
       chunks: ['sidebarAction'],
       filename: 'sidebarAction/sidebarAction.html',
-      template: pack.resolve('./src/index.html'),
+      template: resolve('./src/index.html'),
     },
   ],
-  output: { path: pack.resolve('./dist') },
-  pack,
-});
+  output: { path: resolve('./dist') },
+};
 
-buildWebpackConfig(webpackConfig);
+export const webpackConfig: WebpackConfigType = (await reactWebpackConfig(reactDevOptions)).config;
