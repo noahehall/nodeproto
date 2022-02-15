@@ -9,55 +9,61 @@ export type ObjectOfStuff = {
 };
 
 export type BrowserI18nType = {
-  ...ObjectOfStuff,
   getMessage: (msg: string) => string,
+  ...
 };
 
 export type BrowserRuntimeType = {
-  ...ObjectOfStuff,
   lastError: ?string,
   sendMessage: ({ type: string, message: string }) => void,
   onMessage: Function,
+  openOptionsPage: Function,
+  ...
 };
 
 export type BrowserSidebarActionType = {
-  ...ObjectOfStuff,
+  toggle: Function,
+  ...
 };
 
 export type BrowserWebRequestType = {
-  ...ObjectOfStuff,
   onBeforeRequest: Function,
+  ...
 };
 
 export type BrowserWindowsType = {
   getCurrent: ({ populate: boolean }) => BrowserTabType,
+  ...
 };
 
 export type BrowserStorageType = {
-  ...ObjectOfStuff,
   local: {
-    ...ObjectOfStuff,
     get: () => ObjectOfStuff,
     set: (data: ObjectType) => void,
+    ...
   },
+  ...
 };
 
 export type BrowserTabsType = {
-  ...ObjectOfStuff,
+  [x: string]: BrowserTabType,
   query: ({ active: boolean, currentWindow: boolean }) => BrowserTabType[],
+  ...
 };
 
 export type BrowserTabType = {
-  ...ObjectOfStuff,
+  url: string,
+  id: string,
+  ...
 };
 
 export type BrowserType = {
-  ...ObjectOfStuff,
   i18n: BrowserI18nType,
   runtime: BrowserRuntimeType,
   sidebarAction: BrowserSidebarActionType,
-  webRequest: BrowserWebRequestType,
-  windows: BrowserWindowsType,
   storage: BrowserStorageType,
   tabs: BrowserTabsType,
+  webRequest: BrowserWebRequestType,
+  windows: BrowserWindowsType,
+  ...
 };

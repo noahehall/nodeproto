@@ -1,30 +1,33 @@
 // @flow
 
 import ReactDOM from 'react-dom';
+
 import { getRuntime, getSidebarAction } from '../shared/utils';
+
+import type { ComponentType } from '../libdefs';
 
 const sidebarAction = getSidebarAction();
 const runtime = getRuntime();
 
-function BodyguardBrowserActions() {
+export const BodyguardBrowserActions: ComponentType<{}> = () => {
   return (
     <main>
-      <h1>Bodyguard Actions</h1>
+      <h1>{'Bodyguard Actions'}</h1>
       <ul css={{ 'list-style': 'none' }}>
         <li>
           <a href="#" onClick={() => sidebarAction.toggle()}>
-            Toggle Sidebar
+            {'Toggle Sidebar'}
           </a>
         </li>
         <li>
           <a href="#" onClick={() => runtime.openOptionsPage()}>
-            Bodyguard Preferences and Options
+            {'Bodyguard Preferences and Options'}
           </a>
         </li>
       </ul>
     </main>
   );
-}
+};
 
 const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container);

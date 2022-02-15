@@ -24,11 +24,6 @@ const reactDevOptions: ReactDevType = {
       filename: 'optionsUi/optionsUi.js',
       import: './src/optionsUi/optionsUi.mjs',
     },
-    // pageAction: {
-    //   // dependOn: 'shared',
-    //   filename: 'pageAction/pageAction.js',
-    //   import: './src/pageAction/pageAction.mjs',
-    // },
     sidebarAction: {
       filename: 'sidebarAction/sidebarAction.js',
       import: './src/sidebarAction/sidebarAction.mjs',
