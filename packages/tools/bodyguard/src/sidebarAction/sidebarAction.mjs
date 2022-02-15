@@ -22,7 +22,6 @@ import Header from './components/Header';
 import RuntimeOptions from './components/RuntimeOptions';
 
 let myWindowId;
-const document = window.document; // eslint-disable-line no-undef
 
 const onMessage = getOnMessage();
 const storage = getBrowserLocalStorage();

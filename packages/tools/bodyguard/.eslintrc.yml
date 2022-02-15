@@ -1,2 +1,2 @@
 root: true
-extends: "@nodeproto/eslint-config"
+extends: "@nodeproto/eslint-config/react"

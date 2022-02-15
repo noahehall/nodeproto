@@ -37,7 +37,6 @@ const reactDevOptions: ReactDevType = {
   copyOptions: {
     patterns: [
       {
-        // set the context
         context: resolve('./src'),
         from: './**/*.(json|png)', // TODO: shouldnt need png anymore as its handled via resolveAssets webpack5 thing?
       },

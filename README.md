@@ -1,23 +1,25 @@
 # @nodeproto
 
 - product development starterkit
-- aims to support a number of product development use cases, however, focuses on full stack node+react apps running on AWS
+  - focuses on full stack node+react apps running on AWS
+  - vagrant + docker in dev
+  - docker in prod
 
 - hard requirements for develop branch
-  - node >= 17.4
-  - corepack
-  - pnpm
-  - react, react-dom @rc (or @next)
+  - node + corepack >= 17.5
+  - pnpm >= 6.30.1
+  - react + react-dom @rc (or @next)
   - koa => 2
-  - flowtype
+  - flowtype >= 0.171.0
   - all packages export reusable type definitions as `@nodeproto/packagename/src/libdefs`
+
 - cultural boundaries
   - bleeding edge always
   - best in class > most popular
   - terse clarity > verbose expressiveness
   - monorepo microservices > multirepo microservices
   - read the code > read the comments
-  - tests are first class citizens (no discrimination here!)
+  - tests are first class citizens
 
 ## TLDR
 
