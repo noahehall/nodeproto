@@ -11,6 +11,7 @@
   "name": "nodeproto",
   "packageManager": "pnpm@6.30.1",
   "private": true,
+  "sideEffects": true,
   "repository": "git://github.com/noahehall/nodeproto.git",
   "type": "module",
   "version": "0.0.0",
@@ -97,7 +98,7 @@
     "repo:test:file": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" node $*",
     "repo:test:help": "uvu --help",
     "repo:test": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" uvu ./src \"test.(m|c)?js\"",
-    "repo:testing": "pnpm repo:test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"pnpm repo:test\" -t 2000 -d 2000"
+    "repo:testing": "pnpm repo:test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"pnpm repo:test\" -t 4000 -d 4000"
   },
   "jsync": {
     "root": true

@@ -32,17 +32,17 @@ const reactDevOptions: ReactDevType = {
       import: './src/sidebarAction/sidebarAction.mjs',
     },
   },
-  // copyOptions: {
-  //   patterns: [
-  //     {
-  //       // @see https://webpack.js.org/plugins/copy-webpack-plugin/#context
-  //       // TODO: plan on deprecating this in favor of webpack5 resolveAssets
-  //       context: 'src/**/*.',
-  //       from: './**/*.(json|png)',
-  //       to: pathDist,
-  //     },
-  //   ],
-  // },
+  copyOptions: {
+    patterns: [
+      {
+        // @see https://webpack.js.org/plugins/copy-webpack-plugin/#context
+        // TODO: plan on deprecating this in favor of webpack5 resolveAssets
+        context: pathSrc,
+        from: './**/*.(json|png)',
+        to: pathDist,
+      },
+    ],
+  },
   htmlOptions: [
     {
       chunks: ['background'],

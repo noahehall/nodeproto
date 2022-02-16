@@ -7,31 +7,14 @@ import { createFsFromVolume, Volume } from 'memfs';
 import path from 'path';
 import webpack from 'webpack';
 
-import type {
-  Stats,
-  WebpackConfigType,
-} from '../libdefs';
-
-export const createConfig = ({
-  entry,
-  output = {
-    path: path.resolve('./dist/tests'),
-    filename: 'bundle.js',
-  },
-  ...rest
-}: WebpackConfigType): WebpackConfigType => {
-  return {
-    // context: __dirname,
-    ...rest,
-    entry,
-    output,
-  };
-};
+import type { Stats, WebpackConfigType } from '../libdefs';
 
 export const testCompiler = async (
-  config: WebpackConfigType): Promise<Stats | Error> => {
-  const testConfig = createConfig(config);
-  const compiler = webpack(testConfig);
+  config: WebpackConfigType
+): Promise<Stats | Error> => {
+  // console.info('\n\n using testcompiler config', config);
+
+  const compiler = webpack(config);
 
   // $FlowIgnore[prop-missing]
   compiler.outputFileSystem = createFsFromVolume(new Volume());

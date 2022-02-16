@@ -1,6 +1,6 @@
 // @flow
 
-import { throwIt } from '@nodeproto/shared';
+import { logIt, throwIt } from '@nodeproto/shared';
 import webpack from 'webpack';
 
 import { testCompiler } from './test.compiler';
@@ -37,7 +37,7 @@ export const handleCompileIssues = (stats: Stats): void => {
     if (errors.length) throwIt('errors exist');
   }
 
-  console.info(stats.toString({ ...statsOptions, chunks: false, colors: true }));
+  logIt(stats.toString({ ...statsOptions, chunks: false, colors: true }));
 };
 
 export const compilerCallback = (err: any, stats: Stats): void => {
@@ -45,7 +45,7 @@ export const compilerCallback = (err: any, stats: Stats): void => {
   else handleCompileIssues(stats);
 };
 
-export const webpackBuild = (
+export const buildWebpackConfig = (
   useConfig: WebpackConfigType,
   toDisk: boolean = true
 ): mixed => (

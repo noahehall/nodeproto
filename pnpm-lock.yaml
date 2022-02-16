@@ -389,7 +389,7 @@ importers:
       babel-loader: 8.2.3
       bundle-stats-webpack-plugin: 3.2.4
       chokidar-cli: 3.0.0
-      copy-webpack-plugin: github:noahehall/copy-webpack-plugin
+      copy-webpack-plugin: 10.2.4
       css-loader: 6.6.0
       esbuild: 0.14.21
       esbuild-loader: 2.18.0
@@ -431,7 +431,7 @@ importers:
       '@nodeproto/wtf': link:../wtf
       babel-loader: 8.2.3_900eac683bef8a6b239b47efcf24e8a9
       bundle-stats-webpack-plugin: 3.2.4_webpack@5.68.0
-      copy-webpack-plugin: github.com/noahehall/copy-webpack-plugin/7a2d62ccb022a5d9afaece17f4d98561ffccf198_webpack@5.68.0
+      copy-webpack-plugin: 10.2.4_webpack@5.68.0
       css-loader: 6.6.0_webpack@5.68.0
       esbuild: 0.14.21
       esbuild-loader: 2.18.0_webpack@5.68.0
@@ -5190,6 +5190,11 @@ packages:
     resolution: {integrity: sha512-HGyxoOTYUyCM6stUe6EJgnd4EoewAI7zMdfqO+kGjnlZmBDz/cR5pf8r/cR4Wq60sL/p0IkcjUEEPwS3GFrIyw==}
     engines: {node: '>=8'}
 
+  /array-union/3.0.1:
+    resolution: {integrity: sha512-1OvF9IbWwaeiM9VhzYXVQacMibxpXOMYVNIvMtKRyX9SImBXpKcFr8XvFDeEslCyuH/t6KRt7HEO94AlP8Iatw==}
+    engines: {node: '>=12'}
+    dev: false
+
   /array.prototype.flatmap/1.2.5:
     resolution: {integrity: sha512-08u6rVyi1Lj7oqWbS9nUxliETrtIROT4XGTA4D/LWGten6E3ocm7cy9SIrmNHOL5XVbVuckUp3X6Xyg8/zpvHA==}
     engines: {node: '>= 0.4'}
@@ -6221,6 +6226,21 @@ packages:
 
   /copy-to/2.0.1:
     resolution: {integrity: sha1-JoD7uAaKSNCGVrYJgJK9r8kG9KU=}
+    dev: false
+
+  /copy-webpack-plugin/10.2.4_webpack@5.68.0:
+    resolution: {integrity: sha512-xFVltahqlsRcyyJqQbDY6EYTtyQZF9rf+JPjwHObLdPFMEISqkFkr7mFoVOC6BfYS/dNThyoQKvziugm+OnwBg==}
+    engines: {node: '>= 12.20.0'}
+    peerDependencies:
+      webpack: ^5.1.0
+    dependencies:
+      fast-glob: 3.2.11
+      glob-parent: 6.0.2
+      globby: 12.2.0
+      normalize-path: 3.0.0
+      schema-utils: 4.0.0
+      serialize-javascript: 6.0.0
+      webpack: 5.68.0_esbuild@0.14.21
     dev: false
 
   /core-js-compat/3.21.0:
@@ -8285,6 +8305,18 @@ packages:
       ignore: 5.2.0
       merge2: 1.4.1
       slash: 3.0.0
+
+  /globby/12.2.0:
+    resolution: {integrity: sha512-wiSuFQLZ+urS9x2gGPl1H5drc5twabmm4m2gTR27XDFyjUHJUNsS8o/2aKyIF6IoBaR630atdher0XJ5g6OMmA==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+    dependencies:
+      array-union: 3.0.1
+      dir-glob: 3.0.1
+      fast-glob: 3.2.11
+      ignore: 5.2.0
+      merge2: 1.4.1
+      slash: 4.0.0
+    dev: false
 
   /globby/13.1.1:
     resolution: {integrity: sha512-XMzoDZbGZ37tufiv7g0N4F/zp3zkwdFtVbV3EHsVl1KQr4RPLfNoT068/97RPshz2J5xYNEjLKKBKaGHifBd3Q==}
@@ -13837,26 +13869,6 @@ packages:
       async: 3.2.3
       jszip: 3.7.1
     dev: true
-
-  github.com/noahehall/copy-webpack-plugin/7a2d62ccb022a5d9afaece17f4d98561ffccf198_webpack@5.68.0:
-    resolution: {tarball: https://codeload.github.com/noahehall/copy-webpack-plugin/tar.gz/7a2d62ccb022a5d9afaece17f4d98561ffccf198}
-    id: github.com/noahehall/copy-webpack-plugin/7a2d62ccb022a5d9afaece17f4d98561ffccf198
-    name: copy-webpack-plugin
-    version: 10.2.4
-    engines: {node: '>= 12.20.0'}
-    prepare: true
-    requiresBuild: true
-    peerDependencies:
-      webpack: ^5.1.0
-    dependencies:
-      fast-glob: 3.2.11
-      glob-parent: 6.0.2
-      globby: 13.1.1
-      normalize-path: 3.0.0
-      schema-utils: 4.0.0
-      serialize-javascript: 6.0.0
-      webpack: 5.68.0_esbuild@0.14.21
-    dev: false
 
   github.com/noahehall/koa-tree-router/b6e8fa9d137734df5e229cf2f174e96c29585334:
     resolution: {tarball: https://codeload.github.com/noahehall/koa-tree-router/tar.gz/b6e8fa9d137734df5e229cf2f174e96c29585334}

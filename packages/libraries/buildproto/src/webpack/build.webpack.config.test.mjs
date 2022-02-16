@@ -1,20 +1,45 @@
-// import * as t from '@nodeproto/testproto';
-// import { getConfig } from './base.webpack.config.test';
+import * as t from '@nodeproto/testproto/t';
+import path from 'node:path';
 
-// import baseWebpackConfig from './base.webpack.config';
-// import buildWebpackConfig from './build.webpack.config';
+import { baseWebpackConfig, buildWebpackConfig, testCompiler } from '@nodeproto/buildproto';
 
-// const { assert } = t;
+const { assert } = t;
 
-// const test = t.suite('build.webpack.config');
+const test = t.suite('build.webpack.config');
 
-// test('compilation', async () => {
-//   const useConfig = getConfig();
+test.before.each((context) => {
+  const baseWebpackOptions = {
+    entry: ['poop/fixtures/esm.mjs'],
+  };
 
-//   assert.isObject(
-//     await buildWebpackConfig(baseWebpackConfig(useConfig), false),
-//     'compiles with testCompiler if requested  '
-//   );
-// });
+  const copyOptions = {
+    patterns: [
+      {
+        context: path.resolve('./src'),
+        from: './**/*.(json|png)',
+        to: path.resolve('./dist'),
+      },
+    ],
+  };
+
+  context.fixtures = {
+    baseWebpackOptions,
+    copyOptions,
+  };
+});
+
+test.after.each((context) => {
+  delete context.fixtures;
+});
+
+test('buildWebpackConfig', async ({ fixtures }) => {
+  const { baseWebpackOptions, copyOptions } = fixtures;
+
+  const { config, pack } = await baseWebpackConfig(baseWebpackOptions);
+
+  console.info('\n\n config is', config.module.rules);
+
+  assert.isObject(await buildWebpackConfig(baseWebpackConfig(config), true), 'compiles to memfs');
+});
 
 // test.run();

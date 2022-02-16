@@ -1,5 +1,8 @@
 # @nodeproto/bodyguard
 
+- TODO: @see https://github.com/noahehall/nodeproto/issues/209
+- ^ this is a hard requirement, as this package is essential to microfrontends, providing the ability to replace dependencies at runtime
+
 - manage UI application network requests with @nodeproto/bodyguard firefox browser extension
 
 ![@nodeproto/bodyguard sidebar](./src/images/screenshot.png)

@@ -17,6 +17,8 @@
     "url": "https://github.com/noahehall"
   },
   "config": {
+    "authnz_HTTP_PORT": "3000",
+    "authnz_HTTPS_PORT": "4430",
     "BABEL_SHOW_CONFIG_FOR": "e.g. BABEL_SHOW_CONFIG_FOR=absolute/path/to/file somePkgJsonScriptName",
     "DIRS_TO_TRANSPILE": "./src",
     "FLOW_LOADER": "./node_modules/@nodeproto/configproto/src/node/loaders/flow.mjs",
@@ -24,9 +26,7 @@
     "NODE_OPTIONS": "--abort-on-uncaught-exception --diagnostic-dir=\"/var/.nodeproto/diagnostics\" --enable-source-maps --experimental-abortcontroller --experimental-modules --experimental-import-meta-resolve --experimental-json-modules --experimental-loader=\"./node_modules/@nodeproto/configproto/src/node/loaders/flow.mjs\" --experimental-specifier-resolution=node --experimental-top-level-await --experimental-vm-modules --pending-deprecation --report-compact --report-dir=\"/var/.nodeproto/reports\" --report-filename=nodeprotolog --report-on-fatalerror --report-on-signal --report-signal=SIGUSR2 --report-uncaught-exception --trace-deprecation --trace-exit --trace-sigint --trace-uncaught --trace-warnings --unhandled-rejections=throw --use-largepages=on",
     "NODE_OPTIONS_REMOVED": " --preserve-symlinks --preserve-symlinks-main   --v8-pool-size=0 --zero-fill-buffers",
     "PATH_DIST": "./dist",
-    "PATH_SRC": "./src",
-    "authnz_HTTP_PORT": "3000",
-    "authnz_HTTPS_PORT": "4430"
+    "PATH_SRC": "./src"
   },
   "dependencies": {
     "@babel/runtime": "7.17.2",
@@ -114,6 +114,7 @@
     "@nodeproto",
     "api",
     "bodyguard",
+    "clickhouse",
     "cloudnative",
     "development",
     "docker",
@@ -137,6 +138,7 @@
     "prototype",
     "react",
     "secure",
+    "signoz",
     "ssl",
     "starter",
     "swagger",
@@ -179,7 +181,7 @@
     "repo:test": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" uvu ./src \"test.(m|c)?js\"",
     "repo:test:file": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" node $*",
     "repo:test:help": "uvu --help",
-    "repo:testing": "pnpm repo:test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"pnpm repo:test\" -t 2000 -d 2000",
+    "repo:testing": "pnpm repo:test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"pnpm repo:test\" -t 4000 -d 4000",
     "repo:update": "pnpm -r up --latest",
     "start": "pnpm start:authnz",
     "start:authnz": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" node esbuild.run.config.mjs",

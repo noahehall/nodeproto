@@ -58,10 +58,7 @@ test('baseWebpackConfig', async ({ fixtures }) => {
 
   assert.hasAllKeys(pack, getPackInterface(), 'buildproto pack interface contract');
 
-  assert.isObject(
-    await testCompiler(config),
-    'compiles successfully without setup.webpack.config.mjs'
-  );
+  assert.isObject(await testCompiler(config), 'compiles successfully');
 });
 
 test.run();

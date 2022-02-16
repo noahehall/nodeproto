@@ -84,8 +84,8 @@
     "node": "^14.17.0 || ^16.11.0 || >=17.5.0"
   },
   "files": [
-    "src",
-    "dist"
+    "dist",
+    "src"
   ],
   "jsync": {
     "root": false
@@ -95,6 +95,7 @@
     "@nodeproto",
     "api",
     "bodyguard",
+    "clickhouse",
     "cloudnative",
     "development",
     "docker",
@@ -118,6 +119,7 @@
     "prototype",
     "react",
     "secure",
+    "signoz",
     "ssl",
     "starter",
     "swagger",
@@ -161,7 +163,7 @@
     "repo:test": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" uvu ./src \"test.(m|c)?js\"",
     "repo:test:file": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" node $*",
     "repo:test:help": "uvu --help",
-    "repo:testing": "pnpm repo:test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"pnpm repo:test\" -t 2000 -d 2000",
+    "repo:testing": "pnpm repo:test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"pnpm repo:test\" -t 4000 -d 4000",
     "repo:update": "pnpm -r up --latest",
     "start:chrome": "web-ext run --bc -t chromium",
     "webext:lint": "pnpm exec web-ext -c=config.cjs lint",
