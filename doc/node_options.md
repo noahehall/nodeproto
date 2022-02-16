@@ -6,10 +6,10 @@
 
 ```sh
 # reporting & diagnostics
---diagnostic-dir=\"/var/.nodeproto/node/diagnostics\"
+--diagnostic-dir=\"/var/.nodeproto\" # this dir must exist, node doesnt create it
 --redirect-warnings=warnings
 --report-compact
---report-dir=\"/var/.nodeproto/node/reports\"
+--report-dir=\"/var/.nodeproto\" # this dir must exist, node doesnt create it
 --report-filename=node-report
 --report-on-fatalerror
 --report-on-signal
@@ -37,16 +37,12 @@
 --tls-max-v1.3
 --tls-min-v1.3
 --use-largepages=on # nodejs static code to be moved onto 2MiB pages isntead of 4 KiB
-
-# think these two accumulate to our import error with copy-webpack-plugin
---preserve-symlinks-main # main module follows the symlink strategy as other modules
---preserve-symlinks # use symlink path for modules (not on disk path); useful for peer deps
-
 ```
 
 - node options requiring experimentation
 ```sh
 # dont use: @see https://github.com/lukeed/uvu/issues/192
+# ^ issue may be with NODE, as babel fails to run as well
 --v8-pool-size=0 # v8 will chose an appropriate pool size based on # of online processors
 --heapsnapshot-near-heap-limit
 --max-old-space-size
@@ -57,6 +53,9 @@
 --use-bundled-ca
 --use-openssl-ca
 --zero-fill-buffers
+--preserve-symlinks-main # main module follows the symlink strategy as other modules
+--preserve-symlinks # use symlink path for modules (not on disk path); useful for peer deps
+
 ```
 
 - unused node options

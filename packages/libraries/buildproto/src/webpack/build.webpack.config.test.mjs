@@ -37,9 +37,7 @@ test('buildWebpackConfig', async ({ fixtures }) => {
 
   const { config, pack } = await baseWebpackConfig(baseWebpackOptions);
 
-  console.info('\n\n config is', config.module.rules);
-
   assert.isObject(await buildWebpackConfig(baseWebpackConfig(config), true), 'compiles to memfs');
 });
 
-// test.run();
+test.run();

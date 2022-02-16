@@ -10,7 +10,7 @@ import {
   stripUrl,
 } from '../shared/utils';
 
-import type { BodyguardCacheType, ObjectType } from '../libdefs';
+import type { BodyguardCacheType, BodyguardRulesType, ObjectType } from '../libdefs';
 
 const cache: BodyguardCacheType = { myWindowId: '', global: {} };
 
@@ -33,10 +33,11 @@ const storage = getBrowserStorage();
 // ]
 
 // TODO: should handle replace|substitute
-const transformUrl = (url, find, replace) => url.includes(find) && url.replace(find, replace);
+const transformUrl = (url: string, find: string, replace: string): string | boolean =>
+  url.includes(find) && url.replace(find, replace);
 
 // // @see https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/webRequest/onBeforeRequest#additional_objects
-function debugUrl(requestDetails) {
+export const debugUrl = (requestDetails: { url: string }): void => {
   const { matching, find, replace } = cache.global;
 
   if (!requestDetails.url.includes(matching)) return void 0;
@@ -47,7 +48,7 @@ function debugUrl(requestDetails) {
       `replaced: ${transformUrl(requestDetails.url, find, replace)}`,
     ],
   });
-}
+};
 
 // // @see https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/webRequest/onBeforeRequest#additional_objects
 function guardUrl(requestDetails) {

@@ -81,6 +81,7 @@ test('baseWebpackConfig: copyOptions', async ({ fixtures }) => {
   assert.isObject(config, 'webpack config');
   assert.isObject(pack, 'pack meta object');
 
+  // will fail if copy-webpack-plugin doesnt find any files to copy
   assert.isObject(await testCompiler(config), 'compiles successfully');
 });
 

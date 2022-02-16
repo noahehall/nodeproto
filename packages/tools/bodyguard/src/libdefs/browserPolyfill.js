@@ -1,5 +1,6 @@
 // @flow
 // type annotations for the apis we are using
+// pretty sure there are type defs for the browser API on github somewhere
 
 import type { ObjectOfStrings, ObjectType } from '@nodeproto/configproto/src/libdefs';
 
