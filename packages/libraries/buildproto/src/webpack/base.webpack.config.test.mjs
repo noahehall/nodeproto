@@ -1,4 +1,5 @@
 import * as t from '@nodeproto/testproto/t';
+import path from 'node:path';
 
 import { baseWebpackConfig, testCompiler } from '@nodeproto/buildproto';
 
@@ -13,8 +14,19 @@ test.before.each((context) => {
     entry: ['./src/fixtures/esm.mjs'],
   };
 
+  const copyOptions = {
+    patterns: [
+      {
+        context: path.resolve('./src'),
+        from: './**/*.(json|png)',
+        to: path.resolve('./dist'),
+      },
+    ],
+  };
+
   context.fixtures = {
     baseWebpackOptions,
+    withCopyOptions: Object.assign({}, baseWebpackOptions, { copyOptions }),
   };
 });
 
@@ -57,6 +69,17 @@ test('baseWebpackConfig', async ({ fixtures }) => {
   );
 
   assert.hasAllKeys(pack, getPackInterface(), 'buildproto pack interface contract');
+
+  assert.isObject(await testCompiler(config), 'compiles successfully');
+});
+
+test('baseWebpackConfig: copyOptions', async ({ fixtures }) => {
+  const { withCopyOptions } = fixtures;
+
+  const { config, pack } = await baseWebpackConfig(withCopyOptions);
+
+  assert.isObject(config, 'webpack config');
+  assert.isObject(pack, 'pack meta object');
 
   assert.isObject(await testCompiler(config), 'compiles successfully');
 });

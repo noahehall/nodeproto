@@ -407,7 +407,6 @@ importers:
       eslint-plugin-yml: 0.13.0
       flow-bin: 0.171.0
       flow-typed: 3.6.1
-      globby: 13.1.1
       html-webpack-plugin: 5.5.0
       http-terminator: 3.0.4
       husky: 7.0.4
@@ -436,7 +435,6 @@ importers:
       esbuild: 0.14.21
       esbuild-loader: 2.18.0_webpack@5.68.0
       esbuild-plugin-manifest: 0.5.0_esbuild@0.14.21
-      globby: 13.1.1
       html-webpack-plugin: 5.5.0_webpack@5.68.0
       http-terminator: 3.0.4
       koa: 2.13.4

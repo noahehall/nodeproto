@@ -130,6 +130,7 @@
     "linux"
   ],
   "scripts": {
+    "build": "NODE_ENV=production NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" pnpm repo:rm:dist && pnpm repo:cp:cjs && babel $npm_package_config_DIRS_TO_TRANSPILE -d $npm_package_config_PATH_DIST --copy-files --no-copy-ignored --ignore \"**/*.test.mjs\"",
     "proto": "pnpm exec ultra -r",
     "proto:bin": "pnpm -r exec $*",
     "proto:script": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" pnpm -r $*",

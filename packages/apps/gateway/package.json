@@ -130,6 +130,7 @@
     "repo:jsync": "jsync",
     "repo:monitor": "ultra --monitor",
     "repo:nuke": "pnpm repo:rm:dist; pnpm repo:rm:nodemodules",
+    "repo:rm:dist": "rm -rf dist/*",
     "repo:rm:nodemodules": "rm -rf node_modules/*",
     "repo:scripts": "ultra --list",
     "repo:scripts:v": "npm run-script",
