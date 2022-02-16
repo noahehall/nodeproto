@@ -18,12 +18,8 @@
     "url": "https://github.com/noahehall"
   },
   "config": {
-    "BABEL_SHOW_CONFIG_FOR": "e.g. BABEL_SHOW_CONFIG_FOR=absolute/path/to/file somePkgJsonScriptName",
-    "DIRS_TO_TRANSPILE": "./src",
-    "FLOW_LOADER": "./node_modules/@nodeproto/configproto/src/node/loaders/flow.mjs",
     "NODE_ENV": "production",
-    "NODE_OPTIONS": "--abort-on-uncaught-exception --diagnostic-dir=\"/var/.nodeproto/diagnostics\" --enable-source-maps --experimental-abortcontroller --experimental-modules --experimental-import-meta-resolve --experimental-json-modules --experimental-loader=\"./node_modules/@nodeproto/configproto/src/node/loaders/flow.mjs\" --experimental-specifier-resolution=node --experimental-top-level-await --experimental-vm-modules --pending-deprecation --report-compact --report-dir=\"/var/.nodeproto/reports\" --report-filename=nodeprotolog --report-on-fatalerror --report-on-signal --report-signal=SIGUSR2 --report-uncaught-exception --trace-deprecation --trace-exit --trace-sigint --trace-uncaught --trace-warnings --unhandled-rejections=throw --use-largepages=on",
-    "NODE_OPTIONS_REMOVED": " --preserve-symlinks --preserve-symlinks-main   --v8-pool-size=0 --zero-fill-buffers",
+    "NODE_OPTIONS": "--diagnostic-dir=\"/var/.nodeproto/node/diagnostics\" --report-compact --report-dir=\"/var/.nodeproto/node/reports\" --report-filename=node-report --report-on-fatalerror --report-on-signal --report-signal=SIGUSR2 --report-uncaught-exception --pending-deprecation --trace-deprecation --trace-exit --trace-sigint --trace-warnings --unhandled-rejections=strict --enable-source-maps --experimental-abortcontroller --experimental-fetch --experimental-import-meta-resolve --experimental-json-modules --experimental-loader=\"./node_modules/@nodeproto/configproto/src/node/loaders/flow.mjs\" --experimental-modules --experimental-specifier-resolution=node --experimental-top-level-await --tls-max-v1.3 --tls-min-v1.3 --use-largepages=on",
     "PATH_DIST": "./dist",
     "PATH_SRC": "./src"
   },
@@ -72,7 +68,7 @@
     "src": "./src"
   },
   "engines": {
-    "node": "^14.17.0 || ^16.11.0 || >=17.5.0"
+    "node": "16.14.0 || 17.5.0"
   },
   "exports": {
     ".": {
@@ -130,20 +126,14 @@
     "linux"
   ],
   "scripts": {
-    "build": "NODE_ENV=production NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" pnpm repo:rm:dist && pnpm repo:cp:cjs && babel $npm_package_config_DIRS_TO_TRANSPILE -d $npm_package_config_PATH_DIST --copy-files --no-copy-ignored --ignore \"**/*.test.mjs\"",
+    "build": "NODE_ENV=production NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" pnpm repo:rm:dist && babel $npm_package_config_PATH_SRC -d $npm_package_config_PATH_DIST --copy-files --no-copy-ignored --ignore \"**/*.test.mjs\"",
     "proto": "pnpm exec ultra -r",
     "proto:bin": "pnpm -r exec $*",
     "proto:script": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" pnpm -r $*",
     "proto:slice": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" pnpm exec ultra -r --filter",
     "repo:about": "npm run-script && npm --versions && pnpm -r config list --json t && echo \"NODE OPTIONS set to: $npm_package_config_NODE_OPTIONS\"",
-    "repo:about:scripts": "npm run-script",
-    "repo:cp:browserslist": "rm -f .browserslistrc && cp ./node_modules/@nodeproto/configproto/.browserslistrc .",
-    "repo:cp:cjs": "rm -f ./dist/package.json && mkdir -p dist && cp ./node_modules/@nodeproto/configproto/src/node/cjs.json ./dist/package.json",
-    "repo:cp:configproto": "pnpm repo:cp:flow; pnpm repo:cp:cjs; pnpm repo:cp:browserslist; pnpm repo:cp:pretty",
-    "repo:cp:flow": "rm -f .flowconfig && cp ./node_modules/@nodeproto/configproto/.flowconfig .",
-    "repo:cp:pretty": "rm -f .prettier* && cp ./node_modules/@nodeproto/configproto/.prettier* .",
-    "repo:deps": "ultra --info",
     "repo:deps:direct": "npm ls",
+    "repo:deps:graph": "ultra --info",
     "repo:eslint": "eslint './**/*'",
     "repo:eslint:fix": "pnpm repo:eslint -- --fix",
     "repo:flow:coverage": "pnpm flow batch-coverage src",
@@ -158,9 +148,8 @@
     "repo:scripts:v": "npm run-script",
     "repo:test": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" uvu ./src \"test.(m|c)?js\"",
     "repo:test:file": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" node $*",
-    "repo:test:help": "uvu --help",
     "repo:testing": "pnpm repo:test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"pnpm repo:test\" -t 4000 -d 4000",
-    "repo:update": "pnpm -r up --latest"
+    "repo:update": "pnpm up --latest"
   },
   "ultra": {
     "concurrent": [

@@ -15,15 +15,8 @@
     "url": "https://github.com/noahehall"
   },
   "config": {
-    "DIRS_TO_TRANSPILE": "./src",
-    "FLOW_LOADER": "./node_modules/@nodeproto/configproto/src/node/loaders/flow.mjs",
-    "GATEWAY_CHROOT_DIR": "./var/lib/haproxy",
-    "GATEWAY_GROUP": "haproxy",
-    "GATEWAY_STATS_SOCK": "./run/haproxy/admin.sock",
-    "GATEWAY_USER": "haproxy",
     "NODE_ENV": "production",
-    "NODE_OPTIONS": "--abort-on-uncaught-exception --diagnostic-dir=\"/var/.nodeproto/diagnostics\" --enable-source-maps --experimental-abortcontroller --experimental-modules --experimental-import-meta-resolve --experimental-json-modules --experimental-loader=\"./node_modules/@nodeproto/configproto/src/node/loaders/flow.mjs\" --experimental-specifier-resolution=node --experimental-top-level-await --experimental-vm-modules --pending-deprecation --report-compact --report-dir=\"/var/.nodeproto/reports\" --report-filename=nodeprotolog --report-on-fatalerror --report-on-signal --report-signal=SIGUSR2 --report-uncaught-exception --trace-deprecation --trace-exit --trace-sigint --trace-uncaught --trace-warnings --unhandled-rejections=throw --use-largepages=on",
-    "NODE_OPTIONS_REMOVED": " --preserve-symlinks --preserve-symlinks-main   --v8-pool-size=0 --zero-fill-buffers",
+    "NODE_OPTIONS": "--diagnostic-dir=\"/var/.nodeproto/node/diagnostics\" --report-compact --report-dir=\"/var/.nodeproto/node/reports\" --report-filename=node-report --report-on-fatalerror --report-on-signal --report-signal=SIGUSR2 --report-uncaught-exception --pending-deprecation --trace-deprecation --trace-exit --trace-sigint --trace-warnings --unhandled-rejections=strict --enable-source-maps --experimental-abortcontroller --experimental-fetch --experimental-import-meta-resolve --experimental-json-modules --experimental-loader=\"./node_modules/@nodeproto/configproto/src/node/loaders/flow.mjs\" --experimental-modules --experimental-specifier-resolution=node --experimental-top-level-await --tls-max-v1.3 --tls-min-v1.3 --use-largepages=on",
     "PATH_DIST": "./dist",
     "PATH_SRC": "./src"
   },
@@ -42,7 +35,7 @@
     "src": "./src"
   },
   "engines": {
-    "node": "^14.17.0 || ^16.11.0 || >=17.5.0"
+    "node": "16.14.0 || 17.5.0"
   },
   "files": [
     ".editorconfig",
@@ -119,21 +112,7 @@
   ],
   "scripts": {
     "linkandsetowner": "src/usr/bin/linkandsetowner.sh",
-    "proto": "pnpm exec ultra -r",
-    "proto:bin": "pnpm -r exec $*",
-    "proto:script": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" pnpm -r $*",
-    "proto:slice": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" pnpm exec ultra -r --filter",
-    "repo:about": "npm run-script && npm --versions && pnpm -r config list --json t && echo \"NODE OPTIONS set to: $npm_package_config_NODE_OPTIONS\"",
-    "repo:about:scripts": "npm run-script",
-    "repo:deps": "ultra --info",
-    "repo:deps:direct": "npm ls",
     "repo:jsync": "jsync",
-    "repo:monitor": "ultra --monitor",
-    "repo:nuke": "pnpm repo:rm:dist; pnpm repo:rm:nodemodules",
-    "repo:rm:dist": "rm -rf dist/*",
-    "repo:rm:nodemodules": "rm -rf node_modules/*",
-    "repo:scripts": "ultra --list",
-    "repo:scripts:v": "npm run-script",
     "start": "src/usr/bin/startdefault.sh",
     "start:client": "pnpm start",
     "start:gateway": "pnpm start",

@@ -6,25 +6,29 @@
   - docker in prod (todo)
 
 - hard requirements for develop branch
-  - haproxy (needs virtualization)
-  - node + corepack >= 17.5
-  - pnpm >= 6.30.1
-  - react + react-dom @rc (or @next)
-  - koa => 2
-  - flowtype >= 0.171.0
-  - Signoz APM (todo)
-  - Consul (todo)
-  - Arangodb (todo)
-  - ClickHouse (todo)
-  - all packages export reusable type definitions as `@nodeproto/packagename/src/libdefs`
-
-- cultural boundaries
-  - bleeding edge always
-  - best in class > most popular
-  - terse clarity > verbose expressiveness
-  - monorepo microservices > multirepo microservices
-  - read the code > read the comments
-  - tests are first class citizens
+  - dependency requirements
+    - haproxy (needs virtualization)
+    - node + corepack >= 17.5
+    - pnpm >= 6.30.1
+    - react + react-dom @rc (or @next)
+    - koa => 2
+    - flowtype >= 0.171.0
+    - Signoz APM (todo)
+    - Consul (todo)
+    - Arangodb (todo)
+    - ClickHouse (todo)
+  - process requirements
+    - package.json.config is controlled  by root/package.json and synced to child packages via tools/jsync
+    - all packages export reusable type definitions as `@nodeproto/packagename/src/libdefs`
+  - cultural boundaries
+    - best in class > most popular
+    - bleeding edge always
+    - monorepo microservices > multirepo microservices
+    - read the code > read the comments
+    - specification > kitchen sinks
+    - terse clarity > verbose expressiveness
+    - tests are first class citizens
+    - trunk > branch
 
 ## TLDR
 
@@ -65,7 +69,6 @@
 
   # dependencies
   pnpm install
-  pnpm proto repo:cp:configproto
   pnpm proto repo:flowtyped:install # also useful for updating typedefs across dependent packages
 
   # introspection
@@ -76,9 +79,6 @@
 ### monorepo utility logic
 
 ```sh
-  # copy static files from configproto into each package
-  pnpm proto repo:cp:configproto
-
   # synchronize root/package.json into each package/package.json
   pnpm proto repo:jsync
 
@@ -166,15 +166,8 @@
 
 
   #########
-  # should only be run by your build script
-  $ pnpm repo:cp:cjs # copy configproto/package.json into package/dist/package.json
-  # ^ for setting the dist to commonjs
-  $ pnpm repo:cp:configproto # copy configproto/[flow,cjs,browserslist] into package
-
   #########
   # useful if run with pnpm proto, e.g. pnpm proto repo:nuke
-  $ pnpm repo:cp:browserslist # copy configproto/browserslistrc into package
-  $ pnpm repo:cp:flow # copy configproto/.flowconfig into package
   $ pnpm repo:flowtyped:install # install flow-type defs
   $ pnpm repo:jsync # sync child package.json with root package.json
   $ pnpm repo:nuke # rm /dist & /node_modules directories

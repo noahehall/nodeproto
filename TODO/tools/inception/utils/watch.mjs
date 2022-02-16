@@ -15,7 +15,7 @@ const watchablePkgs = new Set();
 // TODO: we need to understand if they are using an internal watch
 // + likely they should set pkg.watch = false
 const rebuildCallback = async usePath => {
-  console.log('\n\n rebuild called')
+  console.log('\n\n rebuild called');
   const filename = path.basename(usePath);
   const dirname = path.resolve(cwd, path.dirname(usePath));
 
@@ -37,11 +37,11 @@ const rebuildCallback = async usePath => {
   // }
 
   // warn('could not find pkg related to changed file: ', filename, dirname, pkgDirWatchMap)
-}
+};
 
 const errorCallback = async usePath => {
-  ErrorWatchPkgs('unable to watch path', { usePath, pathsToWatch }, 'chokidar error')
-}
+  ErrorWatchPkgs('unable to watch path', { usePath, pathsToWatch }, 'chokidar error');
+};
 
 const watchPkgs = async () => {
   info('starting watcher');
@@ -53,8 +53,8 @@ const watchPkgs = async () => {
       'unknown pkg found',
       { pkgKey, pkgs: commandCenter.pkgs.keys() },
       'watch error'
-    )
-    else pathsToWatch.set(pkgKey, pkg.workDirAbs)
+    );
+    else pathsToWatch.set(pkgKey, pkg.workDirAbs);
   }
 
   log('watching directories: ', pathsToWatch);
@@ -71,4 +71,4 @@ const watchPkgs = async () => {
   watcher.on('error', errorCallback);
 
   return true;
-}
+};

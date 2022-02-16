@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 
 
 // @see https://github.com/folke/ultra-runner/blob/master/__tests__/runner.ts

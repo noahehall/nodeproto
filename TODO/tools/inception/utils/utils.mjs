@@ -49,7 +49,7 @@ export const cdBack = async (toDir, fn, because = 'Running script') => {
   }
 
   return true;
-}
+};
 
 // not used at the moment
 // @see https://stackoverflow.com/questions/37521893/determine-if-a-path-is-subdirectory-of-another-in-node-js
@@ -57,7 +57,7 @@ const pkgOf = (path1, path2) => {
   if (path1 === path2) return true;
   const [parent, child] = path1.length > path2.length
     ? [path2, path1]
-    : [path1, path2]
+    : [path1, path2];
 
   console.log('\n parent:child', parent, child);
   const relative = path.relative(parent, child);
@@ -65,11 +65,11 @@ const pkgOf = (path1, path2) => {
   const response = relative && !relative.startsWith('..') && !path.isAbsolute(relative);
   console.log('\n relative', response, relative, !relative.startsWith('..'), !path.isAbsolute(relative) );
 
-  return response
-}
+  return response;
+};
 
 // not used anymore
 // TODO: maybe not needed anymore
 const getPkgVersion = pkgName => (
   Array.from(uniquePkgs.values()).filter(pkg => pkg.name === pkgName).pop().inception.version
-)
+);

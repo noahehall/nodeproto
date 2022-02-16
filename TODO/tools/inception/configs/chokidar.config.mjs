@@ -20,4 +20,4 @@ export const chokidarConfigDefault = {
     useFsEvents: false,
     usePolling: true,
     usePolling: false,
-  }
+  };

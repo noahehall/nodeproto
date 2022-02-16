@@ -76,7 +76,7 @@ const commandCenter = {
 
 const babysit = async () => {
   nodeTop(3000);
-}
+};
 
 // TODO
 export const createServiceConfig = async ({
@@ -99,7 +99,7 @@ export const createServiceConfig = async ({
   const pkgJsonString = shelljs.ls(workDirAbs + '/package.json')?.[0];
 
   if (typeof pkgJsonString !== 'string') {
-    ErrorCreateServiceConfig('unable to find pkgjson', {key, workDir, workDirAbs, pkgJsonString }, 'filepath');
+    ErrorCreateServiceConfig('unable to find pkgjson', { key, workDir, workDirAbs, pkgJsonString }, 'filepath');
 
     pkg.json = {};
   }
@@ -111,13 +111,12 @@ export const createServiceConfig = async ({
 
       success(`successfully created config for ${key} installable as ${pkg.name}`);
     } catch (e) {
-      ErrorCreateServiceConfig(e.message, { key, workDir, workDirAbs, pkg }, 'unknown')
+      ErrorCreateServiceConfig(e.message, { key, workDir, workDirAbs, pkg }, 'unknown');
     }
   }
 
   return pkg;
 };
-
 
 
 /**
@@ -161,7 +160,7 @@ const linkPkgsTailCall = async (pkgKey, downstreamDeps) => {
       downstreamDep.workDirAbs + '/node_modules/' + pkg.name // to
     ).catch(e => ErrorLinkPkgs(
       'error link downstream dependencies',
-      {e, name: pkg.name, pkg,},
+      { e, name: pkg.name, pkg, },
       'symlinkDir'
     ));
 
@@ -175,7 +174,7 @@ const linkPkgsTailCall = async (pkgKey, downstreamDeps) => {
   }
 
   return packagesLinked;
-}
+};
 
 /**
  * links an arbitrary number of downstream pkgs to their upstream (grnad)parents
@@ -209,7 +208,7 @@ const linkPkgs = async (pkgKey, downstreamDeps) => {
  * @return {*}
  */
 const buildPkgsTailCall = async (pkg) => {
-  if (!pkg || !pkg.key) ErrorBuildPkgs('unable to build pkgs: invalid pkg', { pkg }, 'buildPkgsTailCall')
+  if (!pkg || !pkg.key) ErrorBuildPkgs('unable to build pkgs: invalid pkg', { pkg }, 'buildPkgsTailCall');
 
   const {
     key: pkgKey,
@@ -232,13 +231,12 @@ const buildPkgsTailCall = async (pkg) => {
 
           log('pkg built: ', pkgKey, json.name);
         } catch (e) {
-          ErrorBuildPkgs(`error in ${pkgKey} build script: ${scriptBuild}`, e, 'build error')
-          commandCenter.state.built.delete(pkgKey)
-          commandCenter.state.building.delete(pkgKey)
+          ErrorBuildPkgs(`error in ${pkgKey} build script: ${scriptBuild}`, e, 'build error');
+          commandCenter.state.built.delete(pkgKey);
+          commandCenter.state.building.delete(pkgKey);
           pkg.inception.built = false;
 
           return false;
-
         }
 
         commandCenter.state.built.add(pkgKey);
@@ -247,13 +245,13 @@ const buildPkgsTailCall = async (pkg) => {
       `${commandCenter.state.built.has(pkgKey) ? 'rebuilding' : 'building'} pkg`
     ); // end cdBack
   } catch (e) {
-    ErrorBuildPkgs('unknown error building single pkg', {e, pkg, pkgKey}, 'build pkgs tailcall');
+    ErrorBuildPkgs('unknown error building single pkg', { e, pkg, pkgKey }, 'build pkgs tailcall');
 
     return false;
   }
 
   return true;
-}
+};
 
 /**
  * builds a single, or all pkgs
@@ -269,13 +267,12 @@ const buildPkgs = async (pkg) => {
 
   return Array.from(buildablePkgs.values()).forEach(pkg => {
     try {
-      return buildPkgs(commandCenter.pkgs.get(pkg))
-
+      return buildPkgs(commandCenter.pkgs.get(pkg));
     } catch (e) {
-      ErrorBuildPkgs('unable to build all pkgs', {e, pkg}, 'pkg build error')
+      ErrorBuildPkgs('unable to build all pkgs', { e, pkg }, 'pkg build error');
     }
-  })
-}
+  });
+};
 
 /**
  * Creates a pkg management plan for each pkg management configuration
@@ -294,10 +291,7 @@ const createPkgManagementPlan = async () => {
     const willStart = !!isStartable(pkg);
 
     log(
-      'pkg management plan: ', pkg.name,
-      `\n build: ${prevB}`,
-      `\n link: ${pkgsToLink.length}`,
-      `\n start: ${willStart}`
+      'pkg management plan: ', pkg.name, `\n build: ${prevB}`, `\n link: ${pkgsToLink.length}`, `\n start: ${willStart}`
 
     );
 
@@ -319,21 +313,18 @@ const createPkgManagementPlan = async () => {
 
       ++totalPkgs;
     } catch (e) {
-      ErrorCreatePkgManagementPlan('setting up unique packages', {e, pkgKey, pkg }, 'create');
+      ErrorCreatePkgManagementPlan('setting up unique packages', { e, pkgKey, pkg }, 'create');
     }
   };
 
-  if (!totalPkgs) ErrorCreatePkgManagementPlan('services are neither buildable, pushable, or startable', { totalPkgs }, 'service definitions')
+  if (!totalPkgs) ErrorCreatePkgManagementPlan('services are neither buildable, pushable, or startable', { totalPkgs }, 'service definitions');
 
   success(
-    'unique services saved:', totalPkgs,
-    `\n packages to build: ${buildablePkgs.size}`,
-    `\n packages to link: ${linkablePkgs.size}`,
-    `\n packages to start: ${startablePkgs.size}`
+    'unique services saved:', totalPkgs, `\n packages to build: ${buildablePkgs.size}`, `\n packages to link: ${linkablePkgs.size}`, `\n packages to start: ${startablePkgs.size}`
   );
 
   return true;
-}
+};
 
 /**
  * Ingests service definitions and creates pkg managent configurations
@@ -344,17 +335,17 @@ const compileServiceDefinitions = async () => {
   info('\n compiling service definitions');
 
   for (const [key, def] of Object.entries(services)) {
-    const pkg = await createServiceConfig({ key, ...def })
+    const pkg = await createServiceConfig({ key, ...def });
 
     if (!pkg) error('\n could not create pkg', key, def);
-    else if (commandCenter.pkgs.has(key)) ErrorCompileServiceDefinitions('duplicate service', {key, def}, 'unique service')
+    else if (commandCenter.pkgs.has(key)) ErrorCompileServiceDefinitions('duplicate service', { key, def }, 'unique service');
     else commandCenter.pkgs.set(key, pkg);
   }
 
   log('\n commandCenter', commandCenter);
 
   return true;
-}
+};
 
 /** @type {*} array of available scripts suitable for logging to stdout */
 const availScripts = [
@@ -394,15 +385,15 @@ else log = noop, info = infoIt;
 const pkgManagementPlanLifecycle = async () => Promise.resolve()
   .then(() => compileServiceDefinitions())
   .then(() => createPkgManagementPlan())
-  .catch(e => ErrorInception('pkg management plan lifecycle error', {e}, 'lifecycle'));
+  .catch(e => ErrorInception('pkg management plan lifecycle error', { e }, 'lifecycle'));
 
 const buildPkgsLifecycle = async () => Promise.resolve()
   .then(() => buildPkgs())
-  .catch(e => ErrorInception('build pkgs lifecycle error', {e}, 'lifecyle'));
+  .catch(e => ErrorInception('build pkgs lifecycle error', { e }, 'lifecyle'));
 
 const linkPkgsLifecycle = async () => Promise.resolve()
   .then(() => linkPkgs())
-  .catch(e => ErrorInception('link pkgs lifecycle', {e}, 'lifecycle'));
+  .catch(e => ErrorInception('link pkgs lifecycle', { e }, 'lifecycle'));
 
 /** inception invocation */
 (async () => {
