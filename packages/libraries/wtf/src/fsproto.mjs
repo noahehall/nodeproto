@@ -23,6 +23,8 @@ export const isMain = (importMetaOrRequireMain: ObjectType): boolean => {
 
 export const urlToPath = (importMetaUrlOrPath: string): string => fileURLToPath(importMetaUrlOrPath);
 
+// fn overloads are just ugly in js, nothing I can do about it
+// from the consumers perspective this ugly shaz is a beautiful work of art
 export const resolve: ResolveInterface = async (
   relativeFilePath,
   importMetaOrPathOrBoolean, // bolean for confirming a relative path exists
