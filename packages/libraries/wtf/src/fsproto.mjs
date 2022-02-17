@@ -85,4 +85,6 @@ export const getFsproto = (disk: boolean = true): FsprotoType => {
 };
 
 export const fsproto: FsprotoType = getFsproto(true);
+// be careful, memfs does not implement nodes promise API
+// @see https://github.com/streamich/memfs/blob/master/docs/api-status.md
 export const memfsproto: FsprotoType = getFsproto(false);

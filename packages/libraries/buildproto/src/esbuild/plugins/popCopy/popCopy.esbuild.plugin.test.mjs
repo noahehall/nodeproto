@@ -1,14 +1,40 @@
-// import * as popCopy from './popCopy.esbuild.plugin';
-// import { resolve } from '@nodeproto/wtf';
+import * as t from '@nodeproto/testproto/t';
 
-// import * as t from '@nodeproto/testproto';
-// import fs from 'fs';
+import {
+  baseEsbuildConfig,
+  esbuildCompileConfig,
+  EsbuildPluginPopCopy,
+} from '@nodeproto/buildproto';
 
-// const { assert, sinon } = t;
+const { assert } = t;
 
-// const test = t.suite('popCopy.esbuild.plugin.test');
+const test = t.suite('popCopy.esbuild.plugin');
 
-// const fstubs = {};
+test.before.each((context) => {
+  const baseEsbuildOptions = {
+    entry: './src/fixtures/esm_import_yml.mjs',
+    plugins: [new EsbuildPluginPopCopy({ filter: /\.yml$/ })],
+  };
+
+  context.fixtures = {
+    baseEsbuildOptions,
+  };
+});
+
+test.after.each((context) => {
+  delete context.fixtures;
+});
+
+test('esbuildPluginPopCopy', async ({ fixtures }) => {
+  const { baseEsbuildOptions } = fixtures;
+  const { config, pack } = await baseEsbuildConfig(baseEsbuildOptions);
+  // getting error about popcopy:
+  const results = await esbuildCompileConfig(config);
+
+  assert.isTrue(true == true);
+});
+
+test.run();
 
 // test.before(async () => {
 //   // setup reusable stubs
