@@ -49,7 +49,6 @@ export const buildWebpackConfig = (
   useConfig: WebpackConfigType,
   toDisk: boolean = true
 ): void => {
-  toDisk
-    ? webpack(useConfig, compilerCallback)
-    : testCompiler(useConfig)
+  if (toDisk) webpack(useConfig, compilerCallback);
+  else testCompiler(useConfig);
 };

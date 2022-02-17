@@ -904,6 +904,7 @@ importers:
       prettier: 2.5.1
       react: 18.0.0-rc.0
       react-dom: 18.0.0-rc.0
+      safe-compare: 1.1.4
       string-replace-loader: 3.1.0
       ultra-runner: 3.10.5
       uvu: 0.5.3
@@ -924,6 +925,7 @@ importers:
       express: 4.17.2
       react: 18.0.0-rc.0
       react-dom: 18.0.0-rc.0_react@18.0.0-rc.0
+      safe-compare: 1.1.4
       ultra-runner: 3.10.5
     devDependencies:
       '@babel/cli': 7.17.0_@babel+core@7.17.2
@@ -958,7 +960,7 @@ importers:
       prettier: 2.5.1
       string-replace-loader: 3.1.0_webpack@5.68.0
       uvu: 0.5.3
-      web-ext: 6.7.0_a31594d3e0c89fa8f5b8edd9c2e3644a
+      web-ext: 6.7.0_222e746a83bf798befe51ef9a9594616
       web-ext-translator: 4.0.0
       webextension-polyfill: 0.8.0
       webpack: 5.68.0
@@ -4928,14 +4930,14 @@ packages:
       strip-filename-increment: 2.0.1
     dev: false
 
-  /addons-linter/4.9.0_a31594d3e0c89fa8f5b8edd9c2e3644a:
+  /addons-linter/4.9.0_222e746a83bf798befe51ef9a9594616:
     resolution: {integrity: sha512-dknaL2zU9faJHpObJSFhh7RKM7S2uUImQL0I/tIny862wp8u6O7EhFu1ktdFRLO3NirHOTdn0366EcRrbAt1yg==}
     engines: {node: '>=12.21.0'}
     hasBin: true
     dependencies:
       '@mdn/browser-compat-data': 4.1.6
       addons-moz-compare: 1.2.0
-      addons-scanner-utils: 6.3.0_a31594d3e0c89fa8f5b8edd9c2e3644a
+      addons-scanner-utils: 6.3.0_222e746a83bf798befe51ef9a9594616
       ajv: 6.12.6
       ajv-merge-patch: 4.1.0_ajv@6.12.6
       chalk: 4.1.2
@@ -4977,7 +4979,7 @@ packages:
     resolution: {integrity: sha512-COG8qk2/dubPqabfcoJW4E7pm2EQDI43iMrHnhlobvq/uRMEzx/PYJ1KaUZ97Vgg44R3QdRG5CvDsTRbMUHcDw==}
     dev: true
 
-  /addons-scanner-utils/6.3.0_a31594d3e0c89fa8f5b8edd9c2e3644a:
+  /addons-scanner-utils/6.3.0_222e746a83bf798befe51ef9a9594616:
     resolution: {integrity: sha512-sD4U7TX/NFDUYVheydrcpHH9xG3E0eVBFDn1RuUkGpqRyay3SsOU75Pl2lWAbCmeE0Mh9inU1Fwl7Mm1VRWkZw==}
     peerDependencies:
       '@types/download': 8.0.1
@@ -4993,6 +4995,7 @@ packages:
       download: 8.0.0
       express: 4.17.2
       first-chunk-stream: 3.0.0
+      safe-compare: 1.1.4
       strip-bom-stream: 4.0.0
       upath: 2.0.1
       yauzl: 2.10.0
@@ -5291,7 +5294,7 @@ packages:
       loader-utils: 1.4.0
       make-dir: 3.1.0
       schema-utils: 2.7.1
-      webpack: 5.68.0_esbuild@0.14.21
+      webpack: 5.68.0
 
   /babel-plugin-dynamic-import-node/2.3.3:
     resolution: {integrity: sha512-jZVI+s9Zg3IqA/kdi0i6UDCybUI3aSBLnglhYbSSjKlV7yF1F/5LWv8MakQmvYpnbJDS6fcBL2KzHSxNCMtWSQ==}
@@ -11846,6 +11849,12 @@ packages:
   /safe-buffer/5.2.1:
     resolution: {integrity: sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==}
 
+  /safe-compare/1.1.4:
+    resolution: {integrity: sha512-b9wZ986HHCo/HbKrRpBJb2kqXMK9CEWIE1egeEvZsYn69ay3kdfl9nG3RyOcR+jInTDf7a86WQ1d4VJX7goSSQ==}
+    dependencies:
+      buffer-alloc: 1.2.0
+    dev: false
+
   /safe-json-stringify/1.2.0:
     resolution: {integrity: sha512-gH8eh2nZudPQO6TytOvbxnuhYBOvDBBLW52tz5q6X58lJcd/tkmqFR+5Z9adS8aJtURSXWThWy/xJtJwixErvg==}
     requiresBuild: true
@@ -12387,7 +12396,7 @@ packages:
     dependencies:
       loader-utils: 2.0.2
       schema-utils: 3.1.1
-      webpack: 5.68.0_esbuild@0.14.21
+      webpack: 5.68.0
 
   /string-similarity/4.0.4:
     resolution: {integrity: sha512-/q/8Q4Bl4ZKAPjj8WerIBJWALKkaPRfrvhfF8k/B23i4nzrlRj2/go1m90In7nG/3XDSbOo0+pu6RvCTM9RGMQ==}
@@ -13322,14 +13331,14 @@ packages:
       - supports-color
     dev: true
 
-  /web-ext/6.7.0_a31594d3e0c89fa8f5b8edd9c2e3644a:
+  /web-ext/6.7.0_222e746a83bf798befe51ef9a9594616:
     resolution: {integrity: sha512-QN+ufUPMNhLbrEqwFDOuoHy4m2OOPAp8NDMKJaWIByZRh8VPH+JoJ6/NAaIEcs9TPKnkA2018TNIJAfYN9EerA==}
     engines: {node: '>=12.0.0', npm: '>=6.9.0'}
     hasBin: true
     dependencies:
       '@babel/runtime': 7.13.9
       '@devicefarmer/adbkit': 2.11.3
-      addons-linter: 4.9.0_a31594d3e0c89fa8f5b8edd9c2e3644a
+      addons-linter: 4.9.0_222e746a83bf798befe51ef9a9594616
       bunyan: 1.8.15
       camelcase: 6.2.0
       chrome-launcher: 0.15.0

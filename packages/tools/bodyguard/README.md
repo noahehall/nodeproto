@@ -18,7 +18,7 @@
 
 - for developers: automatically inject `@nodeproto/bodyguard` as a temporary extension into a new firefox window with hot-reloading
   - `pnpm install`
-  - `pnpm build` (extract flowtypes & build via webpack)
+  - `pnpm build` (extract flowtypes & bundle via webpack to /dist)
   - `pnpm webext:run`
     - update `root/config.cjs` to target a browser other than firefox
   - go to `about:debugging#/runtime/this-firefox` and click `inspect` on `@nodeproto/bodyguard`

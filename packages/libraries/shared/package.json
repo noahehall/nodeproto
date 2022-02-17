@@ -94,6 +94,7 @@
     "repo:flow:coverage": "pnpm flow batch-coverage src",
     "repo:flowtyped:install": "flow-typed install",
     "repo:lint": "pnpm repo:eslint:fix; pnpm repo:flow:coverage",
+    "repo:linting": "pnpm repo:lint; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"pnpm repo:lint\" -t 4000 -d 4000",
     "repo:monitor": "ultra --monitor",
     "repo:nuke": "pnpm repo:rm:dist; pnpm repo:rm:nodemodules",
     "repo:rm:dist": "rm -rf dist/*",

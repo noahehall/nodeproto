@@ -3,6 +3,7 @@ gitpod-local-companion-linux
 report.*
 dist
 firefox-profile
+**/firefox-profile
 # Logs
 *.log
 npm-debug.log*

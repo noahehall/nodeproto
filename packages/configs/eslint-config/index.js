@@ -6,6 +6,7 @@ module.exports = {
     '**/bundlestats/**',
     '**/copypasta/**',
     '**/dist/**',
+    '**/firefox-profile/**',
     '**/fixtures/**',
     '**/flow-typed/**',
     '**/node_modules/**',
