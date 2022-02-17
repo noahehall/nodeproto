@@ -2,6 +2,8 @@
 
 - manage UI application network requests with @nodeproto/bodyguard firefox browser extension
 
+- TODO: I need to update the browser API permissions and sync on the latest webext, however, my prioritizes are elseware
+
 ![@nodeproto/bodyguard sidebar](./src/images/screenshot.png)
 
 ![@nodeproto/bodyguard redirecting images on about.pinterest.com](./src/images/about.pinterest.com.png)

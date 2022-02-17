@@ -16,6 +16,7 @@ import type {
   OptimizationOptions,
   OptimizationSplitChunksOptions,
   WebpackConfigType,
+  WebpackHtmlOptionsType,
   WebpackInfrastructureLoggingType,
   WebpackOptions,
   WebpackPluginType,
@@ -308,7 +309,7 @@ export const getInfrastructureLogging = (): WebpackInfrastructureLoggingType => 
 export const combineArrays = (baseArray: any[], startArray: any[], endArray: any[]): any[] => startArray.concat(baseArray, endArray);
 
 export const getHtmlWebpackPlugin = (
-  htmlOptions: ObjectType | ObjectType[] = {}
+  htmlOptions: WebpackHtmlOptionsType = {}
 ): WebpackPluginType[] => {
   if (Array.isArray(htmlOptions))
     return htmlOptions.map(
@@ -327,7 +328,7 @@ export const getHtmlWebpackPlugin = (
 };
 
 export const generateBasePlugins = (
-  htmlOptions: ObjectType = {},
+  htmlOptions: WebpackHtmlOptionsType = {},
   pluginsPush: WebpackPluginType[] = []
 ): WebpackPluginType[] => getHtmlWebpackPlugin(htmlOptions).concat(
   new webpack.HotModuleReplacementPlugin(),

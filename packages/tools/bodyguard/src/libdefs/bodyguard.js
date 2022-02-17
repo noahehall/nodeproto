@@ -16,7 +16,7 @@ export type BodyguardRulesType = {
   active?: boolean,
   debug?: boolean,
   find?: string,
-  isglobal: boolean,
+  isglobal?: boolean,
   matching?: string,
   reject?: boolean,
   replace?: string,
@@ -24,6 +24,6 @@ export type BodyguardRulesType = {
 };
 
 export type BodyguardDbType = {
-  global?: BodyguardRulesType,
+  global: BodyguardRulesType,
   ...
 };

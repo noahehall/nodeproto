@@ -51,13 +51,12 @@ export const getOnMessage = (): Function => browser.runtime.onMessage;
 // @see https://github.com/mdn/webextensions-examples/blob/master/history-deleter/history.js
 export const getBrowserTabs = async (): Promise<BrowserTabType[]> =>
   browser.tabs.query({ active: true, currentWindow: true });
+
 export const getBrowserWindow = async (): Promise<BrowserTabType> =>
   browser.windows.getCurrent({ populate: true });
 
 export const getBrowserStorage = (): BrowserStorageType => browser.storage;
 export const getBrowserLocalStorage = (): BodyguardDbType => getBrowserStorage().local.get();
 export const setBrowserLocalStorage = (data: BodyguardDbType): void => {
-  console.info('\n\n wtf is data', data);
-
   getBrowserStorage().local.set(data);
 };

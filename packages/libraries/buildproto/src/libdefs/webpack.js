@@ -41,7 +41,6 @@ export type NodeprotoWebpackServerType = {
   ...
 }
 
-
 export type BaseWebpackType = {
   ...NodeprotoPackOptionsType,
   writeToDisk?: boolean,
@@ -69,7 +68,17 @@ export type BaseWebpackType = {
   ...
 }
 
+export type HtmlOptionsType = {
+  filename?: string,
+  template?: string,
+  inject?: boolean,
+  chunks?: string[],
+  ...
+}
+
+export type WebpackHtmlOptionsType = HtmlOptionsType | HtmlOptionsType[];
+
 export type ReactDevType = BaseWebpackType & {
-  htmlOptions?: ObjectType,
+  htmlOptions?: WebpackHtmlOptionsType,
   ...
 };

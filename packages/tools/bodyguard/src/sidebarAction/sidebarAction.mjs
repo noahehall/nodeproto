@@ -74,6 +74,7 @@ export const SidebarAction: ComponentType<any> = () => {
     // $FlowFixMe[incompatible-use] .elements missing in HTMLElement (should be HTMLFormElement)
     // $FlowFixMe[prop-missing] .elements missing in HTMLElement (should be HTMLFormElement)
     const formFields = formBodyguard.elements;
+    // formFields type should be HTMLFormControlsCollection
 
     // the URL is only useful when we have per tab bodyguard rules
     // I think this is where i left the prototype

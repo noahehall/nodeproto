@@ -18,7 +18,7 @@ export type BrowserI18nType = {
 
 export type BrowserRuntimeType = {
   lastError: ?string,
-  sendMessage: ({ type: string, message: string }) => void,
+  sendMessage: ({ type: string, message: string | string[] }) => void,
   onMessage: Function,
   openOptionsPage: Function,
   ...

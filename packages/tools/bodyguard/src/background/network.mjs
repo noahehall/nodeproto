@@ -38,8 +38,11 @@ const storage = getBrowserStorage();
 // ]
 
 // TODO: should handle replace|substitute
-const transformUrl = (url: string, find: string, replace: string): string | boolean =>
-  url.includes(find) && url.replace(find, replace);
+const transformUrl = (url: string, find?: string, replace?: string): string | boolean =>
+  typeof find !== 'undefined' &&
+  typeof replace !== 'undefined' &&
+  url.includes(find) &&
+  url.replace(find, replace);
 
 // // @see https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/webRequest/onBeforeRequest#additional_objects
 export const debugUrl = (requestDetails: { url: string }): void => {
@@ -74,8 +77,6 @@ const syncBodyguards = () => {
   onBeforeRequest.removeListener(debugUrl);
   onBeforeRequest.removeListener(guardUrl);
 
-  console.info('\n\n wtf is cache', bodyguardRulesCache);
-
   // sync guards on duty
   if (bodyguardRulesCache.active) {
     if (!guards.has(bodyguardRulesCache.matching)) guards.add(bodyguardRulesCache.matching);
@@ -85,8 +86,6 @@ const syncBodyguards = () => {
   if (bodyguardRulesCache.debug) {
     if (!debug.has(bodyguardRulesCache.find)) debug.add(bodyguardRulesCache.find);
   } else if (debug.has(bodyguardRulesCache.find)) debug.delete(bodyguardRulesCache.find);
-
-  console.info('\n\n new bodyguard state:', debug, guards);
 
   if (debug.size) onBeforeRequest.addListener(debugUrl, { urls: ['<all_urls>'] });
 
@@ -103,9 +102,9 @@ const syncBodyguards = () => {
 };
 
 const retrieveBodyguardRules = async (): Promise<BodyguardRulesType | void> => {
-  const storage = await getBrowserLocalStorage();
+  const bodyguardDb = await getBrowserLocalStorage();
 
-  bodyguardRulesCache = storage.bodyguardGlobalRules;
+  bodyguardRulesCache = bodyguardDb.global;
 
   return bodyguardRulesCache;
 };
@@ -118,7 +117,7 @@ export const bodyguardShiftManager = (newBodyguardRules: BodyguardRulesType): vo
 };
 
 (async () => {
-  console.info('\n\n initializing @nodeproto/bodygaurd');
+  console.info('\n\n initializing @nodeproto/bodyguard');
 
   myWindowId = (await getBrowserWindow()).id;
 
