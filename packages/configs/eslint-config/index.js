@@ -3,6 +3,7 @@ module.exports = {
   ignorePatterns: [
     '**/*.jsonc',
     '**/*.png',
+    '**/*.sh',
     '**/bundlestats/**',
     '**/copypasta/**',
     '**/dist/**',
