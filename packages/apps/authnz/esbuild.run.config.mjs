@@ -16,16 +16,19 @@ const popCopyConfig = esbuildPluginPopCopyConfig({
   outdir,
 });
 
-const configOpts = {
-  // builtinModules,
-  // bundle: false,
-  // mainFields: 'browser,module,main',
-  // platform: 'neutral',
-  // format: 'cjs',
-  entry: await resolve('./src/root.mjs', import.meta),
-  outdir,
-  pkgJson: fsproto.fs.readJsonSync('./package.json'),
-  plugins: [esbuildPluginPopCopy(popCopyConfig)],
-};
+// frigging eslint-flowtype-errors doesnt like top-level await
+(async () => {
+  const configOpts = {
+    // builtinModules,
+    // bundle: false,
+    // mainFields: 'browser,module,main',
+    // platform: 'neutral',
+    // format: 'cjs',
+    entry: await resolve('./src/root.mjs', import.meta),
+    outdir,
+    pkgJson: fsproto.fs.readJsonSync('./package.json'),
+    plugins: [esbuildPluginPopCopy(popCopyConfig)],
+  };
 
-await esrunConfig(createEsbuildConfig(configOpts));
+  await esrunConfig(createEsbuildConfig(configOpts));
+})();
