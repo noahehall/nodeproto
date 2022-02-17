@@ -24,7 +24,7 @@ export const initMiddleware = (app: KoaAppType): KoaAppType => {
     koaRateLimit(app),
     // koaSession(app), // internal server error
     koaCharset(app),
-    // koaHelmet(app), // need to update CSP config
+    koaHelmet(app), // need to update CSP config
     koaCors(app),
     koaCsrf(app),
     eTag(app),

@@ -45,6 +45,7 @@ export const controller: ControllerType = async (router, app): Promise<void> => 
 
   const v1Router = router.newGroup(`${routerName}${apiVersion}`);
 
+  // $FlowFixMe[incompatible-call] corejs has legacy import.meta annotation
   const absFilePath = await resolve('./authnz.v1.openapi.yaml', import.meta);
 
   const config = Object.assign(

@@ -9,7 +9,7 @@ import path from 'path';
 
 import { esMain } from './esmain';
 
-import type { FileType, FsprotoType, ImportMetaType, ObjectType } from './libdefs';
+import type { FileType, FsprotoType, ImportMetaType, ObjectType, ResolveInterface } from './libdefs';
 
 export const isMain = (importMetaOrRequireMain: ObjectType): boolean => {
   if (isEsm()) {
@@ -23,32 +23,32 @@ export const isMain = (importMetaOrRequireMain: ObjectType): boolean => {
 
 export const urlToPath = (importMetaUrlOrPath: string): string => fileURLToPath(importMetaUrlOrPath);
 
-export const resolve = async (
-  relativeFilePath: string,
-  importMetaOrPath?: ImportMetaType & string & boolean, // bolean for confirming a relative path exists
-  throwIfNotFound?: boolean = false,
+export const resolve: ResolveInterface = async (
+  relativeFilePath,
+  importMetaOrPathOrBoolean, // bolean for confirming a relative path exists
+  throwIfNotFound = false,
 ): Promise<string | void> => {
   let absFilePath: string;
 
-  if (!relativeFilePath) throwIt('relativeFilePath is required');
-  else if (!importMetaOrPath || isBoolean(importMetaOrPath))
+  if (!relativeFilePath) return throwIt('relativeFilePath is required');
+  if (!importMetaOrPathOrBoolean || isBoolean(importMetaOrPathOrBoolean))
     absFilePath = path.resolve(relativeFilePath);
-  else if (typeof importMetaOrPath === 'string')
-    absFilePath = path.resolve(path.dirname(importMetaOrPath), relativeFilePath);
+  else if (typeof importMetaOrPathOrBoolean === 'string')
+    absFilePath = path.resolve(path.dirname(importMetaOrPathOrBoolean), relativeFilePath);
   else if (
-    !isBoolean(importMetaOrPath)
-    && isFunction(importMetaOrPath.resolve)
-    && isString(importMetaOrPath.url)
+    !isBoolean(importMetaOrPathOrBoolean)
+    && isFunction(importMetaOrPathOrBoolean.resolve)
+    && isString(importMetaOrPathOrBoolean.url)
   )
-      absFilePath = await importMetaOrPath
-        .resolve(relativeFilePath, importMetaOrPath.url)
+      absFilePath = await importMetaOrPathOrBoolean
+        .resolve(relativeFilePath, importMetaOrPathOrBoolean.url)
         .then(absoluteFileUrl => urlToPath(absoluteFileUrl))
         .catch(() => '');
 
   if (
-    (throwIfNotFound || isBoolean(importMetaOrPath) && importMetaOrPath)
+    (throwIfNotFound || isBoolean(importMetaOrPathOrBoolean) && importMetaOrPathOrBoolean)
     && (!absFilePath || !(await fse.pathExists(absFilePath))))
-    throwIt(`${relativeFilePath} does not exist`);
+    return throwIt(`${relativeFilePath} does not exist`);
 
   return absFilePath;
 };

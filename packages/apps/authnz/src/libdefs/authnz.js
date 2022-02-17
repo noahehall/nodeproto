@@ -32,3 +32,26 @@ export type MiddlewareType = (Context, NextType) => Promise<void> | void
 export type MiddlewareComposeType = (MiddlewareType[]) => MiddlewareType;
 export type RouterType = ObjectOfFunctions;
 export type ControllerType = (RouterType, KoaAppType) => Promise<void>;
+
+
+// only the ones with comments have been confirmed
+// rather focus on the CI + virtualization stuff
+// before I dive deep into this shiz
+export type KoaHelmetType = {
+  contentSecurityPolicy: MiddlewareFactoryType,
+  crossOriginEmbedderPolicy: MiddlewareFactoryType,
+  crossOriginOpenerPolicy: MiddlewareFactoryType,
+  crossOriginResourcePolicy: MiddlewareFactoryType,
+  dnsPrefetchControl: MiddlewareFactoryType,
+  expectCt: MiddlewareFactoryType,
+  frameguard: MiddlewareFactoryType,
+  hidePoweredBy: MiddlewareFactoryType, // x-powered-by
+  hsts: MiddlewareFactoryType,
+  ieNoOpen: MiddlewareFactoryType,
+  noSniff: MiddlewareFactoryType,
+  originAgentCluster: MiddlewareFactoryType,
+  permittedCrossDomainPolicies: MiddlewareFactoryType,
+  referrerPolicy: MiddlewareFactoryType,
+  xssFilter: MiddlewareFactoryType,
+  ...
+}

@@ -10,9 +10,16 @@ export type ObjectOfFunctions = { [key: string]: Function };
 
 export type ArrayType = mixed[];
 
+export interface ResolveInterface {
+  (relativeFilePath: string): Promise<string | void>,
+  (relativeFilePath: string, throwIfNotFound: boolean): Promise<string | void>,
+  (relativeFilePath: string, absoluteFilePath: string, throwIfNotFound?: boolean): Promise<string | void>,
+  (relativeFilePath: string, importMeta: ImportMetaType, throwIfNotFound?: boolean): Promise<string | void>;
+}
 export type ImportMetaType = {
   resolve: (x: string, y?: string) => Promise<string>,
   url: string,
+  ...
 }
 
 export type FileType = {

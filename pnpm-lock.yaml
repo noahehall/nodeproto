@@ -93,6 +93,7 @@ importers:
       flow-bin: 0.171.0
       flow-typed: 3.6.1
       grant: 5.4.20
+      helmet: 5.0.2
       husky: 7.0.4
       js-yaml: 4.1.0
       keygrip: 1.1.0
@@ -102,7 +103,6 @@ importers:
       koa-charset: 2.0.0
       koa-compose: 4.1.0
       koa-csrf: 3.0.8
-      koa-helmet: 6.1.0
       koa-jwt: 4.0.3
       koa-mount: 4.0.0
       koa-oas3: 2.4.1
@@ -127,6 +127,7 @@ importers:
       '@tinyhttp/etag': 2.0.2
       cls-rtracer: 2.6.0
       grant: 5.4.20
+      helmet: 5.0.2
       js-yaml: 4.1.0
       keygrip: 1.1.0
       koa: 2.13.4
@@ -135,7 +136,6 @@ importers:
       koa-charset: 2.0.0
       koa-compose: 4.1.0
       koa-csrf: 3.0.8
-      koa-helmet: 6.1.0
       koa-jwt: 4.0.3
       koa-mount: 4.0.0
       koa-oas3: 2.4.1_koa@2.13.4
@@ -8511,9 +8511,9 @@ packages:
     hasBin: true
     dev: false
 
-  /helmet/4.6.0:
-    resolution: {integrity: sha512-HVqALKZlR95ROkrnesdhbbZJFi/rIVSoNq6f3jA/9u6MIbTsPh3xZwihjeI5+DO/2sOV6HMHooXcEOuwskHpTg==}
-    engines: {node: '>=10.0.0'}
+  /helmet/5.0.2:
+    resolution: {integrity: sha512-QWlwUZZ8BtlvwYVTSDTBChGf8EOcQ2LkGMnQJxSzD1mUu8CCjXJZq/BXP8eWw4kikRnzlhtYo3lCk0ucmYA3Vg==}
+    engines: {node: '>=12.0.0'}
     dev: false
 
   /history/5.2.0:
@@ -9535,13 +9535,6 @@ packages:
     engines: {node: '>= 6.4'}
     dependencies:
       csrf: 3.1.0
-    dev: false
-
-  /koa-helmet/6.1.0:
-    resolution: {integrity: sha512-WymEv4qo/7ghh15t+1qTjvZBmZkmVlTtfnpe5oxn8m8mO2Q2rKJ3eMvWuQGW/6yVxN9+hQ75evuWcg3XBbFLbg==}
-    engines: {node: '>= 8.0.0'}
-    dependencies:
-      helmet: 4.6.0
     dev: false
 
   /koa-jwt/4.0.3:
