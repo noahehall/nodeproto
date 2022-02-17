@@ -34,7 +34,7 @@ export const handleCompileIssues = (stats: Stats): void => {
 
     console.error({ errors, warnings });
 
-    if (errors.length) throwIt('errors exist');
+    if (errors.length) throwIt('errors exist: bundling webpack via @buildproto');
   }
 
   logIt(stats.toString({ ...statsOptions, chunks: false, colors: true }));
@@ -48,8 +48,8 @@ export const compilerCallback = (err: any, stats: Stats): void => {
 export const buildWebpackConfig = (
   useConfig: WebpackConfigType,
   toDisk: boolean = true
-): mixed => (
+): void => {
   toDisk
     ? webpack(useConfig, compilerCallback)
     : testCompiler(useConfig)
-);
+};

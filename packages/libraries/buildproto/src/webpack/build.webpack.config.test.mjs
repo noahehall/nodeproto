@@ -5,11 +5,12 @@ import { baseWebpackConfig, buildWebpackConfig, testCompiler } from '@nodeproto/
 
 const { assert } = t;
 
+// TODO: build.webpack.config.mjs has more fn thats not tested
 const test = t.suite('build.webpack.config');
 
 test.before.each((context) => {
   const baseWebpackOptions = {
-    entry: ['poop/fixtures/esm.mjs'],
+    entry: ['./src/fixtures/esm.mjs'],
   };
 
   const copyOptions = {
@@ -24,7 +25,7 @@ test.before.each((context) => {
 
   context.fixtures = {
     baseWebpackOptions,
-    copyOptions,
+    withCopyOptions: Object.assign({}, baseWebpackOptions, { copyOptions }),
   };
 });
 
@@ -33,11 +34,19 @@ test.after.each((context) => {
 });
 
 test('buildWebpackConfig', async ({ fixtures }) => {
-  const { baseWebpackOptions, copyOptions } = fixtures;
+  const { baseWebpackOptions } = fixtures;
 
   const { config, pack } = await baseWebpackConfig(baseWebpackOptions);
 
-  assert.isObject(await buildWebpackConfig(baseWebpackConfig(config), true), 'compiles to memfs');
+  assert.doesNotThrow(() => buildWebpackConfig(config, false), /errors/, 'bundles without errors');
+});
+
+test('buildWebpackConfig: witCopyOptions', async ({ fixtures }) => {
+  const { withCopyOptions } = fixtures;
+
+  const { config, pack } = await baseWebpackConfig(withCopyOptions);
+
+  assert.doesNotThrow(() => buildWebpackConfig(config, false), /errors/, 'bundles without errors');
 });
 
 test.run();
