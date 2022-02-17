@@ -1,2 +1,9 @@
 root: true
 extends: "@nodeproto/eslint-config"
+ignorePatterns:
+  - "*.sh"
+  - "**/libdefs/**"
+  - "doc/**/*"
+  - "packages/**/*"
+  - "TODO/**/*"
+  - "Vagrantfile"
