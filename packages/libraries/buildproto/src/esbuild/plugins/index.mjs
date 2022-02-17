@@ -1,3 +1,3 @@
 // @flow
 
-export * from './popCopy.esbuild.plugin';
+export * from './popCopy';

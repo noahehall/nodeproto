@@ -4,8 +4,9 @@ import { logIt } from '@nodeproto/shared';
 
 import compose from 'koa-compose';
 
-import { eTag } from './eTag';
 import { koaBody, koaBodyParser } from './koaBody';
+
+import { eTag } from './eTag';
 import { koaCharset } from './koaCharset';
 import { koaCors } from './koaCors';
 import { koaCsrf } from './koaCsrf';
