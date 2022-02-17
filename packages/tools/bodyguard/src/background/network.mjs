@@ -1,5 +1,9 @@
 // @flow
 
+// so this prototype was left in a state
+// where the next step was to enable per tab bodyguard rules
+// looks like I never finished implementig the logic before life happened
+
 import {
   getBrowserLocalStorage,
   getBrowserStorage,
@@ -10,9 +14,10 @@ import {
   stripUrl,
 } from '../shared/utils';
 
-import type { BodyguardCacheType, BodyguardRulesType, ObjectType } from '../libdefs';
+import type { BodyguardRulesType, ObjectType } from '../libdefs';
 
-const cache: BodyguardCacheType = { myWindowId: '', global: {} };
+let myWindowId: string = '';
+let bodyguardRulesCache: BodyguardRulesType = {};
 
 const debug = new Set();
 const guards = new Set();
@@ -38,23 +43,24 @@ const transformUrl = (url: string, find: string, replace: string): string | bool
 
 // // @see https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/webRequest/onBeforeRequest#additional_objects
 export const debugUrl = (requestDetails: { url: string }): void => {
-  const { matching, find, replace } = cache.global;
+  const { matching, find, replace } = bodyguardRulesCache;
 
-  if (!requestDetails.url.includes(matching)) return void 0;
+  if (!matching || !requestDetails.url.includes(matching)) return void 0;
 
   sendInternalMsg({
+    type: 'poop',
     message: [
       `bodyguard match: ${requestDetails.url}`,
-      `replaced: ${transformUrl(requestDetails.url, find, replace)}`,
+      `replaced: ${String(transformUrl(requestDetails.url, find, replace))}`,
     ],
   });
 };
 
 // // @see https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/webRequest/onBeforeRequest#additional_objects
 function guardUrl(requestDetails) {
-  const { matching, find, replace } = Object.values(cache)[0];
+  const { matching, find, replace } = bodyguardRulesCache;
 
-  if (!requestDetails.url.includes(matching)) return void 0;
+  if (!matching || !find || !replace || !requestDetails.url.includes(matching)) return void 0;
 
   const redirectUrl = transformUrl(requestDetails.url, find, replace);
 
@@ -68,25 +74,17 @@ const syncBodyguards = () => {
   onBeforeRequest.removeListener(debugUrl);
   onBeforeRequest.removeListener(guardUrl);
 
-  Object.entries(cache).forEach(([tabUrl, bodyguardRules = {}]) => {
-    // TODO: enhancce with per-tab urls
-    // if (!bodyguardRules) {
-    // guards.clear();
-    // debug.clear(),
-    // console.info('all guards inactive'),
-    // continue;
-    // }
+  console.info('\n\n wtf is cache', bodyguardRulesCache);
 
-    // sync guards on duty
-    if (bodyguardRules.active) {
-      if (!guards.has(bodyguardRules.matching)) guards.add(bodyguardRules.matching);
-    } else if (guards.has(bodyguardRules.matching)) guards.delete(bodyguardRules.matching);
+  // sync guards on duty
+  if (bodyguardRulesCache.active) {
+    if (!guards.has(bodyguardRulesCache.matching)) guards.add(bodyguardRulesCache.matching);
+  } else if (guards.has(bodyguardRulesCache.matching)) guards.delete(bodyguardRulesCache.matching);
 
-    // sync guards on debug
-    if (bodyguardRules.debug) {
-      if (!debug.has(bodyguardRules.find)) debug.add(bodyguardRules.find);
-    } else if (debug.has(bodyguardRules.find)) debug.delete(bodyguardRules.find);
-  });
+  // sync guards on debug
+  if (bodyguardRulesCache.debug) {
+    if (!debug.has(bodyguardRulesCache.find)) debug.add(bodyguardRulesCache.find);
+  } else if (debug.has(bodyguardRulesCache.find)) debug.delete(bodyguardRulesCache.find);
 
   console.info('\n\n new bodyguard state:', debug, guards);
 
@@ -104,35 +102,26 @@ const syncBodyguards = () => {
   }
 };
 
-// TODO: extract the updating of cache to a separate fn
-const retrieveBodyguardRules = async (): Promise<BodyguardCacheType> => {
-  const bodyguardRules = await getBrowserLocalStorage();
+const retrieveBodyguardRules = async (): Promise<BodyguardRulesType | void> => {
+  const storage = await getBrowserLocalStorage();
 
-  const [url, data] = Object.entries(bodyguardRules)[0];
+  bodyguardRulesCache = storage.bodyguardGlobalRules;
 
-  // $FlowFixMe[incompatible-use] data typed as mixed
-  cache[url] = data[url];
-
-  return cache;
+  return bodyguardRulesCache;
 };
 
-export const bodyguardShiftManager = ({ global }: { global: { newValue: Object } }): void => {
+export const bodyguardShiftManager = (newBodyguardRules: BodyguardRulesType): void => {
   // TODO: enable per activeTab url bodyguard rules (url === activate tab)
-  // const [ url, { newValue: data } ] = Object.entries(diff)[0];
 
-  cache.global = global.newValue;
+  bodyguardRulesCache = newBodyguardRules;
   syncBodyguards();
 };
 
 (async () => {
   console.info('\n\n initializing @nodeproto/bodygaurd');
 
-  const windowInfo = await getBrowserWindow();
+  myWindowId = (await getBrowserWindow()).id;
 
-  cache.myWindowId = windowInfo.id;
-
-  // TODO: this fn updates the cache, but we need to extract this logic
-  // ^ to a separate fn
   await retrieveBodyguardRules();
   syncBodyguards();
 })();

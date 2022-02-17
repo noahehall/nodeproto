@@ -3,7 +3,7 @@
 import browserPolyfill from 'webextension-polyfill';
 
 import type {
-  BodyguardCacheType,
+  BodyguardDbType,
   BrowserRuntimeType,
   BrowserSidebarActionType,
   BrowserStorageType,
@@ -55,6 +55,9 @@ export const getBrowserWindow = async (): Promise<BrowserTabType> =>
   browser.windows.getCurrent({ populate: true });
 
 export const getBrowserStorage = (): BrowserStorageType => browser.storage;
-export const getBrowserLocalStorage = (): BodyguardCacheType => getBrowserStorage().local.get();
-export const setBrowserLocalStorage = (data: ObjectType): void =>
+export const getBrowserLocalStorage = (): BodyguardDbType => getBrowserStorage().local.get();
+export const setBrowserLocalStorage = (data: BodyguardDbType): void => {
+  console.info('\n\n wtf is data', data);
+
   getBrowserStorage().local.set(data);
+};

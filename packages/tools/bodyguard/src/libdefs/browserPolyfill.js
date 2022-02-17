@@ -4,7 +4,7 @@
 
 import type { ObjectOfStrings, ObjectType } from '@nodeproto/configproto/src/libdefs';
 
-import type { BodyguardCacheType } from './bodyguard';
+import type { BodyguardDbType } from './bodyguard';
 
 export type ObjectOfStuff = {
   [key: string]: string | Function | Object,
@@ -18,7 +18,7 @@ export type BrowserI18nType = {
 
 export type BrowserRuntimeType = {
   lastError: ?string,
-  sendMessage: ({ type: string, message: string & string[] }) => void,
+  sendMessage: ({ type: string, message: string }) => void,
   onMessage: Function,
   openOptionsPage: Function,
   ...
@@ -41,8 +41,8 @@ export type BrowserWindowsType = {
 
 export type BrowserStorageType = {
   local: {
-    get: (() => BodyguardCacheType) & ((thing: string) => string | ObjectType),
-    set: (data: ObjectType) => void,
+    get: (() => BodyguardDbType) & ((thing: string) => string | ObjectType),
+    set: (data: BodyguardDbType) => void,
     ...
   },
   onChanged: {
@@ -73,6 +73,14 @@ export type BrowserType = {
   webRequest: BrowserWebRequestType,
   windows: BrowserWindowsType,
   menus: {
-    create: ({ id: string, title: string, contexts: string[] }, errorHandler: Function) => void,
+    create: (
+      {
+        id: string,
+        title: string,
+        contexts: string[],
+        command?: string,
+      },
+      errorHandler: Function
+    ) => void,
   },
 };

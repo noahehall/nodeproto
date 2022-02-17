@@ -84,7 +84,7 @@ export const Form: ComponentType<{}> = () => (
           title="If checked filter rules apply to all open tabs"
           disabled
         >
-          <input type="checkbox" name="is-global" disabled checked />
+          <input type="checkbox" name="isglobal" disabled checked />
           {'Global Filter Rule?'}
         </label>
       </div>

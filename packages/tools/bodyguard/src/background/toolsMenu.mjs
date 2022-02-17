@@ -10,9 +10,9 @@ const browser: BrowserType = browserPolyfill;
 
 browser.menus.create(
   {
+    contexts: ['tools_menu'],
     id: 'tools-menu',
     title: translate('menuItemToolsMenu'),
-    contexts: ['tools_menu'],
   },
   errorHandler
 );

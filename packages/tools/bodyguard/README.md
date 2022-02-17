@@ -11,7 +11,7 @@
 - for consumers: manually load `@nodeproto/bodyguard` as a temporary extension into an existing firefox window
   - firefox
     - install via URL: `about:debugging#/runtime/this-firefox`
-      - click `load temporary extension` & select `manifest.json`
+      - click `load temporary add-on` & select `dist/manifest.json`
       - debug via URL: `about:devtools-toolbox?id=noahedwardhall%40gmail.com&type=extension`
   - chromium (edge, opera, chrome)
     - TODO

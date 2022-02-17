@@ -20,7 +20,13 @@ import {
 import { Actions, Debug, Header, RuntimeOptions } from './components';
 import { globalStyles } from './globalStyles';
 
-import type { ComponentType, InternalMsgType } from '../libdefs';
+import type {
+  BodyguardDbType,
+  BodyguardRulesType,
+  BrowserTabType,
+  ComponentType,
+  InternalMsgType,
+} from '../libdefs';
 
 let myWindowId: string = '';
 
@@ -53,23 +59,26 @@ export const SidebarAction: ComponentType<any> = () => {
     [debugElement]
   );
 
+  // syncs sidebar form fields with values saved in localstorage
   const resetContent = useCallback(async () => {
     // $FlowFixMe[incompatible-use] .elements missing in HTMLFormElement
     // $FlowFixMe[prop-missing] .elements missing in HTMLFormElement
+    if (!formBodyguard.elements) return console.error('\n\n error retrieving formFields');
+
+    const bodyguardDb: BodyguardDbType = await getBrowserLocalStorage();
+
+    if (typeof bodyguardDb.global === 'undefined') return void 0;
+
+    const bodyguardRules: BodyguardRulesType = bodyguardDb.global;
+
+    // $FlowFixMe[incompatible-use] .elements missing in HTMLElement (should be HTMLFormElement)
+    // $FlowFixMe[prop-missing] .elements missing in HTMLElement (should be HTMLFormElement)
     const formFields = formBodyguard.elements;
 
-    if (!formFields) return console.error('\n\n error retrieving formFields');
-
-    const tabs = await getBrowserTabs();
-
-    const url = stripUrl(tabs[0].url);
-
-    const data = await getBrowserLocalStorage();
-
-    const bodyguardRules = data.global;
-
-    if (typeof bodyguardRules === 'undefined')
-      return console.info('TODO: setup global + activate tab rules', bodyguardRules, url);
+    // the URL is only useful when we have per tab bodyguard rules
+    // I think this is where i left the prototype
+    // const tabs: BrowserTabType[] = await getBrowserTabs();
+    // const url: string = stripUrl(tabs[0].url);
 
     Object.entries(bodyguardRules).forEach(([name, value]) => {
       // $FlowFixMe[prop-missing] .type & .checked missing in HTMLElement
@@ -94,8 +103,9 @@ export const SidebarAction: ComponentType<any> = () => {
 
     (async () => {
       // populate Bodyguard rules when sidebar loads
-      const windowInfo = await getBrowserWindow();
-      myWindowId = windowInfo.id;
+      // TODO
+      // const windowInfo = await getBrowserWindow();
+      // myWindowId = windowInfo.id;
 
       resetContent();
       addMsgListener(debugElement, msgListener);
@@ -106,7 +116,8 @@ export const SidebarAction: ComponentType<any> = () => {
     const formAction = e.target.id;
     if (!formAction) return console.error('\n\n error retrieving formAction');
 
-    const tabs = await getBrowserTabs();
+    // TODO: per tab bodyguard rules
+    // const tabs = await getBrowserTabs();
 
     // $FlowFixMe[prop-missing] .elements missing
     // $FlowFixMe[incompatible-use] .elements missing
@@ -114,7 +125,7 @@ export const SidebarAction: ComponentType<any> = () => {
 
     switch (formAction) {
       case 'save': {
-        const bodyguardRules = {};
+        const bodyguardRules: BodyguardRulesType = {};
         // $FlowFixMe[method-unbinding] doesnt like [].forEach, investigate this
         [].forEach.call(formFields, (field) => {
           if (field.name && ['checkbox', 'text', 'url'].includes(field.type))
@@ -123,7 +134,8 @@ export const SidebarAction: ComponentType<any> = () => {
 
         setBrowserLocalStorage({
           global: bodyguardRules,
-          activateTab: [stripUrl(tabs[0].url)],
+          // TODO: per tab bodyguard rules
+          // activateTab: [stripUrl(tabs[0].url)],
         });
 
         if (debugElement) addMsgListener(debugElement, msgListener);
@@ -136,11 +148,15 @@ export const SidebarAction: ComponentType<any> = () => {
         break;
       }
       case 'clear': {
-        setBrowserLocalStorage({ [stripUrl(tabs[0].url)]: {} });
+        // TODO: per tab bodyguard rules
+        // setBrowserLocalStorage({ [stripUrl(tabs[0].url)]: {} });
+        // ^ clears the Bodyguard rules for the active tab
+        setBrowserLocalStorage({ global: {} });
+
         // $FlowFixMe[method-unbinding] doesnt like [].forEach, investigate this
         [].forEach.call(formFields, (field) => {
           // force setting true until we have type to develop per tab settings
-          if (field.name === 'is-global') field.value = true;
+          if (field.name === 'isglobal') field.value = true;
           else if (field.value) field.value = '';
           else if (field.checked) field.checked = false;
         });

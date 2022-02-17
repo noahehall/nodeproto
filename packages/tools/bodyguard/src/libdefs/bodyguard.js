@@ -4,7 +4,7 @@ import type { ObjectType } from './external';
 
 export type InternalMsgType = {
   type?: string,
-  message: string & string[],
+  message: string[],
 };
 
 export interface HandleInternalMsgInterface {
@@ -16,13 +16,14 @@ export type BodyguardRulesType = {
   active?: boolean,
   debug?: boolean,
   find?: string,
+  isglobal: boolean,
   matching?: string,
-  newValue?: ObjectType,
   reject?: boolean,
   replace?: string,
+  ...
 };
 
-export type BodyguardCacheType = {
-  myWindowId: string,
-  global: BodyguardRulesType,
+export type BodyguardDbType = {
+  global?: BodyguardRulesType,
+  ...
 };
