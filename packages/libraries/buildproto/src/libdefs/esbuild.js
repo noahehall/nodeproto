@@ -64,5 +64,5 @@ export type PopCopyOptionsType = {
   endingWith: RegExp,
   indir: string,
   outdir: string,
-  recurse: boolean,
+  recurse?: boolean,
 };

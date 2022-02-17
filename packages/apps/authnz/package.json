@@ -146,7 +146,7 @@
     "linux"
   ],
   "scripts": {
-    "build": "NODE_ENV=production NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" pnpm repo:rm:dist &&  node esbuild.build.config.mjs",
+    "build": "NODE_ENV=production NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" pnpm repo:rm:dist &&  node build.esbuild.config.mjs",
     "proto": "pnpm exec ultra -r",
     "proto:bin": "pnpm -r exec $*",
     "proto:script": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" pnpm -r $*",
@@ -173,7 +173,7 @@
     "repo:testing": "pnpm repo:test; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"pnpm repo:test\" -t 4000 -d 4000",
     "repo:update": "pnpm up --latest",
     "start": "pnpm start:authnz",
-    "start:authnz": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" node esbuild.run.config.mjs",
+    "start:authnz": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" node run.esbuild.config.mjs",
     "start:raw": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" node src/root.mjs"
   },
   "ultra": {

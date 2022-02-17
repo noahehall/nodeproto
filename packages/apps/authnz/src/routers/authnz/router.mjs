@@ -4,7 +4,7 @@ import Router from 'koa-tree-router';
 
 import * as v1 from './v1';
 
-import type { KoaAppType } from '../libdefs';
+import type { KoaAppType } from '../../libdefs';
 
 // @see https://github.com/steambap/koa-tree-router#nested-routes
 const authnzRouter = new Router();

@@ -1,9 +1,11 @@
+// @flow
+
 import {
   createEsbuildConfig,
   esbuildPluginPopCopy,
   esbuildPluginPopCopyConfig,
   esrunConfig,
-} from '@nodeproto/buildproto/esbuild';
+} from '@nodeproto/buildproto';
 import { dirs, fsproto, resolve } from '@nodeproto/wtf';
 import path from 'path';
 

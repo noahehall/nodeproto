@@ -6,7 +6,7 @@ import { oas } from 'koa-oas3';
 import bodyParser from 'koa-bodyparser';
 import yaml from 'js-yaml';
 
-import type { ControllerType, ObjectType } from '../../libdefs';
+import type { ControllerType, ObjectType } from '../../../libdefs';
 
 export const koaOas3Config: ObjectType = {
   // validatePaths: array of paths
@@ -38,29 +38,32 @@ export const koaOas3Config: ObjectType = {
 };
 
 export const controller: ControllerType = async (router, app): Promise<void> => {
+  // localhost:3443/authnz/v1/openapi
+  const routerName = '/authnz';
   const apiVersion = '/v1';
-  const routePath = '/openapi';
-  const v1Router = router.newGroup(apiVersion);
+  const openApiPath = '/openapi';
 
-  const absFilePath = await resolve('./src/authnzRouter/v1/openapi.yaml');
+  const v1Router = router.newGroup(`${routerName}${apiVersion}`);
+
+  const absFilePath = await resolve('./authnz.v1.openapi.yaml', import.meta);
 
   const config = Object.assign(
     {},
     koaOas3Config,
     {
       // file: absFilePath, // always use the spec property,
-      endpoint: `${apiVersion}${routePath}.json`,
+      endpoint: `${routerName}${apiVersion}${openApiPath}.json`,
       spec: yaml.load(fsproto.fs.readFileSync(String(absFilePath),'utf8')),
-      uiEndpoint: `${apiVersion}${routePath}`,
+      uiEndpoint: `${routerName}${apiVersion}${openApiPath}`,
     },
   );
 
   const oas3Middleware = await oas(config);
 
   // first request: load swagger UI
-  v1Router.get(routePath, oas3Middleware);
+  v1Router.get(openApiPath, oas3Middleware);
   // second request: load swagger spec
-  v1Router.get(`${routePath}.json`, oas3Middleware);
+  v1Router.get(`${openApiPath}.json`, oas3Middleware);
 
   // @see https://github.com/steambap/koa-tree-router/issues/19
   // todo(noah):
