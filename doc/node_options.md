@@ -41,6 +41,8 @@
 
 - node options requiring experimentation
 ```sh
+--experimental-network-imports # modules over the wire
+# ^ useful for a variety of things, just have to consider the security implications
 # dont use: @see https://github.com/lukeed/uvu/issues/192
 # ^ issue may be with NODE, as babel fails to run as well
 --v8-pool-size=0 # v8 will chose an appropriate pool size based on # of online processors

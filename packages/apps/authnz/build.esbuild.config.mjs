@@ -22,5 +22,6 @@ import { throwIt } from '@nodeproto/shared';
 
   const esbuildArtifacts = await baseEsbuildConfig(configOpts);
 
+  console.info('\n\n running');
   await esbuildCompileConfig(esbuildArtifacts.config);
 })();
