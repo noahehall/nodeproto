@@ -4,6 +4,7 @@
   - focuses on full stack node+react apps running on AWS
   - vagrant + docker in dev (todo)
   - docker in prod (todo)
+  - this project will become the base for the core nirvai web app
 
 - hard requirements for develop branch
   - dependency requirements
@@ -13,7 +14,7 @@
     - flowtype >= 0.171.0
     - haproxy (needs virtualization)
     - koa => 2
-    - node + corepack >= 17.5
+    - node + corepack >= 17.5 (17.6 is out!)
     - OpenSSL >= 1.1.1 for TLSv1.3 support
     - pnpm >= 6.30.1
     - react + react-dom @rc (or @next)
@@ -51,8 +52,11 @@
 
 ### npm scripts
 
-- you can prepend `proto` or `proto:script` before any npm script cmd to run in all packages
-- very useful, e.g., in a githook
+- you can prepend before any npm script
+  - `proto` or `proto:script` cmd to run in all packages
+    - proto runs cmds in each pkg via ultra
+    - proto:script runs cmds in each pkg via pnpm
+  - `ultra` to run via ultra-runner
 
 ### uninstall
 
@@ -109,6 +113,6 @@
 ### build production ready artifacts
 
 ```sh
-    pnpm proto build
+    pnpm proto:script build
 
 ```

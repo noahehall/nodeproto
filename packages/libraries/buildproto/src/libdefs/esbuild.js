@@ -22,7 +22,7 @@ export type EsbuildConfigType = {
   outdir?: string,
   outExtension?: ObjectType,
   platform?: string,
-  plugins?: ObjectType[],
+  plugins?: any[],
   preserveSymlinks?: boolean,
   replaceEntryVars?: ObjectOfStrings,
   resolveExtensions?: string[],

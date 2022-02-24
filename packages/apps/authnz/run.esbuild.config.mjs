@@ -6,7 +6,9 @@ import {
   esbuildPluginPopCopyConfig,
   esrunConfig,
 } from '@nodeproto/buildproto';
+
 import { dirs, fsproto, resolve } from '@nodeproto/wtf';
+
 import path from 'path';
 
 const thisDir = dirs.dirname(import.meta.url);
@@ -21,11 +23,6 @@ const popCopyConfig = esbuildPluginPopCopyConfig({
 // frigging eslint-flowtype-errors doesnt like top-level await
 (async () => {
   const configOpts = {
-    // builtinModules,
-    // bundle: false,
-    // mainFields: 'browser,module,main',
-    // platform: 'neutral',
-    // format: 'cjs',
     entry: await resolve('./src/root.mjs', import.meta),
     outdir,
     pkgJson: fsproto.fs.readJsonSync('./package.json'),

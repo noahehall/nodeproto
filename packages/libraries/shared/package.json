@@ -81,7 +81,7 @@
     "./.flowconfig"
   ],
   "scripts": {
-    "build": "NODE_ENV=production NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" pnpm repo:rm:dist && babel $npm_package_config_PATH_SRC -d $npm_package_config_PATH_DIST --copy-files --no-copy-ignored --ignore \"**/*.test.mjs\"",
+    "build": "pnpm repo:rm:dist && NODE_ENV=production NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" babel $npm_package_config_PATH_SRC -d $npm_package_config_PATH_DIST --copy-files --no-copy-ignored --ignore \"**/*.test.mjs\"",
     "proto:bin": "pnpm -r exec $*",
     "proto:script": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" pnpm -r $*",
     "proto:slice": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" pnpm exec ultra -r --filter",

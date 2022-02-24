@@ -25,7 +25,6 @@
   "dependencies": {
     "@babel/runtime": "7.17.2",
     "@koa/cors": "3.1.0",
-    "@nodeproto/configproto": "workspace:0.0.0",
     "@nodeproto/envproto": "workspace:0.0.0",
     "@nodeproto/shared": "workspace:0.0.0",
     "@nodeproto/wtf": "workspace:0.0.0",
@@ -64,7 +63,6 @@
     "@nodeproto/jsync": "workspace:0.0.0",
     "@nodeproto/prettier-config": "workspace:0.0.0",
     "@nodeproto/testproto": "workspace:0.0.0",
-    "@octokit/core": "3.5.1",
     "browserslist": "4.19.1",
     "chokidar-cli": "3.0.0",
     "eslint": "8.9.0",
@@ -146,7 +144,7 @@
     "linux"
   ],
   "scripts": {
-    "build": "NODE_ENV=production NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" pnpm repo:rm:dist &&  node build.esbuild.config.mjs",
+    "build": "pnpm repo:rm:dist && NODE_ENV=production NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" node build.esbuild.config.mjs",
     "proto": "pnpm exec ultra -r",
     "proto:bin": "pnpm -r exec $*",
     "proto:script": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" pnpm -r $*",

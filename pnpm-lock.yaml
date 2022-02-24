@@ -74,7 +74,6 @@ importers:
       '@nodeproto/shared': workspace:0.0.0
       '@nodeproto/testproto': workspace:0.0.0
       '@nodeproto/wtf': workspace:0.0.0
-      '@octokit/core': 3.5.1
       '@tinyhttp/etag': 2.0.2
       browserslist: 4.19.1
       chokidar-cli: 3.0.0
@@ -120,7 +119,6 @@ importers:
     dependencies:
       '@babel/runtime': 7.17.2
       '@koa/cors': 3.1.0
-      '@nodeproto/configproto': link:../../libraries/configproto
       '@nodeproto/envproto': link:../../libraries/envproto
       '@nodeproto/shared': link:../../libraries/shared
       '@nodeproto/wtf': link:../../libraries/wtf
@@ -153,11 +151,11 @@ importers:
       '@babel/eslint-parser': 7.17.0_@babel+core@7.17.2+eslint@8.9.0
       '@babel/eslint-plugin': 7.16.5_0f7d57242c70b8e89c1f8fee5b7f60ba
       '@nodeproto/buildproto': link:../../libraries/buildproto
+      '@nodeproto/configproto': link:../../libraries/configproto
       '@nodeproto/eslint-config': link:../../configs/eslint-config
       '@nodeproto/jsync': link:../../tools/jsync
       '@nodeproto/prettier-config': link:../../configs/prettier-config
       '@nodeproto/testproto': link:../../libraries/testproto
-      '@octokit/core': 3.5.1
       browserslist: 4.19.1
       chokidar-cli: 3.0.0
       eslint: 8.9.0
@@ -5294,7 +5292,7 @@ packages:
       loader-utils: 1.4.0
       make-dir: 3.1.0
       schema-utils: 2.7.1
-      webpack: 5.68.0
+      webpack: 5.68.0_esbuild@0.14.21
 
   /babel-plugin-dynamic-import-node/2.3.3:
     resolution: {integrity: sha512-jZVI+s9Zg3IqA/kdi0i6UDCybUI3aSBLnglhYbSSjKlV7yF1F/5LWv8MakQmvYpnbJDS6fcBL2KzHSxNCMtWSQ==}
@@ -12389,7 +12387,7 @@ packages:
     dependencies:
       loader-utils: 2.0.2
       schema-utils: 3.1.1
-      webpack: 5.68.0
+      webpack: 5.68.0_esbuild@0.14.21
 
   /string-similarity/4.0.4:
     resolution: {integrity: sha512-/q/8Q4Bl4ZKAPjj8WerIBJWALKkaPRfrvhfF8k/B23i4nzrlRj2/go1m90In7nG/3XDSbOo0+pu6RvCTM9RGMQ==}

@@ -136,7 +136,7 @@
     "react-dom": "18.0.0-rc.0"
   },
   "scripts": {
-    "build": "NODE_ENV=production NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" pnpm repo:rm:dist &&  babel $npm_package_config_PATH_SRC -d $npm_package_config_PATH_DIST --out-file-extension .js --ignore 'src/**/*.test.mjs'",
+    "build": "pnpm repo:rm:dist && NODE_ENV=production NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" babel $npm_package_config_PATH_SRC -d $npm_package_config_PATH_DIST --out-file-extension .js --ignore 'src/**/*.test.mjs'",
     "proto": "pnpm exec ultra -r",
     "proto:bin": "pnpm -r exec $*",
     "proto:script": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" pnpm -r $*",
