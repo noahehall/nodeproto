@@ -35,7 +35,7 @@
     "src": "./src"
   },
   "engines": {
-    "node": "16.14.0 || 17.5.0"
+    "node": "16.14.0 || 17.6.0"
   },
   "files": [
     ".editorconfig",

@@ -5,7 +5,7 @@
   "license": "SEE LICENSE IN LICENSE.md",
   "main": "./index.mjs",
   "name": "@nodeproto/client",
-  "packageManager": "pnpm@6.30.1",
+  "packageManager": "pnpm@6.32.1",
   "private": true,
   "repository": "git://github.com/noahehall/nodeproto.git",
   "type": "module",
@@ -90,7 +90,7 @@
     "dist": "./dist"
   },
   "engines": {
-    "node": "16.14.0 || 17.5.0"
+    "node": "16.14.0 || 17.6.0"
   },
   "jsync": {
     "root": false
