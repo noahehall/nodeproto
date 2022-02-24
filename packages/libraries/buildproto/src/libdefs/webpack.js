@@ -43,7 +43,6 @@ export type NodeprotoWebpackServerType = {
 
 export type BaseWebpackType = {
   ...NodeprotoPackOptionsType,
-  writeToDisk?: boolean,
   cache?: boolean | ObjectType,
   configFile?: boolean | string,
   context?: string,
@@ -51,13 +50,15 @@ export type BaseWebpackType = {
   entry: Entry,
   entryPush?: Entry[],
   entryUnshift?: Entry[],
+  externals?: Externals, // function | Array<ExternalItem>
   infrastructureLogging?: WebpackInfrastructureLoggingType,
   mode?: SupportedNodeEnvsType | 'none',
   pluginsPush?: WebpackPluginType[],
   pluginsUnshift?: WebpackPluginType[],
   processEnv?: ObjectType,
   stats?: StatsOptions,
-  externals?: Externals, // function | Array<ExternalItem>
+  target?: string,
+  writeToDisk?: boolean,
 
   // experiments?: ObjectType,
   // module?: ModuleOptions,

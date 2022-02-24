@@ -1,5 +1,7 @@
 # api gateway via [haproxy](https://cbonte.github.io/haproxy-dconv/2.4/intro.html)
 
+- TODO: this entire thing is moving to docker
+
 - [install steps](https://haproxy.debian.net/#?distribution=Ubuntu&release=focal&version=2.4)
 
 # TLDR

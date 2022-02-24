@@ -32,7 +32,7 @@ export async function load(url, context, defaultLoad) {
 
   const isFlow = first100chars.includes('@flow') && !first100chars.includes('@flowtodo');
 
-  if (!isFlow) return defaultLoad(url, context);
+  if (!isFlow) return defaultLoad(url, context, defaultLoad);
 
   // console.info('\n@nodeproto: removing flow types', url);
 

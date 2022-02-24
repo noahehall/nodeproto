@@ -25,7 +25,7 @@ test('createCachegroups', () => {
   const cacheGroups = createCacheGroups();
 
   assert.isObject(cacheGroups);
-  assert.hasAllKeys(cacheGroups, ['babel', 'default', 'etc', 'react', 'styled', 'support']);
+  assert.hasAllKeys(cacheGroups, ['babel', 'default', 'etc', 'koa', 'react', 'styles']);
 });
 
 test('createSplitChunks', () => {
@@ -33,17 +33,18 @@ test('createSplitChunks', () => {
 
   assert.isObject(splitChunks);
   assert.hasAllKeys(splitChunks, [
+    'automaticNameDelimiter',
     'cacheGroups',
     'chunks',
     'enforceSizeThreshold',
+    'hidePathInfo',
     'maxAsyncRequests',
-    'maxAsyncSize',
     'maxInitialRequests',
-    'maxInitialSize',
     'maxSize',
     'minChunks',
     'minRemainingSize',
     'minSize',
+    'minSizeReduction',
     'name',
     'usedExports',
   ]);
@@ -60,6 +61,7 @@ test('createOptimization', () => {
     'flagIncludedChunks',
     'innerGraph',
     'mangleExports',
+    'mangleWasmImports',
     'mergeDuplicateChunks',
     'minimize',
     'minimizer',
@@ -78,14 +80,15 @@ test('createOptimization', () => {
 });
 
 test('createTerserPlugin', () => {
-  const terserPlugin = createTerserPlugin('some path', true)[0]();
+  const terserPlugin = createTerserPlugin('some path', true)[0];
 
   assert.isObject(terserPlugin);
-  assert.hasAllKeys(terserPlugin, [
+  assert.hasAllKeys(terserPlugin.options, [
+    'exclude',
     'extractComments',
     'include',
+    'minimizer',
     'parallel',
-    'terserOptions',
     'test',
   ]);
 });
@@ -144,16 +147,14 @@ test('getStringReplaceLoader', () => {
 });
 
 test('getWebpackExperiments', () => {
-  const experiments = getWebpackExperiments();
+  const experiments = getWebpackExperiments({});
 
   assert.isObject(experiments);
   assert.hasAllKeys(experiments, [
-    'asyncWebAssembly',
     'cacheUnaffected',
     'layers',
     'lazyCompilation',
     'outputModule',
-    'syncWebAssembly',
     'topLevelAwait',
   ]);
 });

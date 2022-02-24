@@ -13,7 +13,9 @@
   "sideEffects": false,
   "type": "module",
   "version": "0.0.0",
-  "engines": { "node": "16.14.0 || 17.6.0" },
+  "engines": {
+    "node": "16.14.0 || 17.6.0"
+  },
   "keywords": [
     "@nirv",
     "@nodeproto",
@@ -114,8 +116,8 @@
     "ultra-runner": "3.10.5"
   },
   "devDependencies": {
-    "@babel/cli": "7.17.0",
-    "@babel/core": "7.17.2",
+    "@babel/cli": "7.17.6",
+    "@babel/core": "7.17.5",
     "@babel/eslint-parser": "7.17.0",
     "@babel/eslint-plugin": "7.16.5",
     "@nodeproto/configproto": "workspace:0.0.0",
@@ -123,8 +125,8 @@
     "@nodeproto/prettier-config": "workspace:0.0.0",
     "@nodeproto/testproto": "workspace:0.0.0",
     "chokidar-cli": "3.0.0",
-    "eslint": "8.9.0",
-    "eslint-config-prettier": "8.3.0",
+    "eslint": "8.10.0",
+    "eslint-config-prettier": "8.5.0",
     "eslint-plugin-fb-flow": "0.0.4",
     "eslint-plugin-flowtype-errors": "4.5.0",
     "eslint-plugin-html": "6.2.0",
@@ -133,9 +135,9 @@
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-prettier": "4.0.0",
     "eslint-plugin-promise": "6.0.0",
-    "eslint-plugin-yml": "0.13.0",
-    "flow-bin": "0.171.0",
-    "flow-typed": "3.6.1",
+    "eslint-plugin-yml": "0.14.0",
+    "flow-bin": "0.173.0",
+    "flow-typed": "3.7.0",
     "husky": "7.0.4",
     "prettier": "2.5.1",
     "uvu": "0.5.3"

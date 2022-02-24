@@ -1,13 +1,18 @@
 // @flow
 
-// TODO: file is wayy tooo long
-import os from 'os';
+// everything should focus on supporting
+// http2, longterm caching, parity between dev & prod
 
 import { BundleStatsWebpackPlugin } from 'bundle-stats-webpack-plugin';
+import { WebpackManifestPlugin } from 'webpack-manifest-plugin';
+
 import CopyPlugin from 'copy-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import json5 from 'json5';
 import svgToMiniDataURI from 'mini-svg-data-uri';
+import TerserPlugin from 'terser-webpack-plugin';
 import webpack from 'webpack';
+import yaml from 'yamljs';
 
 import type {
   BaseWebpackType,
@@ -24,71 +29,82 @@ import type {
 
 const cacheGroupBaseParams = {
   chunks: 'all',
-  enforce: true,
+  enforce: true, // ignore minSize, minChunks, maxAsyncRequests, maxInitialRequests
   filename: 'js/[name]/bundle.js',
+  priority: 1,
   reuseExistingChunk: true,
 };
 
+// @see https://webpack.js.org/plugins/split-chunks-plugin/#splitchunkscachegroups
+// a module belonging to multiple groups will be placed in the highest priority
+// [\\/] only necessary when supporting windows
+// ^ no plans to support windows, plus it messes up my ability to write regex
 export const createCacheGroups = (): ObjectType => ({
   babel: {
     ...cacheGroupBaseParams,
-    idHint: '3',
-    priority: -8,
-    test: /[\\/]node_modules[\\/].*babel.*[\\/]/,
+    test: /node_modules\/.*babel/,
   },
-  default: {
-    idHint: '6',
-    minChunks: 2,
-    priority: -20,
-    reuseExistingChunk: true,
-  },
+  default: false, // disable the default cache group
   etc: {
     ...cacheGroupBaseParams,
-    idHint: '5',
-    priority: -10,
-    test: /[\\/]node_modules[\\/]/,
+    test: /node_modules/,
+    priority: 0,
+  },
+  koa: {
+    ...cacheGroupBaseParams,
+    test: /node_modules\/.*koa/,
   },
   react: {
     ...cacheGroupBaseParams,
-    idHint: '4',
-    priority: -9,
-    test: /[\\/]node_modules[\\/].*react.*[\\/]/,
+    test: /node_modules\/.*react/,
   },
-  styled: {
+  styles: {
     ...cacheGroupBaseParams,
-    idHint: '1',
-    priority: -6,
-    test: /[\\/]node_modules[\\/](animate|normalize|styled|milligram).*[\\/]/,
-  },
-  support: {
-    ...cacheGroupBaseParams,
-    idHint: '2',
-    priority: -7,
-    test: /[\\/]node_modules[\\/](reakit|react-aria|@reach).*[\\/]/,
+    test: /node_modules\/.*(animate|normalize|styled|milligram|reakit|react-aria|emotion)/,
   },
 });
 
 // @see https://webpack.js.org/plugins/split-chunks-plugin/
+// remember we are targeting perf for http2, so more chunks are fine for web
+// all numbers are in bytes
+// minSize, minSizeReduction,
+// enforceSizeThreshold > maxInitialRequest/maxAsyncRequests < maxSize < minSize
+// maxSize: before splitting, sets both maxAsyncSize and maxInitialSize
+// enforceSizeThreshold: never create a chunk larger than this
 export const createSplitChunks = (
-  minSize?: number = 2000
+  target?: string = 'web',
 ): OptimizationSplitChunksOptions => {
-  const maxSize: number = minSize * 6;
+  const kb = 1_000;
+  const mb = 1_000_000;
 
-  return {
+  const common = {
+    automaticNameDelimiter: '-',
     cacheGroups: createCacheGroups(),
-    chunks: 'all',
-    enforceSizeThreshold: 50000,
-    maxAsyncRequests: 30,
-    maxAsyncSize: maxSize,
-    maxInitialRequests: 30,
-    maxInitialSize: maxSize,
-    maxSize,
-    minChunks: 1,
-    minRemainingSize: minSize, // to mirror prod
-    minSize,
-    name: false,
-    usedExports: false, // TODO
+    chunks: 'all', // all, async, initial
+    hidePathInfo: true,
+    minChunks: 1, // shared >= many times among chunks before splitting
+    minRemainingSize: kb,
+    minSizeReduction: kb, // to the main bundle
+    name: false, // false forces the say name across bundles for better caching
+    usedExports: true, // enables mangling of export names, and omitting unused
   };
+
+  if (target.includes('node')) return Object.assign({}, common, {
+    enforceSizeThreshold: Infinity,
+    maxAsyncRequests: Infinity,
+    maxInitialRequests: Infinity,
+    maxSize: 0, // disable splitting based on size
+    minSize: 1,
+  });
+
+
+  return Object.assign({}, common, {
+    enforceSizeThreshold: mb * 2,
+    maxAsyncRequests: 30, // before splitting to new chunk
+    maxInitialRequests: 30, // to the main bundle
+    maxSize: mb, // 1mb
+    minSize: kb * 10,
+  });
 };
 
 // slows down dev a bit, but at least it ALMOST mirrors prod
@@ -97,17 +113,18 @@ export const createOptimization = (
   ifProd: boolean,
   pathDist: string,
 ): OptimizationOptions => ({
-    // $FlowFixMe[incompatible-return]
+  // $FlowFixMe[incompatible-return] webpack 5 typdef doesnt match docs
     chunkIds: ifProd ? 'deterministic' : 'named',
-    concatenateModules: false, // depends on usedExports
-    emitOnErrors: true, // emit assets even if there are errors
+    concatenateModules: true, // depends on usedExports
+    emitOnErrors: true, // emit even if errors, will propagate to runtime
     flagIncludedChunks: true,
     innerGraph: true, // required for emotion
-    mangleExports: false,
+    mangleExports: 'deterministic',
+    mangleWasmImports: false,
     mergeDuplicateChunks: true,
-    minimize: ifProd,
-    minimizer: ifProd ? createTerserPlugin(pathDist, ifProd) : undefined,
-    // $FlowFixMe[incompatible-return]
+    minimize: true,
+    minimizer: createTerserPlugin({ pathDist, ifProd }),
+    // $FlowFixMe[incompatible-return] webpack 5 typdef doesnt match docs
     moduleIds: ifProd ? 'deterministic' : 'named',
     nodeEnv: ifProd ? 'production' : 'development',
     portableRecords: true,
@@ -119,35 +136,42 @@ export const createOptimization = (
     sideEffects: true,
     splitChunks: createSplitChunks(),
     usedExports: false, // cant be used with experiments.cacheUnaffected
-    // mangleWasmImports // TODO
   });
 
 // @see https://stackoverflow.com/questions/66343602/use-latest-terser-webpack-plugin-with-webpack5
-export const createTerserPlugin = (
+// @see nhttps://webpack.js.org/configuration/optimization/#optimizationminimizer
+// @see https://webpack.js.org/plugins/terser-webpack-plugin/
+// @see https://webpack.js.org/plugins/terser-webpack-plugin/#terseroptions
+// only works with source-map, inline-source-map, hidden-source-map and nosources-source-map
+export const createTerserPlugin = ({
+  pathDist,
+  ifProd,
+}: {
   pathDist: string,
-  ifProd: boolean
-): Function[] => [
-    () => ({
-      extractComments: false,
-      include: [pathDist],
-      parallel: os.cpus().length - 1 || 1,
-      // @see https://github.com/terser/terser#minify-options
+  ifProd: boolean,
+}): WebpackPluginType[] => [
+    new TerserPlugin({
+      extractComments: false, // remove all comments
+      minify: TerserPlugin.terserMinify,
+      parallel: true,
       terserOptions: {
         format: { comments: false },
         keep_classnames: true,
         mangle: ifProd,
-        module: false, // TODO: when enabling module + nomodule output
-        toplevel: false,
+        sourceMap: true,
       },
-      test: /\.(m|c)+js$/i,
+      test: /\.m?js(\?.*)?$/i,
     }),
   ];
 
 
 // tests needed pass this line
 
-export const getDefaultPlugins = (copyOptions?: ObjectType): WebpackPluginType[] =>
+export const getDefaultPlugins = (copyOptions?: ObjectType, meta: NodeprotoPackType): WebpackPluginType[] =>
   [
+    // @see https://github.com/shellscape/webpack-manifest-plugin
+    new WebpackManifestPlugin({}),
+
     // @see https://github.com/relative-ci/bundle-stats/tree/master/packages/webpack-plugin
     new BundleStatsWebpackPlugin({
       baseline: false,
@@ -175,7 +199,7 @@ export const getAssetLoaders = (): ObjectType => ({
     generator: { filename: '[file][query]' },
   },
   imageLoader: {
-    test: /\.(jpg|png|gif)$/,
+    test: /\.(jpg|jpeg|png|gif)$/,
     type: 'asset/resource',
     generator: { filename: '[file][query]' },
   },
@@ -211,6 +235,11 @@ export const generateLoaders = ({ processEnv = {}, configFile }: {
     use: ['style-loader', 'css-loader'],
   },
 
+  csvLoader: {
+    test: /\.(csv|tsv)$/i,
+    use: ['csv-loader'],
+  },
+
   // @see https://github.com/webpack/webpack/issues/11467
   esmLoader: {
     test: /\.m?js$/,
@@ -232,11 +261,25 @@ export const generateLoaders = ({ processEnv = {}, configFile }: {
         loader: 'babel-loader',
         options: {
           sourceType: 'unambiguous',
-          configFile: configFile || './node_modules/@nodeproto/configproto/src/babel/flow.babelrc',
+          // configFile: configFile || './node_modules/@nodeproto/configproto/src/babel/flow.babelrc',
         },
       },
       getStringReplaceLoader(processEnv),
     ],
+  },
+
+  // @see https://webpack.js.org/guides/asset-management/#customize-parser-of-json-modules
+  jsonLoader: {
+    test: /\.json5?$/i,
+    type: 'json',
+    parser: { parse: json5.parse },
+  },
+
+  // @see https://webpack.js.org/guides/asset-management/#customize-parser-of-json-modules
+  ymlLoader: {
+    test: /\.ya?ml$/i,
+    type: 'json',
+    parser: { parse: yaml.parse },
   },
 }).filter(Boolean);
 
@@ -288,15 +331,17 @@ export const getStringReplaceLoader = (processEnv: ObjectType): ObjectType => ({
   });
 
 // @see https://webpack.js.org/configuration/experiments/#root
-export const getWebpackExperiments = (): ObjectType => ({
-  // futureDefaults: false,
-  asyncWebAssembly: true, // make a webassembly module an async module
+export const getWebpackExperiments = ({ target }: {
+  target: string
+}): ObjectType => ({
+  // asyncWebAssembly: true, // make a webassembly module an async module
   // buildHttp: false, // build remote resources (security issue)
+  // futureDefaults: false,
+  // syncWebAssembly: false,
   cacheUnaffected: true,
   layers: true,
   lazyCompilation: false,
-  outputModule: false,
-  syncWebAssembly: false,
+  outputModule: true,
   topLevelAwait: true,
 });
 
@@ -327,6 +372,8 @@ export const getHtmlWebpackPlugin = (
   ];
 };
 
+// TODO: where are we using this?
+// @see getDefaultPlugins ?
 export const generateBasePlugins = (
   htmlOptions: WebpackHtmlOptionsType = {},
   pluginsPush: WebpackPluginType[] = []

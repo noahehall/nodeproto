@@ -55,6 +55,7 @@ test('baseWebpackConfig', async ({ fixtures }) => {
       'entry',
       'experiments',
       'externals',
+      'externalsType',
       'infrastructureLogging',
       'mode',
       'module',

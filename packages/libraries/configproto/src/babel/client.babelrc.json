@@ -21,7 +21,7 @@
             // entry: you have to specify the imports of core-js in src
             // usage: automatically imports core-js modules in src
             "corejs": {
-              "version": "3.21.0",
+              "version": "3.21.1",
               "proposals": true
             }
           }

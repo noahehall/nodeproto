@@ -32,6 +32,7 @@ test('@nodeproto/buildproto', () => {
     'getInfrastructureLogging',
     'getStringReplaceLoader',
     'getWebpackExperiments',
+    'getWebpackOutput',
     'handleCompileIssues',
     'handleConfigErrors',
     'logResults',

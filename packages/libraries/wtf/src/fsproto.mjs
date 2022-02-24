@@ -38,7 +38,7 @@ export const resolve: ResolveInterface = async (
   else if (typeof importMetaOrPathOrBoolean === 'string')
     absFilePath = path.resolve(path.dirname(importMetaOrPathOrBoolean), relativeFilePath);
   else if (
-    !isBoolean(importMetaOrPathOrBoolean)
+    typeof importMetaOrPathOrBoolean !== 'boolean'
     && isFunction(importMetaOrPathOrBoolean.resolve)
     && isString(importMetaOrPathOrBoolean.url)
   )

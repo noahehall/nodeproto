@@ -1,3 +1,3 @@
 # @nodeproto/configproto - reusable configs
 
-- todo
+- esbuild doesnt play well with nodejs esm loader

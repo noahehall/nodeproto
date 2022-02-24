@@ -12,7 +12,7 @@ module.exports = {
       pragma: 'React',
       fragment: 'Fragment',
       version: 'detect',
-      flowVersion: '0.170.0',
+      flowVersion: '0.173.0',
       componentWrapperFunctions: ['styled'],
       linkComponents: [
         {

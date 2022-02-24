@@ -8,7 +8,7 @@ import type { NodeprotoPackOptionsType, NodeprotoPackType } from './libdefs';
 
 export const pack = async ({
   context = process.cwd(),
-  NODE_ENV = 'development',
+  NODE_ENV = process.env.NODE_ENV || 'development',
   PATH_DIST = '',
   PATH_SRC = '',
   writeToDisk = false,
@@ -22,8 +22,7 @@ export const pack = async ({
   // $FlowFixMe[incompatible-call]
   const pathDist: string = await resolve(PATH_DIST || pkgJson.config.PATH_DIST, true);
   // $FlowFixMe[incompatible-use]
-  // $FlowFixMe[incompatible-type]
-  // $FlowFixMe[incompatible-call]
+  // $FlowFixMe[incompatible-type]'development'
   const pathSrc: string = await resolve(PATH_SRC || pkgJson.config.PATH_SRC, true);
 
   const ifProd: boolean = NODE_ENV === 'production';
