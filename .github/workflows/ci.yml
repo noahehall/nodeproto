@@ -1,0 +1,38 @@
+# @see https://github.com/actions/starter-workflows/blob/main/ci/node.js.yml
+# @see https://github.com/pnpm/action-setup
+# @see https://github.com/pnpm/action-setup/blob/master/.github/workflows/test.yaml
+
+# TODO: issues with CI environment: build fails in authnz, test fails in buildproto
+
+name: ci
+on:
+  - push
+
+jobs:
+  build:
+    name: build, test and lint
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v2
+
+      - name: setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 17.6
+
+      - name: setup var dir
+        run: |
+          sudo mkdir /var/.nodeproto
+          sudo chown -R $(whoami):$(whoami) /var/.nodeproto
+
+      - name: setup pnpm
+        uses: pnpm/action-setup@v2.1.0
+        with:
+            version: 6.32.1
+
+      - name: install, build, test and lint
+        run: |
+          pnpm i
+          pnpm proto:script build

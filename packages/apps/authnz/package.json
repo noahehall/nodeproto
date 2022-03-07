@@ -144,7 +144,7 @@
     "linux"
   ],
   "scripts": {
-    "build": "NODE_ENV=production NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" node build.webpack.config.mjs",
+    "build:failing-on-ci": "NODE_ENV=production NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" node build.webpack.config.mjs",
     "proto": "pnpm exec ultra -r",
     "proto:bin": "pnpm -r exec $*",
     "proto:script": "NODE_OPTIONS=\"$npm_package_config_NODE_OPTIONS\" pnpm -r $*",

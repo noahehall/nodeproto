@@ -8,6 +8,7 @@
 
 - hard requirements for develop branch
   - dependency requirements
+    - all images pushed to [@nodeproto registry on aws](https://gallery.ecr.aws/z0c3n4h5/nodeproto/apps)
     - Arangodb (todo)
     - ClickHouse (todo)
     - Consul (todo)
@@ -61,7 +62,6 @@
 - to remove this repository completely from your system
 - delete the `/var/.nodeproto` directory, and this repository
 
-
 ### installation (contributing)
 
 ```sh
@@ -89,7 +89,7 @@
 ### updating
 
 ```sh
-  pnpm proto repo:update
+  pnpm proto repo:update # updates all deps to latest
 ```
 
 ### running tests & lints
