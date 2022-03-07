@@ -36,8 +36,7 @@
 
 
 - services
-  - [@nodeproto/gateway - HAproxy Gateway](packages/apps/gateway/README.md)
-  - [@nodeproto/client - React@rc frontend](packages/apps/client/README.md)
+  - [@nodeproto/client - React@next frontend](packages/apps/client/README.md)
   - [@nodeproto/authnz - koa/openapi backend](packages/apps/authnz/README.md)
 - libraries
   - [@nodeproto/configproto - Static configurations](packages/libraries/configproto/README.md)
@@ -48,7 +47,6 @@
   - [@nodeproto/wtf - Where the file? system locations & file management](packages/libraries/wtf/README.md)
 - tools
   - [@nodeproto/jsync - synchronize package.json[c] files](packages/tools/jsync/README.md)
-  - [@nodeproto/bodyguard - UI Network Request proxy + debugger](packages/tools/bodyguard/README.md)
 
 ### npm scripts
 
@@ -74,20 +72,19 @@
 
   # dependencies
   pnpm install
-  pnpm proto repo:flowtyped:install # also useful for updating typedefs across dependent packages
+  pnpm proto repo:flowtyped:install # install flowtype defs
+  pnpm proto repo:jsync # synchronize root/package.json into each package/package.json
+  pnpm proto:script build
+
+  # validation
+  pnpm proto repo:lint
+  pnpm proto:script repo:test
 
   # introspection
   pnpm repo:deps:graph
   pnpm repo:scripts:v
 ```
 
-### monorepo utility logic
-
-```sh
-  # synchronize root/package.json into each package/package.json
-  pnpm proto repo:jsync
-
-```
 
 ### updating
 
@@ -97,22 +94,15 @@
 
 ### running tests & lints
 
-  ```sh
-    pnpm proto repo:lint # runs eslint (fix mode), prettier, flow + type coverage
-    pnpm proto repo:eslint # runs eslint flow & prettier, fails on first package with lint errs
-    pnpm proto repo:eslint:fix # same as above, but doesnt fail
-    pnpm proto repo:flow:coverage # runs flow with type def coverage
-    pnpm proto flow # detailed flowtype analysis
-    pnpm proto flow stop|start # restart flow server, sometimes it fails to pick up changes to deep external libdefs
-    pnpm proto repo:test # run tests
-    pnpm repo:testing # watch & rerun tests in a single package
-    pnpm repo:test:file somefile # run a specific test file
-
-  ```
-
-### build production ready artifacts
-
 ```sh
-    pnpm proto:script build
+  pnpm repo:lint # runs eslint (fix mode), prettier, flow + type coverage
+  pnpm repo:eslint # runs eslint flow & prettier, fails on first package with lint errs
+  pnpm repo:eslint:fix # same as above, but doesnt fail
+  pnpm repo:flow:coverage # runs flow with type def coverage
+  pnpm flow # detailed flowtype analysis
+  pnpm flow stop|start # restart flow server, sometimes it fails to pick up changes to deep external libdefs
+  pnpm repo:test # run tests
+  pnpm repo:testing # watch & rerun tests in a single package
+  pnpm repo:test:file somefile # run a specific test file
 
 ```

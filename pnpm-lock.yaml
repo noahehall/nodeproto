@@ -4,16 +4,16 @@ importers:
 
   .:
     specifiers:
-      '@babel/cli': 7.17.0
-      '@babel/core': 7.17.2
+      '@babel/cli': 7.17.6
+      '@babel/core': 7.17.5
       '@babel/eslint-parser': 7.17.0
       '@babel/eslint-plugin': 7.16.5
       '@nodeproto/configproto': workspace:0.0.0
       '@nodeproto/eslint-config': workspace:0.0.0
       '@nodeproto/prettier-config': workspace:0.0.0
       chokidar-cli: 3.0.0
-      eslint: 8.9.0
-      eslint-config-prettier: 8.3.0
+      eslint: 8.10.0
+      eslint-config-prettier: 8.5.0
       eslint-plugin-fb-flow: 0.0.4
       eslint-plugin-flowtype-errors: 4.5.0
       eslint-plugin-html: 6.2.0
@@ -22,38 +22,36 @@ importers:
       eslint-plugin-node: 11.1.0
       eslint-plugin-prettier: 4.0.0
       eslint-plugin-promise: 6.0.0
-      eslint-plugin-yml: 0.13.0
-      flow-bin: 0.171.0
-      flow-typed: 3.6.1
-      husky: 7.0.4
+      eslint-plugin-yml: 0.14.0
+      flow-bin: 0.173.0
+      flow-typed: 3.7.0
       prettier: 2.5.1
       ultra-runner: 3.10.5
       uvu: 0.5.3
     dependencies:
       ultra-runner: 3.10.5
     devDependencies:
-      '@babel/cli': 7.17.0_@babel+core@7.17.2
-      '@babel/core': 7.17.2
-      '@babel/eslint-parser': 7.17.0_@babel+core@7.17.2+eslint@8.9.0
-      '@babel/eslint-plugin': 7.16.5_0f7d57242c70b8e89c1f8fee5b7f60ba
+      '@babel/cli': 7.17.6_@babel+core@7.17.5
+      '@babel/core': 7.17.5
+      '@babel/eslint-parser': 7.17.0_@babel+core@7.17.5+eslint@8.10.0
+      '@babel/eslint-plugin': 7.16.5_fe2b17f5cea7d312cb7a0336ca5c48e8
       '@nodeproto/configproto': link:packages/libraries/configproto
       '@nodeproto/eslint-config': link:packages/configs/eslint-config
       '@nodeproto/prettier-config': link:packages/configs/prettier-config
       chokidar-cli: 3.0.0
-      eslint: 8.9.0
-      eslint-config-prettier: 8.3.0_eslint@8.9.0
-      eslint-plugin-fb-flow: 0.0.4_eslint@8.9.0
-      eslint-plugin-flowtype-errors: 4.5.0_eslint@8.9.0+flow-bin@0.171.0
+      eslint: 8.10.0
+      eslint-config-prettier: 8.5.0_eslint@8.10.0
+      eslint-plugin-fb-flow: 0.0.4_eslint@8.10.0
+      eslint-plugin-flowtype-errors: 4.5.0_eslint@8.10.0+flow-bin@0.173.0
       eslint-plugin-html: 6.2.0
       eslint-plugin-json: 3.1.0
-      eslint-plugin-markdown: 2.2.1_eslint@8.9.0
-      eslint-plugin-node: 11.1.0_eslint@8.9.0
-      eslint-plugin-prettier: 4.0.0_07b422646bb75d3db791621d4fdbc992
-      eslint-plugin-promise: 6.0.0_eslint@8.9.0
-      eslint-plugin-yml: 0.13.0_eslint@8.9.0
-      flow-bin: 0.171.0
-      flow-typed: 3.6.1
-      husky: 7.0.4
+      eslint-plugin-markdown: 2.2.1_eslint@8.10.0
+      eslint-plugin-node: 11.1.0_eslint@8.10.0
+      eslint-plugin-prettier: 4.0.0_f3d13a703a9c1079e3d1af6044603beb
+      eslint-plugin-promise: 6.0.0_eslint@8.10.0
+      eslint-plugin-yml: 0.14.0_eslint@8.10.0
+      flow-bin: 0.173.0
+      flow-typed: 3.7.0
       prettier: 2.5.1
       uvu: 0.5.3
 
@@ -408,7 +406,6 @@ importers:
       flow-typed: 3.7.0
       html-webpack-plugin: 5.5.0
       http-terminator: 3.1.0
-      husky: 7.0.4
       json5: 2.2.0
       koa: 2.13.4
       memfs: 3.4.1
@@ -477,7 +474,6 @@ importers:
       eslint-plugin-yml: 0.14.0_eslint@8.10.0
       flow-bin: 0.173.0
       flow-typed: 3.7.0
-      husky: 7.0.4
       prettier: 2.5.1
       react: 18.0.0-rc.1-next-cb1e7b1c6-20220303
       react-devtools: 4.23.0
@@ -5812,7 +5808,7 @@ packages:
       loader-utils: 1.4.0
       make-dir: 3.1.0
       schema-utils: 2.7.1
-      webpack: 5.70.0
+      webpack: 5.70.0_esbuild@0.14.25
 
   /babel-plugin-dynamic-import-node/2.3.3:
     resolution: {integrity: sha512-jZVI+s9Zg3IqA/kdi0i6UDCybUI3aSBLnglhYbSSjKlV7yF1F/5LWv8MakQmvYpnbJDS6fcBL2KzHSxNCMtWSQ==}
@@ -6879,7 +6875,7 @@ packages:
       postcss-modules-values: 4.0.0_postcss@8.4.7
       postcss-value-parser: 4.2.0
       semver: 7.3.5
-      webpack: 5.70.0
+      webpack: 5.70.0_esbuild@0.14.25
 
   /css-select/4.2.1:
     resolution: {integrity: sha512-/aUslKhzkTNCQUB2qTX84lVmfia9NyjP3WpDGtj/WxhwBzWBYUV3DgUpurHTme8UTPcPlAD1DJ+b0nN/t50zDQ==}
@@ -13258,7 +13254,7 @@ packages:
     dependencies:
       loader-utils: 2.0.2
       schema-utils: 3.1.1
-      webpack: 5.70.0
+      webpack: 5.70.0_esbuild@0.14.25
 
   /string-similarity/4.0.4:
     resolution: {integrity: sha512-/q/8Q4Bl4ZKAPjj8WerIBJWALKkaPRfrvhfF8k/B23i4nzrlRj2/go1m90In7nG/3XDSbOo0+pu6RvCTM9RGMQ==}
@@ -13424,7 +13420,7 @@ packages:
     peerDependencies:
       webpack: ^5.0.0
     dependencies:
-      webpack: 5.70.0
+      webpack: 5.70.0_esbuild@0.14.25
 
   /stylis/4.0.13:
     resolution: {integrity: sha512-xGPXiFVl4YED9Jh7Euv2V220mriG9u4B2TA6Ybjc1catrstKD2PpIdU3U0RKpkVBC2EhmL/F0sPCr9vrFTNRag==}

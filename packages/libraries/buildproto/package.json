@@ -75,7 +75,6 @@
     "eslint-plugin-yml": "0.14.0",
     "flow-bin": "0.173.0",
     "flow-typed": "3.7.0",
-    "husky": "7.0.4",
     "prettier": "2.5.1",
     "react": "18.0.0-rc.1-next-cb1e7b1c6-20220303",
     "react-devtools": "4.23.0",
