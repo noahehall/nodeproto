@@ -22,7 +22,7 @@
   ],
   "config": {
     "NODE_ENV": "production",
-    "NODE_OPTIONS": "--diagnostic-dir=\"/var/.nodeproto\" --report-compact --report-dir=\"/var/.nodeproto\" --report-filename=node-report --report-on-fatalerror --report-on-signal --report-signal=SIGUSR2 --report-uncaught-exception --pending-deprecation --trace-deprecation --trace-exit --trace-sigint --trace-warnings --unhandled-rejections=strict --enable-source-maps --experimental-abortcontroller --experimental-fetch --experimental-import-meta-resolve --experimental-json-modules --experimental-loader=\"./node_modules/@nodeproto/configproto/src/node/loaders/flow.mjs\" --experimental-modules --experimental-specifier-resolution=node --experimental-top-level-await --tls-max-v1.3 --tls-min-v1.3 --use-largepages=on",
+    "NODE_OPTIONS": "--diagnostic-dir=\"/var/.nodeproto\" --report-compact --report-dir=\"/var/.nodeproto\" --report-filename=node-report --report-on-fatalerror --report-on-signal --report-signal=SIGUSR2 --report-uncaught-exception --pending-deprecation --trace-deprecation --trace-exit --trace-sigint --unhandled-rejections=strict --enable-source-maps --experimental-abortcontroller --experimental-fetch --experimental-import-meta-resolve --experimental-json-modules --experimental-loader=\"./node_modules/@nodeproto/configproto/src/node/loaders/flow.mjs\" --experimental-modules --experimental-specifier-resolution=node --experimental-top-level-await --tls-max-v1.3 --tls-min-v1.3 --use-largepages=on",
     "PATH_DIST": "./dist",
     "PATH_SRC": "./src"
   },
@@ -99,7 +99,7 @@
     "repo:eslint:fix": "pnpm repo:eslint -- --fix",
     "repo:eslint": "eslint './**/*'",
     "repo:flow:coverage": "pnpm flow batch-coverage src",
-    "repo:flowtyped:install": "flow-typed install",
+    "repo:flowtyped:install": "flow-typed install -c '/var/.nodeproto/types'",
     "repo:lint": "pnpm repo:eslint:fix; pnpm repo:flow:coverage",
     "repo:monitor": "ultra --monitor",
     "repo:nuke": "pnpm repo:rm:dist; pnpm repo:rm:nodemodules",
