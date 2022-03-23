@@ -1,8 +1,11 @@
 {
-  "extends": "@nodeproto/configproto/babel/node",
+
   "babelrc": true,
   "babelrcRoots": [
     ".",
     "src/*"
+  ],
+  "presets": [
+    ["babel-preset-nodeproto", { "platform": "client" }]
   ]
 }

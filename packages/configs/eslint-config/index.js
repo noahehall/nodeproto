@@ -1,6 +1,8 @@
 module.exports = {
   reportUnusedDisableDirectives: true,
   ignorePatterns: [
+    '**/*.html', // TODO
+    '**/*.log',
     '**/*.jsonc',
     '**/*.png',
     '**/*.sh',
@@ -32,7 +34,8 @@ module.exports = {
     node: true,
     shelljs: false,
   },
-  plugins: ['markdown', 'html', 'promise', '@babel', 'fb-flow', 'flowtype-errors', 'prettier'],
+  // remove html: failed to find dep domhandler
+  plugins: ['markdown', 'promise', '@babel', 'fb-flow', 'flowtype-errors', 'prettier'],
   extends: [
     'eslint:recommended',
     'plugin:node/recommended',
@@ -44,10 +47,10 @@ module.exports = {
     'plugin:prettier/recommended',
   ],
   settings: {
-    'html/html-extensions': ['.html', '.htm'],
-    'html/xml-extensions': ['.xhtml', '.xml'],
-    'html/indent': '+2',
-    'html/report-bad-indent': 'error',
+    // 'html/html-extensions': ['.html', '.htm'],
+    // 'html/xml-extensions': ['.xhtml', '.xml'],
+    // 'html/indent': '+2',
+    // 'html/report-bad-indent': 'error',
     'flowtype-errors': {
       stopOnExit: false,
     },

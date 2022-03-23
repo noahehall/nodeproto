@@ -7,14 +7,15 @@
   "bugs": "https://github.com/noahehall/nodeproto/issues",
   "homepage": "https://github.com/noahehall/nodeproto",
   "license": "SEE LICENSE IN LICENSE.md",
-  "packageManager": "pnpm@6.32.1",
+  "packageManager": "pnpm@6.32.7",
   "private": true,
   "repository": "git://github.com/noahehall/nodeproto.git",
   "sideEffects": false,
   "type": "module",
   "version": "0.0.0",
   "engines": {
-    "node": "16.14.0 || 17.6.0"
+    "node": "16.14.2 || >=17.9.0",
+    "pnpm": ">=6.32.7"
   },
   "keywords": [
     "@nirv",
@@ -44,7 +45,7 @@
   ],
   "config": {
     "NODE_ENV": "production",
-    "NODE_OPTIONS": "--diagnostic-dir=\"/var/.nodeproto\" --report-compact --report-dir=\"/var/.nodeproto\" --report-filename=node-report --report-on-fatalerror --report-on-signal --report-signal=SIGUSR2 --report-uncaught-exception --pending-deprecation --trace-deprecation --trace-exit --trace-sigint --trace-warnings --unhandled-rejections=strict --enable-source-maps --experimental-abortcontroller --experimental-fetch --experimental-import-meta-resolve --experimental-json-modules --experimental-loader=\"./node_modules/@nodeproto/configproto/src/node/loaders/flow.mjs\" --experimental-modules --experimental-specifier-resolution=node --experimental-top-level-await --tls-max-v1.3 --tls-min-v1.3 --use-largepages=on",
+    "NODE_OPTIONS": "--diagnostic-dir=\"/var/.nodeproto\" --report-compact --report-dir=\"/var/.nodeproto\" --report-filename=node-report --report-on-fatalerror --report-on-signal --report-signal=SIGUSR2 --report-uncaught-exception --pending-deprecation --trace-deprecation --trace-exit --trace-sigint --unhandled-rejections=strict --enable-source-maps --experimental-abortcontroller --experimental-fetch --experimental-import-meta-resolve --experimental-json-modules --experimental-loader=\"./node_modules/@nodeproto/configproto/src/node/loaders/flow.mjs\" --experimental-modules --experimental-specifier-resolution=node --experimental-top-level-await --tls-max-v1.3 --tls-min-v1.3 --use-largepages=on",
     "PATH_DIST": "./dist",
     "PATH_SRC": "./src"
   },
@@ -94,7 +95,7 @@
     "repo:eslint:fix": "pnpm repo:eslint -- --fix",
     "repo:eslint": "eslint './**/*'",
     "repo:flow:coverage": "pnpm flow batch-coverage src",
-    "repo:flowtyped:install": "flow-typed install",
+    "repo:flowtyped:install": "flow-typed install -c '/var/.nodeproto/types'",
     "repo:lint": "pnpm repo:eslint:fix; pnpm repo:flow:coverage",
     "repo:linting": "pnpm repo:lint; chokidar \"src/**/*(?:.test)?.(m|c)?js\" -c \"pnpm repo:lint\" -t 4000 -d 4000",
     "repo:monitor": "ultra --monitor",
@@ -109,23 +110,24 @@
     "repo:update": "pnpm up --latest"
   },
   "dependencies": {
-    "@babel/runtime": "7.17.2",
+    "@babel/runtime": "7.17.9",
     "@folder/readdir": "3.1.0",
-    "jsonc-simple-parser": "2.2.0",
+    "jsonc-simple-parser": "2.2.1",
     "picomatch": "2.3.1",
     "ultra-runner": "3.10.5"
   },
   "devDependencies": {
     "@babel/cli": "7.17.6",
-    "@babel/core": "7.17.5",
+    "@babel/core": "7.17.9",
     "@babel/eslint-parser": "7.17.0",
-    "@babel/eslint-plugin": "7.16.5",
+    "@babel/eslint-plugin": "7.17.7",
     "@nodeproto/configproto": "workspace:0.0.0",
     "@nodeproto/eslint-config": "workspace:0.0.0",
     "@nodeproto/prettier-config": "workspace:0.0.0",
     "@nodeproto/testproto": "workspace:0.0.0",
+    "babel-preset-nodeproto": "workspace:0.0.0",
     "chokidar-cli": "3.0.0",
-    "eslint": "8.10.0",
+    "eslint": "8.13.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-fb-flow": "0.0.4",
     "eslint-plugin-flowtype-errors": "4.5.0",
@@ -136,10 +138,10 @@
     "eslint-plugin-prettier": "4.0.0",
     "eslint-plugin-promise": "6.0.0",
     "eslint-plugin-yml": "0.14.0",
-    "flow-bin": "0.173.0",
+    "flow-bin": "0.176.1",
     "flow-typed": "3.7.0",
     "husky": "7.0.4",
-    "prettier": "2.5.1",
+    "prettier": "2.6.2",
     "uvu": "0.5.3"
   }
 }
