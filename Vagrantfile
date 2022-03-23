@@ -20,12 +20,22 @@ Vagrant.configure("2") do |config|
     preserve_order: true,
     type: "shell"
 
-  config.vm.provision "build-packages",
+  config.vm.provision "install-flow-types",
+    inline: "cd /opt/nodeproto && pnpm repo:flowtyped:install",
+    preserve_order: true,
+    type: "shell"
+
+  config.vm.provision "build-repo",
     inline: "cd /opt/nodeproto && pnpm proto:script build",
     preserve_order: true,
     type: "shell"
 
-  config.vm.provision "test-packages",
+  config.vm.provision "lint-repo",
+    inline: "cd /opt/nodeproto && pnpm proto repo:lint",
+    preserve_order: true,
+    type: "shell"
+
+  config.vm.provision "test-repo",
     inline: "cd /opt/nodeproto && pnpm proto:script test",
     preserve_order: true,
     type: "shell"
