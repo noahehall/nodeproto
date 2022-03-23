@@ -1,5 +1,6 @@
 // @flow
 
+// TODO: bunches of lint errors
 import { throwIt } from '@nodeproto/shared';
 
 import {
@@ -18,6 +19,7 @@ import type {
   BaseWebpackType,
   NodeprotoPackType,
   ObjectType,
+  OutputOptions,
   WebpackConfigType,
 } from '../libdefs';
 
@@ -25,7 +27,7 @@ import type {
 export const getWebpackOutput = ({ meta, target }: {
   meta: NodeprotoPackType,
   target: string,
-}): ObjectType => {
+}): OutputOptions => {
   const common = {
       // path: meta.pathDist,
       // trustedTypes: false, // todo, requires CSP spike
