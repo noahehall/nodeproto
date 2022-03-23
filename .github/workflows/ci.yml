@@ -27,7 +27,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: /var/.nodeproto
-          key: vagrant-${{ hashFiles('pnpm-lock.yaml') }}
+          key: nodeproto-${{ hashFiles('pnpm-lock.yaml') }}
           restore-keys: ${{ runner.os }}-nodeproto-var-dir
 
 
