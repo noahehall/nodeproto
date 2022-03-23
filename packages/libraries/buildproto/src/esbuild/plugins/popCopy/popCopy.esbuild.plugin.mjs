@@ -23,7 +23,9 @@ const copyFile = async (
   sourcePath: string,
   outPath: string,
   write: boolean = false): Promise<void> => write
+  // $FlowFixMe - esbuild perhaps deprecated
   ? fs.copyFile(sourcePath, outPath)
+  // $FlowFixMe - esbiuld perhaps deprecated
   : memfs.copyFile(sourcePath, outPath);
 
 // copies files to outdir
