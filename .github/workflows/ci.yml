@@ -20,14 +20,15 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/.vagrant.d/boxes
-          key: vagrant-${{ hashFiles('pnpm-lock.yaml') }}
-          restore-keys: ${{ runner.os }}-nodeproto-var-dir
+          key: vagrant-${{ hashFiles('Vagrantfile') }}
+          restore-keys: ${{ runner.os }}-vagrant
 
       - name: cache nodeproto var dir
         uses: actions/cache@v2
         with:
           path: /var/.nodeproto
-          key: vagrant-${{ hashFiles('Vagrantfile') }}
-          restore-keys: ${{ runner.os }}-vagrant
+          key: vagrant-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: ${{ runner.os }}-nodeproto-var-dir
+
 
       - run: vagrant up
