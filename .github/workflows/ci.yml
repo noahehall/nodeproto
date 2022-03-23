@@ -9,30 +9,47 @@ on:
   - push
 
 jobs:
-  build:
-    name: build, test and lint
-    runs-on: ubuntu-20.04
-
+  # @see https://github.com/Yagoor/vagrant-workflow/blob/main/.github/workflows/vagrant-up.yml
+  vagrant-up:
+    runs-on: macos-10.15
     steps:
-      - name: checkout repo
-        uses: actions/checkout@v2
-
-      - name: setup node
-        uses: actions/setup-node@v2
+      - uses: actions/checkout@v2
+      - name: Cache Vagrant boxes
+        uses: actions/cache@v2
         with:
-          node-version: 17.6
+          path: ~/.vagrant.d/boxes
+          key: ${{ runner.os }}-vagrant-${{ hashFiles('Vagrantfile') }}
+          restore-keys: |
+            ${{ runner.os }}-vagrant-
+      - name: Run vagrant up
+        run: vagrant up
 
-      - name: setup var dir
-        run: |
-          sudo mkdir /var/.nodeproto
-          sudo chown -R $(whoami):$(whoami) /var/.nodeproto
+      - name: ssh into box after boot
+        run: vagrant ssh -c "echo 'hello world!'"
+  # build:
+  #   name: build, test and lint
+  #   runs-on: ubuntu-20.04
 
-      - name: setup pnpm
-        uses: pnpm/action-setup@v2.1.0
-        with:
-            version: 6.32.1
+  #   steps:
+  #     - name: checkout repo
+  #       uses: actions/checkout@v2
 
-      - run: pnpm i
-      #- run: pnpm proto repo:flowtyped:install
-      #- run: pnpm proto repo:lint
-      - run: pnpm proto:script build
+  #     - name: setup node
+  #       uses: actions/setup-node@v2
+  #       with:
+  #         node-version: 17.6
+
+  #     - name: setup var dir
+  #       run: |
+  #         sudo mkdir /var/.nodeproto
+  #         sudo chown -R $(whoami):$(whoami) /var/.nodeproto
+
+  #     - name: setup pnpm
+  #       uses: pnpm/action-setup@v2.1.0
+  #       with:
+  #           version: 6.32.1
+
+  #     - run: pnpm i
+  #     #- run: pnpm proto repo:flowtyped:install
+  #     #- run: pnpm proto repo:lint
+  #     - run: pnpm proto:script build
