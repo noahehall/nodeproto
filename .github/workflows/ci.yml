@@ -32,7 +32,5 @@ jobs:
         with:
             version: 6.32.1
 
-      - name: install, build, test and lint
-        run: |
-          pnpm i
-          pnpm proto:script build
+      - run: pnpm i
+      - run: pnpm proto:script build
