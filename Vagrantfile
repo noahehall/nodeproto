@@ -21,7 +21,7 @@ Vagrant.configure("2") do |config|
     type: "shell"
 
   config.vm.provision "install-flow-types",
-    inline: "cd /opt/nodeproto && pnpm repo:flowtyped:install",
+    inline: "cd /opt/nodeproto && pnpm proto repo:flowtyped:install",
     preserve_order: true,
     type: "shell"
 

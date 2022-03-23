@@ -15,12 +15,19 @@ jobs:
     runs-on: macos-10.15
     steps:
       - uses: actions/checkout@v2
+
       - name: cache vagrant env
         uses: actions/cache@v2
         with:
           path: ~/.vagrant.d/boxes
+          key: vagrant-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: ${{ runner.os }}-nodeproto-var-dir
+
+      - name: cache nodeproto var dir
+        uses: actions/cache@v2
+        with:
+          path: /var/.nodeproto
           key: vagrant-${{ hashFiles('Vagrantfile') }}
-          restore-keys: |
-            ${{ runner.os }}-vagrant-
-            vagrant-
+          restore-keys: ${{ runner.os }}-vagrant
+
       - run: vagrant up
