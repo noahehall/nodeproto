@@ -10,34 +10,53 @@ Vagrant.configure("2") do |config|
   config.vm.box_check_update = false # check for updates
   config.vm.box_version = "1.0.4"
 
+  config.vm.provision "install-flow-dep",
+    inline: "apt install -y libatomic1",
+    preserve_order: true,
+    type: "shell",
+    privileged: true
+
   config.vm.provision "setup-node-env",
     path: "https://raw.githubusercontent.com/noahehall/theBookOfNoah/master/linux/.install_node.sh",
     preserve_order: true,
-    type: "shell"
+    type: "shell",
+    privileged: false,
+    name: 'setup-node'
+
+  config.vm.provision "create-var-nodeproto",
+    inline: "install -d -o vagrant -g vagrant /var/.nodeproto",
+    preserve_order: true,
+    type: "shell",
+    privileged: true
 
   config.vm.provision "install-repo-deps",
     inline: "cd /opt/nodeproto && pnpm i",
     preserve_order: true,
+    privileged: false,
     type: "shell"
 
   config.vm.provision "install-flow-types",
     inline: "cd /opt/nodeproto && pnpm proto repo:flowtyped:install",
     preserve_order: true,
+    privileged: false,
     type: "shell"
 
   config.vm.provision "build-repo",
     inline: "cd /opt/nodeproto && pnpm proto:script build",
     preserve_order: true,
+    privileged: false,
     type: "shell"
 
   config.vm.provision "lint-repo",
     inline: "cd /opt/nodeproto && pnpm proto repo:lint",
     preserve_order: true,
+    privileged: false,
     type: "shell"
 
   config.vm.provision "test-repo",
     inline: "cd /opt/nodeproto && pnpm proto:script test",
     preserve_order: true,
+    privileged: false,
     type: "shell"
 
   # config.vm.network "private_network", type: "dhcp" # create a private network for nfs
