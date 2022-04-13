@@ -1,5 +1,0 @@
-// we keep this file here to keep our exports structured
-// as this repo dogfoods the main babel.config.json
-{
-  "extends": "../../babel.config.json"
-}
