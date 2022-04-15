@@ -1,4 +1,0 @@
-// all child dirs are to be delivered to the client
-{
-  "extends": "@nodeproto/configproto/babel/client"
-}

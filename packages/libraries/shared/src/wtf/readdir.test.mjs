@@ -14,8 +14,7 @@ const test = t.suite('@nodeproto/shared: readdir.mjs');
 
 const { assert } = t;
 
-// returns //somepath so we remove the leading /
-const getFixturesDirPath = () => dirname(import.meta.url).slice(1) + '/fixtures';
+const getFixturesDirPath = () => dirname(import.meta.url) + '/fixtures';
 
 test('external', () => {
   const externalMembers = Object.keys(external);
@@ -26,6 +25,7 @@ test('external', () => {
 
 test('getFilePathAbs', async () => {
   const fixturesPath = getFixturesDirPath();
+
   const filePathAbs = await getFilePathAbs(fixturesPath, '*.cjs');
 
   assert.lengthOf(filePathAbs, 1, 'filePathAbs has 1 item');

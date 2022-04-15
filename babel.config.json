@@ -2,8 +2,8 @@
   "babelrcRoots": [
     ".",
     "packages/apps/*",
+    "packages/configs/*",
     "packages/libraries/*",
-    "packages/tests/*",
     "packages/tools/*"
   ]
 }
