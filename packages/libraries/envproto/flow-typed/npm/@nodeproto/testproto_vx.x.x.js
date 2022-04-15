@@ -1,4 +1,4 @@
-// flow-typed signature: 806a96651c4bb9dd3f2f36dd2214a58c
+// flow-typed signature: c8aeb581449d952eb8800664e58cd8ae
 // flow-typed version: <<STUB>>/@nodeproto/testproto_vworkspace:0.0.0/flow_v0.176.1
 
 /**
@@ -218,6 +218,10 @@ declare module '@nodeproto/testproto/flow-typed/npm/uvu_vx.x.x' {
   declare module.exports: any;
 }
 
+declare module '@nodeproto/testproto/flow-typed/npm/yargs_v15.x.x' {
+  declare module.exports: any;
+}
+
 declare module '@nodeproto/testproto/src/libdefs' {
   declare module.exports: any;
 }
@@ -375,6 +379,9 @@ declare module '@nodeproto/testproto/flow-typed/npm/ultra-runner_vx.x.x.js' {
 }
 declare module '@nodeproto/testproto/flow-typed/npm/uvu_vx.x.x.js' {
   declare module.exports: $Exports<'@nodeproto/testproto/flow-typed/npm/uvu_vx.x.x'>;
+}
+declare module '@nodeproto/testproto/flow-typed/npm/yargs_v15.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/testproto/flow-typed/npm/yargs_v15.x.x'>;
 }
 declare module '@nodeproto/testproto/src/libdefs/index' {
   declare module.exports: $Exports<'@nodeproto/testproto/src/libdefs'>;

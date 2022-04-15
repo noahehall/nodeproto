@@ -1,4 +1,4 @@
-// flow-typed signature: 4c23d97e53917b7e250524449ab5c757
+// flow-typed signature: 19965f424e941f35ed9e4946c2aaed31
 // flow-typed version: <<STUB>>/@nodeproto/shared_vworkspace:0.0.0/flow_v0.176.1
 
 /**
@@ -250,6 +250,10 @@ declare module '@nodeproto/shared/flow-typed/npm/uvu_vx.x.x' {
   declare module.exports: any;
 }
 
+declare module '@nodeproto/shared/flow-typed/npm/yargs_v15.x.x' {
+  declare module.exports: any;
+}
+
 declare module '@nodeproto/shared/src/libdefs' {
   declare module.exports: any;
 }
@@ -437,6 +441,9 @@ declare module '@nodeproto/shared/flow-typed/npm/ultra-runner_vx.x.x.js' {
 }
 declare module '@nodeproto/shared/flow-typed/npm/uvu_vx.x.x.js' {
   declare module.exports: $Exports<'@nodeproto/shared/flow-typed/npm/uvu_vx.x.x'>;
+}
+declare module '@nodeproto/shared/flow-typed/npm/yargs_v15.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/shared/flow-typed/npm/yargs_v15.x.x'>;
 }
 declare module '@nodeproto/shared/src/libdefs/index' {
   declare module.exports: $Exports<'@nodeproto/shared/src/libdefs'>;

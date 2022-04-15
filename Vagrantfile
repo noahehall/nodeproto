@@ -44,11 +44,11 @@ Vagrant.configure("2") do |config|
     privileged: false,
     type: "shell"
 
-  # config.vm.provision "install-flow-types",
-  #   inline: "cd /opt/nodeproto && pnpm proto repo:flowtyped:install",
-  #   preserve_order: true,
-  #   privileged: false,
-  #   type: "shell"
+  config.vm.provision "install-flow-types",
+    inline: "cd /opt/nodeproto && pnpm proto repo:flowtyped:install",
+    preserve_order: true,
+    privileged: false,
+    type: "shell"
 
   config.vm.provision "build-repo",
     inline: "cd /opt/nodeproto && pnpm proto:script build",
@@ -56,17 +56,17 @@ Vagrant.configure("2") do |config|
     privileged: false,
     type: "shell"
 
-  # config.vm.provision "lint-repo",
-  #   inline: "cd /opt/nodeproto && pnpm proto repo:lint",
-  #   preserve_order: true,
-  #   privileged: false,
-  #   type: "shell"
+  config.vm.provision "lint-repo",
+    inline: "cd /opt/nodeproto && pnpm proto repo:lint",
+    preserve_order: true,
+    privileged: false,
+    type: "shell"
 
-  # config.vm.provision "test-repo",
-  #   inline: "cd /opt/nodeproto && pnpm proto:script repo:test",
-  #   preserve_order: true,
-  #   privileged: false,
-  #   type: "shell"
+  config.vm.provision "test-repo",
+    inline: "cd /opt/nodeproto && pnpm proto:script repo:test",
+    preserve_order: true,
+    privileged: false,
+    type: "shell"
 
   # config.vm.network "private_network", type: "dhcp" # create a private network for nfs
 

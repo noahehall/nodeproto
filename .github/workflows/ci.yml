@@ -4,31 +4,31 @@
 
 # TODO: issues with CI environment: build fails in authnz, test fails in buildproto
 
-name: ci
-on:
-  - push
+# name: ci
+# on:
+#   - push
 
-jobs:
-  # @see https://github.com/Yagoor/vagrant-workflow/blob/main/.github/workflows/vagrant-up.yml
-  # @see https://github.com/jonashackt/vagrant-github-actions/blob/main/.github/workflows/vagrant-up.yml
-  env-install-build-lint-test:
-    runs-on: macos-10.15
-    steps:
-      - uses: actions/checkout@v2
+# jobs:
+#   # @see https://github.com/Yagoor/vagrant-workflow/blob/main/.github/workflows/vagrant-up.yml
+#   # @see https://github.com/jonashackt/vagrant-github-actions/blob/main/.github/workflows/vagrant-up.yml
+#   env-install-build-lint-test:
+#     runs-on: macos-10.15
+#     steps:
+#       - uses: actions/checkout@v2
 
-      - name: cache vagrant env
-        uses: actions/cache@v2
-        with:
-          path: ~/.vagrant.d/boxes
-          key: vagrant-${{ hashFiles('Vagrantfile') }}
-          restore-keys: ${{ runner.os }}-vagrant
+#       - name: cache vagrant env
+#         uses: actions/cache@v2
+#         with:
+#           path: ~/.vagrant.d/boxes
+#           key: vagrant-${{ hashFiles('Vagrantfile') }}
+#           restore-keys: ${{ runner.os }}-vagrant
 
-      - name: cache nodeproto var dir
-        uses: actions/cache@v2
-        with:
-          path: /var/.nodeproto
-          key: nodeproto-${{ hashFiles('pnpm-lock.yaml') }}
-          restore-keys: ${{ runner.os }}-nodeproto-var-dir
+#       - name: cache nodeproto var dir
+#         uses: actions/cache@v2
+#         with:
+#           path: /var/.nodeproto
+#           key: nodeproto-${{ hashFiles('pnpm-lock.yaml') }}
+#           restore-keys: ${{ runner.os }}-nodeproto-var-dir
 
 
-      - run: vagrant up
+#       - run: vagrant up

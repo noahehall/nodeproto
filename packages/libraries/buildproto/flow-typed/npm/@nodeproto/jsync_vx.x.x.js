@@ -1,4 +1,4 @@
-// flow-typed signature: 9d99205e2eb5cadec99aef24e80e8078
+// flow-typed signature: addb44f40298f7c06c65bd891ddb3c3c
 // flow-typed version: <<STUB>>/@nodeproto/jsync_vworkspace:0.0.0/flow_v0.176.1
 
 /**
@@ -214,6 +214,18 @@ declare module '@nodeproto/jsync/flow-typed/npm/md5_v2.x.x' {
   declare module.exports: any;
 }
 
+declare module '@nodeproto/jsync/flow-typed/npm/mkdirp_v1.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/jsync/flow-typed/npm/node-stream-zip_v1.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/jsync/flow-typed/npm/prettier_v1.x.x' {
+  declare module.exports: any;
+}
+
 declare module '@nodeproto/jsync/flow-typed/npm/prettier_vx.x.x' {
   declare module.exports: any;
 }
@@ -226,6 +238,10 @@ declare module '@nodeproto/jsync/flow-typed/npm/rimraf_v3.x.x' {
   declare module.exports: any;
 }
 
+declare module '@nodeproto/jsync/flow-typed/npm/semver_v7.x.x' {
+  declare module.exports: any;
+}
+
 declare module '@nodeproto/jsync/flow-typed/npm/ultra-runner_vx.x.x' {
   declare module.exports: any;
 }
@@ -235,6 +251,10 @@ declare module '@nodeproto/jsync/flow-typed/npm/uvu_vx.x.x' {
 }
 
 declare module '@nodeproto/jsync/flow-typed/npm/yaml-eslint-parser_vx.x.x' {
+  declare module.exports: any;
+}
+
+declare module '@nodeproto/jsync/flow-typed/npm/yargs_v15.x.x' {
   declare module.exports: any;
 }
 
@@ -393,6 +413,15 @@ declare module '@nodeproto/jsync/flow-typed/npm/jest_v27.x.x.js' {
 declare module '@nodeproto/jsync/flow-typed/npm/md5_v2.x.x.js' {
   declare module.exports: $Exports<'@nodeproto/jsync/flow-typed/npm/md5_v2.x.x'>;
 }
+declare module '@nodeproto/jsync/flow-typed/npm/mkdirp_v1.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/jsync/flow-typed/npm/mkdirp_v1.x.x'>;
+}
+declare module '@nodeproto/jsync/flow-typed/npm/node-stream-zip_v1.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/jsync/flow-typed/npm/node-stream-zip_v1.x.x'>;
+}
+declare module '@nodeproto/jsync/flow-typed/npm/prettier_v1.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/jsync/flow-typed/npm/prettier_v1.x.x'>;
+}
 declare module '@nodeproto/jsync/flow-typed/npm/prettier_vx.x.x.js' {
   declare module.exports: $Exports<'@nodeproto/jsync/flow-typed/npm/prettier_vx.x.x'>;
 }
@@ -402,6 +431,9 @@ declare module '@nodeproto/jsync/flow-typed/npm/regenerator-runtime_vx.x.x.js' {
 declare module '@nodeproto/jsync/flow-typed/npm/rimraf_v3.x.x.js' {
   declare module.exports: $Exports<'@nodeproto/jsync/flow-typed/npm/rimraf_v3.x.x'>;
 }
+declare module '@nodeproto/jsync/flow-typed/npm/semver_v7.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/jsync/flow-typed/npm/semver_v7.x.x'>;
+}
 declare module '@nodeproto/jsync/flow-typed/npm/ultra-runner_vx.x.x.js' {
   declare module.exports: $Exports<'@nodeproto/jsync/flow-typed/npm/ultra-runner_vx.x.x'>;
 }
@@ -410,6 +442,9 @@ declare module '@nodeproto/jsync/flow-typed/npm/uvu_vx.x.x.js' {
 }
 declare module '@nodeproto/jsync/flow-typed/npm/yaml-eslint-parser_vx.x.x.js' {
   declare module.exports: $Exports<'@nodeproto/jsync/flow-typed/npm/yaml-eslint-parser_vx.x.x'>;
+}
+declare module '@nodeproto/jsync/flow-typed/npm/yargs_v15.x.x.js' {
+  declare module.exports: $Exports<'@nodeproto/jsync/flow-typed/npm/yargs_v15.x.x'>;
 }
 declare module '@nodeproto/jsync/src/libdefs/index' {
   declare module.exports: $Exports<'@nodeproto/jsync/src/libdefs'>;
